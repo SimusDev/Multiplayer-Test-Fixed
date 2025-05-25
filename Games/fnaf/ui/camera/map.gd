@@ -1,1 +1,2 @@
 extends TextureRect
+@export var noise_animation_player:AnimationPlayer

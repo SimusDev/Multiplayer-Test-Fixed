@@ -1,5 +1,6 @@
 extends Button
 
+@export var map:Node
 @export var data: FW_CameraData
 
 @onready var panel: Panel = $Panel
@@ -22,3 +23,5 @@ func _on_camera_switched(to: FW_CameraData) -> void:
 
 func _on_pressed() -> void:
 	camera_container.switch(data)
+	map.noise_animation_player.stop()
+	map.noise_animation_player.play("shader_noise")

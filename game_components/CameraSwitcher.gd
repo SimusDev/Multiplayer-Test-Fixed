@@ -1,6 +1,7 @@
 extends Node
 class_name CameraSwitcher
 
+@export var vehicle_controller:VehicleController
 @export var _cameras: Array[Node3D]
 @export var input: String = "switch_camera"
 
@@ -25,6 +26,9 @@ func switch_camera(to: Node3D) -> void:
 			_current_camera = to
 
 func try_switch_camera() -> void:
+	if !vehicle_controller.driver_seat.driver:
+		return
+	
 	var cam_id: int = _cameras.find(_current_camera)
 	var next_id: int = cam_id + 1
 	if next_id > _cameras.size() - 1:

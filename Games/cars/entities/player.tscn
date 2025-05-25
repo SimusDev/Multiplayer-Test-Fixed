@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://bqufam4ov4dfk"]
+[gd_scene load_steps=24 format=3 uid="uid://bqufam4ov4dfk"]
 
-[ext_resource type="Script" uid="uid://x1dk7fqhj1j3" path="res://Games/fnaf/entities/player.gd" id="1_othhv"]
+[ext_resource type="Script" uid="uid://bnweibaeafkrr" path="res://Games/cars/entities/player.gd" id="1_i2rg2"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_0m6cw"]
-[ext_resource type="PackedScene" uid="uid://cw4mxqlkm6fc0" path="res://Games/fnaf/ui/GameUI.tscn" id="2_i2rg2"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_rrtg7"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_d77um"]
 [ext_resource type="PackedScene" uid="uid://rvyu0bsdlqtm" path="res://prefabs/models/player/default.tscn" id="5_j18a4"]
@@ -69,12 +68,11 @@ size = Vector3(0.5, 1.4908, 0.5)
 size = Vector3(0.5, 0.856, 0.5)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "crouch", "inventory")]
-script = ExtResource("1_othhv")
+script = ExtResource("1_i2rg2")
 movement = NodePath("W_FPCSourceLikeMovement")
 camera = NodePath("W_FPCSourceLikePlayerCamera")
 crouch = NodePath("W_FPCSourceLikeCrouch")
 inventory = NodePath("F_Inventory")
-GameUI_scene = ExtResource("2_i2rg2")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_0m6cw")

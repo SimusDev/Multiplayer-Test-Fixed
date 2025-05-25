@@ -29,7 +29,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_gknyh")
 
-[node name="show_stage" parent="." instance=ExtResource("3_eafns")]
+[node name="show_stage" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -42,9 +42,10 @@ offset_right = -279.0
 offset_bottom = -409.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("4_iug3v")
 
-[node name="backstage" parent="." instance=ExtResource("3_eafns")]
+[node name="backstage" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -57,9 +58,10 @@ offset_right = -438.0
 offset_bottom = -347.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("5_3h7kq")
 
-[node name="pirate_cove" parent="." instance=ExtResource("3_eafns")]
+[node name="pirate_cove" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -72,9 +74,10 @@ offset_right = -399.0
 offset_bottom = -250.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("6_r2a23")
 
-[node name="restrooms" parent="." instance=ExtResource("3_eafns")]
+[node name="restrooms" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -87,9 +90,10 @@ offset_right = -58.0
 offset_bottom = -324.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("7_xs54c")
 
-[node name="supply_closet" parent="." instance=ExtResource("3_eafns")]
+[node name="supply_closet" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -102,9 +106,10 @@ offset_right = -405.0
 offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("8_cub5f")
 
-[node name="west_hall" parent="." instance=ExtResource("3_eafns")]
+[node name="west_hall" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -117,9 +122,10 @@ offset_right = -313.0
 offset_bottom = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("9_agoj5")
 
-[node name="west_hall2" parent="." instance=ExtResource("3_eafns")]
+[node name="west_hall2" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -132,9 +138,10 @@ offset_right = -313.0
 offset_bottom = -43.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("10_3muiy")
 
-[node name="east_hall" parent="." instance=ExtResource("3_eafns")]
+[node name="east_hall" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -147,9 +154,10 @@ offset_right = -180.0
 offset_bottom = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("11_a0c3r")
 
-[node name="east_hall2" parent="." instance=ExtResource("3_eafns")]
+[node name="east_hall2" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -162,9 +170,10 @@ offset_right = -180.0
 offset_bottom = -43.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("12_wl3rh")
 
-[node name="kitchen" parent="." instance=ExtResource("3_eafns")]
+[node name="kitchen" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_eafns")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -177,4 +186,5 @@ offset_right = -100.0
 offset_bottom = -178.0
 grow_horizontal = 0
 grow_vertical = 0
+map = NodePath("..")
 data = ExtResource("13_r2a23")

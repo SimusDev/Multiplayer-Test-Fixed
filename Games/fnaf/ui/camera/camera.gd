@@ -18,12 +18,15 @@ func _ready() -> void:
 	)
 	
 	$%View.texture = viewport.get_texture()
+	
 
 func _on_slot_selected(slot: W_InventorySlot) -> void:
 	%C_UIInterfaceComponent.close()
 	if slot.get_item():
 		if slot.get_item().data == tablet_resource:
 			%C_UIInterfaceComponent.open()
+			$AnimationPlayer.play("shader_noise")
+
 
 func _on_update_camera_timeout() -> void:
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE

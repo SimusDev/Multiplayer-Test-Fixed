@@ -1645,6 +1645,7 @@ gear_ratios = Array[float]([3.01, 2.07, 1.43, 1.0, 0.84, 0.5])
 final_drive = 4.1
 reverse_ratio = 3.28
 shift_time = 0.25
+automatic_transmission = false
 front_variable_split = 0.5
 vehicle_mass = 1400.0
 front_weight_distribution = 0.526
@@ -1906,9 +1907,8 @@ shadow_enabled = true
 driver_seat = NodePath("../DriverSeat")
 vehicle_node = NodePath("..")
 
-[node name="AuthorityChecker" type="Node" parent="." node_paths=PackedStringArray("camera", "node")]
+[node name="AuthorityChecker" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("31_cstuy")
-camera = NodePath("")
 node = NodePath("..")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
@@ -1930,17 +1930,19 @@ fov = 81.1
 script = ExtResource("37_yi43l")
 follow_this = NodePath("../..")
 
-[node name="CameraSwitcher" type="Node" parent="." node_paths=PackedStringArray("_cameras")]
+[node name="CameraSwitcher" type="Node" parent="." node_paths=PackedStringArray("vehicle_controller", "_cameras")]
 script = ExtResource("40_uvl71")
-_cameras = [NodePath(""), NodePath("../Node/Camera3D")]
+vehicle_controller = NodePath("../VehicleController")
+_cameras = [NodePath("../Node/Camera3D")]
 metadata/_custom_type_script = "uid://0ksyaacptcju"
 
-[node name="DriverSeat" type="Area3D" parent="." node_paths=PackedStringArray("link_point", "interactable_area")]
+[node name="DriverSeat" type="Area3D" parent="." node_paths=PackedStringArray("link_point", "interactable_area", "camera_switcher")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("40_l7flc")
 link_point = NodePath("point")
 interactable_area = NodePath("W_InteractableArea3D")
+camera_switcher = NodePath("../CameraSwitcher")
 
 [node name="W_InteractableArea3D" type="Node" parent="DriverSeat" node_paths=PackedStringArray("area")]
 script = ExtResource("40_a82us")

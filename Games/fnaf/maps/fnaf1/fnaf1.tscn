@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://br4qpybovwh23"]
+[gd_scene load_steps=26 format=3 uid="uid://br4qpybovwh23"]
 
 [ext_resource type="PackedScene" uid="uid://cq0mnmofrt7e" path="res://Games/fnaf/maps/fnaf1/inherited.tscn" id="1_nq7cf"]
 [ext_resource type="PackedScene" uid="uid://c1vyo4mg1715e" path="res://Games/fnaf/resources/world_environment.tscn" id="1_pc7ag"]
@@ -15,12 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="9_r12x4"]
 [ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="10_56x3a"]
 [ext_resource type="PackedScene" uid="uid://crgwlusij06a7" path="res://Games/fnaf/ui/office_tv/3d.tscn" id="10_vr3wg"]
-[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
+[ext_resource type="Script" uid="uid://dr7ca17fift23" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
 [ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="14_56x3a"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="16_7xr5c"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="16_tenrf"]
 [ext_resource type="PackedScene" uid="uid://cv22pe0m3n5au" path="res://Games/fnaf/models/props/pirate_cove/pirate_cove.glb" id="20_1kwq6"]
 [ext_resource type="PackedScene" uid="uid://jlkobskjb663" path="res://Games/fnaf/models/animatronics/s_freddy/head.tscn" id="21_gie0c"]
+[ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="22_4a2wg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue53b"]
 albedo_texture = ExtResource("6_riuv5")
@@ -102,9 +103,9 @@ metadata/_custom_type_script = "uid://crxce7oinuqn4"
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, -0.997016, 0.0771889, 0, -0.0771889, -0.997016, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.931621, 0.36343, 0, -0.36343, -0.931621, 0, 0, 0)
 visible = false
-light_energy = 16.0
+light_energy = 17.48
 
 [node name="main_hall_lamp2" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, 14.8441, 9.12911, 11.8347)
@@ -268,8 +269,13 @@ transform = Transform3D(-0.622787, 0, -2.94998, 0, 3.015, 0, 2.94998, 0, -0.6227
 [node name="freddy_head1" parent="Props" instance=ExtResource("21_gie0c")]
 transform = Transform3D(3, 0, 0, 0, 2.96918, 0.428923, 0, -0.428923, 2.96918, -22.1835, 0.84135, -2.60617)
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.134336, -1.99548, 8.72254e-08, 0, -8.74228e-08, -2, 1.99548, -0.134336, 5.87201e-09, 6.98888, 13.2481, -0.61)
+modulate = Color(0.169245, 0.169245, 0.169245, 1)
+texture = ExtResource("22_4a2wg")
+
 [node name="disabled_text" type="Label3D" parent="."]
-transform = Transform3D(-0.067168, -0.997741, -0.000794476, 0, 0.000796274, -1, 0.997742, -0.067168, -5.34842e-05, 6.63814, 13.213, -0.61)
+transform = Transform3D(-0.067168, -0.997741, -0.000794476, 0, 0.000796274, -1, 0.997742, -0.067168, -5.34842e-05, 6.67723, 13.1443, -0.729199)
 text = "-CAMERA DISABLED-
 AUDIO ONLY"
 
