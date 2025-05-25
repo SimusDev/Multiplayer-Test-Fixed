@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="9_r12x4"]
 [ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="10_56x3a"]
 [ext_resource type="PackedScene" uid="uid://crgwlusij06a7" path="res://Games/fnaf/ui/office_tv/3d.tscn" id="10_vr3wg"]
-[ext_resource type="Script" uid="uid://dr7ca17fift23" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
+[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
 [ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="14_56x3a"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="16_7xr5c"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="16_tenrf"]
