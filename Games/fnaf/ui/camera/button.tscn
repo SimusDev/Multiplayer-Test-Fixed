@@ -43,3 +43,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_h66f4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yobj5")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

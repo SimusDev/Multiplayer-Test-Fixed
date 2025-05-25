@@ -30,7 +30,12 @@ data = PackedVector3Array(19.5069, 1.2192, 4.4195, 20.0216, 1.2192, 8.5343, 19.5
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_pc7ag")]
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.76883, 0.0779294, -0.634687, 0, 0.992546, 0.121869, 0.639453, -0.0936964, 0.763099, -7.85684, 9.05254, -0.882349)
+fov = 37.8493
+
 [node name="FW_CameraContainer" parent="." instance=ExtResource("2_qoeor")]
+render_target_update_mode = 0
 
 [node name="Untitled" parent="." instance=ExtResource("1_nq7cf")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
@@ -227,9 +232,5 @@ door = NodePath("../../../Components/left_door")
 [node name="Door2" parent="Props/doors" node_paths=PackedStringArray("door") instance=ExtResource("16_tenrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172213, 5.33651, 55.6122)
 door = NodePath("../../../Components/right_door")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.76883, 0.0779293, -0.634686, 0, 0.992546, 0.121869, 0.639453, -0.0936964, 0.7631, -7.85684, 9.05254, -0.882349)
-fov = 60.0
 
 [editable path="Untitled"]

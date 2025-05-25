@@ -30,8 +30,8 @@ func update_screen(data: FW_CameraData) -> void:
 	screen_updated.emit(data)
 
 func switch(to: FW_CameraData) -> void:
-	switched.emit(to)
 	update_screen(to)
+	switched.emit(to)
 
 func get_current_data() -> FW_CameraData:
 	return _data

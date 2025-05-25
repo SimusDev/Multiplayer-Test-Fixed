@@ -19,3 +19,6 @@ func _on_camera_switched(to: FW_CameraData) -> void:
 	update_interface()
 	$AudioStreamPlayer.play()
 	
+
+func _on_pressed() -> void:
+	camera_container.switch(data)

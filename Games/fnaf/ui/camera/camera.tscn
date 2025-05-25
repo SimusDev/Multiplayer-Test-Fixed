@@ -16,6 +16,10 @@ mouse_filter = 2
 script = ExtResource("1_dc7l6")
 tablet_resource = ExtResource("2_5giuk")
 
+[node name="update_camera" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
 [node name="root" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -26,6 +30,7 @@ grow_vertical = 2
 
 [node name="View" type="TextureRect" parent="root"]
 unique_name_in_owner = true
+texture_filter = 4
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,3 +49,5 @@ unique_name_in_owner = true
 script = ExtResource("4_surqo")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[connection signal="timeout" from="update_camera" to="." method="_on_update_camera_timeout"]
