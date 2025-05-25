@@ -137,9 +137,6 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
-[node name="head" parent="default/rotation/body_root/body/rotation" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987554, 0)
-
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null
 

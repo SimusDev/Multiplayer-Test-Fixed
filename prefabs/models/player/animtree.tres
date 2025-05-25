@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://cpqunii6ol1bw"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://oydapla4ss7c"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vawrv"]
 
@@ -97,7 +97,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_23uux")
 blend_point_4/pos = Vector2(1, 0)
 
 [resource]
-graph_offset = Vector2(-144.087, -67.7746)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_1h50p")
 nodes/Add2/position = Vector2(20, -100)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_vawrv")

@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="1_42hjl"]
 [ext_resource type="Script" uid="uid://cd88emvvob0fx" path="res://prefabs/models/player/default.gd" id="1_x7my2"]
-[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
+[ext_resource type="Script" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
 [ext_resource type="PackedScene" uid="uid://b0p2ri2cyn4bu" path="res://Games/counter-strike/models/players/glasses/glasses.tscn" id="2_vchnj"]
 [ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="4_1h50p"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="4_3wtj8"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://cpqunii6ol1bw" path="res://prefabs/models/player/animtree.tres" id="7_i0pha"]
+[ext_resource type="AnimationNodeBlendTree" path="res://prefabs/models/player/animtree.tres" id="7_i0pha"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vchnj"]
 albedo_texture = ExtResource("1_42hjl")

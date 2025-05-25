@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://o5humlj5571o" path="res://Games/fnaf/resources/items/tablet.tres" id="2_5giuk"]
 [ext_resource type="PackedScene" uid="uid://n5iivkn1w181" path="res://Games/fnaf/ui/camera/map.tscn" id="2_y64ak"]
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="4_surqo"]
-[ext_resource type="Shader" path="res://Games/fnaf/ui/camera/camera.gdshader" id="4_xk744"]
+[ext_resource type="Shader" uid="uid://bjbikqsd8vj2x" path="res://Games/fnaf/ui/camera/camera.gdshader" id="4_xk744"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4oju"]
 shader = ExtResource("4_xk744")
