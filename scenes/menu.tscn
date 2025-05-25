@@ -21,7 +21,7 @@ duplicate_deep = false
 duplicate_resources = false
 metadata/_custom_type_script = "uid://b5csmggjb4hh6"
 
-[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+[sub_resource type="LabelSettings" id="LabelSettings_mhnvy"]
 font_size = 32
 
 [node name="Menu" type="CanvasLayer"]
@@ -87,7 +87,7 @@ offset_bottom = -153.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "САМАЯ КЛАССНАЯ ИГРА"
-label_settings = SubResource("LabelSettings_vjb58")
+label_settings = SubResource("LabelSettings_mhnvy")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

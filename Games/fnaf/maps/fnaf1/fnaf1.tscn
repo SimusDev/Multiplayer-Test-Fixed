@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="16_7xr5c"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="16_tenrf"]
 [ext_resource type="PackedScene" uid="uid://cv22pe0m3n5au" path="res://Games/fnaf/models/props/pirate_cove/pirate_cove.glb" id="20_1kwq6"]
-[ext_resource type="PackedScene" path="res://Games/fnaf/models/animatronics/s_freddy/head.tscn" id="21_gie0c"]
+[ext_resource type="PackedScene" uid="uid://jlkobskjb663" path="res://Games/fnaf/models/animatronics/s_freddy/head.tscn" id="21_gie0c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue53b"]
 albedo_texture = ExtResource("6_riuv5")
