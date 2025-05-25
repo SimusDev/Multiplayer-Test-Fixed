@@ -68,13 +68,13 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	if multiplayer.is_server() and not is_dedicated_server():
-		var data: Dictionary = {}
-		data["username"] = get_username()
-		data["peer_id"] = multiplayer.get_unique_id()
-		data["host"] = is_server()
-		
-		_create_player(data)
+	#if multiplayer.is_server() and not is_dedicated_server():
+		#var data: Dictionary = {}
+		#data["username"] = get_username()
+		#data["peer_id"] = multiplayer.get_unique_id()
+		#data["host"] = is_server()
+		#
+		#_create_player(data)
 
 func _on_server_disconnected() -> void:
 	server_disconnected.emit()
@@ -220,6 +220,13 @@ func create_server(port: int) -> void:
 		console.write_from_object(self, "SERVER created with port: %s" % [str(port)], SD_ConsoleCategories.CATEGORY.WARNING)
 		console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
 		
+		if not is_dedicated_server():
+			var data: Dictionary = {}
+			data["username"] = get_username()
+			data["peer_id"] = multiplayer.get_unique_id()
+			data["host"] = is_server()
+			
+			_create_player(data)
 
 func create_client(address: String, port: int) -> void:
 	if _is_server_created or _is_connected_to_server:

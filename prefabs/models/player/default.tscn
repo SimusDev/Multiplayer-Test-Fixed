@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://rvyu0bsdlqtm"]
+[gd_scene load_steps=24 format=3 uid="uid://rvyu0bsdlqtm"]
 
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="1_42hjl"]
 [ext_resource type="Script" uid="uid://cd88emvvob0fx" path="res://prefabs/models/player/default.gd" id="1_x7my2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0p2ri2cyn4bu" path="res://Games/counter-strike/models/players/glasses/glasses.tscn" id="2_vchnj"]
 [ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="4_1h50p"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="4_3wtj8"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cpqunii6ol1bw" path="res://prefabs/models/player/default.tres" id="7_i0pha"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vchnj"]
 albedo_texture = ExtResource("1_42hjl")
@@ -33,24 +34,24 @@ uv1_triplanar = true
 [sub_resource type="SphereMesh" id="SphereMesh_kf8fh"]
 material = SubResource("StandardMaterial3D_x7my2")
 
-[sub_resource type="Animation" id="Animation_1h50p"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_hoeyd"]
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rotation/body_root/body/hands:position")
+tracks/0/path = NodePath("rotation/body_root/body/rotation/head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.678792, 0)]
+"values": [Vector3(0, 0.915, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("rotation/body_root:position")
+tracks/1/path = NodePath("rotation/body_root/body/rotation/head:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -62,7 +63,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("legs/lpoint:rotation")
+tracks/2/path = NodePath("rotation/body_root/body:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +75,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("legs/rpoint:rotation")
+tracks/3/path = NodePath("rotation/body_root:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -86,7 +87,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("rotation/body_root/body/hands/left/lpoint:rotation")
+tracks/4/path = NodePath("legs:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -98,86 +99,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("rotation/body_root/body/hands/right/rpoint:rotation")
+tracks/5/path = NodePath("rotation/body_root/body/hands:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("rotation/body_root:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("legs:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("legs:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("rotation/body_root/body:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("rotation/body_root/body/rotation/head:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("rotation/body_root/body/rotation/head:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.05969, 0)]
+"values": [Vector3(0, -0.678792, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3wtj8"]
@@ -618,7 +547,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vawrv"]
 _data = {
-&"RESET": SubResource("Animation_1h50p"),
+&"RESET": SubResource("Animation_hoeyd"),
 &"breath": SubResource("Animation_3wtj8"),
 &"considers_item": SubResource("Animation_23uux"),
 &"idle": SubResource("Animation_i0pha"),
@@ -628,125 +557,6 @@ _data = {
 &"strafe_right": SubResource("Animation_q3b44"),
 &"walk": SubResource("Animation_vawrv")
 }
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vawrv"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_i0pha"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_q3b44"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1h50p"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3lt1j"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1h50p"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hoeyd"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vawrv"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1h50p"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hoeyd"]
-states/idle/node = SubResource("AnimationNodeAnimation_3lt1j")
-states/idle/position = Vector2(302, 23)
-states/jump/node = SubResource("AnimationNodeAnimation_1h50p")
-states/jump/position = Vector2(507, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_hoeyd"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_vawrv"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1h50p")]
-graph_offset = Vector2(-15, -83)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_crael"]
-animation = &"breath"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hoeyd"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q50r8"]
-animation = &"considers_item"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emjis"]
-animation = &"considers_item"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7d4fy"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_hoeyd")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_q50r8")
-blend_point_1/pos = -1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_emjis")
-blend_point_2/pos = 1.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7d4fy"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pkwty"]
-animation = &"item_in_right_hand"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxqjp"]
-animation = &"item_in_right_hand"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fcyr2"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_7d4fy")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_pkwty")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_mxqjp")
-blend_point_2/pos = -1.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0pha"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3b44"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rmxhe"]
-animation = &"walk"
-play_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_15cdc"]
-animation = &"strafe_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_23uux"]
-animation = &"strafe_right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3lt1j"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_i0pha")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_q3b44")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_rmxhe")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_15cdc")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_23uux")
-blend_point_4/pos = Vector2(1, 0)
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vawrv"]
-graph_offset = Vector2(-243.962, -97.9843)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_1h50p")
-nodes/Add2/position = Vector2(43.2565, -40.9004)
-"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_vawrv")
-"nodes/Add2 2/position" = Vector2(500, -60)
-"nodes/Add2 3/node" = SubResource("AnimationNodeAdd2_i0pha")
-"nodes/Add2 3/position" = Vector2(300, 80)
-"nodes/Add2 4/node" = SubResource("AnimationNodeAdd2_q3b44")
-"nodes/Add2 4/position" = Vector2(720, 140)
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_hoeyd")
-nodes/StateMachine/position = Vector2(-260, 140)
-nodes/breath/node = SubResource("AnimationNodeAnimation_crael")
-nodes/breath/position = Vector2(-200, -80)
-nodes/consider_item/node = SubResource("AnimationNodeBlendSpace1D_7d4fy")
-nodes/consider_item/position = Vector2(200, 340)
-nodes/item_in_right_hand/node = SubResource("AnimationNodeBlendSpace1D_fcyr2")
-nodes/item_in_right_hand/position = Vector2(480, 260)
-nodes/output/position = Vector2(800, -20)
-nodes/walk_blend/node = SubResource("AnimationNodeBlendSpace2D_3lt1j")
-nodes/walk_blend/position = Vector2(-20, 300)
-node_connections = [&"Add2", 0, &"breath", &"Add2", 1, &"StateMachine", &"Add2 2", 0, &"Add2 3", &"Add2 2", 1, &"item_in_right_hand", &"Add2 3", 0, &"consider_item", &"Add2 3", 1, &"walk_blend", &"Add2 4", 0, &"Add2 2", &"Add2 4", 1, &"Add2", &"output", 0, &"Add2 4"]
 
 [node name="default" type="Node3D" node_paths=PackedStringArray("tree", "_body_rot", "_head_rot", "_glasses_model")]
 script = ExtResource("1_x7my2")
@@ -784,6 +594,7 @@ skeleton = NodePath("../../..")
 [node name="rotation" type="Node3D" parent="."]
 
 [node name="body_root" type="Node3D" parent="rotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0170357, 0)
 
 [node name="body" type="MeshInstance3D" parent="rotation/body_root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.648415, 0)
@@ -822,7 +633,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.552116, 0)
 [node name="rotation" type="Node3D" parent="rotation/body_root/body"]
 
 [node name="head" type="MeshInstance3D" parent="rotation/body_root/body/rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05969, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915, 0)
 mesh = SubResource("SphereMesh_kf8fh")
 skeleton = NodePath("../../../../..")
 
@@ -844,13 +655,12 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
-tree_root = SubResource("AnimationNodeBlendTree_vawrv")
+tree_root = ExtResource("7_i0pha")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
 "parameters/Add2 2/add_amount" = 1.0
 "parameters/Add2 3/add_amount" = 1
-"parameters/Add2 4/add_amount" = 0
+"parameters/Add2 4/add_amount" = 1.0
 parameters/consider_item/blend_position = 0.0
 parameters/item_in_right_hand/blend_position = 0.0
 parameters/walk_blend/blend_position = Vector2(0, 0)

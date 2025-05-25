@@ -77,6 +77,13 @@ crouch = NodePath("W_FPCSourceLikeCrouch")
 inventory = NodePath("F_Inventory")
 GameUI_scene = ExtResource("12_fwir6")
 
+[node name="ComponentActivatorDeactivator" type="Node" parent="." node_paths=PackedStringArray("root", "components", "node_based_components")]
+script = ExtResource("8_vacrf")
+root = NodePath("..")
+components = [NodePath("../W_FPCSourceLikeMovement"), NodePath("../W_FPCSourceLikePlayerCamera"), NodePath("../W_FPCSourceLikeCrouch")]
+node_based_components = [NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")]
+metadata/_custom_type_script = "uid://cuwtndm6vgivt"
+
 [node name="F_Inventory" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_sf0t1")
 root = NodePath("..")
@@ -130,6 +137,9 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
+[node name="body_root" parent="default/rotation" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0212376, 0)
+
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null
 
@@ -154,7 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72305, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 make_current_at_start = false
-mouse_captured = false
+_mouse_captured = false
 enabled = false
 
 [node name="interactor" type="RayCast3D" parent="W_FPCSourceLikePlayerCamera"]
@@ -165,6 +175,7 @@ script = ExtResource("13_wwsac")
 root = NodePath("../..")
 raycast = NodePath("../interactor")
 input_action = "interact"
+_active = false
 metadata/_custom_type_script = "uid://beeaaqggu6nod"
 
 [node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_6357b")]
@@ -175,23 +186,6 @@ collision_crouch = NodePath("../collision_crouch")
 ceiling_detection = NodePath("../crouch_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 enabled = false
-
-[node name="camera_settings" type="Node" parent="." node_paths=PackedStringArray("component", "node_based_component")]
-script = ExtResource("8_vacrf")
-component = NodePath("../W_FPCSourceLikePlayerCamera")
-node_based_component = NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")
-metadata/_custom_type_script = "uid://cuwtndm6vgivt"
-
-[node name="movement_settings" type="Node" parent="." node_paths=PackedStringArray("movement", "node_based_component")]
-script = ExtResource("8_vacrf")
-movement = NodePath("../W_FPCSourceLikeMovement")
-node_based_component = NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")
-metadata/_custom_type_script = "uid://cuwtndm6vgivt"
-
-[node name="crouch_settings" type="Node" parent="." node_paths=PackedStringArray("component")]
-script = ExtResource("8_vacrf")
-component = NodePath("../W_FPCSourceLikeCrouch")
-metadata/_custom_type_script = "uid://cuwtndm6vgivt"
 
 [node name="collision_normal" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442496, 0)

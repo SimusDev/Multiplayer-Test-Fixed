@@ -27,23 +27,15 @@ static func get_instance() -> FNAF_Player:
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		normalized_velocity = velocity
+		normalized_velocity = velocity.normalized()
 	
 	model.set_velocity(normalized_velocity)
-	
 
 func _ready() -> void:
-	movement.enabled = is_multiplayer_authority()
-	camera.enabled = is_multiplayer_authority()
-	crouch.enabled = is_multiplayer_authority()
-	
-	if not is_multiplayer_authority():
-		movement.add_disable_priority()
-		camera.add_disable_priority()
-		crouch.add_disable_priority()
-		$collision_crouch.disabled = true
-		$collision_normal.disabled = true
-	else:
+	if is_multiplayer_authority():
+		camera.enabled = true
+		movement.enabled = true
+		crouch.enabled = true
 		camera.make_current()
 		camera.set_mouse_captured(true)
 		add_child(GameUI_scene.instantiate())

@@ -93,7 +93,7 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
-	console.visibility_changed.connect(_on_console_visibility_changed)
+	#console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if actor.is_on_floor():
 		state_machine.switch_by_name("ground")

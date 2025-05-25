@@ -23,14 +23,16 @@ func _on_console_visibility_changed() -> void:
 		subtract_disable_priority()
 
 func _on_enabled() -> void:
-	raycast.collide_with_areas = true
-	raycast.collide_with_bodies = false
-	raycast.enabled = true
+	if raycast:
+		raycast.collide_with_areas = true
+		raycast.collide_with_bodies = false
+		raycast.enabled = true
 
 func _on_disabled() -> void:
-	raycast.collide_with_areas = false
-	raycast.collide_with_bodies = false
-	raycast.enabled = false
+	if raycast:
+		raycast.collide_with_areas = false
+		raycast.collide_with_bodies = false
+		raycast.enabled = false
 	
 	if _selected == null:
 		return
