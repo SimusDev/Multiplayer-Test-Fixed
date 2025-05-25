@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cwmdnc8jwie5l" path="res://Games/fnaf/textures/items/tablet.png" id="1_vw3j7"]
 [ext_resource type="Script" uid="uid://8mlva3k0mfy2" path="res://Games/fnaf/scripts/resources/FW_ItemData.gd" id="2_c4h7a"]
-[ext_resource type="PackedScene" uid="uid://bsejr1eenfljm" path="res://Games/fnaf/models/items/tablet/hands.tscn" id="3_gsn7g"]
+[ext_resource type="PackedScene" path="res://Games/fnaf/models/items/tablet/hands.tscn" id="3_gsn7g"]
 
 [resource]
 script = ExtResource("2_c4h7a")
