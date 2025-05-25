@@ -19,6 +19,7 @@ func load_property(property: String, default_value: Variant = null) -> Variant:
 
 func save_property(property: String, value: Variant) -> void:
 	_properties.set(property, value)
+	print(_properties)
 
 func can_instantiate() -> bool:
 	return not instance_data.is_empty()
