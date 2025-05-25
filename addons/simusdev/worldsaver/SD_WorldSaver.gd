@@ -29,15 +29,12 @@ func load_data(path: String = "save") -> SD_WorldSavedData:
 	_data._saver = self
 	load_begin.emit(_data)
 	
-	if not ResourceLoader.exists(file_path):
-		save_data(file_path)
-	
-	_data = null
-	var loaded_resource: SD_WorldSavedData = ResourceLoader.load(file_path)
-	if loaded_resource:
-		_data = loaded_resource.duplicate()
-		_data._saver = self
-		loaded.emit(_data)
+	if ResourceLoader.exists(file_path):
+		var loaded_resource: SD_WorldSavedData = ResourceLoader.load(file_path)
+		if loaded_resource:
+			_data = loaded_resource.duplicate()
+			_data._saver = self
+			loaded.emit(_data)
 	
 	return _data
 
