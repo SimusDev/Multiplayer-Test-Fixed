@@ -3,7 +3,7 @@ class_name SD_WorldSavedData
 
 var _saver: SD_WorldSaver
 
-var _nodes: Dictionary[String, SD_WorldSavedNodeData] = {}
+@export var _nodes: Dictionary[String, SD_WorldSavedNodeData] = {}
 
 func create_or_get_data_from_node(node: Node) -> SD_WorldSavedNodeData:
 	if (not node) or (not node.is_inside_tree()):

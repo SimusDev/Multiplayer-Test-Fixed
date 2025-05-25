@@ -1,7 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://do51aphwtdub7"]
+[gd_scene load_steps=8 format=3 uid="uid://do51aphwtdub7"]
 
 [ext_resource type="Script" uid="uid://bd0ewmaxi3teq" path="res://scenes/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="2_mhnvy"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_vjb58"]
+[ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="3_4ytvr"]
+
+[sub_resource type="Resource" id="Resource_g3eks"]
+script = ExtResource("3_4ytvr")
+name = "text"
+duplicate = false
+duplicate_deep = false
+duplicate_resources = false
+metadata/_custom_type_script = "uid://b5csmggjb4hh6"
+
+[sub_resource type="Resource" id="Resource_v86rl"]
+script = ExtResource("3_4ytvr")
+name = "text"
+duplicate = false
+duplicate_deep = false
+duplicate_resources = false
+metadata/_custom_type_script = "uid://b5csmggjb4hh6"
 
 [sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
 font_size = 32
@@ -28,6 +46,12 @@ layout_mode = 2
 text = "username"
 placeholder_text = "NAME"
 
+[node name="SD_WorldNodePropertySaver" type="Node" parent="VBoxContainer/name" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mhnvy")
+properties_to_save = Array[ExtResource("3_4ytvr")]([SubResource("Resource_g3eks")])
+node = NodePath("..")
+metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
+
 [node name="button_host" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(220, 49)
 layout_mode = 2
@@ -38,6 +62,12 @@ custom_minimum_size = Vector2(272, 45)
 layout_mode = 2
 text = "localhost"
 placeholder_text = "IP"
+
+[node name="SD_WorldNodePropertySaver" type="Node" parent="VBoxContainer/ip" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mhnvy")
+properties_to_save = Array[ExtResource("3_4ytvr")]([SubResource("Resource_v86rl")])
+node = NodePath("..")
+metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
 
 [node name="button_client" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(220, 49)

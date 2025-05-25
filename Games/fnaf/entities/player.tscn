@@ -170,14 +170,15 @@ ceiling_detection = NodePath("../crouch_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 enabled = false
 
-[node name="movement_settings" type="Node" parent="." node_paths=PackedStringArray("component")]
-script = ExtResource("8_vacrf")
-component = NodePath("../W_FPCSourceLikeMovement")
-metadata/_custom_type_script = "uid://cuwtndm6vgivt"
-
 [node name="camera_settings" type="Node" parent="." node_paths=PackedStringArray("component", "node_based_component")]
 script = ExtResource("8_vacrf")
 component = NodePath("../W_FPCSourceLikePlayerCamera")
+node_based_component = NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")
+metadata/_custom_type_script = "uid://cuwtndm6vgivt"
+
+[node name="movement_settings" type="Node" parent="." node_paths=PackedStringArray("movement", "node_based_component")]
+script = ExtResource("8_vacrf")
+movement = NodePath("../W_FPCSourceLikeMovement")
 node_based_component = NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")
 metadata/_custom_type_script = "uid://cuwtndm6vgivt"
 

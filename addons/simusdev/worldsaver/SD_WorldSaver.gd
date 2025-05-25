@@ -22,31 +22,29 @@ static func get_base_path() -> String:
 func get_data() -> SD_WorldSavedData:
 	return _data
 
-func load_data(path: String) -> SD_WorldSavedData:
+func load_data(path: String = "save") -> SD_WorldSavedData:
 	SD_FileSystem.make_directory(get_base_path())
 	var file_path: String = get_base_path().path_join(path) + EXTENSTION
 	
 	_data._saver = self
 	load_begin.emit(_data)
 	
-	if not ResourceLoader.exists(file_path):
-		save_data(file_path)
-	
-	_data = null
-	var loaded_resource: SD_WorldSavedData = ResourceLoader.load(file_path)
-	if loaded_resource:
-		_data = loaded_resource.duplicate()
-		_data._saver = self
-		loaded.emit(_data)
+	if ResourceLoader.exists(file_path):
+		var loaded_resource: SD_WorldSavedData = ResourceLoader.load(file_path)
+		if loaded_resource:
+			_data = loaded_resource.duplicate()
+			_data._saver = self
+			loaded.emit(_data)
 	
 	return _data
 
-func save_data(path: String) -> SD_WorldSavedData:
+func save_data(path: String = "save") -> SD_WorldSavedData:
 	SD_FileSystem.make_directory(get_base_path())
 	var file_path: String = get_base_path().path_join(path) + EXTENSTION
 	
 	_data = SD_WorldSavedData.new()
 	_data._saver = self
+	
 	save_begin.emit(_data)
 	
 	ResourceSaver.save(_data, file_path)

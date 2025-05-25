@@ -14,6 +14,9 @@ const DUPLICATE_RESOURCE_EXCEPTIONS: Array[String] = [
 
 func _ready() -> void:
 	super()
+	
+	if load_at_start:
+		load_properties()
 
 func _on_world_saver_loaded(data: SD_WorldSavedData) -> void:
 	super(data)

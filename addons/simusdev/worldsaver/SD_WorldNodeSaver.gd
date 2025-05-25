@@ -20,7 +20,9 @@ func get_node_data() -> SD_WorldSavedNodeData:
 
 func _ready() -> void:
 	_saved_data = _saver.get_data()
-	_node_data = _saved_data.create_or_get_data_from_node(node)
+	if _saved_data:
+		_node_data = _saved_data.get_data_from_node(node)
+	
 	_saver.loaded.connect(_on_world_saver_loaded)
 	_saver.save_begin.connect(_on_world_saver_save_begin)
 

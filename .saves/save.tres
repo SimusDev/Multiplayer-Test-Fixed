@@ -1,6 +1,27 @@
-[gd_resource type="Resource" script_class="SD_WorldSavedData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SD_WorldSavedData" load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://addons/simusdev/worldsaver/SD_WorldSavedData.gd" id="1_1inmu"]
+[ext_resource type="Script" path="res://addons/simusdev/worldsaver/SD_WorldSavedNodeData.gd" id="1_jwbyx"]
+[ext_resource type="Script" path="res://addons/simusdev/worldsaver/SD_WorldSavedData.gd" id="2_7ja1k"]
+
+[sub_resource type="Resource" id="Resource_jwbyx"]
+script = ExtResource("1_jwbyx")
+_properties = Dictionary[String, Variant]({
+"text": "simusdevv"
+})
+is_scene = false
+instance_data = ""
+
+[sub_resource type="Resource" id="Resource_7ja1k"]
+script = ExtResource("1_jwbyx")
+_properties = Dictionary[String, Variant]({
+"text": "localhost"
+})
+is_scene = false
+instance_data = ""
 
 [resource]
-script = ExtResource("1_1inmu")
+script = ExtResource("2_7ja1k")
+_nodes = Dictionary[String, ExtResource("1_jwbyx")]({
+"/root/Menu/VBoxContainer/ip": SubResource("Resource_7ja1k"),
+"/root/Menu/VBoxContainer/name": SubResource("Resource_jwbyx")
+})
