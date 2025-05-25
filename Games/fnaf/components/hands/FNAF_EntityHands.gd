@@ -4,6 +4,8 @@ class_name FNAF_EntityHands
 @export var inventory: W_Inventory
 
 @export var hand_node: Node3D
+@export var model: M_TestModel
+
 
 func _ready() -> void:
 	inventory.slot_selected.connect(_on_slot_selected)
@@ -29,7 +31,20 @@ func clear_hands() -> void:
 func _process(delta: float) -> void:
 	global_position = hand_node.global_position
 
+var _blend_animations: Array[String] = []
+
+func model_clear_animations() -> void:
+	for i in _blend_animations:
+		model.mix_set_animation_blend_position(i, 0.0)
+		_blend_animations.erase(i)
+
+func model_mix_play_animation_loop(animation: String) -> void:
+	if not _blend_animations.has(animation):
+		model.mix_set_animation_blend_position(animation, 1.0)
+		_blend_animations.append(animation)
+
 func create_handmodel(slot: W_InventorySlot) -> void:
+	model_clear_animations()
 	clear_hands()
 	
 	if not slot:
@@ -45,5 +60,8 @@ func create_handmodel(slot: W_InventorySlot) -> void:
 					model.position = data.world_model_position
 					model.rotation = data.world_model_rotation
 					add_child(model)
+				
+				for anim in data.blend1d_animations:
+					model_mix_play_animation_loop(anim)
 				
 	

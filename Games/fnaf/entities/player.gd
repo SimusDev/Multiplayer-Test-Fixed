@@ -27,7 +27,7 @@ static func get_instance() -> FNAF_Player:
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		normalized_velocity = velocity.normalized()
+		normalized_velocity = velocity
 	
 	model.set_velocity(normalized_velocity)
 	

@@ -132,6 +132,10 @@ movement = NodePath("../W_FPCSourceLikeMovement")
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null
 
+[node name="AnimationTree" parent="default" index="4"]
+"parameters/Add2 3/add_amount" = 0
+parameters/consider_item/blend_position = 0
+
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_1v7vv")]
 actor = NodePath("..")
 key_forward = "move_forward"
@@ -202,8 +206,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924104, 0)
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
-[node name="FNAF_EntityHands" parent="." node_paths=PackedStringArray("inventory", "hand_node") instance=ExtResource("16_j5t3b")]
+[node name="FNAF_EntityHands" parent="." node_paths=PackedStringArray("inventory", "hand_node", "model") instance=ExtResource("16_j5t3b")]
 inventory = NodePath("../F_Inventory")
 hand_node = NodePath("../default/rotation/body_root/body/hands/left/lpoint/left/hands")
+model = NodePath("../default")
 
 [editable path="default"]

@@ -5,3 +5,4 @@ class_name FW_ItemData
 @export var world_model: PackedScene
 @export var world_model_position: Vector3 = Vector3.ZERO
 @export var world_model_rotation: Vector3 = Vector3.ZERO
+@export var blend1d_animations: Array[String] = []

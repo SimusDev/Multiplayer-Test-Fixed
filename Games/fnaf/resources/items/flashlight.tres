@@ -9,6 +9,7 @@ script = ExtResource("1_76eqc")
 world_model = ExtResource("3_n4b60")
 world_model_position = Vector3(0, 0, 0)
 world_model_rotation = Vector3(0, 0, 0)
+blend1d_animations = Array[String]([])
 name = "Flashlight"
 icon = ExtResource("1_0203h")
 description = ""

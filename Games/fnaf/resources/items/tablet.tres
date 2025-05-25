@@ -7,6 +7,7 @@
 script = ExtResource("2_c4h7a")
 world_model_position = Vector3(0, 0, 0)
 world_model_rotation = Vector3(0, 0, 0)
+blend1d_animations = Array[String](["consider_item"])
 name = "Tablet"
 icon = ExtResource("1_vw3j7")
 description = ""

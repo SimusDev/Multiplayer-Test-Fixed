@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://rvyu0bsdlqtm"]
+[gd_scene load_steps=43 format=3 uid="uid://rvyu0bsdlqtm"]
 
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="1_42hjl"]
 [ext_resource type="Script" uid="uid://cd88emvvob0fx" path="res://prefabs/models/player/default.gd" id="1_x7my2"]
@@ -155,6 +155,30 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("rotation/body_root/body/rotation/head:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("rotation/body_root/body/rotation/head:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.05969, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_3wtj8"]
 resource_name = "breath"
@@ -183,6 +207,59 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(-0.5, -0.5),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_23uux"]
+resource_name = "considers_item"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rotation/body_root/body/hands/left/lpoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.963422, 0.410152, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rotation/body_root/body/hands/right/rpoint:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.04022, -0.364774, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rotation/body_root/body/rotation/head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.640536, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("rotation/body_root/body/rotation/head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.005, 1, -0.32)]
 }
 
 [sub_resource type="Animation" id="Animation_i0pha"]
@@ -516,6 +593,7 @@ tracks/4/keys = {
 _data = {
 &"RESET": SubResource("Animation_1h50p"),
 &"breath": SubResource("Animation_3wtj8"),
+&"considers_item": SubResource("Animation_23uux"),
 &"idle": SubResource("Animation_i0pha"),
 &"jump": SubResource("Animation_15cdc"),
 &"strafe_left": SubResource("Animation_rmxhe"),
@@ -524,6 +602,8 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vawrv"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_i0pha"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1h50p"]
 
@@ -548,10 +628,27 @@ states/idle/position = Vector2(302, 23)
 states/jump/node = SubResource("AnimationNodeAnimation_1h50p")
 states/jump/position = Vector2(507, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_hoeyd"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_vawrv"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1h50p")]
-graph_offset = Vector2(-2, -13)
+graph_offset = Vector2(-15, -83)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_crael"]
 animation = &"breath"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hoeyd"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q50r8"]
+animation = &"considers_item"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emjis"]
+animation = &"considers_item"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7d4fy"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_hoeyd")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_q50r8")
+blend_point_1/pos = -1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_emjis")
+blend_point_2/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0pha"]
 animation = &"idle"
@@ -582,19 +679,23 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_23uux")
 blend_point_4/pos = Vector2(1, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vawrv"]
-graph_offset = Vector2(-183.618, -21.2864)
+graph_offset = Vector2(-352.342, -103.206)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_1h50p")
 nodes/Add2/position = Vector2(43.2565, -40.9004)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_vawrv")
-"nodes/Add2 2/position" = Vector2(340, 0)
+"nodes/Add2 2/position" = Vector2(500, -60)
+"nodes/Add2 3/node" = SubResource("AnimationNodeAdd2_i0pha")
+"nodes/Add2 3/position" = Vector2(300, 80)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_hoeyd")
 nodes/StateMachine/position = Vector2(-260, 140)
 nodes/breath/node = SubResource("AnimationNodeAnimation_crael")
 nodes/breath/position = Vector2(-200, -80)
-nodes/output/position = Vector2(720, 40)
+nodes/consider_item/node = SubResource("AnimationNodeBlendSpace1D_7d4fy")
+nodes/consider_item/position = Vector2(200, 340)
+nodes/output/position = Vector2(800, -20)
 nodes/walk_blend/node = SubResource("AnimationNodeBlendSpace2D_3lt1j")
-nodes/walk_blend/position = Vector2(60, 300)
-node_connections = [&"Add2", 0, &"breath", &"Add2", 1, &"StateMachine", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"walk_blend", &"output", 0, &"Add2 2"]
+nodes/walk_blend/position = Vector2(-20, 300)
+node_connections = [&"Add2", 0, &"breath", &"Add2", 1, &"StateMachine", &"Add2 2", 0, &"Add2 3", &"Add2 2", 1, &"Add2", &"Add2 3", 0, &"consider_item", &"Add2 3", 1, &"walk_blend", &"output", 0, &"Add2 2"]
 
 [node name="default" type="Node3D" node_paths=PackedStringArray("tree", "_body_rot", "_head_rot", "_glasses_model")]
 script = ExtResource("1_x7my2")
@@ -602,6 +703,9 @@ tree = NodePath("AnimationTree")
 _body_rot = NodePath("rotation")
 _head_rot = NodePath("rotation/body_root/body/rotation")
 _glasses_model = NodePath("rotation/body_root/body/rotation/head/glasses")
+BLEND_SPACE1D_ANIMATIONS = Dictionary[String, String]({
+"consider_item": "parameters/consider_item/blend_position"
+})
 
 [node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
 script = ExtResource("2_vawrv")
@@ -688,9 +792,10 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = SubResource("AnimationNodeBlendTree_vawrv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
 "parameters/Add2 2/add_amount" = 1.0
-parameters/walk_blend/blend_position = 0
+"parameters/Add2 3/add_amount" = 1
+parameters/consider_item/blend_position = 0.0
+parameters/walk_blend/blend_position = Vector2(0, 0)
