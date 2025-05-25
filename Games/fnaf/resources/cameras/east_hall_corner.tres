@@ -6,4 +6,7 @@
 script = ExtResource("1_1w2wm")
 code = "4B"
 name = "EAST_HALL_CORNER"
+fov = 60.0
+position = Vector3(1.08256, 8.49188, 58.549)
+rotation = Vector3(-0.627523, -2.49325, 0)
 metadata/_custom_type_script = "uid://derqikmtj0jln"

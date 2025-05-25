@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="9_r12x4"]
 [ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="10_56x3a"]
 [ext_resource type="PackedScene" uid="uid://crgwlusij06a7" path="res://Games/fnaf/ui/office_tv/3d.tscn" id="10_vr3wg"]
-[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
+[ext_resource type="Script" uid="uid://dr7ca17fift23" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
 [ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="14_56x3a"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="16_7xr5c"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="16_tenrf"]
@@ -31,7 +31,7 @@ data = PackedVector3Array(19.5069, 1.2192, 4.4195, 20.0216, 1.2192, 8.5343, 19.5
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_pc7ag")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.76883, 0.0779294, -0.634687, 0, 0.992546, 0.121869, 0.639453, -0.0936964, 0.763099, -7.85684, 9.05254, -0.882349)
+transform = Transform3D(-0.822656, 0.187869, -0.536603, 0, 0.943826, 0.330442, 0.56854, 0.27184, -0.776444, 22.223, 7.80616, 2.98724)
 fov = 37.8493
 
 [node name="FW_CameraContainer" parent="." instance=ExtResource("2_qoeor")]
@@ -97,8 +97,8 @@ metadata/_custom_type_script = "uid://crxce7oinuqn4"
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.997016, 0.0771889, 0, -0.0771889, -0.997016, 0, 0, 0)
 light_energy = 0.0
-shadow_enabled = true
 
 [node name="main_hall_lamp2" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, 14.8441, 9.12911, 11.8347)
@@ -174,6 +174,11 @@ spot_angle = 57.0
 script = ExtResource("12_16ajx")
 light_component = NodePath("../../Components/left_light")
 
+[node name="restroom" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.888207, 0.253889, -0.382922, 0, 0.833446, 0.552601, 0.459444, -0.490824, 0.740273, 23.8102, 7.80616, 0.986603)
+shadow_enabled = true
+omni_range = 37.557
+
 [node name="Props" type="Node3D" parent="."]
 
 [node name="table" parent="Props" instance=ExtResource("5_pc7ag")]
@@ -232,5 +237,10 @@ door = NodePath("../../../Components/left_door")
 [node name="Door2" parent="Props/doors" node_paths=PackedStringArray("door") instance=ExtResource("16_tenrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172213, 5.33651, 55.6122)
 door = NodePath("../../../Components/right_door")
+
+[node name="disabled_text" type="Label3D" parent="."]
+transform = Transform3D(-0.067168, -0.997741, -0.000794476, 0, 0.000796274, -1, 0.997742, -0.067168, -5.34842e-05, 6.63814, 13.213, -0.61)
+text = "-CAMERA DISABLED-
+AUDIO ONLY"
 
 [editable path="Untitled"]

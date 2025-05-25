@@ -6,4 +6,7 @@
 script = ExtResource("1_fujxp")
 code = "1C"
 name = "PIRATE_COVE"
+fov = 60.0
+position = Vector3(22.223, 7.80616, 2.98724)
+rotation = Vector3(-0.336772, -2.53686, 0)
 metadata/_custom_type_script = "uid://derqikmtj0jln"

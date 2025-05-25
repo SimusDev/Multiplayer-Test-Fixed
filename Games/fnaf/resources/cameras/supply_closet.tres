@@ -6,4 +6,7 @@
 script = ExtResource("1_3aqhf")
 code = "7"
 name = "RESTROOMS"
+fov = 60.0
+position = Vector3(-14.7756, 8.3056, 36.7949)
+rotation = Vector3(-0.902412, 0.604747, 0)
 metadata/_custom_type_script = "uid://derqikmtj0jln"

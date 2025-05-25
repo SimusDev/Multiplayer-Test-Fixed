@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://egf27kv568ir"
+uid="uid://dsmnrsvt3rpq2"
 path.s3tc="res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "e3246a9ef0072cbaf2c9b35b4a253aee"
 }
 
 [deps]

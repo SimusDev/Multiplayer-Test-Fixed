@@ -6,4 +6,7 @@
 script = ExtResource("1_eb4c8")
 code = "6"
 name = "KITCHEN"
+fov = 1.0
+position = Vector3(7.04736, 12.2283, -0.610306)
+rotation = Vector3(1.57002, -1.63802, 0)
 metadata/_custom_type_script = "uid://derqikmtj0jln"

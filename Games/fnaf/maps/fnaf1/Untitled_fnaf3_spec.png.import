@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fablet8xty87"
+uid="uid://kar0bplhf0jo"
 path.s3tc="res://.godot/imported/Untitled_fnaf3_spec.png-c557ecb3ecbb67ab1c500224a7f0c901.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "a723d5cef97a70599ab5e164050cb079"
 }
 
 [deps]

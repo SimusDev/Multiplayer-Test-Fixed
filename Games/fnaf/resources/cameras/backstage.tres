@@ -6,4 +6,7 @@
 script = ExtResource("1_5nxnj")
 code = "1A"
 name = "SHOW_STAGE"
+fov = 60.0
+position = Vector3(-20.4833, 7.94016, 10.5822)
+rotation = Vector3(-0.170965, 0.48257, 0)
 metadata/_custom_type_script = "uid://derqikmtj0jln"

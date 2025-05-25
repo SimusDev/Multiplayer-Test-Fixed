@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dyd5badwtpgbv" path="res://Games/fnaf/maps/fnaf1/Untitled_FNaF1 Black.png" id="1_vr2se"]
 [ext_resource type="Texture2D" uid="uid://jwjojugu7eld" path="res://Games/fnaf/maps/fnaf1/Untitled_freddydoor.png" id="2_nyyl4"]
 [ext_resource type="Texture2D" uid="uid://iip8jf7tiqbj" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_security_door.png" id="3_odl25"]
-[ext_resource type="Texture2D" uid="uid://fablet8xty87" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_spec.png" id="4_sw2ag"]
+[ext_resource type="Texture2D" uid="uid://kar0bplhf0jo" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_spec.png" id="4_sw2ag"]
 [ext_resource type="Texture2D" uid="uid://j3f8xy62p1u6" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_flat.png" id="5_1fcnf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1nxq"]
