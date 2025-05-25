@@ -2,6 +2,7 @@ extends Node
 
 @export var PORT: int = 7856
 
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
