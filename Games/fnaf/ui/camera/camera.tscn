@@ -17,7 +17,7 @@ script = ExtResource("1_dc7l6")
 tablet_resource = ExtResource("2_5giuk")
 
 [node name="update_camera" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.2
 autostart = true
 
 [node name="root" type="Control" parent="."]

@@ -59,7 +59,6 @@ func set_sprinting(value: bool) -> void:
 	sprinting_status_changed.emit()
 
 func _enabled_status_changed() -> void:
-	return
 	set_process(enabled)
 	set_physics_process(enabled)
 
