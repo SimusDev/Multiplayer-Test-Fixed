@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgabibeos57hv"]
+[gd_scene load_steps=25 format=3 uid="uid://dgabibeos57hv"]
 
 [ext_resource type="Script" uid="uid://x1dk7fqhj1j3" path="res://Games/fnaf/entities/player.gd" id="1_ncpg0"]
 [ext_resource type="PackedScene" uid="uid://rvyu0bsdlqtm" path="res://prefabs/models/player/default.tscn" id="2_0tgpj"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4mxqlkm6fc0" path="res://Games/fnaf/ui/GameUI.tscn" id="12_fwir6"]
 [ext_resource type="Script" uid="uid://beeaaqggu6nod" path="res://addons/simusdev/components/interactables/W_Interactor3D.gd" id="13_wwsac"]
 [ext_resource type="PackedScene" uid="uid://dwbaitp72yews" path="res://Games/fnaf/components/hands/FNAF_EntityHands.tscn" id="16_j5t3b"]
+[ext_resource type="PackedScene" uid="uid://dql1f4fiss1qs" path="res://Games/fnaf/components/nickname/nickname.tscn" id="19_hl5hj"]
 
 [sub_resource type="Resource" id="Resource_6357b"]
 script = ExtResource("4_vreqt")
@@ -134,7 +135,6 @@ texture = null
 
 [node name="AnimationTree" parent="default" index="4"]
 "parameters/Add2 3/add_amount" = 0
-"parameters/Add2 4/add_amount" = 0
 parameters/consider_item/blend_position = 0
 parameters/item_in_right_hand/blend_position = 0
 
@@ -212,5 +212,9 @@ movement = NodePath("../W_FPCSourceLikeMovement")
 inventory = NodePath("../F_Inventory")
 hand_node = NodePath("../default/rotation/body_root/body/hands/left/lpoint/left/hands")
 model = NodePath("../default")
+
+[node name="Nickname" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_hl5hj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56446, 0)
+player = NodePath("..")
 
 [editable path="default"]

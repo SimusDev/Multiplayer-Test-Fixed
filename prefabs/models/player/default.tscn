@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="1_42hjl"]
 [ext_resource type="Script" uid="uid://cd88emvvob0fx" path="res://prefabs/models/player/default.gd" id="1_x7my2"]
-[ext_resource type="Script" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
 [ext_resource type="PackedScene" uid="uid://b0p2ri2cyn4bu" path="res://Games/counter-strike/models/players/glasses/glasses.tscn" id="2_vchnj"]
 [ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="4_1h50p"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="4_3wtj8"]
@@ -287,6 +287,33 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(-0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3lt1j"]
+resource_name = "item_in_right_hand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rotation/body_root/body/hands/left/lpoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.14319, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rotation/body_root/body/hands/left/lpoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
@@ -587,33 +614,6 @@ tracks/4/keys = {
 "args": [],
 "method": &"do_footstep"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_3lt1j"]
-resource_name = "item_in_right_hand"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rotation/body_root/body/hands/left/lpoint:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.14319, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rotation/body_root/body/hands/left/lpoint:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vawrv"]
