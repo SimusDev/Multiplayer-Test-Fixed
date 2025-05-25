@@ -14,7 +14,7 @@ instance_data = ""
 [sub_resource type="Resource" id="Resource_7ja1k"]
 script = ExtResource("1_jwbyx")
 _properties = Dictionary[String, Variant]({
-"text": "25.59.23.141"
+"text": "localhost"
 })
 is_scene = false
 instance_data = ""
