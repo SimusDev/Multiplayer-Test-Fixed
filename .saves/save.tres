@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_jwbyx"]
 script = ExtResource("1_jwbyx")
 _properties = Dictionary[String, Variant]({
-"text": "simusdev"
+"text": "simusdevv"
 })
 is_scene = false
 instance_data = ""
