@@ -11,8 +11,9 @@ class_name W_FPCSourceLikeCamera
 @export var camera_angle_max: float = 90
 
 @export_group("Mouse Settings")
-@export var mouse_captured: bool = true : set = set_mouse_captured
 @export var mouse_sensitivity: float = 1.0
+
+@export var _mouse_captured: bool = true
 
 @export_group("Free Camera")
 @export var freecam_speed: float = 10.0
@@ -26,6 +27,7 @@ class_name W_FPCSourceLikeCamera
 @export var key_slowdown: String = "slowdown"
 
 func _exit_tree() -> void:
+	return
 	if enabled:
 		set_mouse_captured(false)
 
@@ -42,14 +44,13 @@ func _enabled_status_changed() -> void:
 	set_physics_process(enabled)
 	set_process_input(enabled)
 	set_process_unhandled_input(enabled)
-	set_mouse_captured(enabled)
 
 func _ready() -> void:
 	console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if make_current_at_start:
 		make_current()
-		set_mouse_captured(mouse_captured)
+		set_mouse_captured(true)
 
 func _process(delta: float) -> void:
 	if is_can_free_move():
@@ -83,11 +84,13 @@ func _on_console_visibility_changed() -> void:
 	
 
 func set_mouse_captured(value: bool) -> void:
-	mouse_captured = value
-	
+	_mouse_captured = value
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if mouse_captured:
+	if _mouse_captured:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func is_mouse_captured() -> bool:
+	return _mouse_captured
 
 func is_can_free_move() -> bool:
 	return (not body) and camera.current

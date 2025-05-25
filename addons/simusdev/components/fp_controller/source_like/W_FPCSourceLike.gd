@@ -14,10 +14,9 @@ func _enter_tree() -> void:
 	_enabled_status_changed()
 
 func set_enabled_status(status: bool) -> void:
-	if _disable_priority >= 0:
-		enabled = status
-		enabled_status_changed.emit(enabled)
-		_enabled_status_changed()
+	enabled = status
+	enabled_status_changed.emit(enabled)
+	_enabled_status_changed()
 
 func _enabled_status_changed() -> void:
 	pass

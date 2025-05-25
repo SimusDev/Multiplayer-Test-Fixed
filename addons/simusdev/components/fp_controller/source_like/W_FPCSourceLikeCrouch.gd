@@ -14,9 +14,6 @@ class_name W_FPCSourceLikeCrouch
 var _saved_pos: Vector3 = Vector3.ZERO
 
 func _enabled_status_changed() -> void:
-	if not movement:
-		return
-	
 	_on_crouched_status_changed()
 
 func _physics_process(delta: float) -> void:
@@ -35,8 +32,15 @@ func _ready() -> void:
 	_on_crouched_status_changed()
 
 func _on_crouched_status_changed() -> void:
-	collision_normal.visible = enabled
-	collision_crouch.visible = enabled
+	if movement:
+		collision_normal.disabled = movement.is_crouched
+		collision_crouch.disabled = not movement.is_crouched
 	
-	collision_normal.disabled = movement.is_crouched
-	collision_crouch.disabled = not movement.is_crouched
+	if collision_normal and collision_crouch:
+		collision_normal.visible = enabled
+		collision_crouch.visible = enabled
+	
+	if movement:
+		if not movement.enabled:
+			collision_crouch.disabled = true
+			collision_crouch.disabled = true

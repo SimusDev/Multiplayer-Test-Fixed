@@ -63,7 +63,8 @@ func _on_movement_state_machine_transitioned(from: SD_State, to: SD_State) -> vo
 
 func _process(delta: float) -> void:
 	_interpolated_velocity = lerp(_interpolated_velocity, _velocity, velocity_interpolation_speed * delta)
-	tree.set("parameters/walk_blend/blend_position", _interpolated_velocity)
+	var vec2: Vector2 = Vector2(_interpolated_velocity.x, _interpolated_velocity.z)
+	tree.set("parameters/walk_blend/blend_position", vec2)
 	
 	if not is_multiplayer_authority():
 		_body_rot.rotation_degrees.x = camera.rotation_degrees.x * 0.25
