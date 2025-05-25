@@ -134,7 +134,9 @@ texture = null
 
 [node name="AnimationTree" parent="default" index="4"]
 "parameters/Add2 3/add_amount" = 0
+"parameters/Add2 4/add_amount" = 0
 parameters/consider_item/blend_position = 0
+parameters/item_in_right_hand/blend_position = 0
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_1v7vv")]
 actor = NodePath("..")
