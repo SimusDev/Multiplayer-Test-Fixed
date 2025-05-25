@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cev5rxn4qkjto"]
+
+[ext_resource type="Script" uid="uid://3dlauy2er1ge" path="res://addons/simusdev/multiplayer/SD_MPSyncedData.gd" id="1_7mbuq"]
+
+[node name="s_SyncedData" type="Node"]
+script = ExtResource("1_7mbuq")
+metadata/_custom_type_script = "uid://3dlauy2er1ge"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_CS_Team" load_steps=2 format=3 uid="uid://bxfi6vtnm0a16"]
+
+[ext_resource type="Script" uid="uid://no04e74yxwfd" path="res://Games/counter-strike/scripts/resources/R_CS_Team.gd" id="1_37oft"]
+
+[resource]
+script = ExtResource("1_37oft")
+id = "red"
+color = Color(1, 0.407246, 0.338652, 1)
+name = "УБИЙЦЫ КРОВИ"
+metadata/_custom_type_script = "uid://no04e74yxwfd"

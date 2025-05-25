@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxj81tf4t6xt"]
+
+[ext_resource type="PackedScene" uid="uid://6kpuutupbo80" path="res://Games/counter-strike/maps/kz_variety_fix/map.tscn" id="1_goy4a"]
+[ext_resource type="Script" uid="uid://dwj121h1bful8" path="res://addons/simusdev/multiplayer/SD_MultiplayerSpawner.gd" id="2_a5bxl"]
+[ext_resource type="Script" uid="uid://cuahkb4pj1oxg" path="res://Games/counter-strike/components/spawnpoint/CS_SpawnPoint3D.gd" id="3_iuu3k"]
+[ext_resource type="Resource" uid="uid://bxfi6vtnm0a16" path="res://Games/counter-strike/resources/teams/red.tres" id="4_1btvj"]
+[ext_resource type="PackedScene" uid="uid://cgi7jesspkojd" path="res://Games/counter-strike/entities/player/CS_Player.tscn" id="5_46xau"]
+[ext_resource type="Resource" uid="uid://dpbt88fd2f3xw" path="res://Games/counter-strike/resources/teams/blue.tres" id="6_lp5j8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qi813"]
+
+[sub_resource type="Sky" id="Sky_lyof0"]
+sky_material = SubResource("ProceduralSkyMaterial_qi813")
+
+[sub_resource type="Environment" id="Environment_27ri5"]
+background_mode = 2
+sky = SubResource("Sky_lyof0")
+tonemap_mode = 2
+fog_enabled = true
+
+[node name="kz_variety_fix" type="Node"]
+
+[node name="Map" parent="." instance=ExtResource("1_goy4a")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.395417, 0.918502, 0, -0.918502, 0.395417, 0, 0, 0)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_27ri5")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="spawner" type="Node" parent="Players" node_paths=PackedStringArray("root")]
+script = ExtResource("2_a5bxl")
+DEBUG = true
+root = NodePath("..")
+metadata/_custom_type_script = "uid://dwj121h1bful8"
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="t_spawn" type="Node3D" parent="SpawnPoints" node_paths=PackedStringArray("spawn_at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.6715, -7.24965, 5.89861)
+script = ExtResource("3_iuu3k")
+spawn_at = NodePath("../../Players")
+team = ExtResource("4_1btvj")
+player_scene = ExtResource("5_46xau")
+metadata/_custom_type_script = "uid://cuahkb4pj1oxg"
+
+[node name="ct_spawn" type="Node3D" parent="SpawnPoints" node_paths=PackedStringArray("spawn_at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.6715, -7.24965, 5.89861)
+script = ExtResource("3_iuu3k")
+spawn_at = NodePath("../../Players")
+team = ExtResource("6_lp5j8")
+player_scene = ExtResource("5_46xau")
+metadata/_custom_type_script = "uid://cuahkb4pj1oxg"

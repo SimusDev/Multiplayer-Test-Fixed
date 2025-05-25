@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b43e05qfmc4r3"]
+
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="1_oce7s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wav0o"]
+
+[node name="TestRigidbody" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_wav0o")
+
+[node name="SD_MultiplayerSynchronizer" type="Node" parent="." node_paths=PackedStringArray("sync_node")]
+script = ExtResource("1_oce7s")
+send_mode = 1
+update_mode = 1
+interpolation = true
+sync_node = NodePath("..")
+properties_to_sync = PackedStringArray("transform")
+metadata/_custom_type_script = "uid://cvishs4j8htsj"

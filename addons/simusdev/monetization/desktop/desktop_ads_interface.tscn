@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://caxp71yqlpnof"]
+
+[ext_resource type="Script" uid="uid://76krag05yyvb" path="res://addons/simusdev/monetization/desktop/desktop_ads_interface.gd" id="1_f5x2b"]
+[ext_resource type="PackedScene" uid="uid://cyxpiljtqpdc6" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface.tscn" id="2_fqxns"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_7owwg"]
+
+[node name="desktop_ads_interface" type="CanvasLayer" node_paths=PackedStringArray("_back", "_front", "_fade", "_label_cooldown")]
+process_mode = 3
+layer = 128
+script = ExtResource("1_f5x2b")
+_back = NodePath("back")
+_front = NodePath("front")
+_fade = NodePath("back/fade")
+_label_cooldown = NodePath("front/cooldown_label")
+interstitial_scene = ExtResource("2_fqxns")
+reward_scene = ExtResource("2_fqxns")
+
+[node name="back" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="fade" type="ColorRect" parent="back"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="front" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="cooldown_label" type="Label" parent="front"]
+anchors_preset = -1
+anchor_left = 0.796
+anchor_top = 0.733
+anchor_right = 0.991
+anchor_bottom = 0.982
+offset_left = 0.119934
+offset_top = 0.23999
+offset_right = 0.519897
+offset_bottom = -0.0400391
+theme_override_fonts/font = ExtResource("3_7owwg")
+theme_override_font_sizes/font_size = 128
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2

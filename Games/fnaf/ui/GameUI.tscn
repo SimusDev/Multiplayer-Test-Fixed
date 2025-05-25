@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw4mxqlkm6fc0"]
+
+[ext_resource type="Script" uid="uid://cg3o3c2qhvxcc" path="res://Games/fnaf/ui/GameUI.gd" id="1_n4c3x"]
+[ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_83oww"]
+[ext_resource type="PackedScene" uid="uid://cpym13d1ibksb" path="res://Games/fnaf/ui/inventory/inventory.tscn" id="3_dlcbu"]
+[ext_resource type="PackedScene" uid="uid://cotrloc3v0mtf" path="res://Games/fnaf/ui/camera/camera.tscn" id="4_83oww"]
+
+[node name="GameUI" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_n4c3x")
+
+[node name="Inventory" parent="." instance=ExtResource("3_dlcbu")]
+
+[node name="crosshair" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.3)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_83oww")
+expand_mode = 1
+
+[node name="Camera" parent="." instance=ExtResource("4_83oww")]

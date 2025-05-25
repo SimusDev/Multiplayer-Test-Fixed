@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0p2ri2cyn4bu"]
+
+[ext_resource type="PackedScene" uid="uid://br6w7sgbdbu2c" path="res://Games/counter-strike/models/players/glasses/neon_party_glasses.glb" id="1_5wyip"]
+
+[node name="glasses" instance=ExtResource("1_5wyip")]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)

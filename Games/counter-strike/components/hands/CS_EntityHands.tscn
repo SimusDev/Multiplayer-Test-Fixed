@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c623d1x2oot8c"]
+
+[ext_resource type="Script" uid="uid://dvx3ugjcsiiww" path="res://Games/counter-strike/components/hands/CS_EntityHands.gd" id="1_21wkd"]
+
+[node name="CS_EntityHands" type="Node3D"]
+script = ExtResource("1_21wkd")

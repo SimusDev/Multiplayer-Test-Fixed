@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://4u30cq7ft1tx"]
+
+[ext_resource type="Script" uid="uid://1ivhe7qls3kp" path="res://addons/simusdev/debug/ui_debug_interface.gd" id="1_wmtp2"]
+[ext_resource type="PackedScene" uid="uid://dkh4hy3p6qq74" path="res://addons/simusdev/debug/ui_interface.tscn" id="2_htiw4"]
+
+[node name="ui_debug_interface" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_wmtp2")
+debug_interface_scene = ExtResource("2_htiw4")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0bygt0dmsqd"]
+
+[ext_resource type="PackedScene" uid="uid://ddd0epmcwelof" path="res://interface/chat/chat_interface.tscn" id="2_gner0"]
+
+[node name="GameInterface" type="Node"]
+
+[node name="chat_interface" parent="." instance=ExtResource("2_gner0")]

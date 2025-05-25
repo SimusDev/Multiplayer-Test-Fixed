@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d10vmdq03mxo0"
+path="res://.godot/imported/ColdPresc B.wav-e32657b64b782f5cd2bf03c7b88c45c1.sample"
+
+[deps]
+
+source_file="res://Games/fnaf/sounds/fnaf1/ColdPresc B.wav"
+dest_files=["res://.godot/imported/ColdPresc B.wav-e32657b64b782f5cd2bf03c7b88c45c1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://133al35wsih6"]
+
+[ext_resource type="Script" uid="uid://dldaixrmmmmit" path="res://singletons/s_Maps.gd" id="1_reb5k"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="2_hmg0g"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_kcpm3"]
+[ext_resource type="Script" uid="uid://8eq74y0ry7lx" path="res://addons/simusdev/Game/SD_NodeGameSettingsSingleton.gd" id="4_kcpm3"]
+
+[sub_resource type="Resource" id="Resource_4rdg1"]
+script = ExtResource("3_kcpm3")
+code = "map.change"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_hmg0g"]
+script = ExtResource("3_kcpm3")
+code = "lobby"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="s_Maps" type="Node"]
+script = ExtResource("1_reb5k")
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("2_hmg0g")
+commands = Array[ExtResource("3_kcpm3")]([SubResource("Resource_4rdg1"), SubResource("Resource_hmg0g")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[node name="SD_NodeGameSettingsSingleton" type="Node" parent="."]
+script = ExtResource("4_kcpm3")
+disable_console_on_release = false
+minimize_feature = false
+mute_audio_when_minimized = false
+metadata/_custom_type_script = "uid://8eq74y0ry7lx"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]

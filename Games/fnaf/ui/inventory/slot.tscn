@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb3uk8vl5xwg8"]
+
+[ext_resource type="Script" uid="uid://dpbptdnws44nm" path="res://Games/fnaf/ui/inventory/slot.gd" id="1_t8i7t"]
+[ext_resource type="Texture2D" uid="uid://byxm2260ollnu" path="res://Games/fnaf/textures/items/flashlight.png" id="2_aufio"]
+[ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="3_uxk2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aufio"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="Slot" type="Control" node_paths=PackedStringArray("_ui_icon", "_ui_frame")]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t8i7t")
+_ui_icon = NodePath("icon")
+_ui_frame = NodePath("selected_frame")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="selected_frame" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aufio")
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_aufio")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SD_UIDragAndDrop" type="Node2D" parent="." node_paths=PackedStringArray("input_node", "draggable_node", "drop_node", "preview_node")]
+script = ExtResource("3_uxk2f")
+input_node = NodePath("..")
+draggable_node = NodePath("..")
+drop_node = NodePath("..")
+preview_node = NodePath("../icon")
+metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
+
+[connection signal="dropped" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_dropped"]

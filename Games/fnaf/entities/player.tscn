@@ -1,0 +1,208 @@
+[gd_scene load_steps=24 format=3 uid="uid://dgabibeos57hv"]
+
+[ext_resource type="Script" uid="uid://x1dk7fqhj1j3" path="res://Games/fnaf/entities/player.gd" id="1_ncpg0"]
+[ext_resource type="PackedScene" uid="uid://rvyu0bsdlqtm" path="res://prefabs/models/player/default.tscn" id="2_0tgpj"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_ennxi"]
+[ext_resource type="Script" uid="uid://lih5qidttg3m" path="res://Games/fnaf/components/F_Inventory.gd" id="2_sf0t1"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_vacrf"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="4_1v7vv"]
+[ext_resource type="Script" uid="uid://b33usissl2osh" path="res://addons/simusdev/components/inventory/W_InventorySlot.gd" id="4_odlko"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_vreqt"]
+[ext_resource type="Script" uid="uid://cxuf8ophbjpsd" path="res://addons/simusdev/components/inventory/W_InventoryItem.gd" id="5_j5t3b"]
+[ext_resource type="Resource" uid="uid://bvakvjy6y25gf" path="res://Games/fnaf/resources/items/flashlight.tres" id="6_wwsac"]
+[ext_resource type="Resource" uid="uid://o5humlj5571o" path="res://Games/fnaf/resources/items/tablet.tres" id="7_7pil2"]
+[ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="7_ennxi"]
+[ext_resource type="Script" uid="uid://cuwtndm6vgivt" path="res://Games/fnaf/components/sourcelike/FNAF_SourceLikeComponentSettings.gd" id="8_vacrf"]
+[ext_resource type="PackedScene" uid="uid://ct8ihv7nhnk66" path="res://Games/fnaf/components/footsteps/FNAF_FootstepsComponent.tscn" id="9_vreqt"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_6357b"]
+[ext_resource type="PackedScene" uid="uid://cw4mxqlkm6fc0" path="res://Games/fnaf/ui/GameUI.tscn" id="12_fwir6"]
+[ext_resource type="Script" uid="uid://beeaaqggu6nod" path="res://addons/simusdev/components/interactables/W_Interactor3D.gd" id="13_wwsac"]
+[ext_resource type="PackedScene" uid="uid://dwbaitp72yews" path="res://Games/fnaf/components/hands/FNAF_EntityHands.tscn" id="16_j5t3b"]
+
+[sub_resource type="Resource" id="Resource_6357b"]
+script = ExtResource("4_vreqt")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_ennxi"]
+script = ExtResource("4_vreqt")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["rotation"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("../W_FPCSourceLikePlayerCamera")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_wwsac"]
+script = ExtResource("4_vreqt")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["velocity"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awhc6"]
+size = Vector3(1, 3.2829, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6357b"]
+size = Vector3(1, 1.71105, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "crouch", "inventory")]
+collision_layer = 0
+script = ExtResource("1_ncpg0")
+movement = NodePath("W_FPCSourceLikeMovement")
+camera = NodePath("W_FPCSourceLikePlayerCamera")
+crouch = NodePath("W_FPCSourceLikeCrouch")
+inventory = NodePath("F_Inventory")
+GameUI_scene = ExtResource("12_fwir6")
+
+[node name="F_Inventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_sf0t1")
+root = NodePath("..")
+_initial_slot_count = 0
+metadata/_custom_type_script = "uid://lih5qidttg3m"
+
+[node name="1" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="flashlight" type="Node" parent="F_Inventory/1"]
+script = ExtResource("5_j5t3b")
+data = ExtResource("6_wwsac")
+metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
+
+[node name="2" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="tablet" type="Node" parent="F_Inventory/2"]
+script = ExtResource("5_j5t3b")
+data = ExtResource("7_7pil2")
+metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
+
+[node name="3" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="4" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="5" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="6" type="Node" parent="F_Inventory"]
+script = ExtResource("4_odlko")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="crouch_raycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.632608, 0)
+target_position = Vector3(0, 1.5, 0)
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("2_ennxi")
+properties = Array[ExtResource("3_vacrf")]([SubResource("Resource_6357b"), SubResource("Resource_ennxi"), SubResource("Resource_wwsac")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="default" parent="." node_paths=PackedStringArray("camera", "movement") instance=ExtResource("2_0tgpj")]
+camera = NodePath("../W_FPCSourceLikePlayerCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+
+[node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
+texture = null
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_1v7vv")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+enabled = false
+
+[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("7_ennxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72305, 0)
+movement = NodePath("../W_FPCSourceLikeMovement")
+body = NodePath("..")
+make_current_at_start = false
+mouse_captured = false
+enabled = false
+
+[node name="interactor" type="RayCast3D" parent="W_FPCSourceLikePlayerCamera"]
+target_position = Vector3(0, 0, -3)
+
+[node name="W_Interactor3D" type="Node" parent="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("root", "raycast")]
+script = ExtResource("13_wwsac")
+root = NodePath("../..")
+raycast = NodePath("../interactor")
+input_action = "interact"
+metadata/_custom_type_script = "uid://beeaaqggu6nod"
+
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_6357b")]
+camera = NodePath("../W_FPCSourceLikePlayerCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+collision_normal = NodePath("../collision_normal")
+collision_crouch = NodePath("../collision_crouch")
+ceiling_detection = NodePath("../crouch_raycast")
+crouch_camera_position = NodePath("../crouch_camera_pos")
+enabled = false
+
+[node name="movement_settings" type="Node" parent="." node_paths=PackedStringArray("component")]
+script = ExtResource("8_vacrf")
+component = NodePath("../W_FPCSourceLikeMovement")
+metadata/_custom_type_script = "uid://cuwtndm6vgivt"
+
+[node name="camera_settings" type="Node" parent="." node_paths=PackedStringArray("component", "node_based_component")]
+script = ExtResource("8_vacrf")
+component = NodePath("../W_FPCSourceLikePlayerCamera")
+node_based_component = NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")
+metadata/_custom_type_script = "uid://cuwtndm6vgivt"
+
+[node name="crouch_settings" type="Node" parent="." node_paths=PackedStringArray("component")]
+script = ExtResource("8_vacrf")
+component = NodePath("../W_FPCSourceLikeCrouch")
+metadata/_custom_type_script = "uid://cuwtndm6vgivt"
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442496, 0)
+shape = SubResource("BoxShape3D_awhc6")
+
+[node name="collision_crouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107285, 0)
+shape = SubResource("BoxShape3D_6357b")
+
+[node name="crouch_camera_pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924104, 0)
+
+[node name="FNAF_FootstepsComponent" parent="." node_paths=PackedStringArray("camera", "movement") instance=ExtResource("9_vreqt")]
+camera = NodePath("../W_FPCSourceLikePlayerCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+
+[node name="FNAF_EntityHands" parent="." node_paths=PackedStringArray("inventory", "hand_node") instance=ExtResource("16_j5t3b")]
+inventory = NodePath("../F_Inventory")
+hand_node = NodePath("../default/rotation/body_root/body/hands/left/lpoint/left/hands")
+
+[editable path="default"]

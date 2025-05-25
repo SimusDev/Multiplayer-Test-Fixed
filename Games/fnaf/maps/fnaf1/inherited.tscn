@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq0mnmofrt7e"]
+
+[ext_resource type="PackedScene" uid="uid://c8fs5v3geo607" path="res://Games/fnaf/maps/fnaf1/Untitled.glb" id="1_2tw23"]
+
+[node name="Untitled" instance=ExtResource("1_2tw23")]

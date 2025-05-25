@@ -1,0 +1,180 @@
+[gd_scene load_steps=14 format=3 uid="uid://n5iivkn1w181"]
+
+[ext_resource type="Texture2D" uid="uid://duk12dn7r22pi" path="res://Games/fnaf/textures/camera/map.png" id="1_kg23d"]
+[ext_resource type="Script" uid="uid://c75htimywhre5" path="res://Games/fnaf/ui/camera/map.gd" id="2_gknyh"]
+[ext_resource type="PackedScene" uid="uid://ce36n5lsieha1" path="res://Games/fnaf/ui/camera/button.tscn" id="3_eafns"]
+[ext_resource type="Resource" uid="uid://bsc4xrl8un0du" path="res://Games/fnaf/resources/cameras/show_stage.tres" id="4_iug3v"]
+[ext_resource type="Resource" uid="uid://m5cfo2xb3x3y" path="res://Games/fnaf/resources/cameras/backstage.tres" id="5_3h7kq"]
+[ext_resource type="Resource" uid="uid://dlcf6b8y3f5nm" path="res://Games/fnaf/resources/cameras/pirate_cove.tres" id="6_r2a23"]
+[ext_resource type="Resource" uid="uid://brwdwghcsm82q" path="res://Games/fnaf/resources/cameras/restrooms.tres" id="7_xs54c"]
+[ext_resource type="Resource" uid="uid://bispd0hncqadt" path="res://Games/fnaf/resources/cameras/supply_closet.tres" id="8_cub5f"]
+[ext_resource type="Resource" uid="uid://0et44wdua2ky" path="res://Games/fnaf/resources/cameras/west_hall.tres" id="9_agoj5"]
+[ext_resource type="Resource" uid="uid://6hevx6i06iv" path="res://Games/fnaf/resources/cameras/west_hall_corner.tres" id="10_3muiy"]
+[ext_resource type="Resource" uid="uid://5f2ob6jddjg8" path="res://Games/fnaf/resources/cameras/east_hall.tres" id="11_a0c3r"]
+[ext_resource type="Resource" uid="uid://c0m1lqg82tfpq" path="res://Games/fnaf/resources/cameras/east_hall_corner.tres" id="12_wl3rh"]
+[ext_resource type="Resource" uid="uid://bmq4x2anv33hf" path="res://Games/fnaf/resources/cameras/kitchen.tres" id="13_r2a23"]
+
+[node name="Map" type="TextureRect"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -523.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_kg23d")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_gknyh")
+
+[node name="show_stage" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -363.0
+offset_top = -465.0
+offset_right = -279.0
+offset_bottom = -409.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("4_iug3v")
+
+[node name="backstage" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -522.0
+offset_top = -403.0
+offset_right = -438.0
+offset_bottom = -347.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("5_3h7kq")
+
+[node name="pirate_cove" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = -306.0
+offset_right = -399.0
+offset_bottom = -250.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("6_r2a23")
+
+[node name="restrooms" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -380.0
+offset_right = -58.0
+offset_bottom = -324.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("7_xs54c")
+
+[node name="supply_closet" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -489.0
+offset_top = -184.0
+offset_right = -405.0
+offset_bottom = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("8_cub5f")
+
+[node name="west_hall" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -397.0
+offset_top = -156.0
+offset_right = -313.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("9_agoj5")
+
+[node name="west_hall2" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -397.0
+offset_top = -99.0
+offset_right = -313.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("10_3muiy")
+
+[node name="east_hall" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_top = -156.0
+offset_right = -180.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("11_a0c3r")
+
+[node name="east_hall2" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_top = -99.0
+offset_right = -180.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("12_wl3rh")
+
+[node name="kitchen" parent="." instance=ExtResource("3_eafns")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -234.0
+offset_right = -100.0
+offset_bottom = -178.0
+grow_horizontal = 0
+grow_vertical = 0
+data = ExtResource("13_r2a23")

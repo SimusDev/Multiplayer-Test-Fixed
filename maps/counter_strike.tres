@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://f6pngi685bvy"]
+
+[ext_resource type="Texture2D" uid="uid://b0b51m1dbg53s" path="res://Games/counter-strike/icons/game.png" id="1_232b4"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="2_s4b86"]
+
+[resource]
+script = ExtResource("2_s4b86")
+scene_path = "uid://dinoshagmu1i7"
+code = "counter_strike"
+name = "Counter-Strike"
+icon = ExtResource("1_232b4")
+description = ""
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

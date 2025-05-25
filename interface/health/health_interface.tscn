@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kk0gwac7610"]
+
+[ext_resource type="Script" uid="uid://c2t6h06n65spn" path="res://interface/health/health_interface.gd" id="1_frbfy"]
+[ext_resource type="Texture2D" uid="uid://box6vb54v3d48" path="res://textures/icons/heart.png" id="2_j7vq5"]
+
+[node name="health_interface" type="Control" node_paths=PackedStringArray("progressbar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_frbfy")
+progressbar = NodePath("Panel/ProgressBar")
+metadata/_custom_type_script = "uid://dnrhf3cyyqskh"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -43.0
+offset_right = 104.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+self_modulate = Color(0.653538, 0.326673, 0.328276, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.135
+anchor_bottom = 1.0
+offset_right = 0.0549984
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_j7vq5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.145
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0150013
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

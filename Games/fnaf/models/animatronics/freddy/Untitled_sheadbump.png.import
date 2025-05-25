@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bkavxm62kepex"
+path.s3tc="res://.godot/imported/Untitled_sheadbump.png-2c5ead5b848ae170d1c3e8741d6586eb.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "946e29d62e69adc4111a1ad7934ed1ad"
+}
+
+[deps]
+
+source_file="res://Games/fnaf/models/animatronics/freddy/Untitled_sheadbump.png"
+dest_files=["res://.godot/imported/Untitled_sheadbump.png-2c5ead5b848ae170d1c3e8741d6586eb.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Games/fnaf/models/animatronics/freddy/Untitled_sheadbump.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_CS_Team" load_steps=2 format=3 uid="uid://dpbt88fd2f3xw"]
+
+[ext_resource type="Script" uid="uid://no04e74yxwfd" path="res://Games/counter-strike/scripts/resources/R_CS_Team.gd" id="1_g00xe"]
+
+[resource]
+script = ExtResource("1_g00xe")
+id = "blue"
+color = Color(0.346243, 0.521162, 1, 1)
+name = "УБИЙЦЫ ЛАЗУРИТА"
+metadata/_custom_type_script = "uid://no04e74yxwfd"

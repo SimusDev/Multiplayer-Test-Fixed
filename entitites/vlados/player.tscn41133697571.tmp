@@ -1,0 +1,230 @@
+[gd_scene load_steps=28 format=3 uid="uid://clhksblif0fu3"]
+
+[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="1_cusn3"]
+[ext_resource type="Script" uid="uid://rc5ovev0rep5" path="res://entitites/vlados/player.gd" id="1_v4rts"]
+[ext_resource type="Script" uid="uid://cakitr0kr0hf8" path="res://addons/simusdev/components/characterbody/W_ComponentCharacterBody3D.gd" id="2_bf51h"]
+[ext_resource type="PackedScene" uid="uid://bmrgbli4rh7tn" path="res://scripts/components/health/C_HealthComponent.tscn" id="2_prmqr"]
+[ext_resource type="PackedScene" uid="uid://nm7pt6y1kufk" path="res://scripts/sync/player_synchronizer.tscn" id="2_s5ho2"]
+[ext_resource type="PackedScene" uid="uid://dy74uw5mgubcu" path="res://addons/simusdev/components/fp_controller/W_FPControllerCamera.tscn" id="3_s5ho2"]
+[ext_resource type="PackedScene" uid="uid://564ydj7cfsmk" path="res://addons/simusdev/components/fp_controller/W_FPControllerMovement.tscn" id="4_y0ih3"]
+[ext_resource type="PackedScene" uid="uid://dqfb5gev8tmwr" path="res://scripts/components/hitbox/C_HitboxComponent.tscn" id="5_fb3y5"]
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="7_y0ih3"]
+[ext_resource type="Script" uid="uid://bhwbi1ykuh8e1" path="res://scripts/player/C_PlayerCamera.gd" id="9_lp3wq"]
+[ext_resource type="PackedScene" uid="uid://cyjf4da755tj" path="res://scripts/world/nickname.tscn" id="10_icxca"]
+[ext_resource type="Script" uid="uid://cmb5et352niyr" path="res://scripts/components/timer_server/C_TimerServer.gd" id="13_ldotg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icxca"]
+size = Vector3(1, 2.45334, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_26beo"]
+height = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_cusn3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bf51h"]
+size = Vector3(1, 1.58411, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bf51h"]
+
+[sub_resource type="Animation" id="Animation_y0ih3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leg1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.263475, -0.672863, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("leg2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2905, -0.672863, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bf51h"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leg1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.29, -0.6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("leg2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.29, -0.6, -0.12)]
+}
+
+[sub_resource type="Animation" id="Animation_prmqr"]
+resource_name = "run"
+length = 0.2
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("leg1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.263475, -0.672863, 0), Vector3(0.263, -0.423, -0.15), Vector3(0.263475, -0.672863, 0), Vector3(0.263475, -0.672863, 0.190592)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leg2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2905, -0.672863, 0), Vector3(-0.2905, -0.672863, 0.146791), Vector3(-0.2905, -0.672863, 0), Vector3(-0.29, -0.423, -0.156)]
+}
+
+[sub_resource type="Animation" id="Animation_s5ho2"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("leg1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.29, -0.6, 0), Vector3(0.29, -0.5, -0.15), Vector3(0.29, -0.6, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leg2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.29, -0.6, 0), Vector3(-0.29, -0.5, -0.15), Vector3(-0.29, -0.6, -0.15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.035, 0), Vector3(0, 0, 0), Vector3(0, -0.035, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_prmqr"]
+_data = {
+&"RESET": SubResource("Animation_y0ih3"),
+&"idle": SubResource("Animation_bf51h"),
+&"run": SubResource("Animation_prmqr"),
+&"walk": SubResource("Animation_s5ho2")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lp3wq"]
+inherit_velocity_ratio = 1.0
+spread = 0.1
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7km7"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.498039)
+
+[sub_resource type="SphereMesh" id="SphereMesh_p7km7"]
+material = SubResource("StandardMaterial3D_p7km7")
+radius = 0.025
+height = 0.05
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lp3wq"]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_kcaod"]
+radius = 0.1
+height = 0.2
+
+[node name="vlados" type="CharacterBody3D" node_paths=PackedStringArray("camera_controller", "movement_controller", "character_component", "health_component", "head", "_animation_player", "_character_sync") groups=["player"]]
+collision_layer = 0
+script = ExtResource("1_v4rts")
+camera_controller = NodePath("W_FPControllerCamera")
+movement_controller = NodePath("W_FPControllerMovement")
+character_component = NodePath("W_ComponentCharacterBody3D")
+health_component = NodePath("CHealthComponent")
+head = NodePath("body/head")
+_animation_player = NodePath("AnimationPlayer")
+_character_sync = NodePath("PlayerSynchronizer/character_sync")
+
+[node name="CHealthComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_prmqr")]
+target = NodePath("..")
+
+[node name="PlayerSynchronizer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s5ho2")]
+player = NodePath("..")
+
+[node name="player_sync" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("_authority_node", "sync_node")]
+script = ExtResource("7_y0ih3")
+_authority_node = No

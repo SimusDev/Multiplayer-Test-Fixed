@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FW_CameraData" load_steps=2 format=3 uid="uid://bsc4xrl8un0du"]
+
+[ext_resource type="Script" uid="uid://derqikmtj0jln" path="res://Games/fnaf/scripts/resources/FW_CameraData.gd" id="1_jgq2w"]
+
+[resource]
+script = ExtResource("1_jgq2w")
+code = "1A"
+name = "SHOW_STAGE"
+fov = 60.0
+position = Vector3(-7.85684, 9.05254, -0.882349)
+rotation = Vector3(-0.122172, -0.693786, 0)
+metadata/_custom_type_script = "uid://derqikmtj0jln"

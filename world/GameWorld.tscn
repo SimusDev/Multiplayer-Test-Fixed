@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg4dsosimfgrn"]
+
+[ext_resource type="Script" uid="uid://cprsa3ecpfiow" path="res://world/GameWorld.gd" id="1_uvpr4"]
+[ext_resource type="Script" uid="uid://cg20f3igakhjf" path="res://scripts/map/MapSpawnerComponent.gd" id="2_xbm2x"]
+
+[node name="GameWorld" type="Node"]
+script = ExtResource("1_uvpr4")
+
+[node name="MapSpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("spawn_at")]
+script = ExtResource("2_xbm2x")
+spawn_at = NodePath(".")
+metadata/_custom_type_script = "uid://cg20f3igakhjf"

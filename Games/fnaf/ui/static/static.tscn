@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkrkuosil5pty"]
+
+[ext_resource type="Script" uid="uid://ofhs38emdenj" path="res://Games/fnaf/ui/static/static.gd" id="1_td6b4"]
+[ext_resource type="Texture2D" uid="uid://b7s6nfvnicdba" path="res://Games/fnaf/textures/static/12.png" id="2_q313x"]
+[ext_resource type="Texture2D" uid="uid://b0w1jn3wwcssn" path="res://Games/fnaf/textures/static/13.png" id="3_mxqp2"]
+[ext_resource type="Texture2D" uid="uid://cmpge5224ib81" path="res://Games/fnaf/textures/static/14.png" id="4_ytrf8"]
+[ext_resource type="Texture2D" uid="uid://drrvdopr2hwx5" path="res://Games/fnaf/textures/static/15.png" id="5_a6r0u"]
+[ext_resource type="Texture2D" uid="uid://x0tr1vpn5d2e" path="res://Games/fnaf/textures/static/16.png" id="6_2eyfc"]
+[ext_resource type="Texture2D" uid="uid://b0lth56kpuxd2" path="res://Games/fnaf/textures/static/17.png" id="7_slube"]
+[ext_resource type="Texture2D" uid="uid://b8ikro7uh6qsq" path="res://Games/fnaf/textures/static/18.png" id="8_5pef5"]
+[ext_resource type="Texture2D" uid="uid://cyh8ju8r5jxeq" path="res://Games/fnaf/textures/static/20.png" id="9_a2hv7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cthdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q313x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mxqp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ytrf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a6r0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2eyfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_slube")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5pef5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a2hv7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uoqnt"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Static" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_td6b4")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1280, 720)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+position = Vector2(640, 360)
+sprite_frames = SubResource("SpriteFrames_cthdr")
+frame_progress = 0.0102146
+
+[node name="viewportTexture" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.188531)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_uoqnt")
+expand_mode = 1
+stretch_mode = 6

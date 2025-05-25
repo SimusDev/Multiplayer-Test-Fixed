@@ -1,0 +1,105 @@
+@icon("res://addons/simusdev/icons/EditPivot.svg")
+extends Node
+class_name SE_UIControlDrag
+#/////////////////////////////////////////////////////////////////
+
+#/////////////////////////////////////////////////////////////////
+signal on_target_drag_input(control: Control)
+#/////////////////////////////////////////////////////////////////
+
+@export_category("Drag")
+@export var drag_enabled: bool = true
+@export var TARGET_INPUT: Control
+@export var TARGET_DRAG: Control
+
+@export_category("Zoom")
+@export var zoom_enabled: bool = false
+@export var zoom_min_scale: float = 0.5
+@export var zoom_max_scale: float = 3.0
+@export var zoom_strength: float = 0.05
+@export var current_zoom: float = 1.0
+@export var zoom_input_up: String = "ui_zoom_up"
+@export var zoom_input_down: String = "ui_zoom_down"
+
+#/////////////////////////////////////////////////////////////////
+
+
+var _target: Control
+var _target_drag: Control
+
+func _ready():
+	if TARGET_INPUT and TARGET_DRAG:
+		var _input: Control = TARGET_INPUT
+		var _drag: Control = TARGET_DRAG
+		if _input and _drag:
+			if (_input is Control) and (_drag is Control):
+				apply_drag(_input, _drag)
+	
+#/////////////////////////////////////////////////////////////////
+
+func apply_drag(control_input: Control, control_to_drag: Control) -> void:
+	_target = control_input
+	_target_drag = control_to_drag
+	if !is_instance_valid(_target): return
+	
+	_target.gui_input.connect(_on_target_input)
+	_target.set_meta("ui_drag", self)
+
+func remove_drag() -> void:
+	if is_instance_valid(_target):
+		_target.gui_input.disconnect(_on_target_input)
+		_target.set_meta("ui_drag", null)
+	
+	_target = null
+	_target_drag = null
+
+func set_zoom(value: float) -> void:
+	if !zoom_enabled:
+		return
+	value = clamp(value, zoom_min_scale, zoom_max_scale)
+	current_zoom = value
+	update_zoom()
+
+func get_zoom() -> float:
+	if is_instance_valid(_target_drag):
+		return current_zoom
+	return 1.0
+
+func update_zoom() -> void:
+	if !is_instance_valid(_target_drag):
+		return
+	
+	_target_drag.pivot_offset = _target.size * 0.5
+	_target_drag.scale = Vector2(current_zoom, current_zoom)
+
+func add_zoom(value: float) -> void:
+	set_zoom(get_zoom() + value)
+
+func subtract_zoom(value: float) -> void:
+	set_zoom(get_zoom() - value)
+
+func get_current_zoom_strength() -> float:
+	return zoom_strength * current_zoom
+
+#/////////////////////////////////////////////////////////////////
+
+func _process_zoom(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(zoom_input_up):
+		add_zoom(get_current_zoom_strength())
+	if Input.is_action_just_pressed(zoom_input_down):
+		subtract_zoom(get_current_zoom_strength())
+
+var clicked := false
+func _on_target_input(event: InputEvent):
+	if !is_instance_valid(_target): return
+	if !is_instance_valid(_target_drag): return
+	
+	_process_zoom(event)
+	
+	if !drag_enabled: return
+	
+	clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	
+	if event is InputEventMouseMotion and clicked:
+		_target_drag.position += event.relative * current_zoom
+	on_target_drag_input.emit(_target_drag)

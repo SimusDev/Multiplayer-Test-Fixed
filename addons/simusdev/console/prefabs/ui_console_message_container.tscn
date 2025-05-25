@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch1uakx5urgya"]
+
+[ext_resource type="Script" uid="uid://oudu76io1n8r" path="res://addons/simusdev/console/prefabs/ui_console_message_container.gd" id="1_x0awv"]
+[ext_resource type="PackedScene" uid="uid://dhndchwxw8pbx" path="res://addons/simusdev/console/prefabs/ui_console_message.tscn" id="2_c88v1"]
+
+[node name="ui_console_message_container" type="Control" node_paths=PackedStringArray("_vbox", "_scroll")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_x0awv")
+font_size = 16
+message_prefab = ExtResource("2_c88v1")
+_vbox = NodePath("ScrollContainer/VBoxContainer")
+_scroll = NodePath("ScrollContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

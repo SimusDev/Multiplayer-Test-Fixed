@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnpa241s8gwqq"]
+
+[ext_resource type="Script" uid="uid://4rqhpfmk1lyd" path="res://addons/simusdev/singletons/scripts/s_simusdev.gd" id="1_50ony"]
+
+[node name="SimusDev" type="Node"]
+script = ExtResource("1_50ony")

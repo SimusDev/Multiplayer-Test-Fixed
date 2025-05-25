@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://70tcp8h4etiq"]
+
+[ext_resource type="Script" uid="uid://c4tpbqih1ldps" path="res://scenes/game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://n0bygt0dmsqd" path="res://interface/GameInterface.tscn" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dg4dsosimfgrn" path="res://world/GameWorld.tscn" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="5_iywne"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iywne"]
+viewport_path = NodePath("WorldViewport")
+
+[sub_resource type="Resource" id="Resource_p57ef"]
+script = ExtResource("5_iywne")
+code = "players"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="game" type="CanvasLayer"]
+script = ExtResource("1_uwrxv")
+
+[node name="GameWorld" parent="." instance=ExtResource("4_p57ef")]
+
+[node name="WorldViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1920, 1080)
+
+[node name="WorldViewportTexture" type="TextureRect" parent="."]
+texture_filter = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_iywne")
+expand_mode = 1
+
+[node name="GameInterface" parent="." instance=ExtResource("3_lnu2h")]
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("4_lbhrr")
+commands = Array[ExtResource("5_iywne")]([SubResource("Resource_p57ef")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr4uv10kw8eg4"]
+
+[ext_resource type="Script" uid="uid://cy018ucb06emw" path="res://Games/fnaf/components/world/light/FW_LightComponent.gd" id="1_slc5c"]
+
+[node name="FW_LightComponent" type="Node"]
+script = ExtResource("1_slc5c")
+metadata/_custom_type_script = "uid://cy018ucb06emw"

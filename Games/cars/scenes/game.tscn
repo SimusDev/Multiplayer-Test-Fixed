@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfg2gkefm4bgk"]
+
+[ext_resource type="PackedScene" uid="uid://dxnvsoi1pvfeu" path="res://addons/gevp/scenes/track.tscn" id="1_j1yuf"]
+[ext_resource type="PackedScene" uid="uid://cubekm7u73mfq" path="res://scenes/cars/toyota_true.tscn" id="3_20si1"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="4_gbhcg"]
+[ext_resource type="PackedScene" uid="uid://bqufam4ov4dfk" path="res://Games/cars/entities/player.tscn" id="5_yooxk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hngfg"]
+sky_top_color = Color(0.0588235, 0.0352941, 0.156863, 1)
+sky_horizon_color = Color(0.156863, 0.105882, 0.0705882, 1)
+ground_bottom_color = Color(0.0117647, 0.0392157, 0.133333, 1)
+ground_horizon_color = Color(0.0117647, 0.0392157, 0.133333, 1)
+
+[sub_resource type="Sky" id="Sky_fr4m5"]
+sky_material = SubResource("ProceduralSkyMaterial_hngfg")
+
+[sub_resource type="Environment" id="Environment_20si1"]
+background_mode = 2
+sky = SubResource("Sky_fr4m5")
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 0.6
+ssr_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[node name="Game" type="Node"]
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20si1")
+
+[node name="light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.1871, 0.274085, 0.94333, 0.922895, 0.378029, 0.0732106, -0.33654, 0.884292, -0.323681, 0, 2.26991, -1.44227)
+light_color = Color(0.864853, 0.873569, 0.847776, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="track" parent="." instance=ExtResource("1_j1yuf")]
+
+[node name="toyota" parent="." instance=ExtResource("3_20si1")]
+transform = Transform3D(-0.333033, 0, 0.942915, 0, 1, 0, -0.942915, 0, -0.333033, 8.66033, 3.20841, -14.1739)
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("4_gbhcg")
+player_scene = ExtResource("5_yooxk")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3"), NodePath("../spawn_points/4")]
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92902, 0)
+
+[node name="1" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69207, 0, 0)
+
+[node name="2" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03349, 0, 0)
+
+[node name="3" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88029, 0, -6.13446)
+
+[node name="4" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88141, 0, -4.42692)

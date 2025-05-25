@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://3g3r5nblwh4e"]
+
+[ext_resource type="Script" uid="uid://dnrhf3cyyqskh" path="res://interface/ingame_interface.gd" id="1_y8vs2"]
+
+[node name="ingame_interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_y8vs2")

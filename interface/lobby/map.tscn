@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqy28xcgyja2o"]
+
+[ext_resource type="Script" uid="uid://bjyvgy0hcmp5e" path="res://interface/lobby/map.gd" id="1_etous"]
+[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="2_pqke2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etous"]
+bg_color = Color(0.262932, 0.262932, 0.262932, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Map" type="Control"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 256.0
+script = ExtResource("1_etous")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_etous")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.053
+anchor_top = 0.25
+anchor_right = 0.303
+anchor_bottom = 0.75
+offset_left = -0.136002
+offset_right = -0.136002
+offset_bottom = -1.52588e-05
+grow_vertical = 2
+texture = ExtResource("2_pqke2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="map_and_desc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.426
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.112015
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAP_NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.855
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.119995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]

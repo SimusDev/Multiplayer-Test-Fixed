@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl5j4k32js8df"]
+
+[ext_resource type="Script" uid="uid://cyteoi1ef7685" path="res://addons/simusdev/components/interactables/test_interactable3D.gd" id="1_ckg4j"]
+[ext_resource type="Script" uid="uid://dar7l6igeudpk" path="res://addons/simusdev/components/interactables/W_Interactable.gd" id="2_1cne0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrkxw"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m3m5w"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="TestInteractable3d" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_qrkxw")
+script = ExtResource("1_ckg4j")
+
+[node name="W_InteractableArea3D" type="Node" parent="." node_paths=PackedStringArray("area")]
+script = ExtResource("2_1cne0")
+area = NodePath("../Area3D")
+metadata/_custom_type_script = "uid://dar7l6igeudpk"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConcavePolygonShape3D_m3m5w")
+
+[connection signal="interacted" from="W_InteractableArea3D" to="." method="_on_w_interactable_area_3d_interacted"]

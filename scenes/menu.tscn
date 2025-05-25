@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://do51aphwtdub7"]
+
+[ext_resource type="Script" uid="uid://bd0ewmaxi3teq" path="res://scenes/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_vjb58"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font_size = 32
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_yqeox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -114.0
+offset_right = 217.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(272, 45)
+layout_mode = 2
+text = "username"
+placeholder_text = "NAME"
+
+[node name="button_host" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(220, 49)
+layout_mode = 2
+text = "START GAME"
+
+[node name="ip" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(272, 45)
+layout_mode = 2
+text = "localhost"
+placeholder_text = "IP"
+
+[node name="button_client" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(220, 49)
+layout_mode = 2
+text = "CONNECT"
+
+[node name="game" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -205.0
+offset_right = 240.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "САМАЯ КЛАССНАЯ ИГРА"
+label_settings = SubResource("LabelSettings_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_vjb58")
+font_size = 32
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[connection signal="pressed" from="VBoxContainer/button_host" to="." method="_on_button_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_client" to="." method="_on_button_client_pressed"]

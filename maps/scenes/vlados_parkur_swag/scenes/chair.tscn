@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://2bfjvny4r2cx"]
+
+[ext_resource type="PackedScene" uid="uid://bauhmlnbs8tkx" path="res://maps/scenes/vlados_parkur_swag/3d_objects/chair/aperturevrtwp_-_lab_chair.glb" id="1_myh4t"]
+
+[node name="chair" instance=ExtResource("1_myh4t")]

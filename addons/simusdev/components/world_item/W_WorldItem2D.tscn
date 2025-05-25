@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfkktrfvk8x2t"]
+
+[ext_resource type="Script" uid="uid://be687gq35ke3g" path="res://addons/simusdev/components/world_item/W_WorldItem2D.gd" id="1_ptfhu"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_yd2ew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5476i"]
+size = Vector2(128, 128)
+
+[node name="WWorldItem2d" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_ptfhu")
+_sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5476i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yd2ew")

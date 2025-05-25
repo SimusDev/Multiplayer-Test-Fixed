@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgntgcpk7n18g"]
+
+[ext_resource type="Script" uid="uid://bp18jbntvuicu" path="res://Games/counter-strike/ui/player/PlayerUI.gd" id="1_1swvf"]
+[ext_resource type="PackedScene" uid="uid://dlf02wm1rw5iy" path="res://Games/counter-strike/ui/player/inventory/inventory.tscn" id="2_5a8hm"]
+
+[node name="PlayerUI" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_1swvf")
+
+[node name="Inventory" parent="." instance=ExtResource("2_5a8hm")]

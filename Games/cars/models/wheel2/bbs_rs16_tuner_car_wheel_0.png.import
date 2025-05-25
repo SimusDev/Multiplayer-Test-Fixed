@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c0pt0cehi4q7o"
+path.s3tc="res://.godot/imported/bbs_rs16_tuner_car_wheel_0.png-0fb3f02eb2700ede3b0a2d99ad2d62d8.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "3f689dfb80e6b7c6041b467947b62b8b"
+}
+
+[deps]
+
+source_file="res://Games/cars/models/wheel2/bbs_rs16_tuner_car_wheel_0.png"
+dest_files=["res://.godot/imported/bbs_rs16_tuner_car_wheel_0.png-0fb3f02eb2700ede3b0a2d99ad2d62d8.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

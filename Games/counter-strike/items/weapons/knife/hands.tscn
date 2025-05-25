@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b38drexx0gg1c"]
+
+[ext_resource type="PackedScene" uid="uid://cx6c437uq7p2s" path="res://Games/counter-strike/components/hands/CS_HandsWeaponModel.tscn" id="1_kylkx"]
+[ext_resource type="PackedScene" uid="uid://cvl8eyysv22by" path="res://Games/counter-strike/models/weapons/knife/knife.tscn" id="2_t4v62"]
+
+[node name="knife" instance=ExtResource("1_kylkx")]
+
+[node name="knife" parent="." index="0" instance=ExtResource("2_t4v62")]
+transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0, 0, 0)

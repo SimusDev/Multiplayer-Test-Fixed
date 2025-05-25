@@ -1,0 +1,135 @@
+[gd_resource type="ArrayMesh" load_steps=11 format=4 uid="uid://gtqqdwpxe4hf"]
+
+[ext_resource type="Texture2D" uid="uid://dyd5badwtpgbv" path="res://Games/fnaf/maps/fnaf1/Untitled_FNaF1 Black.png" id="1_vr2se"]
+[ext_resource type="Texture2D" uid="uid://jwjojugu7eld" path="res://Games/fnaf/maps/fnaf1/Untitled_freddydoor.png" id="2_nyyl4"]
+[ext_resource type="Texture2D" uid="uid://iip8jf7tiqbj" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_security_door.png" id="3_odl25"]
+[ext_resource type="Texture2D" uid="uid://fablet8xty87" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_spec.png" id="4_sw2ag"]
+[ext_resource type="Texture2D" uid="uid://j3f8xy62p1u6" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_flat.png" id="5_1fcnf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1nxq"]
+resource_name = "FNAF1 BLACK"
+cull_mode = 2
+albedo_texture = ExtResource("1_vr2se")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnpmj"]
+resource_name = "FREDDYDOOR"
+cull_mode = 2
+albedo_texture = ExtResource("2_nyyl4")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbs3l"]
+resource_name = "DEV_MEASUREGENERIC01"
+cull_mode = 2
+albedo_color = Color(0.76395, 0.976373, 0.949571, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju71n"]
+resource_name = "fnaf3_security_door"
+cull_mode = 2
+albedo_texture = ExtResource("3_odl25")
+metallic = 1.0
+metallic_texture = ExtResource("4_sw2ag")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("4_sw2ag")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("5_1fcnf")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1oqlf"]
+_surfaces = [{
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1.8288, 1.2192),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "FNAF1 BLACK",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAD//wAA//8AAAAAAAD//wAA////////AAD/////AAAAAAAAAAAAAAAA//8AAAAAAAAAAP//AAAAAA==")
+}, {
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1e-05, 1.2192),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "FREDDYDOOR",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//AAAAAAAAAAAAAAAAAAD//wAA//8AAAAAAAA=")
+}, {
+"aabb": AABB(-0.0381, 0.9144, -0.6096, 0.0762, 1e-05, 1.2192),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "DEV_MEASUREGENERIC01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAAAAAAAAAA//8AAAAAAAAAAAAA//8AAP//AAA=")
+}, {
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1.8288, 1.2192),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "fnaf3_security_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAAAAAAAP///////wAA/////wAAAAD//wAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "Untitled_Door1_MESH"
+_surfaces = [{
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1.8288, 1.2192),
+"attribute_data": PackedByteArray("AAAAAAAAAAArAlctKwJXLQAAVy0AAFctKwIAACsCAAArAgAAKwIAAAAAVy0AAFctKwJXLSsCVy0AAAAAAAAAAA=="),
+"format": 34896613431,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_c1nxq"),
+"name": "FNAF1 BLACK",
+"primitive": 3,
+"uv_scale": Vector4(1.84375, 2.11719, 0.0288086, 0.0330811),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AID//wAA//8AgAAAAAD//wCA////////AID/////AAAAAAAAAAAAAAAA//8AAAAAAAAAAP//AAAAAP9/////f////3////9///////9/////f////3////9/")
+}, {
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1e-05, 1.2192),
+"attribute_data": PackedByteArray("AADg+gAA4PocB///HAf//wAA//8AAP//HAfg+hwH4Po="),
+"format": 34896613431,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_mnpmj"),
+"name": "FREDDYDOOR",
+"primitive": 3,
+"uv_scale": Vector4(36, 2.08333, 0.28125, 0.0244141),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//VNUAAAAAAABU1QAAAAD//1TV//8AAAAAVNVUVVRVVFVUVVRVVFVUVVRV")
+}, {
+"aabb": AABB(-0.0381, 0.9144, -0.6096, 0.0762, 1e-05, 1.2192),
+"attribute_data": PackedByteArray("DAMT+QwDE/kAAP//AAD//wAAE/kAABP5DAP//wwD//8="),
+"format": 34896613431,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_xbs3l"),
+"name": "DEV_MEASUREGENERIC01",
+"primitive": 3,
+"uv_scale": Vector4(10.5, 74, 0.164063, 1.15625),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAA/78AAAAA////vwAAAAAAAP+///8AAP///7////9/////f////3////9/")
+}, {
+"aabb": AABB(-0.0381, -0.9144, -0.6096, 0.0762, 1.8288, 1.2192),
+"attribute_data": PackedByteArray("AAAKgAAACoAcBwoAHAcKAAAACgAAAAoAHAcKgBwHCoAcB/9/HAf/fwAAAAAAAAAAHAcAABwHAAAAAP9/AAD/fw=="),
+"format": 34896613431,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_ju71n"),
+"name": "fnaf3_security_door",
+"primitive": 3,
+"uv_scale": Vector4(36, 2, 0.140625, 0.0117188),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAAAAD/v/////////+//////wAA/7///wAA////v/8//3//P/9//z//f/8//3//fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1oqlf")

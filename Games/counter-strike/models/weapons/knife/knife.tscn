@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvl8eyysv22by"]
+
+[ext_resource type="PackedScene" uid="uid://c4ah1ashpr4nf" path="res://Games/counter-strike/models/weapons/knife/Untitled.glb" id="1_w2yhv"]
+
+[node name="knife" instance=ExtResource("1_w2yhv")]
+
+[node name="reference_knife" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119929, -0.697165, -0.346041)

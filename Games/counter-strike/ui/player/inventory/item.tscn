@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6n8k4twr81rg"]
+
+[ext_resource type="Script" uid="uid://bbff7auv4cjdx" path="res://Games/counter-strike/ui/player/inventory/item.gd" id="1_k3pys"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_d4kio"]
+[ext_resource type="Script" uid="uid://bkuw428qsr5qi" path="res://Games/counter-strike/ui/player/inventory/icon.gd" id="3_a4rja"]
+
+[node name="item" type="Control" node_paths=PackedStringArray("icon")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_k3pys")
+icon = NodePath("icon")
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_d4kio")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_a4rja")

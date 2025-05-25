@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxf2nlxcw07p5"]
+
+[ext_resource type="Script" uid="uid://cusc82v2ne65h" path="res://Games/fnaf/scenes/menu.gd" id="1_5fgfp"]
+[ext_resource type="AudioStream" uid="uid://nbgw5pkvntep" path="res://Games/fnaf/sounds/music/darkness music.wav" id="2_26qqr"]
+[ext_resource type="PackedScene" uid="uid://bwmt2kblkj51u" path="res://Games/fnaf/models/animatronics/freddy/inherited.tscn" id="2_r4bmy"]
+[ext_resource type="PackedScene" uid="uid://gqvrnpbpmocd" path="res://Games/fnaf/ui/waiting_host/waiting_host.tscn" id="4_3o87f"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_x2vp6"]
+[ext_resource type="PackedScene" uid="uid://dkrkuosil5pty" path="res://Games/fnaf/ui/static/static.tscn" id="5_ee11h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ee11h"]
+line_spacing = 10.0
+font_size = 48
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_5fgfp")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_26qqr")
+volume_db = -15.0
+autoplay = true
+bus = &"music"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="bg" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Freddy" type="SubViewportContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="UI/Freddy"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="3D" type="Node3D" parent="UI/Freddy/SubViewport"]
+
+[node name="inherited" parent="UI/Freddy/SubViewport/3D" instance=ExtResource("2_r4bmy")]
+
+[node name="Skeleton3D" parent="UI/Freddy/SubViewport/3D/inherited/freddy_ARM" index="0"]
+bones/19/rotation = Quaternion(0.699366, 0.104326, 0.69937, -0.104327)
+bones/20/position = Vector3(-0.00510669, 0.375102, -4.12141e-08)
+bones/20/rotation = Quaternion(-0.136679, -0.000297511, 3.67635e-05, 0.990615)
+bones/30/rotation = Quaternion(-0.691443, 0.148005, 0.691444, 0.148006)
+bones/30/scale = Vector3(1, 1, 1)
+bones/31/rotation = Quaternion(-0.224921, 0.000292985, -6.35212e-05, 0.974377)
+
+[node name="Camera3D" type="Camera3D" parent="UI/Freddy/SubViewport/3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.379623, 2.15583, 4.54371)
+current = true
+fov = 10.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="UI/Freddy/SubViewport/3D"]
+transform = Transform3D(0.807959, -0.254097, -0.531636, 0, 0.902242, -0.43123, 0.589239, 0.348416, 0.728975, -3.64781, -0.155975, 4.53939)
+shadow_enabled = true
+shadow_bias = 0.5
+spot_range = 8.849
+spot_attenuation = 1.69
+spot_angle = 6.18
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="UI/Freddy/SubViewport/3D"]
+transform = Transform3D(0.640813, -0.072972, 0.764221, 0, 0.995472, 0.0950532, -0.767697, -0.0609113, 0.637912, 4.05805, 2.66039, 3.24536)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+shadow_bias = 0.5
+spot_range = 8.849
+spot_attenuation = 2.18
+spot_angle = 2.66
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="UI/Freddy/SubViewport/3D"]
+transform = Transform3D(0.999608, -0.0060779, -0.0273127, 0, 0.976123, -0.217217, 0.0279808, 0.217132, 0.975741, -0.143595, 0.360873, 6.93176)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+shadow_bias = 0.5
+spot_range = 8.849
+spot_attenuation = 2.18
+spot_angle = 2.66
+
+[node name="GameName" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.045
+anchor_top = 0.064
+anchor_right = 0.28
+anchor_bottom = 0.451
+offset_left = -0.600002
+offset_top = -0.0800018
+offset_right = 0.600006
+offset_bottom = 0.279968
+text = "Five 
+Nights
+at
+Freddy's"
+label_settings = SubResource("LabelSettings_ee11h")
+clip_text = true
+script = ExtResource("4_x2vp6")
+font_size = 48
+line_spacing = 10.0
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="Static" parent="UI" instance=ExtResource("5_ee11h")]
+
+[node name="buttons_container" type="VBoxContainer" parent="UI"]
+offset_left = 50.0
+offset_top = 340.0
+offset_right = 90.0
+offset_bottom = 380.0
+theme_override_constants/separation = 24
+
+[node name="new_game" type="Button" parent="UI/buttons_container"]
+custom_minimum_size = Vector2(453, 59)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "> 	NEW GAME"
+
+[node name="continue" type="Button" parent="UI/buttons_container"]
+custom_minimum_size = Vector2(453, 59)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "> CONTINUE"
+
+[node name="WaitingHost" parent="UI" instance=ExtResource("4_3o87f")]
+visible = false
+
+[connection signal="pressed" from="UI/buttons_container/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="UI/buttons_container/continue" to="." method="_on_continue_pressed"]
+
+[editable path="UI/Freddy/SubViewport/3D/inherited"]

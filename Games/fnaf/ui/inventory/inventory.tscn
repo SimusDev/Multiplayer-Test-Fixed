@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpym13d1ibksb"]
+
+[ext_resource type="Script" uid="uid://dul6wmdyaet20" path="res://Games/fnaf/ui/inventory/inventory.gd" id="1_7igf3"]
+[ext_resource type="PackedScene" uid="uid://cb3uk8vl5xwg8" path="res://Games/fnaf/ui/inventory/slot.tscn" id="2_gcaer"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="3_slu7h"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="4_ssrg6"]
+
+[node name="Inventory" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7igf3")
+container = NodePath("HBoxContainer")
+slot_scene = ExtResource("2_gcaer")
+
+[node name="backpack" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.5
+offset_top = -88.0
+offset_right = 400.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_slu7h")
+target = NodePath("../backpack")
+input_action = "inventory"
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="SD_NodeInput" type="Node2D" parent="."]
+script = ExtResource("4_ssrg6")
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="on_input" from="SD_NodeInput" to="." method="_on_sd_node_input_on_input"]

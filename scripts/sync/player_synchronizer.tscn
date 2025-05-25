@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://nm7pt6y1kufk"]
+
+[ext_resource type="Script" uid="uid://c8qnln786kuy6" path="res://scripts/sync/player_synchronizer.gd" id="1_o3kas"]
+
+[node name="PlayerSynchronizer" type="Node"]
+script = ExtResource("1_o3kas")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

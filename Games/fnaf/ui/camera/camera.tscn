@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cotrloc3v0mtf"]
+
+[ext_resource type="Script" uid="uid://bpxst1xilfi7d" path="res://Games/fnaf/ui/camera/camera.gd" id="1_dc7l6"]
+[ext_resource type="Resource" uid="uid://o5humlj5571o" path="res://Games/fnaf/resources/items/tablet.tres" id="2_5giuk"]
+[ext_resource type="PackedScene" uid="uid://n5iivkn1w181" path="res://Games/fnaf/ui/camera/map.tscn" id="2_y64ak"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="4_surqo"]
+
+[node name="Camera" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_dc7l6")
+tablet_resource = ExtResource("2_5giuk")
+
+[node name="root" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="View" type="TextureRect" parent="root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Map" parent="root" instance=ExtResource("2_y64ak")]
+layout_mode = 1
+
+[node name="C_UIInterfaceComponent" type="Node" parent="root" node_paths=PackedStringArray("target")]
+unique_name_in_owner = true
+script = ExtResource("4_surqo")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"

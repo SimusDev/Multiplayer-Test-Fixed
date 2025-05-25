@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvua5f1minnmg"]
+
+[ext_resource type="Script" uid="uid://c8wxwf5vsudp6" path="res://addons/simusdev/console/prefabs/ui_console_tip_button.gd" id="1_0cb6s"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="1_1xtk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvkd8"]
+bg_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+
+[node name="ui_console_tip_button" type="Button"]
+custom_minimum_size = Vector2(0, 25)
+offset_right = 239.0
+offset_bottom = 25.0
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_1xtk8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_yvkd8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvkd8")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "console.tip"
+alignment = 0
+script = ExtResource("1_0cb6s")

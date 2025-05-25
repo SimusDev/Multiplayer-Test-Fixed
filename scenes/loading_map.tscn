@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://uvu51g7smaq7"]
+
+[ext_resource type="Script" uid="uid://due5xi372h6nl" path="res://scenes/loading_map.gd" id="1_qkv37"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_3y8xe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xc4we"]
+font_size = 32
+
+[node name="LoadingMap" type="CanvasLayer"]
+script = ExtResource("1_qkv37")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="loading" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_xc4we")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_3y8xe")
+font_size = 32
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"

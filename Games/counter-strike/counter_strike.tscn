@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://dinoshagmu1i7"]
+
+[ext_resource type="Script" uid="uid://c4hvsrn5mrb54" path="res://Games/counter-strike/counter_strike.gd" id="1_urf0d"]
+[ext_resource type="PackedScene" uid="uid://dsh76ld230ke5" path="res://Games/counter-strike/maps/de_dust2/map.tscn" id="2_hjpek"]
+[ext_resource type="PackedScene" uid="uid://p4j5e8tknql0" path="res://Games/counter-strike/globals/CSG_Teams.tscn" id="2_xrjl5"]
+[ext_resource type="Script" uid="uid://bmgvjwe6jccwq" path="res://Games/counter-strike/components/player_spawn_despawn/CS_PlayerSpawnDespawn.gd" id="3_qqmta"]
+[ext_resource type="PackedScene" uid="uid://cgi7jesspkojd" path="res://Games/counter-strike/entities/player/CS_Player.tscn" id="4_20lnp"]
+[ext_resource type="PackedScene" uid="uid://bt1vdfde2qurj" path="res://Games/counter-strike/ui/GameUI.tscn" id="4_pwr5c"]
+[ext_resource type="Resource" uid="uid://616ydundunx3" path="res://Games/counter-strike/resources/teams/specs.tres" id="5_hjpek"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="6_68tj1"]
+[ext_resource type="Script" uid="uid://cu12m5nppftc4" path="res://Games/counter-strike/components/camera/CS_CameraSettings.gd" id="7_hjpek"]
+
+[sub_resource type="GDScript" id="GDScript_hjpek"]
+resource_name = "freecam"
+script/source = "extends Node
+
+@export var camera: W_FPCSourceLikeCamera
+
+func _ready() -> void:
+	G_CounterStrike.instance.event_player_despawned.connect(_on_player_despawned)
+	G_CounterStrike.instance.event_player_spawned.connect(_on_player_spawned)
+
+func _on_player_despawned(player: CS_Player) -> void:
+	if player.is_multiplayer_authority():
+		camera.enabled = true
+
+func _on_player_spawned(player: CS_Player) -> void:
+	if player.is_multiplayer_authority():
+		camera.enabled = false
+		
+"
+
+[node name="counter-strike" type="Node" node_paths=PackedStringArray("teams")]
+script = ExtResource("1_urf0d")
+teams = NodePath("Globals/CSG_Teams")
+
+[node name="Map" parent="." instance=ExtResource("2_hjpek")]
+
+[node name="Globals" type="Node" parent="."]
+
+[node name="CSG_Teams" parent="Globals" instance=ExtResource("2_xrjl5")]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="CS_PlayerSpawnDespawn" type="Node" parent="Components"]
+script = ExtResource("3_qqmta")
+player_scene = ExtResource("4_20lnp")
+spectator = ExtResource("5_hjpek")
+metadata/_custom_type_script = "uid://bmgvjwe6jccwq"
+
+[node name="FreeCamera" parent="." instance=ExtResource("6_68tj1")]
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_boost = "sprint"
+key_slowdown = "crouch"
+
+[node name="script" type="Node" parent="FreeCamera" node_paths=PackedStringArray("camera")]
+script = SubResource("GDScript_hjpek")
+camera = NodePath("..")
+
+[node name="CS_CameraSettings" type="Node" parent="FreeCamera" node_paths=PackedStringArray("camera")]
+script = ExtResource("7_hjpek")
+camera = NodePath("..")
+metadata/_custom_type_script = "uid://cu12m5nppftc4"
+
+[node name="GameUI" parent="." instance=ExtResource("4_pwr5c")]

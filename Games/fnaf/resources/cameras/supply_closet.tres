@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FW_CameraData" load_steps=2 format=3 uid="uid://bispd0hncqadt"]
+
+[ext_resource type="Script" uid="uid://derqikmtj0jln" path="res://Games/fnaf/scripts/resources/FW_CameraData.gd" id="1_3aqhf"]
+
+[resource]
+script = ExtResource("1_3aqhf")
+code = "7"
+name = "RESTROOMS"
+metadata/_custom_type_script = "uid://derqikmtj0jln"

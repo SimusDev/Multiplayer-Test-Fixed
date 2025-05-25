@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://iwil0srdra6x"]
+
+[ext_resource type="Script" uid="uid://d3hl1o8xonbst" path="res://addons/simusdev/Game/buttons/button_base.gd" id="1_gw2n8"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_2qbhj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iksd"]
+
+[node name="button_base" type="Button" node_paths=PackedStringArray("_label")]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 157.0
+offset_bottom = 51.0
+focus_mode = 0
+script = ExtResource("1_gw2n8")
+label_text = "button_base"
+_label = NodePath("SD_Label")
+
+[node name="SD_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "button_base"
+label_settings = SubResource("LabelSettings_3iksd")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("2_2qbhj")

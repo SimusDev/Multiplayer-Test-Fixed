@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct8ihv7nhnk66"]
+
+[ext_resource type="Script" uid="uid://bklcil87mehpa" path="res://Games/fnaf/components/footsteps/FNAF_FootstepsComponent.gd" id="1_l1dok"]
+[ext_resource type="AudioStream" uid="uid://cf37x4113m1rl" path="res://Games/counter-strike/sounds/player/pl_tile1.wav" id="2_qnp8c"]
+[ext_resource type="AudioStream" uid="uid://bueywkvtg6844" path="res://Games/counter-strike/sounds/player/pl_tile2.wav" id="3_l5t5o"]
+[ext_resource type="AudioStream" uid="uid://c8qqtn806knf2" path="res://Games/counter-strike/sounds/player/pl_tile3.wav" id="4_5o6jc"]
+[ext_resource type="AudioStream" uid="uid://b4bd0g7s415ak" path="res://Games/counter-strike/sounds/player/pl_tile4.wav" id="5_5wbxi"]
+[ext_resource type="AudioStream" uid="uid://bh13ww50dsyj8" path="res://Games/counter-strike/sounds/player/pl_tile5.wav" id="6_jncyf"]
+
+[node name="FNAF_FootstepsComponent" type="Node3D" node_paths=PackedStringArray("audio")]
+script = ExtResource("1_l1dok")
+audio = NodePath("AudioStreamPlayer3D")
+streams = Array[AudioStream]([ExtResource("2_qnp8c"), ExtResource("3_l5t5o"), ExtResource("4_5o6jc"), ExtResource("5_5wbxi"), ExtResource("6_jncyf")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_qnp8c")
+volume_db = -20.0
+max_distance = 30.0
+bus = &"game"

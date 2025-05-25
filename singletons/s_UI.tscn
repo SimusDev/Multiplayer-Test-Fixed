@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://buy824gqgdkt2"]
+
+[ext_resource type="Script" uid="uid://wxx8cu0dqyn8" path="res://singletons/s_UI.gd" id="1_7b1hs"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="2_3sjbs"]
+
+[node name="s_UI" type="Node" node_paths=PackedStringArray("_active_input", "_input_close")]
+script = ExtResource("1_7b1hs")
+_active_input = NodePath("active_input")
+_input_close = NodePath("input_close")
+
+[node name="input_close" type="Node2D" parent="."]
+script = ExtResource("2_3sjbs")
+disable_input_when_invisible_in_tree = false
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[node name="active_input" type="Node2D" parent="."]
+script = ExtResource("2_3sjbs")
+disable_input_when_invisible_in_tree = false
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="on_action_just_pressed" from="input_close" to="." method="_on_sd_node_input_on_action_just_pressed"]

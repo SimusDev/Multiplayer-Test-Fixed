@@ -1,0 +1,1 @@
+class_name SD_ScriptComponent extends Resource

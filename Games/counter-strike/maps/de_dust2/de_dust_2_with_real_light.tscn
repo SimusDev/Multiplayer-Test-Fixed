@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl0oroknm56o3"]
+
+[ext_resource type="PackedScene" uid="uid://dpsavx5qk602u" path="res://Games/counter-strike/maps/de_dust2/de_dust_2_with_real_light.glb" id="1_8ebdp"]
+
+[node name="de_dust2_with_real_light" instance=ExtResource("1_8ebdp")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)

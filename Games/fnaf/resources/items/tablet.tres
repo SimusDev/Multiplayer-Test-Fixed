@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FW_ItemData" load_steps=3 format=3 uid="uid://o5humlj5571o"]
+
+[ext_resource type="Texture2D" uid="uid://cwmdnc8jwie5l" path="res://Games/fnaf/textures/items/tablet.png" id="1_vw3j7"]
+[ext_resource type="Script" uid="uid://8mlva3k0mfy2" path="res://Games/fnaf/scripts/resources/FW_ItemData.gd" id="2_c4h7a"]
+
+[resource]
+script = ExtResource("2_c4h7a")
+world_model_position = Vector3(0, 0, 0)
+world_model_rotation = Vector3(0, 0, 0)
+name = "Tablet"
+icon = ExtResource("1_vw3j7")
+description = ""
+metadata/_custom_type_script = "uid://8mlva3k0mfy2"

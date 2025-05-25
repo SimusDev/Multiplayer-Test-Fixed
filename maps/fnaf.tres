@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://dh0thlun5lrj7"]
+
+[ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="1_pig7m"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="2_x1esr"]
+
+[resource]
+script = ExtResource("2_x1esr")
+scene_path = "uid://dnw8e7bnrwhc"
+code = "fnaf"
+name = "FNaF"
+icon = ExtResource("1_pig7m")
+description = ""
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

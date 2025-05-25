@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://87jqycrcjmll"]
+
+[ext_resource type="ArrayMesh" uid="uid://gtqqdwpxe4hf" path="res://Games/fnaf/resources/meshes/door/door.tres" id="1_gev7b"]
+[ext_resource type="Script" uid="uid://d360gm2iwv3l1" path="res://Games/fnaf/models/map/door/door.gd" id="2_7yah7"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_c3gsq"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_3up7x"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_vop6h"]
+[ext_resource type="AudioStream" uid="uid://cyhvmp0kvah82" path="res://Games/fnaf/sounds/fnaf1/SFXBible_12478.wav" id="6_3up7x"]
+
+[sub_resource type="Resource" id="Resource_v3sev"]
+script = ExtResource("4_vop6h")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 2
+properties = Array[String](["position"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../MeshInstance3D")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gev7b"]
+points = PackedVector3Array(0.0381, 0.9144, 0.6096, -0.0381, 0.9144, 0.6096, 0.0381, -0.9144, 0.6096, 0.0381, 0.9144, -0.6096, -0.0381, 0.9144, -0.6096, -0.0381, -0.9144, 0.6096, 0.0381, -0.9144, -0.6096, -0.0381, -0.9144, -0.6096)
+
+[sub_resource type="Animation" id="Animation_gev7b"]
+resource_name = "door"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7yah7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yah7"]
+_data = {
+&"RESET": SubResource("Animation_7yah7"),
+&"door": SubResource("Animation_gev7b")
+}
+
+[node name="Door" type="Node3D"]
+script = ExtResource("2_7yah7")
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("2_c3gsq")
+properties = Array[ExtResource("3_3up7x")]([SubResource("Resource_v3sev")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="collision" type="CollisionShape3D" parent="StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gev7b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 5, 0)
+mesh = ExtResource("1_gev7b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_method = 1
+libraries = {
+&"": SubResource("AnimationLibrary_7yah7")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_3up7x")
+unit_size = 0.5
+bus = &"game"
+attenuation_filter_cutoff_hz = 20500.0

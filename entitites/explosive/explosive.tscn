@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://doxlh5c0gc0eo"]
+
+[ext_resource type="Script" uid="uid://dfcghmsfnkwgf" path="res://entitites/explosive/explosive.gd" id="1_re3ip"]
+[ext_resource type="Script" uid="uid://8fcxxvlk3c8t" path="res://scripts/components/destroy/C_DestroyComponent.gd" id="2_6io4p"]
+[ext_resource type="Texture2D" uid="uid://dtnbs5co2cosr" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="3_5apcl"]
+[ext_resource type="PackedScene" uid="uid://cupxaggf34v6q" path="res://scripts/components/hurtbox/C_HurtboxComponent.tscn" id="3_6640q"]
+[ext_resource type="Script" uid="uid://dvpb4tu2333q3" path="res://scripts/components/area3d_server/C_Area3DServer.gd" id="4_ok1cr"]
+[ext_resource type="Script" uid="uid://cmb5et352niyr" path="res://scripts/components/timer_server/C_TimerServer.gd" id="5_chqun"]
+[ext_resource type="AudioStream" uid="uid://nossiw3p0v6g" path="res://sounds/tick.ogg" id="6_eowu6"]
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="7_y5c82"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="8_45a0x"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5apcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45a0x"]
+albedo_texture = ExtResource("3_5apcl")
+uv1_triplanar = true
+
+[node name="Explosive" type="Node3D"]
+script = ExtResource("1_re3ip")
+
+[node name="explosive_sync" type="Node" parent="." node_paths=PackedStringArray("sync_node")]
+script = ExtResource("7_y5c82")
+send_mode = 2
+sync_node = NodePath("..")
+properties_to_sync = PackedStringArray("TICKS")
+metadata/_custom_type_script = "uid://cvishs4j8htsj"
+
+[node name="C_DestroyComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_6io4p")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://8fcxxvlk3c8t"
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("BoxMesh_5apcl")
+material = SubResource("StandardMaterial3D_45a0x")
+
+[node name="C_HurtboxComponent" parent="." instance=ExtResource("3_6640q")]
+monitoring = false
+points = 50.0
+
+[node name="C_Area3DServer" type="Area3D" parent="."]
+script = ExtResource("4_ok1cr")
+metadata/_custom_type_script = "uid://dvpb4tu2333q3"
+
+[node name="C_TimerServer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("5_chqun")
+metadata/_custom_type_script = "uid://cmb5et352niyr"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_eowu6")
+unit_size = 0.5
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.778028, 0.504715)
+text = "БОМБА ЕБАНЁТ ЧЕРЕЗ\\n%s СЕК!\""
+font = ExtResource("8_45a0x")
+font_size = 24
+autowrap_mode = 1
+
+[connection signal="data_created" from="explosive_sync" to="." method="_on_sd_multiplayer_synchronizer_data_created"]
+[connection signal="timeout" from="C_TimerServer" to="." method="_on_c_timer_server_timeout"]

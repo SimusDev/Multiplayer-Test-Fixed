@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FW_ItemData" load_steps=4 format=3 uid="uid://bvakvjy6y25gf"]
+
+[ext_resource type="Script" uid="uid://8mlva3k0mfy2" path="res://Games/fnaf/scripts/resources/FW_ItemData.gd" id="1_76eqc"]
+[ext_resource type="Texture2D" uid="uid://byxm2260ollnu" path="res://Games/fnaf/textures/items/flashlight.png" id="1_0203h"]
+[ext_resource type="PackedScene" uid="uid://7lhy3s5tiyoc" path="res://Games/fnaf/models/items/flashlight/flashlight.tscn" id="3_n4b60"]
+
+[resource]
+script = ExtResource("1_76eqc")
+world_model = ExtResource("3_n4b60")
+world_model_position = Vector3(0, 0, 0)
+world_model_rotation = Vector3(0, 0, 0)
+name = "Flashlight"
+icon = ExtResource("1_0203h")
+description = ""
+metadata/_custom_type_script = "uid://8mlva3k0mfy2"

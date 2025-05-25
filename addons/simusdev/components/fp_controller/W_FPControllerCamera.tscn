@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy74uw5mgubcu"]
+
+[ext_resource type="Script" uid="uid://cpi2x0q351cj2" path="res://addons/simusdev/components/fp_controller/W_FPControllerCamera.gd" id="1_yd77h"]
+
+[node name="W_FPControllerCamera" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_yd77h")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]

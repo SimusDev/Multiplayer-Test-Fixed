@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi04tmo38kn8l"]
+
+[ext_resource type="Texture2D" uid="uid://b786c466xeoxc" path="res://addons/simusdev/textures/godot.png" id="1_j5ejs"]
+[ext_resource type="Script" uid="uid://c6ihik0iqr5fn" path="res://addons/simusdev/ui/SD_UIGodotLogo.gd" id="2_q7ive"]
+
+[sub_resource type="Animation" id="Animation_rau0y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SD_UIGodotLogo:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kxp3e"]
+resource_name = "intro"
+length = 4.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SD_UIGodotLogo:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 4, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgoqy"]
+_data = {
+&"RESET": SubResource("Animation_rau0y"),
+&"intro": SubResource("Animation_kxp3e")
+}
+
+[node name="ui_godot_intro" type="CanvasLayer"]
+
+[node name="ui_fade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SD_UIGodotLogo" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.361
+anchor_top = 0.376
+anchor_right = 0.639
+anchor_bottom = 0.624
+offset_left = -0.580048
+offset_top = -0.220001
+offset_right = 0.579956
+offset_bottom = 0.220001
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j5ejs")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_q7ive")
+metadata/_custom_type_script = "uid://c6ihik0iqr5fn"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bgoqy")
+}
+autoplay = "intro"

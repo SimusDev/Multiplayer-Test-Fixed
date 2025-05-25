@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddd0epmcwelof"]
+
+[ext_resource type="Script" uid="uid://bfaipcx37nytw" path="res://interface/chat/chat_interface.gd" id="1_rru54"]
+[ext_resource type="PackedScene" uid="uid://dd0a6oh3fnwk3" path="res://interface/chat/message.tscn" id="2_upsdc"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="2_yv0xc"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="4_upsdc"]
+
+[node name="chat_interface" type="Control" node_paths=PackedStringArray("line_edit", "history", "container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rru54")
+message_scene = ExtResource("2_upsdc")
+line_edit = NodePath("messager/LineEdit")
+history = NodePath("messager/history")
+container = NodePath("VBoxContainer")
+metadata/_custom_type_script = "uid://dnrhf3cyyqskh"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015
+anchor_top = 0.304
+anchor_right = 0.423
+anchor_bottom = 0.654
+offset_left = -0.200001
+offset_top = 0.11998
+offset_right = -0.440002
+offset_bottom = 0.119965
+mouse_filter = 2
+alignment = 2
+
+[node name="messager" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.967
+anchor_right = 0.013
+anchor_bottom = 0.967
+offset_left = 0.360001
+offset_top = -221.24
+offset_right = 529.36
+offset_bottom = -0.240051
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="history" type="RichTextLabel" parent="messager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.118
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -0.078001
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="messager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.112
+offset_bottom = 0.0240002
+placeholder_text = "ENTER MESSAGE HERE..."
+
+[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_yv0xc")
+target = NodePath("../messager")
+input_action = "chat"
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("4_upsdc")
+TARGET_INPUT = NodePath("../messager/history")
+TARGET_DRAG = NodePath("../messager")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[connection signal="draw" from="messager" to="." method="_on_messager_draw"]
+[connection signal="text_submitted" from="messager/LineEdit" to="." method="_on_line_edit_text_submitted"]

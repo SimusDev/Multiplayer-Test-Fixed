@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://t00bn8s7la4c"]
+
+[ext_resource type="Script" uid="uid://bopuxt8f5nn25" path="res://Games/fnaf/components/world/energy/FW_EnergyComponent.gd" id="1_a1dw4"]
+
+[node name="FW_EnergyComponent" type="Node" node_paths=PackedStringArray("_timer")]
+script = ExtResource("1_a1dw4")
+_timer = NodePath("Timer")
+_code = "energy"
+metadata/_custom_type_script = "uid://cv4n2a6u5b0s2"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="all_data_synchronized" from="." to="." method="_on_all_data_synchronized"]
+[connection signal="data_changed" from="." to="." method="_on_data_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

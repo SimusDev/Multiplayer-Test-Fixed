@@ -1,0 +1,133 @@
+[gd_scene load_steps=4 format=3 uid="uid://f6dcco1gu4y0"]
+
+[ext_resource type="Script" uid="uid://cfgg6on8dt5pk" path="res://addons/simusdev/interfaces/text_editor/text_editor.gd" id="1_1goq3"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_23mn0"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_5ed6e"]
+
+[node name="text_editor" type="Control" node_paths=PackedStringArray("_editor", "_file_dialog", "_label_current_file")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -519.0
+offset_top = -292.0
+offset_right = 519.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_1goq3")
+_editor = NodePath("editor")
+_file_dialog = NodePath("FileDialog")
+_label_current_file = NodePath("label_current_file")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.087
+offset_bottom = 0.191998
+mouse_filter = 2
+alignment = 1
+
+[node name="open_file" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "OPEN FILE"
+
+[node name="open_user" type="Button" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "OPEN USERDATA"
+
+[node name="save" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "SAVE"
+
+[node name="save_as" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "SAVE AS"
+
+[node name="save_as_user" type="Button" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "USERDATA SAVE AS"
+
+[node name="editor" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.92
+offset_top = 0.191998
+offset_bottom = -0.280029
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "ENTER TEXT HERE..."
+scroll_smooth = true
+minimap_draw = true
+draw_control_chars = true
+draw_tabs = true
+
+[node name="label_current_file" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.280029
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("3_5ed6e")
+TARGET_INPUT = NodePath("..")
+TARGET_DRAG = NodePath("..")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Window"
+initial_position = 1
+transient = false
+transient_to_focused = true
+exclusive = false
+always_on_top = true
+popup_window = true
+show_hidden_files = true
+use_native_dialog = true
+
+[connection signal="pressed" from="HBoxContainer/open_file" to="." method="_on_open_file_pressed"]
+[connection signal="pressed" from="HBoxContainer/open_user" to="." method="_on_open_user_pressed"]
+[connection signal="pressed" from="HBoxContainer/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="HBoxContainer/save_as" to="." method="_on_save_as_pressed"]
+[connection signal="pressed" from="HBoxContainer/save_as_user" to="." method="_on_save_as_user_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="filename_filter_changed" from="FileDialog" to="." method="_on_file_dialog_filename_filter_changed"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwmt2kblkj51u"]
+
+[ext_resource type="PackedScene" uid="uid://usvgki3fduta" path="res://Games/fnaf/models/animatronics/freddy/Untitled.glb" id="1_0kxl7"]
+
+[node name="inherited" instance=ExtResource("1_0kxl7")]
+
+[node name="GlowEyes_dmx" parent="freddy_ARM/Skeleton3D" index="14"]
+visible = false

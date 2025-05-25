@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx6c437uq7p2s"]
+
+[ext_resource type="Script" uid="uid://ctl6fuvb8tvfs" path="res://Games/counter-strike/components/hands/CS_HandsWeaponModel.gd" id="1_cp0iv"]
+
+[node name="CS_HandsWeaponModel" type="Node3D"]
+script = ExtResource("1_cp0iv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

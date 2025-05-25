@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcdeuskklchca"]
+
+[ext_resource type="Script" uid="uid://cyqnrisvpusw3" path="res://addons/simusdev/worldsaver/test_worldsave.gd" id="1_tyy8k"]
+[ext_resource type="Resource" uid="uid://bsc4xrl8un0du" path="res://Games/fnaf/resources/cameras/show_stage.tres" id="2_2j4e6"]
+[ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="2_tyy8k"]
+[ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="5_nrldy"]
+[ext_resource type="Script" uid="uid://7837b3pdgj58" path="res://addons/simusdev/worldsaver/SD_WorldNodeInstanceSaver.gd" id="5_usn33"]
+
+[sub_resource type="Resource" id="Resource_2j4e6"]
+script = ExtResource("5_nrldy")
+name = "VARIABLE"
+duplicate = false
+duplicate_deep = false
+duplicate_resources = false
+metadata/_custom_type_script = "uid://b5csmggjb4hh6"
+
+[node name="TestWorldsave" type="Node2D"]
+script = ExtResource("1_tyy8k")
+VARIABLE = ExtResource("2_2j4e6")
+
+[node name="SD_WorldNodePropertySaver" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("2_tyy8k")
+load_when_save_loaded = true
+properties_to_save = Array[ExtResource("5_nrldy")]([SubResource("Resource_2j4e6")])
+node = NodePath("..")
+metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
+
+[node name="SD_WorldNodeInstanceSaver" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("5_usn33")
+node = NodePath("..")
+metadata/_custom_type_script = "uid://7837b3pdgj58"
+
+[connection signal="property_loaded" from="SD_WorldNodePropertySaver" to="." method="_on_sd_world_node_property_saver_property_loaded"]
+[connection signal="save_loaded" from="SD_WorldNodePropertySaver" to="." method="_on_sd_world_node_property_saver_save_loaded"]

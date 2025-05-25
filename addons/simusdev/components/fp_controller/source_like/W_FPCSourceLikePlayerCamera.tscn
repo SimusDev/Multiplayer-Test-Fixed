@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://n3r0klkoo635"]
+
+[ext_resource type="Script" uid="uid://cyg77uxj44n4v" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.gd" id="1_jpe83"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="2_55nsh"]
+
+[sub_resource type="Animation" id="Animation_tm2lb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("breath/bobbing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("breath/bobbing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0kl6"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("breath/bobbing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("breath/bobbing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"do_bob_footstep"
+}, {
+"args": [],
+"method": &"do_bob_footstep"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2roe"]
+_data = {
+&"RESET": SubResource("Animation_tm2lb"),
+&"idle": SubResource("Animation_b0kl6")
+}
+
+[sub_resource type="Animation" id="Animation_i1cta"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("breath:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n2roe"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("breath:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.07, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gpi6l"]
+_data = {
+&"RESET": SubResource("Animation_i1cta"),
+&"idle": SubResource("Animation_n2roe")
+}
+
+[node name="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("camera") instance=ExtResource("2_55nsh")]
+script = ExtResource("1_jpe83")
+velocity_animation_scale = 0.13
+camera = NodePath("breath/bobbing/Camera3D")
+
+[node name="Camera3D" parent="." index="0"]
+visible = false
+
+[node name="breath" type="Node3D" parent="." index="1"]
+
+[node name="bobbing" type="Node3D" parent="breath" index="0"]
+
+[node name="Camera3D" type="Camera3D" parent="breath/bobbing" index="0"]
+
+[node name="bobbing_animation" type="AnimationPlayer" parent="." index="2"]
+callback_mode_process = 2
+libraries = {
+&"": SubResource("AnimationLibrary_n2roe")
+}
+
+[node name="breath_animation" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_gpi6l")
+}
+autoplay = "idle"

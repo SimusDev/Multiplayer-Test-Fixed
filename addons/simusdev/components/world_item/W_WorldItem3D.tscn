@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d22un1u3iopgs"]
+
+[ext_resource type="Script" uid="uid://delv2tve176ck" path="res://addons/simusdev/components/world_item/W_WorldItem3D.gd" id="1_0fkma"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_utq3j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3knjn"]
+size = Vector3(1, 0.001, 1)
+
+[node name="W_WorldItem3D" type="RigidBody3D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_0fkma")
+_sprite = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_utq3j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3knjn")

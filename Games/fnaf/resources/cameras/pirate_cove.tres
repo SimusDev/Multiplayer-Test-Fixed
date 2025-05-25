@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FW_CameraData" load_steps=2 format=3 uid="uid://dlcf6b8y3f5nm"]
+
+[ext_resource type="Script" uid="uid://derqikmtj0jln" path="res://Games/fnaf/scripts/resources/FW_CameraData.gd" id="1_8oepf"]
+
+[resource]
+script = ExtResource("1_8oepf")
+code = "1C"
+name = "PIRATE_COVE"
+metadata/_custom_type_script = "uid://derqikmtj0jln"

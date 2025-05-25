@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyjf4da755tj"]
+
+[ext_resource type="Script" uid="uid://d1anfwdm2p1sy" path="res://scripts/world/nickname.gd" id="1_pil1k"]
+
+[node name="nickname" type="Label3D"]
+billboard = 1
+text = "simusdev"
+script = ExtResource("1_pil1k")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djbabpbmqnbm7"]
+
+[ext_resource type="PackedScene" uid="uid://btaoi5rrjwuf6" path="res://addons/simusdev/Game/scene/SD_GameSceneChanger.tscn" id="1_ecqii"]
+
+[node name="SD_GameSceneChanger" instance=ExtResource("1_ecqii")]
+layer = 5

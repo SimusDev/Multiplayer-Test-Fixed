@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmrgbli4rh7tn"]
+
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_20xpd"]
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="2_wnk2l"]
+
+[node name="CHealthComponent" type="Node" node_paths=PackedStringArray("sync")]
+script = ExtResource("1_20xpd")
+sync = NodePath("SD_MultiplayerSynchronizer")
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+
+[node name="SD_MultiplayerSynchronizer" type="Node" parent="." node_paths=PackedStringArray("sync_node")]
+script = ExtResource("2_wnk2l")
+send_mode = 2
+sync_node = NodePath("..")
+properties_to_sync = PackedStringArray("health")
+metadata/_custom_type_script = "uid://cvishs4j8htsj"
+
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]

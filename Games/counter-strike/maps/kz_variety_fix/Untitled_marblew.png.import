@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://egf27kv568ir"
+path.s3tc="res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e3246a9ef0072cbaf2c9b35b4a253aee"
+}
+
+[deps]
+
+source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_marblew.png"
+dest_files=["res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

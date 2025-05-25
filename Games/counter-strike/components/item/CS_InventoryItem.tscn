@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1o6x2wbn2dx"]
+
+[ext_resource type="Script" uid="uid://brmq5qbs0lvja" path="res://Games/counter-strike/components/item/CS_InventoryItem.gd" id="1_7awty"]
+
+[node name="CS_InventoryItem" type="Node"]
+script = ExtResource("1_7awty")
+metadata/_custom_type_script = "uid://brmq5qbs0lvja"

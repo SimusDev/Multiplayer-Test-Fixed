@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1vyo4mg1715e"]
+
+[sub_resource type="Environment" id="Environment_mh3xy"]
+background_mode = 2
+tonemap_mode = 3
+tonemap_exposure = 0.6
+sdfgi_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_mh3xy")

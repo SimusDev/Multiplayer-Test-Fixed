@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://p4j5e8tknql0"]
+
+[ext_resource type="Script" uid="uid://dxmwxhi242ww2" path="res://Games/counter-strike/globals/CSG_Teams.gd" id="1_enpd8"]
+[ext_resource type="Script" uid="uid://no04e74yxwfd" path="res://Games/counter-strike/scripts/resources/R_CS_Team.gd" id="2_kay83"]
+[ext_resource type="Resource" uid="uid://dpbt88fd2f3xw" path="res://Games/counter-strike/resources/teams/blue.tres" id="3_ijfvs"]
+[ext_resource type="Resource" uid="uid://bxfi6vtnm0a16" path="res://Games/counter-strike/resources/teams/red.tres" id="4_1tiim"]
+[ext_resource type="Resource" uid="uid://616ydundunx3" path="res://Games/counter-strike/resources/teams/specs.tres" id="5_ijfvs"]
+
+[node name="CSG_Teams" type="Node"]
+script = ExtResource("1_enpd8")
+list = Array[ExtResource("2_kay83")]([ExtResource("3_ijfvs"), ExtResource("4_1tiim"), ExtResource("5_ijfvs")])

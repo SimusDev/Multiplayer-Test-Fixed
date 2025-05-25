@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FW_CameraData" load_steps=2 format=3 uid="uid://0et44wdua2ky"]
+
+[ext_resource type="Script" uid="uid://derqikmtj0jln" path="res://Games/fnaf/scripts/resources/FW_CameraData.gd" id="1_4y23o"]
+
+[resource]
+script = ExtResource("1_4y23o")
+code = "6"
+name = "KITCHEN"
+metadata/_custom_type_script = "uid://derqikmtj0jln"

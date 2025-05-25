@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://bf1itdt0qcwve"]
+
+[ext_resource type="Script" uid="uid://dpamu4wsjtonv" path="res://addons/simusdev/console/prefabs/ui_console.gd" id="1_iesy5"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_6og7q"]
+[ext_resource type="PackedScene" uid="uid://ch1uakx5urgya" path="res://addons/simusdev/console/prefabs/ui_console_message_container.tscn" id="3_3g66w"]
+[ext_resource type="PackedScene" uid="uid://bjtllekn7shxu" path="res://addons/simusdev/console/prefabs/ui_console_tips.tscn" id="3_bak46"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="4_y7hwx"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="5_6og7q"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="7_kt1kc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wvfug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g02d3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2jgvj"]
+
+[sub_resource type="Resource" id="Resource_kt1kc"]
+script = ExtResource("5_6og7q")
+code = "cmd.list"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_y7hwx"]
+script = ExtResource("5_6og7q")
+code = "console.hide"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_6og7q"]
+script = ExtResource("5_6og7q")
+code = "console.show"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_pql12"]
+script = ExtResource("5_6og7q")
+code = "console.clear"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_2udmi"]
+script = ExtResource("5_6og7q")
+code = "clear"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="ui_console" type="CanvasLayer" node_paths=PackedStringArray("line_edit", "_container", "_tips")]
+process_mode = 3
+layer = 128
+script = ExtResource("1_iesy5")
+line_edit = NodePath("enter")
+_container = NodePath("ui_console_message_container")
+_tips = NodePath("ui_console_tips")
+metadata/_edit_horizontal_guides_ = [36.0]
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="enter" type="LineEdit" parent="."]
+anchors_preset = -1
+anchor_top = 0.001
+anchor_right = 0.998
+anchor_bottom = 0.05
+offset_top = -0.36
+offset_right = 0.279907
+offset_bottom = -1.0
+theme_override_fonts/font = ExtResource("2_6og7q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wvfug")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_g02d3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2jgvj")
+placeholder_text = ">"
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="ui_console_message_container" parent="." instance=ExtResource("3_3g66w")]
+anchors_preset = -1
+anchor_top = 0.075
+
+[node name="ui_console_tips" parent="." instance=ExtResource("3_bak46")]
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 0.423
+anchor_bottom = 0.215
+offset_right = -0.440002
+offset_bottom = 0.199997
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("4_y7hwx")
+commands = Array[ExtResource("5_6og7q")]([SubResource("Resource_kt1kc"), SubResource("Resource_y7hwx"), SubResource("Resource_6og7q"), SubResource("Resource_pql12"), SubResource("Resource_2udmi")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[node name="SD_NodeInput" type="Node2D" parent="."]
+script = ExtResource("7_kt1kc")
+depends_on_console = false
+disable_input_when_invisible_in_tree = false
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_changed" from="enter" to="." method="_on_enter_text_changed"]
+[connection signal="tip_selected" from="ui_console_tips" to="." method="_on_ui_console_tips_tip_selected"]
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]
+[connection signal="on_input" from="SD_NodeInput" to="." method="_on_sd_node_input_on_input"]

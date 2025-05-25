@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://salsiodlqv3u"]
+
+[ext_resource type="Script" uid="uid://cwg1db2bx55t8" path="res://addons/simusdev/multiplayer/SD_MultiplayerSingleton.gd" id="1_4wthg"]
+
+[node name="Multiplayer" type="Node"]
+script = ExtResource("1_4wthg")
+metadata/_custom_type_script = "uid://cwg1db2bx55t8"

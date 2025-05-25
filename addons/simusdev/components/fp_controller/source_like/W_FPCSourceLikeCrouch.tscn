@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgmj4cxp8xi62"]
+
+[ext_resource type="Script" uid="uid://dfsnjhyc2ld3c" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.gd" id="1_fvxwj"]
+
+[node name="W_FPCSourceLikeCrouch" type="Node3D"]
+script = ExtResource("1_fvxwj")
+metadata/_custom_type_script = "uid://ctr1af1pl05wf"

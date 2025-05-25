@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbfgy0g1a1wgm"]
+
+[ext_resource type="PackedScene" uid="uid://o1o6x2wbn2dx" path="res://Games/counter-strike/components/item/CS_InventoryItem.tscn" id="1_xewv3"]
+[ext_resource type="Script" uid="uid://d13tkp6i7jbwd" path="res://Games/counter-strike/components/weapon_item/CS_WeaponItem.gd" id="2_7ktvr"]
+
+[node name="CS_WeaponItem" instance=ExtResource("1_xewv3")]
+script = ExtResource("2_7ktvr")

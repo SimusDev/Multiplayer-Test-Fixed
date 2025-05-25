@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_CS_Team" load_steps=2 format=3 uid="uid://616ydundunx3"]
+
+[ext_resource type="Script" uid="uid://no04e74yxwfd" path="res://Games/counter-strike/scripts/resources/R_CS_Team.gd" id="1_imrho"]
+
+[resource]
+script = ExtResource("1_imrho")
+color = Color(1, 1, 1, 1)
+name = "НА МИССИИ НАБЛЮДАТОРЫ"
+metadata/_custom_type_script = "uid://no04e74yxwfd"

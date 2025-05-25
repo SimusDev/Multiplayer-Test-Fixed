@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkh4hy3p6qq74"]
+
+[ext_resource type="Script" uid="uid://cimdrk2n2rvjn" path="res://addons/simusdev/debug/ui_interface.gd" id="1_u33ll"]
+[ext_resource type="Script" uid="uid://4ch8u8wq8ibm" path="res://addons/simusdev/localization/SD_LabelFPSDebug.gd" id="2_nnxpa"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_td5aq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i8tq"]
+font = ExtResource("2_td5aq")
+font_size = 15
+
+[node name="ui_interface" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_u33ll")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.439216)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -59.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SD_LabelFPSDebug" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SimusEngine
+
+FPS: 137.0"
+label_settings = SubResource("LabelSettings_4i8tq")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_nnxpa")
+prefix = "SimusEngine
+
+FPS: "
+metadata/_custom_type_script = "uid://4ch8u8wq8ibm"

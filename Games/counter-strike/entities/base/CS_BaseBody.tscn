@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3iqv6ckeak6u"]
+
+[ext_resource type="Script" uid="uid://6qv0ld4kqr0w" path="res://Games/counter-strike/entities/base/CS_BaseBody.gd" id="1_0cuxd"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_cw5bd"]
+[ext_resource type="Script" uid="uid://dmxdbe1v61gwb" path="res://addons/simusdev/components/inventory/W_Inventory.gd" id="2_osgeh"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_gie5q"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_bvefq"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="5_0mfbn"]
+[ext_resource type="PackedScene" uid="uid://ct8dv5yb0qsnr" path="res://Games/counter-strike/components/skin/CS_Skin.tscn" id="7_cw5bd"]
+
+[sub_resource type="Resource" id="Resource_2bwpy"]
+script = ExtResource("4_bvefq")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["position", "rotation", "velocity"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx3kp"]
+size = Vector3(1, 1.7463, 0.749832)
+
+[node name="CS_BaseBody" type="CharacterBody3D" node_paths=PackedStringArray("movement", "inventory")]
+collision_layer = 0
+script = ExtResource("1_0cuxd")
+movement = NodePath("W_FPCSourceLikeMovement")
+inventory = NodePath("W_Inventory")
+
+[node name="synchronization" type="Node" parent="."]
+script = ExtResource("2_cw5bd")
+properties = Array[ExtResource("3_gie5q")]([SubResource("Resource_2bwpy")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="W_Inventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_osgeh")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://dmxdbe1v61gwb"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0686657, -0.0246124)
+shape = SubResource("BoxShape3D_kx3kp")
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("5_0mfbn")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+enabled = false
+
+[node name="CS_Skin" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("7_cw5bd")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -0.942813, 0)
+movement = NodePath("../W_FPCSourceLikeMovement")

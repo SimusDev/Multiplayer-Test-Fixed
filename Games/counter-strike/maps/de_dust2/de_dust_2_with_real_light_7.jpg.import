@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c2qnp4rdg2gny"
+path.s3tc="res://.godot/imported/de_dust_2_with_real_light_7.jpg-e71185885e88adc6ca85510209cb36f3.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6d3321d9f227ed57395b1ef9ae256b06"
+}
+
+[deps]
+
+source_file="res://Games/counter-strike/maps/de_dust2/de_dust_2_with_real_light_7.jpg"
+dest_files=["res://.godot/imported/de_dust_2_with_real_light_7.jpg-e71185885e88adc6ca85510209cb36f3.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

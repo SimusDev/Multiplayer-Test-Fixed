@@ -1,0 +1,125 @@
+[gd_scene load_steps=20 format=3 uid="uid://ct8dv5yb0qsnr"]
+
+[ext_resource type="Script" uid="uid://b5wom6ohoa8x6" path="res://Games/counter-strike/components/skin/CS_Skin.gd" id="1_1ttce"]
+[ext_resource type="PackedScene" uid="uid://di8w4hq13kp12" path="res://Games/counter-strike/models/players/tr_leet/Untitled.glb" id="2_1fi4u"]
+[ext_resource type="Animation" uid="uid://cdgwgkep64my7" path="res://Games/counter-strike/animations/resources/crouch.res" id="3_3wq01"]
+[ext_resource type="Animation" uid="uid://lf6nogupdbsv" path="res://Games/counter-strike/animations/resources/crouch_walk.res" id="4_02s5s"]
+[ext_resource type="Animation" uid="uid://dxvxhec6ou74b" path="res://Games/counter-strike/animations/resources/run.res" id="5_yisv4"]
+[ext_resource type="Animation" uid="uid://cbdwmdrlk0hat" path="res://Games/counter-strike/animations/resources/strafe_left.res" id="6_75jwa"]
+[ext_resource type="Animation" uid="uid://cbse7m2bk01k0" path="res://Games/counter-strike/animations/resources/strafe_right.res" id="7_ic0pr"]
+[ext_resource type="Animation" uid="uid://cg5hmlqy8ba5v" path="res://Games/counter-strike/animations/resources/idle.res" id="8_02s5s"]
+
+[sub_resource type="Animation" id="Animation_ojno7"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yaind"]
+_data = {
+&"RESET": SubResource("Animation_ojno7"),
+&"crouch": ExtResource("3_3wq01"),
+&"crouch_walk": ExtResource("4_02s5s"),
+&"idle": ExtResource("8_02s5s"),
+&"run": ExtResource("5_yisv4"),
+&"strafe_left": ExtResource("6_75jwa"),
+&"strafe_right": ExtResource("7_ic0pr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_02s5s"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yisv4"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_75jwa"]
+animation = &"strafe_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ic0pr"]
+animation = &"strafe_left"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ojno7"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yaind"]
+animation = &"run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fkr1q"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_yisv4")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_75jwa")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ic0pr")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ojno7")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_yaind")
+blend_point_4/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_6dvgi"]
+filter_enabled = true
+filters = ["leet_ARM/Skeleton3D:Bip01 Head", "leet_ARM/Skeleton3D:Bip01 L Clavicle", "leet_ARM/Skeleton3D:Bip01 L Finger0", "leet_ARM/Skeleton3D:Bip01 L Finger1", "leet_ARM/Skeleton3D:Bip01 L Forearm", "leet_ARM/Skeleton3D:Bip01 L Hand", "leet_ARM/Skeleton3D:Bip01 L UpperArm", "leet_ARM/Skeleton3D:Bip01 Neck", "leet_ARM/Skeleton3D:Bip01 R Clavicle", "leet_ARM/Skeleton3D:Bip01 R Finger0", "leet_ARM/Skeleton3D:Bip01 R Finger1", "leet_ARM/Skeleton3D:Bip01 R Forearm", "leet_ARM/Skeleton3D:Bip01 R Hand", "leet_ARM/Skeleton3D:Bip01 R UpperArm"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bwwlj"]
+graph_offset = Vector2(-302.99, -190.332)
+nodes/output/position = Vector2(420, -80)
+nodes/run/node = SubResource("AnimationNodeAnimation_02s5s")
+nodes/run/position = Vector2(-20, 140)
+nodes/run_blend/node = SubResource("AnimationNodeBlendSpace2D_fkr1q")
+nodes/run_blend/position = Vector2(-60, -120)
+nodes/run_sub/node = SubResource("AnimationNodeSub2_6dvgi")
+nodes/run_sub/position = Vector2(220, -120)
+node_connections = [&"output", 0, &"run_sub", &"run_sub", 0, &"run_blend", &"run_sub", 1, &"run"]
+
+[node name="CS_Skin" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+script = ExtResource("1_1ttce")
+animation_tree = NodePath("AnimationTree")
+
+[node name="root" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.6, 0)
+
+[node name="Untitled" parent="root" instance=ExtResource("2_1fi4u")]
+
+[node name="Skeleton3D" parent="root/Untitled/leet_ARM" index="0"]
+bones/0/position = Vector3(-0.000352282, -0.00023216, 0.00685923)
+bones/0/rotation = Quaternion(-0.0604133, -0.038395, -0.95127, 0.299937)
+bones/1/rotation = Quaternion(-0.50011, -0.499891, -0.499934, 0.500066)
+bones/3/rotation = Quaternion(0.0131415, -0.000359224, 0.0706169, 0.997417)
+bones/6/rotation = Quaternion(0.0253961, 0.00644498, 0.130972, 0.99104)
+bones/7/rotation = Quaternion(0.344104, -0.0882702, 0.0804356, 0.931306)
+bones/9/rotation = Quaternion(0.618475, 0.229905, 0.746853, 0.0827232)
+bones/10/rotation = Quaternion(-0.254094, 0.443483, -0.0918902, 0.854585)
+bones/11/rotation = Quaternion(-0.561791, 0.522797, -0.451783, 0.454936)
+bones/12/rotation = Quaternion(-0.839405, 0.174562, 0.0324303, 0.513688)
+bones/13/rotation = Quaternion(0.65418, 0.278476, 0.119763, 0.692933)
+bones/15/rotation = Quaternion(0.078138, -0.0311249, 0.273277, 0.958251)
+bones/24/rotation = Quaternion(-0.6659, -0.187014, 0.722092, 0.0136702)
+bones/25/rotation = Quaternion(-0.118093, -0.348762, -0.284807, 0.885045)
+bones/26/rotation = Quaternion(0.245485, -0.0675687, -0.727636, 0.63696)
+bones/27/rotation = Quaternion(0.68371, -0.306575, 0.0416517, 0.660922)
+bones/28/rotation = Quaternion(-0.758064, -0.23057, 0.10103, 0.601639)
+bones/30/rotation = Quaternion(0.0176146, 0.0470138, 0.141312, 0.988691)
+bones/42/rotation = Quaternion(0.0264247, 0.999026, -0.00171064, -0.035306)
+bones/43/rotation = Quaternion(0.192385, 0.965056, 0.135093, -0.115779)
+bones/44/rotation = Quaternion(-0.118061, 0.0340309, -0.33931, 0.932616)
+bones/45/rotation = Quaternion(-0.000648199, -0.087177, 0.0423094, 0.995294)
+bones/46/rotation = Quaternion(0.606054, -0.120879, 0.77384, -0.138778)
+bones/49/rotation = Quaternion(0.154543, 0.9563, -0.189597, 0.160184)
+bones/50/rotation = Quaternion(0.0174279, -0.0373179, -0.411178, 0.910624)
+bones/51/rotation = Quaternion(-0.0274832, 0.0908903, 0.175275, 0.97993)
+bones/52/rotation = Quaternion(0.00709955, 0.0336987, 0.688401, 0.724513)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../root/Untitled")
+libraries = {
+&"": SubResource("AnimationLibrary_yaind")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../root/Untitled")
+tree_root = SubResource("AnimationNodeBlendTree_bwwlj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/run_blend/blend_position = 0.00694444
+parameters/run_sub/sub_amount = 2.1
+
+[editable path="root/Untitled"]

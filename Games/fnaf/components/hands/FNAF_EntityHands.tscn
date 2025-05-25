@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwbaitp72yews"]
+
+[ext_resource type="Script" uid="uid://bpt75di7atmki" path="res://Games/fnaf/components/hands/FNAF_EntityHands.gd" id="1_0d1qj"]
+
+[node name="FNAF_EntityHands" type="Node3D"]
+script = ExtResource("1_0d1qj")

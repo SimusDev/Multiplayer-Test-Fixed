@@ -1,0 +1,48 @@
+extends SD_Trunk
+class_name SD_TrunkTools
+
+var console: SD_TrunkConsole
+var canvas: SD_TrunkCanvas
+
+const TOOLS_PATH: String = "res://addons/simusdev/tools/"
+
+var _available_tools: Array[String] = []
+
+func _ready() -> void:
+	console = SimusDev.console
+	canvas = SimusDev.canvas
+	
+	for path in SD_FileSystem.get_files_with_extension_from_directory(TOOLS_PATH, SD_FileExtensions.EC_SCENE):
+		if path is String:
+			var tool: String = path.get_file()
+			_available_tools.append(tool) 
+			console.write_from_object(self, "TOOL AVAILABLE: %s; USE tools.open %s FOR OPEN THE INTERFACE!" % [tool, tool], SD_ConsoleCategories.CATEGORY.WARNING)
+
+	var commands: Array[SD_ConsoleCommand] = [
+		console.create_command("tools.open"),
+	]
+	
+	for cmd in commands:
+		cmd.executed.connect(_on_command_executed.bind(cmd))
+
+func get_tool_canvas() -> CanvasLayer:
+	return canvas.get_layer(1)
+
+func load_tool_scene(path: String) -> PackedScene:
+	var actual_path: String = TOOLS_PATH.path_join(path)
+	var loaded: PackedScene = load(actual_path)
+	if not loaded:
+		console.write_from_object(self, "failed to load tool scene: %s" % [actual_path], SD_ConsoleCategories.CATEGORY.ERROR)
+		return null
+	return loaded
+
+func open(path: String) -> Node:
+	var scene: PackedScene = load_tool_scene(path)
+	if scene:
+		return canvas.create_scene(scene.resource_path, get_tool_canvas())
+	return null
+
+func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
+	match cmd.get_code():
+		"tools.open":
+			open(cmd.get_value())

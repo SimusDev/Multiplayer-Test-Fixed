@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlf02wm1rw5iy"]
+
+[ext_resource type="Script" uid="uid://d243wvwf3lshg" path="res://Games/counter-strike/ui/player/inventory/inventory.gd" id="1_yuon1"]
+[ext_resource type="PackedScene" uid="uid://ch008lobp6ia2" path="res://Games/counter-strike/ui/player/inventory/slot.tscn" id="2_stlc0"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_8fp3i"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_fedad"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="4_urm3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfewv"]
+bg_color = Color(0.237539, 0.237539, 0.237539, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fp3i"]
+font_size = 24
+
+[node name="Inventory" type="Control" node_paths=PackedStringArray("_hotbar", "_backpack", "backpack_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yuon1")
+slot_scene = ExtResource("2_stlc0")
+_hotbar = NodePath("hotbar")
+_backpack = NodePath("backpack/panel/CenterContainer/container")
+backpack_label = NodePath("backpack/panel/SD_Label")
+
+[node name="hotbar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.289
+anchor_top = 0.976
+anchor_right = 0.711
+anchor_bottom = 0.976
+offset_left = 0.579987
+offset_top = -63.72
+offset_right = -0.580017
+offset_bottom = 0.279968
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="backpack" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="C_UIInterfaceComponent" type="Node" parent="backpack" node_paths=PackedStringArray("target")]
+script = ExtResource("4_urm3d")
+target = NodePath("..")
+input_action = "inventory"
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="SE_UIControlDrag" type="Node" parent="backpack" node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("3_8fp3i")
+TARGET_INPUT = NodePath("../panel")
+TARGET_DRAG = NodePath("../panel")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="panel" type="Panel" parent="backpack"]
+custom_minimum_size = Vector2(694, 390)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -347.0
+offset_top = -195.0
+offset_right = 347.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kfewv")
+
+[node name="CenterContainer" type="CenterContainer" parent="backpack/panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="container" type="GridContainer" parent="backpack/panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 6
+
+[node name="SD_Label" type="Label" parent="backpack/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.167
+offset_bottom = -0.130005
+grow_horizontal = 2
+grow_vertical = 2
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_8fp3i")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_fedad")
+font_size = 24
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"

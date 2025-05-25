@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://4wdkon3b8vlh"]
+
+[ext_resource type="Texture2D" uid="uid://c7jhkstf4j04r" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="1_brff1"]
+[ext_resource type="Script" uid="uid://c0fwg0gq6odcx" path="res://entitites/zonbi/zonbi.gd" id="1_y3n5t"]
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="2_6losv"]
+[ext_resource type="Script" uid="uid://cakitr0kr0hf8" path="res://addons/simusdev/components/characterbody/W_ComponentCharacterBody3D.gd" id="2_ry52o"]
+[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="2_y3n5t"]
+[ext_resource type="Script" uid="uid://cmb5et352niyr" path="res://scripts/components/timer_server/C_TimerServer.gd" id="4_ipl43"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry52o"]
+albedo_texture = ExtResource("1_brff1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_6losv"]
+material = SubResource("StandardMaterial3D_ry52o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipl43"]
+albedo_texture = ExtResource("1_brff1")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_epbwl"]
+material = SubResource("StandardMaterial3D_ipl43")
+height = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lnvbd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yfkf"]
+albedo_texture = ExtResource("1_brff1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kuuj"]
+albedo_texture = ExtResource("1_brff1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brff1"]
+size = Vector3(1, 1.58411, 1)
+
+[node name="Zonbi" type="CharacterBody3D" node_paths=PackedStringArray("character_component")]
+collision_layer = 0
+script = ExtResource("1_y3n5t")
+character_component = NodePath("W_ComponentCharacterBody3D")
+
+[node name="SD_MultiplayerSynchronizer" type="Node" parent="." node_paths=PackedStringArray("sync_node")]
+script = ExtResource("2_6losv")
+update_mode = 1
+interpolation = true
+sync_node = NodePath("..")
+properties_to_sync = PackedStringArray("transform")
+metadata/_custom_type_script = "uid://cvishs4j8htsj"
+
+[node name="W_ComponentCharacterBody3D" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("2_ry52o")
+body = NodePath("..")
+move_speed = 1.8
+metadata/_custom_type_script = "uid://cakitr0kr0hf8"
+
+[node name="tick" type="Timer" parent="."]
+wait_time = 0.033
+autostart = true
+script = ExtResource("4_ipl43")
+metadata/_custom_type_script = "uid://cmb5et352niyr"
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664166, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299955, 0)
+mesh = SubResource("SphereMesh_6losv")
+
+[node name="face" type="Sprite3D" parent="head"]
+transform = Transform3D(0.650972, 0, 0, 0, 0.596481, 0, 0, 0, 1, 0, 0.299975, -0.501869)
+modulate = Color(2.88785e-07, 0.97266, 0.11728, 1)
+texture = ExtResource("2_y3n5t")
+
+[node name="body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_epbwl")
+
+[node name="leg1" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.263475, -0.672863, 0)
+mesh = SubResource("CylinderMesh_lnvbd")
+material = SubResource("StandardMaterial3D_0yfkf")
+
+[node name="hand1" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0.620354, 0.29702, -0.155566)
+mesh = SubResource("CylinderMesh_lnvbd")
+material = SubResource("StandardMaterial3D_0yfkf")
+
+[node name="hand2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, -0.600219, 0.29702, -0.155566)
+mesh = SubResource("CylinderMesh_lnvbd")
+material = SubResource("StandardMaterial3D_0yfkf")
+
+[node name="leg2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.2905, -0.672863, 0)
+mesh = SubResource("CylinderMesh_lnvbd")
+material = SubResource("StandardMaterial3D_5kuuj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00050807, -0.177771, -0.00361788)
+shape = SubResource("BoxShape3D_brff1")
+
+[connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

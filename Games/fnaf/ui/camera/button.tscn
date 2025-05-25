@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce36n5lsieha1"]
+
+[ext_resource type="Script" uid="uid://doedop7csl6h4" path="res://Games/fnaf/ui/camera/button.gd" id="1_h66f4"]
+[ext_resource type="AudioStream" uid="uid://dc1p0lqaiaatq" path="res://Games/fnaf/sounds/fnaf1/blip3.wav" id="2_yobj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yobj5"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h66f4"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+
+[node name="Button" type="Button"]
+offset_right = 84.0
+offset_bottom = 56.0
+text = "CAM"
+script = ExtResource("1_h66f4")
+
+[node name="bg" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yobj5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h66f4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yobj5")

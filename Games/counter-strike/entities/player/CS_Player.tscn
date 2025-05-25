@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgi7jesspkojd"]
+
+[ext_resource type="PackedScene" uid="uid://c3iqv6ckeak6u" path="res://Games/counter-strike/entities/base/CS_BaseBody.tscn" id="1_ambd4"]
+[ext_resource type="Script" uid="uid://bept01souaip1" path="res://Games/counter-strike/entities/player/CS_Player.gd" id="2_tn67s"]
+[ext_resource type="Script" uid="uid://ch073ol8jxwrj" path="res://Games/counter-strike/ui/player/player_interface_instantiator.gd" id="4_h0f3f"]
+[ext_resource type="PackedScene" uid="uid://c0lpp47foonjk" path="res://Games/counter-strike/components/player_camera/player_camera.tscn" id="4_j5b7i"]
+[ext_resource type="Script" uid="uid://b33usissl2osh" path="res://addons/simusdev/components/inventory/W_InventorySlot.gd" id="5_p07a0"]
+[ext_resource type="PackedScene" uid="uid://bgntgcpk7n18g" path="res://Games/counter-strike/ui/player/PlayerUI.tscn" id="5_uu3a4"]
+[ext_resource type="Script" uid="uid://cxuf8ophbjpsd" path="res://addons/simusdev/components/inventory/W_InventoryItem.gd" id="6_p07a0"]
+[ext_resource type="Resource" uid="uid://di5k2m4kvnnlv" path="res://Games/counter-strike/items/weapons/knife/knife.tres" id="7_82g6o"]
+
+[node name="CS_Player" instance=ExtResource("1_ambd4")]
+script = ExtResource("2_tn67s")
+
+[node name="PlayerUI_instantiator" type="Node" parent="." index="0" node_paths=PackedStringArray("player")]
+script = ExtResource("4_h0f3f")
+player = NodePath("..")
+interface_scene = ExtResource("5_uu3a4")
+
+[node name="W_Inventory" parent="." index="2"]
+_initial_slot_count = 0
+
+[node name="1" type="Node" parent="W_Inventory" index="0"]
+script = ExtResource("5_p07a0")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="knife" type="Node" parent="W_Inventory/1" index="0"]
+script = ExtResource("6_p07a0")
+data = ExtResource("7_82g6o")
+metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
+
+[node name="2" type="Node" parent="W_Inventory" index="1"]
+script = ExtResource("5_p07a0")
+metadata/_custom_type_script = "uid://b33usissl2osh"
+
+[node name="PlayerCamera" parent="." index="3" node_paths=PackedStringArray("player", "movement") instance=ExtResource("4_j5b7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04865, 0)
+player = NodePath("..")
+movement = NodePath("../W_FPCSourceLikeMovement")
+
+[node name="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87444, -0.107506)
+
+[node name="Timer" type="Timer" parent="." index="5"]
+wait_time = 5.0
+autostart = true
+
+[node name="CS_Skin" parent="." index="7"]
+transform = Transform3D(-8.30516e-08, 0, -1.9, 0, 1.9, 0, 1.9, 0, -8.30516e-08, 0, 0.123679, -0.0878384)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

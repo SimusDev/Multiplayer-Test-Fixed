@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_CS_ItemData" load_steps=4 format=3 uid="uid://di5k2m4kvnnlv"]
+
+[ext_resource type="PackedScene" uid="uid://b38drexx0gg1c" path="res://Games/counter-strike/items/weapons/knife/hands.tscn" id="1_d7j1e"]
+[ext_resource type="Script" uid="uid://v4ukmgdtmm85" path="res://Games/counter-strike/scripts/resources/R_CS_ItemData.gd" id="2_bk46l"]
+[ext_resource type="Texture2D" uid="uid://dmsmyr82q8k50" path="res://Games/counter-strike/items/weapons/knife/icon.png" id="2_dqxfc"]
+
+[resource]
+script = ExtResource("2_bk46l")
+hands_model = ExtResource("1_d7j1e")
+name = "Knife"
+icon = ExtResource("2_dqxfc")
+description = ""
+metadata/_custom_type_script = "uid://v4ukmgdtmm85"
