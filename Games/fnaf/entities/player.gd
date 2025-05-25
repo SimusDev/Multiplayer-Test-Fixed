@@ -8,7 +8,11 @@ class_name FNAF_Player
 
 @export var GameUI_scene: PackedScene
 
+@onready var model: Node3D = $default
+
 static var _instance: FNAF_Player = null
+
+@export var normalized_velocity: Vector3 = Vector3.ZERO
 
 func _enter_tree() -> void:
 	if is_multiplayer_authority():
@@ -20,6 +24,13 @@ func _exit_tree() -> void:
 
 static func get_instance() -> FNAF_Player:
 	return _instance
+
+func _physics_process(delta: float) -> void:
+	if is_multiplayer_authority():
+		normalized_velocity = velocity.normalized()
+	
+	model.set_velocity(normalized_velocity)
+	
 
 func _ready() -> void:
 	movement.enabled = is_multiplayer_authority()
