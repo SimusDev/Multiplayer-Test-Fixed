@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="1_42hjl"]
 [ext_resource type="Script" uid="uid://cd88emvvob0fx" path="res://prefabs/models/player/default.gd" id="1_x7my2"]
-[ext_resource type="Script" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="2_vawrv"]
 [ext_resource type="PackedScene" uid="uid://b0p2ri2cyn4bu" path="res://Games/counter-strike/models/players/glasses/glasses.tscn" id="2_vchnj"]
 [ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="4_1h50p"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="4_3wtj8"]
-[ext_resource type="AnimationNodeBlendTree" path="res://prefabs/models/player/animtree.tres" id="7_i0pha"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://oydapla4ss7c" path="res://prefabs/models/player/animtree.tres" id="7_i0pha"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vchnj"]
 albedo_texture = ExtResource("1_42hjl")
@@ -668,7 +668,7 @@ skeleton = NodePath("../../..")
 [node name="rotation" type="Node3D" parent="."]
 
 [node name="body_root" type="Node3D" parent="rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00927433, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0244588, 0)
 
 [node name="body" type="MeshInstance3D" parent="rotation/body_root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.648415, 0)
@@ -682,7 +682,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62606, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.570066, 0.917917, 0)
 
 [node name="lpoint" type="Node3D" parent="rotation/body_root/body/hands/left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="left" type="MeshInstance3D" parent="rotation/body_root/body/hands/left/lpoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375046, 0)
@@ -696,7 +695,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.552116, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57, 0.918, 0)
 
 [node name="rpoint" type="Node3D" parent="rotation/body_root/body/hands/right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="right" type="MeshInstance3D" parent="rotation/body_root/body/hands/right/rpoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375046, 0)
@@ -731,7 +729,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = ExtResource("7_i0pha")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
