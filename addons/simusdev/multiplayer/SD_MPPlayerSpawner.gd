@@ -48,6 +48,7 @@ func local_spawn(player: SD_MultiplayerPlayer) -> void:
 	var instance: Node = player_scene.instantiate()
 	_players[player.get_peer_id()] = instance
 	instance.set_multiplayer_authority(player.get_peer_id())
+	player.set_node(instance)
 	var generated_name: String = str(player.get_peer_id())
 	instance.tree_entered.connect(
 		func():
