@@ -5,9 +5,13 @@ class_name FNAF_SourceLikeComponentSettings
 @export var components: Array[W_FPCSourceLike]
 @export var node_based_components: Array[SD_NodeBasedComponent]
 
+@onready var console: SD_TrunkConsole = SimusDev.console
+
 func _ready() -> void:
 	await root.ready
+	
 	if is_multiplayer_authority():
+		console.visibility_changed.connect(_on_console_visibility_changed)
 		UI.interface_opened.connect(_on_interface_opened)
 		UI.interface_closed.connect(_on_interface_closed)
 		
@@ -15,6 +19,12 @@ func _ready() -> void:
 			disable()
 	else:
 		disable()
+
+func _on_console_visibility_changed() -> void:
+	if console.is_visible():
+		disable()
+	else:
+		enable()
 
 func _on_interface_opened(node: Node) -> void:
 	disable()

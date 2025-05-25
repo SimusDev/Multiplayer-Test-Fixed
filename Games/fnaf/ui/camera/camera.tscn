@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://o5humlj5571o" path="res://Games/fnaf/resources/items/tablet.tres" id="2_5giuk"]
 [ext_resource type="PackedScene" uid="uid://n5iivkn1w181" path="res://Games/fnaf/ui/camera/map.tscn" id="2_y64ak"]
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="4_surqo"]
-[ext_resource type="Shader" uid="uid://bjbikqsd8vj2x" path="res://Games/fnaf/ui/camera/camera.gdshader" id="4_xk744"]
+[ext_resource type="Shader" path="res://Games/fnaf/ui/camera/camera.gdshader" id="4_xk744"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4oju"]
 shader = ExtResource("4_xk744")
@@ -29,33 +29,6 @@ shader_parameter/warp_amount = 1.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.996
-
-[sub_resource type="Animation" id="Animation_xk744"]
-resource_name = "shader_noise"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root/shader:material:shader_parameter/resolution")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(7.68, 5.76), Vector2(76.8, 57.6), Vector2(1280, 960)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root/shader:material:shader_parameter/static_noise_intensity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 1.0, 0.254]
-}
 
 [sub_resource type="Animation" id="Animation_r4oju"]
 length = 0.001
@@ -82,6 +55,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.254]
+}
+
+[sub_resource type="Animation" id="Animation_xk744"]
+resource_name = "shader_noise"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/shader:material:shader_parameter/resolution")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(7.68, 5.76), Vector2(76.8, 57.6), Vector2(1280, 960)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/shader:material:shader_parameter/static_noise_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.254]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m5e8y"]
@@ -126,10 +126,6 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Map" parent="root" node_paths=PackedStringArray("noise_animation_player") instance=ExtResource("2_y64ak")]
-layout_mode = 1
-noise_animation_player = NodePath("../../AnimationPlayer")
-
 [node name="shader" type="ColorRect" parent="root"]
 material = SubResource("ShaderMaterial_r4oju")
 layout_mode = 1
@@ -139,6 +135,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Map" parent="root" node_paths=PackedStringArray("noise_animation_player") instance=ExtResource("2_y64ak")]
+layout_mode = 1
+noise_animation_player = NodePath("../../AnimationPlayer")
 
 [node name="C_UIInterfaceComponent" type="Node" parent="root" node_paths=PackedStringArray("target")]
 unique_name_in_owner = true

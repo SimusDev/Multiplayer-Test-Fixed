@@ -34,11 +34,17 @@ func _process(delta: float) -> void:
 var _blend_animations: Array[String] = []
 
 func model_clear_animations() -> void:
+	if not model:
+		return
+	
 	for i in _blend_animations:
 		model.mix_set_animation_blend_position(i, 0.0)
 		_blend_animations.erase(i)
 
 func model_mix_play_animation_loop(animation: String) -> void:
+	if not model:
+		return
+	
 	if not _blend_animations.has(animation):
 		model.mix_set_animation_blend_position(animation, 1.0)
 		_blend_animations.append(animation)
