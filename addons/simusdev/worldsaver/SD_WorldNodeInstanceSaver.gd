@@ -9,6 +9,8 @@ signal reparented()
 
 var _last_node_path: NodePath
 
+var _init_path: NodePath
+
 func _ready() -> void:
 	super()
 	
@@ -27,6 +29,10 @@ func save_instance() -> void:
 	
 	var data: SD_WorldSavedNodeData = get_saved_data().create_or_get_data_from_node(node)
 	_node_data = data
+	
+	if _node_data.init_path.is_empty():
+		_node_data.init_path = _init_path
+	
 	data.serialize_instance(node, serialize_type)
 	instance_saved.emit(node)
 
@@ -47,6 +53,9 @@ func __on_reparented() -> void:
 	get_saved_data().change_data_node_path(get_node_data(), str(node.get_path()))
 
 func _enter_tree() -> void:
+	if _init_path.is_empty():
+		_init_path = str(node.get_path())
+	
 	if _last_node_path.is_empty():
 		_last_node_path = node.get_path()
 		return

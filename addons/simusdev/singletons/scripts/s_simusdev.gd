@@ -24,6 +24,8 @@ var monetization := SD_TrunkMonetization.new()
 
 var tools := SD_TrunkTools.new()
 
+var ui := SD_TrunkUI.new()
+
 var multiplayerAPI: SD_MultiplayerSingleton
 
 signal process(delta: float)

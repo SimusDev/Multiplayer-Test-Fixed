@@ -9,6 +9,8 @@ class_name SD_WorldSavedNodeData
 @export var scene_path: String
 @export var index: int = -1
 
+@export var init_path: String
+
 enum SERIALIZE_TYPE {
 	PACKED_SCENE_OR_TO_STRING,
 	PACK,
@@ -32,7 +34,9 @@ func has_property(property: String) -> bool:
 	return _properties.has(property)
 
 func can_instantiate() -> bool:
-	return (not instance_data.is_empty()) or (packed_data)
+	if packed_data or (not scene_path.is_empty()):
+		return true
+	return instance_data.is_empty() == false
 
 func serialize_instance(from_node: Node, type: SERIALIZE_TYPE) -> void:
 	serialize_type = type

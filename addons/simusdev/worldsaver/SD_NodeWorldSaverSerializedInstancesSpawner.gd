@@ -45,7 +45,7 @@ func spawn_from_data(data: SD_WorldSavedNodeData) -> void:
 		_console.write_from_object(self, "cant spawn!!!, spawn_from_data() node path is empty!", SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
-	var founded_node: Node = get_node_or_null(node_path)
+	var founded_node: Node = find_node_from_data(data)
 	if is_instance_valid(founded_node) and action_if_node_exists == NODE_EXISTS_ACTION.DONT_SPAWN:
 		_console.write_from_object(self, "cant spawn!!!, node already exists! %s" % node_path, SD_ConsoleCategories.CATEGORY.WARNING)
 		return
@@ -53,7 +53,8 @@ func spawn_from_data(data: SD_WorldSavedNodeData) -> void:
 	
 	if action_if_node_exists == NODE_EXISTS_ACTION.REPLACE:
 		if founded_node:
-			var parent: Node = founded_node.get_parent()
+			var parent_path: String = node_path.replacen(node_path.get_file(), "")
+			var parent: Node = get_node_or_null(parent_path)
 			founded_node.queue_free()
 			await founded_node.tree_exited
 			var instance: Node = data.deserialize_instance()
@@ -71,3 +72,9 @@ func spawn_from_data(data: SD_WorldSavedNodeData) -> void:
 				spawned.emit(instance, data)
 				_console.write_from_object(self, "instance spawned: %s" % node_path, SD_ConsoleCategories.CATEGORY.INFO)
 				
+
+func find_node_from_data(data: SD_WorldSavedNodeData) -> Node:
+	var founded_node: Node = get_node_or_null(data.init_path)
+	if founded_node:
+		return founded_node
+	return get_node_or_null(_saver.get_data().get_data_node_path(data))
