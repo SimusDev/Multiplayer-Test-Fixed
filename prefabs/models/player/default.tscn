@@ -668,7 +668,7 @@ skeleton = NodePath("../../..")
 [node name="rotation" type="Node3D" parent="."]
 
 [node name="body_root" type="Node3D" parent="rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0244588, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00581542, 0)
 
 [node name="body" type="MeshInstance3D" parent="rotation/body_root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.648415, 0)
