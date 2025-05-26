@@ -53,6 +53,9 @@ func load_property(property: SD_WorldSaverProperty, data: SD_WorldSavedData = _s
 	if not node_data:
 		return
 	
+	if not node_data.has_property(property.name):
+		return
+	
 	var loaded_value: Variant = node_data.load_property(property.name)
 	
 	if property.duplicate:

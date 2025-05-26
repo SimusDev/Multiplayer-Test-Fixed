@@ -1,18 +1,21 @@
 extends Node2D
 
-@export var VARIABLE: Resource
+@onready var instance: Sprite2D = $instance
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		SimusDev.world_saver.save_data("save")
-	if Input.is_action_just_pressed("ui_select"):
-		SimusDev.world_saver.load_data("save")
+func _ready() -> void:
+	SimusDev.world_saver.load_data("test_worldsave")
 
-func _on_sd_world_node_property_saver_property_loaded(property: String, value: Variant) -> void:
-	print(property)
-	print(value)
+func _on_save_pressed() -> void:
+	SimusDev.world_saver.save_data("test_worldsave")
 
+func _on_load_pressed() -> void:
+	SimusDev.world_saver.load_data("test_worldsave")
 
-func _on_sd_world_node_property_saver_save_loaded(data: SD_WorldSavedData) -> void:
-	return
-	print(data)
+func _on_delete_instance_pressed() -> void:
+	if instance:
+		instance.queue_free()
+		instance = null
+
+func _on_reparent_pressed() -> void:
+	if instance:
+		instance.reparent($other_parent)
