@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://br4qpybovwh23"]
+[gd_scene load_steps=27 format=3 uid="uid://br4qpybovwh23"]
 
 [ext_resource type="PackedScene" uid="uid://cq0mnmofrt7e" path="res://Games/fnaf/maps/fnaf1/inherited.tscn" id="1_nq7cf"]
 [ext_resource type="PackedScene" uid="uid://c1vyo4mg1715e" path="res://Games/fnaf/resources/world_environment.tscn" id="1_pc7ag"]
@@ -15,13 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="9_r12x4"]
 [ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="10_56x3a"]
 [ext_resource type="PackedScene" uid="uid://crgwlusij06a7" path="res://Games/fnaf/ui/office_tv/3d.tscn" id="10_vr3wg"]
-[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
+[ext_resource type="Script" uid="uid://dr7ca17fift23" path="res://Games/fnaf/scripts/door_light.gd" id="12_16ajx"]
 [ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="14_56x3a"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="16_7xr5c"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="16_tenrf"]
 [ext_resource type="PackedScene" uid="uid://cv22pe0m3n5au" path="res://Games/fnaf/models/props/pirate_cove/pirate_cove.glb" id="20_1kwq6"]
 [ext_resource type="PackedScene" uid="uid://jlkobskjb663" path="res://Games/fnaf/models/animatronics/s_freddy/head.tscn" id="21_gie0c"]
 [ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="22_4a2wg"]
+[ext_resource type="PackedScene" uid="uid://1d5epc8sx41a" path="res://Games/fnaf/models/map/generator/generator.tscn" id="22_l61sw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue53b"]
 albedo_texture = ExtResource("6_riuv5")
@@ -204,6 +205,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97256, 8.00885, -8.59481)
 size = Vector3(137.247, 36.0177, 147.165)
 data = SubResource("VoxelGIData_gie0c")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.47347, -0.322818, 0.819521, 0, 0.930418, 0.366501, -0.88081, -0.173527, 0.440525, -49.6906, -1.57448, 9.93007)
+light_energy = 0.564
+omni_range = 4.222
+
 [node name="Props" type="Node3D" parent="."]
 
 [node name="table" parent="Props" instance=ExtResource("5_pc7ag")]
@@ -268,6 +274,9 @@ transform = Transform3D(-0.622787, 0, -2.94998, 0, 3.015, 0, 2.94998, 0, -0.6227
 
 [node name="freddy_head1" parent="Props" instance=ExtResource("21_gie0c")]
 transform = Transform3D(3, 0, 0, 0, 2.96918, 0.428923, 0, -0.428923, 2.96918, -22.1835, 0.84135, -2.60617)
+
+[node name="generator" parent="Props" instance=ExtResource("22_l61sw")]
+transform = Transform3D(0.442423, -0.0234749, 0.896499, 0, 0.999657, 0.0261761, -0.896807, -0.0115809, 0.442271, -50.8136, -4.04036, 10.9306)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-0.134336, -1.99548, 8.72254e-08, 0, -8.74228e-08, -2, 1.99548, -0.134336, 5.87201e-09, 6.98888, 13.2481, -0.61)

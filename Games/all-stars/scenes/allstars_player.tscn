@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cod4fuxfqn7kw"]
+
+[ext_resource type="Script" uid="uid://n60oknu1osk0" path="res://Games/all-stars/components/allstars_player.gd" id="1_v8mk1"]
+[ext_resource type="Script" uid="uid://dne3uxra1hew5" path="res://Games/all-stars/components/camera_controller.gd" id="2_8j0id"]
+
+[node name="AllstarsPlayer" type="Node3D"]
+script = ExtResource("1_v8mk1")
+metadata/_custom_type_script = "uid://n60oknu1osk0"
+
+[node name="AllstarsCameraController" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_8j0id")
+player = NodePath("..")
+camera_offset = Vector3(0, 5, 5)
+camera_rotation = Vector3(-25, 0, 0)
+metadata/_custom_type_script = "uid://dne3uxra1hew5"

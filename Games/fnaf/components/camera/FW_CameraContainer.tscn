@@ -23,3 +23,6 @@ camera = NodePath("Camera3D")
 environment = SubResource("Environment_ifiuq")
 current = true
 fov = 37.8493
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+current = true

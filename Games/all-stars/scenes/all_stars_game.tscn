@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://274q53idt2dt"]
+
+[ext_resource type="PackedScene" uid="uid://cy5mk0oswpqwo" path="res://Games/all-stars/scenes/all_stars_map.tscn" id="1_erugw"]
+[ext_resource type="PackedScene" uid="uid://cod4fuxfqn7kw" path="res://Games/all-stars/scenes/allstars_player.tscn" id="3_33hbq"]
+[ext_resource type="PackedScene" uid="uid://c8xxkeit78760" path="res://Games/all-stars/scenes/units/heroes/Tinker/tinker.tscn" id="3_w6k7e"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="4_33hbq"]
+[ext_resource type="Script" uid="uid://dwj121h1bful8" path="res://addons/simusdev/multiplayer/SD_MultiplayerSpawner.gd" id="5_2c14j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_erugw"]
+sky_top_color = Color(0, 0.430314, 0.874919, 1)
+sky_horizon_color = Color(0.276588, 0.696474, 0.949323, 1)
+sky_curve = 0.135188
+
+[sub_resource type="Sky" id="Sky_fugim"]
+sky_material = SubResource("ProceduralSkyMaterial_erugw")
+
+[sub_resource type="Environment" id="Environment_w6k7e"]
+background_mode = 2
+sky = SubResource("Sky_fugim")
+ambient_light_sky_contribution = 0.3
+tonemap_mode = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h50ao"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_33hbq"]
+material = SubResource("StandardMaterial3D_h50ao")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="AllStarsGame" type="Node"]
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w6k7e")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.696552, 0.488816, -0.525238, 0, 0.732032, 0.68127, 0.717507, -0.47454, 0.509898, 0, 0, 0)
+light_color = Color(1, 0.882353, 0.74902, 1)
+shadow_enabled = true
+
+[node name="AllStarsMap" parent="." instance=ExtResource("1_erugw")]
+
+[node name="Tinker" parent="." node_paths=PackedStringArray("debug_point") instance=ExtResource("3_w6k7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87667, 0)
+debug_point = NodePath("../move_point")
+
+[node name="Tinker2" parent="." node_paths=PackedStringArray("debug_point") instance=ExtResource("3_w6k7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8776, 1.28287, 3.74856)
+debug_point = NodePath("../move_point")
+
+[node name="move_point" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_33hbq")
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("4_33hbq")
+player_scene = ExtResource("3_33hbq")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.933177, 0.917961, 0)
+
+[node name="2" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92541, 0.911702, 0)
+
+[node name="3" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3342, 0.911702, 0)
+
+[node name="SD_MultiplayerSpawner" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("5_2c14j")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://dwj121h1bful8"
