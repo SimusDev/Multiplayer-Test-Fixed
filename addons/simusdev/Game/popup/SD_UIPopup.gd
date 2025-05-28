@@ -28,6 +28,7 @@ func open() -> void:
 	show()
 	try_play_animation(open_animation)
 	opened.emit()
+	SimusDev.ui.open_interface(self)
 
 func close() -> void:
 	if not is_opened():
@@ -36,6 +37,7 @@ func close() -> void:
 	if not _animation_player or (_animation_player and !_animation_player.has_animation(close_animation)):
 		closed.emit()
 		hide()
+		SimusDev.ui.close_interface(self)
 		return
 	
 	
@@ -61,6 +63,7 @@ func _on_animation_finished(anim_name: String) -> void:
 		close_animation:
 			hide()
 			closed.emit()
+			SimusDev.ui.close_interface(self)
 		
 
 func is_active_popup_in_game_menus() -> bool:

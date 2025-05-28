@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm8evl4o0pppn"]
+
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="1_5x7s0"]
+[ext_resource type="Script" uid="uid://7837b3pdgj58" path="res://addons/simusdev/worldsaver/SD_WorldNodeInstanceSaver.gd" id="2_jxib0"]
+[ext_resource type="Script" uid="uid://butuctn3qqkxi" path="res://addons/simusdev/worldsaver/test_save_instance.gd" id="2_l4qj8"]
+[ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="3_l4qj8"]
+[ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="4_jxib0"]
+
+[sub_resource type="Resource" id="Resource_l4qj8"]
+script = ExtResource("4_jxib0")
+name = "position"
+duplicate = false
+duplicate_deep = false
+duplicate_resources = false
+metadata/_custom_type_script = "uid://b5csmggjb4hh6"
+
+[node name="instance" type="Sprite2D"]
+texture = ExtResource("1_5x7s0")
+script = ExtResource("2_l4qj8")
+
+[node name="SD_WorldNodeInstanceSaver" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("2_jxib0")
+node = NodePath("..")
+metadata/_custom_type_script = "uid://7837b3pdgj58"
+
+[node name="SD_WorldNodePropertySaver" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_l4qj8")
+load_when_save_loaded = true
+properties_to_save = Array[ExtResource("4_jxib0")]([SubResource("Resource_l4qj8")])
+node = NodePath("..")
+metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
