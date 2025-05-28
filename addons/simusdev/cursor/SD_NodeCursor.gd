@@ -4,6 +4,7 @@ class_name SD_NodeCursor
 var cursor_disabled := false
 
 @onready var console: SD_TrunkConsole = SimusDev.console
+@onready var cursor: SD_TrunkCursor = SimusDev.cursor
 
 var command: SD_ConsoleCommand
 
@@ -18,6 +19,8 @@ func _ready() -> void:
 	
 	command = console.create_command("cursor.custom.disabled", false)
 	command.updated.connect(update_cursor_status)
+	
+	cursor.mode_changed.connect(_on_cursor_mode_changed)
 	
 	update_cursor_status()
 	update_cursor()
@@ -64,3 +67,6 @@ func _input(event: InputEvent) -> void:
 			mouse_button_pressed.emit(event.button_index)
 		if event.is_released():
 			mouse_button_released.emit(event.button_index)
+
+func _on_cursor_mode_changed() -> void:
+	visible = cursor.get_mode() == cursor.MODE_VISIBLE or cursor.MODE_HIDDEN

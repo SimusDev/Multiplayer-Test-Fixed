@@ -1,4 +1,4 @@
-
+@static_unload
 extends SD_Object
 class_name SD_Multiplayer
 
@@ -64,14 +64,35 @@ static func is_client() -> bool:
 static func is_dedicated_server() -> bool:
 	return _singleton.is_dedicated_server()
 
+static func set_dedicated_server(value: bool) -> void:
+	return _singleton.set_dedicated_server(value)
+
 static func request_and_sync_var(node: Node, property: String, callable: Callable, reliable: bool, from_peer: int) -> void:
 	_singleton.request_and_sync_var(node, property, callable, reliable, from_peer)
+
+static func request_and_sync_vars(node: Node, properties: Array[String], callable: Callable, reliable: bool, from_peer: int) -> void:
+	_singleton.request_and_sync_vars(node, properties, callable, reliable, from_peer)
+
+static func request_and_sync_vars_from_server(node: Node, properties: Array[String], callable: Callable = Callable(), reliable: bool = true) -> void:
+	_singleton.request_and_sync_vars_from_server(node, properties, callable, reliable)
 
 static func request_and_sync_var_from_server(node: Node, property: String, callable: Callable = Callable(), reliable: bool = true) -> void:
 	_singleton.request_and_sync_var_from_server(node, property, callable, reliable)
 
-static func sync_var(node: Node, property: String, override_var: Variant = null, reliable: bool = true) -> void:
-	_singleton.sync_var(node, property, override_var, reliable)
+static func send_and_sync_var(node: Node, property: String, reliable: bool, to_peer: int) -> void:
+	_singleton.send_and_sync_var(node, property, reliable, to_peer)
+
+static func send_and_sync_var_to_server(node: Node, property: String, reliable: bool = true) -> void:
+	_singleton.send_and_sync_var_to_server(node, property, reliable)
+
+static func send_and_sync_var_to_all_peers(node: Node, property: String, reliable: bool = true) -> void:
+	_singleton.send_and_sync_var_to_all_peers(node, property, reliable)
 
 static func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.sync_call_function(node, callable, args, reliable)
+
+static func request_response_from_peer(peer_id: int, result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
+	_singleton.request_response_from_peer(peer_id, result, timeout, reliable)
+
+static func request_response_from_server(result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
+	_singleton.request_response_from_server(result, timeout, reliable)

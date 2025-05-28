@@ -7,6 +7,10 @@ extends CanvasLayer
 @export var _container: Control
 @export var _tips: Control
 
+@export var input: SD_NodeInput
+
+@export var can_open_or_close: bool = true
+
 func _ready() -> void:
 	console.on_update.connect(_on_update)
 	
@@ -35,7 +39,7 @@ func _on_update() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("console.open_close"):
+	if Input.is_action_just_pressed("console.open_close") and can_open_or_close:
 		if console.disable_console_on_release and SD_Platforms.is_release_build():
 			return
 			
@@ -60,8 +64,6 @@ func _on_draw() -> void:
 	line_edit.grab_click_focus()
 	line_edit.grab_focus()
 	_tips.update_tips()
-	
-
 
 func _on_enter_text_changed(new_text: String) -> void:
 	_tips.update_tips(new_text)
@@ -71,6 +73,11 @@ func _on_ui_console_tips_tip_selected(cmd: SD_ConsoleCommand) -> void:
 	var new_text: String = "%s %s" % [cmd.get_code(), cmd.get_value_as_string()]
 	line_edit.insert_text_at_caret(new_text)
 
+func set_input_enabled(value: bool) -> void:
+	input.enabled = value
+
+func is_input_enabled() -> bool:
+	return input.enabled
 
 func _on_sd_node_console_commands_on_executed(command: SD_ConsoleCommand) -> void:
 	match command.get_code():

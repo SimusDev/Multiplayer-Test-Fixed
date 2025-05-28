@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://d2ni6doio7pp6"
+path="res://.godot/imported/transmittance_lut.glsl-2318ef49d5d97c0a25384daebfdea9b0.res"
+
+[deps]
+
+source_file="res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/transmittance_lut.glsl"
+dest_files=["res://.godot/imported/transmittance_lut.glsl-2318ef49d5d97c0a25384daebfdea9b0.res"]
+
+[params]
+

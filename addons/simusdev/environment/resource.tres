@@ -1,0 +1,51 @@
+[gd_resource type="Environment" load_steps=11 format=3 uid="uid://cnv5hf1v4ijva"]
+
+[ext_resource type="Script" uid="uid://dyvqe4trvfr46" path="res://addons/simusdev/environment/godot_volumetric_clouds-main/clouds_sky.gd" id="1_4mshx"]
+[ext_resource type="Shader" uid="uid://c3lsjvpw67kox" path="res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/clouds.gdshader" id="2_fpmre"]
+[ext_resource type="Script" uid="uid://clvdpkwf5ib3r" path="res://addons/simusdev/environment/godot_volumetric_clouds-main/scripts/transmittance_lut.gd" id="3_wbnd8"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_4mshx"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_fpmre"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_wbnd8"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_kvu72"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_etyo2"]
+script = ExtResource("3_wbnd8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqiem"]
+shader = ExtResource("2_fpmre")
+shader_parameter/blend_from_texture = SubResource("Texture2DRD_4mshx")
+shader_parameter/blend_to_texture = SubResource("Texture2DRD_fpmre")
+shader_parameter/sky_blend_from_texture = SubResource("Texture2DRD_wbnd8")
+shader_parameter/sky_blend_to_texture = SubResource("Texture2DRD_kvu72")
+shader_parameter/source_transmittance = SubResource("Texture2DRD_etyo2")
+shader_parameter/blend_amount = 0.75
+shader_parameter/sunDirection = Vector3(0, 0.954625, 0.297811)
+shader_parameter/sunDiskSize = 3.0
+
+[sub_resource type="Sky" id="Sky_meedx"]
+sky_material = SubResource("ShaderMaterial_gqiem")
+process_mode = 2
+radiance_size = 1
+script = ExtResource("1_4mshx")
+windDirection = Vector2(1, 0)
+windSpeed = 1.0
+density = 0.05
+cloudCoverage = 0.25
+timeOffset = 0.0
+sunColor = Color(1, 1, 1, 1)
+sunEnergy = 1.0
+sunAngles = Vector2(72.6738, 0)
+sunDiskSize = 3.0
+groundColor = Color(1, 1, 1, 1)
+groundRadius = 6e+06
+skyStartRadius = 6.0015e+06
+skyEndRadius = 6.004e+06
+metadata/_custom_type_script = "uid://dyvqe4trvfr46"
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_meedx")

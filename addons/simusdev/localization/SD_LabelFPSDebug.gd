@@ -19,5 +19,6 @@ func set_suffix(s: String) -> void:
 func _process(delta: float) -> void:
 	update_interface()
 
-func update_interface() -> void:
+func update_interface() -> String:
 	text = "%s%s%s" % [prefix, str(Engine.get_frames_per_second()), suffix]
+	return text

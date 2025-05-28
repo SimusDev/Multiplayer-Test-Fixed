@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://d2pg8rqpgmg8r"
+path="res://.godot/imported/clouds.glsl-eb003950d6d28ee2975d8fc70c579268.res"
+
+[deps]
+
+source_file="res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/clouds.glsl"
+dest_files=["res://.godot/imported/clouds.glsl-eb003950d6d28ee2975d8fc70c579268.res"]
+
+[params]
+

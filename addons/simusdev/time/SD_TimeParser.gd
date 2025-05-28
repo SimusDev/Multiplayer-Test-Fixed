@@ -13,6 +13,24 @@ const TIME_HOURS: int = 1
 const TIME_MINUTES: int = 2
 const TIME_SECONDS: int = 3
 
+const DAYS_IN_MONTH: Array[int] = [
+	31,
+	28,
+	31,
+	30,
+	31,
+	30,
+	31,
+	31,
+	30,
+	31,
+	30,
+	31,
+]
+
+static func get_days_in_month(month: int) -> int:
+	return DAYS_IN_MONTH[month - 1]
+
 func set_time(time: float) -> void:
 	current_time = time
 

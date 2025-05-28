@@ -44,13 +44,14 @@ code = "clear"
 value = ""
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="ui_console" type="CanvasLayer" node_paths=PackedStringArray("line_edit", "_container", "_tips")]
+[node name="ui_console" type="CanvasLayer" node_paths=PackedStringArray("line_edit", "_container", "_tips", "input")]
 process_mode = 3
-layer = 128
+layer = 127
 script = ExtResource("1_iesy5")
 line_edit = NodePath("enter")
 _container = NodePath("ui_console_message_container")
 _tips = NodePath("ui_console_tips")
+input = NodePath("SD_NodeInput")
 metadata/_edit_horizontal_guides_ = [36.0]
 
 [node name="background" type="ColorRect" parent="."]

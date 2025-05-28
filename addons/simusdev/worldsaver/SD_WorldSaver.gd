@@ -51,3 +51,9 @@ func save_data(path: String = "save") -> SD_WorldSavedData:
 	saved.emit(_data)
 	
 	return _data
+
+func save_var(key: String, value: Variant) -> void:
+	_data.save_var(key, value)
+
+func load_var(key: String, default_value: Variant = null) -> Variant:
+	return _data.load_var(key, default_value)

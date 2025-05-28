@@ -84,10 +84,12 @@ func _on_console_visibility_changed() -> void:
 	
 
 func set_mouse_captured(value: bool) -> void:
+	var cursor: SD_TrunkCursor = SimusDev.cursor
 	_mouse_captured = value
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	cursor.set_mode(cursor.MODE_VISIBLE)
 	if _mouse_captured:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		cursor.set_mode(cursor.MODE.CAPTURED)
 
 func is_mouse_captured() -> bool:
 	return _mouse_captured

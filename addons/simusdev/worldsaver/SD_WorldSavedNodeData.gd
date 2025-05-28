@@ -16,6 +16,14 @@ enum SERIALIZE_TYPE {
 	PACK,
 }
 
+@export var _storage: Dictionary[String, Variant]
+
+func save_var(key: String, value: Variant) -> void:
+	_storage[key] = value
+
+func load_var(key: String, default_value: Variant = null) -> Variant:
+	return _storage.get(key, default_value)
+
 func initialize(node: Node) -> bool:
 	if not node.is_inside_tree():
 		return false

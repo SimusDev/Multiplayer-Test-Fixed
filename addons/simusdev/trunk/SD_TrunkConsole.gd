@@ -11,10 +11,18 @@ const SETTINGS_PATH: String = "console.ini"
 
 var disable_console_on_release: bool = true
 
+var can_open_or_close: bool = true : set = set_can_open_or_close
+
 signal visibility_changed()
 
 func is_visible() -> bool:
 	return _console_node.visible
+
+func set_visible(value: bool) -> void:
+	_console_node.set_visible(value)
+
+func set_can_open_or_close(value: bool) -> void:
+	_console_node.can_open_or_close = value
 
 func _ready() -> void:
 	initialize(SETTINGS_PATH)

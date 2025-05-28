@@ -5,6 +5,14 @@ var _saver: SD_WorldSaver
 
 @export var _nodes: Dictionary[String, SD_WorldSavedNodeData] = {}
 
+@export var _storage: Dictionary[String, Variant]
+
+func save_var(key: String, value: Variant) -> void:
+	_storage[key] = value
+
+func load_var(key: String, default_value: Variant = null) -> Variant:
+	return _storage.get(key, default_value)
+
 func create_or_get_data_from_node(node: Node) -> SD_WorldSavedNodeData:
 	if (not node) or (not node.is_inside_tree()):
 		return
