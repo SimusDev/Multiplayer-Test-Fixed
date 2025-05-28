@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8xxkeit78760"]
+
+[ext_resource type="Script" uid="uid://dvskx74xlj8e7" path="res://Games/all-stars/components/base_unit.gd" id="1_glbyu"]
+[ext_resource type="Resource" uid="uid://cd0bv1yknegvd" path="res://Games/all-stars/scenes/units/heroes/Tinker/properties.tres" id="2_5mgnt"]
+[ext_resource type="Script" uid="uid://63w4y7stvx7b" path="res://Games/all-stars/components/unit_controller.gd" id="3_sxdgb"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="4_h50ao"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="5_xfp6r"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="6_5pqou"]
+
+[sub_resource type="Resource" id="Resource_4pkak"]
+script = ExtResource("6_5pqou")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["unit_properties"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h50ao"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.552941)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n658t"]
+material = SubResource("StandardMaterial3D_h50ao")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h50ao"]
+
+[sub_resource type="Resource" id="Resource_h50ao"]
+script = ExtResource("6_5pqou")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfp6r"]
+
+[node name="Tinker" type="CharacterBody3D"]
+script = ExtResource("1_glbyu")
+unit_properties = ExtResource("2_5mgnt")
+metadata/_custom_type_script = "uid://dvskx74xlj8e7"
+
+[node name="UnitController" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("3_sxdgb")
+unit = NodePath("..")
+enabled = true
+metadata/_custom_type_script = "uid://63w4y7stvx7b"
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("4_h50ao")
+properties = Array[ExtResource("5_xfp6r")]([SubResource("Resource_4pkak")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_n658t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h50ao")
+
+[node name="SD_MPPropertySynchronizer2" type="Node" parent="."]
+script = ExtResource("4_h50ao")
+properties = Array[ExtResource("5_xfp6r")]([SubResource("Resource_h50ao")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_xfp6r")
+
+[connection signal="input_event" from="StaticBody3D" to="." method="_on_static_body_3d_input_event"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy5mk0oswpqwo"]
+
+[ext_resource type="Script" uid="uid://dsx188ryqypk2" path="res://Games/all-stars/scripts/all_stars_map.gd" id="1_17nwa"]
+[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="2_a20mw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apump"]
+albedo_texture = ExtResource("2_a20mw")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_045ru"]
+material = SubResource("StandardMaterial3D_apump")
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a20mw"]
+points = PackedVector3Array(-10, -0.05, -10, -10, 0.05, -10, 10, -0.05, -10, -10, -0.05, 10, -10, 0.05, 10, 10, 0.05, -10, 10, -0.05, 10, 10, 0.05, 10)
+
+[node name="AllStarsMap" type="Node3D"]
+script = ExtResource("1_17nwa")
+
+[node name="ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_045ru")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_a20mw")
+
+[connection signal="input_event" from="ground/StaticBody3D" to="." method="_on_static_body_3d_input_event"]

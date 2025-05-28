@@ -141,38 +141,67 @@ height = 1.0
 sides = 48
 material = SubResource("StandardMaterial3D_mbdu3")
 
-[node name="street_lamp1" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -0.0807877)
-
-[node name="street_lamp2" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -36.3553)
-
-[node name="street_lamp3" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -106.181)
-
-[node name="street_lamp4" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 11.9784, -0.709633, -156.566)
-
-[node name="street_lamp5" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 51.3556, 0.619117, -180.653)
-
-[node name="street_lamp6" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 81.1934, 0.619117, -180.653)
-
-[node name="street_lamp7" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 136.227, -0.590609, -156.217)
-
-[node name="street_lamp8" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 152.998, -0.590609, -143.35)
-
-[node name="street_lamp9" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 183.808, -1.42866, -103.828)
-
-[node name="street_lamp10" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 235.514, -0.790869, -78.3997)
-
-[node name="street_lamp11" parent="." instance=ExtResource("3_mbdu3")]
-transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 280.649, -0.726281, -49.8462)
-
 [node name="spawn_point" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92902, 0)
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="street_lamp1" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -0.0807877)
+
+[node name="street_lamp12" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -13.5382)
+
+[node name="street_lamp13" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -25.311)
+
+[node name="street_lamp14" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.855996, 0, 0.516982, 0, 1, 0, -0.516982, 0, 0.855996, 3.62364, 0, -49.0005)
+
+[node name="street_lamp15" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.766168, 0, 0.642641, 0, 1, 0, -0.642641, 0, 0.766168, 4.23487, 0, -57.5646)
+
+[node name="street_lamp16" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31187, 0, -71.7112)
+
+[node name="street_lamp2" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -36.3553)
+
+[node name="street_lamp3" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 2.49133, -0.709633, -106.181)
+
+[node name="street_lamp4" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 11.9784, -0.709633, -156.566)
+
+[node name="street_lamp5" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 51.3556, 0.619117, -180.653)
+
+[node name="street_lamp6" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 81.1934, 0.619117, -180.653)
+
+[node name="street_lamp7" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 136.227, -0.590609, -156.217)
+
+[node name="street_lamp8" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 152.998, -0.590609, -143.35)
+
+[node name="street_lamp9" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 183.808, -1.42866, -103.828)
+
+[node name="street_lamp10" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 235.514, -0.790869, -75.6794)
+
+[node name="street_lamp11" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(0.689354, 0, 0.724425, 0, 1, 0, -0.724425, 0, 0.689354, 280.649, -0.726281, -49.8462)
+
+[node name="street_lamp17" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(-0.999989, 0, -0.00478268, 0, 1, 0, 0.00478268, 0, -0.999989, 320.931, 8.92067, -160.424)
+
+[node name="street_lamp18" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(-0.999989, 0, -0.00478268, 0, 1, 0, 0.00478268, 0, -0.999989, 294.773, 8.92067, -135.293)
+
+[node name="street_lamp19" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(-0.999989, 0, -0.00478268, 0, 1, 0, 0.00478268, 0, -0.999989, 244.42, -1.11607, -91.5508)
+
+[node name="street_lamp20" parent="lights" instance=ExtResource("3_mbdu3")]
+transform = Transform3D(-0.999989, 0, -0.00478268, 0, 1, 0, 0.00478268, 0, -0.999989, 201.514, 8.92067, -58.8511)

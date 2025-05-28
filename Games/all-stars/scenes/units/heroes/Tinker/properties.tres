@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="R_UnitProperties" load_steps=2 format=3 uid="uid://cd0bv1yknegvd"]
+
+[ext_resource type="Script" uid="uid://dkqtwxbhrokie" path="res://Games/all-stars/components/unit_properties.gd" id="1_6imly"]
+
+[resource]
+script = ExtResource("1_6imly")
+unit_name = "Tinker"
+lvl = 1
+experience = 0.0
+health = 1.0
+mana = 1.0
+armor = 1.0
+max_health = 550.0
+max_mana = 1.0
+max_armor = 1.0
+health_regen = 1.0
+mana_regen = 1.0
+strength = 1.0
+agility = 1.0
+intelligence = 1.0
+strength_per_lvl = 1.0
+agility_per_lvl = 1.0
+intelligence_per_lvl = 1.0
+metadata/_custom_type_script = "uid://dkqtwxbhrokie"

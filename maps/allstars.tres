@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://dwusjidrwueu2"]
+
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="1_468ee"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_xtl8x"]
+
+[resource]
+script = ExtResource("1_xtl8x")
+scene_path = "uid://274q53idt2dt"
+code = "allstars"
+name = "DoTA All Stars"
+icon = ExtResource("1_468ee")
+description = "HALOU"
+metadata/_custom_type_script = "uid://dr6n65i48b73y"
