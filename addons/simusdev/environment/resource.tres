@@ -22,9 +22,9 @@ shader_parameter/blend_to_texture = SubResource("Texture2DRD_fpmre")
 shader_parameter/sky_blend_from_texture = SubResource("Texture2DRD_wbnd8")
 shader_parameter/sky_blend_to_texture = SubResource("Texture2DRD_kvu72")
 shader_parameter/source_transmittance = SubResource("Texture2DRD_etyo2")
-shader_parameter/blend_amount = 0.75
-shader_parameter/sunDirection = Vector3(0, 0.954625, 0.297811)
-shader_parameter/sunDiskSize = 3.0
+shader_parameter/blend_amount = 0.625
+shader_parameter/sunDirection = Vector3(0, 0, 1)
+shader_parameter/sunDiskSize = 1.0
 
 [sub_resource type="Sky" id="Sky_meedx"]
 sky_material = SubResource("ShaderMaterial_gqiem")
@@ -38,8 +38,8 @@ cloudCoverage = 0.25
 timeOffset = 0.0
 sunColor = Color(1, 1, 1, 1)
 sunEnergy = 1.0
-sunAngles = Vector2(72.6738, 0)
-sunDiskSize = 3.0
+sunAngles = Vector2(0, 0)
+sunDiskSize = 1.0
 groundColor = Color(1, 1, 1, 1)
 groundRadius = 6e+06
 skyStartRadius = 6.0015e+06

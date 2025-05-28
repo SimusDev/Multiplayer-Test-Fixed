@@ -53,6 +53,36 @@ signal date_changed()
 		SD_WorldEnvironmentTime.year = year
 		date_changed.emit()
 
+@export var sun: DirectionalLight3D
+
+@export var animation_player: AnimationPlayer
+
+@export var sun_color: Color = Color.WHITE:
+	set(value):
+		sun_color = value
+		if sky:
+			sky.sunColor = sun_color
+
+@export var sun_energy: float = 1.0:
+	set(value):
+		sun_energy = value
+		if sky:
+			sky.sunEnergy = sun_energy
+
+@export var sun_angles: Vector2 = Vector2.ZERO:
+	set(value):
+		sun_angles = value
+		if sky:
+			sky.sunAngles = sun_angles
+
+@export var sun_size: float = 1.0:
+	set(value):
+		sun_size = value
+		if sky:
+			sky.sunDiskSize = sun_size
+
+
+
 func _ready() -> void:
 	SD_WorldEnvironmentTime.time = time
 	SD_WorldEnvironmentTime.day = day
@@ -84,9 +114,11 @@ func cycle(update_time: bool = true) -> void:
 		day += 1
 		time = 0.0
 	
-	
-	sky.sunAngles.x = 360.0 * time 
-	
+	if animation_player:
+		animation_player.play("cycle")
+		animation_player.seek(time, true)
+		
+
 
 func _on_sync_timer_timeout() -> void:
 	if Engine.is_editor_hint():

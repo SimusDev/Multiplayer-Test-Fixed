@@ -34,7 +34,6 @@ var _username: String = "user"
 
 @onready var console: SD_TrunkConsole = SimusDev.console
 
-
 var _is_dedicated_server: bool = false
 var _is_connected_to_server: bool = false
 
@@ -306,6 +305,80 @@ func _on_peer_disconnected(id: int) -> void:
 
 #region SYNCHRONIZATION
 
+
+var _requested_nodes_existence: Dictionary[int, Array] = {}
+
+func request_node_existence(node: Node, result: Callable, args: Array, peer: int, reliable: bool) -> void:
+	if node:
+		if node.is_inside_tree():
+			var array: Array = _requested_nodes_existence.get_or_add(peer, [])
+			var data: SD_MPRecievedNodeExistence = SD_MPRecievedNodeExistence.new()
+			data.node_path = str(node.get_path())
+			data.object = result.get_object()
+			data.method = result.get_method()
+			data.reliable = reliable
+			data.peer_id = peer
+			data.args = args
+			
+			if not is_active() or get_unique_id() == peer:
+				data.exists = true
+				data.call_method()
+				return
+			
+			array.append(data)
+			
+			var path: String = str(node.get_path())
+			if reliable:
+				_request_node_existence_rpc.rpc_id(peer, path, reliable)
+			else:
+				_request_node_existence_rpc_unreliable.rpc_id(peer, path, reliable)
+			
+
+			
+	if not _requested_nodes_existence.has(peer):
+			_requested_nodes_existence.erase(peer)
+
+func request_node_existence_from_server(node: Node, result: Callable, args: Array = [], reliable: bool = true) -> void:
+	request_node_existence(node, result, args, HOST_ID, reliable)
+
+
+@rpc("any_peer", "reliable")
+func _request_node_existence_rpc(path: String, reliable: bool) -> void:
+	_request_node_existence_rpc_local(path, multiplayer.get_remote_sender_id(), reliable)
+
+@rpc("any_peer", "unreliable")
+func _request_node_existence_rpc_unreliable(path: String, reliable: bool) -> void:
+	_request_node_existence_rpc_local(path, multiplayer.get_remote_sender_id(), reliable)
+
+func _request_node_existence_rpc_local(path: String, sender: int, reliable: bool) -> void:
+	var node: Node = get_node_or_null(path)
+	var result: bool = is_instance_valid(node)
+	if result:
+		if reliable:
+			_request_node_existence_rpc_sender_recieve.rpc_id(sender, result, path)
+		else:
+			_request_node_existence_rpc_sender_recieve_unreliable.rpc_id(sender, result, path)
+
+
+@rpc("any_peer", "reliable")
+func _request_node_existence_rpc_sender_recieve(result: bool, node_path: String) -> void:
+	_request_node_existence_rpc_sender_recieve_local(result, node_path)
+
+@rpc("any_peer", "unreliable")
+func _request_node_existence_rpc_sender_recieve_unreliable(result: bool, node_path: String) -> void:
+	_request_node_existence_rpc_sender_recieve_local(result, node_path)
+
+
+func _request_node_existence_rpc_sender_recieve_local(result: bool, node_path: String) -> void:
+	for peer in _requested_nodes_existence:
+		var array: Array = _requested_nodes_existence[peer]
+		for existence in array:
+			if existence.node_path == node_path:
+				existence.node_path = node_path
+				existence.exists = has_node(node_path)
+				existence.call_method()
+				array.erase(existence)
+			
 
 var _requested_responses: Dictionary[int, Array]
 

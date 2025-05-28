@@ -96,3 +96,9 @@ static func request_response_from_peer(peer_id: int, result: Callable, timeout: 
 
 static func request_response_from_server(result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
 	_singleton.request_response_from_server(result, timeout, reliable)
+
+static func request_node_existence(node: Node, result: Callable, args: Array, peer: int, reliable: bool) -> void:
+	_singleton.request_node_existence(node, result, args, peer, reliable)
+
+static func request_node_existence_from_server(node: Node, result: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.request_node_existence_from_server(node, result, args, reliable)
