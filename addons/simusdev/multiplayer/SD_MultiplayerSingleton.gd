@@ -320,7 +320,7 @@ func _kicked_rpc_recieve_kick(from_peer: int, username: String) -> void:
 #region SYNCHRONIZATION
 
 
-var _requested_nodes_existence: Dictionary[int, Dictionary] = {}
+var _requested_nodes_existence: Dictionary[int, Array] = {}
 
 func request_node_existence(node: Node, result: Callable, args: Array, peer: int, reliable: bool) -> void:
 	if not is_active():
@@ -330,22 +330,27 @@ func request_node_existence(node: Node, result: Callable, args: Array, peer: int
 		if node:
 			if node.is_inside_tree():
 				var path: String = str(node.get_path())
+				
+				if not _requested_nodes_existence.has(peer):
+					_requested_nodes_existence[peer] = [] as Array[SD_MPRecievedNodeExistence]
+				var array: Array[SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
+				
+				var existence := SD_MPRecievedNodeExistence.new()
+				existence.object = result.get_object()
+				existence.method = result.get_method()
+				existence.reliable = reliable
+				existence.peer_id = peer
+				existence.args = args
+				existence.node_path = path
+				array.append(existence)
+				
+				
 				if reliable:
 					_request_node_existence_rpc.rpc_id(peer, path, reliable)
 				else:
 					_request_node_existence_rpc_unreliable.rpc_id(peer, path, reliable)
 				
-				if not _requested_nodes_existence.has(peer):
-					_requested_nodes_existence[peer] = {} as Dictionary[String, SD_MPRecievedNodeExistence]
 				
-				var dict: Dictionary[String, SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
-				var data: SD_MPRecievedNodeExistence = SD_MPRecievedNodeExistence.new()
-				data.object = result.get_object()
-				data.method = result.get_method()
-				data.reliable = reliable
-				data.peer_id = peer
-				data.args = args
-				dict[path] = data
 	else:
 		_requested_nodes_existence.erase(peer)
 
@@ -381,14 +386,12 @@ func _request_node_existence_rpc_sender_recieve_unreliable(result: bool, node_pa
 
 func _request_node_existence_rpc_sender_recieve_local(result: bool, node_path: String) -> void:
 	for peer in _requested_nodes_existence:
-		var dict: Dictionary[String, SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
-		for path in dict:
-			var existence: SD_MPRecievedNodeExistence = dict[path]
-			if existence.node_path == path:
-				existence.node_path = path
+		var array: Array[SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
+		for existence in array:
+			if existence.node_path == node_path:
 				existence.exists = result
 				existence.call_method()
-				dict.erase(path)
+				array.erase(existence)
 				
 
 var _requested_responses: Dictionary[int, Array]
@@ -573,9 +576,10 @@ func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant
 	var packet: Dictionary[String, Variant] = {
 	}
 	
-	if object is Object:
-		packet.set("type", VARIABLE_TYPE.OBJECT)
-		packet.set("var_to_str", var_to_str(object))
+	if object is Node:
+		packet.set("type", VARIABLE_TYPE.NODE)
+		packet.set("node_path", object.get_path())
+		packet.set("property_node_path", object.get_path())
 		return packet
 	
 	if object is Resource:
@@ -586,12 +590,12 @@ func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant
 			packet.set("resource_path", object.resource_path)
 		
 		return packet
-		
-	if object is Node:
-		packet.set("type", VARIABLE_TYPE.NODE)
-		packet.set("node_path", object.get_path())
-		packet.set("property_node_path", object.get_path())
+	
+	if object is Object:
+		packet.set("type", VARIABLE_TYPE.OBJECT)
+		packet.set("var_to_str", var_to_str(object))
 		return packet
+	
 	
 	return Dictionary()
 
@@ -647,7 +651,10 @@ func deserialize_var_from_packet(serialized: Variant) -> Variant:
 		return result
 	
 	if serialized.has("property_node_path"):
-		var node: Node = get_node("property_node_path")
+		var node: Node = get_node_or_null("property_node_path")
+		if node == null:
+			print(serialized["property_node_path"])
+			
 		return node
 	
 	var use_str_to_var: bool = serialized.has("var_to_str")
