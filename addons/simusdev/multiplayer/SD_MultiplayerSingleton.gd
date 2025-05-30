@@ -11,6 +11,7 @@ signal client_closed()
 
 signal peer_connected(id: int)
 signal peer_disconnected(id: int)
+signal peer_kicked(peer: int)
 
 signal connected_to_server()
 signal connection_failed()
@@ -37,7 +38,6 @@ var _username: String = "user"
 var _is_dedicated_server: bool = false
 var _is_connected_to_server: bool = false
 
-var callables: SD_MPSyncedCallables
 var compressor: SD_MPDataCompressor = SD_MPDataCompressor.new()
 
 static var _instance: SD_MultiplayerSingleton = null
@@ -67,10 +67,6 @@ func _ready() -> void:
 	_static_class = SD_Multiplayer.new(self)
 	if _instance == null:
 		_instance = self
-	
-	callables = SD_MPSyncedCallables.new()
-	add_child(callables)
-	callables.name = "sc"
 	
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -302,41 +298,56 @@ func _on_peer_disconnected(id: int) -> void:
 	
 	_delete_player(id)
 
+func kick_peer(peer: int) -> void:
+	_kicked_rpc.rpc(peer)
+
+func kick(player: SD_MultiplayerPlayer) -> void:
+	kick_peer(player.get_peer_id())
+
+@rpc("any_peer", "reliable")
+func _kicked_rpc() -> void:
+	if is_server():
+		close_server()
+	else:
+		close_client()
+	
+	_kicked_rpc_recieve_kick.rpc_id(multiplayer.get_remote_sender_id(), get_unique_id())
+
+@rpc("any_peer", "reliable")
+func _kicked_rpc_recieve_kick(from_peer: int, username: String) -> void:
+	peer_kicked.emit(from_peer)
 
 #region SYNCHRONIZATION
 
 
-var _requested_nodes_existence: Dictionary[int, Array] = {}
+var _requested_nodes_existence: Dictionary[int, Dictionary] = {}
 
 func request_node_existence(node: Node, result: Callable, args: Array, peer: int, reliable: bool) -> void:
-	if node:
-		if node.is_inside_tree():
-			var array: Array = _requested_nodes_existence.get_or_add(peer, [])
-			var data: SD_MPRecievedNodeExistence = SD_MPRecievedNodeExistence.new()
-			data.node_path = str(node.get_path())
-			data.object = result.get_object()
-			data.method = result.get_method()
-			data.reliable = reliable
-			data.peer_id = peer
-			data.args = args
-			
-			if not is_active() or get_unique_id() == peer:
-				data.exists = true
-				data.call_method()
-				return
-			
-			array.append(data)
-			
-			var path: String = str(node.get_path())
-			if reliable:
-				_request_node_existence_rpc.rpc_id(peer, path, reliable)
-			else:
-				_request_node_existence_rpc_unreliable.rpc_id(peer, path, reliable)
-			
-
-			
-	if not _requested_nodes_existence.has(peer):
-			_requested_nodes_existence.erase(peer)
+	if not is_active():
+		return
+	
+	if get_connected_peers().has(peer):
+		if node:
+			if node.is_inside_tree():
+				var path: String = str(node.get_path())
+				if reliable:
+					_request_node_existence_rpc.rpc_id(peer, path, reliable)
+				else:
+					_request_node_existence_rpc_unreliable.rpc_id(peer, path, reliable)
+				
+				if not _requested_nodes_existence.has(peer):
+					_requested_nodes_existence[peer] = {} as Dictionary[String, SD_MPRecievedNodeExistence]
+				
+				var dict: Dictionary[String, SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
+				var data: SD_MPRecievedNodeExistence = SD_MPRecievedNodeExistence.new()
+				data.object = result.get_object()
+				data.method = result.get_method()
+				data.reliable = reliable
+				data.peer_id = peer
+				data.args = args
+				dict[path] = data
+	else:
+		_requested_nodes_existence.erase(peer)
 
 func request_node_existence_from_server(node: Node, result: Callable, args: Array = [], reliable: bool = true) -> void:
 	request_node_existence(node, result, args, HOST_ID, reliable)
@@ -353,11 +364,10 @@ func _request_node_existence_rpc_unreliable(path: String, reliable: bool) -> voi
 func _request_node_existence_rpc_local(path: String, sender: int, reliable: bool) -> void:
 	var node: Node = get_node_or_null(path)
 	var result: bool = is_instance_valid(node)
-	if result:
-		if reliable:
-			_request_node_existence_rpc_sender_recieve.rpc_id(sender, result, path)
-		else:
-			_request_node_existence_rpc_sender_recieve_unreliable.rpc_id(sender, result, path)
+	if reliable:
+		_request_node_existence_rpc_sender_recieve.rpc_id(sender, result, str(node.get_path()))
+	else:
+		_request_node_existence_rpc_sender_recieve_unreliable.rpc_id(sender, result, str(node.get_path()))
 
 
 @rpc("any_peer", "reliable")
@@ -371,14 +381,15 @@ func _request_node_existence_rpc_sender_recieve_unreliable(result: bool, node_pa
 
 func _request_node_existence_rpc_sender_recieve_local(result: bool, node_path: String) -> void:
 	for peer in _requested_nodes_existence:
-		var array: Array = _requested_nodes_existence[peer]
-		for existence in array:
-			if existence.node_path == node_path:
-				existence.node_path = node_path
-				existence.exists = has_node(node_path)
+		var dict: Dictionary[String, SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]
+		for path in dict:
+			var existence: SD_MPRecievedNodeExistence = dict[path]
+			if existence.node_path == path:
+				existence.node_path = path
+				existence.exists = result
 				existence.call_method()
-				array.erase(existence)
-			
+				dict.erase(path)
+				
 
 var _requested_responses: Dictionary[int, Array]
 
@@ -455,7 +466,7 @@ func send_and_sync_var(node: Node, property: String, reliable: bool, to_peer: in
 	if not is_active():
 		return
 	
-	var packet: Dictionary = serialize_var_into_packet(node, property)
+	var packet: Dictionary = serialize_object_var_into_packet(node, property)
 	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 	if reliable:
@@ -484,7 +495,6 @@ func _send_and_sync_var_rpc_unreliable(packet: Variant) -> void:
 
 func _request_and_sync_var_recieve_local(serialized: Variant) -> void:
 	var deserialized: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
-	
 	var path: String = deserialized["owner_node_path"]
 	var node: Node = get_node_or_null(path)
 	if node:
@@ -512,7 +522,7 @@ func _request_and_sync_var_local(serialized: Variant, reliable: bool) -> void:
 	if node:
 		var property: String = deserialized["property"]
 		
-		var packet: Dictionary = serialize_var_into_packet(node, property)
+		var packet: Dictionary = serialize_object_var_into_packet(node, property)
 		
 		var new_serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 		if reliable:
@@ -530,51 +540,110 @@ func request_and_sync_vars_from_server(node: Node, properties: Array[String], ca
 	for variable in properties:
 		request_and_sync_var_from_server(node, variable, callable, reliable)
 
-func serialize_var_into_packet(object: Object, property: String) -> Dictionary[String, Variant]:
-	var node: Node = null
+
+var SERIALIZE_VAR_TYPE_METHODS: Dictionary = {
+	TYPE_ARRAY: _serialize_array_into_packet,
+	TYPE_DICTIONARY: _serialize_dictionary_into_packet,
+	TYPE_OBJECT: _serialize_object_into_packet,
+}
+
+func _serialize_array_into_packet(array: Array) -> Dictionary[String, Variant]:
+	var packet: Dictionary[String, Variant] = {}
+	var ser_array: Array = []
 	
+	for i in array:
+		ser_array.append(serialize_var_into_packet(i))
+	
+	packet["value"] = ser_array
+	return packet
+
+func _serialize_dictionary_into_packet(dictionary: Dictionary) -> Dictionary[String, Variant]:
+	var packet: Dictionary[String, Variant] = {}
+	var ser_dict: Dictionary = {}
+	
+	for key in dictionary:
+		var ser_key: Dictionary = serialize_var_into_packet(key)
+		var ser_value: Dictionary = serialize_var_into_packet(dictionary[key])
+		ser_dict[ser_key] = ser_value
+	
+	packet["value"] = ser_dict
+	return packet
+
+func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant]:
+	var packet: Dictionary[String, Variant] = {
+	}
+	
+	if object is Object:
+		packet.set("type", VARIABLE_TYPE.OBJECT)
+		packet.set("var_to_str", var_to_str(object))
+		return packet
+	
+	if object is Resource:
+		if object.resource_local_to_scene:
+			packet.set("type", VARIABLE_TYPE.RESOURCE)
+			packet.set("var_to_str", var_to_str(object))
+		else:
+			packet.set("resource_path", object.resource_path)
+		
+		return packet
+		
+	if object is Node:
+		packet.set("type", VARIABLE_TYPE.NODE)
+		packet.set("node_path", object.get_path())
+		packet.set("property_node_path", object.get_path())
+		return packet
+	
+	return Dictionary()
+
+func serialize_var_into_packet(variable: Variant) -> Dictionary[String, Variant]:
+	var packet: Dictionary[String, Variant] = {}
+	
+	var var_type: int = typeof(variable)
+	
+	if SERIALIZE_VAR_TYPE_METHODS.has(var_type):
+		var callable: Callable = SERIALIZE_VAR_TYPE_METHODS[var_type]
+		packet = callable.call(variable)
+		return packet
+	
+	packet["value"] = variable
+	return packet
+
+func serialize_object_var_into_packet(object: Object, property: String) -> Dictionary[String, Variant]:
+	if not object:
+		return Dictionary()
+	
+	var node: Node = object
 	if object is Node:
 		node = object
 	
 	var property_value: Variant = node.get(property)
-	
-	var packet: Dictionary[String, Variant] = {
-		"property" : property,
-		"type": VARIABLE_TYPE.DEFAULT,
-	}
-	
-	if object is Node:
-		packet.set("owner_node_path", str(node.get_path()))
-	
-	if property_value is Object:
-		packet.set("type", VARIABLE_TYPE.OBJECT)
-		packet.set("var_to_str", var_to_str(property_value))
-		return packet
-	
-	if property_value is Resource:
-		if property_value.resource_local_to_scene:
-			packet.set("type", VARIABLE_TYPE.RESOURCE)
-			packet.set("var_to_str", var_to_str(property_value))
-		else:
-			packet.set("resource_path", property_value.resource_path)
-		
-		return packet
-		
-	if property_value is Node:
-		packet.set("type", VARIABLE_TYPE.NODE)
-		packet.set("node_path", property_value.get_path())
-		packet.set("property_node_path", property_value.get_path())
-		return packet
-	
-	packet["value"] = property_value
+	var packet: Dictionary[String, Variant] = serialize_var_into_packet(property_value)
+	packet["owner_node_path"] = str(node.get_path())
+	packet["property"] = property
 	
 	return packet
 
-func deserialize_var_from_packet(serialized: Dictionary) -> Variant:
-	var result: Variant = null
+func deserialize_var_from_packet(serialized: Variant) -> Variant:
+	if not serialized is Dictionary:
+		return
+	
+	var result: Variant = serialized
 	
 	if serialized.has("value"):
 		result = serialized.get("value", null)
+		
+		if result is Array:
+			var parsed: Array = []
+			for i in result:
+				parsed.append(deserialize_var_from_packet(i))
+			return parsed
+		
+		if result is Dictionary:
+			var parsed: Dictionary = {}
+			for key in result:
+				parsed[deserialize_var_from_packet(key)] = deserialize_var_from_packet(result[key])
+			return parsed
+		
 		return result
 	
 	if serialized.has("property_node_path"):
@@ -596,7 +665,7 @@ func request_and_sync_var(node: Node, property: String, callable: Callable, reli
 	if not is_active():
 		return
 	
-	if multiplayer.get_unique_id() == from_peer:
+	if get_unique_id() == from_peer:
 		return
 	
 	var packet: Dictionary[String, Variant] = {
@@ -633,6 +702,17 @@ func _request_and_sync_var_rpc_unreliable(serialized: Variant, reliable: bool) -
 	_request_and_sync_var_local(serialized, reliable)
 
 func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	if not is_active() or is_server():
+		node.callv(callable.get_method(), args)
+		return
+	
+	for peer in get_connected_peers():
+		sync_call_function_on_peer(peer, node, callable, args, reliable)
+
+func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	sync_call_function_on_peer(HOST_ID, node, callable, args, reliable)
+
+func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array, reliable: bool = true) -> void:
 	if not is_active():
 		node.callv(callable.get_method(), args)
 		return
@@ -640,15 +720,15 @@ func sync_call_function(node: Node, callable: Callable, args: Array = [], reliab
 	var packet: Array = [
 		str(node.get_path()),
 		str(callable.get_method()),
-		args,
+		serialize_var_into_packet(args),
 	]
-	
 	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 	if reliable:
-		_sync_call_function_recieve_rpc.rpc(serialized)
+		_sync_call_function_recieve_rpc.rpc_id(peer, serialized)
 	else:
-		_sync_call_function_recieve_rpc_unreliable.rpc(serialized)
+		_sync_call_function_recieve_rpc_unreliable.rpc_id(peer, serialized)
+
 
 func _sync_call_function_local(serialized: Variant) -> void:
 	var deserialized: Array = SD_MPDataCompressor.deserialize_data(serialized)
@@ -656,17 +736,16 @@ func _sync_call_function_local(serialized: Variant) -> void:
 	var node: Node = get_node_or_null(node_path)
 	if node:
 		var method: String = deserialized[1]
-		var args: Array = deserialized[2]
+		var args: Array = deserialize_var_from_packet(deserialized[2])
 		node.callv(method, args)
 
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "reliable")
 func _sync_call_function_recieve_rpc(serialized: Variant) -> void:
 	_sync_call_function_local(serialized)
 
-@rpc("any_peer", "call_local", "unreliable")
+@rpc("any_peer", "unreliable")
 func _sync_call_function_recieve_rpc_unreliable(serialized: Variant) -> void:
 	_sync_call_function_local(serialized)
-
 
 #endregion

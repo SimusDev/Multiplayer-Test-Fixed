@@ -2,6 +2,7 @@
 extends Node3D
 class_name W_FPCSourceLike
 
+@export var multiplayer_authorative: bool = true
 @export var enabled: bool = true : set = set_enabled_status, get = get_enabled_status
 
 signal enabled_status_changed(status: bool)
@@ -9,6 +10,11 @@ signal enabled_status_changed(status: bool)
 @onready var console := SimusDev.console
 
 var _disable_priority: int = 0
+
+func is_authority() -> bool:
+	if multiplayer_authorative:
+		return is_multiplayer_authority()
+	return true
 
 func _enter_tree() -> void:
 	_enabled_status_changed()

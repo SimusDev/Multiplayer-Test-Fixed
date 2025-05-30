@@ -91,6 +91,12 @@ static func send_and_sync_var_to_all_peers(node: Node, property: String, reliabl
 static func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.sync_call_function(node, callable, args, reliable)
 
+static func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.sync_call_function_on_peer(peer, node, callable, args, reliable)
+
+static func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.sync_call_function_on_server(node, callable, args, reliable)
+
 static func request_response_from_peer(peer_id: int, result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
 	_singleton.request_response_from_peer(peer_id, result, timeout, reliable)
 
@@ -102,3 +108,21 @@ static func request_node_existence(node: Node, result: Callable, args: Array, pe
 
 static func request_node_existence_from_server(node: Node, result: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.request_node_existence_from_server(node, result, args, reliable)
+
+static func serialize_object_var_into_packet(object: Object, property: String) -> Dictionary[String, Variant]:
+	return _singleton.serialize_object_var_into_packet(object, property)
+
+static func serialize_var_into_packet(variable: Variant) -> Variant:
+	return _singleton.serialize_var_into_packet(variable)
+
+static func deserialize_var_from_packet(serialized: Dictionary) -> Variant:
+	return _singleton.deserialize_var_from_packet(serialized)
+
+static func get_unique_id() -> int:
+	return _singleton.get_unique_id()
+
+static func kick_peer(peer: int) -> void:
+	_singleton.kick_peer(peer)
+
+static func kick(player: SD_MultiplayerPlayer) -> void:
+	_singleton.kick(player)

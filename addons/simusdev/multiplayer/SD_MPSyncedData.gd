@@ -12,7 +12,6 @@ class_name SD_MPSyncedData
 var _is_initialized: bool = false
 var _is_dynamic: bool = false
 
-
 signal initialized()
 
 signal all_data_synchronized()
@@ -32,9 +31,10 @@ func is_initialized() -> bool:
 func is_dynamic() -> bool:
 	return _is_dynamic
 
-func local_set_data(data: Dictionary[String, Variant]) -> void:
+func local_set_data(data: Dictionary) -> void:
 	_data.clear()
-	_data = data
+	for key in data:
+		_data[str(key)] = data[key]
 
 func local_get_data() -> Dictionary[String, Variant]:
 	return _data
@@ -50,7 +50,8 @@ func get_data_value(key: String, default_value = null) -> Variant:
 
 func set_data_value(key: String, value: Variant) -> void:
 	if SD_Multiplayer.is_active():
-		var serialized: Variant = SD_MPDataCompressor.serialize_data(value)
+		var packet: Dictionary = SD_Multiplayer.serialize_var_into_packet(value)
+		var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 		if reliable:
 			_set_data_value_rpc_reliable.rpc(key, serialized)
 		else:
@@ -62,14 +63,16 @@ func set_data_value(key: String, value: Variant) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _set_data_value_rpc_reliable(key: String, serialized: Variant) -> void:
-	var value: Variant = SD_MPDataCompressor.deserialize_data(serialized)
+	var packet: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
+	var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
 	_data.set(key, value)
 	data_changed.emit(key, value)
 
 
 @rpc("any_peer", "call_local", "unreliable_ordered")
 func _set_data_value_rpc_unreliable(key: String, serialized: Variant) -> void:
-	var value: Variant = SD_MPDataCompressor.deserialize_data(serialized)
+	var packet: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
+	var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
 	_data.set(key, value)
 	data_changed.emit(key, value)
 
@@ -109,9 +112,12 @@ func client_sync_data_from_server() -> void:
 func _client_sync_data_from_server_rpc() -> void:
 	if singleton.is_server():
 		var server_data: Dictionary[String, Variant] = local_get_data()
+		
 		var client_id: int = multiplayer.get_remote_sender_id()
 		
-		var serialized: Variant = SD_MPDataCompressor.serialize_data(server_data)
+		var packet: Dictionary = SD_Multiplayer.serialize_var_into_packet(server_data)
+		var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
+		
 		_client_recive_data_from_server_rpc.rpc_id(client_id, serialized)
 
 @rpc("any_peer", "reliable")
@@ -119,7 +125,8 @@ func _client_recive_data_from_server_rpc(serialized: Variant) -> void:
 	_is_initialized = true
 	initialized.emit()
 	
-	var recieved_data: Variant = SD_MPDataCompressor.deserialize_data(serialized)
+	var packet: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
+	var recieved_data: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
 	local_set_data(recieved_data)
 	all_data_synchronized.emit()
 

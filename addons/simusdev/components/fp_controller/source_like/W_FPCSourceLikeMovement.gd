@@ -93,6 +93,9 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
+	if not is_authority():
+		add_disable_priority()
+		return
 	#console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if actor.is_on_floor():

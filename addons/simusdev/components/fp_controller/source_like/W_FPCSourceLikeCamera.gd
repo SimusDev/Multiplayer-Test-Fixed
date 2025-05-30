@@ -27,8 +27,7 @@ class_name W_FPCSourceLikeCamera
 @export var key_slowdown: String = "slowdown"
 
 func _exit_tree() -> void:
-	return
-	if enabled:
+	if is_authority() and enabled:
 		set_mouse_captured(false)
 
 func make_current() -> void:
@@ -44,13 +43,21 @@ func _enabled_status_changed() -> void:
 	set_physics_process(enabled)
 	set_process_input(enabled)
 	set_process_unhandled_input(enabled)
+	set_mouse_captured(enabled)
 
 func _ready() -> void:
+	if not is_authority():
+		add_disable_priority()
+		return
+	
 	console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if make_current_at_start:
 		make_current()
 		set_mouse_captured(true)
+	
+	if console.is_visible():
+		add_disable_priority()
 
 func _process(delta: float) -> void:
 	if is_can_free_move():
@@ -80,7 +87,6 @@ func _on_console_visibility_changed() -> void:
 		add_disable_priority()
 	else:
 		subtract_disable_priority()
-	
 	
 
 func set_mouse_captured(value: bool) -> void:

@@ -1,0 +1,57 @@
+extends Node
+class_name SD_MPSyncedPlayerData
+
+@export var reliable: bool = true
+
+@export var data: Dictionary[String, Dictionary]
+
+signal all_data_synced()
+signal changed(player_name: String, key: String, value: Variant)
+
+func _ready() -> void:
+	synchronize_all()
+
+func synchronize_all() -> void:
+	SD_Multiplayer.request_and_sync_var_from_server(self, "_data", _all_data_synced, reliable)
+
+func _all_data_synced() -> void:
+	pass
+
+func get_player_data(player_name: String) -> Dictionary:
+	return data.get_or_add(player_name, {}) as Dictionary
+
+func set_value(player: SD_MultiplayerPlayer, key: String, value: Variant) -> void:
+	if not player:
+		return
+	
+	local_set_value(player.get_username(), key, value)
+	if SD_Multiplayer.is_server():
+		SD_Multiplayer.sync_call_function_on_peer(player.get_peer_id(), self, _recieve_changes_from_client, [player.get_username(), key, value], reliable)
+	else:
+		SD_Multiplayer.sync_call_function_on_server(self, _recieve_changes_from_client, [player.get_username(), key, value], reliable)
+
+func get_value(player: SD_MultiplayerPlayer, key: String, default_value: Variant = null) -> Variant:
+	if not player:
+		return default_value
+	
+	return local_get_value(player.get_username(), key, default_value)
+
+func set_value_authority(key: String, value: Variant) -> void:
+	set_value(SD_Multiplayer.get_authority_player(), key, value)
+
+func get_value_authority(key: String, default_value: Variant = null) -> Variant:
+	return get_value(SD_Multiplayer.get_authority_player(), key, default_value)
+
+func local_set_value(player_name: String, key: String, value: Variant) -> void:
+	get_player_data(player_name).set(key, value)
+
+func local_get_value(player_name: String, key: String, default_value: Variant = null) -> Variant:
+	return get_player_data(player_name).get(key, default_value)
+
+func _recieve_changes_from_client(player_name: String, key: String, value: Variant) -> void:
+	local_set_value(player_name, key, value)
+	changed.emit(player_name, key, value)
+
+func _recieve_changes_from_server(player_name: String, key: String, value: Variant) -> void:
+	local_set_value(player_name, key, value)
+	changed.emit(player_name, key, value)

@@ -26,6 +26,10 @@ func _process(delta: float) -> void:
 		camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
 
 func _ready() -> void:
+	if not is_authority():
+		add_disable_priority()
+		return
+	
 	_saved_pos = camera.position
 	movement.crouched_status_changed.connect(_on_crouched_status_changed)
 	

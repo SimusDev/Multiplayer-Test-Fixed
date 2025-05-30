@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://de0qb35isy256"]
+[gd_scene load_steps=9 format=3 uid="uid://de0qb35isy256"]
 
-[ext_resource type="Environment" uid="uid://cnv5hf1v4ijva" path="res://addons/simusdev/environment/resource.tres" id="1_60syb"]
+[ext_resource type="Environment" uid="uid://cpnr85e4ko18s" path="res://addons/simusdev/environment/environment.tres" id="1_364gc"]
 [ext_resource type="Script" uid="uid://ct0cluy2jd8bg" path="res://addons/simusdev/environment/SD_WorldEnvironment.gd" id="2_on5mi"]
-[ext_resource type="PackedScene" uid="uid://5x11hf0610j4" path="res://gamedata/sr_levels/garbage/level.tscn" id="3_60syb"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="4_364gc"]
-[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="5_jp2bx"]
-[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="6_0owg2"]
+[ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="3_60syb"]
+[ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="4_4b6xu"]
 
 [sub_resource type="Animation" id="Animation_4b6xu"]
 length = 0.001
@@ -19,23 +17,73 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.5708, 0, 0)]
+"values": [Vector3(-1.5708, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:sun_angles")
+tracks/1/path = NodePath("sun:light_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.647059, 0.654902, 0.670588, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:sky_top_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.384314, 0.454902, 0.54902, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("moon:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("moon:light_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.777882, 0.855322, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_60syb"]
 resource_name = "cycle"
+length = 10.0
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,22 +92,82 @@ tracks/0/path = NodePath("sun:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1.5708, 0, 0)]
+"values": [Vector3(1.5708, 0, 0), Vector3(-4.71239, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:sun_angles")
+tracks/1/path = NodePath("moon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-7.85398, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sun:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:sky_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4, 7, 8, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.647059, 0.654902, 0.670588, 1), Color(0.647059, 0.654902, 0.670588, 1), Color(0.873708, 0.581416, 0.273331, 1), Color(0.647059, 0.654902, 0.670588, 1), Color(0.647059, 0.654902, 0.670588, 1), Color(0.873708, 0.581416, 0.273331, 1), Color(0.647059, 0.654902, 0.670588, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:sky_top_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 3, 8, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.124559, 0.157735, 0.201927, 1), Color(0.124559, 0.157735, 0.201927, 1), Color(0.553546, 0.624586, 0.71949, 1), Color(0.553546, 0.624586, 0.71949, 1), Color(0.124559, 0.157735, 0.201927, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("moon:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(90, 0)]
+"values": [0.1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("moon:light_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.777882, 0.855322, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4b6xu"]
@@ -68,42 +176,42 @@ _data = {
 &"cycle": SubResource("Animation_60syb")
 }
 
-[sub_resource type="Resource" id="Resource_hu2ro"]
-script = ExtResource("6_0owg2")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
-properties = Array[String]([])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 30.0
-node_path = NodePath("")
-reliable = false
-mode = 0
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+[sub_resource type="Resource" id="Resource_3bvi0"]
+script = ExtResource("4_4b6xu")
+list = PackedStringArray("time", "day", "month", "year")
+duplicate = false
+duplicate_deep = false
+duplicate_resources = false
+metadata/_custom_type_script = "uid://b5csmggjb4hh6"
 
-[node name="SD_WorldEnvironment" type="WorldEnvironment" node_paths=PackedStringArray("sun", "animation_player")]
-environment = ExtResource("1_60syb")
+[node name="SD_WorldEnvironment" type="WorldEnvironment" node_paths=PackedStringArray("sun", "moon", "animation_player")]
+environment = ExtResource("1_364gc")
 script = ExtResource("2_on5mi")
-cycle_speed = 0.05
-time = 0.621764
-day = 9
-year = 2034
+cycle_speed = 0.001
 sun = NodePath("sun")
+moon = NodePath("moon")
 animation_player = NodePath("animation_player")
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
 
 [node name="sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 3.68384, 0)
-light_angular_distance = 3.0
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 3.68384, 0)
+light_color = Color(1, 1, 0.862745, 1)
+light_angular_distance = 1.5
 shadow_enabled = true
+shadow_blur = 0.1
+
+[node name="moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 3.68384, 0)
+light_color = Color(0.777882, 0.855322, 1, 1)
+light_angular_distance = 0.5
+shadow_enabled = true
+shadow_blur = 0.1
 
 [node name="sync_timer" type="Timer" parent="."]
 wait_time = 5.0
-one_shot = true
 autostart = true
 ignore_time_scale = true
-
-[node name="Untitled" parent="." instance=ExtResource("3_60syb")]
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 callback_mode_process = 2
@@ -111,10 +219,13 @@ callback_mode_method = 1
 libraries = {
 &"": SubResource("AnimationLibrary_4b6xu")
 }
+speed_scale = 0.1
 
-[node name="sd_mp_property_synchronizer" type="Node" parent="."]
-script = ExtResource("4_364gc")
-properties = Array[ExtResource("5_jp2bx")]([SubResource("Resource_hu2ro"), null, null])
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
+[node name="sd_world_node_property_saver" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_60syb")
+load_mode = 1
+properties_to_save = Array[ExtResource("4_4b6xu")]([SubResource("Resource_3bvi0")])
+node = NodePath("..")
+metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
 
 [connection signal="timeout" from="sync_timer" to="." method="_on_sync_timer_timeout"]
