@@ -138,13 +138,15 @@ camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
 [node name="body_root" parent="default/rotation" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0306993, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0305085, 0)
 
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null
 
 [node name="AnimationTree" parent="default" index="4"]
 "parameters/Add2 3/add_amount" = 0
+"parameters/Add2 5/add_amount" = 0
+parameters/driver/blend_position = 0
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_1v7vv")]
 actor = NodePath("..")
