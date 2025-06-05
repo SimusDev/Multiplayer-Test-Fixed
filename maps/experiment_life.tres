@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://b3qkc3wi7bhw3"]
+
+[ext_resource type="Texture2D" uid="uid://h68cek51vakm" path="res://icon.png" id="1_dcrwg"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_yfxd5"]
+
+[resource]
+script = ExtResource("1_yfxd5")
+scene_path = "uid://bjw6ottvxevb2"
+code = "experiment_life"
+name = "Experiment Life"
+icon = ExtResource("1_dcrwg")
+description = "NE CLICKBAIT !!!!!!!!"
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

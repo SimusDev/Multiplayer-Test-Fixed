@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjw6ottvxevb2"]
+[gd_scene load_steps=6 format=3 uid="uid://bjw6ottvxevb2"]
 
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_eegyl"]
 [ext_resource type="Terrain3DMaterial" uid="uid://doghywcrpghxf" path="res://Games/experiment_life/terrain/materials.tres" id="2_1f5qg"]
 [ext_resource type="Terrain3DAssets" uid="uid://cdt8j2qsdy3ev" path="res://Games/experiment_life/terrain/assets.tres" id="3_qxlxm"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="4_xgoab"]
+[ext_resource type="MeshLibrary" uid="uid://dp3imdsktgog" path="res://Games/experiment_life/models/tree/ml.tres" id="6_yetbj"]
 
 [node name="World" type="Node"]
 
@@ -14,3 +16,28 @@ material = ExtResource("2_1f5qg")
 assets = ExtResource("3_qxlxm")
 top_level = true
 metadata/_edit_lock_ = true
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("4_xgoab")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.91579, -11.5302)
+
+[node name="2" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.45537, 3.45069)
+
+[node name="3" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.10252, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("6_yetbj")
+cell_size = Vector3(2, 0.04, 2)
+data = {
+"cells": PackedInt32Array(65557, 65525, 655360, 131097, 54, 655360, 196645, 18, 655360, 196707, 65497, 655360, 196713, 65521, 655360, 196678, 29, 655360, 196760, 65474, 1048576, 196756, 65511, 1048576, 196712, 65505, 1048576, 196682, 10, 1048576, 196648, 8, 1048576, 196726, 65458, 1048576, 196745, 65405, 1048576, 196734, 65437, 0, 196708, 65416, 0, 196840, 65444, 0, 196821, 65473, 0, 196788, 65421, 0, 196661, 65439, 0, 262137, 75, 0, 262137, 76, 0, 262110, 48, 0, 262126, 117, 0, 196657, 52, 0, 262080, 2, 0, 262059, 65534, 1441792, 262092, 65484, 1441792, 262122, 65459, 1441792, 262123, 65459, 1441792, 196628, 65443, 1441792, 196708, 65408, 1441792, 196819, 65436, 1441792, 196834, 65502, 1441792, 196806, 33, 1441792, 196751, 114, 1441792, 196674, 144, 1441792, 262090, 134, 1441792, 262061, 31, 1441792, 262068, 65505, 1441792, 262068, 65504, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 0)
