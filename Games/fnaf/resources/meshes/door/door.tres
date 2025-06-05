@@ -1,21 +1,21 @@
 [gd_resource type="ArrayMesh" load_steps=11 format=4 uid="uid://gtqqdwpxe4hf"]
 
-[ext_resource type="Texture2D" uid="uid://dyd5badwtpgbv" path="res://Games/fnaf/maps/fnaf1/Untitled_FNaF1 Black.png" id="1_vr2se"]
-[ext_resource type="Texture2D" uid="uid://jwjojugu7eld" path="res://Games/fnaf/maps/fnaf1/Untitled_freddydoor.png" id="2_nyyl4"]
-[ext_resource type="Texture2D" uid="uid://iip8jf7tiqbj" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_security_door.png" id="3_odl25"]
-[ext_resource type="Texture2D" uid="uid://kar0bplhf0jo" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_spec.png" id="4_sw2ag"]
-[ext_resource type="Texture2D" uid="uid://j3f8xy62p1u6" path="res://Games/fnaf/maps/fnaf1/Untitled_fnaf3_flat.png" id="5_1fcnf"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ttxbg"]
+load_path = "res://.godot/imported/Untitled_FNaF1 Black.png-7662ca838e904eec923fc45db9250f0e.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1nxq"]
 resource_name = "FNAF1 BLACK"
 cull_mode = 2
-albedo_texture = ExtResource("1_vr2se")
+albedo_texture = SubResource("CompressedTexture2D_ttxbg")
 roughness = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34fnh"]
+load_path = "res://.godot/imported/Untitled_freddydoor.png-18e4da76033978cec0650ecc71a58d1b.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnpmj"]
 resource_name = "FREDDYDOOR"
 cull_mode = 2
-albedo_texture = ExtResource("2_nyyl4")
+albedo_texture = SubResource("CompressedTexture2D_34fnh")
 roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbs3l"]
@@ -24,17 +24,26 @@ cull_mode = 2
 albedo_color = Color(0.76395, 0.976373, 0.949571, 1)
 roughness = 0.4
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6y5v3"]
+load_path = "res://.godot/imported/Untitled_fnaf3_security_door.png-44d8b60fcb46503b2704524b5b38e8a6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_up744"]
+load_path = "res://.godot/imported/Untitled_fnaf3_spec.png-c557ecb3ecbb67ab1c500224a7f0c901.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bot0k"]
+load_path = "res://.godot/imported/Untitled_fnaf3_flat.png-6e8d2d87cc357481f69fce02391453b5.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju71n"]
 resource_name = "fnaf3_security_door"
 cull_mode = 2
-albedo_texture = ExtResource("3_odl25")
+albedo_texture = SubResource("CompressedTexture2D_6y5v3")
 metallic = 1.0
-metallic_texture = ExtResource("4_sw2ag")
+metallic_texture = SubResource("CompressedTexture2D_up744")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("4_sw2ag")
+roughness_texture = SubResource("CompressedTexture2D_up744")
 roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("5_1fcnf")
+normal_texture = SubResource("CompressedTexture2D_bot0k")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1oqlf"]
 _surfaces = [{

@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://csbp2x6u4x7qv"]
 
-[ext_resource type="PackedScene" uid="uid://br4qpybovwh23" path="res://Games/fnaf/maps/fnaf1/fnaf1.tscn" id="1_ra61e"]
+[ext_resource type="PackedScene" uid="uid://br4qpybovwh23" path="res://Games/fnaf/maps/fnaf1_u/fnaf1.tscn" id="1_ra61e"]
+
 
 [node name="Game" type="Node"]
 

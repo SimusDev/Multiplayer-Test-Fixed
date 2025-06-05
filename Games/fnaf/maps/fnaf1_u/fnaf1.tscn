@@ -1,0 +1,229 @@
+[gd_scene load_steps=18 format=3 uid="uid://br4qpybovwh23"]
+
+[ext_resource type="PackedScene" uid="uid://c1vyo4mg1715e" path="res://Games/fnaf/resources/world_environment.tscn" id="1_335sh"]
+[ext_resource type="PackedScene" uid="uid://bsslr6b8vclvi" path="res://Games/fnaf/components/camera/FW_CameraContainer.tscn" id="1_e0irk"]
+[ext_resource type="PackedScene" uid="uid://bsuaqxh8uhd37" path="res://Games/fnaf/maps/fnaf1_u/base.tscn" id="2_335sh"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_vc3ow"]
+[ext_resource type="PackedScene" uid="uid://dgabibeos57hv" path="res://Games/fnaf/entities/player.tscn" id="4_h2ila"]
+[ext_resource type="PackedScene" uid="uid://t00bn8s7la4c" path="res://Games/fnaf/components/world/energy/FW_EnergyComponent.tscn" id="5_gt3wj"]
+[ext_resource type="PackedScene" uid="uid://ci8a4l0frb3q4" path="res://Games/fnaf/components/world/time/FW_TimeComponent.tscn" id="6_rpyr0"]
+[ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="7_w2vrj"]
+[ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="8_ogbw0"]
+[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="9_07y0o"]
+[ext_resource type="PackedScene" uid="uid://2t0h531dnq23" path="res://Games/fnaf/models/map/fan/inherited.tscn" id="10_y3bta"]
+[ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="11_5i4g3"]
+[ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="12_v38sd"]
+[ext_resource type="PackedScene" uid="uid://cv22pe0m3n5au" path="res://Games/fnaf/models/props/pirate_cove/pirate_cove.glb" id="13_rarxu"]
+[ext_resource type="PackedScene" uid="uid://jlkobskjb663" path="res://Games/fnaf/models/animatronics/s_freddy/head.tscn" id="14_pg13n"]
+[ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="15_lgj4l"]
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_gie0c"]
+interior = true
+
+[node name="Fnaf1" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_335sh")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.822656, 0.187869, -0.536603, 0, 0.943826, 0.330442, 0.56854, 0.27184, -0.776444, 22.223, 7.80616, 2.98724)
+fov = 37.8493
+
+[node name="FW_CameraContainer" parent="." instance=ExtResource("1_e0irk")]
+render_target_update_mode = 0
+
+[node name="MapRoot" type="Node3D" parent="."]
+transform = Transform3D(4.763, 0, 0, 0, 4.763, 0, 0, 0, 4.763, 0, 0, 0)
+
+[node name="Untitled" parent="MapRoot" instance=ExtResource("2_335sh")]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="spawnpoint" type="Node3D" parent="Players"]
+transform = Transform3D(0.964347, 0.0889819, -0.249231, 0, 0.941777, 0.336238, 0.264639, -0.324251, 0.9082, -3.54926, 6.15995, 57.204)
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="Players" node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("3_vc3ow")
+player_scene = ExtResource("4_h2ila")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawnpoint")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="Components" type="Node3D" parent="."]
+
+[node name="energy" parent="Components" instance=ExtResource("5_gt3wj")]
+
+[node name="time" parent="Components" instance=ExtResource("6_rpyr0")]
+
+[node name="left_door" parent="Components" instance=ExtResource("7_w2vrj")]
+
+[node name="right_door" parent="Components" instance=ExtResource("7_w2vrj")]
+
+[node name="left_light" parent="Components" instance=ExtResource("8_ogbw0")]
+
+[node name="right_light" parent="Components" instance=ExtResource("8_ogbw0")]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.931621, 0.36343, 0, -0.36343, -0.931621, 0, 0, 0)
+visible = false
+light_energy = 17.48
+
+[node name="main_hall_lamp2" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, 14.8441, 9.12911, 11.8347)
+light_color = Color(1, 1, 0.815686, 1)
+light_energy = 1.491
+shadow_enabled = true
+spot_range = 90.0
+spot_attenuation = 0.75
+spot_angle = 75.0
+
+[node name="main_hall_lamp3" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, -14.4689, 9.12911, 11.8347)
+light_color = Color(1, 1, 0.815686, 1)
+light_energy = 1.491
+shadow_enabled = true
+spot_range = 90.0
+spot_attenuation = 0.75
+spot_angle = 75.0
+
+[node name="right_hallway" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0501223, 0.998743, 0, -0.998743, 0.0501223, 2.39244, 8.11315, 37.6019)
+light_color = Color(1, 0.745098, 0.705882, 1)
+light_energy = 0.45
+shadow_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="office" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.0869471, 0.996213, 0, -0.996213, -0.0869471, -4.03082, 7.75767, 60.9067)
+light_color = Color(1, 0.883932, 0.797056, 1)
+light_energy = 0.347
+shadow_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="left_hallway" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0501223, 0.998743, 0, -0.998743, 0.0501223, -11.1886, 8.62223, 37.6019)
+light_color = Color(1, 0.746939, 0.705624, 1)
+light_energy = 0.45
+shadow_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="scene_lamp" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.9819, -9.63997)
+light_color = Color(1, 0.827386, 0.802204, 1)
+shadow_enabled = true
+spot_range = 16.437
+spot_attenuation = 0.45
+spot_angle = 77.72
+spot_angle_attenuation = 1.93187
+
+[node name="right_door_light" type="SpotLight3D" parent="Lights" node_paths=PackedStringArray("light_component")]
+transform = Transform3D(0.337774, 0.941163, -0.0109777, -0.152835, 0.0663521, 0.986022, 0.928736, -0.331375, 0.166255, 1.96691, 7.70825, 52.8725)
+visible = false
+light_energy = 2.335
+shadow_enabled = true
+spot_range = 9.416
+spot_angle = 57.0
+script = ExtResource("9_07y0o")
+light_component = NodePath("../../Components/right_light")
+
+[node name="left_door_light" type="SpotLight3D" parent="Lights" node_paths=PackedStringArray("light_component")]
+transform = Transform3D(0.337774, 0.941163, -0.0109777, -0.152835, 0.0663521, 0.986022, 0.928736, -0.331375, 0.166255, -10.0252, 7.708, 52.873)
+visible = false
+light_energy = 2.335
+shadow_enabled = true
+spot_range = 9.416
+spot_angle = 57.0
+script = ExtResource("9_07y0o")
+light_component = NodePath("../../Components/left_light")
+
+[node name="restroom" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.888207, 0.253889, -0.382922, 0, 0.833446, 0.552601, 0.459444, -0.490824, 0.740273, 23.8102, 7.80616, 0.986603)
+shadow_enabled = true
+omni_range = 37.557
+
+[node name="pirate_cove" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(-0.0853345, -0.212179, 0.973498, 0, 0.977062, 0.212956, -0.996352, 0.0181725, -0.083377, -16.8704, 9.16374, 17.7677)
+light_color = Color(1, 0.764706, 0.764706, 1)
+light_energy = 0.477
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="backstage" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.589761, 0.206232, -0.780801, 0, 0.966843, 0.255371, 0.807578, -0.150608, 0.570207, -23.7118, 8.76868, 3.21956)
+light_energy = 0.927
+shadow_enabled = true
+omni_range = 13.704
+
+[node name="VoxelGI" type="VoxelGI" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97256, 8.00885, -8.59481)
+size = Vector3(137.247, 36.0177, 147.165)
+data = SubResource("VoxelGIData_gie0c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.47347, -0.322818, 0.819521, 0, 0.930418, 0.366501, -0.88081, -0.173527, 0.440525, -49.6906, -1.57448, 9.93007)
+light_energy = 0.564
+omni_range = 4.222
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="fan" parent="Props" instance=ExtResource("10_y3bta")]
+transform = Transform3D(-0.926318, 0, 0.376742, 0, 1, 0, -0.376742, 0, -0.926318, -3.17419, 4.92892, 51.4839)
+
+[node name="leftdoor_buttons" type="Node3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.49265, 5.84644, 57.5772)
+
+[node name="door" parent="Props/leftdoor_buttons" node_paths=PackedStringArray("energy_consumer") instance=ExtResource("11_5i4g3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322975, 0)
+energy_consumer = NodePath("../../../Components/left_door")
+COLOR_PRESSED = Color(0.3, 1, 0.3, 1)
+
+[node name="light" parent="Props/leftdoor_buttons" node_paths=PackedStringArray("energy_consumer") instance=ExtResource("11_5i4g3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.258364, 0)
+energy_consumer = NodePath("../../../Components/left_light")
+COLOR_PRESSED = Color(0.298429, 0.710106, 0.862031, 1)
+
+[node name="rightdoor_buttons" type="Node3D" parent="Props"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.128438, 5.84644, 57.5772)
+
+[node name="door" parent="Props/rightdoor_buttons" node_paths=PackedStringArray("energy_consumer") instance=ExtResource("11_5i4g3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322975, 0)
+energy_consumer = NodePath("../../../Components/right_door")
+COLOR_PRESSED = Color(0.3, 1, 0.3, 1)
+
+[node name="light" parent="Props/rightdoor_buttons" node_paths=PackedStringArray("energy_consumer") instance=ExtResource("11_5i4g3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.258364, 0)
+energy_consumer = NodePath("../../../Components/right_light")
+COLOR_PRESSED = Color(0.298429, 0.710106, 0.862031, 1)
+
+[node name="doors" type="Node3D" parent="Props"]
+
+[node name="Door" parent="Props/doors" node_paths=PackedStringArray("door") instance=ExtResource("12_v38sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75004, 5.33651, 55.6122)
+door = NodePath("../../../Components/left_door")
+
+[node name="Door2" parent="Props/doors" node_paths=PackedStringArray("door") instance=ExtResource("12_v38sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172213, 5.33651, 55.6122)
+door = NodePath("../../../Components/right_door")
+
+[node name="pirate_cove" parent="Props" instance=ExtResource("13_rarxu")]
+transform = Transform3D(-0.622787, 0, -2.94998, 0, 3.015, 0, 2.94998, 0, -0.622787, -23.2076, 3.01827, 18.0673)
+
+[node name="freddy_head1" parent="Props" instance=ExtResource("14_pg13n")]
+transform = Transform3D(3, 0, 0, 0, 2.96918, 0.428923, 0, -0.428923, 2.96918, -22.1835, 0.84135, -2.60617)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.134336, -1.99548, 8.72254e-08, 0, -8.74228e-08, -2, 1.99548, -0.134336, 5.87201e-09, 6.98888, 13.2481, -0.61)
+modulate = Color(0.169245, 0.169245, 0.169245, 1)
+texture = ExtResource("15_lgj4l")
+
+[node name="disabled_text" type="Label3D" parent="."]
+transform = Transform3D(-0.067168, -0.997741, -0.000794476, 0, 0.000796274, -1, 0.997742, -0.067168, -5.34842e-05, 6.67723, 13.1443, -0.729199)
+text = "-CAMERA DISABLED-
+AUDIO ONLY"
