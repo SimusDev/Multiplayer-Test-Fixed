@@ -1621,7 +1621,7 @@ mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7flc"]
-size = Vector3(1.17085, 1.05707, 1)
+size = Vector3(1.17085, 1.05707, 0.945251)
 
 [node name="toyota" type="RigidBody3D" node_paths=PackedStringArray("driver_seat", "front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
 script = ExtResource("1_vaol6")
@@ -1954,6 +1954,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776619, 0.394196, 0)
 shape = SubResource("BoxShape3D_l7flc")
 
 [node name="point" type="Node3D" parent="DriverSeat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405114, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405114, -0.113815, 0)
 
 [connection signal="interacted" from="DriverSeat/W_InteractableArea3D" to="DriverSeat" method="_on_w_interactable_area_3d_interacted"]

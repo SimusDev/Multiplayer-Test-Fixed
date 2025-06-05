@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://b1xdxk61ce84s"]
+[gd_scene load_steps=8 format=4 uid="uid://b1xdxk61ce84s"]
 
 [ext_resource type="Texture2D" uid="uid://d2ct0b3y14ph6" path="res://maps/scenes/vlados_parkur_swag/3d_objects/street_lamp/medellin_street_lamp_0.png" id="1_3gl82"]
 [ext_resource type="Texture2D" uid="uid://dcbfd3bsrhy3v" path="res://maps/scenes/vlados_parkur_swag/3d_objects/street_lamp/medellin_street_lamp_2.png" id="2_jncv4"]
 [ext_resource type="Texture2D" uid="uid://duuji32s5s4o2" path="res://maps/scenes/vlados_parkur_swag/3d_objects/street_lamp/medellin_street_lamp_1.png" id="3_i8k5s"]
 [ext_resource type="Texture2D" uid="uid://cjcwj5ovlnogl" path="res://maps/scenes/vlados_parkur_swag/3d_objects/street_lamp/medellin_street_lamp_3.png" id="4_15qr0"]
-[ext_resource type="Texture2D" uid="uid://dpagq3ck58fp0" path="res://textures/street_light'.png" id="5_jncv4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kvrg"]
 resource_name = "cables"
@@ -68,7 +67,6 @@ light_color = Color(1, 0.760784, 0, 1)
 light_energy = 3.709
 light_indirect_energy = 6.907
 light_volumetric_fog_energy = 4.226
-light_projector = ExtResource("5_jncv4")
 shadow_enabled = true
 spot_range = 43.7534
 spot_attenuation = 0.52
@@ -80,7 +78,6 @@ light_color = Color(1, 0.760784, 0, 1)
 light_energy = 3.709
 light_indirect_energy = 6.907
 light_volumetric_fog_energy = 4.226
-light_projector = ExtResource("5_jncv4")
 shadow_enabled = true
 spot_range = 43.7534
 spot_attenuation = 0.52

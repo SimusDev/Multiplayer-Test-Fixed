@@ -1,5 +1,6 @@
-[gd_scene load_steps=276 format=4 uid="uid://cu6t5ekb7tvhu"]
+[gd_scene load_steps=277 format=4 uid="uid://cu6t5ekb7tvhu"]
 
+[ext_resource type="Script" uid="uid://bwymsbt4y5xy" path="res://Games/cars/scripts/steering_wheel.gd" id="1_lgsbh"]
 [ext_resource type="Texture2D" uid="uid://c66fbx2insu8i" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_8.png" id="9_vslb8"]
 [ext_resource type="Texture2D" uid="uid://cuiqmn3ghkgug" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_9.png" id="10_rct8f"]
 [ext_resource type="Texture2D" uid="uid://nxuc7pxm8dmj" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_10.png" id="11_vo86g"]
@@ -11,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsa5peiyg8tg" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_16.png" id="17_3y6sp"]
 [ext_resource type="Texture2D" uid="uid://6ctf3s3ksvdk" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_17.png" id="18_f2iur"]
 [ext_resource type="Texture2D" uid="uid://benv2befb7tj6" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_18.png" id="19_3a47h"]
-[ext_resource type="Texture2D" uid="uid://drpcv7xcnpkh6" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_19.png" id="20_leiod"]
+[ext_resource type="Texture2D" uid="uid://dwoevxmpllq4g" path="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_19.png" id="20_leiod"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_koneo"]
 resource_name = "mM_Opaque_PlasticRoughBlack_Max1"
@@ -4185,9 +4186,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a72oa")
 
 [node name="mitsubishi" type="Node3D"]
+script = ExtResource("1_lgsbh")
 
 [node name="Object_3" type="Node3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.18557e-08, 0, -2.18557e-08, 0.5, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="m_DoorL_Glass4_Mesh_002_M_Opaque_PlasticRoughBlack_Max" type="Node3D" parent="Object_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145936, 0.0077617)

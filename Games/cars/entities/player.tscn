@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bqufam4ov4dfk"]
+[gd_scene load_steps=48 format=3 uid="uid://bqufam4ov4dfk"]
 
 [ext_resource type="Script" uid="uid://bnweibaeafkrr" path="res://Games/cars/entities/player.gd" id="1_i2rg2"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_0m6cw"]
@@ -321,6 +321,60 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0.005, 1, -0.32)]
 }
+
+[sub_resource type="Animation" id="Animation_3cvdp"]
+resource_name = "driver"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("legs/lpoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.65806, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("legs/rpoint:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.65806, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rotation/body_root/body/hands/left/lpoint:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.48353, 0.174533, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("rotation/body_root/body/hands/right/rpoint:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.48353, -0.174533, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0j3ax"]
+resource_name = "fap"
 
 [sub_resource type="Animation" id="Animation_i0pha"]
 resource_name = "idle"
@@ -681,7 +735,8 @@ _data = {
 &"RESET": SubResource("Animation_hoeyd"),
 &"breath": SubResource("Animation_3wtj8"),
 &"considers_item": SubResource("Animation_23uux"),
-&"driver": SubResource("Animation_hoeyd"),
+&"driver": SubResource("Animation_3cvdp"),
+&"fap": SubResource("Animation_0j3ax"),
 &"idle": SubResource("Animation_i0pha"),
 &"item_in_right_hand": SubResource("Animation_3lt1j"),
 &"jump": SubResource("Animation_15cdc"),
@@ -748,7 +803,7 @@ skeleton = NodePath("../../..")
 [node name="rotation" type="Node3D" parent="default"]
 
 [node name="body_root" type="Node3D" parent="default/rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00927433, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0306659, 0)
 
 [node name="body" type="MeshInstance3D" parent="default/rotation/body_root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.648415, 0)
@@ -793,9 +848,11 @@ skeleton = NodePath("../../../../..")
 
 [node name="glasses" parent="default/rotation/body_root/body/rotation/head" instance=ExtResource("8_xr23c")]
 transform = Transform3D(-0.002, 0, 1.74846e-10, 0, 0.002, 0, -1.74846e-10, 0, -0.002, 0, 0, -0.586536)
+visible = false
 
 [node name="godot" type="Sprite3D" parent="default/rotation/body_root/body/rotation/head"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.0179238, -0.500763)
+visible = false
 texture = ExtResource("9_cqmi8")
 
 [node name="ru_flag" type="Sprite3D" parent="default/rotation/body_root/body"]
@@ -809,16 +866,17 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="default"]
-active = false
 tree_root = ExtResource("11_fkkq7")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
 "parameters/Add2 2/add_amount" = 1.0
 "parameters/Add2 3/add_amount" = 1
 "parameters/Add2 4/add_amount" = 1.0
-parameters/consider_item/blend_position = 0.0
-parameters/item_in_right_hand/blend_position = 0.0
-parameters/walk_blend/blend_position = Vector2(0, 0)
+"parameters/Add2 5/add_amount" = 0.0078125
+parameters/consider_item/blend_position = false
+parameters/driver/blend_position = 0.0
+parameters/item_in_right_hand/blend_position = false
+parameters/walk_blend/blend_position = 0.0
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_37061")]
 actor = NodePath("..")
@@ -832,18 +890,21 @@ key_crouch = "crouch"
 enabled = false
 
 [node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("7_nu65p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72305, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.853424, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 make_current_at_start = false
+_mouse_captured = false
 enabled = false
 
-[node name="interactor" type="RayCast3D" parent="W_FPCSourceLikePlayerCamera"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.910239, -0.129559)
+[node name="interactor" type="RayCast3D" parent="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("player", "w_interactor")]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, -1.5, 0, 1.5, -6.55671e-08, 0, 0, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("9_tak8m")
+player = NodePath("../..")
+w_interactor = NodePath("../W_Interactor3D")
 
 [node name="W_Interactor3D" type="Node" parent="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("root", "raycast")]
 script = ExtResource("9_rnn38")

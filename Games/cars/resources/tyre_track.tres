@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://i4hn8yrot3ie"]
+
+[ext_resource type="Texture2D" uid="uid://c1r72ugkwf8lf" path="res://Games/counter-strike/maps/kz_variety_fix/Untitled_concrete_29.png" id="1_t66lj"]
+
+[resource]
+albedo_color = Color(0.05, 0.05, 0.05, 1)
+albedo_texture = ExtResource("1_t66lj")
+roughness = 0.8
+uv1_scale = Vector3(0.5, 1, 1)

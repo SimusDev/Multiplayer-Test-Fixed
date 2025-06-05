@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://cxrmk72543ugb"]
 
-[ext_resource type="Texture2D" uid="uid://bcj8d8by0yi6q" path="res://addons/simusdev/Game/icons/ui_icon_animatronic.png" id="1_ks8sh"]
+[ext_resource type="Texture2D" uid="uid://cn2g14ypnk8qt" path="res://Games/cars/textures/icons/game_icon.png" id="1_ks8sh"]
 [ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_qju8x"]
 
 [resource]

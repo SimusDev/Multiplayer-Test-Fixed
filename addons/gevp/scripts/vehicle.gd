@@ -6,6 +6,13 @@ extends RigidBody3D
 
 @export var driver_seat:DriverSeat
 
+@export var tire_track_scene: PackedScene
+@export var min_slip_for_track = 0.2
+@export var track_spacing = 0.5
+@export var track_lifetime = 30.0 
+
+var last_track_positions = {} 
+
 @export_group("Wheel Nodes")
 ## Assign this to the Wheel [RayCast3D] that is this vehicle's front left wheel.
 @export var front_left_wheel : Wheel
@@ -357,6 +364,7 @@ var steering_amount := 0.0
 var steering_exponent_amount := 0.0
 var true_steering_amount := 0.0
 var throttle_amount := 0.0
+var is_throttling:bool = false
 var brake_amount := 0.0
 var clutch_amount := 0.0
 var current_gear := 0
@@ -425,6 +433,55 @@ class Axle:
 
 func _ready():
 	initialize()
+	if tire_track_scene == null:
+		tire_track_scene = preload("res://Games/cars/scenes/tyre_decal.tscn")
+
+func spawn_tire_track(wheel: Wheel):
+	var track = tire_track_scene.instantiate()
+	get_tree().current_scene.add_child(track)
+	
+	track.global_position = wheel.last_collision_point + wheel.get_collision_normal() * 0.01
+	
+	var normal = wheel.get_collision_normal()
+	var forward = -wheel.global_transform.basis.z
+	var right = forward.cross(normal).normalized()
+	forward = normal.cross(right).normalized()
+	
+	track.look_at(track.global_position + normal, forward)
+	
+	var velocity_dir = Vector3(local_velocity.x, 0, local_velocity.z).normalized()
+	if velocity_dir.length() > 0.1:
+		var angle = atan2(velocity_dir.x, velocity_dir.z)
+		track.rotate(normal, angle)
+	
+	var timer = Timer.new()
+	track.add_child(timer)
+	timer.wait_time = track_lifetime
+	timer.one_shot = true
+	timer.timeout.connect(func(): track.queue_free())
+	timer.start()
+
+func _process_tire_tracks(delta: float):
+	if not is_ready or tire_track_scene == null:
+		return
+	
+	for wheel in wheel_array:
+		if not wheel.is_colliding():
+			continue
+		
+		var slip = max(abs(wheel.slip_vector.x), abs(wheel.slip_vector.y))
+		if slip < min_slip_for_track:
+			continue
+		
+		var current_position = wheel.last_collision_point
+		
+		if last_track_positions.has(wheel):
+			var last_position = last_track_positions[wheel]
+			if current_position.distance_to(last_position) < track_spacing:
+				continue
+		
+		spawn_tire_track(wheel)
+		last_track_positions[wheel] = current_position
 
 func _integrate_forces(state : PhysicsDirectBodyState3D):
 	current_gravity = state.total_gravity
@@ -631,6 +688,7 @@ func _physics_process(delta : float) -> void:
 	process_drive(delta)
 	process_forces(delta)
 	process_stability()
+	_process_tire_tracks(delta)
 
 func process_drag() -> void:
 	var drag := 0.5 * air_density * pow(speed, 2.0) * frontal_area * coefficient_of_drag

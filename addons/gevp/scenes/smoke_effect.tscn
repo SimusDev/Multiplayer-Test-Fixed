@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://h6vdpba71kpr"]
 
-[ext_resource type="Script" path="res://addons/gevp/scripts/wheel_smoke.gd" id="1_3e4qh"]
+[ext_resource type="Script" uid="uid://bb25smx6hb0l2" path="res://addons/gevp/scripts/wheel_smoke.gd" id="1_3e4qh"]
 
 [sub_resource type="Gradient" id="Gradient_wywko"]
 offsets = PackedFloat32Array(0, 0.772152, 1)
@@ -31,14 +31,12 @@ color_ramp = SubResource("GradientTexture1D_5rs2r")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkuso"]
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.501961)
+albedo_color = Color(1, 1, 1, 0.066)
 
 [sub_resource type="SphereMesh" id="SphereMesh_t2ioh"]
 material = SubResource("StandardMaterial3D_dkuso")
 radius = 1.0
 height = 2.0
-radial_segments = 8
-rings = 4
 
 [node name="Smoke" type="GPUParticles3D"]
 emitting = false

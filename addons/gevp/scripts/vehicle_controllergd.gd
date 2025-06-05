@@ -53,6 +53,8 @@ func _physics_process(_delta):
 	if !driver_seat.driver:
 		return
 	
+	vehicle_node.is_throttling = Input.is_action_pressed("Throttle")
+	
 	if string_brake_input != "":
 		vehicle_node.brake_input = Input.get_action_strength(string_brake_input)
 
