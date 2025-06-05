@@ -14,7 +14,7 @@ func get_current_team() -> R_CS_Team:
 
 func select_team(team: R_CS_Team) -> void:
 	var player = SimusDev.multiplayerAPI.get_authority_player()
-	SimusDev.multiplayerAPI.callables.node_sync_call(self, "_client_select_team_sync", [player.get_peer_id(), team.resource_path])
+	SD_Multiplayer.sync_call_function(self, _client_select_team_sync, [player.get_peer_id(), team.resource_path])
 
 func get_player_team(player: SD_MultiplayerPlayer) -> R_CS_Team:
 	return _player_team.get(player, null)

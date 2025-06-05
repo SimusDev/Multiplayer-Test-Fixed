@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjw6ottvxevb2"]
+[gd_scene load_steps=4 format=3 uid="uid://bjw6ottvxevb2"]
 
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_eegyl"]
+[ext_resource type="Terrain3DMaterial" uid="uid://doghywcrpghxf" path="res://Games/experiment_life/terrain/materials.tres" id="2_1f5qg"]
+[ext_resource type="Terrain3DAssets" uid="uid://cdt8j2qsdy3ev" path="res://Games/experiment_life/terrain/assets.tres" id="3_qxlxm"]
 
 [node name="World" type="Node"]
 
 [node name="Sky3D" parent="." instance=ExtResource("1_eegyl")]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Games/experiment_life/terrain"
+material = ExtResource("2_1f5qg")
+assets = ExtResource("3_qxlxm")
+top_level = true
+metadata/_edit_lock_ = true
