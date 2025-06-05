@@ -138,7 +138,7 @@ camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
 [node name="body_root" parent="default/rotation" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0163097, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0337986, 0)
 
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null

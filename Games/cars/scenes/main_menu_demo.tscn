@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://df2r5dasqolct"]
+
+[ext_resource type="PackedScene" uid="uid://sj21e3k2l2ne" path="res://Games/cars/maps/short_track.tscn" id="1_vuo5t"]
+[ext_resource type="PackedScene" uid="uid://vb1dnys1y5lm" path="res://Games/cars/scenes/mitsubishi_lancer.tscn" id="2_ahl2g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dg4fk"]
+sky_top_color = Color(0.0331065, 0.0488296, 0.0711122, 1)
+sky_horizon_color = Color(0.0105575, 0.0111472, 0.0121163, 1)
+
+[sub_resource type="Sky" id="Sky_i8rkt"]
+sky_material = SubResource("ProceduralSkyMaterial_dg4fk")
+
+[sub_resource type="Environment" id="Environment_0ry2x"]
+background_mode = 2
+sky = SubResource("Sky_i8rkt")
+
+[node name="main_menu_demo" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ry2x")
+
+[node name="sun_moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.614024, 0.789288, 0, -0.789288, 0.614024, 0, 0, 0)
+light_color = Color(0, 0.0721313, 0.125898, 1)
+light_energy = 0.435
+
+[node name="short_track" parent="." instance=ExtResource("1_vuo5t")]
+
+[node name="mitsubishi_lancer" parent="." instance=ExtResource("2_ahl2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38119, 14.121)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.65141, -0.0245229, -0.75833, 2.68622e-10, 0.999479, -0.0323211, 0.758727, -0.0210543, -0.65107, -2.0926, -0.837219, 11.511)
+current = true
+fov = 48.5713

@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bw24kr7gsujmq"
+path.s3tc="res://.godot/imported/toyota_mark_ii_jzx100_drift_2.png-46e8bd39e645aa2b2c49546fb9672434.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "84d1bb6f59287cbacceb8b7a4336504f"
+}
+
+[deps]
+
+source_file="res://Games/cars/models/toyota_mark_2/toyota_mark_ii_jzx100_drift_2.png"
+dest_files=["res://.godot/imported/toyota_mark_ii_jzx100_drift_2.png-46e8bd39e645aa2b2c49546fb9672434.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

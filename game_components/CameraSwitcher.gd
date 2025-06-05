@@ -26,9 +26,6 @@ func switch_camera(to: Node3D) -> void:
 			_current_camera = to
 
 func try_switch_camera() -> void:
-	if !vehicle_controller.driver_seat.driver:
-		return
-	
 	var cam_id: int = _cameras.find(_current_camera)
 	var next_id: int = cam_id + 1
 	if next_id > _cameras.size() - 1:

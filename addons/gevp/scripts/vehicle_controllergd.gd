@@ -50,9 +50,9 @@ class_name VehicleController
 @export var string_shift_down: String = "Shift Down"
 
 func _physics_process(_delta):
-	if !driver_seat.driver:
+	if !vehicle_node.is_multiplayer_authority():
 		return
-	
+
 	vehicle_node.is_throttling = Input.is_action_pressed("Throttle")
 	
 	if string_brake_input != "":

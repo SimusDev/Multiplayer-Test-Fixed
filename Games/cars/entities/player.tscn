@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bqufam4ov4dfk"]
+[gd_scene load_steps=39 format=3 uid="uid://bqufam4ov4dfk"]
 
 [ext_resource type="Script" uid="uid://bnweibaeafkrr" path="res://Games/cars/entities/player.gd" id="1_i2rg2"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_0m6cw"]
@@ -10,20 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="7_nu65p"]
 [ext_resource type="Texture2D" uid="uid://chy0gudkwwplc" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="7_oum41"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="8_kk6ip"]
-[ext_resource type="PackedScene" uid="uid://b0p2ri2cyn4bu" path="res://Games/counter-strike/models/players/glasses/glasses.tscn" id="8_xr23c"]
 [ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="9_cqmi8"]
-[ext_resource type="Script" uid="uid://cuwtndm6vgivt" path="res://Games/fnaf/components/sourcelike/FNAF_SourceLikeComponentSettings.gd" id="9_i2rg2"]
 [ext_resource type="Script" uid="uid://beeaaqggu6nod" path="res://addons/simusdev/components/interactables/W_Interactor3D.gd" id="9_rnn38"]
 [ext_resource type="Script" uid="uid://dkduw0cx3e6my" path="res://Games/cars/entities/interactor.gd" id="9_tak8m"]
-[ext_resource type="Script" uid="uid://bklcil87mehpa" path="res://Games/fnaf/components/footsteps/FNAF_FootstepsComponent.gd" id="10_37061"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="10_mw8ig"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://oydapla4ss7c" path="res://prefabs/models/player/animtree.tres" id="11_fkkq7"]
-[ext_resource type="AudioStream" uid="uid://cf37x4113m1rl" path="res://Games/counter-strike/sounds/player/pl_tile1.wav" id="11_nu65p"]
-[ext_resource type="AudioStream" uid="uid://bueywkvtg6844" path="res://Games/counter-strike/sounds/player/pl_tile2.wav" id="12_kk6ip"]
-[ext_resource type="AudioStream" uid="uid://c8qqtn806knf2" path="res://Games/counter-strike/sounds/player/pl_tile3.wav" id="13_i2rg2"]
-[ext_resource type="AudioStream" uid="uid://b4bd0g7s415ak" path="res://Games/counter-strike/sounds/player/pl_tile4.wav" id="14_rnn38"]
-[ext_resource type="AudioStream" uid="uid://bh13ww50dsyj8" path="res://Games/counter-strike/sounds/player/pl_tile5.wav" id="15_tak8m"]
-[ext_resource type="Script" uid="uid://lih5qidttg3m" path="res://Games/fnaf/components/F_Inventory.gd" id="18_rnn38"]
 
 [sub_resource type="Resource" id="Resource_6357b"]
 script = ExtResource("4_d77um")
@@ -230,14 +221,14 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("rotation/body_root/body/hands:position")
+tracks/11/path = NodePath(".:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.62606, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3wtj8"]
@@ -247,26 +238,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rotation/body_root/body/hands:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(-2, -2),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.678792, 0), Vector3(0, -0.6, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rotation/body_root:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(-0.5, -0.5),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_23uux"]
@@ -383,24 +362,12 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rotation/body_root/body/hands:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(-2),
-"update": 0,
-"values": [Vector3(0, -0.678792, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rotation/body_root:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(-0.5),
+"transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
@@ -759,11 +726,12 @@ crouch = NodePath("W_FPCSourceLikeCrouch")
 inventory = NodePath("F_Inventory")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("2_0m6cw")
 properties = Array[ExtResource("3_rrtg7")]([SubResource("Resource_6357b"), SubResource("Resource_ennxi"), SubResource("Resource_sf0t1")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="default" type="Node3D" parent="." node_paths=PackedStringArray("camera", "movement", "tree", "_body_rot", "_head_rot", "_glasses_model")]
+[node name="default" type="Node3D" parent="." node_paths=PackedStringArray("camera", "movement", "tree", "_body_rot", "_head_rot")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("5_0j3ax")
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
@@ -771,7 +739,6 @@ movement = NodePath("../W_FPCSourceLikeMovement")
 tree = NodePath("AnimationTree")
 _body_rot = NodePath("rotation")
 _head_rot = NodePath("rotation/body_root/body/rotation")
-_glasses_model = NodePath("rotation/body_root/body/rotation/head/glasses")
 BLEND_SPACE1D_ANIMATIONS = Dictionary[String, String]({
 "consider_item": "parameters/consider_item/blend_position",
 "driver": "parameters/driver/blend_position",
@@ -780,7 +747,7 @@ BLEND_SPACE1D_ANIMATIONS = Dictionary[String, String]({
 
 [node name="HideNodesWhenAuthority" type="Node" parent="default" node_paths=PackedStringArray("nodes")]
 script = ExtResource("6_3cvdp")
-nodes = [NodePath("../rotation/body_root/body/ru_flag"), NodePath("../rotation/body_root/body/rotation/head/glasses")]
+nodes = [NodePath("../rotation/body_root/body/ru_flag")]
 
 [node name="legs" type="Node3D" parent="default"]
 
@@ -803,7 +770,6 @@ skeleton = NodePath("../../..")
 [node name="rotation" type="Node3D" parent="default"]
 
 [node name="body_root" type="Node3D" parent="default/rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0306659, 0)
 
 [node name="body" type="MeshInstance3D" parent="default/rotation/body_root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.648415, 0)
@@ -811,7 +777,7 @@ mesh = SubResource("CapsuleMesh_df6jb")
 skeleton = NodePath("../../..")
 
 [node name="hands" type="Node3D" parent="default/rotation/body_root/body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62606, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.678792, 0)
 
 [node name="left" type="Node3D" parent="default/rotation/body_root/body/hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.570066, 0.917917, 0)
@@ -845,10 +811,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.552116, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987554, 0)
 mesh = SubResource("SphereMesh_kf8fh")
 skeleton = NodePath("../../../../..")
-
-[node name="glasses" parent="default/rotation/body_root/body/rotation/head" instance=ExtResource("8_xr23c")]
-transform = Transform3D(-0.002, 0, 1.74846e-10, 0, 0.002, 0, -1.74846e-10, 0, -0.002, 0, 0, -0.586536)
-visible = false
 
 [node name="godot" type="Sprite3D" parent="default/rotation/body_root/body/rotation/head"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.0179238, -0.500763)
@@ -922,19 +884,13 @@ ceiling_detection = NodePath("../ceiling")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 enabled = false
 
-[node name="movement_settings" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("9_i2rg2")
-root = NodePath("..")
+[node name="movement_settings" type="Node" parent="."]
 metadata/_custom_type_script = "uid://cuwtndm6vgivt"
 
-[node name="camera_settings" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("9_i2rg2")
-root = NodePath("..")
+[node name="camera_settings" type="Node" parent="."]
 metadata/_custom_type_script = "uid://cuwtndm6vgivt"
 
-[node name="crouch_settings" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("9_i2rg2")
-root = NodePath("..")
+[node name="crouch_settings" type="Node" parent="."]
 metadata/_custom_type_script = "uid://cuwtndm6vgivt"
 
 [node name="collision_normal" type="CollisionShape3D" parent="."]
@@ -948,26 +904,11 @@ shape = SubResource("BoxShape3D_6357b")
 [node name="crouch_camera_pos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924104, 0)
 
-[node name="FNAF_FootstepsComponent" type="Node3D" parent="." node_paths=PackedStringArray("camera", "movement", "audio")]
-script = ExtResource("10_37061")
-camera = NodePath("../W_FPCSourceLikePlayerCamera")
-movement = NodePath("../W_FPCSourceLikeMovement")
-audio = NodePath("AudioStreamPlayer3D")
-streams = Array[AudioStream]([ExtResource("11_nu65p"), ExtResource("12_kk6ip"), ExtResource("13_i2rg2"), ExtResource("14_rnn38"), ExtResource("15_tak8m")])
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FNAF_FootstepsComponent"]
-stream = ExtResource("11_nu65p")
-volume_db = -30.0
-max_distance = 30.0
-bus = &"game"
-
 [node name="flashlight" type="SpotLight3D" parent="."]
 visible = false
 spot_angle_attenuation = 0.57435
 
-[node name="F_Inventory" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("18_rnn38")
-root = NodePath("..")
+[node name="F_Inventory" type="Node" parent="."]
 metadata/_custom_type_script = "uid://lih5qidttg3m"
 
 [node name="ceiling" type="RayCast3D" parent="."]

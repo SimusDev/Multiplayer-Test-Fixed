@@ -6,7 +6,7 @@ class_name AuthorityChecker
 
 func _ready() -> void:
 	if !node.is_multiplayer_authority():
-		node.process_mode = Node.PROCESS_MODE_DISABLED
+		pass
 	else:
 		if camera:
 			camera.make_current()

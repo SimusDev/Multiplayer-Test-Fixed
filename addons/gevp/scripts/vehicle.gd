@@ -358,7 +358,7 @@ var is_ready := false
 var local_velocity := Vector3.ZERO
 var previous_global_position := Vector3.ZERO
 var speed := 0.0
-var motor_rpm := 0.0
+@export var motor_rpm := 0.0
 
 var steering_amount := 0.0
 var steering_exponent_amount := 0.0
@@ -791,6 +791,8 @@ func process_throttle(delta : float) -> void:
 	## Cut throttle at redline and when shifting
 	if motor_is_redline or is_shifting:
 		throttle_amount = 0.0
+		$pop.pitch_scale = randf_range(1.9, 2.9)
+		if !$pop.playing: $pop.play()
 	
 	## Disengage clutch when shifting or below motor idle
 	if need_clutch or is_shifting:

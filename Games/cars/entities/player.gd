@@ -4,7 +4,7 @@ class_name DriverPlayer
 @export var movement: W_FPCSourceLikeMovement
 @export var camera: W_FPCSourceLikePlayerCamera
 @export var crouch: W_FPCSourceLikeCrouch
-@export var inventory: F_Inventory
+@export var inventory: Node
 
 @export var GameUI_scene: PackedScene
 
