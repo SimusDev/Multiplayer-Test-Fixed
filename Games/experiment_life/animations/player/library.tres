@@ -1,0 +1,16 @@
+[gd_resource type="AnimationLibrary" load_steps=6 format=3 uid="uid://6luwsgfb4bi0"]
+
+[ext_resource type="Animation" uid="uid://bonh4ohf8toww" path="res://Games/experiment_life/animations/player/anims/idle.res" id="1_jbw0x"]
+[ext_resource type="Animation" uid="uid://u8frylk7dvm8" path="res://Games/experiment_life/animations/player/anims/jump.res" id="2_3652y"]
+[ext_resource type="Animation" uid="uid://cfas5b41jgh4k" path="res://Games/experiment_life/animations/player/anims/female_walk.res" id="3_0jmwa"]
+[ext_resource type="Animation" uid="uid://cvmaic0jnbx7w" path="res://Games/experiment_life/animations/player/anims/run_backward.res" id="4_53ykl"]
+[ext_resource type="Animation" uid="uid://do6mepa5p0n4s" path="res://Games/experiment_life/animations/player/anims/run_forward.res" id="5_vjyds"]
+
+[resource]
+_data = {
+&"female_walk": ExtResource("3_0jmwa"),
+&"idle": ExtResource("1_jbw0x"),
+&"jump": ExtResource("2_3652y"),
+&"run_backward": ExtResource("4_53ykl"),
+&"run_forward": ExtResource("5_vjyds")
+}

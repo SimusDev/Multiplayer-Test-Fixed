@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://scuy4tbjdt0e"]
+
+[ext_resource type="Script" uid="uid://c86b7q2mpdehh" path="res://Games/experiment_life/models/player/source/animated_model.gd" id="1_qcu43"]
+[ext_resource type="PackedScene" uid="uid://dj4rmps0ab5u8" path="res://Games/experiment_life/models/player/source/model.tscn" id="2_qcu43"]
+[ext_resource type="AnimationLibrary" uid="uid://6luwsgfb4bi0" path="res://Games/experiment_life/animations/player/library.tres" id="3_wnolm"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bev6yf7wxq854" path="res://Games/experiment_life/animations/player/blend_tree.tres" id="4_2263x"]
+
+[node name="AnimatedModel" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
+script = ExtResource("1_qcu43")
+model_scene = ExtResource("2_qcu43")
+library = ExtResource("3_wnolm")
+blend_tree = ExtResource("4_2263x")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/Skeleton3D")
+metadata/_custom_type_script = "uid://pf622qfdiljm"
+
+[node name="model3d" type="Node3D" parent="." instance=ExtResource("2_qcu43")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"library": ExtResource("3_wnolm")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("4_2263x")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Add2/add_amount = 0
+"parameters/Add2 2/add_amount" = 0
+parameters/walk_blend/blend_position = Vector2(0, 0)

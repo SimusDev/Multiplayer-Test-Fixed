@@ -7,7 +7,9 @@ class_name W_AnimatedModel3D
 @export var blend_tree: AnimationNodeBlendTree
 
 @export var setup_model: bool = false : set = _setup_model
-@export var bake_animations: bool = false : set = _bake_animations
+#@export var import_parameters: bool = false : set = _import_parameters
+
+#@export var parameters: Dictionary[String, String] = {}
 
 @export_group("References")
 @export var model: Node3D
@@ -75,37 +77,39 @@ func _find_skeleton(node: Node) -> void:
 			return
 		_find_skeleton(child)
 
-func _bake_animations(value: bool) -> void:
-	if not value:
-		return
-	
-	if not blend_tree:
-		return
-	
-	var animations: AnimationNodeBlendTree = AnimationNodeBlendTree.new()
-	var anim_id: int = 0
-	var connect_index: int =0
-	for anim_name in player.get_animation_list():
-		anim_name = anim_name.replacen("/", "")
-		connect_index += 1
-		anim_id += 1 
-		var animation: Animation = player.get_animation(anim_name)
-		var node := AnimationNodeAnimation.new()
-		var pos: Vector2 = Vector2(75 * anim_id ,0)
-		animations.add_node(anim_name, node, pos)
-		
-		if connect_index == 2:
-			var blend2 := AnimationNodeBlend2.new()
-			var blend_pos: Vector2 = pos
-			blend_pos.x -= pos.x * 0.5
-			blend_pos.y += 50
-			animations.add_node(anim_name + "_blend", blend2, blend_pos)
-			
-	
-	
-	blend_tree.add_node("animations", animations)
-	
-	bake_animations = false
+#func _import_parameters(value: bool) -> void:
+	#if not value:
+		#return
+	#
+	#if not blend_tree:
+		#return
+	#
+	#parameters.clear()
+	#for parameter in tree.get_property_list():
+		#var tree_param_name: String = parameter.name
+		#
+		#var p_name: String = parameter.name
+		#if !p_name.begins_with("parameters/"):
+			#continue
+		#
+		#p_name = p_name.replacen("parameters/", "")
+		#var split: PackedStringArray = p_name.split("/")
+		#if split.is_empty():
+			#continue
+		#
+		#var actual_name: String = split.get(0)
+		#
+		#if not blend_tree.has_node(actual_name):
+			#continue
+		#
+		#var node: AnimationNode = blend_tree.get_node(actual_name)
+		#if not node:
+			#continue
+		#
+		#
+		#parameters[actual_name] = tree_param_name
+	#
+	#import_parameters = false
 
 func get_animation_tree() -> AnimationTree:
 	return tree

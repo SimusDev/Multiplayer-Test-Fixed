@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjw6ottvxevb2"]
+[gd_scene load_steps=7 format=3 uid="uid://bjw6ottvxevb2"]
 
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_eegyl"]
 [ext_resource type="Terrain3DMaterial" uid="uid://doghywcrpghxf" path="res://Games/experiment_life/terrain/materials.tres" id="2_1f5qg"]
 [ext_resource type="Terrain3DAssets" uid="uid://cdt8j2qsdy3ev" path="res://Games/experiment_life/terrain/assets.tres" id="3_qxlxm"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="4_xgoab"]
+[ext_resource type="PackedScene" uid="uid://bswwjdjra4rnm" path="res://Games/experiment_life/entities/player/player.tscn" id="5_yetbj"]
 [ext_resource type="MeshLibrary" uid="uid://dp3imdsktgog" path="res://Games/experiment_life/models/tree/ml.tres" id="6_yetbj"]
 
 [node name="World" type="Node"]
@@ -19,11 +20,13 @@ metadata/_edit_lock_ = true
 
 [node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("4_xgoab")
+player_scene = ExtResource("5_yetbj")
 parent = NodePath("..")
 spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
 metadata/_custom_type_script = "uid://crxce7oinuqn4"
 
 [node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08789, 0)
 
 [node name="1" type="Node3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.91579, -11.5302)
