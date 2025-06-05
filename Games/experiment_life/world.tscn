@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjw6ottvxevb2"]
+
+[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_eegyl"]
+
+[node name="World" type="Node"]
+
+[node name="Sky3D" parent="." instance=ExtResource("1_eegyl")]
