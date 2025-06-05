@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://vb1dnys1y5lm"]
+[gd_scene load_steps=32 format=4 uid="uid://vb1dnys1y5lm"]
 
 [ext_resource type="Script" uid="uid://j3ho6q5fycib" path="res://addons/gevp/scripts/vehicle.gd" id="1_4ggqu"]
 [ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="2_m3ghh"]
@@ -103,7 +103,7 @@ tickrate_mode = 0
 sync_mode = 0
 properties = Array[String](["motor_rpm", "throttle_amount"])
 sync_at_start = true
-interpolation_enabled = false
+interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("..")
 reliable = false
@@ -124,20 +124,6 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
-[sub_resource type="Resource" id="Resource_ttrvv"]
-script = ExtResource("35_rsmr8")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
-properties = Array[String](["target", "is_busy"])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 30.0
-node_path = NodePath("")
-reliable = false
-mode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_yyyvj"]
 size = Vector3(2.04233, 1.30232, 4.6)
 
@@ -148,7 +134,7 @@ loop_mode = 1
 loop_end = 133504
 
 [node name="mitsubishi_lancer" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
-process_mode = 3
+collision_layer = 0
 script = ExtResource("1_4ggqu")
 min_slip_for_track = 0.7
 track_spacing = 0.1
@@ -215,7 +201,7 @@ node = NodePath("..")
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("33_3b4ke")
-properties = Array[ExtResource("34_3ivww")]([SubResource("Resource_yi43l"), SubResource("Resource_b1e7m"), SubResource("Resource_aq5ct"), SubResource("Resource_uvl71"), SubResource("Resource_8mpxf"), SubResource("Resource_a82us"), SubResource("Resource_l7flc"), SubResource("Resource_ttrvv")])
+properties = Array[ExtResource("34_3ivww")]([SubResource("Resource_yi43l"), SubResource("Resource_b1e7m"), SubResource("Resource_aq5ct"), SubResource("Resource_uvl71"), SubResource("Resource_8mpxf"), SubResource("Resource_a82us"), SubResource("Resource_l7flc")])
 
 [node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") instance=ExtResource("31_ipntc")]
 vehicle_node = NodePath("..")

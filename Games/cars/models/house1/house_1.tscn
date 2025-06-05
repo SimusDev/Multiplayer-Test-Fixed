@@ -258,6 +258,7 @@ points = PackedVector3Array(-52.9017, 13, 5.39971, -79.1078, 13, 5.39971, 89.3, 
 transform = Transform3D(7.54979e-08, 1, 1.62921e-07, -2.22045e-16, -1.62921e-07, 1, 1, -7.54979e-08, -1.19904e-14, 0, 0, 0)
 
 [node name="Plane_001_Material_001_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_jgxdv")
 skeleton = NodePath("")
 
@@ -267,6 +268,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_dxj38")
 
 [node name="Plane_001_Material_002_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_dxmif")
 skeleton = NodePath("")
 
@@ -276,6 +278,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_uxnuy")
 
 [node name="Plane_001_Material_003_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_87i5a")
 skeleton = NodePath("")
 
@@ -285,6 +288,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_gkkwy")
 
 [node name="Plane_001_FD_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_urtjq")
 skeleton = NodePath("")
 
@@ -294,6 +298,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_4r6xf")
 
 [node name="Plane_001_Padik_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_suxke")
 skeleton = NodePath("")
 
@@ -303,6 +308,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_hvmj7")
 
 [node name="Plane_001_roof_0" type="MeshInstance3D" parent="root"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_67sdw")
 skeleton = NodePath("")
 

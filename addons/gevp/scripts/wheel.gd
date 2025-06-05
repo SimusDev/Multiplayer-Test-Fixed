@@ -78,6 +78,9 @@ var beam_axle := 0.0
 var vehicle : Vehicle
 
 func _process(delta : float) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if wheel_node:
 		wheel_node.position.y = minf(0.0, -spring_current_length)
 		if not is_zero_approx(beam_axle):

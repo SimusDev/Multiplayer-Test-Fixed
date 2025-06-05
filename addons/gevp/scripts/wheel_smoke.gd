@@ -9,11 +9,8 @@ func _process(delta):
 	if is_instance_valid(vehicle):
 		for wheel in vehicle.wheel_array:
 			if absf(wheel.slip_vector.x) > lateral_slip_threshold or absf(wheel.slip_vector.y) > longitudinal_slip_threshold:
-				emit_smoke_sync(wheel)
+				emit_smoke(wheel)
 
-func emit_smoke_sync(_wheel):
-	SD_Multiplayer.sync_call_function(self, emit_smoke, [_wheel])
-#поч не работает!! точняк
 func emit_smoke(_wheel):
 	if _wheel:
 		var smoke_transform : Transform3D = _wheel.global_transform

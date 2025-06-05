@@ -804,6 +804,7 @@ points = PackedVector3Array(-680, -3673.01, 175.79, -318.833, -3980, 175.79, -68
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 0, 0)
 
 [node name="house18_wall w_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_u52dc")
 skeleton = NodePath("")
 
@@ -813,6 +814,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_yxmei")
 
 [node name="house18_balcony face_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_p7hb2")
 skeleton = NodePath("")
 
@@ -822,6 +824,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xcnng")
 
 [node name="house18_balcony left_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_vcq03")
 skeleton = NodePath("")
 
@@ -831,6 +834,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_om0eq")
 
 [node name="house18_balcony right_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_eym7v")
 skeleton = NodePath("")
 
@@ -840,6 +844,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_r3ge5")
 
 [node name="house18_number color_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_rqvdg")
 skeleton = NodePath("")
 
@@ -849,6 +854,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_tvn2t")
 
 [node name="house18_stairs rock_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_lic7j")
 skeleton = NodePath("")
 
@@ -858,6 +864,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_56yh7")
 
 [node name="house18_stairs metal_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_42d4u")
 skeleton = NodePath("")
 
@@ -867,6 +874,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_lr1qc")
 
 [node name="house18_extra door_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_3t6og")
 skeleton = NodePath("")
 
@@ -876,6 +884,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_dug32")
 
 [node name="house18_main door_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_m4kge")
 skeleton = NodePath("")
 
@@ -885,6 +894,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_qstcn")
 
 [node name="house18_down wall_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_82mlg")
 skeleton = NodePath("")
 
@@ -894,6 +904,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ec7fi")
 
 [node name="house18_number_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_bnnca")
 skeleton = NodePath("")
 
@@ -903,6 +914,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_whkh3")
 
 [node name="house18_stairs top_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_te7nq")
 skeleton = NodePath("")
 
@@ -912,6 +924,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_k16nc")
 
 [node name="house18_stairs side_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_olp2q")
 skeleton = NodePath("")
 
@@ -921,6 +934,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_apqif")
 
 [node name="house18_wall o_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_ios10")
 skeleton = NodePath("")
 
@@ -930,6 +944,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_qs1f4")
 
 [node name="house18_wall y_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_asxbb")
 skeleton = NodePath("")
 
@@ -939,6 +954,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_hwyfk")
 
 [node name="house18_window 2l_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_05ylu")
 skeleton = NodePath("")
 
@@ -948,6 +964,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_76fhe")
 
 [node name="house18_window 2w_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_qmver")
 skeleton = NodePath("")
 
@@ -957,6 +974,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_abaar")
 
 [node name="house18_window 1l_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_d48ip")
 skeleton = NodePath("")
 
@@ -966,6 +984,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_vacgq")
 
 [node name="house18_window 1w_0" type="MeshInstance3D" parent="house18"]
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_ywwkx")
 skeleton = NodePath("")
 
