@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://4pq8inge7t7b"]
+
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="1_60fq7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snda6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[node name="UserPrompt" type="RichTextLabel"]
+clip_contents = false
+custom_minimum_size = Vector2(50, 0)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme_override_fonts/mono_font = ExtResource("1_60fq7")
+theme_override_font_sizes/mono_font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxEmpty_snda6")
+bbcode_enabled = true
+text = "Why are my pixel art sprites blurry? How do I fix that?"
+fit_content = true
+context_menu_enabled = true
+selection_enabled = true

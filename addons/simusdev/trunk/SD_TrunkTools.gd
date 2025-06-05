@@ -6,7 +6,7 @@ var canvas: SD_TrunkCanvas
 
 const TOOLS_PATH: String = "res://addons/simusdev/tools/"
 
-var _available_tools: Array[String] = []
+var _available_tools: Dictionary[String, String] = {}
 
 func _ready() -> void:
 	console = SimusDev.console
@@ -14,9 +14,7 @@ func _ready() -> void:
 	
 	for path in SD_FileSystem.get_files_with_extension_from_directory(TOOLS_PATH, SD_FileExtensions.EC_SCENE):
 		if path is String:
-			var tool: String = path.get_file()
-			_available_tools.append(tool) 
-			console.write_from_object(self, "TOOL AVAILABLE: %s; USE tools.open %s FOR OPEN THE INTERFACE!" % [tool, tool], SD_ConsoleCategories.CATEGORY.WARNING)
+			register_tool(path)
 
 	var commands: Array[SD_ConsoleCommand] = [
 		console.create_command("tools.open"),
@@ -28,8 +26,23 @@ func _ready() -> void:
 func get_tool_canvas() -> CanvasLayer:
 	return canvas.get_layer(1)
 
-func load_tool_scene(path: String) -> PackedScene:
-	var actual_path: String = TOOLS_PATH.path_join(path)
+func register_tool(scene_path: String) -> void:
+	var scene: PackedScene = load(scene_path)
+	if scene:
+		var tool: String = scene_path.get_basename().get_file()
+		_available_tools[tool] = scene_path
+		console.write_from_object(self, "TOOL REGISTERED!: %s; USE tools.open %s FOR OPEN THE INTERFACE!" % [tool, tool], SD_ConsoleCategories.CATEGORY.WARNING)
+	else:
+		console.write_from_object(self, "FAILED TO REGISTER TOOL: %s" % [scene_path], SD_ConsoleCategories.CATEGORY.WARNING)
+
+func register_tool_from_scene(scene: PackedScene) -> void:
+	register_tool(scene.resource_path)
+
+func load_tool_scene(tool_path: String) -> PackedScene:
+	var actual_path: String = _available_tools.get(tool_path, "")
+	if actual_path.is_empty():
+		return
+	
 	var loaded: PackedScene = load(actual_path)
 	if not loaded:
 		console.write_from_object(self, "failed to load tool scene: %s" % [actual_path], SD_ConsoleCategories.CATEGORY.ERROR)

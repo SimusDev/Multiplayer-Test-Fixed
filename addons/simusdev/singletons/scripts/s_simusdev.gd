@@ -27,6 +27,7 @@ var ui := SD_TrunkUI.new()
 var cursor := SD_TrunkCursor.new()
 
 var multiplayerAPI: SD_MultiplayerSingleton
+var network: SD_NetworkSingleton
 
 signal process(delta: float)
 signal physics_process(delta: float)
@@ -67,12 +68,17 @@ func _ready() -> void:
 	
 	tools._ready()
 	
+	ui._ready()
+	
 	multiplayerAPI = SD_MultiplayerSingleton.new()
 	multiplayerAPI.tree_entered.connect(
 		func():
 			multiplayerAPI.name = "Multiplayer"
 	)
 	add_child(multiplayerAPI)
+	
+	network = SD_NetworkSingleton.new()
+	add_child(network)
 	
 	_initialize_commands()
 	
@@ -114,3 +120,10 @@ func quit(exit_code: int = 0) -> void:
 
 func _notification(what: int) -> void:
 	on_notification.emit(what)
+
+func project_get_or_set_setting(setting: String, default_value: Variant = null) -> Variant:
+	var path: String = "_SimusDev/".path_join(setting)
+	if ProjectSettings.has_setting(path):
+		return ProjectSettings.get_setting(path)
+	ProjectSettings.set_setting(path, default_value)
+	return default_value

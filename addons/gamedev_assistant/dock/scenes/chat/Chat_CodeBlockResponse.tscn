@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cowl5cff78b7i"]
+
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="1_6xny8"]
+[ext_resource type="CodeHighlighter" uid="uid://148d1ur080wd" path="res://addons/gamedev_assistant/dock/scenes/chat/Chat_CodeBlockUser.tres" id="2_ca01y"]
+[ext_resource type="Script" uid="uid://bka8wxt5q0vwi" path="res://addons/gamedev_assistant/scripts/chat/copy_button.gd" id="3_lskks"]
+
+[node name="ChatCodeBlock" type="CodeEdit"]
+clip_contents = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 416.0
+grow_horizontal = 2
+theme_override_colors/background_color = Color(0, 0, 0, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_6xny8")
+text = "# New file: res://scripts/Health.gd
+extends Node
+
+@export var max_health: int = 100
+var current_health: int = max_health
+
+func take_damage(amount: int) -> void:
+    current_health -= amount
+    if current_health <= 0:
+        die()
+
+func heal(amount: int) -> void:
+    current_health = min(current_health + amount, max_health)
+
+func die() -> void:
+    print(\"Character has died!\")
+    # Add any death logic here, like playing an animation or removing the node."
+editable = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_fit_content_height = true
+syntax_highlighter = ExtResource("2_ca01y")
+highlight_all_occurrences = true
+script = ExtResource("3_lskks")
+
+[node name="CopyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 4.0
+offset_right = -4.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 10
+text = "Copy"

@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/simusdev/icons/Groups.svg")
 extends Node
 class_name SD_State
@@ -7,6 +8,10 @@ class_name SD_State
 var _state_machine: SD_NodeStateMachine
 
 signal transitioned()
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 static func create(state_id: String) -> SD_State:
 	var state := SD_State.new()

@@ -18,16 +18,22 @@ func _ready() -> void:
 	_ui.interface_opened.connect(_on_interface_opened_)
 	_ui.interface_closed.connect(_on_interface_closed_)
 	
-	_ui.get_active_input().on_action_just_pressed.connect(_on_action_just_pressed)
-	
 	target.hide()
 	
 	if open_at_start:
 		open()
 
+func _exit_tree() -> void:
+	close()
+
 func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
 	if action == input_action:
 		open()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _ui.is_interface_active(self):
+		if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
+			close()
 
 func _on_interface_opened_(node: Node) -> void:
 	interface_opened.emit(node)

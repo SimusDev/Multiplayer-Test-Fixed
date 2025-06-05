@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bhrytwbaeivwh"]
+
+[node name="ChatActionsContainer" type="VBoxContainer"]
+theme_override_constants/separation = 6

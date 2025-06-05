@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://n3r0klkoo635"]
+[gd_scene load_steps=10 format=3 uid="uid://n3r0klkoo635"]
 
 [ext_resource type="Script" uid="uid://cyg77uxj44n4v" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.gd" id="1_jpe83"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="2_55nsh"]
+[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="6_jqpds"]
 
 [sub_resource type="Animation" id="Animation_tm2lb"]
 length = 0.001
@@ -145,3 +146,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_gpi6l")
 }
 autoplay = "idle"
+
+[node name="sd_multiplayer_synchronizer" type="Node" parent="." index="4"]
+script = ExtResource("6_jqpds")
+metadata/_custom_type_script = "uid://cvishs4j8htsj"

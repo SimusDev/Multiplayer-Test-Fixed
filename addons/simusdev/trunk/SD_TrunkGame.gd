@@ -63,3 +63,13 @@ func pause_subtract_priority() -> void:
 
 func pause_get_priority() -> int:
 	return _pause_priority
+
+
+static func get_node_all_children(node: Node) -> Array[Node]:
+	var children: Array[Node] = []
+	
+	for child in node.get_children():
+		children.append(child)
+		children.append_array(get_node_all_children(child))
+	
+	return children

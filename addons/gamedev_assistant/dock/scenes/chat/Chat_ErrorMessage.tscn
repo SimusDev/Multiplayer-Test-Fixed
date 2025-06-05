@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://f26njca6dwvx"]
+
+[ext_resource type="PackedScene" uid="uid://fcffys8guxu7" path="res://addons/gamedev_assistant/dock/scenes/chat/Chat_ServerResponse.tscn" id="1_8skgi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8skgi"]
+bg_color = Color(0.29, 0.0725, 0.0725, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.290196, 0.0705882, 0.0705882, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="ErrorMessage" instance=ExtResource("1_8skgi")]
+theme_override_styles/normal = SubResource("StyleBoxFlat_8skgi")
+text = "Error message will go here."

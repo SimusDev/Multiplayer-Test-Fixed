@@ -1,0 +1,46 @@
+[gd_resource type="CodeHighlighter" format=3 uid="uid://148d1ur080wd"]
+
+[resource]
+number_color = Color(0.709804, 0.807843, 0.658824, 1)
+symbol_color = Color(0.852169, 0.726175, 0.315143, 1)
+function_color = Color(1, 0.384648, 0.995953, 1)
+member_variable_color = Color(0.807843, 0.568627, 0.470588, 1)
+keyword_colors = {
+"Array": "#569cd6",
+"Color": "#569cd6",
+"Dictionary": "#569cd6",
+"String": "#569cd6",
+"Vector2": "#569cd6",
+"Vector3": "#569cd6",
+"bool": "#569cd6",
+"break": "#569cd6",
+"case": "#569cd6",
+"class": "#569cd6",
+"const": "#569cd6",
+"continue": "#569cd6",
+"elif": "#569cd6",
+"else": "#569cd6",
+"enum": "#569cd6",
+"extends": "#569cd6",
+"float": "#569cd6",
+"for": "#569cd6",
+"func": "#569cd6",
+"if": "#569cd6",
+"in": "#569cd6",
+"int": "#569cd6",
+"is": "#569cd6",
+"match": "#569cd6",
+"null": "#569cd6",
+"return": "#569cd6",
+"self": "#569cd6",
+"signal": "#569cd6",
+"static": "#569cd6",
+"var": "#569cd6",
+"void": "#569cd6",
+"while": "#569cd6"
+}
+color_regions = {
+"\" \"": Color(4.62055e-06, 0.820026, 6.54578e-06, 1),
+"#": Color(0.604464, 0.604464, 0.604464, 1),
+"' '": Color(0, 0.819608, 0, 1)
+}

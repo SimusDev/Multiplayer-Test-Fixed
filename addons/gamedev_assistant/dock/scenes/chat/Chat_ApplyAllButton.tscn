@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccov6unklra5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k45d5"]
+bg_color = Color(0.130272, 0.417143, 0.198028, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wd7x"]
+bg_color = Color(7.21961e-07, 0.580703, 0.345097, 1)
+
+[node name="ActionButton" type="Button"]
+offset_right = 107.0
+offset_bottom = 23.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_k45d5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2wd7x")
+text = "✓Apply All"
+text_overrun_behavior = 3

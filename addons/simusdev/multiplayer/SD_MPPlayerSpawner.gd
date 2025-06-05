@@ -52,11 +52,16 @@ func local_spawn(player: SD_MultiplayerPlayer) -> void:
 	var generated_name: String = str(player.get_peer_id())
 	instance.tree_entered.connect(
 		func():
-			instance.name = generated_name.validate_node_name()
-			
-			var spawn_point: Node = pick_spawn_point()
-			instance.set_global_position(spawn_point.get_global_position())
-			spawned.emit(player, instance)
+			if instance:
+				instance.name = generated_name.validate_node_name()
+				
+				if instance.has_method("set_global_position"):
+					var spawn_point: Node = pick_spawn_point()
+					if spawn_point:
+						if spawn_point.has_method("set_global_position"):
+							instance.set_global_position(spawn_point.get_global_position())
+					
+				spawned.emit(player, instance)
 	)
 	
 	parent.call_deferred("add_child", instance)

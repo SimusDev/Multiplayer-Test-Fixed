@@ -71,7 +71,35 @@ func _ready() -> void:
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	
+	
+	var commands: Array[SD_ConsoleCommand] = [
+		console.create_command("multiplayer.name", _username),
+		console.create_command("connect"),
+		console.create_command("disconnect"),
+	]
+	
+	
+	for cmd in commands:
+		cmd.executed.connect(_on_command_executed.bind(cmd))
 
+func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
+	
+	match cmd.get_code():
+		"multiplayer.name":
+			
+			set_username(cmd.get_value_as_string())
+		"connect":
+			var args: Array = cmd.get_arguments()
+			if args.size() >= 2:
+				var ip: String = args[0]
+				var port: int = int(args[1])
+				create_client(ip, port)
+		"disconnect":
+			if is_server():
+				close_server()
+			else:
+				close_client()
 
 func _on_server_disconnected() -> void:
 	server_disconnected.emit()
@@ -205,10 +233,11 @@ func close_server() -> void:
 	_is_connected_to_server = false
 	server_closed.emit()
 
-func create_server(port: int) -> void:
+func create_server(port: int, dedicated: bool = false) -> void:
 	if _is_server_created:
-		
 		return
+	
+	set_dedicated_server(dedicated)
 	
 	var err = _peer.create_server(port)
 	if err == OK:
@@ -222,9 +251,9 @@ func create_server(port: int) -> void:
 		server_created.emit(port)
 		
 		console.write_from_object(self, "SERVER created with port: %s" % [str(port)], SD_ConsoleCategories.CATEGORY.WARNING)
-		console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
 		
 		if not is_dedicated_server():
+			console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
 			var data: Dictionary = {}
 			data["username"] = get_username()
 			data["peer_id"] = multiplayer.get_unique_id()
@@ -299,7 +328,7 @@ func _on_peer_disconnected(id: int) -> void:
 	_delete_player(id)
 
 func kick_peer(peer: int) -> void:
-	_kicked_rpc.rpc(peer)
+	_kicked_rpc.rpc_id(peer)
 
 func kick(player: SD_MultiplayerPlayer) -> void:
 	kick_peer(player.get_peer_id())
@@ -583,12 +612,11 @@ func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant
 		return packet
 	
 	if object is Resource:
-		if object.resource_local_to_scene:
-			packet.set("type", VARIABLE_TYPE.RESOURCE)
+		packet.set("type", VARIABLE_TYPE.RESOURCE)
+		if object.resource_local_to_scene or object.resource_path.is_empty():
 			packet.set("var_to_str", var_to_str(object))
 		else:
 			packet.set("resource_path", object.resource_path)
-		
 		return packet
 	
 	if object is Object:
@@ -651,10 +679,7 @@ func deserialize_var_from_packet(serialized: Variant) -> Variant:
 		return result
 	
 	if serialized.has("property_node_path"):
-		var node: Node = get_node_or_null("property_node_path")
-		if node == null:
-			print(serialized["property_node_path"])
-			
+		var node: Node = get_node_or_null(serialized["property_node_path"])
 		return node
 	
 	var use_str_to_var: bool = serialized.has("var_to_str")
@@ -709,9 +734,11 @@ func _request_and_sync_var_rpc_unreliable(serialized: Variant, reliable: bool) -
 	_request_and_sync_var_local(serialized, reliable)
 
 func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	if not is_active() or is_server():
+	if not is_active():
 		node.callv(callable.get_method(), args)
 		return
+	
+	node.callv(callable.get_method(), args)
 	
 	for peer in get_connected_peers():
 		sync_call_function_on_peer(peer, node, callable, args, reliable)
@@ -720,7 +747,10 @@ func sync_call_function_on_server(node: Node, callable: Callable, args: Array = 
 	sync_call_function_on_peer(HOST_ID, node, callable, args, reliable)
 
 func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array, reliable: bool = true) -> void:
-	if not is_active():
+	if not get_connected_peers().has(peer):
+		return
+	
+	if SD_Multiplayer.get_unique_id() == peer:
 		node.callv(callable.get_method(), args)
 		return
 	
@@ -729,6 +759,9 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 		str(callable.get_method()),
 		serialize_var_into_packet(args),
 	]
+	
+	#if node is W_InteractableArea3D:
+	#	print(packet)
 	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 	if reliable:
@@ -745,7 +778,7 @@ func _sync_call_function_local(serialized: Variant) -> void:
 		var method: String = deserialized[1]
 		var args: Array = deserialize_var_from_packet(deserialized[2])
 		node.callv(method, args)
-
+	
 
 @rpc("any_peer", "reliable")
 func _sync_call_function_recieve_rpc(serialized: Variant) -> void:
@@ -756,3 +789,10 @@ func _sync_call_function_recieve_rpc_unreliable(serialized: Variant) -> void:
 	_sync_call_function_local(serialized)
 
 #endregion
+
+
+func set_node_multiplayer_authority_recursive(node: Node, id: int) -> void:
+	node.set_multiplayer_authority(id)
+	for child in SD_TrunkGame.get_node_all_children(node):
+		child.set_multiplayer_authority(id)
+	

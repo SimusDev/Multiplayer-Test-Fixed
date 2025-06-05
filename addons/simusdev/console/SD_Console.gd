@@ -17,6 +17,8 @@ var _settings := SD_Settings.new()
 
 var _commands: Array[SD_ConsoleCommand] = []
 
+var gd_print: bool = true
+
 func __on_command_executed(command: SD_ConsoleCommand) -> void:
 	on_command_executed.emit(command)
 
@@ -102,6 +104,10 @@ func write(text, category: int = SD_ConsoleCategories.CATEGORY.DEFAULT) -> SD_Co
 	put_message_to_buffer(message)
 	on_write.emit(message)
 	update_console()
+	
+	if gd_print:
+		var print_text: String = message.get_as_string() 
+		print(print_text)
 	
 	return message
 

@@ -46,11 +46,14 @@ func _enabled_status_changed() -> void:
 	set_mouse_captured(enabled)
 
 func _ready() -> void:
-	if not is_authority():
+	if not is_authority() or SimusDev.ui.has_active_interface() or console.is_visible():
 		add_disable_priority()
 		return
 	
+	
+	
 	console.visibility_changed.connect(_on_console_visibility_changed)
+	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	
 	if make_current_at_start:
 		make_current()
@@ -88,6 +91,12 @@ func _on_console_visibility_changed() -> void:
 	else:
 		subtract_disable_priority()
 	
+
+func _on_interface_opened_or_closed(node: Node, status: bool) -> void:
+	if status:
+		add_disable_priority()
+	else:
+		subtract_disable_priority()
 
 func set_mouse_captured(value: bool) -> void:
 	var cursor: SD_TrunkCursor = SimusDev.cursor

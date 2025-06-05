@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://40rk0erft7h1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k45d5"]
+bg_color = Color(0, 0.121569, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wd7x"]
+bg_color = Color(0.000544648, 0.278698, 0.892638, 1)
+
+[node name="ActionButton" type="Button"]
+offset_right = 107.0
+offset_bottom = 23.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_k45d5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2wd7x")
+text = "Action Button"
+text_overrun_behavior = 3

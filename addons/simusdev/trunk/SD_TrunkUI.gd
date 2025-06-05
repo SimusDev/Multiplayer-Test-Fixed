@@ -4,7 +4,18 @@ class_name SD_TrunkUI
 signal interface_opened(node: Node)
 signal interface_closed(node: Node)
 
+signal interface_opened_or_closed(node: Node, status: bool)
+
 var _active_interfaces: Array[Node]
+
+const ACTION_CLOSE_MENU: String = "sd_ui_close_menu"
+
+func _ready() -> void:
+	InputMap.add_action(ACTION_CLOSE_MENU)
+	
+	var event: InputEventKey = InputEventKey.new()
+	event.keycode = KEY_ESCAPE
+	InputMap.action_add_event(ACTION_CLOSE_MENU, event)
 
 func open_interface(node: Node) -> void:
 	if _active_interfaces.has(node):
@@ -12,6 +23,7 @@ func open_interface(node: Node) -> void:
 	
 	_active_interfaces.append(node)
 	interface_opened.emit(node)
+	interface_opened_or_closed.emit(node, true)
 	_update_UI()
 
 func close_interface(node: Node) -> void:
@@ -20,6 +32,7 @@ func close_interface(node: Node) -> void:
 	
 	_active_interfaces.erase(node)
 	interface_closed.emit(node)
+	interface_opened_or_closed.emit(node, false)
 	_update_UI()
 
 func close_last_interface() -> void:

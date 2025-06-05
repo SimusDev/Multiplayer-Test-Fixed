@@ -1,0 +1,508 @@
+[gd_scene load_steps=26 format=3 uid="uid://86xn8h0l6u6s"]
+
+[ext_resource type="Script" uid="uid://dsbuv1kea3j66" path="res://addons/gamedev_assistant/scripts/dock/gamedev_assistant_dock.gd" id="1_fmnsu"]
+[ext_resource type="Texture2D" uid="uid://dijehmxusim6k" path="res://addons/gamedev_assistant/dock/icons/gear.png" id="2_jb8vd"]
+[ext_resource type="Script" uid="uid://b3kd7kh6fnlbd" path="res://addons/gamedev_assistant/scripts/conversation/conversations_screen.gd" id="2_ohrko"]
+[ext_resource type="Texture2D" uid="uid://ejw3u8t47v33" path="res://addons/gamedev_assistant/dock/icons/plus.png" id="2_t26tc"]
+[ext_resource type="Script" uid="uid://dtkk6n64ct70v" path="res://addons/gamedev_assistant/scripts/chat/chat_screen.gd" id="3_kp5t1"]
+[ext_resource type="Texture2D" uid="uid://g1f7gd35u17" path="res://addons/gamedev_assistant/dock/icons/menuList.png" id="3_lxmj1"]
+[ext_resource type="Script" uid="uid://bb0yarg8jgq4u" path="res://addons/gamedev_assistant/scripts/dock/settings_screen.gd" id="4_jb8vd"]
+[ext_resource type="Script" uid="uid://d7jh5big6ggc" path="res://addons/gamedev_assistant/scripts/chat/chat_button.gd" id="5_6lodt"]
+[ext_resource type="Script" uid="uid://c3ys0cqh4gtnc" path="res://addons/gamedev_assistant/scripts/dock/conversations_button.gd" id="7_avdbs"]
+[ext_resource type="PackedScene" uid="uid://fcffys8guxu7" path="res://addons/gamedev_assistant/dock/scenes/chat/Chat_ServerResponse.tscn" id="9_h0b4w"]
+[ext_resource type="Script" uid="uid://dhipva1pmins2" path="res://addons/gamedev_assistant/scripts/dock/settings_button.gd" id="9_xllvu"]
+[ext_resource type="Script" uid="uid://ckkd1uf0atm1q" path="res://addons/gamedev_assistant/scripts/api_manager.gd" id="10_fmf78"]
+[ext_resource type="Script" uid="uid://6q3xi5e8i86g" path="res://addons/gamedev_assistant/scripts/chat/prompt_input.gd" id="11_cbo7j"]
+[ext_resource type="Script" uid="uid://be002avue7xf2" path="res://addons/gamedev_assistant/scripts/conversation/conversation_manager.gd" id="11_h0b4w"]
+[ext_resource type="Script" uid="uid://3duvuqdp65g0" path="res://addons/gamedev_assistant/scripts/chat/add_context.gd" id="12_jm0fe"]
+[ext_resource type="Script" uid="uid://d0n5drw21skub" path="res://addons/gamedev_assistant/scripts/chat/reasoning_toggle.gd" id="13_ad2kt"]
+[ext_resource type="Script" uid="uid://b16blk0blngd5" path="res://addons/gamedev_assistant/scripts/actions/action_manager.gd" id="13_iy0wk"]
+[ext_resource type="Texture2D" uid="uid://ce06f4f0gdl0c" path="res://addons/gamedev_assistant/dock/icons/arrowUp.png" id="15_ycfa3"]
+[ext_resource type="Script" uid="uid://dv51ks2tllrsi" path="res://addons/gamedev_assistant/scripts/chat/switch_mode.gd" id="16_f477a"]
+[ext_resource type="Script" uid="uid://681v0cvtt4g5" path="res://addons/gamedev_assistant/scripts/dock/custom_instructions.gd" id="19_ycfa3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f477a"]
+bg_color = Color(0.141176, 0.176471, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xllvu"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycfa3"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psgc1"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cbo7j"]
+
+[node name="Assistant" type="Control"]
+custom_minimum_size = Vector2(10, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fmnsu")
+metadata/_edit_vertical_guides_ = [-254.0]
+
+[node name="APIManager" type="Node" parent="."]
+script = ExtResource("10_fmf78")
+
+[node name="ValidateToken" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="SendMessage" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="GetConversationsList" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="GetConversation" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="DeleteConversation" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="ToggleFavorite" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="CheckUpdates" type="HTTPRequest" parent="APIManager"]
+timeout = 30.0
+
+[node name="TrackAction" type="HTTPRequest" parent="APIManager"]
+
+[node name="RatingAction" type="HTTPRequest" parent="APIManager"]
+
+[node name="ConversationManager" type="Node" parent="."]
+script = ExtResource("11_h0b4w")
+
+[node name="ActionManager" type="Node" parent="."]
+script = ExtResource("13_iy0wk")
+
+[node name="Header" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+
+[node name="ChatButton" type="Button" parent="Header"]
+modulate = Color(0.371167, 1, 0.23, 1)
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+tooltip_text = "Start new conversation"
+theme_override_styles/normal = SubResource("StyleBoxFlat_f477a")
+icon = ExtResource("2_t26tc")
+icon_alignment = 1
+script = ExtResource("5_6lodt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="ConversationsButton" type="Button" parent="Header/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "My Conversations"
+theme_override_styles/normal = SubResource("StyleBoxFlat_xllvu")
+icon = ExtResource("3_lxmj1")
+icon_alignment = 1
+script = ExtResource("7_avdbs")
+
+[node name="SettingsButton" type="Button" parent="Header/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "Settings"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ycfa3")
+icon = ExtResource("2_jb8vd")
+icon_alignment = 1
+script = ExtResource("9_xllvu")
+
+[node name="ScreenText" type="Label" parent="Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_right = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New Conversation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen_Conversations" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ohrko")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Screen_Conversations"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen_Conversations/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ErrorMessage" type="RichTextLabel" parent="Screen_Conversations/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 0.499129, 0.460804, 1)
+layout_mode = 2
+bbcode_enabled = true
+text = "An error has occurred!"
+fit_content = true
+
+[node name="ProcessMessage" type="RichTextLabel" parent="Screen_Conversations/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 0.910667, 0.33, 1)
+layout_mode = 2
+bbcode_enabled = true
+text = "Deleting conversation..."
+fit_content = true
+
+[node name="FavouritesHeader" type="RichTextLabel" parent="Screen_Conversations/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Starred[/b]"
+fit_content = true
+
+[node name="AllConversationsHeader" type="RichTextLabel" parent="Screen_Conversations/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]All Conversations[/b]"
+fit_content = true
+
+[node name="DeleteConfirmation" type="ConfirmationDialog" parent="Screen_Conversations"]
+title = "Delete Conversation"
+initial_position = 4
+size = Vector2i(250, 130)
+ok_button_text = "Delete"
+dialog_text = "Are you sure you want to delete this conversation?"
+dialog_autowrap = true
+
+[node name="Screen_Chat" type="Control" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_kp5t1")
+
+[node name="Body" type="ScrollContainer" parent="Screen_Chat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessagesContainer" type="VBoxContainer" parent="Screen_Chat/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="ThinkingLabel" parent="Screen_Chat/Body/MessagesContainer" instance=ExtResource("9_h0b4w")]
+visible = false
+layout_mode = 2
+text = "Thinking . ."
+
+[node name="RatingContainer" type="HBoxContainer" parent="Screen_Chat/Body/MessagesContainer"]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Screen_Chat/Body/MessagesContainer/RatingContainer"]
+layout_mode = 2
+text = "Rate response"
+
+[node name="UpButton" type="Button" parent="Screen_Chat/Body/MessagesContainer/RatingContainer"]
+layout_mode = 2
+text = "👍"
+
+[node name="DownButton" type="Button" parent="Screen_Chat/Body/MessagesContainer/RatingContainer"]
+layout_mode = 2
+text = "👎"
+
+[node name="Footer" type="Control" parent="Screen_Chat"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -99.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PromptInput" type="TextEdit" parent="Screen_Chat/Footer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_right = -78.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Type your message here (Enter to send, Shift+Enter for new line)
+To include scripts you need to either paste the code here, use @OpenScripts,
+ or select the code in the editor + right click for contextual menu \"Add to Chat\"
+The file tree and open scene nodes are automatically included"
+placeholder_text = "Let's make that game"
+wrap_mode = 1
+autowrap_mode = 2
+script = ExtResource("11_cbo7j")
+
+[node name="SendPromptButton" type="Button" parent="Screen_Chat/Footer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -29.0
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_psgc1")
+icon = ExtResource("15_ycfa3")
+icon_alignment = 1
+
+[node name="Bottom" type="HBoxContainer" parent="Screen_Chat"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.982
+anchor_bottom = 0.982
+offset_top = -21.038
+offset_right = 404.0
+offset_bottom = 9.96198
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Mode" type="OptionButton" parent="Screen_Chat/Bottom"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "1) CHAT MODE:  generalist assistant to help you make games and learn Godot
+2) AGENT MODE: action-oriented beast, buckle up!
+
+Both modes will provide 1-click actions."
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "Chat"
+popup/item_0/id = 2
+popup/item_1/text = "Agent"
+popup/item_1/id = 1
+script = ExtResource("16_f477a")
+
+[node name="AddContext" type="OptionButton" parent="Screen_Chat/Bottom"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Add extra content to the chat. Your open scene nodes and file tree are automatically included"
+selected = 0
+fit_to_longest_item = false
+item_count = 6
+popup/item_0/text = "Add.."
+popup/item_0/id = 0
+popup/item_1/text = "@OpenScripts"
+popup/item_1/id = 4
+popup/item_2/text = "@Output"
+popup/item_2/id = 2
+popup/item_3/text = "@Docs"
+popup/item_3/id = 3
+popup/item_4/text = "@GitDiff"
+popup/item_4/id = 4
+popup/item_5/text = "@ProjectSettings"
+popup/item_5/id = 5
+script = ExtResource("12_jm0fe")
+
+[node name="ReasoningToggle" type="CheckButton" parent="Screen_Chat/Bottom"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Use a more powerful LLM. It might take minutes to get a response"
+text = "Reason"
+script = ExtResource("13_ad2kt")
+
+[node name="LinkButton" type="LinkButton" parent="Screen_Chat/Bottom"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Feedback"
+uri = "https://forms.zenva.com/zenvaptyltd/form/GameDevAssistantFeedbackForm/formperma/FtlM2J26ia6bZRvUm3EZ5oU9VK7RUQmzkYOzs4xmyIQ"
+
+[node name="Screen_Settings" type="Control" parent="."]
+visible = false
+clip_children = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 54.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_jb8vd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen_Settings"]
+clip_children = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="EnterTokenPrompt" type="Label" parent="Screen_Settings/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.944, 0.44, 1)
+text = "To use GameDev assistant, please enter an API key."
+autowrap_mode = 2
+
+[node name="TokenValidationSuccess" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]
+visible = false
+modulate = Color(0.26144, 0.96, 0.2496, 1)
+layout_mode = 2
+bbcode_enabled = true
+text = "You are already in the latest version"
+fit_content = true
+
+[node name="TokenValidationError" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]
+visible = false
+modulate = Color(1, 0.499129, 0.460804, 1)
+layout_mode = 2
+bbcode_enabled = true
+text = "Current client version is not valid. Click \"Manage Account\" to download the latest version"
+fit_content = true
+
+[node name="TokenValidationProgress" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]
+visible = false
+modulate = Color(1, 0.886333, 0.38, 1)
+layout_mode = 2
+bbcode_enabled = true
+text = "Connecting.."
+fit_content = true
+
+[node name="TokenLabel" type="Label" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Token"
+vertical_alignment = 1
+
+[node name="Token_Input" type="LineEdit" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEzOCwiaWF0IjoxNzQzNzQ0NjExfQ.sMoZCqQLRtnRpTS9yoH3UD17zOXFACeb4v8A4bdG4Hs"
+
+[node name="HideToken" type="CheckButton" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Hide Token"
+
+[node name="ValidateButton" type="Button" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="VSeparator" type="VSeparator" parent="Screen_Settings/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="AccountButton" type="Button" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Manage Account"
+
+[node name="UpdatesButton" type="Button" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Check for Updates"
+icon = SubResource("CompressedTexture2D_cbo7j")
+
+[node name="VSeparator2" type="VSeparator" parent="Screen_Settings/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CustomLabel" type="Label" parent="Screen_Settings/VBoxContainer"]
+layout_mode = 2
+text = "Custom instructions (PREMIUM)"
+vertical_alignment = 1
+
+[node name="CustomInput" type="TextEdit" parent="Screen_Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+tooltip_text = "PREMIUM FEATURE. Custom instructions are one of the perks included in GameDev Assistant Pro."
+placeholder_text = "Any coding style requirements or must-have inclusions? Affects new conversations only"
+emoji_menu_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+scroll_fit_content_height = true
+script = ExtResource("19_ycfa3")
+max_length = 500
+
+[node name="VSeparator3" type="VSeparator" parent="Screen_Settings/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen_Settings/VBoxContainer"]
+clip_children = 1
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Terms" type="LinkButton" parent="Screen_Settings/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 5
+text = "Terms"
+uri = "https://app.gamedevassistant.com/terms-and-conditions"
+
+[node name="PrivacyPolicy" type="LinkButton" parent="Screen_Settings/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 5
+text = "Privacy Policy"
+uri = "https://academy.zenva.com/privacy-policy/"
+
+[node name="Copyright2" type="LinkButton" parent="Screen_Settings/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 5
+text = "©2025 Zenva"
+underline = 1
+uri = "https://academy.zenva.com/"

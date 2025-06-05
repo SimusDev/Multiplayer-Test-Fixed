@@ -11,9 +11,22 @@ var _last_node_path: NodePath
 
 var _init_path: NodePath
 
+static func find_in(object: Node) -> SD_WorldNodeInstanceSaver:
+	if object.has_meta("SD_WorldNodeInstanceSaver"):
+		return object.get_meta("SD_WorldNodeInstanceSaver")
+	return null
+
+static func find_above(node: Node) -> SD_WorldNodeInstanceSaver:
+	if SimusDev.get_tree().root == node:
+		return null
+	
+	var founded: SD_WorldNodeInstanceSaver = find_in(node)
+	if founded:
+		return founded
+	return find_above(node.get_parent())
+	
 func _ready() -> void:
 	super()
-	
 
 func _on_world_saver_loaded(data: SD_WorldSavedData) -> void:
 	super(data)
@@ -53,6 +66,8 @@ func __on_reparented() -> void:
 	get_saved_data().change_data_node_path(get_node_data(), str(node.get_path()))
 
 func _enter_tree() -> void:
+	node.set_meta("SD_WorldNodeInstanceSaver", self)
+	
 	if _init_path.is_empty():
 		_init_path = str(node.get_path())
 	

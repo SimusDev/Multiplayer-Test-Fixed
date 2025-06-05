@@ -12,7 +12,6 @@ var _synced_data: Dictionary[Node, Dictionary]
 var _synced_bases: Dictionary[Node, Array]
 
 
-
 func set_synced_data_property(node: Node, property: String, value: Variant) -> void:
 	var properties: Dictionary = get_synced_data_properties(node)
 	properties[property] = value
@@ -43,7 +42,10 @@ func get_synced_bases(node: Node) -> Array[SD_MPPSSyncedBase]:
 #region SIGNALS
 signal property_recieved(node: Node, property: String, value: Variant, from_peer: int)
 signal property_sent(node: Node, property: String, value: Variant, to_peer: int)
+
 #endregion
+
+
 
 func get_synced_data() -> Dictionary[Node, Dictionary]:
 	return _synced_data
@@ -61,6 +63,17 @@ func _ready() -> void:
 	
 	
 	for mp_property in properties:
+		init_property(mp_property)
+
+
+var _initialized_properties: Array[SD_MPPSSyncedBase] = []
+func init_property(mp_property: SD_MPPSSyncedBase) -> void:
+	if not _initialized_properties.has(mp_property):
+		_initialized_properties.append(mp_property)
+		
+		if not properties.has(mp_property):
+			properties.append(mp_property)
+		
 		var node: Node = get_node(mp_property.node_path)
 		if node:
 			get_synced_bases(node).append(mp_property)
@@ -72,6 +85,14 @@ func _ready() -> void:
 			if mp_property.sync_at_start:
 				synchronize(mp_property)
 
+func create_property(node: Node, properties: PackedStringArray) -> SD_MPPSSyncedProperty:
+	var path: NodePath = get_path_to(node)
+	var property: SD_MPPSSyncedProperty = SD_MPPSSyncedProperty.new()
+	property.node_path = path
+	for p in properties:
+		property.properties.append(p)
+	return property
+
 var _existable_nodes: Array[String] = []
 
 func synchronize_all() -> void:
@@ -80,6 +101,8 @@ func synchronize_all() -> void:
 	
 	for mp_property in properties:
 		synchronize(mp_property)
+	
+	
 
 func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 	var node: Node = get_node_or_null(mp_property.node_path)
@@ -104,7 +127,10 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 							
 							for property in mp_property.properties:
 								send_property_to_peer(node, property, node.get(property), peer, mp_property.reliable)
-						
+				else:
+					if mp_property is SD_MPPSSyncedProperty:
+						for property in mp_property.properties:
+							recieve_property_from_peer(node, property, get_multiplayer_authority(), mp_property.reliable)
 
 
 
@@ -204,7 +230,7 @@ func recieve_property_from_peer(node: Node, property: String, peer: int = SD_Mul
 func _recieve_property_from_peer_rpc_sender(path: NodePath, property: String, to_peer: int, reliable: bool = false) -> void:
 	var node: Node = get_node_or_null(path)
 	var sender_value: Variant = node.get(property)
-	SD_Multiplayer.sync_call_function_on_peer(to_peer, node, _recieve_property_from_peer_rpc_recieve, [path, property, sender_value, SD_Multiplayer.get_unique_id()], reliable)
+	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_property_from_peer_rpc_recieve, [path, property, sender_value, SD_Multiplayer.get_unique_id()], reliable)
 
 func _recieve_property_from_peer_rpc_recieve(path: NodePath, property: String, value: Variant, from_peer: int) -> void:
 	var node: Node = get_node_or_null(path)

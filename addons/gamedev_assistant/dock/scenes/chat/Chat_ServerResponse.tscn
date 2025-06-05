@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://fcffys8guxu7"]
+
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="1_f06mq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oxjf"]
+bg_color = Color(0.100258, 0.116839, 0.143369, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.101961, 0.117647, 0.145098, 1)
+corner_detail = 1
+
+[node name="ServerResponse" type="RichTextLabel"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/mono_font = ExtResource("1_f06mq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7oxjf")
+bbcode_enabled = true
+text = "AI Response will go here."
+fit_content = true
+context_menu_enabled = true
+selection_enabled = true

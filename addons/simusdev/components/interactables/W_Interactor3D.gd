@@ -14,6 +14,11 @@ signal interacted(with: W_InteractableArea3D)
 @onready var console: SD_TrunkConsole = SimusDev.console
 
 func _ready() -> void:
+	await root.ready
+	if not is_multiplayer_authority():
+		add_disable_priority()
+		return
+	
 	console.visibility_changed.connect(_on_console_visibility_changed)
 
 func _on_console_visibility_changed() -> void:

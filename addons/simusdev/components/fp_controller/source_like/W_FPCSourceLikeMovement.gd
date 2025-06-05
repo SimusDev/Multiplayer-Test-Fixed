@@ -93,15 +93,16 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
-	if not is_authority():
+	if not is_authority() or console.is_visible():
 		add_disable_priority()
 		return
-	#console.visibility_changed.connect(_on_console_visibility_changed)
+	console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if actor.is_on_floor():
 		state_machine.switch_by_name("ground")
 	else:
 		state_machine.switch_by_name("air")
+	
 
 func _on_console_visibility_changed() -> void:
 	if console.is_visible():

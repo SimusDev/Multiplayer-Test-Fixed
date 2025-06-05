@@ -43,6 +43,7 @@ func save_data(path: String = "save") -> SD_WorldSavedData:
 	var file_path: String = get_base_path().path_join(path) + EXTENSTION
 	
 	_data._saver = self
+	_data.path = path
 	
 	save_begin.emit(_data)
 	

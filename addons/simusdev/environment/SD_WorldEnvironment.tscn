@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://de0qb35isy256"]
 
-[ext_resource type="Environment" uid="uid://cpnr85e4ko18s" path="res://addons/simusdev/environment/environment.tres" id="1_364gc"]
+[ext_resource type="Environment" uid="uid://bja1px5xpb2s4" path="res://addons/simusdev/environment/environment.tres" id="1_364gc"]
 [ext_resource type="Script" uid="uid://ct0cluy2jd8bg" path="res://addons/simusdev/environment/SD_WorldEnvironment.gd" id="2_on5mi"]
 [ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="3_60syb"]
 [ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="4_4b6xu"]

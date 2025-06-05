@@ -3,6 +3,8 @@ class_name SD_WorldSavedData
 
 var _saver: SD_WorldSaver
 
+@export var path: String = ""
+
 @export var _nodes: Dictionary[String, SD_WorldSavedNodeData] = {}
 
 @export var _storage: Dictionary[String, Variant]

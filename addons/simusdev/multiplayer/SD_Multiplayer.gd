@@ -4,6 +4,8 @@ class_name SD_Multiplayer
 
 static var _singleton: SD_MultiplayerSingleton
 
+const SERVER_ID: int = 1
+
 func _init(s: SD_MultiplayerSingleton) -> void:
 	_singleton = s
 
@@ -40,8 +42,8 @@ static func get_peer() -> ENetMultiplayerPeer:
 static func close_server() -> void:
 	_singleton.close_server()
 
-static func create_server(port: int) -> void:
-	_singleton.create_server(port)
+static func create_server(port: int, dedicated: bool = false) -> void:
+	_singleton.create_server(port, dedicated)
 
 static func create_client(address: String, port: int) -> void:
 	_singleton.create_client(address, port)

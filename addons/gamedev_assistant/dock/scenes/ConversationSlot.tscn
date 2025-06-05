@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7qhi54a6gs56"]
+
+[ext_resource type="Script" uid="uid://b8v3r3ywc6t7m" path="res://addons/gamedev_assistant/scripts/conversation/conversation_slot.gd" id="1_shvhg"]
+[ext_resource type="Texture2D" uid="uid://dckknp2o131hn" path="res://addons/gamedev_assistant/dock/icons/cross.png" id="2_s3i7c"]
+[ext_resource type="Texture2D" uid="uid://cpt3juibjxg0o" path="res://addons/gamedev_assistant/dock/icons/star.png" id="3_2nvm5"]
+[ext_resource type="Script" uid="uid://cglpw3wpdughk" path="res://addons/gamedev_assistant/scripts/conversation/delete_button.gd" id="3_66tbf"]
+[ext_resource type="Script" uid="uid://drvwk61k0mvnq" path="res://addons/gamedev_assistant/scripts/conversation/favourite_button.gd" id="5_uqcyf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohrko"]
+bg_color = Color(0.678431, 0.278431, 0.278431, 1)
+
+[node name="ConversationSlot" type="Button"]
+custom_minimum_size = Vector2(150, 38)
+offset_right = 390.0
+offset_bottom = 38.0
+script = ExtResource("1_shvhg")
+non_favourite_color = Color(0.287836, 0.332705, 0.399606, 1)
+favourite_color = Color(1, 0.766667, 0, 1)
+
+[node name="PromptLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_right = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "How do you create a script which can move a player around in a 2D space?"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="DeleteButton" type="Button" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "Delete conversation"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ohrko")
+icon = ExtResource("2_s3i7c")
+icon_alignment = 1
+script = ExtResource("3_66tbf")
+
+[node name="FavouriteButton" type="TextureButton" parent="."]
+modulate = Color(0.287836, 0.332705, 0.399606, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -19.0
+offset_right = 38.0
+offset_bottom = 19.0
+grow_vertical = 2
+tooltip_text = "Starred conversations are shown at the top"
+texture_normal = ExtResource("3_2nvm5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_uqcyf")
+
+[node name="HelloPanel" type="Panel" parent="."]
+layout_mode = 0
