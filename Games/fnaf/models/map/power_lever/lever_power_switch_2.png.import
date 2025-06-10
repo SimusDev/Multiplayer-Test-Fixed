@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://sxii2bflk4wb"
 path.s3tc="res://.godot/imported/lever_power_switch_2.png-93f230854b8819660dd480cfbc7bf658.s3tc.ctex"
-path.etc2="res://.godot/imported/lever_power_switch_2.png-93f230854b8819660dd480cfbc7bf658.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/fnaf/models/map/power_lever/lever_power_switch_2.png"
-dest_files=["res://.godot/imported/lever_power_switch_2.png-93f230854b8819660dd480cfbc7bf658.s3tc.ctex", "res://.godot/imported/lever_power_switch_2.png-93f230854b8819660dd480cfbc7bf658.etc2.ctex"]
+dest_files=["res://.godot/imported/lever_power_switch_2.png-93f230854b8819660dd480cfbc7bf658.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca7i6kdkwfx6"]
+
+[ext_resource type="Script" uid="uid://yf13apao2nyr" path="res://prefabs/props/door/door.gd" id="1_2ypye"]
+[ext_resource type="Script" uid="uid://dar7l6igeudpk" path="res://addons/simusdev/components/interactables/W_Interactable.gd" id="2_bp3qp"]
+[ext_resource type="AudioStream" uid="uid://bkj6mctovvvsx" path="res://sounds/props/door/open.ogg" id="2_t6knn"]
+[ext_resource type="AudioStream" uid="uid://dy5nr5erojlto" path="res://sounds/props/door/close.ogg" id="3_oxewh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bp3qp"]
+size = Vector3(1.01123, 1.99335, 0.128021)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3ilo"]
+size = Vector3(1.01123, 1.99335, 0.128021)
+
+[sub_resource type="QuadMesh" id="QuadMesh_2ypye"]
+size = Vector2(1, 2)
+
+[node name="Door" type="Node3D" node_paths=PackedStringArray("_block")]
+transform = Transform3D(1, 0, -1.73303e-07, 0, 1, 0, 1.73303e-07, 0, 1, 0, 0, 0)
+script = ExtResource("1_2ypye")
+target_rotation = Vector3(0, 90, 0)
+_block = NodePath("block")
+_open_sound = ExtResource("2_t6knn")
+_close_sound = ExtResource("3_oxewh")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545803, 1.05537, 0.00508419)
+stream = ExtResource("3_oxewh")
+unit_size = 1.0
+max_distance = 50.0
+bus = &"game"
+
+[node name="block" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502628, 0.999045, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00561523, -0.00216681, -0.00636292)
+shape = SubResource("BoxShape3D_bp3qp")
+
+[node name="pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502628, 0.999045, 0)
+
+[node name="rotation" type="Node3D" parent="pivot"]
+unique_name_in_owner = true
+
+[node name="Interactable" type="Area3D" parent="pivot/rotation"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="W_InteractableArea3D" type="Node" parent="pivot/rotation/Interactable" node_paths=PackedStringArray("area")]
+script = ExtResource("2_bp3qp")
+area = NodePath("..")
+metadata/_custom_type_script = "uid://dar7l6igeudpk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pivot/rotation/Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00561523, -0.00216681, -0.00636292)
+shape = SubResource("BoxShape3D_i3ilo")
+
+[node name="mesh" type="MeshInstance3D" parent="pivot/rotation"]
+mesh = SubResource("QuadMesh_2ypye")
+skeleton = NodePath("../../..")
+
+[connection signal="interacted" from="pivot/rotation/Interactable/W_InteractableArea3D" to="." method="_on_w_interactable_area_3d_interacted"]

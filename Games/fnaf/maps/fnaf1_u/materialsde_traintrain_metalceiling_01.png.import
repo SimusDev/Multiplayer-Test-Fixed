@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dykucobld7xub"
 path.s3tc="res://.godot/imported/materialsde_traintrain_metalceiling_01.png-fab9643e7fa3cb4f81e3502344e4572b.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsde_traintrain_metalceiling_01.png-fab9643e7fa3cb4f81e3502344e4572b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsde_traintrain_metalceiling_01.png"
-dest_files=["res://.godot/imported/materialsde_traintrain_metalceiling_01.png-fab9643e7fa3cb4f81e3502344e4572b.s3tc.ctex", "res://.godot/imported/materialsde_traintrain_metalceiling_01.png-fab9643e7fa3cb4f81e3502344e4572b.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsde_traintrain_metalceiling_01.png-fab9643e7fa3cb4f81e3502344e4572b.s3tc.ctex"]
 
 [params]
 

@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://xqpq53vo25ri"
 path.s3tc="res://.godot/imported/neon_party_glasses_1.png-e7e5e7869275955f17cdf9975bcce0a0.s3tc.ctex"
-path.etc2="res://.godot/imported/neon_party_glasses_1.png-e7e5e7869275955f17cdf9975bcce0a0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/models/players/glasses/neon_party_glasses_1.png"
-dest_files=["res://.godot/imported/neon_party_glasses_1.png-e7e5e7869275955f17cdf9975bcce0a0.s3tc.ctex", "res://.godot/imported/neon_party_glasses_1.png-e7e5e7869275955f17cdf9975bcce0a0.etc2.ctex"]
+dest_files=["res://.godot/imported/neon_party_glasses_1.png-e7e5e7869275955f17cdf9975bcce0a0.s3tc.ctex"]
 
 [params]
 

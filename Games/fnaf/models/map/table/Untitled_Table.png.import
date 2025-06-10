@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://042iddsrtlc0"
 path.s3tc="res://.godot/imported/Untitled_Table.png-3e1794fbe06f3638c2fd65ce45d4f437.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_Table.png-3e1794fbe06f3638c2fd65ce45d4f437.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/fnaf/models/map/table/Untitled_Table.png"
-dest_files=["res://.godot/imported/Untitled_Table.png-3e1794fbe06f3638c2fd65ce45d4f437.s3tc.ctex", "res://.godot/imported/Untitled_Table.png-3e1794fbe06f3638c2fd65ce45d4f437.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_Table.png-3e1794fbe06f3638c2fd65ce45d4f437.s3tc.ctex"]
 
 [params]
 

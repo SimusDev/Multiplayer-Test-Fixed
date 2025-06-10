@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://br4qpybovwh23"]
+[gd_scene load_steps=19 format=3 uid="uid://br4qpybovwh23"]
 
 [ext_resource type="PackedScene" uid="uid://c1vyo4mg1715e" path="res://Games/fnaf/resources/world_environment.tscn" id="1_335sh"]
 [ext_resource type="PackedScene" uid="uid://bsslr6b8vclvi" path="res://Games/fnaf/components/camera/FW_CameraContainer.tscn" id="1_e0irk"]
 [ext_resource type="PackedScene" uid="uid://bsuaqxh8uhd37" path="res://Games/fnaf/maps/fnaf1_u/base.tscn" id="2_335sh"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_vc3ow"]
 [ext_resource type="PackedScene" uid="uid://dgabibeos57hv" path="res://Games/fnaf/entities/player.tscn" id="4_h2ila"]
+[ext_resource type="PackedScene" uid="uid://5ffbop5ivhos" path="res://Games/fnaf/props/door/employes_only.tscn" id="4_vc3ow"]
 [ext_resource type="PackedScene" uid="uid://t00bn8s7la4c" path="res://Games/fnaf/components/world/energy/FW_EnergyComponent.tscn" id="5_gt3wj"]
 [ext_resource type="PackedScene" uid="uid://ci8a4l0frb3q4" path="res://Games/fnaf/components/world/time/FW_TimeComponent.tscn" id="6_rpyr0"]
 [ext_resource type="PackedScene" uid="uid://dxmc3agchtji3" path="res://Games/fnaf/components/world/door/FW_DoorComponent.tscn" id="7_w2vrj"]
 [ext_resource type="PackedScene" uid="uid://dr4uv10kw8eg4" path="res://Games/fnaf/components/world/light/FW_LightComponent.tscn" id="8_ogbw0"]
-[ext_resource type="Script" uid="uid://dr7ca17fift23" path="res://Games/fnaf/scripts/door_light.gd" id="9_07y0o"]
+[ext_resource type="Script" path="res://Games/fnaf/scripts/door_light.gd" id="9_07y0o"]
 [ext_resource type="PackedScene" uid="uid://2t0h531dnq23" path="res://Games/fnaf/models/map/fan/inherited.tscn" id="10_y3bta"]
 [ext_resource type="PackedScene" uid="uid://bkxngrs5fhn1s" path="res://Games/fnaf/models/map/door/button.tscn" id="11_5i4g3"]
 [ext_resource type="PackedScene" uid="uid://87jqycrcjmll" path="res://Games/fnaf/models/map/door/door.tscn" id="12_v38sd"]
@@ -35,6 +36,13 @@ render_target_update_mode = 0
 transform = Transform3D(4.763, 0, 0, 0, 4.763, 0, 0, 0, 4.763, 0, 0, 0)
 
 [node name="Untitled" parent="MapRoot" instance=ExtResource("2_335sh")]
+
+[node name="Props" type="Node3D" parent="MapRoot"]
+
+[node name="employes_only_door" parent="MapRoot/Props" instance=ExtResource("4_vc3ow")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.94159, 0.642095, 0.619049)
+default_rotation = Vector3(0, 90, 0)
+target_rotation = Vector3(0, 180, 0)
 
 [node name="Players" type="Node" parent="."]
 

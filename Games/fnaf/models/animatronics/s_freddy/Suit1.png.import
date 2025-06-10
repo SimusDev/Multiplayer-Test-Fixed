@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bks5kojjdp08g"
 path.s3tc="res://.godot/imported/Suit1.png-43e9301fed905cde9899a721a31e1140.s3tc.ctex"
-path.etc2="res://.godot/imported/Suit1.png-43e9301fed905cde9899a721a31e1140.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/Suit1.png"
-dest_files=["res://.godot/imported/Suit1.png-43e9301fed905cde9899a721a31e1140.s3tc.ctex", "res://.godot/imported/Suit1.png-43e9301fed905cde9899a721a31e1140.etc2.ctex"]
+dest_files=["res://.godot/imported/Suit1.png-43e9301fed905cde9899a721a31e1140.s3tc.ctex"]
 
 [params]
 

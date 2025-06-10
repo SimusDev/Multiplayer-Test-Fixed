@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ooxuur7h1sfm"
 path.s3tc="res://.godot/imported/materialsdecalshandyparking_n.png-4b7293492bd8a31cb6e2f8ffa8e8fce4.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsdecalshandyparking_n.png-4b7293492bd8a31cb6e2f8ffa8e8fce4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsdecalshandyparking_n.png"
-dest_files=["res://.godot/imported/materialsdecalshandyparking_n.png-4b7293492bd8a31cb6e2f8ffa8e8fce4.s3tc.ctex", "res://.godot/imported/materialsdecalshandyparking_n.png-4b7293492bd8a31cb6e2f8ffa8e8fce4.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsdecalshandyparking_n.png-4b7293492bd8a31cb6e2f8ffa8e8fce4.s3tc.ctex"]
 
 [params]
 

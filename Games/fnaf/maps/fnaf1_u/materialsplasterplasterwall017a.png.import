@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ct557pelp8tnw"
 path.s3tc="res://.godot/imported/materialsplasterplasterwall017a.png-c9361451114c6276badedaf0cd330185.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsplasterplasterwall017a.png-c9361451114c6276badedaf0cd330185.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsplasterplasterwall017a.png"
-dest_files=["res://.godot/imported/materialsplasterplasterwall017a.png-c9361451114c6276badedaf0cd330185.s3tc.ctex", "res://.godot/imported/materialsplasterplasterwall017a.png-c9361451114c6276badedaf0cd330185.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsplasterplasterwall017a.png-c9361451114c6276badedaf0cd330185.s3tc.ctex"]
 
 [params]
 

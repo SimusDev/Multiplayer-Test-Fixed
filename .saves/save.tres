@@ -29,6 +29,7 @@ _storage = Dictionary[String, Variant]({})
 
 [resource]
 script = ExtResource("2_7ja1k")
+path = "save"
 _nodes = Dictionary[String, ExtResource("1_jwbyx")]({
 "/root/Menu/VBoxContainer/ip": SubResource("Resource_7ja1k"),
 "/root/Menu/VBoxContainer/name": SubResource("Resource_jwbyx")

@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://f4ef4b3jk2dr"
 path.s3tc="res://.godot/imported/Untitled_Cupcake_Candle2.png-d37212d1a6f4231c690a81edb497436a.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_Cupcake_Candle2.png-d37212d1a6f4231c690a81edb497436a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/fnaf/models/map/office_table_props/Untitled_Cupcake_Candle2.png"
-dest_files=["res://.godot/imported/Untitled_Cupcake_Candle2.png-d37212d1a6f4231c690a81edb497436a.s3tc.ctex", "res://.godot/imported/Untitled_Cupcake_Candle2.png-d37212d1a6f4231c690a81edb497436a.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_Cupcake_Candle2.png-d37212d1a6f4231c690a81edb497436a.s3tc.ctex"]
 
 [params]
 
