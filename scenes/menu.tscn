@@ -1,31 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://do51aphwtdub7"]
+[gd_scene load_steps=14 format=3 uid="uid://do51aphwtdub7"]
 
 [ext_resource type="Script" uid="uid://bd0ewmaxi3teq" path="res://scenes/menu.gd" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://qwfp3p8hm2a7" path="res://addons/simusdev/worldsaver/SD_WorldNodePropertySaver.gd" id="2_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://crfrc4wul2afk" path="res://textures/black-pixel.png" id="2_v86rl"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_vjb58"]
 [ext_resource type="Script" uid="uid://b5csmggjb4hh6" path="res://addons/simusdev/worldsaver/SD_WorldSaverProperty.gd" id="3_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://xqrulpky7dbc" path="res://textures/lobby/button-512x64.png" id="4_13sgg"]
+[ext_resource type="Texture2D" uid="uid://culd3234noheu" path="res://textures/lobby/button-pressed-512x64.png" id="5_i6lef"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v86rl"]
+texture = ExtResource("4_13sgg")
 
 [sub_resource type="Resource" id="Resource_g3eks"]
 script = ExtResource("3_4ytvr")
-name = "text"
+list = PackedStringArray()
 duplicate = false
 duplicate_deep = false
 duplicate_resources = false
 metadata/_custom_type_script = "uid://b5csmggjb4hh6"
+
+[sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
 
 [sub_resource type="Resource" id="Resource_v86rl"]
 script = ExtResource("3_4ytvr")
-name = "text"
+list = PackedStringArray()
 duplicate = false
 duplicate_deep = false
 duplicate_resources = false
 metadata/_custom_type_script = "uid://b5csmggjb4hh6"
 
-[sub_resource type="LabelSettings" id="LabelSettings_mhnvy"]
+[sub_resource type="LabelSettings" id="LabelSettings_13sgg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i6lef"]
 font_size = 32
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_yqeox")
+
+[node name="bg" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_v86rl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -43,6 +61,9 @@ grow_vertical = 2
 [node name="name" type="LineEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(272, 45)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_v86rl")
+theme_override_styles/read_only = SubResource("StyleBoxTexture_v86rl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v86rl")
 text = "username"
 placeholder_text = "NAME"
 
@@ -52,14 +73,37 @@ properties_to_save = Array[ExtResource("3_4ytvr")]([SubResource("Resource_g3eks"
 node = NodePath("..")
 metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
 
-[node name="button_host" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(220, 49)
+[node name="button_host" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
-text = "START GAME"
+texture_normal = ExtResource("4_13sgg")
+texture_pressed = ExtResource("5_i6lef")
+texture_hover = ExtResource("4_13sgg")
+texture_disabled = ExtResource("4_13sgg")
+texture_focused = ExtResource("4_13sgg")
+stretch_mode = 0
+
+[node name="SD_Label" type="Label" parent="VBoxContainer/button_host"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "play"
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_vjb58")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
 [node name="ip" type="LineEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(272, 45)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_v86rl")
+theme_override_styles/read_only = SubResource("StyleBoxTexture_v86rl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v86rl")
 text = "localhost"
 placeholder_text = "IP"
 
@@ -69,12 +113,33 @@ properties_to_save = Array[ExtResource("3_4ytvr")]([SubResource("Resource_v86rl"
 node = NodePath("..")
 metadata/_custom_type_script = "uid://qwfp3p8hm2a7"
 
-[node name="button_client" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(220, 49)
+[node name="button_client" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
 layout_mode = 2
-text = "CONNECT"
+texture_normal = ExtResource("4_13sgg")
+texture_pressed = ExtResource("5_i6lef")
+texture_hover = ExtResource("4_13sgg")
+texture_disabled = ExtResource("4_13sgg")
+texture_focused = ExtResource("4_13sgg")
+stretch_mode = 0
+
+[node name="SD_Label" type="Label" parent="VBoxContainer/button_client"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "connect"
+label_settings = SubResource("LabelSettings_13sgg")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_vjb58")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
 [node name="game" type="Label" parent="."]
+self_modulate = Color(1, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,7 +152,7 @@ offset_bottom = -153.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "САМАЯ КЛАССНАЯ ИГРА"
-label_settings = SubResource("LabelSettings_mhnvy")
+label_settings = SubResource("LabelSettings_i6lef")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwx7ii0tfhbcq"
 path.s3tc="res://.godot/imported/Untitled_leet_leet_Arab_dmbase1.png-b0029dbb63a013130b3e257dbbc8f1cd.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_leet_leet_Arab_dmbase1.png-b0029dbb63a013130b3e257dbbc8f1cd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/models/players/tr_leet/Untitled_leet_leet_Arab_dmbase1.png"
-dest_files=["res://.godot/imported/Untitled_leet_leet_Arab_dmbase1.png-b0029dbb63a013130b3e257dbbc8f1cd.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_leet_leet_Arab_dmbase1.png-b0029dbb63a013130b3e257dbbc8f1cd.s3tc.ctex", "res://.godot/imported/Untitled_leet_leet_Arab_dmbase1.png-b0029dbb63a013130b3e257dbbc8f1cd.etc2.ctex"]
 
 [params]
 

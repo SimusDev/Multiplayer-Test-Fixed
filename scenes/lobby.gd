@@ -16,9 +16,12 @@ func _ready() -> void:
 	
 	if SimusDev.multiplayerAPI.is_server():
 		for map in Maps.get_map_list():
-			var ui: Control = map_ui.instantiate()
-			ui.resource = map
-			map_container.add_child(ui)
+			if map.visible:
+				var ui: Control = map_ui.instantiate()
+				ui.resource = map
+				map_container.add_child(ui)
+				if map.is_favorite:
+					map_container.move_child(ui, 0)
 	
 	if SimusDev.multiplayerAPI.is_client():
 		SyncedData.client_sync_data_from_server()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgi7jesspkojd"]
+[gd_scene load_steps=13 format=3 uid="uid://cgi7jesspkojd"]
 
 [ext_resource type="PackedScene" uid="uid://c3iqv6ckeak6u" path="res://Games/counter-strike/entities/base/CS_BaseBody.tscn" id="1_ambd4"]
 [ext_resource type="Script" uid="uid://bept01souaip1" path="res://Games/counter-strike/entities/player/CS_Player.gd" id="2_tn67s"]
@@ -8,6 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://bgntgcpk7n18g" path="res://Games/counter-strike/ui/player/PlayerUI.tscn" id="5_uu3a4"]
 [ext_resource type="Script" uid="uid://cxuf8ophbjpsd" path="res://addons/simusdev/components/inventory/W_InventoryItem.gd" id="6_p07a0"]
 [ext_resource type="Resource" uid="uid://di5k2m4kvnnlv" path="res://Games/counter-strike/items/weapons/knife/knife.tres" id="7_82g6o"]
+[ext_resource type="PackedScene" uid="uid://fwb0u7pdh3ot" path="res://Games/counter-strike/items/weapons/ak47/hands.tscn" id="8_lpt3m"]
+[ext_resource type="Texture2D" uid="uid://b7wwm1e37lyq2" path="res://Games/counter-strike/items/weapons/ak47/icon.png" id="9_7mcka"]
+[ext_resource type="Script" uid="uid://v4ukmgdtmm85" path="res://Games/counter-strike/scripts/resources/R_CS_ItemData.gd" id="10_cx7nj"]
+
+[sub_resource type="Resource" id="Resource_baorv"]
+script = ExtResource("10_cx7nj")
+hands_model = ExtResource("8_lpt3m")
+name = "AK47"
+icon = ExtResource("9_7mcka")
+description = ""
+metadata/_custom_type_script = "uid://v4ukmgdtmm85"
 
 [node name="CS_Player" instance=ExtResource("1_ambd4")]
 script = ExtResource("2_tn67s")
@@ -33,6 +44,12 @@ metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
 script = ExtResource("5_p07a0")
 metadata/_custom_type_script = "uid://b33usissl2osh"
 
+[node name="ak47" type="Node" parent="W_Inventory/2" index="0"]
+script = ExtResource("6_p07a0")
+name_at_start = "AK47"
+data = SubResource("Resource_baorv")
+metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
+
 [node name="PlayerCamera" parent="." index="3" node_paths=PackedStringArray("player", "movement") instance=ExtResource("4_j5b7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04865, 0)
 player = NodePath("..")
@@ -46,6 +63,6 @@ wait_time = 5.0
 autostart = true
 
 [node name="CS_Skin" parent="." index="7"]
-transform = Transform3D(-8.30516e-08, 0, -1.9, 0, 1.9, 0, 1.9, 0, -8.30516e-08, 0, 0.123679, -0.0878384)
+transform = Transform3D(-1.9, 0, -1.66103e-07, 0, 1.9, 0, 1.66103e-07, 0, -1.9, 0, 0.123679, -0.0878384)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

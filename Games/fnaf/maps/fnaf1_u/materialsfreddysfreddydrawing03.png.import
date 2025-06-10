@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c56f4bbl375n0"
 path.s3tc="res://.godot/imported/materialsfreddysfreddydrawing03.png-4351c1696dcfd0e694657a2f1ec150ba.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsfreddysfreddydrawing03.png-4351c1696dcfd0e694657a2f1ec150ba.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsfreddysfreddydrawing03.png"
-dest_files=["res://.godot/imported/materialsfreddysfreddydrawing03.png-4351c1696dcfd0e694657a2f1ec150ba.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsfreddysfreddydrawing03.png-4351c1696dcfd0e694657a2f1ec150ba.s3tc.ctex", "res://.godot/imported/materialsfreddysfreddydrawing03.png-4351c1696dcfd0e694657a2f1ec150ba.etc2.ctex"]
 
 [params]
 

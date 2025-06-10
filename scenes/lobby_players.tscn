@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2jomsn0yknjm"]
+
+[ext_resource type="PackedScene" uid="uid://bj08n413u2qv5" path="res://scenes/lobby_player.tscn" id="1_65no5"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_dcjyy"]
+[ext_resource type="PackedScene" uid="uid://d0n1q7ogts8qx" path="res://scenes/lobby.tscn" id="3_j832s"]
+
+[node name="lobby_players" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.462162, -0.809562)
+current = true
+fov = 90.0
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("1_dcjyy")
+player_scene = ExtResource("1_65no5")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3"), NodePath(""), NodePath("")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="1" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0141046, -1.22731, -2.55645)
+
+[node name="2" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4141, -1.22731, -2.55645)
+
+[node name="3" type="Node3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46411, -1.22731, -2.55645)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.398)
+visible = false
+text = "GODOT !!!!!"
+
+[node name="Lobby" parent="." instance=ExtResource("3_j832s")]

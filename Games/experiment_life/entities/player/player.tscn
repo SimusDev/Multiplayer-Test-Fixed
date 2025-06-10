@@ -41,9 +41,10 @@ script = ExtResource("3_k5ng1")
 properties = Array[ExtResource("4_jyhyi")]([SubResource("Resource_im0pj")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("3_q3met")]
+[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("3_q3met")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08871, -0.162557)
 movement = NodePath("../W_FPCSourceLikeMovement")
+body = NodePath("..")
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_0r8hq")]
 actor = NodePath("..")

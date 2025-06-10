@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl6i0y8jn11ia"
 path.s3tc="res://.godot/imported/materialsmodelspropsde_nukelight_red1.png-b4dd0209ccd50badb8591bcb8e98c314.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelspropsde_nukelight_red1.png-b4dd0209ccd50badb8591bcb8e98c314.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelspropsde_nukelight_red1.png"
-dest_files=["res://.godot/imported/materialsmodelspropsde_nukelight_red1.png-b4dd0209ccd50badb8591bcb8e98c314.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelspropsde_nukelight_red1.png-b4dd0209ccd50badb8591bcb8e98c314.s3tc.ctex", "res://.godot/imported/materialsmodelspropsde_nukelight_red1.png-b4dd0209ccd50badb8591bcb8e98c314.etc2.ctex"]
 
 [params]
 

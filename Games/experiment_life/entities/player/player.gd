@@ -1,2 +1,2 @@
-extends Node
+extends CharacterBody3D
 class_name ExperimentLifePlayer

@@ -1,9 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://b38drexx0gg1c"]
+[gd_scene load_steps=6 format=3 uid="uid://b38drexx0gg1c"]
 
 [ext_resource type="PackedScene" uid="uid://cx6c437uq7p2s" path="res://Games/counter-strike/components/hands/CS_HandsWeaponModel.tscn" id="1_kylkx"]
 [ext_resource type="PackedScene" uid="uid://cvl8eyysv22by" path="res://Games/counter-strike/models/weapons/knife/knife.tscn" id="2_t4v62"]
 
+[sub_resource type="Animation" id="Animation_caxj3"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.266667, 0.466667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, -0.25), Vector3(0, 0.13, -0.3), Vector3(0, 0, -0.25), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("knife:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.433333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.872664, 3.14159, 0), Vector3(-1.64759, 3.14159, 0), Vector3(-0.251327, 3.14159, 0), Vector3(-0.872665, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4v62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("knife:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.872664, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_csbbx"]
+_data = {
+&"RESET": SubResource("Animation_t4v62"),
+&"shoot": SubResource("Animation_caxj3")
+}
+
 [node name="knife" instance=ExtResource("1_kylkx")]
 
 [node name="knife" parent="." index="0" instance=ExtResource("2_t4v62")]
-transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0, 0, 0)
+transform = Transform3D(-1, -1.15669e-07, 9.70583e-08, 0, 0.642788, 0.766044, -1.50996e-07, 0.766044, -0.642788, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_csbbx")
+}

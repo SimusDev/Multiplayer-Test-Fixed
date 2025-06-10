@@ -1,0 +1,127 @@
+[gd_scene load_steps=17 format=3 uid="uid://bj08n413u2qv5"]
+
+[ext_resource type="Script" uid="uid://b8ucpl8u6253u" path="res://scripts/lobby_player.gd" id="1_6cgia"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="1_6upnp"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_xfet2"]
+[ext_resource type="PackedScene" uid="uid://cyjf4da755tj" path="res://scripts/world/nickname.tscn" id="3_47klk"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_j3off"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_afs7g"]
+
+[sub_resource type="Resource" id="Resource_ypbne"]
+script = ExtResource("4_afs7g")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["visible"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../pipi")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_lyaoy"]
+script = ExtResource("4_afs7g")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["emitting"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../mo4a")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v5tub"]
+height = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_6cgia"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_47klk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6cgia"]
+inherit_velocity_ratio = 1.0
+spread = 0.1
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7km7"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.498039)
+
+[sub_resource type="SphereMesh" id="SphereMesh_47klk"]
+material = SubResource("StandardMaterial3D_p7km7")
+radius = 0.025
+height = 0.05
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2sntc"]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_xfet2"]
+radius = 0.1
+height = 0.2
+
+[node name="lobby_player" type="CharacterBody3D"]
+script = ExtResource("1_6cgia")
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("2_xfet2")
+properties = Array[ExtResource("3_j3off")]([SubResource("Resource_ypbne"), SubResource("Resource_lyaoy")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="nickname" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_47klk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85048, 0)
+pixel_size = 0.008
+player = NodePath("..")
+is_lobby = true
+
+[node name="body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_v5tub")
+
+[node name="heart" type="Sprite3D" parent="body"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 1, -0.2, 0.307346, -0.5)
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_6upnp")
+
+[node name="head" type="Node3D" parent="body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.864166, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="body/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299955, 0)
+mesh = SubResource("SphereMesh_6cgia")
+
+[node name="face" type="Sprite3D" parent="body/head"]
+transform = Transform3D(0.650972, 0, 0, 0, 0.596481, 0, 0, 0, 1, 0, 0.299975, -0.501869)
+texture = ExtResource("1_6upnp")
+
+[node name="leg1" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.263475, -0.672863, 0)
+mesh = SubResource("CylinderMesh_47klk")
+
+[node name="leg2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.2905, -0.672863, 0)
+mesh = SubResource("CylinderMesh_47klk")
+
+[node name="mo4a" type="GPUParticles3D" parent="."]
+transform = Transform3D(2.98023e-08, 0, 1, -2.98023e-08, 1, 8.88178e-16, -1, -2.98023e-08, 2.98023e-08, 0, -0.376506, -0.792903)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_6cgia")
+draw_pass_1 = SubResource("SphereMesh_47klk")
+
+[node name="pipi" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.34202, 0.939693, 0, -0.939693, -0.34202, 0, -0.309864, -0.577607)
+visible = false
+mesh = SubResource("CapsuleMesh_2sntc")
+
+[node name="ball1" type="MeshInstance3D" parent="pipi"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.0835262, -0.0429606, -0.0861225)
+mesh = SubResource("SphereMesh_xfet2")
+
+[node name="ball2" type="MeshInstance3D" parent="pipi"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, -0.0747953, -0.0429606, -0.0861225)
+mesh = SubResource("SphereMesh_xfet2")

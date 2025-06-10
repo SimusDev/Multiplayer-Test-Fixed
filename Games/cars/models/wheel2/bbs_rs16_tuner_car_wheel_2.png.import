@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://fh1o7lug6v6e"
 path.s3tc="res://.godot/imported/bbs_rs16_tuner_car_wheel_2.png-61bbec24338b91e382c3a750eb185fb0.s3tc.ctex"
+path.etc2="res://.godot/imported/bbs_rs16_tuner_car_wheel_2.png-61bbec24338b91e382c3a750eb185fb0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/wheel2/bbs_rs16_tuner_car_wheel_2.png"
-dest_files=["res://.godot/imported/bbs_rs16_tuner_car_wheel_2.png-61bbec24338b91e382c3a750eb185fb0.s3tc.ctex"]
+dest_files=["res://.godot/imported/bbs_rs16_tuner_car_wheel_2.png-61bbec24338b91e382c3a750eb185fb0.s3tc.ctex", "res://.godot/imported/bbs_rs16_tuner_car_wheel_2.png-61bbec24338b91e382c3a750eb185fb0.etc2.ctex"]
 
 [params]
 

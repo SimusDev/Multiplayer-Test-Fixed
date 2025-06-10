@@ -16,7 +16,7 @@ player = NodePath("AnimationPlayer")
 skeleton = NodePath("model3d/Skeleton3D")
 metadata/_custom_type_script = "uid://pf622qfdiljm"
 
-[node name="model3d" type="Node3D" parent="." instance=ExtResource("2_qcu43")]
+[node name="model3d" parent="." instance=ExtResource("2_qcu43")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../model3d")
@@ -28,6 +28,6 @@ libraries = {
 root_node = NodePath("../model3d")
 tree_root = ExtResource("4_2263x")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Add2/add_amount = 0
-"parameters/Add2 2/add_amount" = 0
+parameters/Add2/add_amount = 0.0
+"parameters/Add2 2/add_amount" = 0.0
 parameters/walk_blend/blend_position = Vector2(0, 0)

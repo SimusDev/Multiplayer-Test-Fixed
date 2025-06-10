@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://27rumcccadp2"
 path.s3tc="res://.godot/imported/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png-d2b65cc573dfb74f613c581bce14581a.s3tc.ctex"
+path.etc2="res://.godot/imported/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png-d2b65cc573dfb74f613c581bce14581a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png"
-dest_files=["res://.godot/imported/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png-d2b65cc573dfb74f613c581bce14581a.s3tc.ctex"]
+dest_files=["res://.godot/imported/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png-d2b65cc573dfb74f613c581bce14581a.s3tc.ctex", "res://.godot/imported/NOyTYmKwrobgamingsfroztyfnaf1freddybottomlines.png-d2b65cc573dfb74f613c581bce14581a.etc2.ctex"]
 
 [params]
 

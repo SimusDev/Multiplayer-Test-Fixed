@@ -40,10 +40,10 @@ func _ready() -> void:
 	_players.append(self)
 	
 	
-	
-	character_component.enabled = is_multiplayer_authority()
-	
-	head.visible = !is_multiplayer_authority()
+	if character_component:
+		character_component.enabled = is_multiplayer_authority()
+	if head:
+		head.visible = !is_multiplayer_authority()
 	
 	EventBus.on_player_spawned.emit(self)
 
@@ -51,6 +51,9 @@ func _physics_process(delta: float) -> void:
 	var is_pipi = Input.is_action_pressed("pipi") and is_playable()
 	$pipi.visible = is_pipi
 	$mo4a.emitting = is_pipi
+	
+	if !character_component:
+		return
 	
 	var is_sprinting: bool = character_component.is_sprinting
 	var _veloctiy: Vector3 = character_component.get_velocity()

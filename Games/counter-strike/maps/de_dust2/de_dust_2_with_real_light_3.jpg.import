@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3l2wlroobnwo"
 path.s3tc="res://.godot/imported/de_dust_2_with_real_light_3.jpg-b24d7d781d5bae76eccb12fd24129ed2.s3tc.ctex"
+path.etc2="res://.godot/imported/de_dust_2_with_real_light_3.jpg-b24d7d781d5bae76eccb12fd24129ed2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/de_dust2/de_dust_2_with_real_light_3.jpg"
-dest_files=["res://.godot/imported/de_dust_2_with_real_light_3.jpg-b24d7d781d5bae76eccb12fd24129ed2.s3tc.ctex"]
+dest_files=["res://.godot/imported/de_dust_2_with_real_light_3.jpg-b24d7d781d5bae76eccb12fd24129ed2.s3tc.ctex", "res://.godot/imported/de_dust_2_with_real_light_3.jpg-b24d7d781d5bae76eccb12fd24129ed2.etc2.ctex"]
 
 [params]
 

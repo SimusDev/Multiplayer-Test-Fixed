@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_xtl8x")
+visible = false
+is_favorite = false
 scene_path = "uid://274q53idt2dt"
 code = "allstars"
 name = "DoTA All Stars"

@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqy28xcgyja2o"]
+[gd_scene load_steps=9 format=3 uid="uid://bqy28xcgyja2o"]
 
 [ext_resource type="Script" uid="uid://bjyvgy0hcmp5e" path="res://interface/lobby/map.gd" id="1_etous"]
-[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="2_pqke2"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_pqke2"]
+[ext_resource type="Texture2D" uid="uid://d3uckgbxm6i6h" path="res://textures/lobby/map.png" id="2_w4d1w"]
+[ext_resource type="Texture2D" uid="uid://box6vb54v3d48" path="res://textures/icons/heart.png" id="3_pqke2"]
+[ext_resource type="Texture2D" uid="uid://b6a43rx6bnnnq" path="res://textures/lobby/play-btn.png" id="4_vq7g4"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_2mqy2"]
+[ext_resource type="Texture2D" uid="uid://cn7lb0qk6pmuc" path="res://textures/lobby/play-btn-pressed.png" id="5_vq7g4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etous"]
-bg_color = Color(0.262932, 0.262932, 0.262932, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="LabelSettings" id="LabelSettings_vq7g4"]
 
 [node name="Map" type="Control"]
 custom_minimum_size = Vector2(512, 256)
@@ -18,30 +18,25 @@ offset_right = 256.0
 offset_bottom = 256.0
 script = ExtResource("1_etous")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_etous")
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 256.0
+texture = ExtResource("2_w4d1w")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.053
-anchor_top = 0.25
-anchor_right = 0.303
-anchor_bottom = 0.75
-offset_left = -0.136002
-offset_right = -0.136002
-offset_bottom = -1.52588e-05
+anchor_left = 0.0234375
+anchor_top = 0.0585938
+anchor_right = 0.501953
+anchor_bottom = 0.683594
 grow_vertical = 2
 texture = ExtResource("2_pqke2")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="map_and_desc" type="Label" parent="."]
 layout_mode = 1
@@ -56,16 +51,49 @@ text = "MAP_NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="play" type="Button" parent="."]
+[node name="play" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.855
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.119995
+anchor_left = 0.0214844
+anchor_top = 0.703125
+anchor_right = 0.521484
+anchor_bottom = 0.953125
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "PLAY"
+texture_normal = ExtResource("4_vq7g4")
+texture_pressed = ExtResource("5_vq7g4")
+texture_hover = ExtResource("4_vq7g4")
+texture_disabled = ExtResource("4_vq7g4")
+texture_focused = ExtResource("4_vq7g4")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_vq7g4")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("5_2mqy2")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="favorite" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.912109
+anchor_top = 0.046875
+anchor_right = 0.974609
+anchor_bottom = 0.171875
+texture = ExtResource("3_pqke2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]

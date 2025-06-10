@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("2_x1esr")
+visible = true
+is_favorite = true
 scene_path = "uid://dnw8e7bnrwhc"
 code = "fnaf"
 name = "FNaF"

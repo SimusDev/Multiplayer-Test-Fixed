@@ -35,7 +35,7 @@ states/Start/position = Vector2(195, 100)
 states/library_idle/node = SubResource("AnimationNodeAnimation_neb1h")
 states/library_idle/position = Vector2(326, 100)
 states/library_jump/node = SubResource("AnimationNodeAnimation_svrcm")
-states/library_jump/position = Vector2(557, 100)
+states/library_jump/position = Vector2(556, 100)
 transitions = ["Start", "library_idle", SubResource("AnimationNodeStateMachineTransition_svrcm"), "library_jump", "library_idle", SubResource("AnimationNodeStateMachineTransition_ms6jx")]
 graph_offset = Vector2(110, -2)
 
@@ -68,7 +68,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_k05dd")
 blend_point_4/pos = Vector2(1, 0)
 
 [resource]
-graph_offset = Vector2(-434.873, 72.6365)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_svrcm")
 nodes/Add2/position = Vector2(-340, 180)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_neb1h")

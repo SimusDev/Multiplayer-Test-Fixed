@@ -1,28 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://clhksblif0fu3"]
+[gd_scene load_steps=18 format=3 uid="uid://clhksblif0fu3"]
 
-[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="1_cusn3"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="1_cusn3"]
 [ext_resource type="Script" uid="uid://rc5ovev0rep5" path="res://entitites/vlados/player.gd" id="1_v4rts"]
-[ext_resource type="Script" uid="uid://cakitr0kr0hf8" path="res://addons/simusdev/components/characterbody/W_ComponentCharacterBody3D.gd" id="2_bf51h"]
-[ext_resource type="PackedScene" uid="uid://bmrgbli4rh7tn" path="res://scripts/components/health/C_HealthComponent.tscn" id="2_prmqr"]
-[ext_resource type="PackedScene" uid="uid://nm7pt6y1kufk" path="res://scripts/sync/player_synchronizer.tscn" id="2_s5ho2"]
-[ext_resource type="PackedScene" uid="uid://dy74uw5mgubcu" path="res://addons/simusdev/components/fp_controller/W_FPControllerCamera.tscn" id="3_s5ho2"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="4_p7km7"]
-[ext_resource type="PackedScene" uid="uid://564ydj7cfsmk" path="res://addons/simusdev/components/fp_controller/W_FPControllerMovement.tscn" id="4_y0ih3"]
-[ext_resource type="PackedScene" uid="uid://dqfb5gev8tmwr" path="res://scripts/components/hitbox/C_HitboxComponent.tscn" id="5_fb3y5"]
-[ext_resource type="Script" uid="uid://bhwbi1ykuh8e1" path="res://scripts/player/C_PlayerCamera.gd" id="9_lp3wq"]
 [ext_resource type="PackedScene" uid="uid://cyjf4da755tj" path="res://scripts/world/nickname.tscn" id="10_icxca"]
 [ext_resource type="Script" uid="uid://cmb5et352niyr" path="res://scripts/components/timer_server/C_TimerServer.gd" id="13_ldotg"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_icxca"]
-size = Vector3(1, 2.45334, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_26beo"]
 height = 1.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_cusn3"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bf51h"]
-size = Vector3(1, 1.58411, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bf51h"]
 
@@ -208,94 +194,10 @@ height = 0.5
 radius = 0.1
 height = 0.2
 
-[node name="vlados" type="CharacterBody3D" node_paths=PackedStringArray("camera_controller", "movement_controller", "character_component", "health_component", "head", "_animation_player") groups=["player"]]
-collision_layer = 0
+[node name="vlados" type="CharacterBody3D" node_paths=PackedStringArray("head", "_animation_player") groups=["player"]]
 script = ExtResource("1_v4rts")
-camera_controller = NodePath("W_FPControllerCamera")
-movement_controller = NodePath("W_FPControllerMovement")
-character_component = NodePath("W_ComponentCharacterBody3D")
-health_component = NodePath("CHealthComponent")
 head = NodePath("body/head")
 _animation_player = NodePath("AnimationPlayer")
-
-[node name="CHealthComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_prmqr")]
-target = NodePath("..")
-
-[node name="PlayerSynchronizer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s5ho2")]
-player = NodePath("..")
-
-[node name="player" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("sync_node", "authority_node")]
-script = ExtResource("4_p7km7")
-sync_node = NodePath("../..")
-properties = Array[String](["transform"])
-interpolation_enabled = true
-authority_node = NodePath("../..")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="character" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("sync_node", "authority_node")]
-script = ExtResource("4_p7km7")
-sync_node = NodePath("../../W_ComponentCharacterBody3D")
-properties = Array[String](["is_sprinting", "is_crouching", "_move_direction"])
-interpolation_enabled = true
-authority_node = NodePath("../..")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="mo4a" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("sync_node", "authority_node")]
-script = ExtResource("4_p7km7")
-sync_node = NodePath("../../mo4a")
-properties = Array[String](["emitting"])
-interpolation_enabled = true
-authority_node = NodePath("../..")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="pipi" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("sync_node", "authority_node")]
-script = ExtResource("4_p7km7")
-sync_node = NodePath("../../pipi")
-properties = Array[String](["visible"])
-interpolation_enabled = true
-authority_node = NodePath("../..")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="head" type="Node" parent="PlayerSynchronizer" node_paths=PackedStringArray("sync_node", "authority_node")]
-script = ExtResource("4_p7km7")
-sync_node = NodePath("../../body/head")
-properties = Array[String](["transform"])
-interpolation_enabled = true
-authority_node = NodePath("../..")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="C_HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_fb3y5")]
-health = NodePath("../CHealthComponent")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="C_HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00050807, 0.256844, -0.00361788)
-shape = SubResource("BoxShape3D_icxca")
-
-[node name="W_ComponentCharacterBody3D" type="Node" parent="." node_paths=PackedStringArray("body")]
-script = ExtResource("2_bf51h")
-body = NodePath("..")
-jump_force = 8.0
-metadata/_custom_type_script = "uid://cakitr0kr0hf8"
-
-[node name="W_FPControllerCamera" parent="." node_paths=PackedStringArray("player", "character_component") instance=ExtResource("3_s5ho2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00592, -0.648788)
-script = ExtResource("9_lp3wq")
-player = NodePath("..")
-make_current_at_start = false
-auto_update_mouse = false
-character_component = NodePath("../W_ComponentCharacterBody3D")
-enabled = false
-
-[node name="W_FPControllerMovement" parent="." node_paths=PackedStringArray("character_component") instance=ExtResource("4_y0ih3")]
-key_forward = "move_forward"
-key_backward = "move_backward"
-key_left = "move_left"
-key_right = "move_right"
-key_jump = "jump"
-key_sprint = "sprint"
-key_crouch = "crouch"
-character_component = NodePath("../W_ComponentCharacterBody3D")
-enabled = false
 
 [node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_26beo")
@@ -316,10 +218,6 @@ mesh = SubResource("SphereMesh_cusn3")
 transform = Transform3D(0.650972, 0, 0, 0, 0.596481, 0, 0, 0, 1, 0, 0.299975, -0.501869)
 texture = ExtResource("1_cusn3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00050807, -0.177771, -0.00361788)
-shape = SubResource("BoxShape3D_bf51h")
-
 [node name="leg1" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.263475, -0.672863, 0)
 mesh = SubResource("CylinderMesh_bf51h")
@@ -333,9 +231,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_prmqr")
 }
 
-[node name="nickname" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_icxca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72833, 0)
-player = NodePath("..")
+[node name="nickname" parent="." instance=ExtResource("10_icxca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83424, 0)
 
 [node name="mo4a" type="GPUParticles3D" parent="."]
 transform = Transform3D(2.98023e-08, 0, 1, -2.98023e-08, 1, 8.88178e-16, -1, -2.98023e-08, 2.98023e-08, 0, -0.376506, -0.792903)
@@ -361,9 +258,3 @@ mesh = SubResource("SphereMesh_kcaod")
 autostart = true
 script = ExtResource("13_ldotg")
 metadata/_custom_type_script = "uid://cmb5et352niyr"
-
-[connection signal="health_changed" from="CHealthComponent" to="nickname" method="_on_c_health_component_health_changed"]
-[connection signal="mouse_motion" from="W_FPControllerCamera" to="." method="_on_w_fp_controller_camera_mouse_motion"]
-[connection signal="timeout" from="C_TimerServer" to="." method="_on_c_timer_server_timeout"]
-
-[editable path="W_FPControllerCamera"]

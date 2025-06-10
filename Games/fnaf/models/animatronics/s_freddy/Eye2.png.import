@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7au2i8h7qkdb"
 path.s3tc="res://.godot/imported/Eye2.png-98212e5a1f24568228e8f85396c13ab3.s3tc.ctex"
+path.etc2="res://.godot/imported/Eye2.png-98212e5a1f24568228e8f85396c13ab3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/Eye2.png"
-dest_files=["res://.godot/imported/Eye2.png-98212e5a1f24568228e8f85396c13ab3.s3tc.ctex"]
+dest_files=["res://.godot/imported/Eye2.png-98212e5a1f24568228e8f85396c13ab3.s3tc.ctex", "res://.godot/imported/Eye2.png-98212e5a1f24568228e8f85396c13ab3.etc2.ctex"]
 
 [params]
 
