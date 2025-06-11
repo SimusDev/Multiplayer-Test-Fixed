@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bswwjdjra4rnm"]
+[gd_scene load_steps=14 format=3 uid="uid://bswwjdjra4rnm"]
 
 [ext_resource type="Script" uid="uid://bo8hkf0b4wec6" path="res://Games/experiment_life/entities/player/player.gd" id="1_yd33r"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/experiment_life/models/player/source/animated_model.tscn" id="2_6d6yq"]
@@ -10,6 +10,34 @@
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="5_p7spj"]
 
 [sub_resource type="Resource" id="Resource_im0pj"]
+script = ExtResource("5_p7spj")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_k5ng1"]
+script = ExtResource("5_p7spj")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["velocity"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_jyhyi"]
 script = ExtResource("5_p7spj")
 tickrate = 32.0
 tickrate_mode = 0
@@ -33,18 +61,24 @@ size = Vector3(0.840088, 1.29257, 0.817444)
 collision_layer = 0
 script = ExtResource("1_yd33r")
 
-[node name="AnimatedModel" parent="." instance=ExtResource("2_6d6yq")]
+[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("2_6d6yq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+_movement = NodePath("../W_FPCSourceLikeMovement")
 
 [node name="sync" type="Node" parent="."]
 script = ExtResource("3_k5ng1")
-properties = Array[ExtResource("4_jyhyi")]([SubResource("Resource_im0pj")])
+properties = Array[ExtResource("4_jyhyi")]([SubResource("Resource_im0pj"), SubResource("Resource_k5ng1")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("3_q3met")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08871, -0.162557)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
+
+[node name="sync" type="Node" parent="W_FPCSourceLikePlayerCamera"]
+script = ExtResource("3_k5ng1")
+properties = Array[ExtResource("4_jyhyi")]([SubResource("Resource_jyhyi")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_0r8hq")]
 actor = NodePath("..")
@@ -55,6 +89,10 @@ key_right = "move_right"
 key_jump = "jump"
 key_sprint = "sprint"
 key_crouch = "crouch"
+
+[node name="sync" type="Node" parent="W_FPCSourceLikeMovement"]
+script = ExtResource("3_k5ng1")
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("5_8g0ve")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
@@ -67,6 +105,10 @@ crouch_camera_position = NodePath("../crouch_camera_pos")
 [node name="ceiling_detection" type="RayCast3D" parent="W_FPCSourceLikeCrouch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.963449, 0)
 target_position = Vector3(0, 1, 0)
+
+[node name="sync" type="Node" parent="W_FPCSourceLikeCrouch"]
+script = ExtResource("3_k5ng1")
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="crouch_camera_pos" type="Node3D" parent="."]
 
