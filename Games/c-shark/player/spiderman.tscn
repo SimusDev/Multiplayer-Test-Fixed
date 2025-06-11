@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=13 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_08ks4"]
 [ext_resource type="Script" uid="uid://ct47lcyahk7tn" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.gd" id="3_ailfn"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_odfyr"]
+[ext_resource type="Script" uid="uid://jpuavxpe3v56" path="res://Games/c-shark/components/emotions-manager.gd" id="8_08ks4"]
+[ext_resource type="Script" uid="uid://ct8yea0m1jdwu" path="res://Games/c-shark/components/r_emotion.gd" id="9_257e2"]
+[ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="10_257e2"]
 
 [sub_resource type="Resource" id="Resource_257e2"]
 script = ExtResource("4_odfyr")
@@ -25,9 +28,10 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0okr"]
 size = Vector3(0.9, 2.2, 0.9)
 
-[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement")]
+[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "emotions_manager")]
 script = ExtResource("1_ailfn")
 movement = NodePath("W_FPCSourceLikeMovement")
+emotions_manager = NodePath("EmotinosManager")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_1psrn")
@@ -61,3 +65,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
 shape = SubResource("BoxShape3D_n0okr")
 debug_color = Color(1, 0, 0, 0.419608)
 debug_fill = false
+
+[node name="EmotinosManager" type="Node" parent="." node_paths=PackedStringArray("model_to_animate")]
+script = ExtResource("8_08ks4")
+model_to_animate = NodePath("../Spiderman")
+metadata/_custom_type_script = "uid://jpuavxpe3v56"
+
+[node name="Emotion" type="Node" parent="EmotinosManager"]
+script = ExtResource("9_257e2")
+animation_file = ExtResource("10_257e2")
+_name = "wave"
+key_bind = "1"
+metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
