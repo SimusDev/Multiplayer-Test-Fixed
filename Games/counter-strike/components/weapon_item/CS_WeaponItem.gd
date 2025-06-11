@@ -7,4 +7,4 @@ func _use() -> void:
 	shoot()
 
 func shoot() -> void:
-	pass
+	print("piska")

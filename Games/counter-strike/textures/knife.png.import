@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dojyiiumsd61q"
 path.s3tc="res://.godot/imported/knife.png-eb7212f9488b2199a8b20f7120538925.s3tc.ctex"
+path.etc2="res://.godot/imported/knife.png-eb7212f9488b2199a8b20f7120538925.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/counter-strike/textures/knife.png"
-dest_files=["res://.godot/imported/knife.png-eb7212f9488b2199a8b20f7120538925.s3tc.ctex"]
+dest_files=["res://.godot/imported/knife.png-eb7212f9488b2199a8b20f7120538925.s3tc.ctex", "res://.godot/imported/knife.png-eb7212f9488b2199a8b20f7120538925.etc2.ctex"]
 
 [params]
 

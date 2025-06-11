@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j3ho6q5fycib" path="res://addons/gevp/scripts/vehicle.gd" id="1_4ggqu"]
 [ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="2_m3ghh"]
 [ext_resource type="Script" uid="uid://c7m6oo4hut382" path="res://Games/cars/scripts/lights.gd" id="7_58fu3"]
-[ext_resource type="AudioStream" uid="uid://c8w7ia3ify8d6" path="res://Games/cars/audio/mitsubishi_lancer.wav" id="13_e3hr5"]
+[ext_resource type="AudioStream" uid="uid://ds632a56cjpv1" path="res://Games/cars/audio/BAC_Mono_onhigh.wav" id="13_7hsr3"]
 [ext_resource type="PackedScene" uid="uid://cu6t5ekb7tvhu" path="res://Games/cars/models/mitsubishi_ln_glb/mitsubishi_lancer_evo.tscn" id="16_35gkw"]
 [ext_resource type="PackedScene" uid="uid://dbsjm2xub5u8u" path="res://Games/cars/models/radio/radio.tscn" id="18_e3hr5"]
 [ext_resource type="AudioStream" uid="uid://bngrkkj3vvav2" path="res://Games/cars/audio/BOV2.wav" id="19_3jtcl"]
@@ -341,11 +341,11 @@ light_color = Color(1, 0, 0, 1)
 [node name="EngineSound" parent="." node_paths=PackedStringArray("vehicle", "turbo_charger", "spool_sound") instance=ExtResource("36_gpemh")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522851, 0.254039, 2.19682)
-stream = ExtResource("13_e3hr5")
+stream = ExtResource("13_7hsr3")
 unit_size = 11.75
 max_distance = 110.71
 vehicle = NodePath("..")
-sample_rpm = 800.0
+sample_rpm = 2000.0
 turbo_charger = NodePath("../blow-off")
 spool_sound = NodePath("../spool_sound")
 

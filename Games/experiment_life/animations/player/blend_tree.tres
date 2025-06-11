@@ -51,6 +51,7 @@ play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5xlb"]
 animation = &"library/female_walk"
+play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k05dd"]
 animation = &"library/female_walk"
@@ -68,6 +69,7 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_k05dd")
 blend_point_4/pos = Vector2(1, 0)
 
 [resource]
+graph_offset = Vector2(-662.787, 143.888)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_svrcm")
 nodes/Add2/position = Vector2(-340, 180)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_neb1h")

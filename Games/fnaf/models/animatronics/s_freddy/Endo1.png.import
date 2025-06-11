@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5ark5o7vvn52"
 path.s3tc="res://.godot/imported/Endo1.png-a80be9636c4e39c3bdec7709c3df22a7.s3tc.ctex"
+path.etc2="res://.godot/imported/Endo1.png-a80be9636c4e39c3bdec7709c3df22a7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/Endo1.png"
-dest_files=["res://.godot/imported/Endo1.png-a80be9636c4e39c3bdec7709c3df22a7.s3tc.ctex"]
+dest_files=["res://.godot/imported/Endo1.png-a80be9636c4e39c3bdec7709c3df22a7.s3tc.ctex", "res://.godot/imported/Endo1.png-a80be9636c4e39c3bdec7709c3df22a7.etc2.ctex"]
 
 [params]
 

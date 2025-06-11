@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://bxfyc732lbrcb"]
+
+[ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="1_6r5yg"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_8uvl5"]
+
+[resource]
+script = ExtResource("1_8uvl5")
+visible = true
+is_favorite = false
+scene_path = "uid://chiodmkr5e04q"
+code = "c-shark"
+name = "C Shark (#)"
+icon = ExtResource("1_6r5yg")
+description = ""
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

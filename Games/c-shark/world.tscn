@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://xg3lpdlmy5pq"]
+
+[ext_resource type="Texture2D" uid="uid://dalsn2oucwmu1" path="res://Games/cars/textures/grass-2.jpg" id="1_i55d1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i587b"]
+albedo_texture = ExtResource("1_i55d1")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_icar2"]
+material = SubResource("StandardMaterial3D_i587b")
+size = Vector3(50, 0.1, 50)
+
+[node name="World" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("BoxMesh_icar2")

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://yjufwin6qv6r"
 path.s3tc="res://.godot/imported/materialspropsmetalduct003a.png-3fcde568d45bf06e87c8c19a3d109c77.s3tc.ctex"
+path.etc2="res://.godot/imported/materialspropsmetalduct003a.png-3fcde568d45bf06e87c8c19a3d109c77.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialspropsmetalduct003a.png"
-dest_files=["res://.godot/imported/materialspropsmetalduct003a.png-3fcde568d45bf06e87c8c19a3d109c77.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialspropsmetalduct003a.png-3fcde568d45bf06e87c8c19a3d109c77.s3tc.ctex", "res://.godot/imported/materialspropsmetalduct003a.png-3fcde568d45bf06e87c8c19a3d109c77.etc2.ctex"]
 
 [params]
 

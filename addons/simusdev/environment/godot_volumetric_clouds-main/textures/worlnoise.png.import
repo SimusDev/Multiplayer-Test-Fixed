@@ -4,15 +4,16 @@ importer="3d_texture"
 type="CompressedTexture3D"
 uid="uid://c3r88wbyv4c4x"
 path.bptc="res://.godot/imported/worlnoise.png-2185a03b37ec327c21cb84409396235e.bptc.ctex3d"
+path.astc="res://.godot/imported/worlnoise.png-2185a03b37ec327c21cb84409396235e.astc.ctex3d"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/simusdev/environment/godot_volumetric_clouds-main/textures/worlnoise.png"
-dest_files=["res://.godot/imported/worlnoise.png-2185a03b37ec327c21cb84409396235e.bptc.ctex3d"]
+dest_files=["res://.godot/imported/worlnoise.png-2185a03b37ec327c21cb84409396235e.bptc.ctex3d", "res://.godot/imported/worlnoise.png-2185a03b37ec327c21cb84409396235e.astc.ctex3d"]
 
 [params]
 

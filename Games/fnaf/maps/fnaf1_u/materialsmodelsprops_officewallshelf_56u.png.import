@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bypo7n838ymm8"
 path.s3tc="res://.godot/imported/materialsmodelsprops_officewallshelf_56u.png-470c3f577f864eb5db179d3a1d320f8d.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelsprops_officewallshelf_56u.png-470c3f577f864eb5db179d3a1d320f8d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_officewallshelf_56u.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_officewallshelf_56u.png-470c3f577f864eb5db179d3a1d320f8d.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_officewallshelf_56u.png-470c3f577f864eb5db179d3a1d320f8d.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_officewallshelf_56u.png-470c3f577f864eb5db179d3a1d320f8d.etc2.ctex"]
 
 [params]
 

@@ -27,6 +27,7 @@ func _enter_tree() -> void:
 		return
 	
 	
+	
 	if not name_at_start.is_empty():
 		name = name_at_start
 	

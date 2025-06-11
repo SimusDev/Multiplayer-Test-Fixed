@@ -1,0 +1,57 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=11 format=3 uid="uid://dmrri7ggx6en"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_66gj0"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_hwmg0"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Chest", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ymsrb"]
+animation = &"anim_library/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x3d63"]
+animation = &"anim_library/slow_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ki74b"]
+animation = &"anim_library/slow_run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gq3w5"]
+animation = &"anim_library/slow_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_slxxl"]
+animation = &"anim_library/slow_run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_4aypy"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ymsrb")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_x3d63")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ki74b")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_gq3w5")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_slxxl")
+blend_point_4/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrrnq"]
+animation = &"anim_library/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o6thw"]
+animation = &"anim_library/waving"
+
+[resource]
+graph_offset = Vector2(359.694, 9.68768)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_hwmg0")
+nodes/Add2/position = Vector2(980, 220)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_66gj0")
+"nodes/Add2 2/position" = Vector2(740, 40)
+nodes/fast_run/node = SubResource("AnimationNodeBlendSpace2D_4aypy")
+nodes/fast_run/position = Vector2(480, 40)
+nodes/idle/node = SubResource("AnimationNodeAnimation_hrrnq")
+nodes/idle/position = Vector2(460, 280)
+nodes/output/position = Vector2(1120, 0)
+nodes/waving/node = SubResource("AnimationNodeAnimation_o6thw")
+nodes/waving/position = Vector2(720, 300)
+node_connections = [&"Add2", 1, &"waving", &"Add2 2", 0, &"fast_run", &"Add2 2", 1, &"idle", &"output", 0, &"Add2 2"]

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4lilp5s0vbjd"
 path.s3tc="res://.godot/imported/Untitled_reflectivity_90b.png-a2cdfe53c3042d0f992c1e7720fa079f.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_reflectivity_90b.png-a2cdfe53c3042d0f992c1e7720fa079f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_reflectivity_90b.png"
-dest_files=["res://.godot/imported/Untitled_reflectivity_90b.png-a2cdfe53c3042d0f992c1e7720fa079f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_reflectivity_90b.png-a2cdfe53c3042d0f992c1e7720fa079f.s3tc.ctex", "res://.godot/imported/Untitled_reflectivity_90b.png-a2cdfe53c3042d0f992c1e7720fa079f.etc2.ctex"]
 
 [params]
 

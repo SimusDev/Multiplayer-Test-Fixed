@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dryuwb5i7m3o1"
 path.s3tc="res://.godot/imported/materialsmodelsprops_interiorssinkkitchen01a.png-a9a690fa943e6035adb3c82aa22009a6.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelsprops_interiorssinkkitchen01a.png-a9a690fa943e6035adb3c82aa22009a6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_interiorssinkkitchen01a.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_interiorssinkkitchen01a.png-a9a690fa943e6035adb3c82aa22009a6.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_interiorssinkkitchen01a.png-a9a690fa943e6035adb3c82aa22009a6.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_interiorssinkkitchen01a.png-a9a690fa943e6035adb3c82aa22009a6.etc2.ctex"]
 
 [params]
 

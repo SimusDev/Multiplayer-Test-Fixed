@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://v4bvfhxp2dc8"
 path.s3tc="res://.godot/imported/materialsmodelsprops_industrialsteelshelf01.png-c06fda8bd403a675a7b5083b56e463f1.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelsprops_industrialsteelshelf01.png-c06fda8bd403a675a7b5083b56e463f1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_industrialsteelshelf01.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_industrialsteelshelf01.png-c06fda8bd403a675a7b5083b56e463f1.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_industrialsteelshelf01.png-c06fda8bd403a675a7b5083b56e463f1.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_industrialsteelshelf01.png-c06fda8bd403a675a7b5083b56e463f1.etc2.ctex"]
 
 [params]
 
