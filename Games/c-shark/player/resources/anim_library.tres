@@ -1,8 +1,12 @@
-[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://d30flm3ftdaoq"]
+[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://d30flm3ftdaoq"]
 
 [ext_resource type="Animation" uid="uid://bmc1sj2d188l8" path="res://Games/c-shark/player/resources/idle.res" id="1_ca041"]
 [ext_resource type="Animation" uid="uid://dgxr0prn8c1kc" path="res://Games/c-shark/player/resources/slow_run.res" id="2_q5kr5"]
 [ext_resource type="Animation" uid="uid://cbccx4spb5tj8" path="res://Games/c-shark/player/resources/fast_run.res" id="3_02hvq"]
+[ext_resource type="Animation" uid="uid://b7jlg1oxy3ohm" path="res://Games/c-shark/player/resources/floating.res" id="4_4dcub"]
+[ext_resource type="Animation" uid="uid://ccmg7q7p8rx8o" path="res://Games/c-shark/player/resources/jump.res" id="5_x1oyw"]
+[ext_resource type="Animation" uid="uid://cvdvb0e7qkg24" path="res://Games/c-shark/player/resources/right_strafe.res" id="6_0dgp6"]
+[ext_resource type="Animation" uid="uid://hcexjh0uvbx7" path="res://Games/c-shark/player/resources/strafe-left.res" id="7_x1xfo"]
 
 [sub_resource type="Animation" id="Animation_x1oyw"]
 resource_name = "RESET"
@@ -11,6 +15,10 @@ resource_name = "RESET"
 _data = {
 &"RESET": SubResource("Animation_x1oyw"),
 &"fast_run": ExtResource("3_02hvq"),
+&"floating": ExtResource("4_4dcub"),
 &"idle": ExtResource("1_ca041"),
-&"slow_run": ExtResource("2_q5kr5")
+&"jump": ExtResource("5_x1oyw"),
+&"right_strafe": ExtResource("6_0dgp6"),
+&"slow_run": ExtResource("2_q5kr5"),
+&"strafe-left": ExtResource("7_x1xfo")
 }

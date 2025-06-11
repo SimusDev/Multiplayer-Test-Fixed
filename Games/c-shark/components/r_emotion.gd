@@ -8,9 +8,9 @@ signal used
 @export var key_bind:String
 
 func _input(event: InputEvent) -> void:
-	if is_multiplayer_authority():
+	if !is_multiplayer_authority():
 		return
-	
+
 	if !event is InputEventKey:
 		return
 	
@@ -22,12 +22,14 @@ func setup():
 		return
 	
 	get_parent().model_to_animate.player.get_animation_library("anim_library").add_animation(_name, animation_file)
-	used.connect(play)
+	used.connect(animate)
 
 func emit_signal_synced():
 	used.emit()
 
-func play():
+func animate():
+	var emotions_manager:EmotionsManager = get_parent()
 	
-	get_parent().set_emotion_playing(true)
-	get_parent().model_to_animate.player.play("anim_library/"+_name)
+	emotions_manager.current_animation = _name
+	emotions_manager.set_emotion_playing(true)
+	emotions_manager.model_to_animate.player.play("anim_library/"+_name)

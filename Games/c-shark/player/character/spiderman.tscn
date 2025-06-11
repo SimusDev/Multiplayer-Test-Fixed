@@ -18,6 +18,57 @@ metadata/_custom_type_script = "uid://pf622qfdiljm"
 
 [node name="model3d" parent="." instance=ExtResource("2_xcmuk")]
 
+[node name="Armature" parent="model3d" index="0"]
+transform = Transform3D(0.996856, 0.0791892, 0.00259209, -0.0220955, 0.246429, 0.968909, 0.0760884, -0.96592, 0.247404, 0.0240929, -0.0249538, -0.355763)
+
+[node name="Skeleton3D" parent="model3d/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0465707, 0.0470605, -0.0125956, 0.997726)
+bones/2/rotation = Quaternion(-0.0618501, 0.095273, -0.0167087, 0.993387)
+bones/3/rotation = Quaternion(0.203764, -0.0136432, 0.00224159, 0.978922)
+bones/4/rotation = Quaternion(-0.167575, -0.0124793, 0.00412369, 0.985772)
+bones/7/rotation = Quaternion(0.534174, 0.394316, 0.599621, -0.446798)
+bones/8/rotation = Quaternion(-0.338865, 0.280842, 0.0235762, 0.897632)
+bones/9/rotation = Quaternion(-0.0193432, 0.0199182, -0.695171, 0.718308)
+bones/10/rotation = Quaternion(-0.0918548, -0.0672183, -0.0740553, 0.990737)
+bones/11/rotation = Quaternion(-0.599317, -0.0475997, -0.036648, 0.798255)
+bones/12/rotation = Quaternion(-0.429194, -0.0121506, 0.0654326, 0.900757)
+bones/14/rotation = Quaternion(-0.652173, -0.000807052, 0.186615, 0.734741)
+bones/15/rotation = Quaternion(-0.476908, 0.00454173, 0.0563566, 0.877133)
+bones/17/rotation = Quaternion(-0.613811, -0.040835, 0.0535842, 0.786573)
+bones/18/rotation = Quaternion(-0.443011, 0.00187821, 0.0585511, 0.8946)
+bones/20/rotation = Quaternion(-0.629345, -0.0189193, 0.080446, 0.77272)
+bones/21/rotation = Quaternion(-0.464775, 0.00322684, 0.0579251, 0.883526)
+bones/23/rotation = Quaternion(-0.108806, -0.0267428, -0.281484, 0.953002)
+bones/24/rotation = Quaternion(0.0260418, 0.0292956, 0.195734, 0.979873)
+bones/26/rotation = Quaternion(-0.461185, 0.453391, 0.640449, 0.414211)
+bones/27/rotation = Quaternion(-0.39021, -0.232953, -0.031136, 0.890225)
+bones/28/rotation = Quaternion(-0.0199888, -0.00583011, 0.799956, 0.599697)
+bones/29/rotation = Quaternion(0.0347284, 0.122412, 0.00938678, 0.991827)
+bones/30/rotation = Quaternion(-0.4112, 0.029206, -0.00294349, 0.911072)
+bones/31/rotation = Quaternion(-0.388175, 0.0126788, -0.0514513, 0.920061)
+bones/33/rotation = Quaternion(-0.49701, 0.0273485, -0.106633, 0.860734)
+bones/34/rotation = Quaternion(-0.499657, -0.00548081, -0.047777, 0.864888)
+bones/36/rotation = Quaternion(-0.448882, 0.0313835, -0.0336114, 0.892407)
+bones/37/rotation = Quaternion(-0.239834, -0.00103041, -0.0244038, 0.970507)
+bones/39/rotation = Quaternion(-0.487589, 0.014343, -0.0624945, 0.870716)
+bones/40/rotation = Quaternion(-0.474254, -0.0036441, -0.0484955, 0.879044)
+bones/42/rotation = Quaternion(-0.17696, 0.0374523, 0.269538, 0.94585)
+bones/43/rotation = Quaternion(0.0294885, -0.0239281, -0.211352, 0.976672)
+bones/45/rotation = Quaternion(0.908187, -0.0286548, 0.00361895, 0.417567)
+bones/46/position = Vector3(-0.000542587, 0.461903, 7.3305e-07)
+bones/46/rotation = Quaternion(0.219475, 0.0278676, -0.0105935, 0.975162)
+bones/46/scale = Vector3(1.00001, 0.999805, 1.00019)
+bones/47/position = Vector3(-0.000753018, 0.650007, -1.42253e-05)
+bones/47/rotation = Quaternion(-0.529125, -0.238918, 0.121992, 0.805024)
+bones/47/scale = Vector3(0.99978, 1.00044, 0.999784)
+bones/49/rotation = Quaternion(0.996179, -0.00553308, 0.0850448, -0.0191039)
+bones/50/position = Vector3(0.000542587, 0.461903, 7.3305e-07)
+bones/50/rotation = Quaternion(0.216473, 0.00504342, 0.000938978, 0.976275)
+bones/50/scale = Vector3(1.00001, 0.999805, 1.00019)
+bones/51/position = Vector3(0.000753018, 0.650007, -1.42253e-05)
+bones/51/rotation = Quaternion(-0.56065, 0.0917208, -0.0929049, 0.817697)
+bones/51/scale = Vector3(0.99978, 1.00044, 0.999784)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../model3d")
 libraries = {
@@ -29,8 +80,7 @@ active = false
 root_node = NodePath("../model3d")
 tree_root = ExtResource("4_bwkcu")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Add2/add_amount = 0.00683594
-"parameters/Add2 2/add_amount" = 0.00683594
-parameters/fast_run/blend_position = Vector2(0, 0)
+parameters/Add2/add_amount = 0.0
+parameters/BlendSpace1D/blend_position = 0.895
 
 [editable path="model3d"]

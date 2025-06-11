@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name CSharkPlayer
 
 @export var movement:W_FPCSourceLikeMovement
 @onready var animation_tree:AnimationTree =  $Spiderman.get_animation_tree()
@@ -14,15 +15,18 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func on_state_enter(state: SD_State):
-	print(state)
 	if emotions_manager:
 		if emotions_manager.is_emotion_playing:
 			return
 	
 	match state.name:
 		"ground":
-			animation_player.play("anim_library/idle", 0.1)
+			animation_player.play("anim_library/idle", 0.2)
 		"walk":
-			animation_player.play("anim_library/slow_run", 0.1)
+			animation_player.play("anim_library/slow_run", 0.2)
 		"run":
-			animation_player.play("anim_library/fast_run", 0.1)
+			animation_player.play("anim_library/fast_run", 0.2)
+		"air":
+			animation_player.play("anim_library/floating", 0.2)
+		"air_sprint":
+			animation_player.play("anim_library/floating", 0.2)
