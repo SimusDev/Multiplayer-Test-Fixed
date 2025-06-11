@@ -117,6 +117,21 @@ func get_animation_tree() -> AnimationTree:
 func get_animation_player() -> AnimationPlayer:
 	return player
 
+func get_tree_parameter(parameter: String, default_value: Variant = null) -> Variant:
+	if not tree:
+		return default_value
+	
+	if parameter in tree:
+		return tree.get(parameter)
+	return default_value
+
+func set_tree_parameter(parameter: String, value: Variant) -> void:
+	if not tree:
+		return
+	
+	if parameter in tree:
+		tree.set(parameter, value)
+
 func _find_or_create_animation_player() -> AnimationPlayer:
 	var player: AnimationPlayer = null
 	
