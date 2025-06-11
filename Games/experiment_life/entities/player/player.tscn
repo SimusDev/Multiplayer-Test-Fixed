@@ -71,7 +71,7 @@ properties = Array[ExtResource("4_jyhyi")]([SubResource("Resource_im0pj"), SubRe
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("3_q3met")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08871, -0.162557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05875, 2.58879)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 
@@ -111,6 +111,7 @@ script = ExtResource("3_k5ng1")
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="crouch_camera_pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50127, 0)
 
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.1226, -0.037447)

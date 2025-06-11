@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=13 format=3 uid="uid://bev6yf7wxq854"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=16 format=3 uid="uid://bev6yf7wxq854"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_neb1h"]
 animation = &"library/crouch_idle"
@@ -47,23 +47,33 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_hr7yh")
 blend_point_2/pos = -1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5gsd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_neb1h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_svrcm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms6jx"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_76rui"]
-states/End/position = Vector2(875, 113)
+states/End/position = Vector2(837, 100)
 states/Start/position = Vector2(159, 153)
 states/crouch/node = SubResource("AnimationNodeBlendSpace1D_mv4nc")
-states/crouch/position = Vector2(433, 87)
+states/crouch/position = Vector2(440, 82)
 states/idle/node = SubResource("AnimationNodeAnimation_3ltta")
 states/idle/position = Vector2(283, 153)
 states/jump/node = SubResource("AnimationNodeAnimation_8vbk4")
-states/jump/position = Vector2(420, 204)
+states/jump/position = Vector2(426, 209)
 states/movement/node = SubResource("AnimationNodeBlendSpace1D_qmx2p")
-states/movement/position = Vector2(447, 146)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd")]
-graph_offset = Vector2(59, -6)
+states/movement/position = Vector2(456, 144)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_neb1h"), "movement", "idle", SubResource("AnimationNodeStateMachineTransition_svrcm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ms6jx")]
+graph_offset = Vector2(74, -2)
 
 [resource]
-graph_offset = Vector2(-421.817, -9.24976)
+graph_offset = Vector2(-296.181, 53.9843)
 nodes/movement_sm/node = SubResource("AnimationNodeStateMachine_76rui")
-nodes/movement_sm/position = Vector2(-171.499, 149.817)
+nodes/movement_sm/position = Vector2(-80, 160)
+nodes/output/position = Vector2(220, 180)
 node_connections = [&"output", 0, &"movement_sm"]
