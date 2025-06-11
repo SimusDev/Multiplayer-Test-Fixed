@@ -22,10 +22,10 @@ func _physics_process(delta: float) -> void:
 	
 	var actor_velocity: Vector3 = _actor.velocity * _actor.transform.basis
 	
-	var blend_position: Vector2 = Vector2(-actor_velocity.x, actor_velocity.z)
-	set_tree_parameter("parameters/movement_sm/movement/blend_position", blend_position.y)
-	set_tree_parameter("parameters/movement_sm/crouch/blend_position", blend_position.y)
-
+	var blend_position: Vector2 = Vector2(actor_velocity.x, -actor_velocity.z)
+	set_tree_parameter("parameters/movement_sm/movement/blend_position", blend_position)
+	set_tree_parameter("parameters/movement_sm/crouch/blend_position", blend_position)
+	set_tree_parameter("parameters/movement_tscale/scale", actor_velocity.length() / 6.0)
 
 func update_from_state(state: SD_State) -> void:
 	#print(state)

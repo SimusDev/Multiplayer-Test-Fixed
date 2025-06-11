@@ -61,6 +61,9 @@ size = Vector3(0.840088, 1.29257, 0.817444)
 collision_layer = 0
 script = ExtResource("1_yd33r")
 
+[node name="crouch_camera_pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05875, 2.58879)
+
 [node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("2_6d6yq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 _movement = NodePath("../W_FPCSourceLikeMovement")
@@ -109,9 +112,6 @@ target_position = Vector3(0, 1, 0)
 [node name="sync" type="Node" parent="W_FPCSourceLikeCrouch"]
 script = ExtResource("3_k5ng1")
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="crouch_camera_pos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50127, 0)
 
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.1226, -0.037447)
