@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://25x7m8makv4v"
 path.s3tc="res://.godot/imported/materialsmodelskeithypropsfnaf_cupcake3.png-317a043ca207e6170a291ca1bad75e71.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelskeithypropsfnaf_cupcake3.png-317a043ca207e6170a291ca1bad75e71.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelskeithypropsfnaf_cupcake3.png"
-dest_files=["res://.godot/imported/materialsmodelskeithypropsfnaf_cupcake3.png-317a043ca207e6170a291ca1bad75e71.s3tc.ctex", "res://.godot/imported/materialsmodelskeithypropsfnaf_cupcake3.png-317a043ca207e6170a291ca1bad75e71.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelskeithypropsfnaf_cupcake3.png-317a043ca207e6170a291ca1bad75e71.s3tc.ctex"]
 
 [params]
 

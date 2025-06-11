@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmq7hr16li047"
 path.s3tc="res://.godot/imported/materialscustomblueandredtile.png-3d07aa4de5be486332e1ea7394630235.s3tc.ctex"
-path.etc2="res://.godot/imported/materialscustomblueandredtile.png-3d07aa4de5be486332e1ea7394630235.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialscustomblueandredtile.png"
-dest_files=["res://.godot/imported/materialscustomblueandredtile.png-3d07aa4de5be486332e1ea7394630235.s3tc.ctex", "res://.godot/imported/materialscustomblueandredtile.png-3d07aa4de5be486332e1ea7394630235.etc2.ctex"]
+dest_files=["res://.godot/imported/materialscustomblueandredtile.png-3d07aa4de5be486332e1ea7394630235.s3tc.ctex"]
 
 [params]
 

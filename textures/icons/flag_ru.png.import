@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://3hfnveuexlvu"
 path.s3tc="res://.godot/imported/flag_ru.png-da3164d0b26f6c82ea905f01127ab4c7.s3tc.ctex"
-path.etc2="res://.godot/imported/flag_ru.png-da3164d0b26f6c82ea905f01127ab4c7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/icons/flag_ru.png"
-dest_files=["res://.godot/imported/flag_ru.png-da3164d0b26f6c82ea905f01127ab4c7.s3tc.ctex", "res://.godot/imported/flag_ru.png-da3164d0b26f6c82ea905f01127ab4c7.etc2.ctex"]
+dest_files=["res://.godot/imported/flag_ru.png-da3164d0b26f6c82ea905f01127ab4c7.s3tc.ctex"]
 
 [params]
 

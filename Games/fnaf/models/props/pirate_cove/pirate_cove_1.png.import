@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwuie5m4va48s"
 path.s3tc="res://.godot/imported/pirate_cove_1.png-b38552ccfa660b2b0c9cf95be0c20662.s3tc.ctex"
-path.etc2="res://.godot/imported/pirate_cove_1.png-b38552ccfa660b2b0c9cf95be0c20662.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/fnaf/models/props/pirate_cove/pirate_cove_1.png"
-dest_files=["res://.godot/imported/pirate_cove_1.png-b38552ccfa660b2b0c9cf95be0c20662.s3tc.ctex", "res://.godot/imported/pirate_cove_1.png-b38552ccfa660b2b0c9cf95be0c20662.etc2.ctex"]
+dest_files=["res://.godot/imported/pirate_cove_1.png-b38552ccfa660b2b0c9cf95be0c20662.s3tc.ctex"]
 
 [params]
 

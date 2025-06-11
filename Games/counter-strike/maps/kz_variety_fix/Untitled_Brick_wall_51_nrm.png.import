@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctabnytj0p5vq"
 path.s3tc="res://.godot/imported/Untitled_Brick_wall_51_nrm.png-4849cad254404b8f3515054386611a64.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_Brick_wall_51_nrm.png-4849cad254404b8f3515054386611a64.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_Brick_wall_51_nrm.png"
-dest_files=["res://.godot/imported/Untitled_Brick_wall_51_nrm.png-4849cad254404b8f3515054386611a64.s3tc.ctex", "res://.godot/imported/Untitled_Brick_wall_51_nrm.png-4849cad254404b8f3515054386611a64.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_Brick_wall_51_nrm.png-4849cad254404b8f3515054386611a64.s3tc.ctex"]
 
 [params]
 

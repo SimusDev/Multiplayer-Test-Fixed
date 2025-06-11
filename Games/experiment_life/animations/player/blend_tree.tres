@@ -1,19 +1,27 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=15 format=3 uid="uid://bev6yf7wxq854"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_neb1h"]
-filter_enabled = true
-filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_Hips", "Skeleton3D:mixamorig_LeftFoot", "Skeleton3D:mixamorig_LeftLeg", "Skeleton3D:mixamorig_LeftToeBase", "Skeleton3D:mixamorig_LeftUpLeg", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightFoot", "Skeleton3D:mixamorig_RightLeg", "Skeleton3D:mixamorig_RightToeBase", "Skeleton3D:mixamorig_RightUpLeg", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_svrcm"]
-filter_enabled = true
-filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_Hips", "Skeleton3D:mixamorig_LeftFoot", "Skeleton3D:mixamorig_LeftLeg", "Skeleton3D:mixamorig_LeftToeBase", "Skeleton3D:mixamorig_LeftUpLeg", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightFoot", "Skeleton3D:mixamorig_RightLeg", "Skeleton3D:mixamorig_RightToeBase", "Skeleton3D:mixamorig_RightUpLeg", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_neb1h"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=13 format=3 uid="uid://bev6yf7wxq854"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_neb1h"]
-animation = &"library/idle"
+animation = &"library/crouch_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_svrcm"]
+animation = &"library/crouch_walk"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ms6jx"]
+animation = &"library/crouch_walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_mv4nc"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_neb1h")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_svrcm")
+blend_point_1/pos = -1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_ms6jx")
+blend_point_2/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ltta"]
+animation = &"library/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vbk4"]
 animation = &"library/jump"
 use_custom_timeline = true
 timeline_length = 1.0
@@ -21,63 +29,41 @@ stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_svrcm"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms6jx"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ms6jx"]
-states/End/position = Vector2(892, 100)
-states/Start/position = Vector2(195, 100)
-states/library_idle/node = SubResource("AnimationNodeAnimation_neb1h")
-states/library_idle/position = Vector2(326, 100)
-states/library_jump/node = SubResource("AnimationNodeAnimation_svrcm")
-states/library_jump/position = Vector2(556, 100)
-transitions = ["Start", "library_idle", SubResource("AnimationNodeStateMachineTransition_svrcm"), "library_jump", "library_idle", SubResource("AnimationNodeStateMachineTransition_ms6jx")]
-graph_offset = Vector2(110, -2)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mv4nc"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5xlb"]
 animation = &"library/idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ltta"]
-animation = &"library/female_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vbk4"]
-animation = &"library/female_walk"
-play_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5xlb"]
-animation = &"library/female_walk"
-play_mode = 1
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k05dd"]
-animation = &"library/female_walk"
+animation = &"library/run_forward"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_neb1h"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mv4nc")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_3ltta")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_8vbk4")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_x5xlb")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_k05dd")
-blend_point_4/pos = Vector2(1, 0)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hr7yh"]
+animation = &"library/run_backward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qmx2p"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x5xlb")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_k05dd")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_hr7yh")
+blend_point_2/pos = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5gsd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_76rui"]
+states/End/position = Vector2(875, 113)
+states/Start/position = Vector2(159, 153)
+states/crouch/node = SubResource("AnimationNodeBlendSpace1D_mv4nc")
+states/crouch/position = Vector2(433, 87)
+states/idle/node = SubResource("AnimationNodeAnimation_3ltta")
+states/idle/position = Vector2(283, 153)
+states/jump/node = SubResource("AnimationNodeAnimation_8vbk4")
+states/jump/position = Vector2(420, 204)
+states/movement/node = SubResource("AnimationNodeBlendSpace1D_qmx2p")
+states/movement/position = Vector2(447, 146)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd")]
+graph_offset = Vector2(59, -6)
 
 [resource]
-graph_offset = Vector2(-662.787, 143.888)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_svrcm")
-nodes/Add2/position = Vector2(-340, 180)
-"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_neb1h")
-"nodes/Add2 2/position" = Vector2(-40, 180)
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_neb1h")
-nodes/StateMachine/position = Vector2(-620, 400)
-nodes/movement_fsm/node = SubResource("AnimationNodeStateMachine_ms6jx")
-nodes/movement_fsm/position = Vector2(-600, 180)
-nodes/walk_blend/node = SubResource("AnimationNodeBlendSpace2D_neb1h")
-nodes/walk_blend/position = Vector2(-240, 420)
-node_connections = [&"Add2", 0, &"movement_fsm", &"Add2", 1, &"StateMachine", &"Add2 2", 0, &"walk_blend", &"Add2 2", 1, &"Add2", &"output", 0, &"Add2 2"]
+graph_offset = Vector2(-421.817, -9.24976)
+nodes/movement_sm/node = SubResource("AnimationNodeStateMachine_76rui")
+nodes/movement_sm/position = Vector2(-171.499, 149.817)
+node_connections = [&"output", 0, &"movement_sm"]

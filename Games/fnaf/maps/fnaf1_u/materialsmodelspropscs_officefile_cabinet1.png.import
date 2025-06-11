@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4yd3jgplc6to"
 path.s3tc="res://.godot/imported/materialsmodelspropscs_officefile_cabinet1.png-1bd2a61c5286ec23034aa5aae5e473ad.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelspropscs_officefile_cabinet1.png-1bd2a61c5286ec23034aa5aae5e473ad.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelspropscs_officefile_cabinet1.png"
-dest_files=["res://.godot/imported/materialsmodelspropscs_officefile_cabinet1.png-1bd2a61c5286ec23034aa5aae5e473ad.s3tc.ctex", "res://.godot/imported/materialsmodelspropscs_officefile_cabinet1.png-1bd2a61c5286ec23034aa5aae5e473ad.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelspropscs_officefile_cabinet1.png-1bd2a61c5286ec23034aa5aae5e473ad.s3tc.ctex"]
 
 [params]
 

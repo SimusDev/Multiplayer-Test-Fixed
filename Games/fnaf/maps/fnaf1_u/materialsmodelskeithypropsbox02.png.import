@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbqrhwo8rnpdq"
 path.s3tc="res://.godot/imported/materialsmodelskeithypropsbox02.png-a5a0fca00f2e2738aee68b62433d677c.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelskeithypropsbox02.png-a5a0fca00f2e2738aee68b62433d677c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelskeithypropsbox02.png"
-dest_files=["res://.godot/imported/materialsmodelskeithypropsbox02.png-a5a0fca00f2e2738aee68b62433d677c.s3tc.ctex", "res://.godot/imported/materialsmodelskeithypropsbox02.png-a5a0fca00f2e2738aee68b62433d677c.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelskeithypropsbox02.png-a5a0fca00f2e2738aee68b62433d677c.s3tc.ctex"]
 
 [params]
 

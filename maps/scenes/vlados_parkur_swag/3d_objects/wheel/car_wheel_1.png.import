@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://de66x5utgg7rs"
 path.s3tc="res://.godot/imported/car_wheel_1.png-943e2184f9cefd2f1e04ea627fe0066d.s3tc.ctex"
-path.etc2="res://.godot/imported/car_wheel_1.png-943e2184f9cefd2f1e04ea627fe0066d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://maps/scenes/vlados_parkur_swag/3d_objects/wheel/car_wheel_1.png"
-dest_files=["res://.godot/imported/car_wheel_1.png-943e2184f9cefd2f1e04ea627fe0066d.s3tc.ctex", "res://.godot/imported/car_wheel_1.png-943e2184f9cefd2f1e04ea627fe0066d.etc2.ctex"]
+dest_files=["res://.godot/imported/car_wheel_1.png-943e2184f9cefd2f1e04ea627fe0066d.s3tc.ctex"]
 
 [params]
 

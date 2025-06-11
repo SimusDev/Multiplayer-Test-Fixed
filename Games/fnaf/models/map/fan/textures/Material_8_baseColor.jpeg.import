@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://27g452y5vlx4"
 path.s3tc="res://.godot/imported/Material_8_baseColor.jpeg-56419251b6fce20fe4dcccddfe4da9d7.s3tc.ctex"
-path.etc2="res://.godot/imported/Material_8_baseColor.jpeg-56419251b6fce20fe4dcccddfe4da9d7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/map/fan/textures/Material_8_baseColor.jpeg"
-dest_files=["res://.godot/imported/Material_8_baseColor.jpeg-56419251b6fce20fe4dcccddfe4da9d7.s3tc.ctex", "res://.godot/imported/Material_8_baseColor.jpeg-56419251b6fce20fe4dcccddfe4da9d7.etc2.ctex"]
+dest_files=["res://.godot/imported/Material_8_baseColor.jpeg-56419251b6fce20fe4dcccddfe4da9d7.s3tc.ctex"]
 
 [params]
 

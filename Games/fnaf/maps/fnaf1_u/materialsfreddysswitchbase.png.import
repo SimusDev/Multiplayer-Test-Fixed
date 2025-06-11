@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d6218y0kya5w"
 path.s3tc="res://.godot/imported/materialsfreddysswitchbase.png-00c8e74c47506e303b37f0e1ea9601e5.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsfreddysswitchbase.png-00c8e74c47506e303b37f0e1ea9601e5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsfreddysswitchbase.png"
-dest_files=["res://.godot/imported/materialsfreddysswitchbase.png-00c8e74c47506e303b37f0e1ea9601e5.s3tc.ctex", "res://.godot/imported/materialsfreddysswitchbase.png-00c8e74c47506e303b37f0e1ea9601e5.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsfreddysswitchbase.png-00c8e74c47506e303b37f0e1ea9601e5.s3tc.ctex"]
 
 [params]
 

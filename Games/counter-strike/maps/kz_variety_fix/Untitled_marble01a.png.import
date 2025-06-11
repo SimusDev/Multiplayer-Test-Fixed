@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6qk86tysic5s"
 path.s3tc="res://.godot/imported/Untitled_marble01a.png-dc987da7e4f8297e0b4eecb7e64454a3.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_marble01a.png-dc987da7e4f8297e0b4eecb7e64454a3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_marble01a.png"
-dest_files=["res://.godot/imported/Untitled_marble01a.png-dc987da7e4f8297e0b4eecb7e64454a3.s3tc.ctex", "res://.godot/imported/Untitled_marble01a.png-dc987da7e4f8297e0b4eecb7e64454a3.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_marble01a.png-dc987da7e4f8297e0b4eecb7e64454a3.s3tc.ctex"]
 
 [params]
 

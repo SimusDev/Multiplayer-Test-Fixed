@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvmgv7u15dblo"
 path.s3tc="res://.godot/imported/Untitled_woodb.png-e0499ef52d6a5bc31d8f7bbdd67815dc.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_woodb.png-e0499ef52d6a5bc31d8f7bbdd67815dc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_woodb.png"
-dest_files=["res://.godot/imported/Untitled_woodb.png-e0499ef52d6a5bc31d8f7bbdd67815dc.s3tc.ctex", "res://.godot/imported/Untitled_woodb.png-e0499ef52d6a5bc31d8f7bbdd67815dc.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_woodb.png-e0499ef52d6a5bc31d8f7bbdd67815dc.s3tc.ctex"]
 
 [params]
 

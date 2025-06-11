@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://beonn2hatkrr7"
 path.s3tc="res://.godot/imported/SuitBump.png-4dec255b32aa4906e41b9c8ad8959b73.s3tc.ctex"
-path.etc2="res://.godot/imported/SuitBump.png-4dec255b32aa4906e41b9c8ad8959b73.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/SuitBump.png"
-dest_files=["res://.godot/imported/SuitBump.png-4dec255b32aa4906e41b9c8ad8959b73.s3tc.ctex", "res://.godot/imported/SuitBump.png-4dec255b32aa4906e41b9c8ad8959b73.etc2.ctex"]
+dest_files=["res://.godot/imported/SuitBump.png-4dec255b32aa4906e41b9c8ad8959b73.s3tc.ctex"]
 
 [params]
 

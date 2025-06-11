@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuvkumbhe5rko"
 path.s3tc="res://.godot/imported/Untitled_Cupcake_Eye.png-9a74dbaeec9f9d505ba8330b1521f9e2.s3tc.ctex"
-path.etc2="res://.godot/imported/Untitled_Cupcake_Eye.png-9a74dbaeec9f9d505ba8330b1521f9e2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/fnaf/models/map/office_table_props/Untitled_Cupcake_Eye.png"
-dest_files=["res://.godot/imported/Untitled_Cupcake_Eye.png-9a74dbaeec9f9d505ba8330b1521f9e2.s3tc.ctex", "res://.godot/imported/Untitled_Cupcake_Eye.png-9a74dbaeec9f9d505ba8330b1521f9e2.etc2.ctex"]
+dest_files=["res://.godot/imported/Untitled_Cupcake_Eye.png-9a74dbaeec9f9d505ba8330b1521f9e2.s3tc.ctex"]
 
 [params]
 

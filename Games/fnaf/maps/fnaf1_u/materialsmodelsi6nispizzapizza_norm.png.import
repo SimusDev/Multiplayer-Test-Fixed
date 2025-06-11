@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://txxm8uc8tuut"
 path.s3tc="res://.godot/imported/materialsmodelsi6nispizzapizza_norm.png-98118c85947ae29a66d6ad5fc9074a33.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelsi6nispizzapizza_norm.png-98118c85947ae29a66d6ad5fc9074a33.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsi6nispizzapizza_norm.png"
-dest_files=["res://.godot/imported/materialsmodelsi6nispizzapizza_norm.png-98118c85947ae29a66d6ad5fc9074a33.s3tc.ctex", "res://.godot/imported/materialsmodelsi6nispizzapizza_norm.png-98118c85947ae29a66d6ad5fc9074a33.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsi6nispizzapizza_norm.png-98118c85947ae29a66d6ad5fc9074a33.s3tc.ctex"]
 
 [params]
 

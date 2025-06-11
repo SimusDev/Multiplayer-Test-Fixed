@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://coxmsmt1r3txy"
 path.s3tc="res://.godot/imported/toyota_gt_apex_trueno_ae86_stock_jdm_8.png-b4bd248f87722e8e28d0fd11919ff18b.s3tc.ctex"
-path.etc2="res://.godot/imported/toyota_gt_apex_trueno_ae86_stock_jdm_8.png-b4bd248f87722e8e28d0fd11919ff18b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://maps/scenes/vlados_parkur_swag/3d_objects/toyota/toyota_gt_apex_trueno_ae86_stock_jdm_8.png"
-dest_files=["res://.godot/imported/toyota_gt_apex_trueno_ae86_stock_jdm_8.png-b4bd248f87722e8e28d0fd11919ff18b.s3tc.ctex", "res://.godot/imported/toyota_gt_apex_trueno_ae86_stock_jdm_8.png-b4bd248f87722e8e28d0fd11919ff18b.etc2.ctex"]
+dest_files=["res://.godot/imported/toyota_gt_apex_trueno_ae86_stock_jdm_8.png-b4bd248f87722e8e28d0fd11919ff18b.s3tc.ctex"]
 
 [params]
 

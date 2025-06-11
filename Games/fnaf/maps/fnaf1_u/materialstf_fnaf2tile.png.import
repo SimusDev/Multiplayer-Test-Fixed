@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1yhlrdglbhf0"
 path.s3tc="res://.godot/imported/materialstf_fnaf2tile.png-06f08c2079795bb91c889d59ec0ca1cf.s3tc.ctex"
-path.etc2="res://.godot/imported/materialstf_fnaf2tile.png-06f08c2079795bb91c889d59ec0ca1cf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialstf_fnaf2tile.png"
-dest_files=["res://.godot/imported/materialstf_fnaf2tile.png-06f08c2079795bb91c889d59ec0ca1cf.s3tc.ctex", "res://.godot/imported/materialstf_fnaf2tile.png-06f08c2079795bb91c889d59ec0ca1cf.etc2.ctex"]
+dest_files=["res://.godot/imported/materialstf_fnaf2tile.png-06f08c2079795bb91c889d59ec0ca1cf.s3tc.ctex"]
 
 [params]
 

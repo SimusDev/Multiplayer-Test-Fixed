@@ -7,9 +7,8 @@ class_name W_AnimatedModel3D
 @export var blend_tree: AnimationNodeBlendTree
 
 @export var setup_model: bool = false : set = _setup_model
-#@export var import_parameters: bool = false : set = _import_parameters
 
-#@export var parameters: Dictionary[String, String] = {}
+#@export var custom_parameters: Dictionary[String, String] = {}
 
 @export_group("References")
 @export var model: Node3D
@@ -77,40 +76,6 @@ func _find_skeleton(node: Node) -> void:
 			return
 		_find_skeleton(child)
 
-#func _import_parameters(value: bool) -> void:
-	#if not value:
-		#return
-	#
-	#if not blend_tree:
-		#return
-	#
-	#parameters.clear()
-	#for parameter in tree.get_property_list():
-		#var tree_param_name: String = parameter.name
-		#
-		#var p_name: String = parameter.name
-		#if !p_name.begins_with("parameters/"):
-			#continue
-		#
-		#p_name = p_name.replacen("parameters/", "")
-		#var split: PackedStringArray = p_name.split("/")
-		#if split.is_empty():
-			#continue
-		#
-		#var actual_name: String = split.get(0)
-		#
-		#if not blend_tree.has_node(actual_name):
-			#continue
-		#
-		#var node: AnimationNode = blend_tree.get_node(actual_name)
-		#if not node:
-			#continue
-		#
-		#
-		#parameters[actual_name] = tree_param_name
-	#
-	#import_parameters = false
-
 func get_animation_tree() -> AnimationTree:
 	return tree
 
@@ -118,7 +83,7 @@ func get_animation_player() -> AnimationPlayer:
 	return player
 
 func get_tree_parameter(parameter: String, default_value: Variant = null) -> Variant:
-	if not tree:
+	if not tree or parameter.is_empty():
 		return default_value
 	
 	if parameter in tree:
@@ -126,11 +91,16 @@ func get_tree_parameter(parameter: String, default_value: Variant = null) -> Var
 	return default_value
 
 func set_tree_parameter(parameter: String, value: Variant) -> void:
-	if not tree:
+	if not tree or parameter.is_empty():
 		return
 	
 	if parameter in tree:
 		tree.set(parameter, value)
+
+#func get_tree_custom_parameter(parameter: String, default_value: Variant = null) -> Variant:
+	#return get_tree_parameter(custom_parameters.get(parameter, ""), default_value)
+#
+#func set_tree_custom_parameter(parameter: String, default_value: Variant)
 
 func _find_or_create_animation_player() -> AnimationPlayer:
 	var player: AnimationPlayer = null

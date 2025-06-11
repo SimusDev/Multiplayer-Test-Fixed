@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7q8mx4pwmju1"
 path.s3tc="res://.godot/imported/materialsfnaf1brick.png-f04eae05e04cf30b6176841e30a09deb.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsfnaf1brick.png-f04eae05e04cf30b6176841e30a09deb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png"
-dest_files=["res://.godot/imported/materialsfnaf1brick.png-f04eae05e04cf30b6176841e30a09deb.s3tc.ctex", "res://.godot/imported/materialsfnaf1brick.png-f04eae05e04cf30b6176841e30a09deb.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsfnaf1brick.png-f04eae05e04cf30b6176841e30a09deb.s3tc.ctex"]
 
 [params]
 
