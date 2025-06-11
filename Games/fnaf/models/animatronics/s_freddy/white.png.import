@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5foud3tmqppt"
 path.s3tc="res://.godot/imported/white.png-a4e5897cb5bac08a5ce27ed3f291f873.s3tc.ctex"
-path.etc2="res://.godot/imported/white.png-a4e5897cb5bac08a5ce27ed3f291f873.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/white.png"
-dest_files=["res://.godot/imported/white.png-a4e5897cb5bac08a5ce27ed3f291f873.s3tc.ctex", "res://.godot/imported/white.png-a4e5897cb5bac08a5ce27ed3f291f873.etc2.ctex"]
+dest_files=["res://.godot/imported/white.png-a4e5897cb5bac08a5ce27ed3f291f873.s3tc.ctex"]
 
 [params]
 

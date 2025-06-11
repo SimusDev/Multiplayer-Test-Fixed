@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b54k45rss0an"
 path.s3tc="res://.godot/imported/materialsmodelsprops_pipespipeset_metal.png-90dac3151da8218365f2d1b416c80002.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelsprops_pipespipeset_metal.png-90dac3151da8218365f2d1b416c80002.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_pipespipeset_metal.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_pipespipeset_metal.png-90dac3151da8218365f2d1b416c80002.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_pipespipeset_metal.png-90dac3151da8218365f2d1b416c80002.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_pipespipeset_metal.png-90dac3151da8218365f2d1b416c80002.s3tc.ctex"]
 
 [params]
 

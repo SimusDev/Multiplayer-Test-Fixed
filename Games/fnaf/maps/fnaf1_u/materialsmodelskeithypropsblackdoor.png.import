@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://445eax7vy4o3"
 path.s3tc="res://.godot/imported/materialsmodelskeithypropsblackdoor.png-b2a6db9871491c9dadab51990e7c354a.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelskeithypropsblackdoor.png-b2a6db9871491c9dadab51990e7c354a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelskeithypropsblackdoor.png"
-dest_files=["res://.godot/imported/materialsmodelskeithypropsblackdoor.png-b2a6db9871491c9dadab51990e7c354a.s3tc.ctex", "res://.godot/imported/materialsmodelskeithypropsblackdoor.png-b2a6db9871491c9dadab51990e7c354a.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelskeithypropsblackdoor.png-b2a6db9871491c9dadab51990e7c354a.s3tc.ctex"]
 
 [params]
 

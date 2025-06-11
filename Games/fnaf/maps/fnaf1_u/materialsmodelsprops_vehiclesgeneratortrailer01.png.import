@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cn2mo1nagqlbh"
 path.s3tc="res://.godot/imported/materialsmodelsprops_vehiclesgeneratortrailer01.png-c412b65541d1e0d2d05c1254583389c5.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelsprops_vehiclesgeneratortrailer01.png-c412b65541d1e0d2d05c1254583389c5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_vehiclesgeneratortrailer01.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_vehiclesgeneratortrailer01.png-c412b65541d1e0d2d05c1254583389c5.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_vehiclesgeneratortrailer01.png-c412b65541d1e0d2d05c1254583389c5.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_vehiclesgeneratortrailer01.png-c412b65541d1e0d2d05c1254583389c5.s3tc.ctex"]
 
 [params]
 

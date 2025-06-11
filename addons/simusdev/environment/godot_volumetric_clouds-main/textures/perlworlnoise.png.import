@@ -4,16 +4,15 @@ importer="3d_texture"
 type="CompressedTexture3D"
 uid="uid://di4exf7pfqua8"
 path.bptc="res://.godot/imported/perlworlnoise.png-7f7e4c3200ce76de313a208b347bfde5.bptc.ctex3d"
-path.astc="res://.godot/imported/perlworlnoise.png-7f7e4c3200ce76de313a208b347bfde5.astc.ctex3d"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/simusdev/environment/godot_volumetric_clouds-main/textures/perlworlnoise.png"
-dest_files=["res://.godot/imported/perlworlnoise.png-7f7e4c3200ce76de313a208b347bfde5.bptc.ctex3d", "res://.godot/imported/perlworlnoise.png-7f7e4c3200ce76de313a208b347bfde5.astc.ctex3d"]
+dest_files=["res://.godot/imported/perlworlnoise.png-7f7e4c3200ce76de313a208b347bfde5.bptc.ctex3d"]
 
 [params]
 

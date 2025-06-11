@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://uekty435pyla"
 path.s3tc="res://.godot/imported/materialsmodelsprops_blackmesabms_vents_1.png-5c0c84001970fd5b25a81da57f43b492.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelsprops_blackmesabms_vents_1.png-5c0c84001970fd5b25a81da57f43b492.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_blackmesabms_vents_1.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_blackmesabms_vents_1.png-5c0c84001970fd5b25a81da57f43b492.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_blackmesabms_vents_1.png-5c0c84001970fd5b25a81da57f43b492.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_blackmesabms_vents_1.png-5c0c84001970fd5b25a81da57f43b492.s3tc.ctex"]
 
 [params]
 

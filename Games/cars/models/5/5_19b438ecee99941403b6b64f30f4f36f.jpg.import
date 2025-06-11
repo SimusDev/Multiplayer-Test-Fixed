@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt8eg5ud1iiud"
 path.s3tc="res://.godot/imported/5_19b438ecee99941403b6b64f30f4f36f.jpg-520fd7d8a72fd9871a14ea90e9dd0a19.s3tc.ctex"
-path.etc2="res://.godot/imported/5_19b438ecee99941403b6b64f30f4f36f.jpg-520fd7d8a72fd9871a14ea90e9dd0a19.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/5/5_19b438ecee99941403b6b64f30f4f36f.jpg"
-dest_files=["res://.godot/imported/5_19b438ecee99941403b6b64f30f4f36f.jpg-520fd7d8a72fd9871a14ea90e9dd0a19.s3tc.ctex", "res://.godot/imported/5_19b438ecee99941403b6b64f30f4f36f.jpg-520fd7d8a72fd9871a14ea90e9dd0a19.etc2.ctex"]
+dest_files=["res://.godot/imported/5_19b438ecee99941403b6b64f30f4f36f.jpg-520fd7d8a72fd9871a14ea90e9dd0a19.s3tc.ctex"]
 
 [params]
 

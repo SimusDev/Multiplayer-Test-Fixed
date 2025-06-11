@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cki0r5ni2w0h7"
 path.s3tc="res://.godot/imported/materialsmodelsprops_wastelandprison_yard001.png-1633007905c967397fd0d16d42a1accc.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsmodelsprops_wastelandprison_yard001.png-1633007905c967397fd0d16d42a1accc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_wastelandprison_yard001.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_wastelandprison_yard001.png-1633007905c967397fd0d16d42a1accc.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_wastelandprison_yard001.png-1633007905c967397fd0d16d42a1accc.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_wastelandprison_yard001.png-1633007905c967397fd0d16d42a1accc.s3tc.ctex"]
 
 [params]
 

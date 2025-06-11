@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh55mg7q8qrhe"
 path.s3tc="res://.godot/imported/M_Flashlight_V01_normal.png-7cde32b72dd63572a6e622f3ef0c9796.s3tc.ctex"
-path.etc2="res://.godot/imported/M_Flashlight_V01_normal.png-7cde32b72dd63572a6e622f3ef0c9796.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/items/flashlight/textures/M_Flashlight_V01_normal.png"
-dest_files=["res://.godot/imported/M_Flashlight_V01_normal.png-7cde32b72dd63572a6e622f3ef0c9796.s3tc.ctex", "res://.godot/imported/M_Flashlight_V01_normal.png-7cde32b72dd63572a6e622f3ef0c9796.etc2.ctex"]
+dest_files=["res://.godot/imported/M_Flashlight_V01_normal.png-7cde32b72dd63572a6e622f3ef0c9796.s3tc.ctex"]
 
 [params]
 

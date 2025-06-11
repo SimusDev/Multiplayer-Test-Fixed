@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfo135r2e1sx0"
 path.s3tc="res://.godot/imported/materialsgroundsnow01.png-5a76c676b758229d8691a7c5a1b5999a.s3tc.ctex"
-path.etc2="res://.godot/imported/materialsgroundsnow01.png-5a76c676b758229d8691a7c5a1b5999a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsgroundsnow01.png"
-dest_files=["res://.godot/imported/materialsgroundsnow01.png-5a76c676b758229d8691a7c5a1b5999a.s3tc.ctex", "res://.godot/imported/materialsgroundsnow01.png-5a76c676b758229d8691a7c5a1b5999a.etc2.ctex"]
+dest_files=["res://.godot/imported/materialsgroundsnow01.png-5a76c676b758229d8691a7c5a1b5999a.s3tc.ctex"]
 
 [params]
 

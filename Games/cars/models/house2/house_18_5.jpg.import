@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqfqi7tpmu52i"
 path.s3tc="res://.godot/imported/house_18_5.jpg-016916cc018a2414710d007723a5cc1b.s3tc.ctex"
-path.etc2="res://.godot/imported/house_18_5.jpg-016916cc018a2414710d007723a5cc1b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/house2/house_18_5.jpg"
-dest_files=["res://.godot/imported/house_18_5.jpg-016916cc018a2414710d007723a5cc1b.s3tc.ctex", "res://.godot/imported/house_18_5.jpg-016916cc018a2414710d007723a5cc1b.etc2.ctex"]
+dest_files=["res://.godot/imported/house_18_5.jpg-016916cc018a2414710d007723a5cc1b.s3tc.ctex"]
 
 [params]
 

@@ -8,7 +8,7 @@ signal used
 @export var key_bind:String
 
 func _input(event: InputEvent) -> void:
-	if is_multiplayer_authority():
+	if !is_multiplayer_authority():
 		return
 	
 	if !event is InputEventKey:

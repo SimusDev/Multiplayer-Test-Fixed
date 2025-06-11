@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://csiqbfq6kpunq"
 path.s3tc="res://.godot/imported/model_0.png-08e47d1b5927058b0dfb91cd1e1cc094.s3tc.ctex"
-path.etc2="res://.godot/imported/model_0.png-08e47d1b5927058b0dfb91cd1e1cc094.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/models/weapons/ak47/model_0.png"
-dest_files=["res://.godot/imported/model_0.png-08e47d1b5927058b0dfb91cd1e1cc094.s3tc.ctex", "res://.godot/imported/model_0.png-08e47d1b5927058b0dfb91cd1e1cc094.etc2.ctex"]
+dest_files=["res://.godot/imported/model_0.png-08e47d1b5927058b0dfb91cd1e1cc094.s3tc.ctex"]
 
 [params]
 
