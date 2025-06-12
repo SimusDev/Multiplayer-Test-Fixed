@@ -29,7 +29,8 @@ func _ready() -> void:
 	
 	if SD_Platforms.has_debug_console_feature():
 		_console_node = _console_prefab.instantiate()
-		if _console_node.has_method("set_visible"):
+		
+		if _console_node is CanvasItem:
 			_console_node.visible = false
 		
 		_debug_node = _debug_prefab.instantiate()

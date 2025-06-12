@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=6 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_b1316"]
 [ext_resource type="PackedScene" uid="uid://iigttmn8ai0p" path="res://addons/simusdev/ui/dynamic/panel.tscn" id="2_oq7w7"]
+[ext_resource type="PackedScene" uid="uid://cpvew16xiutxp" path="res://addons/simusdev/console/prefabs/ui_console_output.tscn" id="4_xlpwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq7w7"]
 bg_color = Color(1, 1, 1, 0)
@@ -15,13 +16,14 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="ui_console_interface" type="Control"]
+[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_drag")]
 custom_minimum_size = Vector2(768, 512)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 512.0
 offset_bottom = 512.0
 script = ExtResource("1_oq7w7")
+_drag = NodePath("SE_UIControlDrag")
 
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_b1316")
@@ -37,3 +39,12 @@ layout_mode = 1
 [node name="bg_frame" parent="." instance=ExtResource("2_oq7w7")]
 layout_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_oq7w7")
+
+[node name="ui_console_output" parent="." instance=ExtResource("4_xlpwh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.934
+offset_bottom = -0.208008
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]

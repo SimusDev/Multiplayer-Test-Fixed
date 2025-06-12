@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpvew16xiutxp"]
+
+[ext_resource type="Script" uid="uid://vhfea4cfcrwl" path="res://addons/simusdev/console/prefabs/ui_console_output.gd" id="1_o65w5"]
+[ext_resource type="PackedScene" uid="uid://ch1uakx5urgya" path="res://addons/simusdev/console/prefabs/ui_console_message_container.tscn" id="2_lh7nx"]
+
+[node name="ui_console_output" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_o65w5")
+
+[node name="container" parent="." instance=ExtResource("2_lh7nx")]
+layout_mode = 1

@@ -11,6 +11,9 @@ extends CanvasLayer
 
 @export var can_open_or_close: bool = true
 
+func _enter_tree() -> void:
+	hide()
+
 func _ready() -> void:
 	console.on_update.connect(_on_update)
 	
