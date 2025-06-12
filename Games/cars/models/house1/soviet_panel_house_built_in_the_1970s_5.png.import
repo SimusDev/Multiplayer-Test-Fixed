@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb4h3e1i2u2kd"
 path.s3tc="res://.godot/imported/soviet_panel_house_built_in_the_1970s_5.png-c61b23ca578397ef0ada87d314050b2d.s3tc.ctex"
+path.etc2="res://.godot/imported/soviet_panel_house_built_in_the_1970s_5.png-c61b23ca578397ef0ada87d314050b2d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/house1/soviet_panel_house_built_in_the_1970s_5.png"
-dest_files=["res://.godot/imported/soviet_panel_house_built_in_the_1970s_5.png-c61b23ca578397ef0ada87d314050b2d.s3tc.ctex"]
+dest_files=["res://.godot/imported/soviet_panel_house_built_in_the_1970s_5.png-c61b23ca578397ef0ada87d314050b2d.s3tc.ctex", "res://.godot/imported/soviet_panel_house_built_in_the_1970s_5.png-c61b23ca578397ef0ada87d314050b2d.etc2.ctex"]
 
 [params]
 

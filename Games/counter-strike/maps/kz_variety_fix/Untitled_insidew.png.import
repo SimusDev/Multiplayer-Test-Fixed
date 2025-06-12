@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://x84x1qm4no85"
 path.s3tc="res://.godot/imported/Untitled_insidew.png-648cce62bb786412095a61d59b52797a.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_insidew.png-648cce62bb786412095a61d59b52797a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_insidew.png"
-dest_files=["res://.godot/imported/Untitled_insidew.png-648cce62bb786412095a61d59b52797a.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_insidew.png-648cce62bb786412095a61d59b52797a.s3tc.ctex", "res://.godot/imported/Untitled_insidew.png-648cce62bb786412095a61d59b52797a.etc2.ctex"]
 
 [params]
 

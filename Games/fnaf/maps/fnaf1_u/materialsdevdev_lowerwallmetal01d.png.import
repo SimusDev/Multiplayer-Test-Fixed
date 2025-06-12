@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4dyj5ctn8v75"
 path.s3tc="res://.godot/imported/materialsdevdev_lowerwallmetal01d.png-8cb430e85a29967f2f4d9a2e16512134.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsdevdev_lowerwallmetal01d.png-8cb430e85a29967f2f4d9a2e16512134.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsdevdev_lowerwallmetal01d.png"
-dest_files=["res://.godot/imported/materialsdevdev_lowerwallmetal01d.png-8cb430e85a29967f2f4d9a2e16512134.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsdevdev_lowerwallmetal01d.png-8cb430e85a29967f2f4d9a2e16512134.s3tc.ctex", "res://.godot/imported/materialsdevdev_lowerwallmetal01d.png-8cb430e85a29967f2f4d9a2e16512134.etc2.ctex"]
 
 [params]
 

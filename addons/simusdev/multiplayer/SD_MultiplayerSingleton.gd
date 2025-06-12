@@ -705,6 +705,7 @@ func request_and_sync_var(node: Node, property: String, callable: Callable, reli
 		"property": property,
 	}
 	
+	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 	
 	var callable_object: Object = null

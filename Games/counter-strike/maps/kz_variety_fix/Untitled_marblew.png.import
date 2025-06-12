@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsmnrsvt3rpq2"
 path.s3tc="res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_marblew.png"
-dest_files=["res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.s3tc.ctex", "res://.godot/imported/Untitled_marblew.png-b1cc1dfbd91e7cd7a7b92b5364164dd2.etc2.ctex"]
 
 [params]
 

@@ -38,6 +38,9 @@ script = ExtResource("2_1psrn")
 properties = Array[ExtResource("3_08ks4")]([SubResource("Resource_257e2")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
+[node name="Spiderman" parent="." instance=ExtResource("1_ouvsj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_t8l62")]
 actor = NodePath("..")
 key_forward = "move_forward"
@@ -56,9 +59,6 @@ metadata/_custom_type_script = "uid://ctr1af1pl05wf"
 
 [node name="Camera3D" type="Camera3D" parent="W_FPCSourceLikeCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.7)
-
-[node name="Spiderman" parent="." instance=ExtResource("1_ouvsj")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="collision-normal" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
