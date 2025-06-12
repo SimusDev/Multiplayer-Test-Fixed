@@ -54,15 +54,12 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3met"]
 size = Vector3(0.840088, 2.30609, 0.817444)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0r8hq"]
-size = Vector3(0.840088, 1.29257, 0.817444)
+[sub_resource type="BoxShape3D" id="BoxShape3D_k5ng1"]
+size = Vector3(0.840088, 1.13914, 0.817444)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 0
 script = ExtResource("1_yd33r")
-
-[node name="crouch_camera_pos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05875, 2.58879)
 
 [node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("2_6d6yq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -101,7 +98,7 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../collision")
-collision_crouch = NodePath("../collision_crouch")
+collision_crouch = NodePath("")
 ceiling_detection = NodePath("ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 
@@ -118,5 +115,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.1226, -0.037447
 shape = SubResource("BoxShape3D_q3met")
 
 [node name="collision_crouch" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.17063, -0.037447)
-shape = SubResource("BoxShape3D_0r8hq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 0.539127, -0.037447)
+shape = SubResource("BoxShape3D_k5ng1")
+
+[node name="crouch_camera_pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05875, 2.58879)
