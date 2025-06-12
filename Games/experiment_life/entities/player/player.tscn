@@ -98,7 +98,7 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../collision")
-collision_crouch = NodePath("")
+collision_crouch = NodePath("../collision_crouch")
 ceiling_detection = NodePath("ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 

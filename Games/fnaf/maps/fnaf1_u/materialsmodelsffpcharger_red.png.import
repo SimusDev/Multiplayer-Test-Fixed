@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://02sx7bkqmvxt"
 path.s3tc="res://.godot/imported/materialsmodelsffpcharger_red.png-5edc84e080a9806087be0f10dcadae52.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelsffpcharger_red.png-5edc84e080a9806087be0f10dcadae52.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsffpcharger_red.png"
-dest_files=["res://.godot/imported/materialsmodelsffpcharger_red.png-5edc84e080a9806087be0f10dcadae52.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsffpcharger_red.png-5edc84e080a9806087be0f10dcadae52.s3tc.ctex", "res://.godot/imported/materialsmodelsffpcharger_red.png-5edc84e080a9806087be0f10dcadae52.etc2.ctex"]
 
 [params]
 

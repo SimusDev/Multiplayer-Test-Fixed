@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dba8sc31hw2oa"
 path.s3tc="res://.godot/imported/materialsmodelsprops_c17handrailmetal001a.png-bd69bbfe604c945857b1706534a9e23f.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelsprops_c17handrailmetal001a.png-bd69bbfe604c945857b1706534a9e23f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_c17handrailmetal001a.png"
-dest_files=["res://.godot/imported/materialsmodelsprops_c17handrailmetal001a.png-bd69bbfe604c945857b1706534a9e23f.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelsprops_c17handrailmetal001a.png-bd69bbfe604c945857b1706534a9e23f.s3tc.ctex", "res://.godot/imported/materialsmodelsprops_c17handrailmetal001a.png-bd69bbfe604c945857b1706534a9e23f.etc2.ctex"]
 
 [params]
 

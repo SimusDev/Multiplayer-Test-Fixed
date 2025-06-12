@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgsdn4r3ada2b"
 path.s3tc="res://.godot/imported/missing_white.png-9728af574a06f07b72959f762d0e6a36.s3tc.ctex"
+path.etc2="res://.godot/imported/missing_white.png-9728af574a06f07b72959f762d0e6a36.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/missing_white.png"
-dest_files=["res://.godot/imported/missing_white.png-9728af574a06f07b72959f762d0e6a36.s3tc.ctex"]
+dest_files=["res://.godot/imported/missing_white.png-9728af574a06f07b72959f762d0e6a36.s3tc.ctex", "res://.godot/imported/missing_white.png-9728af574a06f07b72959f762d0e6a36.etc2.ctex"]
 
 [params]
 

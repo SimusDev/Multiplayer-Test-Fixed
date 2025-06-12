@@ -24,7 +24,9 @@ func _physics_process(delta: float) -> void:
 	
 	var blend_position: Vector2 = Vector2(actor_velocity.x, -actor_velocity.z)
 	set_tree_parameter("parameters/movement_sm/movement/blend_position", blend_position)
+	
 	set_tree_parameter("parameters/movement_sm/crouch/blend_position", blend_position)
+	
 	set_tree_parameter("parameters/movement_tscale/scale", actor_velocity.length() / 6.0)
 
 func update_from_state(state: SD_State) -> void:
@@ -46,7 +48,9 @@ func update_from_state(state: SD_State) -> void:
 		"crouched_run":
 			_movement_playback.start("crouch")
 		"jump":
-			_movement_playback.start("jump")
+			var request: String = "parameters/jumpBlendTree/OneShot/request"
+			set_tree_parameter(request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			
 			
 
 func _on_state_machine_transitioned(from: SD_State, to: SD_State) -> void:

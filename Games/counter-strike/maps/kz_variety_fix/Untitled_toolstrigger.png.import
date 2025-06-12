@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://caibpdlmbirjd"
 path.s3tc="res://.godot/imported/Untitled_toolstrigger.png-b2e0b4d48726cade0cffa12f4e0ff7c8.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_toolstrigger.png-b2e0b4d48726cade0cffa12f4e0ff7c8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/counter-strike/maps/kz_variety_fix/Untitled_toolstrigger.png"
-dest_files=["res://.godot/imported/Untitled_toolstrigger.png-b2e0b4d48726cade0cffa12f4e0ff7c8.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_toolstrigger.png-b2e0b4d48726cade0cffa12f4e0ff7c8.s3tc.ctex", "res://.godot/imported/Untitled_toolstrigger.png-b2e0b4d48726cade0cffa12f4e0ff7c8.etc2.ctex"]
 
 [params]
 

@@ -18,6 +18,8 @@ signal on_target_drag_input(control: Control)
 @export var zoom_max_scale: float = 3.0
 @export var zoom_strength: float = 0.05
 @export var current_zoom: float = 1.0
+
+@export_group("Custom Zoom Input")
 @export var zoom_input_up: String = "ui_zoom_up"
 @export var zoom_input_down: String = "ui_zoom_down"
 
@@ -28,6 +30,9 @@ var _target: Control
 var _target_drag: Control
 
 func _ready():
+	_create_zoom_input_event(zoom_input_up, 4)
+	_create_zoom_input_event(zoom_input_down, 5)
+	
 	if TARGET_INPUT and TARGET_DRAG:
 		var _input: Control = TARGET_INPUT
 		var _drag: Control = TARGET_DRAG
@@ -35,6 +40,8 @@ func _ready():
 			if (_input is Control) and (_drag is Control):
 				apply_drag(_input, _drag)
 	
+	
+	update_zoom()
 #/////////////////////////////////////////////////////////////////
 
 func apply_drag(control_input: Control, control_to_drag: Control) -> void:
@@ -83,7 +90,19 @@ func get_current_zoom_strength() -> float:
 
 #/////////////////////////////////////////////////////////////////
 
-func _process_zoom(event: InputEvent) -> void:
+func _create_zoom_input_event(action: String, button: int) -> void:
+	if InputMap.has_action(action):
+		return
+	
+	InputMap.add_action(action)
+	
+	var event_mouse := InputEventMouseButton.new()
+	event_mouse.button_index = button
+	event_mouse.ctrl_pressed = true
+	
+	InputMap.action_add_event(action, event_mouse)
+
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(zoom_input_up):
 		add_zoom(get_current_zoom_strength())
 	if Input.is_action_just_pressed(zoom_input_down):
@@ -94,7 +113,7 @@ func _on_target_input(event: InputEvent):
 	if !is_instance_valid(_target): return
 	if !is_instance_valid(_target_drag): return
 	
-	_process_zoom(event)
+	#_process_zoom(event)
 	
 	if !drag_enabled: return
 	

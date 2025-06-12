@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjcwj5ovlnogl"
 path.s3tc="res://.godot/imported/medellin_street_lamp_3.png-8154b1f13973639c15252a2ee87fa603.s3tc.ctex"
+path.etc2="res://.godot/imported/medellin_street_lamp_3.png-8154b1f13973639c15252a2ee87fa603.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://maps/scenes/vlados_parkur_swag/3d_objects/street_lamp/medellin_street_lamp_3.png"
-dest_files=["res://.godot/imported/medellin_street_lamp_3.png-8154b1f13973639c15252a2ee87fa603.s3tc.ctex"]
+dest_files=["res://.godot/imported/medellin_street_lamp_3.png-8154b1f13973639c15252a2ee87fa603.s3tc.ctex", "res://.godot/imported/medellin_street_lamp_3.png-8154b1f13973639c15252a2ee87fa603.etc2.ctex"]
 
 [params]
 

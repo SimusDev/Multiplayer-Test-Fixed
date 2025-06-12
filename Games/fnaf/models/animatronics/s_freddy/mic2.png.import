@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://xxqkid85qpdn"
 path.s3tc="res://.godot/imported/mic2.png-da2b278f37e32ead802b9a2b2f0f42fd.s3tc.ctex"
+path.etc2="res://.godot/imported/mic2.png-da2b278f37e32ead802b9a2b2f0f42fd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/models/animatronics/s_freddy/mic2.png"
-dest_files=["res://.godot/imported/mic2.png-da2b278f37e32ead802b9a2b2f0f42fd.s3tc.ctex"]
+dest_files=["res://.godot/imported/mic2.png-da2b278f37e32ead802b9a2b2f0f42fd.s3tc.ctex", "res://.godot/imported/mic2.png-da2b278f37e32ead802b9a2b2f0f42fd.etc2.ctex"]
 
 [params]
 

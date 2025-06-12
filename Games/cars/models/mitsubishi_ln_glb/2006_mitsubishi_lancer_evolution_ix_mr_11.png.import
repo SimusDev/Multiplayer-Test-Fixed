@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxkvht8d6xijw"
 path.s3tc="res://.godot/imported/2006_mitsubishi_lancer_evolution_ix_mr_11.png-aa48856a3ea022ecbd56f38a70ef9ab2.s3tc.ctex"
+path.etc2="res://.godot/imported/2006_mitsubishi_lancer_evolution_ix_mr_11.png-aa48856a3ea022ecbd56f38a70ef9ab2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/mitsubishi_ln_glb/2006_mitsubishi_lancer_evolution_ix_mr_11.png"
-dest_files=["res://.godot/imported/2006_mitsubishi_lancer_evolution_ix_mr_11.png-aa48856a3ea022ecbd56f38a70ef9ab2.s3tc.ctex"]
+dest_files=["res://.godot/imported/2006_mitsubishi_lancer_evolution_ix_mr_11.png-aa48856a3ea022ecbd56f38a70ef9ab2.s3tc.ctex", "res://.godot/imported/2006_mitsubishi_lancer_evolution_ix_mr_11.png-aa48856a3ea022ecbd56f38a70ef9ab2.etc2.ctex"]
 
 [params]
 

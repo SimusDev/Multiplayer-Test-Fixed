@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckcl6e7j4tebf"
 path.s3tc="res://.godot/imported/materialsmodelshumansmaleeyeball_l.png-03817b94718720e2723e6beac45e35d2.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelshumansmaleeyeball_l.png-03817b94718720e2723e6beac45e35d2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelshumansmaleeyeball_l.png"
-dest_files=["res://.godot/imported/materialsmodelshumansmaleeyeball_l.png-03817b94718720e2723e6beac45e35d2.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelshumansmaleeyeball_l.png-03817b94718720e2723e6beac45e35d2.s3tc.ctex", "res://.godot/imported/materialsmodelshumansmaleeyeball_l.png-03817b94718720e2723e6beac45e35d2.etc2.ctex"]
 
 [params]
 

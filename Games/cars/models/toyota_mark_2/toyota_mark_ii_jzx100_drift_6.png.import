@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://biyfrye2h06i6"
 path.s3tc="res://.godot/imported/toyota_mark_ii_jzx100_drift_6.png-5a819275a8800ab73e369fd8314233a9.s3tc.ctex"
+path.etc2="res://.godot/imported/toyota_mark_ii_jzx100_drift_6.png-5a819275a8800ab73e369fd8314233a9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/toyota_mark_2/toyota_mark_ii_jzx100_drift_6.png"
-dest_files=["res://.godot/imported/toyota_mark_ii_jzx100_drift_6.png-5a819275a8800ab73e369fd8314233a9.s3tc.ctex"]
+dest_files=["res://.godot/imported/toyota_mark_ii_jzx100_drift_6.png-5a819275a8800ab73e369fd8314233a9.s3tc.ctex", "res://.godot/imported/toyota_mark_ii_jzx100_drift_6.png-5a819275a8800ab73e369fd8314233a9.etc2.ctex"]
 
 [params]
 

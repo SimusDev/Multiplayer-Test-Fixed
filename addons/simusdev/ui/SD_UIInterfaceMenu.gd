@@ -26,6 +26,12 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	close()
 
+func is_opened() -> bool:
+	return target.visible
+
+func is_closed() -> bool:
+	return not target.visible
+
 func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
 	if action == input_action:
 		open()

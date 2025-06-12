@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://co5w6ujb4g7dp"
 path.s3tc="res://.godot/imported/materialsmodelskeithypropswetfloor.png-792f16fb57ced79e6b0d7bd32c3f40dd.s3tc.ctex"
+path.etc2="res://.godot/imported/materialsmodelskeithypropswetfloor.png-792f16fb57ced79e6b0d7bd32c3f40dd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Games/fnaf/maps/fnaf1_u/materialsmodelskeithypropswetfloor.png"
-dest_files=["res://.godot/imported/materialsmodelskeithypropswetfloor.png-792f16fb57ced79e6b0d7bd32c3f40dd.s3tc.ctex"]
+dest_files=["res://.godot/imported/materialsmodelskeithypropswetfloor.png-792f16fb57ced79e6b0d7bd32c3f40dd.s3tc.ctex", "res://.godot/imported/materialsmodelskeithypropswetfloor.png-792f16fb57ced79e6b0d7bd32c3f40dd.etc2.ctex"]
 
 [params]
 

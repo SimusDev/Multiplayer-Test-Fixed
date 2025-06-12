@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://iigttmn8ai0p"]
+
+[ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="1_722qw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp6gd"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yp6gd")
+
+[node name="SD_UIControlDynamicSettings" type="Node" parent="." node_paths=PackedStringArray("sources")]
+script = ExtResource("1_722qw")
+sources = [NodePath("..")]
+metadata/_custom_type_script = "uid://b63uuflcyfsli"

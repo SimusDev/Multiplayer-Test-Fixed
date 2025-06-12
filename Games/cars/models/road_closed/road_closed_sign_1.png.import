@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqrxn2cdyps2f"
 path.s3tc="res://.godot/imported/road_closed_sign_1.png-d7f404021e4583401cb9eba9714101ca.s3tc.ctex"
+path.etc2="res://.godot/imported/road_closed_sign_1.png-d7f404021e4583401cb9eba9714101ca.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Games/cars/models/road_closed/road_closed_sign_1.png"
-dest_files=["res://.godot/imported/road_closed_sign_1.png-d7f404021e4583401cb9eba9714101ca.s3tc.ctex"]
+dest_files=["res://.godot/imported/road_closed_sign_1.png-d7f404021e4583401cb9eba9714101ca.s3tc.ctex", "res://.godot/imported/road_closed_sign_1.png-d7f404021e4583401cb9eba9714101ca.etc2.ctex"]
 
 [params]
 

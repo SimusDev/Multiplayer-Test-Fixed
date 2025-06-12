@@ -1,11 +1,11 @@
 extends SD_Console
 class_name SD_TrunkConsole
 
-var _console_prefab: PackedScene = preload("res://addons/simusdev/console/prefabs/ui_console.tscn")
+var _console_prefab: PackedScene = preload("res://addons/simusdev/console/prefabs/ui_console_new.tscn")
 var _debug_prefab: PackedScene = preload("res://addons/simusdev/debug/ui_debug_interface.tscn")
 
-var _console_node: CanvasLayer = null
-var _debug_node: CanvasLayer = null
+var _console_node: Node = null
+var _debug_node: Node = null
 
 const SETTINGS_PATH: String = "console.ini"
 
@@ -16,7 +16,7 @@ var can_open_or_close: bool = true : set = set_can_open_or_close
 signal visibility_changed()
 
 func is_visible() -> bool:
-	return _console_node.visible
+	return _console_node.is_visible()
 
 func set_visible(value: bool) -> void:
 	_console_node.set_visible(value)
@@ -29,7 +29,6 @@ func _ready() -> void:
 	
 	if SD_Platforms.has_debug_console_feature():
 		_console_node = _console_prefab.instantiate()
-		_console_node.visible = false
 		
 		_debug_node = _debug_prefab.instantiate()
 		
