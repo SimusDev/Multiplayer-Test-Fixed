@@ -1,35 +1,74 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=7 format=3 uid="uid://dmrri7ggx6en"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_66gj0"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=14 format=3 uid="uid://dmrri7ggx6en"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwmg0"]
-animation = &"anim_library/idle"
+animation = &"anim_library/rifle_in_hands"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ymsrb"]
-animation = &"anim_library/slow_run"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ki74b"]
+animation = &"anim_library/waving"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ymsrb"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:IndexFinger1_L", "Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_L", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:Left arm", "Armature/Skeleton3D:Left elbow", "Armature/Skeleton3D:Left shoulder", "Armature/Skeleton3D:Left wrist", "Armature/Skeleton3D:LittleFinger1_L", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_L", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_L", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_L", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_L", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_L", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_L", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_L", "Armature/Skeleton3D:Thumb1_R"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gq3w5"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_66gj0"]
+animation = &"anim_library/norm_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x3d63"]
+animation = &"anim_library/norm_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gq3w5"]
+animation = &"anim_library/strafe-right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_slxxl"]
+animation = &"anim_library/strafe-left"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4aypy"]
 animation = &"anim_library/slow_run"
 play_mode = 1
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ki74b"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_hwmg0")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_ymsrb")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_x3d63")
-blend_point_2/pos = -1.0
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrrnq"]
+animation = &"anim_library/slow_run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gq3w5"]
-animation = &"anim_library/floating"
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o6thw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x3d63")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gq3w5")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_slxxl")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_4aypy")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_hrrnq")
+blend_point_4/pos = Vector2(0, 1)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0lwd8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gq3w5"]
+states/End/position = Vector2(686, 104)
+states/Start/position = Vector2(170, 104)
+states/anim_library_idle/node = SubResource("AnimationNodeAnimation_66gj0")
+states/anim_library_idle/position = Vector2(315, 104)
+states/movement/node = SubResource("AnimationNodeBlendSpace2D_o6thw")
+states/movement/position = Vector2(518, 104)
+transitions = ["anim_library_idle", "movement", SubResource("AnimationNodeStateMachineTransition_0lwd8")]
 
 [resource]
-graph_offset = Vector2(140.823, -57.0418)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_66gj0")
-nodes/Add2/position = Vector2(780, 20)
-nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_ki74b")
-nodes/BlendSpace1D/position = Vector2(460, 40)
-nodes/output/position = Vector2(1120, 0)
-nodes/waving/node = SubResource("AnimationNodeAnimation_gq3w5")
-nodes/waving/position = Vector2(460, 240)
-node_connections = [&"Add2", 0, &"BlendSpace1D", &"Add2", 1, &"waving", &"output", 0, &"Add2"]
+graph_offset = Vector2(313.04, -17.9024)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ki74b")
+nodes/Animation/position = Vector2(680, 180)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hwmg0")
+"nodes/Animation 2/position" = Vector2(940, 260)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_gq3w5")
+nodes/Blend2/position = Vector2(940, 0)
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_ymsrb")
+"nodes/Blend2 2/position" = Vector2(1160, 0)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_gq3w5")
+nodes/StateMachine/position = Vector2(680, 0)
+nodes/output/position = Vector2(1360, 0)
+node_connections = [&"Blend2", 0, &"StateMachine", &"Blend2", 1, &"Animation", &"Blend2 2", 0, &"Animation 2", &"Blend2 2", 1, &"Blend2", &"output", 0, &"Blend2 2"]

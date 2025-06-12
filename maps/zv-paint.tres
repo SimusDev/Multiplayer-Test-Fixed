@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://1pno1jasolf6"]
+
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_2tqtt"]
+[ext_resource type="Texture2D" uid="uid://dc806j6sa2rpq" path="res://Games/zv-paint/textures/penic.png" id="1_yy5tn"]
+
+[resource]
+script = ExtResource("1_2tqtt")
+visible = true
+is_favorite = false
+scene_path = "uid://mqvf3yfa3ixi"
+code = "zv_paint"
+name = "ZV Paint"
+icon = ExtResource("1_yy5tn")
+description = "COOL GAME RISOVAT'
+"
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

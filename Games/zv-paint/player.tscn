@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyq38ai0wluql"]
+
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_26nb7"]
+[ext_resource type="Script" uid="uid://cmhf14cohw477" path="res://Games/zv-paint/player.gd" id="1_734jo"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_hbnso"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_734jo"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_hbnso"]
+[ext_resource type="Texture2D" uid="uid://dc806j6sa2rpq" path="res://Games/zv-paint/textures/penic.png" id="5_6xbr0"]
+[ext_resource type="Script" uid="uid://rtl6igig2c3d" path="res://Games/zv-paint/components/tool_holder.gd" id="5_wivwv"]
+[ext_resource type="Script" uid="uid://cibybqsrg7s7q" path="res://Games/zv-paint/tools/pencil_tool.gd" id="6_wivwv"]
+
+[sub_resource type="Resource" id="Resource_6xbr0"]
+script = ExtResource("3_734jo")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../tool")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_734jo"]
+script = ExtResource("3_734jo")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../nickname")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wivwv"]
+
+[node name="Player" type="Node" node_paths=PackedStringArray("tool", "nickname")]
+script = ExtResource("1_734jo")
+tool = NodePath("tool")
+nickname = NodePath("nickname")
+tool_enabled = true
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("1_26nb7")
+properties = Array[ExtResource("2_hbnso")]([SubResource("Resource_6xbr0"), SubResource("Resource_734jo")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="tool" type="Node2D" parent="." node_paths=PackedStringArray("paint_user")]
+script = ExtResource("5_wivwv")
+paint_user = NodePath("..")
+
+[node name="Pencil" type="Node2D" parent="tool"]
+script = ExtResource("6_wivwv")
+texture = ExtResource("5_6xbr0")
+draw_size = 5.0
+metadata/_custom_type_script = "uid://cibybqsrg7s7q"
+
+[node name="nickname" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.388235)
+offset_left = -180.0
+offset_top = -20.0
+offset_right = 180.0
+offset_bottom = -3.0
+text = "player1"
+label_settings = SubResource("LabelSettings_wivwv")
+horizontal_alignment = 1
+clip_text = true
+script = ExtResource("4_hbnso")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
