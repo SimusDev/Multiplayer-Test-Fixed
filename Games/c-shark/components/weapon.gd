@@ -1,24 +1,26 @@
 @tool
 extends Node3D
-class_name Weapon
+class_name CSharkWeapon
 
 #всем привет я владос(денчик) и я немного украл код у -> SIMUSDEVELOPING <-
 #мне оч понравилась такая штука !!!
 
-@export var model_scene:PackedScene
-@export var bullet_scene:PackedScene
-@export var properties:R_WeaponProperties
-@export var sound:AudioStream
-@export var setup:bool = false : set = setup_weapon
-
+#=====================================================
+@export var model_scene:PackedScene                # |
+@export var bullet_scene:PackedScene               # |
+@export var properties:R_WeaponProperties          # |
+@export var sound:AudioStream                      # |
+@export var setup:bool = false : set = setup_weapon# |
+#=====================================================
 @export_group("instances")
 @export var model:Node3D
-@export var weapon_holder:WeaponHolder
+@export var weapon_holder:CSharkWeaponHolder
 @export var rifle_point:Node3D
 
 func _ready() -> void:
-	if get_parent() is WeaponHolder:weapon_holder = get_parent()
-	if weapon_holder: weapon_holder.on_fire.connect(fire)
+	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
+	if weapon_holder: weapon_holder.on_fire.connect(fire_synced)
+
 
 
 func setup_weapon(value:bool) -> void:
@@ -31,7 +33,7 @@ func setup_weapon(value:bool) -> void:
 
 	await get_tree().create_timer(0.5).timeout
 	
-	if get_parent() is WeaponHolder:weapon_holder = get_parent()
+	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
 	
 	
 	model = model_scene.instantiate()
@@ -51,6 +53,7 @@ func spawn_bullet():
 	
 	bullet.linear_velocity.x = camara_rotation_norm.x * 10.0
 	bullet.linear_velocity.z = camara_rotation_norm.z * 10.0
+
 func fire():
 	randomize()
 	var audio_player = AudioStreamPlayer3D.new()
@@ -61,3 +64,6 @@ func fire():
 	audio_player.play(.41)
 	
 	spawn_bullet()
+
+func fire_synced():
+	SD_Multiplayer.sync_call_function(self, fire)

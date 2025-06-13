@@ -1,5 +1,5 @@
 extends Node3D
-class_name WeaponHolder
+class_name CSharkWeaponHolder
 
 signal on_fire
 
