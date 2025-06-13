@@ -8,6 +8,9 @@ signal on_fire
 @export var fire:String = "fire"
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if Input.is_action_just_pressed(fire):
 		print("on_fire")
 		on_fire.emit()
