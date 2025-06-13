@@ -25,6 +25,10 @@ func _input(event: InputEvent) -> void:
 func draw_sync(size:Vector2, pos:Vector2):
 	SD_Multiplayer.sync_call_function(self, draw, [size, pos])
 
+func _dasda():
+	var canvas:CanvasLayer = PaintGame.canvas
+	canvas.line
+
 func draw(size:Vector2, pos:Vector2):
 	var rect = ColorRect.new()
 	PaintGame.canvas.add_child(rect)

@@ -8,10 +8,17 @@
 [ext_resource type="Animation" uid="uid://oravhp2k5j23" path="res://Games/c-shark/player/resources/strafe-left.res" id="7_x1xfo"]
 [ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="8_x1oyw"]
 [ext_resource type="Animation" uid="uid://tyt2sf0rmbiq" path="res://Games/c-shark/player/resources/strafe-right.res" id="8_x1xfo"]
-[ext_resource type="Animation" uid="uid://cphm6fg0sy0ib" path="res://Games/c-shark/player/resources/rifle_in_hands.res" id="9_joeoc"]
+[ext_resource type="Animation" uid="uid://b0rh3ggphk2xi" path="res://Games/c-shark/player/resources/pistol_arms.res" id="9_0dgp6"]
 
 [sub_resource type="Animation" id="Animation_x1oyw"]
 resource_name = "RESET"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.72773, -0.0110348, -0.0547884, 0.683583)
 
 [resource]
 _data = {
@@ -20,7 +27,7 @@ _data = {
 &"floating": ExtResource("4_4dcub"),
 &"jump": ExtResource("5_x1oyw"),
 &"norm_idle": ExtResource("6_0dgp6"),
-&"rifle_in_hands": ExtResource("9_joeoc"),
+&"pistol_arms": ExtResource("9_0dgp6"),
 &"slow_run": ExtResource("2_q5kr5"),
 &"strafe-left": ExtResource("7_x1xfo"),
 &"strafe-right": ExtResource("8_x1xfo"),

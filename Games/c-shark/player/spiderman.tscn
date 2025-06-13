@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=14 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -25,17 +25,32 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
+[sub_resource type="Resource" id="Resource_jyna6"]
+script = ExtResource("4_odfyr")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["velocity"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0okr"]
 size = Vector3(0.9, 2.2, 0.9)
 
-[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "emotions_manager")]
+[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "emotions_manager", "model")]
 script = ExtResource("1_ailfn")
 movement = NodePath("W_FPCSourceLikeMovement")
 emotions_manager = NodePath("EmotinosManager")
+model = NodePath("Spiderman")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_1psrn")
-properties = Array[ExtResource("3_08ks4")]([SubResource("Resource_257e2")])
+properties = Array[ExtResource("3_08ks4")]([SubResource("Resource_257e2"), SubResource("Resource_jyna6")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="Spiderman" parent="." instance=ExtResource("1_ouvsj")]
@@ -74,6 +89,15 @@ metadata/_custom_type_script = "uid://jpuavxpe3v56"
 [node name="Emotion" type="Node" parent="EmotinosManager"]
 script = ExtResource("9_257e2")
 animation_file = ExtResource("10_257e2")
+animation_tree_property_path = "parameters/wave/blend_amount"
 _name = "wave"
 key_bind = "1"
+metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
+
+[node name="Emotion2" type="Node" parent="EmotinosManager"]
+script = ExtResource("9_257e2")
+animation_file = ExtResource("10_257e2")
+animation_tree_property_path = "parameters/pistol_blend/blend_amount"
+_name = "pistol"
+key_bind = "2"
 metadata/_custom_type_script = "uid://ct8yea0m1jdwu"

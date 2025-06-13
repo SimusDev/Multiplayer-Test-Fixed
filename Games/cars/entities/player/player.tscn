@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://deiu5u6eqmb8t"]
+
+[ext_resource type="Script" uid="uid://0n6mo1h862vd" path="res://Games/cars/game_components/actor_controller.gd" id="1_4m8ck"]
+[ext_resource type="Script" uid="uid://cf6ckdjw8auck" path="res://Games/cars/entities/player/player.gd" id="1_ketdh"]
+[ext_resource type="Script" uid="uid://dgj11wo8kspfq" path="res://Games/cars/game_components/actor.gd" id="1_vt6n5"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_vak5r"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_48xpr"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="3_muk8e"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_2akep"]
+[ext_resource type="PackedScene" uid="uid://dsbjtk38w7bhs" path="res://Games/cars/entities/player/player_ui.tscn" id="4_wrxq6"]
+
+[sub_resource type="Resource" id="Resource_xorlf"]
+script = ExtResource("4_2akep")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s8n7f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4m8ck"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vt6n5"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("actor_component", "actor_controller_component", "normal_collision")]
+script = ExtResource("1_ketdh")
+actor_component = NodePath("Actor")
+actor_controller_component = NodePath("ActorController")
+normal_collision = NodePath("collision")
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("2_vak5r")
+properties = Array[ExtResource("3_48xpr")]([SubResource("Resource_xorlf")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="Actor" type="Node3D" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("1_vt6n5")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://dgj11wo8kspfq"
+
+[node name="ActorController" type="Node" parent="." node_paths=PackedStringArray("actor", "camera")]
+script = ExtResource("1_4m8ck")
+actor = NodePath("../Actor")
+camera = NodePath("../neck/head/Camera3D")
+sensivity = 0.5
+key_left = "move_left"
+key_right = "move_right"
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_sprint = "sprint"
+key_jump = "jump"
+metadata/_custom_type_script = "uid://0n6mo1h862vd"
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_s8n7f")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4m8ck")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="head" type="MeshInstance3D" parent="neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_vt6n5")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="neck/head"]
+fov = 90.0
+
+[node name="Sprite3D" type="Sprite3D" parent="neck/head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.493793)
+visible = false
+texture = ExtResource("3_muk8e")
+
+[node name="PlayerUI" parent="." instance=ExtResource("4_wrxq6")]

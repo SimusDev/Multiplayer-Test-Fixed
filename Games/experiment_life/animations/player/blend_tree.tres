@@ -148,14 +148,14 @@ states/idle/position = Vector2(283, 153)
 states/jump/node = SubResource("AnimationNodeAnimation_8vbk4")
 states/jump/position = Vector2(425, 211)
 states/movement/node = SubResource("AnimationNodeBlendSpace2D_hr7yh")
-states/movement/position = Vector2(448, 143)
+states/movement/position = Vector2(445, 143)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ms6jx")]
 graph_offset = Vector2(70, -31)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_neb1h"]
 
 [resource]
-graph_offset = Vector2(-122.831, -51.5639)
+graph_offset = Vector2(-182.291, 45.6932)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_neb1h")
 nodes/Add2/position = Vector2(380, 120)
 nodes/jumpBlendTree/node = SubResource("AnimationNodeBlendTree_u08wm")

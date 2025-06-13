@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://cxrmk72543ugb"]
+
+[ext_resource type="Texture2D" uid="uid://cdw601erf4l6p" path="res://addons/gamedev_assistant/dock/icons/cart.png" id="1_58u8o"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_qju8x"]
+
+[resource]
+script = ExtResource("1_qju8x")
+visible = true
+is_favorite = false
+scene_path = "uid://ch21uchuqv4fv"
+code = "my_rally_car"
+name = "My Rally Car"
+icon = ExtResource("1_58u8o")
+description = "
+"
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

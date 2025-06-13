@@ -7,26 +7,21 @@ class_name CSharkPlayer
 
 @export var emotions_manager:EmotionsManager
 
+@export var model:W_AnimatedModel3D
+
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
 
 func _physics_process(delta: float) -> void:
+	set_movement_blend()
+
+func set_movement_blend():
+	var actor_velocity: Vector3 = velocity * transform.basis
+	var blend_position: Vector2 = Vector2(-actor_velocity.z, actor_velocity.x)
 	
-	pass
+	model.tree.set("parameters/StateMachine/walk/blend_position", blend_position)
+	model.tree.set("parameters/StateMachine/run/blend_position", blend_position)
 
 func on_state_enter(state: SD_State):
-	if emotions_manager:
-		if emotions_manager.is_emotion_playing:
-			return
-	
-	match state.name:
-		"ground":
-			animation_player.play("anim_library/idle", 0.2)
-		"walk":
-			animation_player.play("anim_library/slow_run", 0.2)
-		"run":
-			animation_player.play("anim_library/fast_run", 0.2)
-		"air":
-			animation_player.play("anim_library/floating", 0.2)
-		"air_sprint":
-			animation_player.play("anim_library/floating", 0.2)
+	#if is_multiplayer_authority():
+	model.tree.get("parameters/StateMachine/playback").travel(state.name)

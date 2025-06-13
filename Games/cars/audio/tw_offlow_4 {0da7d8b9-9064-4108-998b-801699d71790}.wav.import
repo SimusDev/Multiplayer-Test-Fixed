@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmoytu8e051le"
+path="res://.godot/imported/tw_offlow_4 {0da7d8b9-9064-4108-998b-801699d71790}.wav-fb6c1d523c1568e79688f40991b2e527.sample"
+
+[deps]
+
+source_file="res://Games/cars/audio/tw_offlow_4 {0da7d8b9-9064-4108-998b-801699d71790}.wav"
+dest_files=["res://.godot/imported/tw_offlow_4 {0da7d8b9-9064-4108-998b-801699d71790}.wav-fb6c1d523c1568e79688f40991b2e527.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
