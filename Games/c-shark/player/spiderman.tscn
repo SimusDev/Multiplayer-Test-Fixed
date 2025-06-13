@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=16 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -12,7 +12,6 @@
 [ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="10_257e2"]
 [ext_resource type="Script" uid="uid://swfbs1sb2xnk" path="res://Games/c-shark/components/weapon_holder.gd" id="11_ppb5g"]
 [ext_resource type="PackedScene" uid="uid://bj3nohiim3kfk" path="res://Games/c-shark/weapons/ak_47/ak_47.tscn" id="12_n4uej"]
-[ext_resource type="PackedScene" uid="uid://dv6cts6h5n6u6" path="res://Games/c-shark/bullets/6.5x55/scene/ak_bullet.tscn" id="13_2vk17"]
 
 [sub_resource type="Resource" id="Resource_257e2"]
 script = ExtResource("4_odfyr")
@@ -113,5 +112,4 @@ metadata/_custom_type_script = "uid://swfbs1sb2xnk"
 
 [node name="Ak_47" parent="WeaponHolder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("12_n4uej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05033, -0.79429)
-bullet_scene = ExtResource("13_2vk17")
 weapon_holder = NodePath("..")
