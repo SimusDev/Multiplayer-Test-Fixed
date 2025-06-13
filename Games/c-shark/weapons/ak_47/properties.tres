@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_WeaponProperties" load_steps=2 format=3 uid="uid://74q6kex42nue"]
+
+[ext_resource type="Script" uid="uid://basknf3dw7egn" path="res://Games/c-shark/components/r_weapon_properties.gd" id="1_lmjko"]
+
+[resource]
+script = ExtResource("1_lmjko")
+magazine_max_ammo = 30
+ammo_amount = 30
+damage = 1.0
+metadata/_custom_type_script = "uid://basknf3dw7egn"

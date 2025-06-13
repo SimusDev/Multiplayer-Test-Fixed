@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv6cts6h5n6u6"]
+
+[ext_resource type="PackedScene" uid="uid://ci3ircg2ikjkb" path="res://Games/c-shark/bullets/6.5x55/scene/bullet.tscn" id="1_qoa0p"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m5rds"]
+height = 0.435425
+radius = 0.0375977
+
+[node name="bullet6_5x55" type="RigidBody3D"]
+
+[node name="bullet6_5x55" parent="." instance=ExtResource("1_qoa0p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.2)
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.51651e-09, 0.0177124)
+shape = SubResource("CylinderShape3D_m5rds")

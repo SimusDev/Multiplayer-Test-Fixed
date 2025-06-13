@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name CSharkPlayer
 
 @export var movement:W_FPCSourceLikeMovement
+@export var camera:W_FPCSourceLikeCamera
 @onready var animation_tree:AnimationTree =  $Spiderman.get_animation_tree()
 @onready var animation_player:AnimationPlayer = $Spiderman.get_animation_player()
 
