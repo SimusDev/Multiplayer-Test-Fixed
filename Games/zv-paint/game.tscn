@@ -15,5 +15,8 @@ spawn_points = [NodePath("../SpawnPoint")]
 metadata/_custom_type_script = "uid://crxce7oinuqn4"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(640, 360)
 
-[node name="canvas" type="CanvasLayer" parent="."]
+[node name="canvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0

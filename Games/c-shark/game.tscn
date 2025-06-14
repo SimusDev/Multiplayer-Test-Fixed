@@ -42,14 +42,14 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.0
+shader_parameter/_atm_moon_mie_intensity = 0.681005
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("2_0x7oa")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
 shader_parameter/_stars_field_color = Color(1, 1, 1, 1)
 shader_parameter/_stars_field_texture = ExtResource("7_ibcsh")
 shader_parameter/_sky_alignment = Vector3(2.6555, -0.23935, 0.4505)
-shader_parameter/_sky_rotation = -12.2462
+shader_parameter/_sky_rotation = -11.1245
 shader_parameter/_sky_tilt = -1.29154
 shader_parameter/_stars_scintillation = 0.75
 shader_parameter/_stars_scintillation_speed = 0.01
@@ -84,8 +84,8 @@ shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1
 shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
 shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
 shader_parameter/_cumulus_clouds_mie_intensity = 1.0
-shader_parameter/_moon_matrix = Basis(1.86265e-09, -0.998001, 0.0632007, -0.504549, -0.0545664, -0.861657, 0.863383, -0.0318879, -0.503541)
-shader_parameter/_deep_space_matrix = Basis(-0.949179, 0.314737, 0, 0.0867536, 0.26163, -0.961262, -0.302545, -0.912409, -0.275638)
+shader_parameter/_moon_matrix = Basis(0, -0.707735, 0.706478, -0.981971, -0.133546, -0.133784, 0.189031, -0.693741, -0.694975)
+shader_parameter/_deep_space_matrix = Basis(-0.128554, 0.991703, 0, 0.273351, 0.0354342, -0.961262, -0.953285, -0.123574, -0.275638)
 
 [sub_resource type="Sky" id="Sky_nk6ab"]
 sky_material = SubResource("ShaderMaterial_tj70j")
@@ -94,7 +94,8 @@ sky_material = SubResource("ShaderMaterial_tj70j")
 background_mode = 2
 sky = SubResource("Sky_nk6ab")
 ambient_light_source = 3
-ambient_light_color = Color(0.778202, 0.693799, 0.651505, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0
@@ -108,33 +109,37 @@ environment = SubResource("Environment_dhujx")
 camera_attributes = SubResource("CameraAttributesPractical_krnoa")
 script = ExtResource("8_o02pu")
 fog_enabled = false
-current_time = 15.6529
+enable_editor_time = false
+enable_game_time = false
+current_time = 11.38
 minutes_per_day = 1440.0
+sky_contribution = 0.5
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.638096, -0.769957, 0.801128, -0.460814, 0.381896, -0.598493, -0.616834, 0.511196, -0.769957, 0.381896, 0.511196)
-light_color = Color(0.995276, 0.887329, 0.833237, 1)
+transform = Transform3D(0, -0.992747, 0.120221, 0.628072, 0.0935504, 0.772511, -0.778155, 0.0755074, 0.623517, 0.120221, 0.772511, 0.623517)
 shadow_enabled = true
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.504549, 0.863383, -0.998001, -0.0545664, -0.0318879, 0.0632007, -0.861657, -0.503541, 0.863383, -0.0318879, -0.503541)
+transform = Transform3D(0, -0.981971, 0.189031, -0.707735, -0.133546, -0.693741, 0.706478, -0.133784, -0.694975, 0.189031, -0.693741, -0.694975)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
 [node name="Skydome" type="Node" parent="Sky3D"]
 script = ExtResource("9_1c2vk")
-sun_azimuth = -236.419
-sun_altitude = -67.5488
-moon_azimuth = -59.7485
-moon_altitude = -91.8273
+sun_azimuth = -169.087
+sun_altitude = -39.4201
+moon_azimuth = -15.2161
+moon_altitude = -133.927
 fog_visible = false
 
 [node name="TimeOfDay" type="Node" parent="Sky3D"]
 script = ExtResource("10_7y5x4")
+update_in_game = false
+update_in_editor = false
 dome_path = NodePath("../Skydome")
 total_cycle_in_minutes = 1440.0
-total_hours = 15.6529
+total_hours = 11.38
 day = 5
 
 [node name="World" parent="." instance=ExtResource("11_ble8c")]
@@ -147,6 +152,7 @@ spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2")]
 metadata/_custom_type_script = "uid://crxce7oinuqn4"
 
 [node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.781, 0, 0)
 
 [node name="1" type="Node3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)

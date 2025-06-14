@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name PaintUser
 
 @onready var mp_player = SD_MultiplayerPlayer.find_in_node(self)
@@ -9,6 +9,7 @@ class_name PaintUser
 
 func _ready() -> void:
 	nickname.text = mp_player.get_username()
+
 
 func _input(event: InputEvent) -> void:
 	if !is_multiplayer_authority():

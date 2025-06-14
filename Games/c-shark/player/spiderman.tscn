@@ -78,12 +78,6 @@ metadata/_custom_type_script = "uid://ctr1af1pl05wf"
 [node name="Camera3D" type="Camera3D" parent="W_FPCSourceLikeCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.7)
 
-[node name="collision-normal" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
-shape = SubResource("BoxShape3D_n0okr")
-debug_color = Color(1, 0, 0, 0.419608)
-debug_fill = false
-
 [node name="EmotinosManager" type="Node" parent="." node_paths=PackedStringArray("model_to_animate")]
 script = ExtResource("8_08ks4")
 model_to_animate = NodePath("../Spiderman")
@@ -113,3 +107,9 @@ metadata/_custom_type_script = "uid://swfbs1sb2xnk"
 [node name="Ak_47" parent="WeaponHolder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("12_n4uej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05033, -0.79429)
 weapon_holder = NodePath("..")
+
+[node name="collision-normal" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
+shape = SubResource("BoxShape3D_n0okr")
+debug_color = Color(1, 0, 0, 0.419608)
+debug_fill = false

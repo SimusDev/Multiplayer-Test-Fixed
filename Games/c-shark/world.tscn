@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://xg3lpdlmy5pq"]
 
-[ext_resource type="Texture2D" uid="uid://dwvo5hr3a5h58" path="res://Games/cars/textures/grass.png" id="1_i55d1"]
+[ext_resource type="Texture2D" uid="uid://cpr3mm7tmlcit" path="res://Games/cars/textures/prototype/dark/texture_05.png" id="1_i55d1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i587b"]
 albedo_texture = ExtResource("1_i55d1")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
 
@@ -15,4 +16,13 @@ size = Vector3(50, 0.1, 50)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 use_collision = true
+collision_layer = 3
+collision_mask = 3
+mesh = SubResource("BoxMesh_icar2")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
 mesh = SubResource("BoxMesh_icar2")

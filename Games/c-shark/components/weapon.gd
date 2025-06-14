@@ -14,13 +14,14 @@ class_name CSharkWeapon
 #=====================================================
 @export_group("instances")
 @export var model:Node3D
+@export var cartridge_bullet_scene:PackedScene
 @export var weapon_holder:CSharkWeaponHolder
 @export var rifle_point:Node3D
+@export var cartridge_point:Node3D
 
 func _ready() -> void:
 	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
 	if weapon_holder: weapon_holder.on_fire.connect(fire_synced)
-
 
 
 func setup_weapon(value:bool) -> void:
@@ -47,12 +48,18 @@ func spawn_bullet():
 	var bullet:RigidBody3D = bullet_scene.instantiate()
 	weapon_holder.root.get_parent().add_child(bullet)
 	bullet.global_position = rifle_point.global_position
-	bullet.rotation = weapon_holder.root.camera.rotation
+	bullet.global_rotation = self.global_rotation
+
+	var direction = -rifle_point.global_transform.basis.z.normalized()
 	
-	var camara_rotation_norm = weapon_holder.root.camera.rotation.normalized()
-	
-	bullet.linear_velocity.x = camara_rotation_norm.x * 10.0
-	bullet.linear_velocity.z = camara_rotation_norm.z * 10.0
+	# Придаём пуле мгновенный импульс (без apply_force)
+	var bullet_speed = 150.0  # Настрой под свою игру
+	bullet.linear_velocity = direction * bullet_speed
+
+func spawn_cartridge_bullet():
+	var cartridge:RigidBody3D = cartridge_bullet_scene.instantiate()
+	weapon_holder.root.get_parent().add_child(cartridge)
+	cartridge.global_position = cartridge_point.global_position
 
 func fire():
 	randomize()
@@ -63,7 +70,10 @@ func fire():
 	audio_player.pitch_scale = randf_range(0.9, 1.05)
 	audio_player.play(.41)
 	
-	spawn_bullet()
+	spawn_cartridge_bullet()
+	spawn_bullet_synced()
 
 func fire_synced():
 	SD_Multiplayer.sync_call_function(self, fire)
+func spawn_bullet_synced():
+	SD_Multiplayer.sync_call_function(self, spawn_bullet)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://c60bjggl5jodp"]
+
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_dbkbw"]
+[ext_resource type="Script" uid="uid://cyg77uxj44n4v" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.gd" id="2_c2xra"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ct15x"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dbkbw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gxepc"]
+
+[node name="FpPlayer" type="CharacterBody3D"]
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_dbkbw")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="W_FPCSourceLikePlayerCamera" type="Node3D" parent="." node_paths=PackedStringArray("movement", "body", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_c2xra")
+movement = NodePath("../W_FPCSourceLikeMovement")
+body = NodePath("..")
+camera = NodePath("Camera3D")
+metadata/_custom_type_script = "uid://cyg77uxj44n4v"
+
+[node name="Camera3D" type="Camera3D" parent="W_FPCSourceLikePlayerCamera"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ct15x")
+
+[node name="neck" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+skeleton = NodePath("../..")
+
+[node name="head" type="MeshInstance3D" parent="mesh/neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_dbkbw")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gxepc")

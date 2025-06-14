@@ -23,5 +23,7 @@ func _process(delta: float) -> void:
 		var velocity: Vector3 = abs(movement.get_velocity())
 		var animation_speed: float = velocity.x + velocity.z
 		animation_speed *= velocity_animation_scale
-		_bobbing_animation.play("idle")
-		_bobbing_animation.advance(animation_speed * delta)
+		
+		if _bobbing_animation:
+			_bobbing_animation.play("idle")
+			_bobbing_animation.advance(animation_speed * delta)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://bsaqu6og45i08"]
+[gd_scene load_steps=15 format=4 uid="uid://bsaqu6og45i08"]
 
+[ext_resource type="Script" uid="uid://ckitd27yi27qm" path="res://Games/c-shark/components/cartridge_bullet.gd" id="1_fkk23"]
 [ext_resource type="Texture2D" uid="uid://cjpmgy0iljyhi" path="res://Games/c-shark/bullets/6.5x55/cartridge_bullet_Image_0.png" id="1_xtf1r"]
 [ext_resource type="Texture2D" uid="uid://nfh01gnr6hcb" path="res://Games/c-shark/bullets/6.5x55/cartridge_bullet_Image_1.png" id="2_xljyd"]
 [ext_resource type="Texture2D" uid="uid://cptoyij45sk7f" path="res://Games/c-shark/bullets/6.5x55/cartridge_bullet_Image_2.png" id="3_u13ru"]
@@ -99,10 +100,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nhuey")
 
-[node name="cartridge_bullet" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fkk23"]
+height = 0.0749023
+radius = 0.0112305
+
+[node name="cartridge_bullet" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
+mass = 0.05
+script = ExtResource("1_fkk23")
+metadata/_custom_type_script = "uid://ckitd27yi27qm"
 
 [node name="Pocisk 1" type="Node3D" parent="."]
-transform = Transform3D(0.223318, 0, 0, 0, -7.98646e-08, 0.223318, 0, -0.223318, -7.98646e-08, 0, 0.223489, 0)
+transform = Transform3D(-2.18557e-09, -2.0067e-08, 0.05, -0.05, -2.18557e-09, -2.18557e-09, 2.18557e-09, -0.05, -2.0067e-08, 0.029692, 0, 0)
 
 [node name="Pocisk 1_Dowm_0" type="MeshInstance3D" parent="Pocisk 1"]
 mesh = SubResource("ArrayMesh_mroyf")
@@ -111,3 +121,7 @@ skeleton = NodePath("")
 [node name="Pocisk 1_Main_0" type="MeshInstance3D" parent="Pocisk 1"]
 mesh = SubResource("ArrayMesh_wf1jc")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.017334, -7.57692e-10, 0)
+shape = SubResource("CylinderShape3D_fkk23")
