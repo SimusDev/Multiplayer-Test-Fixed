@@ -28,14 +28,14 @@ func on_state_enter(state: SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
 
 func apply_damage_synced(bullet:CSharkBullet):
-	if !SD_Multiplayer.is_server():
+	if! SD_Multiplayer.is_server():
 		return
-	SD_Multiplayer.sync_call_function_on_server(self, health.apply_damage, [bullet.bullet_properties.damage])
-	$nickname.update()
+	SD_Multiplayer.sync_call_function(health, health.apply_damage, [bullet.bullet_properties.damage])
+
 
 func _on_damage_body_entered(body:Node3D) -> void:
 	if body is CSharkBullet:
 		apply_damage_synced(body)
-
+		$nickname.update()
 func _on_damage_body_exited(body:Node3D) -> void:
 	pass # Replace with function body.

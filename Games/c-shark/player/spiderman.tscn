@@ -60,10 +60,11 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0okr"]
 size = Vector3(0.9, 2.2, 0.9)
 
-[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "emotions_manager", "model")]
+[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "health", "emotions_manager", "model")]
 script = ExtResource("1_ailfn")
 movement = NodePath("W_FPCSourceLikeMovement")
 camera = NodePath("W_FPCSourceLikeCamera")
+health = NodePath("W_ComponentHealth")
 emotions_manager = NodePath("EmotinosManager")
 model = NodePath("Spiderman")
 
@@ -136,6 +137,8 @@ target = NodePath("..")
 metadata/_custom_type_script = "uid://g63pblfvykit"
 
 [node name="damage_area" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="collision-normal" type="CollisionShape3D" parent="damage_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
