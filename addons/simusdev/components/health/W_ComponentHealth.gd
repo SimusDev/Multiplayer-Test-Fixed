@@ -73,6 +73,6 @@ func _on_died() -> void:
 	if destroy_target_on_death:
 		if target:
 			target.queue_free()
-	
+
 func get_parsed_string_value(value: int) -> String:
 	return str(value)

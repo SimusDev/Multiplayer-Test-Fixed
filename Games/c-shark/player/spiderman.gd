@@ -3,6 +3,7 @@ class_name CSharkPlayer
 
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
+@export var health:W_ComponentHealth
 @onready var animation_tree:AnimationTree =  $Spiderman.get_animation_tree()
 @onready var animation_player:AnimationPlayer = $Spiderman.get_animation_player()
 
@@ -24,5 +25,14 @@ func set_movement_blend():
 	model.tree.set("parameters/StateMachine/run/blend_position", blend_position)
 
 func on_state_enter(state: SD_State):
-	#if is_multiplayer_authority():
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
+
+func apply_damage_synced(bullet:CSharkBullet):
+	SD_Multiplayer.sync_call_function_on_server(self, health.apply_damage, [bullet.bullet_properties.damage])
+
+func _on_damage_body_entered(body:Node3D) -> void:
+	if body is CSharkBullet:
+		apply_damage_synced(body)
+
+func _on_damage_body_exited(body:Node3D) -> void:
+	pass # Replace with function body.

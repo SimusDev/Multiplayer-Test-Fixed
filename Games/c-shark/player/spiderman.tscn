@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=19 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -12,6 +12,8 @@
 [ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="10_257e2"]
 [ext_resource type="Script" uid="uid://swfbs1sb2xnk" path="res://Games/c-shark/components/weapon_holder.gd" id="11_ppb5g"]
 [ext_resource type="PackedScene" uid="uid://bj3nohiim3kfk" path="res://Games/c-shark/weapons/ak_47/ak_47.tscn" id="12_n4uej"]
+[ext_resource type="Script" uid="uid://g63pblfvykit" path="res://addons/simusdev/components/health/W_ComponentHealth.gd" id="13_2vk17"]
+[ext_resource type="PackedScene" uid="uid://dwgmysmgdidnv" path="res://Games/c-shark/scenes/nickname.tscn" id="14_ppb5g"]
 
 [sub_resource type="Resource" id="Resource_257e2"]
 script = ExtResource("4_odfyr")
@@ -41,6 +43,20 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
+[sub_resource type="Resource" id="Resource_2vk17"]
+script = ExtResource("4_odfyr")
+tickrate = 32.0
+tickrate_mode = 2
+sync_mode = 0
+properties = Array[String](["health", "max_health"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("../W_ComponentHealth")
+reliable = true
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0okr"]
 size = Vector3(0.9, 2.2, 0.9)
 
@@ -53,7 +69,7 @@ model = NodePath("Spiderman")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_1psrn")
-properties = Array[ExtResource("3_08ks4")]([SubResource("Resource_257e2"), SubResource("Resource_jyna6")])
+properties = Array[ExtResource("3_08ks4")]([SubResource("Resource_257e2"), SubResource("Resource_jyna6"), SubResource("Resource_2vk17")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="Spiderman" parent="." instance=ExtResource("1_ouvsj")]
@@ -111,5 +127,26 @@ weapon_holder = NodePath("..")
 [node name="collision-normal" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
 shape = SubResource("BoxShape3D_n0okr")
-debug_color = Color(1, 0, 0, 0.419608)
+debug_color = Color(0, 0.45098, 0, 0.419608)
 debug_fill = false
+
+[node name="W_ComponentHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("13_2vk17")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://g63pblfvykit"
+
+[node name="damage_area" type="Area3D" parent="."]
+
+[node name="collision-normal" type="CollisionShape3D" parent="damage_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
+shape = SubResource("BoxShape3D_n0okr")
+debug_color = Color(0, 0.45098, 0, 0.419608)
+debug_fill = false
+
+[node name="nickname" parent="." node_paths=PackedStringArray("player", "health_component") instance=ExtResource("14_ppb5g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.50827, 0)
+player = NodePath("..")
+health_component = NodePath("../W_ComponentHealth")
+
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_body_entered"]
+[connection signal="body_exited" from="damage_area" to="." method="_on_damage_body_exited"]

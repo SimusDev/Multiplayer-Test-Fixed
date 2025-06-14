@@ -40,14 +40,14 @@ metadata/_custom_type_script = "uid://pf622qfdiljm"
 [node name="model3d" parent="." instance=ExtResource("2_xcmuk")]
 
 [node name="Armature" parent="model3d" index="0"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.995125, 0.0829911, 0.0532737, -0.0470591, -0.0751198, 0.996063, 0.0866664, -0.993714, -0.0708482, -0.0737826, -0.00752799, 0.0897487)
 
 [node name="Skeleton3D" parent="model3d/Armature" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0795985, -0.00740397, 0.0658526)
 bones/1/rotation = Quaternion(0.0158981, -6.86102e-08, -6.86103e-08, 0.999874)
 bones/2/rotation = Quaternion(-0.12358, 9.60311e-08, 1.0972e-07, 0.992335)
-bones/3/rotation = Quaternion(0.238451, -2.26316e-07, -2.62704e-07, 0.971155)
-bones/4/rotation = Quaternion(-0.132383, 2.11377e-07, 2.11377e-07, 0.991199)
+bones/3/rotation = Quaternion(0.285247, -0.00216092, 0.00562178, 0.958435)
+bones/4/rotation = Quaternion(-0.0842325, -0.00171829, 0.00622403, 0.996425)
 bones/7/rotation = Quaternion(0.420357, 0.507494, 0.558901, -0.503369)
 bones/8/rotation = Quaternion(-0.141253, -0.0974185, -0.609197, 0.774233)
 bones/9/rotation = Quaternion(-0.00359834, 0.0207124, -0.150169, 0.988437)
@@ -76,17 +76,17 @@ bones/39/rotation = Quaternion(-0.465634, 0.0202915, -0.0353741, 0.884038)
 bones/40/rotation = Quaternion(-0.478315, -0.000459429, -0.0740239, 0.875063)
 bones/42/rotation = Quaternion(-0.164603, 0.0392615, 0.233542, 0.957508)
 bones/43/rotation = Quaternion(-0.00221105, -0.00977368, -0.0854678, 0.996291)
-bones/45/rotation = Quaternion(1, -1.08344e-05, -0.000676464, -0.000381032)
+bones/45/rotation = Quaternion(0.984168, 0.0725227, -0.134754, 0.089421)
 bones/46/position = Vector3(6.8103e-09, 0.461903, 1.01863e-10)
-bones/46/rotation = Quaternion(0.0461785, 0.00237152, -0.0024357, 0.998927)
+bones/46/rotation = Quaternion(0.146031, -0.00981476, -0.0403255, 0.988409)
 bones/46/scale = Vector3(1, 1, 1)
-bones/47/rotation = Quaternion(-0.626578, -0.0653316, 0.0696473, 0.773486)
+bones/47/rotation = Quaternion(-0.595446, -0.1047, 0.114361, 0.788292)
 bones/47/scale = Vector3(0.999999, 1.00019, 0.999809)
-bones/49/rotation = Quaternion(1, 1.08344e-05, 0.000676464, -0.000381032)
+bones/49/rotation = Quaternion(0.995206, 0.0263837, 0.0939025, 0.00715758)
 bones/50/position = Vector3(-6.8103e-09, 0.461903, 1.01863e-10)
-bones/50/rotation = Quaternion(0.0461785, -0.00237152, 0.0024357, 0.998927)
+bones/50/rotation = Quaternion(0.116951, 0.0822465, 0.0332633, 0.989167)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.626578, 0.0653316, -0.0696473, 0.773486)
+bones/51/rotation = Quaternion(-0.643591, 0.0892012, -0.0817703, 0.755743)
 bones/51/scale = Vector3(0.999999, 1.00019, 0.999809)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -97,6 +97,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 root_node = NodePath("../model3d")
 tree_root = ExtResource("4_bwkcu")
 anim_player = NodePath("../AnimationPlayer")

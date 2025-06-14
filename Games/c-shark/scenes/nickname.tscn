@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwgmysmgdidnv"]
+
+[ext_resource type="Script" uid="uid://bpurdsc6pio72" path="res://Games/c-shark/scripts/nickname.gd" id="1_adejr"]
+
+[node name="nickname" type="Label3D"]
+billboard = 1
+text = "VLADOS [78HP]"
+script = ExtResource("1_adejr")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="R_CSharkBulletProperties" load_steps=2 format=3 uid="uid://cual2jh2i5e8u"]
+
+[ext_resource type="Script" uid="uid://c53e7k72j545s" path="res://Games/c-shark/components/r_bullet_properties.gd" id="1_fp8vc"]
+
+[resource]
+script = ExtResource("1_fp8vc")
+damage = 10.0
+metadata/_custom_type_script = "uid://c53e7k72j545s"
