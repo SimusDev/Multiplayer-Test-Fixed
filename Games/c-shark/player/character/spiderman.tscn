@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://pf622qfdiljm"
 [node name="model3d" parent="." instance=ExtResource("2_xcmuk")]
 
 [node name="Armature" parent="model3d" index="0"]
-transform = Transform3D(0.995125, 0.0829911, 0.0532737, -0.0470591, -0.0751198, 0.996063, 0.0866664, -0.993714, -0.0708482, -0.0737826, -0.00752799, 0.0897487)
+transform = Transform3D(0.995125, 0.082992, 0.0532738, -0.0470591, -0.0751198, 0.996063, 0.0866673, -0.993714, -0.0708481, -0.0737826, -0.00752799, 0.0897487)
 
 [node name="Skeleton3D" parent="model3d/Armature" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0795985, -0.00740397, 0.0658526)
