@@ -30,7 +30,6 @@ model_scene = ExtResource("2_8y63a")
 bullet_scene = ExtResource("3_8y63a")
 properties = ExtResource("3_1bbvr")
 sound = ExtResource("4_4mcc4")
-reload_time = null
 shoot_cooldown = 0.05
 model = NodePath("model3d")
 cartridge_bullet_scene = ExtResource("6_1bbvr")
