@@ -45,19 +45,15 @@ func _on_tick():
 func _chose_target() -> CSharkZombieTarget:
 	if !enabled:
 		return
-	if! SD_Multiplayer.is_server():
-		return
 
 	var target_with_max_priory:CSharkZombieTarget = null
 
 	for target in targets:
 		if target.priory < 0:
 			return
-		#if has no target_with_max_priory -> set and return
 		if target_with_max_priory == null:
 			target_with_max_priory = target
 			return target_with_max_priory
-		#end
 		
 		if target.priory > target_with_max_priory.priory:
 			target_with_max_priory = target
@@ -82,8 +78,6 @@ func attack():
 func chase():
 	if !enabled:
 		return
-	if  !SD_Multiplayer.is_server():
-		return
 	
 	if global_position.distance_to(current_target.global_position) > attack_range:
 		move_to(current_target.global_position)
@@ -94,9 +88,6 @@ func _on_state_enter(state:SD_State):
 	model.tree.get("parameters/state_machine/playback").travel(state.name)
 
 func _process_physics_body(delta):
-	if! SD_Multiplayer.is_server():
-		return
-	
 	if !is_on_floor():
 		velocity.y -= pow(gravity, 2 * delta)
 
@@ -116,13 +107,13 @@ func _on_died():
 
 
 func _physics_process(delta: float) -> void:
-	_process_physics_body(delta)
-
-	move_and_slide()
-
-	if current_target: chase()
-	else:
-		state_machine.switch($SD_NodeStateMachine/idle_ground)
+	if SD_Multiplayer.is_server():
+		_process_physics_body(delta)
+		move_and_slide()
+		
+		if current_target: chase()
+		else:
+			state_machine.switch($SD_NodeStateMachine/idle_ground)
 
 	var zombie_velocity_dir: Vector3 = velocity * transform.basis
 	var blend_position: Vector2 = Vector2(-zombie_velocity_dir.z, zombie_velocity_dir.x)

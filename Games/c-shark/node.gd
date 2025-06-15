@@ -3,14 +3,12 @@ extends Node
 func play_roar():
 	$"../Sketchfab_Scene/AnimationPlayer".play("Roar")
 
-var players = []
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	$"../Area3D".queue_free()
 	$"../SD_MPSyncedAudioStreamPlayer".play(27.60)
 	$"../Camera3D".current = true
 	$"../AnimationPlayer".play("new_animation")
-	players.append(area.get_parent())
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -21,5 +19,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	zondri.position = $"../Node3D".position
 	$"../Camera3D".current = false
 	
-	for player in players:
-		player.camera.get_node("Camera3D").current = true
+	for player in $"..".get_children():
+		if player is CSharkPlayer:
+			if player.is_multiplayer_authority():
+				player.camera.get_node("Camera3D").current = true
