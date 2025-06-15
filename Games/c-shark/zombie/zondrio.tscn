@@ -57,19 +57,19 @@ metadata/_custom_type_script = "uid://3t8mfl1mk3ku"
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.9375, 0.34375)
 
 [node name="Body2_12" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.769118, 0.639106, 0, -0.639106, 0.769118, 0, 0.6875, 0)
+transform = Transform3D(1, 0, 0, 0, 0.768127, 0.640297, 0, -0.640297, 0.768127, 0, 0.6875, 0)
 
 [node name="head_3" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0.75, -0.3125)
 
 [node name="Arm3_7" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="2"]
-transform = Transform3D(0.868413, 0.350612, -0.350612, -0.495841, 0.614061, -0.614061, 2.98023e-08, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.866972, 0.352391, -0.352391, -0.498356, 0.613042, -0.613042, 0, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
 
 [node name="Arm4_6" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm3_7" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
 
 [node name="Arm_11" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="3"]
-transform = Transform3D(0.908324, -0.295759, 0.295759, 0.418267, 0.642282, -0.642282, 2.98023e-08, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.907133, -0.297581, 0.297581, 0.420843, 0.64144, -0.64144, 2.98023e-08, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
 
 [node name="Arm2_10" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm_11" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
