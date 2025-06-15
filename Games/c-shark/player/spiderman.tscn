@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=22 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://swfbs1sb2xnk" path="res://Games/c-shark/components/weapon_holder.gd" id="11_ppb5g"]
 [ext_resource type="PackedScene" uid="uid://bj3nohiim3kfk" path="res://Games/c-shark/weapons/ak_47/ak_47.tscn" id="12_n4uej"]
 [ext_resource type="Script" uid="uid://g63pblfvykit" path="res://addons/simusdev/components/health/W_ComponentHealth.gd" id="13_2vk17"]
+[ext_resource type="Script" uid="uid://d31js3rf7ibpp" path="res://Games/c-shark/components/zombie_target.gd" id="13_e7khb"]
 [ext_resource type="PackedScene" uid="uid://dwgmysmgdidnv" path="res://Games/c-shark/scenes/nickname.tscn" id="14_ppb5g"]
 
 [sub_resource type="Resource" id="Resource_257e2"]
@@ -60,13 +61,20 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0okr"]
 size = Vector3(0.9, 2.2, 0.9)
 
-[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "health", "emotions_manager", "model")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_unvam"]
+size = Vector3(0.694141, 2.2, 0.766528)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7khb"]
+size = Vector3(1.06414, 2.48988, 0.9)
+
+[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "health", "emotions_manager", "model", "c_s_zombie_target")]
 script = ExtResource("1_ailfn")
 movement = NodePath("W_FPCSourceLikeMovement")
 camera = NodePath("W_FPCSourceLikeCamera")
 health = NodePath("W_ComponentHealth")
 emotions_manager = NodePath("EmotinosManager")
 model = NodePath("Spiderman")
+c_s_zombie_target = NodePath("CSharkZombieTarget")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_1psrn")
@@ -75,6 +83,54 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="Spiderman" parent="." instance=ExtResource("1_ouvsj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Armature" parent="Spiderman/model3d" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0158981, -6.86102e-08, -6.86103e-08, 0.999874)
+bones/2/rotation = Quaternion(-0.12358, 9.60311e-08, 1.0972e-07, 0.992335)
+bones/3/rotation = Quaternion(0.238451, -2.26316e-07, -2.62704e-07, 0.971155)
+bones/4/rotation = Quaternion(-0.132383, 2.11377e-07, 2.11377e-07, 0.991199)
+bones/7/rotation = Quaternion(0.420357, 0.507494, 0.558901, -0.503369)
+bones/8/rotation = Quaternion(-0.141253, -0.0974185, -0.609197, 0.774233)
+bones/9/rotation = Quaternion(-0.00359834, 0.0207124, -0.150169, 0.988437)
+bones/10/rotation = Quaternion(-0.211587, -0.818195, 0.0141713, 0.534404)
+bones/11/rotation = Quaternion(-0.361922, -0.0261915, 0.0221461, 0.931577)
+bones/12/rotation = Quaternion(-0.374806, -0.0130475, 0.0647177, 0.924749)
+bones/14/rotation = Quaternion(-0.357435, -0.0102888, 0.0539014, 0.932325)
+bones/15/rotation = Quaternion(-0.380908, 0.0128636, 0.024661, 0.924195)
+bones/17/rotation = Quaternion(-0.361792, -0.026236, 0.0221448, 0.931627)
+bones/18/rotation = Quaternion(-0.375825, 0.000312869, 0.0593488, 0.924788)
+bones/20/rotation = Quaternion(-0.361966, -0.0243385, 0.0214262, 0.931627)
+bones/21/rotation = Quaternion(-0.375946, 0.000485636, 0.0577312, 0.924841)
+bones/23/rotation = Quaternion(-0.168817, -0.0377707, -0.232221, 0.957156)
+bones/24/rotation = Quaternion(0.0028462, 0.00977979, 0.0777459, 0.996921)
+bones/27/rotation = Quaternion(0.0352968, -0.0292398, 0.772997, 0.632752)
+bones/28/rotation = Quaternion(-0.003123, -0.0207713, 0.13033, 0.991248)
+bones/29/rotation = Quaternion(0.0207207, 0.594839, -0.165982, 0.786249)
+bones/30/rotation = Quaternion(-0.465562, 0.0220497, -0.0363001, 0.883995)
+bones/31/rotation = Quaternion(-0.476854, 0.0123453, -0.0829127, 0.874976)
+bones/33/rotation = Quaternion(-0.465678, 0.0191821, -0.0347896, 0.884062)
+bones/34/rotation = Quaternion(-0.478406, 0.000659636, -0.0734352, 0.875063)
+bones/36/rotation = Quaternion(-0.465561, 0.0220875, -0.0363199, 0.883994)
+bones/37/rotation = Quaternion(-0.477996, -0.000295963, -0.0760563, 0.875063)
+bones/39/rotation = Quaternion(-0.465634, 0.0202915, -0.0353741, 0.884038)
+bones/40/rotation = Quaternion(-0.478315, -0.000459429, -0.0740239, 0.875063)
+bones/42/rotation = Quaternion(-0.164603, 0.0392615, 0.233542, 0.957508)
+bones/43/rotation = Quaternion(-0.00221105, -0.00977368, -0.0854678, 0.996291)
+bones/45/rotation = Quaternion(1, -1.08344e-05, -0.000676464, -0.000381032)
+bones/46/rotation = Quaternion(0.0461785, 0.00237152, -0.0024357, 0.998927)
+bones/47/rotation = Quaternion(-0.626578, -0.0653316, 0.0696473, 0.773486)
+bones/49/rotation = Quaternion(1, 1.08344e-05, 0.000676464, -0.000381032)
+bones/50/rotation = Quaternion(0.0461785, -0.00237152, 0.0024357, 0.998927)
+bones/51/rotation = Quaternion(-0.626578, 0.0653316, -0.0696473, 0.773486)
+
+[node name="collision-normal" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
+shape = SubResource("BoxShape3D_n0okr")
+debug_color = Color(1, 0, 0, 0.419608)
+debug_fill = false
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_t8l62")]
 actor = NodePath("..")
@@ -116,21 +172,6 @@ _name = "pistol"
 key_bind = "2"
 metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
 
-[node name="WeaponHolder" type="Node3D" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("11_ppb5g")
-root = NodePath("..")
-metadata/_custom_type_script = "uid://swfbs1sb2xnk"
-
-[node name="Ak_47" parent="WeaponHolder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("12_n4uej")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05033, -0.79429)
-weapon_holder = NodePath("..")
-
-[node name="collision-normal" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
-shape = SubResource("BoxShape3D_n0okr")
-debug_color = Color(0, 0.45098, 0, 0.419608)
-debug_fill = false
-
 [node name="W_ComponentHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("13_2vk17")
 target = NodePath("..")
@@ -141,8 +182,8 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="collision-normal" type="CollisionShape3D" parent="damage_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
-shape = SubResource("BoxShape3D_n0okr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0529297, 1.1, -0.0167358)
+shape = SubResource("BoxShape3D_unvam")
 debug_color = Color(0, 0.45098, 0, 0.419608)
 debug_fill = false
 
@@ -151,5 +192,36 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.5
 player = NodePath("..")
 health_component = NodePath("../W_ComponentHealth")
 
+[node name="CSharkZombieTarget" type="Area3D" parent="."]
+script = ExtResource("13_e7khb")
+metadata/_custom_type_script = "uid://d31js3rf7ibpp"
+
+[node name="collision-normal" type="CollisionShape3D" parent="CSharkZombieTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0320679, 1.18209, 0.05)
+shape = SubResource("BoxShape3D_e7khb")
+debug_color = Color(0.156695, 0.516905, 1, 0.419608)
+debug_fill = false
+
+[node name="hand_attachment" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.303179, -0.127286, 0.944395, -0.00731058, -0.991319, -0.131264, 0.952905, 0.0328923, -0.301477, 0.125986, -0.603289, -1.99002)
+bone_name = "Right wrist"
+bone_idx = 29
+use_external_skeleton = true
+external_skeleton = NodePath("../Spiderman/model3d/Armature/Skeleton3D")
+
+[node name="WeaponHolder" type="Node3D" parent="hand_attachment" node_paths=PackedStringArray("root")]
+transform = Transform3D(0.362583, -0.931945, 0.00374482, -0.101173, -0.0433566, -0.993925, 0.926444, 0.360001, -0.110009, -0.0561868, 0.261278, -0.0137812)
+script = ExtResource("11_ppb5g")
+root = NodePath("../..")
+metadata/_custom_type_script = "uid://swfbs1sb2xnk"
+
+[node name="Ak_47" parent="hand_attachment/WeaponHolder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("12_n4uej")]
+weapon_holder = NodePath("..")
+
+[connection signal="died" from="W_ComponentHealth" to="." method="_on_w_component_health_died"]
+[connection signal="health_changed" from="W_ComponentHealth" to="." method="_on_w_component_health_health_changed"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_body_entered"]
 [connection signal="body_exited" from="damage_area" to="." method="_on_damage_body_exited"]
+
+[editable path="Spiderman"]
+[editable path="Spiderman/model3d"]

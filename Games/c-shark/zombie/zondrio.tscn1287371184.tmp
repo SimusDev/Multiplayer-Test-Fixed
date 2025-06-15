@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://bebqaw82cjc11"]
+
+[ext_resource type="Script" uid="uid://3t8mfl1mk3ku" path="res://Games/c-shark/zombie/scripts/zondrio.gd" id="1_1hhau"]
+[ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_1jpdx"]
+[ext_resource type="Script" uid="uid://dtfkaymexkyb0" path="res://Games/c-shark/zombie/scripts/zombie_vision.gd" id="2_twrnb"]
+[ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="3_twrnb"]
+[ext_resource type="PackedScene" uid="uid://4g0hci8nfwr6" path="res://Games/c-shark/zombie/models/zombie_big/model.tscn" id="4_ebuld"]
+[ext_resource type="Script" uid="uid://vco1fcrfe8tr" path="res://Games/c-shark/zombie/scripts/debug.gd" id="5_1jpdx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ebuld"]
+height = 3.5
+radius = 15.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hhau"]
+size = Vector3(1.6, 2.53762, 1.14203)
+
+[node name="Zondrio" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "model")]
+script = ExtResource("1_1hhau")
+movespeed = 0.1
+state_machine = NodePath("SD_NodeStateMachine")
+model = NodePath("Model")
+metadata/_custom_type_script = "uid://3t8mfl1mk3ku"
+
+[node name="CSharkZombieVision" type="Area3D" parent="." node_paths=PackedStringArray("zombie")]
+script = ExtResource("2_twrnb")
+zombie = NodePath("..")
+metadata/_custom_type_script = "uid://dtfkaymexkyb0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSharkZombieVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CylinderShape3D_ebuld")
+
+[node name="SD_NodeStateMachine" type="Node" parent="."]
+script = ExtResource("2_1jpdx")
+metadata/_custom_type_script = "uid://b1q8rkwhld80p"
+
+[node name="idle_ground" type="Node" parent="SD_NodeStateMachine"]
+process_mode = 4
+script = ExtResource("3_twrnb")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="walk" type="Node" parent="SD_NodeStateMachine"]
+process_mode = 4
+script = ExtResource("3_twrnb")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="attack" type="Node" parent="SD_NodeStateMachine"]
+process_mode = 4
+script = ExtResource("3_twrnb")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="died" type="Node" parent="SD_NodeStateMachine"]
+process_mode = 4
+script = ExtResource("3_twrnb")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="Model" parent="." instance=ExtResource("4_ebuld")]
+
+[node name="Body_13" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.9375, 0.34375)
+
+[node name="Body2_12" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.770467, 0.637479, 0, -0.637479, 0.770467, 0, 0.6875, 0)
+
+[node name="head_3" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0.75, -0.3125)
+
+[node name="Arm3_7" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="2"]
+transform = Transform3D(0.869459, 0.349314, -0.349314, -0.494005, 0.614801, -0.6148, 2.98023e-08, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
+
+[node name="Arm4_6" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm3_7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
+
+[node name="Arm_11" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="3"]
+transform = Transform3D(0.909206, -0.294401, 0.294401, 0.416346, 0.642906, -0.642906, 2.98023e-08, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
+
+[node name="Arm2_10" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm_11" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
+
+[node name="AnimationTree" parent="Model" index="2"]
+parameters/state_machine/walk/blend_position = Vector2(0, 0)
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 1.20074, -0.0555115)
+shape = SubResource("BoxShape3D_1hhau")
+debug_color = Color(1, 0, 0, 0.419608)
+debug_fill = false
+
+[node name="Debug" type="Node3D" parent="." node_paths=PackedStringArray("zombie")]
+script = ExtResource("5_1jpdx")
+zombie = NodePath("..")
+
+[node name="targets" type="Label3D" parent="Debug"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3.09737, 0)
+billboard = 2
+text = "Targets: []"
+
+[node name="current_target" type="Label3D" parent="Debug"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.77154, 0)
+billboard = 2
+text = "Current Target: T"
+
+[editable path="Model"]
+[editable path="Model/model3d"]

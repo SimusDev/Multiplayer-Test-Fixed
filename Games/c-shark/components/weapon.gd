@@ -46,7 +46,7 @@ func setup_weapon(value:bool) -> void:
 
 func spawn_bullet():
 	var bullet:RigidBody3D = bullet_scene.instantiate()
-	weapon_holder.root.get_parent().add_child(bullet)
+	CSharkGame.instance.add_child(bullet)
 	bullet.global_position = rifle_point.global_position
 	bullet.global_rotation = self.global_rotation
 
@@ -58,8 +58,10 @@ func spawn_bullet():
 
 func spawn_cartridge_bullet():
 	var cartridge:RigidBody3D = cartridge_bullet_scene.instantiate()
-	weapon_holder.root.get_parent().add_child(cartridge)
+	var direction = -rifle_point.global_transform.basis.z.normalized()
+	CSharkGame.instance.add_child(cartridge)
 	cartridge.global_position = cartridge_point.global_position
+	cartridge.linear_velocity = cartridge_point.global_transform.basis.x.normalized()
 
 func fire():
 	randomize()

@@ -12,5 +12,4 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed(fire):
-		print("on_fire")
 		on_fire.emit()

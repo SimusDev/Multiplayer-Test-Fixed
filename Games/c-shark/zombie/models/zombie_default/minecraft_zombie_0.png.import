@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cqm7nw6ktbbhf"
+path.s3tc="res://.godot/imported/minecraft_zombie_0.png-bd37b765177e89128e8ddc22b229a0a5.s3tc.ctex"
+path.etc2="res://.godot/imported/minecraft_zombie_0.png-bd37b765177e89128e8ddc22b229a0a5.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "b85e7340c4545bbe3925e1dd29d16cc2"
+}
+
+[deps]
+
+source_file="res://Games/c-shark/zombie/models/zombie_default/minecraft_zombie_0.png"
+dest_files=["res://.godot/imported/minecraft_zombie_0.png-bd37b765177e89128e8ddc22b229a0a5.s3tc.ctex", "res://.godot/imported/minecraft_zombie_0.png-bd37b765177e89128e8ddc22b229a0a5.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

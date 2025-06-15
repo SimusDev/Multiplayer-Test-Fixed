@@ -11,6 +11,8 @@ class_name CSharkPlayer
 
 @export var model:W_AnimatedModel3D
 
+@export var c_s_zombie_target:CSharkZombieTarget
+
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
 
@@ -27,15 +29,20 @@ func set_movement_blend():
 func on_state_enter(state: SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
 
-func apply_damage_synced(bullet:CSharkBullet):
+func apply_damage_synced(damage:float):
 	if! SD_Multiplayer.is_server():
 		return
-	SD_Multiplayer.sync_call_function(health, health.apply_damage, [bullet.bullet_properties.damage])
-
+	SD_Multiplayer.sync_call_function(health, health.apply_damage, [damage])
 
 func _on_damage_body_entered(body:Node3D) -> void:
 	if body is CSharkBullet:
-		apply_damage_synced(body)
-		$nickname.update()
+		apply_damage_synced(body.bullet_properties.damage)
 func _on_damage_body_exited(body:Node3D) -> void:
 	pass # Replace with function body.
+
+
+func _on_w_component_health_health_changed() -> void:
+	$nickname.update()
+
+func _on_w_component_health_died() -> void:
+	c_s_zombie_target.priory = -1

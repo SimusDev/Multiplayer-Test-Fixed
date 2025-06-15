@@ -1,0 +1,103 @@
+[gd_scene load_steps=22 format=3 uid="uid://4g0hci8nfwr6"]
+
+[ext_resource type="Script" uid="uid://pf622qfdiljm" path="res://addons/simusdev/components/animated_model/W_AnimatedModel3D.gd" id="1_7qklu"]
+[ext_resource type="PackedScene" uid="uid://cj1tv6f3lkse" path="res://Games/c-shark/zombie/models/zombie_big/minecraft_zombie_mutant.glb" id="2_qhunp"]
+[ext_resource type="AnimationLibrary" uid="uid://bomq34byrri2i" path="res://Games/c-shark/zombie/resources/zombie_mutant.res" id="3_yve21"]
+[ext_resource type="Script" uid="uid://42fv285lsoan" path="res://Games/c-shark/components/c_shsark_footsteps_component.gd" id="4_2f6p1"]
+[ext_resource type="AudioStream" uid="uid://c52gds4qhdwy" path="res://Games/c-shark/audio/footsteps_0/footstep1.wav" id="5_d0qtr"]
+[ext_resource type="AudioStream" uid="uid://bxq664fsex5f3" path="res://Games/c-shark/audio/footsteps_0/footstep2.wav" id="6_1ppjs"]
+[ext_resource type="AudioStream" uid="uid://deyehyuxdsai7" path="res://Games/c-shark/audio/footsteps_0/footstep3.wav" id="7_u40nw"]
+[ext_resource type="AudioStream" uid="uid://c4ts5hkcjyb1a" path="res://Games/c-shark/audio/footsteps_0/footstep4.wav" id="8_vu0vi"]
+[ext_resource type="AudioStream" uid="uid://cw48mge6o7ar7" path="res://Games/c-shark/audio/footsteps_0/footstep5.wav" id="9_hu3x1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hcnb"]
+animation = &"zombie_mutant/Smash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l28eb"]
+animation = &"zombie_mutant/Roar"
+use_custom_timeline = true
+timeline_length = 3.0
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gva6b"]
+animation = &"zombie_mutant/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qhunp"]
+animation = &"zombie_mutant/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yve21"]
+animation = &"zombie_mutant/Walk"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voksq"]
+animation = &"zombie_mutant/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2f6p1"]
+animation = &"zombie_mutant/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0qtr"]
+animation = &"zombie_mutant/Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1ppjs"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qhunp")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_yve21")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_voksq")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_2f6p1")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_d0qtr")
+blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yve21"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hu3x1"]
+states/attack/node = SubResource("AnimationNodeAnimation_4hcnb")
+states/attack/position = Vector2(592, 32)
+states/died/node = SubResource("AnimationNodeAnimation_l28eb")
+states/died/position = Vector2(760, 100)
+states/idle_ground/node = SubResource("AnimationNodeAnimation_gva6b")
+states/idle_ground/position = Vector2(377, 100)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_1ppjs")
+states/walk/position = Vector2(592, 100)
+transitions = ["Start", "idle_ground", SubResource("AnimationNodeStateMachineTransition_yve21")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_eyf4f"]
+graph_offset = Vector2(-286.848, -23.5977)
+nodes/output/position = Vector2(220, 180)
+nodes/state_machine/node = SubResource("AnimationNodeStateMachine_hu3x1")
+nodes/state_machine/position = Vector2(-56.6007, 168)
+node_connections = [&"output", 0, &"state_machine"]
+
+[node name="Model" type="Node3D" node_paths=PackedStringArray("model", "tree", "player")]
+script = ExtResource("1_7qklu")
+model_scene = ExtResource("2_qhunp")
+library = ExtResource("3_yve21")
+blend_tree = SubResource("AnimationNodeBlendTree_eyf4f")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://pf622qfdiljm"
+
+[node name="model3d" parent="." instance=ExtResource("2_qhunp")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"zombie_mutant": ExtResource("3_yve21")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = SubResource("AnimationNodeBlendTree_eyf4f")
+anim_player = NodePath("../AnimationPlayer")
+parameters/state_machine/walk/blend_position = Vector2(-0.00783288, -0.00307691)
+
+[node name="CShsarkFootstepsComponent" type="Node3D" parent="."]
+script = ExtResource("4_2f6p1")
+assets = Array[AudioStream]([ExtResource("5_d0qtr"), ExtResource("6_1ppjs"), ExtResource("7_u40nw"), ExtResource("8_vu0vi"), ExtResource("9_hu3x1")])
+metadata/_custom_type_script = "uid://42fv285lsoan"

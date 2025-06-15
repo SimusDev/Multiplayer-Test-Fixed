@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://xg3lpdlmy5pq"]
+[gd_scene load_steps=9 format=3 uid="uid://xg3lpdlmy5pq"]
 
 [ext_resource type="Texture2D" uid="uid://cpr3mm7tmlcit" path="res://Games/cars/textures/prototype/dark/texture_05.png" id="1_i55d1"]
+[ext_resource type="Texture2D" uid="uid://cwylmm22ojvcw" path="res://Games/cars/textures/prototype/dark/texture_09.png" id="2_bvpth"]
+[ext_resource type="Texture2D" uid="uid://4omp4imfyu10" path="res://Games/cars/textures/prototype/dark/texture_06.png" id="3_bvpth"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i587b"]
 albedo_texture = ExtResource("1_i55d1")
@@ -12,6 +14,18 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_i587b")
 size = Vector3(50, 0.1, 50)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ye304"]
+material = SubResource("StandardMaterial3D_i587b")
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icar2"]
+albedo_texture = ExtResource("2_bvpth")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rcje"]
+albedo_texture = ExtResource("3_bvpth")
+uv1_triplanar = true
+
 [node name="World" type="Node3D"]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
@@ -19,6 +33,43 @@ use_collision = true
 collision_layer = 3
 collision_mask = 3
 mesh = SubResource("BoxMesh_icar2")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50.1)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+mesh = SubResource("BoxMesh_ye304")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.250001, 6, -24.5)
+size = Vector3(50.3, 12.2, 1)
+material = SubResource("StandardMaterial3D_icar2")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 25.25, 6, -3.8147e-06)
+size = Vector3(50.3, 12.2, 1)
+material = SubResource("StandardMaterial3D_icar2")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, 17.65, 9.17223, 25.2)
+size = Vector3(50.3, 18.5445, 1)
+material = SubResource("StandardMaterial3D_icar2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -37.95, 6, 25.2)
+size = Vector3(50.3, 12.2, 1)
+material = SubResource("StandardMaterial3D_icar2")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -10.15, 9.93426, 25.2)
+size = Vector3(5, 12.2, 1)
+material = SubResource("StandardMaterial3D_3rcje")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGMesh3D3"]
+transform = Transform3D(1.32126e-07, 0, 1, 0, 1, 0, -1, 0, 1.32126e-07, -23.85, 6, 0.299999)
+size = Vector3(50.3, 12.2, 1)
+material = SubResource("StandardMaterial3D_icar2")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, 0, 0)

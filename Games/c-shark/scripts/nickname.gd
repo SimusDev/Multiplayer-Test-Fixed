@@ -10,5 +10,5 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
-	visible = !player.is_multiplayer_authority()
+	#visible = !player.is_multiplayer_authority()
 	text = mp_player.get_username() + " [" + str(health_component.health) + "]"

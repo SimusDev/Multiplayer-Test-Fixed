@@ -15,7 +15,7 @@ size = Vector3(1.01123, 1.99335, 0.128021)
 size = Vector2(1, 2)
 
 [node name="Door" type="Node3D" node_paths=PackedStringArray("_block")]
-transform = Transform3D(1, 0, -1.73303e-07, 0, 1, 0, 1.73303e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, -4.2039e-45, 0, 1, 0, 4.2039e-45, 0, 1, 0, 0, 0)
 script = ExtResource("1_2ypye")
 target_rotation = Vector3(0, 90, 0)
 _block = NodePath("block")
