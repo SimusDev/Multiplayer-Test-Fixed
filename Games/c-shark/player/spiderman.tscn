@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dppgi6kbcd2io"]
+[gd_scene load_steps=23 format=3 uid="uid://dppgi6kbcd2io"]
 
 [ext_resource type="Script" uid="uid://dy83j4qtymlmj" path="res://Games/c-shark/player/spiderman.gd" id="1_ailfn"]
 [ext_resource type="PackedScene" uid="uid://cn0eqjl2ma1kt" path="res://Games/c-shark/player/character/spiderman.tscn" id="1_ouvsj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ct8yea0m1jdwu" path="res://Games/c-shark/components/r_emotion.gd" id="9_257e2"]
 [ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="10_257e2"]
 [ext_resource type="Script" uid="uid://swfbs1sb2xnk" path="res://Games/c-shark/components/weapon_holder.gd" id="11_ppb5g"]
+[ext_resource type="Animation" uid="uid://cmf2wb137sare" path="res://Games/c-shark/player/resources/Flair.res" id="11_unvam"]
 [ext_resource type="PackedScene" uid="uid://bj3nohiim3kfk" path="res://Games/c-shark/weapons/ak_47/ak_47.tscn" id="12_n4uej"]
 [ext_resource type="Script" uid="uid://g63pblfvykit" path="res://addons/simusdev/components/health/W_ComponentHealth.gd" id="13_2vk17"]
 [ext_resource type="Script" uid="uid://d31js3rf7ibpp" path="res://Games/c-shark/components/zombie_target.gd" id="13_e7khb"]
@@ -88,13 +89,48 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
-bones/7/rotation = Quaternion(0.420357, 0.507494, 0.558901, -0.503369)
-bones/8/rotation = Quaternion(-0.141253, -0.0974185, -0.609197, 0.774233)
-bones/9/rotation = Quaternion(-0.00359834, 0.0207124, -0.150169, 0.988437)
-bones/10/rotation = Quaternion(-0.211587, -0.818195, 0.0141713, 0.534404)
-bones/27/rotation = Quaternion(0.0352968, -0.0292398, 0.772997, 0.632752)
-bones/28/rotation = Quaternion(-0.003123, -0.0207713, 0.13033, 0.991248)
-bones/29/rotation = Quaternion(0.0207207, 0.594839, -0.165982, 0.786249)
+bones/1/rotation = Quaternion(0.0158981, -6.86102e-08, -6.86103e-08, 0.999874)
+bones/2/rotation = Quaternion(-0.12358, 9.60311e-08, 1.0972e-07, 0.992335)
+bones/3/rotation = Quaternion(0.238451, -2.26316e-07, -2.62704e-07, 0.971155)
+bones/4/rotation = Quaternion(-0.132383, 2.11377e-07, 2.11377e-07, 0.991199)
+bones/7/rotation = Quaternion(0.49947, 0.446761, 0.55443, -0.4935)
+bones/8/rotation = Quaternion(0.0322599, 0.032807, -0.0025073, 0.998938)
+bones/9/rotation = Quaternion(0.0187832, 0.0209301, -0.0399632, 0.998805)
+bones/10/rotation = Quaternion(0.0282279, 0.0208657, 0.0103363, 0.99933)
+bones/11/rotation = Quaternion(-0.0385476, -0.0363498, -0.00497907, 0.998583)
+bones/12/rotation = Quaternion(-0.0181034, -0.0141047, 0.0118225, 0.999667)
+bones/14/rotation = Quaternion(-0.035873, -0.0330737, -0.000256314, 0.998809)
+bones/15/rotation = Quaternion(-0.00602746, -0.000563706, 0.00628883, 0.999962)
+bones/17/rotation = Quaternion(-0.0387263, -0.0364199, -0.00305897, 0.998581)
+bones/18/rotation = Quaternion(-0.00491042, 0.00033857, 0.00682917, 0.999965)
+bones/20/rotation = Quaternion(-0.0370377, -0.0344693, -0.00113143, 0.998719)
+bones/21/rotation = Quaternion(-0.00475977, 0.000524877, 0.00681902, 0.999965)
+bones/23/rotation = Quaternion(-0.0683325, -0.0930401, -0.351811, 0.928926)
+bones/24/rotation = Quaternion(0.00559762, 0.00980742, 0.0206623, 0.999723)
+bones/26/rotation = Quaternion(-0.500534, 0.445886, 0.554328, 0.493328)
+bones/27/rotation = Quaternion(0.0349672, -0.0347654, 0.00554203, 0.998768)
+bones/28/rotation = Quaternion(0.0187867, -0.0209302, 0.0396893, 0.998816)
+bones/29/rotation = Quaternion(0.031938, -0.0254656, -0.0125356, 0.999087)
+bones/30/rotation = Quaternion(-0.0401061, 0.0363119, 0.00477623, 0.998524)
+bones/31/rotation = Quaternion(-0.019651, 0.0141042, -0.0121021, 0.999634)
+bones/33/rotation = Quaternion(-0.0374959, 0.0332158, 0.000515819, 0.998745)
+bones/34/rotation = Quaternion(-0.00751166, 0.000754009, -0.00699387, 0.999947)
+bones/36/rotation = Quaternion(-0.0402864, 0.036382, 0.00285498, 0.998522)
+bones/37/rotation = Quaternion(-0.00646158, -0.000338561, -0.00708518, 0.999954)
+bones/39/rotation = Quaternion(-0.0385964, 0.0344316, 0.000929955, 0.998661)
+bones/40/rotation = Quaternion(-0.006314, -0.00052486, -0.00706875, 0.999955)
+bones/42/rotation = Quaternion(-0.0682727, 0.0930595, 0.351826, 0.928923)
+bones/43/rotation = Quaternion(0.00552845, -0.0098074, -0.0207683, 0.999721)
+bones/45/rotation = Quaternion(1, -1.08344e-05, -0.000676464, -0.000381032)
+bones/46/rotation = Quaternion(0.0461785, 0.00237152, -0.0024357, 0.998927)
+bones/47/rotation = Quaternion(-0.626578, -0.0653316, 0.0696473, 0.773486)
+bones/49/rotation = Quaternion(1, 1.08344e-05, 0.000676464, -0.000381032)
+bones/50/rotation = Quaternion(0.0461785, -0.00237152, 0.0024357, 0.998927)
+bones/51/rotation = Quaternion(-0.626578, 0.0653316, -0.0696473, 0.773486)
+
+[node name="AnimationTree" parent="Spiderman" index="2"]
+parameters/flair_blend/blend_amount = 0
+parameters/silly_dance_blend/blend_amount = 0
 
 [node name="collision-normal" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1.1, 0.05)
@@ -142,6 +178,22 @@ _name = "pistol"
 key_bind = "2"
 metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
 
+[node name="Emotion3" type="Node" parent="EmotinosManager"]
+script = ExtResource("9_257e2")
+animation_file = ExtResource("11_unvam")
+animation_tree_property_path = "parameters/flair_blend/blend_amount"
+_name = "Flair"
+key_bind = "3"
+metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
+
+[node name="Emotion4" type="Node" parent="EmotinosManager"]
+script = ExtResource("9_257e2")
+animation_file = ExtResource("11_unvam")
+animation_tree_property_path = "parameters/silly_dance_blend/blend_amount"
+_name = "Silly Dance"
+key_bind = "4"
+metadata/_custom_type_script = "uid://ct8yea0m1jdwu"
+
 [node name="W_ComponentHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("13_2vk17")
 target = NodePath("..")
@@ -173,7 +225,7 @@ debug_color = Color(0.156695, 0.516905, 1, 0.419608)
 debug_fill = false
 
 [node name="hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.303179, -0.127286, 0.944395, -0.00731058, -0.991319, -0.131264, 0.952905, 0.0328923, -0.301477, 0.125986, -0.603289, -1.99002)
+transform = Transform3D(0.0818175, 0.994557, -0.064518, 0.995693, -0.0843969, -0.0383187, -0.0435552, -0.0611051, -0.99718, 0.983185, -0.0288646, -1.89185)
 bone_name = "Right wrist"
 bone_idx = 29
 use_external_skeleton = true

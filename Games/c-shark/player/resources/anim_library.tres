@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=11 format=3 uid="uid://d30flm3ftdaoq"]
+[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://d30flm3ftdaoq"]
 
 [ext_resource type="Animation" uid="uid://dgxr0prn8c1kc" path="res://Games/c-shark/player/resources/slow_run.res" id="2_q5kr5"]
 [ext_resource type="Animation" uid="uid://cbccx4spb5tj8" path="res://Games/c-shark/player/resources/fast_run.res" id="3_02hvq"]
@@ -9,6 +9,8 @@
 [ext_resource type="Animation" uid="uid://bgbj2gt7wrvad" path="res://Games/c-shark/player/resources/waving.res" id="8_x1oyw"]
 [ext_resource type="Animation" uid="uid://tyt2sf0rmbiq" path="res://Games/c-shark/player/resources/strafe-right.res" id="8_x1xfo"]
 [ext_resource type="Animation" uid="uid://b0rh3ggphk2xi" path="res://Games/c-shark/player/resources/pistol_arms.res" id="9_0dgp6"]
+[ext_resource type="Animation" uid="uid://cmf2wb137sare" path="res://Games/c-shark/player/resources/Flair.res" id="10_x1xfo"]
+[ext_resource type="Animation" uid="uid://bw5xydcvbsapk" path="res://Games/c-shark/player/resources/silly_dance.res" id="11_joeoc"]
 
 [sub_resource type="Animation" id="Animation_x1oyw"]
 resource_name = "RESET"
@@ -22,12 +24,14 @@ tracks/0/keys = PackedFloat32Array(0, 1, -0.72773, -0.0110348, -0.0547884, 0.683
 
 [resource]
 _data = {
+&"Flair": ExtResource("10_x1xfo"),
 &"RESET": SubResource("Animation_x1oyw"),
 &"fast_run": ExtResource("3_02hvq"),
 &"floating": ExtResource("4_4dcub"),
 &"jump": ExtResource("5_x1oyw"),
 &"norm_idle": ExtResource("6_0dgp6"),
 &"pistol_arms": ExtResource("9_0dgp6"),
+&"silly_dance": ExtResource("11_joeoc"),
 &"slow_run": ExtResource("2_q5kr5"),
 &"strafe-left": ExtResource("7_x1xfo"),
 &"strafe-right": ExtResource("8_x1xfo"),

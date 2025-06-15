@@ -1,7 +1,13 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=31 format=3 uid="uid://dmrri7ggx6en"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=35 format=3 uid="uid://dmrri7ggx6en"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ngnq"]
+animation = &"anim_library/silly_dance"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ki74b"]
 animation = &"anim_library/waving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ldqr8"]
+animation = &"anim_library/Flair"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_50snp"]
 animation = &"anim_library/floating"
@@ -131,6 +137,8 @@ states/walk/position = Vector2(460, 109)
 transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_66gj0"), "air", "grounded", SubResource("AnimationNodeStateMachineTransition_ldqr8"), "grounded", "ground", SubResource("AnimationNodeStateMachineTransition_x3d63"), "ground", "walk", SubResource("AnimationNodeStateMachineTransition_hwmg0"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_ymsrb"), "grounded_sprint", "ground", SubResource("AnimationNodeStateMachineTransition_2ngnq"), "air_sprint", "grounded_sprint", SubResource("AnimationNodeStateMachineTransition_7b74v")]
 graph_offset = Vector2(0, -72.5676)
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2ngnq"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwmg0"]
 animation = &"anim_library/pistol_arms"
 
@@ -138,21 +146,31 @@ animation = &"anim_library/pistol_arms"
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Chest", "Armature/Skeleton3D:IndexFinger1_L", "Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_L", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:Left arm", "Armature/Skeleton3D:Left elbow", "Armature/Skeleton3D:Left shoulder", "Armature/Skeleton3D:Left wrist", "Armature/Skeleton3D:LittleFinger1_L", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_L", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_L", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_L", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_L", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_L", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Thumb0_L", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_L", "Armature/Skeleton3D:Thumb1_R"]
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7b74v"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gq3w5"]
 filter_enabled = true
 filters = ["Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
 
 [resource]
-graph_offset = Vector2(133.528, -75.6886)
+graph_offset = Vector2(143.561, -42.871)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ki74b")
 nodes/Animation/position = Vector2(680, 180)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2ngnq")
+"nodes/Animation 2/position" = Vector2(1420, 260)
+"nodes/Flair 2/node" = SubResource("AnimationNodeAnimation_ldqr8")
+"nodes/Flair 2/position" = Vector2(1220, 260)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_gq3w5")
 nodes/StateMachine/position = Vector2(680, 0)
-nodes/output/position = Vector2(1360, 0)
+nodes/flair_blend/node = SubResource("AnimationNodeBlend2_2ngnq")
+nodes/flair_blend/position = Vector2(1380, -20)
+nodes/output/position = Vector2(1780, -20)
 nodes/pistol/node = SubResource("AnimationNodeAnimation_hwmg0")
 nodes/pistol/position = Vector2(940, 260)
 nodes/pistol_blend/node = SubResource("AnimationNodeBlend2_66gj0")
 nodes/pistol_blend/position = Vector2(1180, -20)
+nodes/silly_dance_blend/node = SubResource("AnimationNodeBlend2_7b74v")
+nodes/silly_dance_blend/position = Vector2(1580, -20)
 nodes/wave/node = SubResource("AnimationNodeBlend2_gq3w5")
 nodes/wave/position = Vector2(940, 0)
-node_connections = [&"output", 0, &"pistol_blend", &"pistol_blend", 0, &"wave", &"pistol_blend", 1, &"pistol", &"wave", 0, &"StateMachine", &"wave", 1, &"Animation"]
+node_connections = [&"flair_blend", 0, &"pistol_blend", &"flair_blend", 1, &"Flair 2", &"output", 0, &"silly_dance_blend", &"pistol_blend", 0, &"wave", &"pistol_blend", 1, &"pistol", &"silly_dance_blend", 0, &"flair_blend", &"silly_dance_blend", 1, &"Animation 2", &"wave", 0, &"StateMachine", &"wave", 1, &"Animation"]
