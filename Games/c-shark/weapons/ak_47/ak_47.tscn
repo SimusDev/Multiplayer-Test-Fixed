@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj3nohiim3kfk"]
+[gd_scene load_steps=11 format=3 uid="uid://bj3nohiim3kfk"]
 
 [ext_resource type="Script" uid="uid://cdsdk55p1owdm" path="res://Games/c-shark/components/weapon.gd" id="1_kmba2"]
 [ext_resource type="PackedScene" uid="uid://bs06vejb2bbc8" path="res://Games/counter-strike/models/weapons/ak47/ak_47.tscn" id="2_8y63a"]
@@ -6,6 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://dv6cts6h5n6u6" path="res://Games/c-shark/bullets/6.5x55/scene/ak_bullet.tscn" id="3_8y63a"]
 [ext_resource type="AudioStream" uid="uid://484fgwue1kda" path="res://Games/c-shark/audio/fire/ak_47/fire1.wav" id="4_4mcc4"]
 [ext_resource type="PackedScene" uid="uid://bsaqu6og45i08" path="res://Games/c-shark/bullets/6.5x55/scene/cartridge_bullet.tscn" id="6_1bbvr"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="7_yuq3n"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="8_mo82r"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="9_p0a5k"]
+
+[sub_resource type="Resource" id="Resource_6boov"]
+script = ExtResource("9_p0a5k")
+tickrate = 32.0
+tickrate_mode = 2
+sync_mode = 0
+properties = Array[String](["current_ammo", "current_inventory_ammmo"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = true
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [node name="Ak_47" type="Node3D" node_paths=PackedStringArray("model", "rifle_point", "cartridge_point")]
 script = ExtResource("1_kmba2")
@@ -13,6 +30,8 @@ model_scene = ExtResource("2_8y63a")
 bullet_scene = ExtResource("3_8y63a")
 properties = ExtResource("3_1bbvr")
 sound = ExtResource("4_4mcc4")
+reload_time = null
+shoot_cooldown = 0.05
 model = NodePath("model3d")
 cartridge_bullet_scene = ExtResource("6_1bbvr")
 rifle_point = NodePath("Marker3D")
@@ -29,3 +48,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472639, -0.477135)
 
 [node name="Marker3D2" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472639, 0.00030762)
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("7_yuq3n")
+properties = Array[ExtResource("8_mo82r")]([SubResource("Resource_6boov")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"

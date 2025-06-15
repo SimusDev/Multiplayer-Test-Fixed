@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=35 format=3 uid="uid://dmrri7ggx6en"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=36 format=3 uid="uid://dmrri7ggx6en"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ngnq"]
 animation = &"anim_library/silly_dance"
@@ -33,6 +33,9 @@ timeline_length = 0.6
 stretch_time_scale = false
 start_offset = 1.09
 loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7b74v"]
+animation = &"anim_library/reloading"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrrnq"]
 animation = &"anim_library/norm_idle"
@@ -94,6 +97,7 @@ blend_point_4/pos = Vector2(0, -1)
 sync = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66gj0"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldqr8"]
 
@@ -130,12 +134,14 @@ states/grounded/node = SubResource("AnimationNodeAnimation_xvelq")
 states/grounded/position = Vector2(253, 30)
 states/grounded_sprint/node = SubResource("AnimationNodeAnimation_5qv8h")
 states/grounded_sprint/position = Vector2(395, 30)
+states/reloading/node = SubResource("AnimationNodeAnimation_7b74v")
+states/reloading/position = Vector2(315, 186.062)
 states/run/node = SubResource("AnimationNodeBlendSpace2D_66gj0")
 states/run/position = Vector2(605, 109)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_o6thw")
 states/walk/position = Vector2(460, 109)
 transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_66gj0"), "air", "grounded", SubResource("AnimationNodeStateMachineTransition_ldqr8"), "grounded", "ground", SubResource("AnimationNodeStateMachineTransition_x3d63"), "ground", "walk", SubResource("AnimationNodeStateMachineTransition_hwmg0"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_ymsrb"), "grounded_sprint", "ground", SubResource("AnimationNodeStateMachineTransition_2ngnq"), "air_sprint", "grounded_sprint", SubResource("AnimationNodeStateMachineTransition_7b74v")]
-graph_offset = Vector2(0, -72.5676)
+graph_offset = Vector2(0, 21.062)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2ngnq"]
 
@@ -153,24 +159,24 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
 
 [resource]
-graph_offset = Vector2(143.561, -42.871)
+graph_offset = Vector2(-226.181, -39.6992)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ki74b")
 nodes/Animation/position = Vector2(680, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2ngnq")
 "nodes/Animation 2/position" = Vector2(1420, 260)
 "nodes/Flair 2/node" = SubResource("AnimationNodeAnimation_ldqr8")
-"nodes/Flair 2/position" = Vector2(1220, 260)
+"nodes/Flair 2/position" = Vector2(1200, 260)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_gq3w5")
 nodes/StateMachine/position = Vector2(680, 0)
 nodes/flair_blend/node = SubResource("AnimationNodeBlend2_2ngnq")
 nodes/flair_blend/position = Vector2(1380, -20)
-nodes/output/position = Vector2(1780, -20)
+nodes/output/position = Vector2(1840, -20)
 nodes/pistol/node = SubResource("AnimationNodeAnimation_hwmg0")
 nodes/pistol/position = Vector2(940, 260)
 nodes/pistol_blend/node = SubResource("AnimationNodeBlend2_66gj0")
 nodes/pistol_blend/position = Vector2(1180, -20)
 nodes/silly_dance_blend/node = SubResource("AnimationNodeBlend2_7b74v")
-nodes/silly_dance_blend/position = Vector2(1580, -20)
+nodes/silly_dance_blend/position = Vector2(1600, -20)
 nodes/wave/node = SubResource("AnimationNodeBlend2_gq3w5")
 nodes/wave/position = Vector2(940, 0)
 node_connections = [&"flair_blend", 0, &"pistol_blend", &"flair_blend", 1, &"Flair 2", &"output", 0, &"silly_dance_blend", &"pistol_blend", 0, &"wave", &"pistol_blend", 1, &"pistol", &"silly_dance_blend", 0, &"flair_blend", &"silly_dance_blend", 1, &"Animation 2", &"wave", 0, &"StateMachine", &"wave", 1, &"Animation"]

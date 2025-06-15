@@ -7,9 +7,11 @@ signal on_fire
 @export_group("inputs")
 @export var fire:String = "fire"
 
-func _input(event: InputEvent) -> void:
+@onready var current_weapon:CSharkWeapon = $Ak_47
+
+func _process(delta: float) -> void:
 	if !is_multiplayer_authority():
 		return
 	
-	if Input.is_action_just_pressed(fire):
+	if Input.is_action_pressed(fire):
 		on_fire.emit()

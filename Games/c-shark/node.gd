@@ -17,6 +17,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	$"..".add_child(zondri)
 	zondri.scale = Vector3(2,2,2)
 	zondri.position = $"../Node3D".position
+	zondri.health.max_health = 1000
+	zondri.health.health = 1000
 	$"../Camera3D".current = false
 	
 	for player in $"..".get_children():

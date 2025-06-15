@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2a8jlilyyau"]
+
+[ext_resource type="Script" uid="uid://86a883horaqt" path="res://Games/c-shark/player/ui.gd" id="1_mnsav"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_q5xbg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnsav"]
+font_size = 30
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5xbg"]
+font_size = 30
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_58otl"]
+font_size = 15
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mnsav")
+
+[node name="inventory_ammo_label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 31.0
+text = "Inventory ammo: 78"
+label_settings = SubResource("LabelSettings_mnsav")
+clip_text = true
+script = ExtResource("2_q5xbg")
+font_size = 30
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="ammo_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 32.0
+offset_right = 1283.0
+offset_bottom = 63.0
+text = "Magazine: 30"
+label_settings = SubResource("LabelSettings_q5xbg")
+clip_text = true
+script = ExtResource("2_q5xbg")
+font_size = 30
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="reloading_label" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 264.0
+offset_right = 1283.0
+offset_bottom = 295.0
+text = "Reloading..."
+label_settings = SubResource("LabelSettings_58otl")
+horizontal_alignment = 1
+clip_text = true
+script = ExtResource("2_q5xbg")
+font_size = 15
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"

@@ -54,7 +54,7 @@ shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.85490
 shader_parameter/_stars_field_color = Color(1, 1, 1, 1)
 shader_parameter/_stars_field_texture = ExtResource("7_ibcsh")
 shader_parameter/_sky_alignment = Vector3(2.6555, -0.23935, 0.4505)
-shader_parameter/_sky_rotation = -11.1245
+shader_parameter/_sky_rotation = -12.2402
 shader_parameter/_sky_tilt = -1.29154
 shader_parameter/_stars_scintillation = 0.75
 shader_parameter/_stars_scintillation_speed = 0.01
@@ -89,8 +89,8 @@ shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1
 shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
 shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
 shader_parameter/_cumulus_clouds_mie_intensity = 1.0
-shader_parameter/_moon_matrix = Basis(0, -0.707735, 0.706478, -0.981971, -0.133546, -0.133784, 0.189031, -0.693741, -0.694975)
-shader_parameter/_deep_space_matrix = Basis(-0.128554, 0.991703, 0, 0.273351, 0.0354342, -0.961262, -0.953285, -0.123574, -0.275638)
+shader_parameter/_moon_matrix = Basis(3.72529e-09, -0.997321, 0.0731471, -0.506385, -0.0630753, -0.859998, 0.862308, -0.0370406, -0.505028)
+shader_parameter/_deep_space_matrix = Basis(-0.94727, 0.320437, -1.49012e-08, 0.0883247, 0.261104, -0.961261, -0.308024, -0.910574, -0.275638)
 
 [sub_resource type="Sky" id="Sky_nk6ab"]
 sky_material = SubResource("ShaderMaterial_tj70j")
@@ -99,7 +99,7 @@ sky_material = SubResource("ShaderMaterial_tj70j")
 background_mode = 2
 sky = SubResource("Sky_nk6ab")
 ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0.782747, 0.701046, 0.660107, 1)
 ambient_light_sky_contribution = 0.5
 reflected_light_source = 2
 tonemap_mode = 3
@@ -636,6 +636,45 @@ _data = {
 &"Walk": SubResource("Animation_ble8c")
 }
 
+[sub_resource type="Animation" id="Animation_1c2vk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.60526, 6.38936, -36.777)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.253879, 2.49835, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
 [sub_resource type="Animation" id="Animation_o02pu"]
 resource_name = "new_animation"
 length = 8.0
@@ -690,45 +729,6 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_1c2vk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.60526, 6.38936, -36.777)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.253879, 2.49835, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:fov")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [75.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7y5x4"]
 _data = {
 &"RESET": SubResource("Animation_1c2vk"),
@@ -748,26 +748,27 @@ script = ExtResource("8_o02pu")
 fog_enabled = false
 enable_editor_time = false
 enable_game_time = false
-current_time = 11.38
+current_time = 15.63
 minutes_per_day = 1440.0
 sky_contribution = 0.5
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.992747, 0.120221, 0.628072, 0.0935504, 0.772511, -0.778155, 0.0755074, 0.623517, 0.120221, 0.772511, 0.623517)
+transform = Transform3D(0, -0.641769, -0.766898, 0.798523, -0.461645, 0.386322, -0.601964, -0.612386, 0.512467, -0.766898, 0.386322, 0.512467)
+light_color = Color(0.995453, 0.891551, 0.839487, 1)
 shadow_enabled = true
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.981971, 0.189031, -0.707735, -0.133546, -0.693741, 0.706478, -0.133784, -0.694975, 0.189031, -0.693741, -0.694975)
+transform = Transform3D(0, -0.506385, 0.862308, -0.997321, -0.0630753, -0.0370406, 0.0731471, -0.859998, -0.505028, 0.862308, -0.0370406, -0.505028)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
 [node name="Skydome" type="Node" parent="Sky3D"]
 script = ExtResource("9_1c2vk")
-sun_azimuth = -169.087
-sun_altitude = -39.4201
-moon_azimuth = -15.2161
-moon_altitude = -133.927
+sun_azimuth = -236.248
+sun_altitude = -67.2741
+moon_azimuth = -59.6437
+moon_altitude = -92.1227
 fog_visible = false
 
 [node name="TimeOfDay" type="Node" parent="Sky3D"]
@@ -776,7 +777,7 @@ update_in_game = false
 update_in_editor = false
 dome_path = NodePath("../Skydome")
 total_cycle_in_minutes = 1440.0
-total_hours = 11.38
+total_hours = 15.63
 day = 5
 
 [node name="World" parent="." instance=ExtResource("11_ble8c")]
@@ -844,7 +845,7 @@ libraries = {
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.800158, -0.150643, 0.580563, 0, 0.967945, 0.251161, -0.599789, 0.200968, -0.774509, -2.60526, 6.38936, -36.777)
+transform = Transform3D(-0.800155, -0.150644, 0.580567, 0, 0.967945, 0.25116, -0.599793, 0.200967, -0.774506, -2.60526, 6.38936, -36.777)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera3D")

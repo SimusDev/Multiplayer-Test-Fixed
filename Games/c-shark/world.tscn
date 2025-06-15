@@ -57,13 +57,13 @@ size = Vector3(50.3, 18.5445, 1)
 material = SubResource("StandardMaterial3D_icar2")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGMesh3D3"]
-transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -37.95, 6, 25.2)
-size = Vector3(50.3, 12.2, 1)
+transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -36.5, 6, 25.2)
+size = Vector3(53.2, 12.2, 1)
 material = SubResource("StandardMaterial3D_icar2")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="CSGMesh3D3"]
-transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -10.15, 9.93426, 25.2)
-size = Vector3(5, 12.2, 1)
+transform = Transform3D(-1, 0, 8.84149e-08, 0, 1, 0, -8.84149e-08, 0, -1, -8.75, 9.93426, 25.2)
+size = Vector3(2.2, 12.2, 1)
 material = SubResource("StandardMaterial3D_3rcje")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGMesh3D3"]

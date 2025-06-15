@@ -11,6 +11,8 @@ class_name CSharkWeapon
 @export var properties:R_WeaponProperties          # |
 @export var sound:AudioStream                      # |
 @export var setup:bool = false : set = setup_weapon# |
+@export var reload_time:float = 2.0
+@export var shoot_cooldown:float = 0.1
 #=====================================================
 @export_group("instances")
 @export var model:Node3D
@@ -19,9 +21,22 @@ class_name CSharkWeapon
 @export var rifle_point:Node3D
 @export var cartridge_point:Node3D
 
+@onready var shoot_cooldown_timer:Timer = Timer.new()
+var current_ammo:int = 30
+var current_inventory_ammmo = 360
+
+var can_fire:bool = true : set = set_can_fire
+
 func _ready() -> void:
 	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
 	if weapon_holder: weapon_holder.on_fire.connect(fire_synced)
+
+	add_child(shoot_cooldown_timer)
+	shoot_cooldown_timer.wait_time = shoot_cooldown
+	shoot_cooldown_timer.timeout.connect(set_can_fire.bind(true))
+
+func set_can_fire(value:bool):
+	can_fire = value
 
 
 func setup_weapon(value:bool) -> void:
@@ -64,6 +79,14 @@ func spawn_cartridge_bullet():
 	cartridge.linear_velocity = cartridge_point.global_transform.basis.x.normalized()
 
 func fire():
+	if !can_fire:
+		return
+	if current_ammo <= 0:
+		return
+	
+	can_fire = false
+	shoot_cooldown_timer.start()
+	
 	randomize()
 	var audio_player = AudioStreamPlayer3D.new()
 	add_child(audio_player)
@@ -72,10 +95,40 @@ func fire():
 	audio_player.pitch_scale = randf_range(0.9, 1.05)
 	audio_player.play(.41)
 	
+	current_ammo -= 1
 	spawn_cartridge_bullet()
 	spawn_bullet_synced()
+	weapon_holder.root.ui.update.emit()
+
+func reload():
+	can_fire = false
+	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = true
+	weapon_holder.root.ui.update.emit()
+	await get_tree().create_timer(reload_time).timeout
+	reload_finished()
+	
+
+func reload_finished():
+	can_fire = true
+	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = false
+	current_inventory_ammmo -= (properties.magazine_max_ammo - current_ammo)
+	current_ammo = properties.magazine_max_ammo
+	weapon_holder.root.ui.update.emit()
 
 func fire_synced():
 	SD_Multiplayer.sync_call_function(self, fire)
+
 func spawn_bullet_synced():
 	SD_Multiplayer.sync_call_function(self, spawn_bullet)
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("reload"): reload()
+
+
+
+
+
+
+
+#

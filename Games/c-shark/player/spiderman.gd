@@ -4,14 +4,16 @@ class_name CSharkPlayer
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 @export var health:W_ComponentHealth
+@export var ui:CanvasLayer
+
 @onready var animation_tree:AnimationTree =  $Spiderman.get_animation_tree()
 @onready var animation_player:AnimationPlayer = $Spiderman.get_animation_player()
 
 @export var emotions_manager:EmotionsManager
-
 @export var model:W_AnimatedModel3D
-
 @export var c_s_zombie_target:CSharkZombieTarget
+
+@export var death_assets:Array[AudioStream]
 
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
@@ -40,9 +42,29 @@ func _on_damage_body_entered(body:Node3D) -> void:
 func _on_damage_body_exited(body:Node3D) -> void:
 	pass # Replace with function body.
 
-
 func _on_w_component_health_health_changed() -> void:
 	$nickname.update()
 
 func _on_w_component_health_died() -> void:
 	c_s_zombie_target.priory = -1
+	
+	var death_audio = AudioStreamPlayer3D.new()
+	add_child(death_audio)
+	death_audio.stream = death_assets[randi()%death_assets.size()]
+	death_audio.finished.connect(death_audio.queue_free)
+	
+	death_audio.volume_db = 10
+	death_audio.play()
+
+	movement.enabled = false
+	
+	
+
+
+
+
+
+
+
+
+#

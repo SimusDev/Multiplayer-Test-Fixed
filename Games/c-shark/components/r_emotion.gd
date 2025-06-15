@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 	if !event is InputEventKey:
 		return
 	
-	if event.as_text_keycode() == key_bind and event.is_pressed():
+	if event.as_text_keycode().to_lower() == key_bind and event.is_pressed():
 		SD_Multiplayer.sync_call_function(self, emit_signal_synced)
 
 func setup():
