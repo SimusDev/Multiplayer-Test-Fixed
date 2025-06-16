@@ -442,7 +442,7 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="Spiderman/model3d" index="0"]
-transform = Transform3D(0.99522, 0.0809491, 0.0546411, -0.0483266, -0.0780115, 0.99578, 0.0848703, -0.993659, -0.0737266, -0.0771788, -0.00758144, 0.0953033)
+transform = Transform3D(0.99522, 0.0809494, 0.0546406, -0.0483262, -0.0780109, 0.99578, 0.0848705, -0.993659, -0.073726, -0.0771788, -0.00758144, 0.0953033)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
 bones/1/rotation = Quaternion(0.0328096, 0.00839056, 0.0197504, 0.999231)
