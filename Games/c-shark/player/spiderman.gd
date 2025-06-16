@@ -32,9 +32,14 @@ func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
 
 func respawn():
-	if not can_respawn or not is_multiplayer_authority():
+	if not can_respawn:
 		return
 	ui.ui_instance.hide_taverna()
+	
+	self.movement.enabled = true
+	self.movement.input_enabled = true
+	self.weapon_holder.enabled = true
+	
 	self.health.heal(self.health.max_health)
 	self.global_position = CSharkGame.instance.mp_spawner.spawn_points.pick_random().global_position
 
@@ -86,7 +91,7 @@ func _on_w_component_health_died() -> void:
 	weapon_holder.enabled = false
 	
 	ui.ui_instance.show_taverna()
-	
+	ui.ui_instance.taverna_time = respawn_cooldown
 	await get_tree().create_timer(respawn_cooldown).timeout
 	respawn()
 
