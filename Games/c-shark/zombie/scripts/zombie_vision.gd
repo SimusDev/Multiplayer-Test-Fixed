@@ -6,14 +6,14 @@ func _ready() -> void:
 	area_entered.connect(add_target)
 	area_exited.connect(remove_target)
 
-func add_target(t):
+func add_target(t:Area3D):
 	if !t is CSharkZombieTarget:
 		return
 	if !SD_Multiplayer.is_server():
 		return
 	zombie.targets.append(t)
 
-func remove_target(t):
+func remove_target(t:Area3D):
 	if !t is CSharkZombieTarget:
 		return
 	if !SD_Multiplayer.is_server():

@@ -8,5 +8,5 @@ extends Node3D
 
 func _process(delta: float) -> void:
 	targets_label.text = "Targets: "+str(zombie.targets)
-	current_target_label = "Current Target: "+str(zombie.current_target)
+	current_target_label.text = "Current Target: "+str(zombie.current_target)
 	health_label.text = "Health: "+str(zombie.health.health)

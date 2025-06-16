@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func _on_player_died():
 	monitorable = false
+	for child in get_children():
+		if child is CollisionShape3D:
+			child.disabled = true

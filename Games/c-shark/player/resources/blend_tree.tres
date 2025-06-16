@@ -159,7 +159,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
 
 [resource]
-graph_offset = Vector2(335.531, 14.6312)
+graph_offset = Vector2(191.563, -13.5031)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ki74b")
 nodes/Animation/position = Vector2(600, 200)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2ngnq")
