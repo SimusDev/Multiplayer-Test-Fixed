@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0lea4ynjn21t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcnm2"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_c7vad"]
+material = SubResource("StandardMaterial3D_jcnm2")
+radius = 0.05
+height = 0.1
+
+[node name="crosshair" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_c7vad")

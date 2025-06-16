@@ -57,22 +57,22 @@ metadata/_custom_type_script = "uid://3t8mfl1mk3ku"
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.9375, 0.34375)
 
 [node name="Body2_12" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.80202, 0.597297, 0, -0.597297, 0.80202, 0, 0.6875, 0)
+transform = Transform3D(1, 0, 0, 0, 0.784931, 0.619583, 0, -0.619583, 0.784931, 0, 0.6875, 0)
 
 [node name="head_3" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0.75, -0.3125)
+transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, 0.75, -0.3125)
 
 [node name="Arm3_7" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="2"]
-transform = Transform3D(0.893555, 0.317458, -0.317458, -0.448953, 0.631839, -0.631839, -2.98023e-08, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.880595, 0.335076, -0.335076, -0.473869, 0.622675, -0.622675, -8.94069e-08, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
 
 [node name="Arm4_6" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm3_7" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, -0.75, 0)
 
 [node name="Arm_11" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="3"]
-transform = Transform3D(0.929284, -0.261182, 0.261182, 0.369366, 0.657103, -0.657103, 0, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.918545, -0.279531, 0.279531, 0.395317, 0.649509, -0.64951, 1.19209e-07, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
 
 [node name="Arm2_10" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm_11" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, -0.75, 0)
 
 [node name="AnimationTree" parent="Model" index="2"]
 parameters/state_machine/walk/blend_position = Vector2(0, 0)

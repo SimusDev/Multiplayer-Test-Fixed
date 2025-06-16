@@ -100,6 +100,8 @@ func fire():
 	weapon_holder.root.ui.update.emit()
 
 func reload():
+	if !weapon_holder.enabled:
+		return
 	reloading = true
 	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = true
 	weapon_holder.root.ui.update.emit()
