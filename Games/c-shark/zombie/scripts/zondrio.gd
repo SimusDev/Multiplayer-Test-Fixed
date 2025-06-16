@@ -5,7 +5,7 @@ class_name CSharkZombie extends CharacterBody3D
 @export var damage:float = 20.0
 @export var movespeed:float = 5.0
 @export var tick_rate:int = 30
-@export var attack_range:float = 3.0
+@export var attack_range:float = 6.0
 
 @export_group("Variables")
 @export var gravity:float = 9.8
@@ -58,7 +58,7 @@ func _chose_target() -> CSharkZombieTarget:
 			target_with_max_priory = target
 			return target_with_max_priory
 		
-		if (target.priory * int(dist))  > (target_with_max_priory.priory * int(dist)):
+		if (target.priory / int(dist)) > (target_with_max_priory.priory / int(dist)):
 			target_with_max_priory = target
 
 	return target_with_max_priory

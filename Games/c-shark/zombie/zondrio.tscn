@@ -19,7 +19,7 @@ radius = 20.5269
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7as2h"]
 height = 2.5
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7as2h"]
 size = Vector3(1.7, 2.638, 1.242)
@@ -57,19 +57,19 @@ metadata/_custom_type_script = "uid://3t8mfl1mk3ku"
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.9375, 0.34375)
 
 [node name="Body2_12" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.800386, 0.599484, 0, -0.599484, 0.800386, 0, 0.6875, 0)
+transform = Transform3D(1, 0, 0, 0, 0.794489, 0.607278, 0, -0.607278, 0.794489, 0, 0.6875, 0)
 
 [node name="head_3" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, 0.75, -0.3125)
 
 [node name="Arm3_7" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="2"]
-transform = Transform3D(0.892326, 0.319182, -0.319182, -0.451391, 0.63097, -0.63097, 2.98023e-08, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.887872, 0.325334, -0.325334, -0.460091, 0.62782, -0.62782, 0, 0.707107, 0.707107, -0.8125, 0.40625, 0.03125)
 
 [node name="Arm4_6" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm3_7" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, -0.75, 0)
 
 [node name="Arm_11" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12" index="3"]
-transform = Transform3D(0.928272, -0.262975, 0.262974, 0.371902, 0.656388, -0.656388, 2.98023e-08, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
+transform = Transform3D(0.924593, -0.269377, 0.269377, 0.380957, 0.653786, -0.653786, -2.98023e-08, 0.707107, 0.707107, 0.8125, 0.40625, 0.03125)
 
 [node name="Arm2_10" parent="Model/model3d/Sketchfab_model/root/GLTF_SceneRootNode/All_22/Body_13/Body2_12/Arm_11" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.642787, -0.766044, 0, 0.766044, 0.642787, 0, -0.75, 0)

@@ -150,7 +150,7 @@ animation = &"anim_library/pistol_arms"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_66gj0"]
 filter_enabled = true
-filters = ["Armature", "Armature/Skeleton3D:IndexFinger1_L", "Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_L", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:Left arm", "Armature/Skeleton3D:Left elbow", "Armature/Skeleton3D:Left shoulder", "Armature/Skeleton3D:Left wrist", "Armature/Skeleton3D:LittleFinger1_L", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_L", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_L", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_L", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_L", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_L", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_L", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
+filters = ["Armature/Skeleton3D:IndexFinger1_L", "Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_L", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:Left arm", "Armature/Skeleton3D:Left elbow", "Armature/Skeleton3D:Left shoulder", "Armature/Skeleton3D:Left wrist", "Armature/Skeleton3D:LittleFinger1_L", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_L", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_L", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_L", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_L", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_L", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_L", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7b74v"]
 
@@ -159,7 +159,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:IndexFinger1_R", "Armature/Skeleton3D:IndexFinger2_R", "Armature/Skeleton3D:LittleFinger1_R", "Armature/Skeleton3D:LittleFinger2_R", "Armature/Skeleton3D:MiddleFinger1_R", "Armature/Skeleton3D:MiddleFinger2_R", "Armature/Skeleton3D:Right arm", "Armature/Skeleton3D:Right elbow", "Armature/Skeleton3D:Right shoulder", "Armature/Skeleton3D:Right wrist", "Armature/Skeleton3D:RingFinger1_R", "Armature/Skeleton3D:RingFinger2_R", "Armature/Skeleton3D:Thumb0_R", "Armature/Skeleton3D:Thumb1_R"]
 
 [resource]
-graph_offset = Vector2(-52.6115, -36.9618)
+graph_offset = Vector2(335.531, 14.6312)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ki74b")
 nodes/Animation/position = Vector2(600, 200)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2ngnq")
