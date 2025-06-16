@@ -6,7 +6,7 @@ var weapon_holder:CSharkWeaponHolder
 @onready var ammo_label = $ammo_label
 @onready var taverna = $taverna
 @onready var taverna_label = $taverna/label
-@onready var taverna_timer = $taverna/Timer
+@export var taverna_timer:Timer
 
 var taverna_time:float
 

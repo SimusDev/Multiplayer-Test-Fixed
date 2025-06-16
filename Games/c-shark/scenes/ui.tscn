@@ -24,7 +24,7 @@ font_color = Color(1, 1, 1, 0.764706)
 outline_size = 11
 outline_color = Color(0, 0, 0, 1)
 
-[node name="ui" type="Control"]
+[node name="ui" type="Control" node_paths=PackedStringArray("taverna_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_mnsav")
+taverna_timer = NodePath("taverna/Timer")
 
 [node name="inventory_ammo_label" type="Label" parent="."]
 layout_mode = 0

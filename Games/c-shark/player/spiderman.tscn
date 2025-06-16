@@ -442,26 +442,26 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="Spiderman/model3d" index="0"]
-transform = Transform3D(0.993489, 0.093659, 0.0648822, -0.0590053, -0.0642125, 0.99619, 0.0974687, -0.99353, -0.058268, -0.0798854, -0.00724046, 0.0651834)
+transform = Transform3D(0.99522, 0.0809491, 0.0546411, -0.0483266, -0.0780115, 0.99578, 0.0848703, -0.993659, -0.0737266, -0.0771788, -0.00758144, 0.0953033)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0320059, 0.00579172, 0.0189666, 0.999291)
-bones/2/rotation = Quaternion(-0.0914956, 0.00809842, 0.0322581, 0.99525)
-bones/3/rotation = Quaternion(0.285401, -0.000809402, 0.00417903, 0.958399)
-bones/4/rotation = Quaternion(-0.0840561, -0.000507691, 0.00456245, 0.99645)
-bones/7/rotation = Quaternion(0.47043, 0.418781, 0.684277, -0.367538)
-bones/8/rotation = Quaternion(-0.532487, 0.157384, -0.0633106, 0.829264)
-bones/9/rotation = Quaternion(-0.000306424, 0.0209484, -0.0127884, 0.999699)
-bones/10/rotation = Quaternion(-0.0719751, -0.262974, -0.00768775, 0.962084)
-bones/27/rotation = Quaternion(-0.462375, -0.245025, 0.0929867, 0.847069)
-bones/28/rotation = Quaternion(-0.00139602, -0.0209146, 0.0582625, 0.998081)
-bones/29/rotation = Quaternion(-0.0804801, 0.152326, -0.0144025, 0.984943)
-bones/45/rotation = Quaternion(0.982733, 0.0761697, -0.134023, 0.102332)
-bones/46/rotation = Quaternion(0.152463, -0.0158968, -0.0397124, 0.987383)
-bones/47/rotation = Quaternion(-0.597163, -0.103357, 0.112861, 0.787386)
-bones/49/rotation = Quaternion(0.99529, 0.0300993, 0.0913639, 0.0119965)
-bones/50/rotation = Quaternion(0.107996, 0.0822614, 0.0318165, 0.990231)
-bones/51/rotation = Quaternion(-0.636088, 0.0873927, -0.0833664, 0.762105)
+bones/1/rotation = Quaternion(0.0328096, 0.00839056, 0.0197504, 0.999231)
+bones/2/rotation = Quaternion(-0.0897188, 0.0129173, 0.0360765, 0.99523)
+bones/3/rotation = Quaternion(0.287348, -0.00219083, 0.00473083, 0.957812)
+bones/4/rotation = Quaternion(-0.0820459, -0.00183853, 0.00537241, 0.996612)
+bones/7/rotation = Quaternion(0.471294, 0.418679, 0.682215, -0.370367)
+bones/8/rotation = Quaternion(-0.536793, 0.151429, -0.0661821, 0.827371)
+bones/9/rotation = Quaternion(-0.000324485, 0.0209482, -0.0135414, 0.999689)
+bones/10/rotation = Quaternion(-0.0717167, -0.261741, -0.00843125, 0.962433)
+bones/27/rotation = Quaternion(-0.462746, -0.245051, 0.0880774, 0.847383)
+bones/28/rotation = Quaternion(-0.00136396, -0.0209161, 0.0569225, 0.998159)
+bones/29/rotation = Quaternion(-0.0763037, 0.154415, -0.0158756, 0.984927)
+bones/45/rotation = Quaternion(0.983865, 0.0741917, -0.136112, 0.0893239)
+bones/46/rotation = Quaternion(0.149159, -0.00696119, -0.0403715, 0.987964)
+bones/47/rotation = Quaternion(-0.596815, -0.104754, 0.114562, 0.787219)
+bones/49/rotation = Quaternion(0.995157, 0.0273053, 0.0942866, 0.00516239)
+bones/50/rotation = Quaternion(0.117805, 0.0822832, 0.033311, 0.989061)
+bones/51/rotation = Quaternion(-0.644895, 0.089472, -0.0814257, 0.754636)
 
 [node name="AnimationPlayer" parent="Spiderman/model3d" index="1"]
 libraries = {
@@ -566,7 +566,7 @@ debug_color = Color(0.156695, 0.516905, 1, 0.419608)
 debug_fill = false
 
 [node name="hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.429055, -0.0286963, 0.902823, -0.0171772, -0.999573, -0.0236081, 0.903114, -0.00537894, -0.429364, 0.392135, 1.22078, -0.0103424)
+transform = Transform3D(0.451538, -0.0403778, 0.891339, -0.02622, -0.999144, -0.0319787, 0.891866, -0.0089315, -0.452209, 0.396575, 1.21285, -0.0259285)
 bone_name = "Right wrist"
 bone_idx = 29
 use_external_skeleton = true
