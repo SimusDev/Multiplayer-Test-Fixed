@@ -4,7 +4,7 @@ class_name Pencil
 @export var texture:Texture
 @onready var sprite = Sprite2D.new()
 var drawing:bool = false
-
+var paint_color:Color = Color(1,0,0)
 
 func _ready():
 	add_child(sprite)
@@ -25,16 +25,10 @@ func _input(event: InputEvent) -> void:
 func draw_sync(size:Vector2, pos:Vector2):
 	SD_Multiplayer.sync_call_function(self, draw, [size, pos])
 
-func _dasda():
-	var canvas:CanvasLayer = PaintGame.canvas
-	canvas.line
-
 func draw(size:Vector2, pos:Vector2):
-	var rect = ColorRect.new()
-	PaintGame.canvas.add_child(rect)
-	rect.size = size
-	rect.global_position = pos
-	
 	var new_key = PaintGame.brushes.get_or_add(PaintGame.brushes.size(), {})
-	new_key["size"] = size
-	new_key["position"] = rect.global_position
+	new_key["x"] = pos.x
+	new_key["y"] = pos.y
+	new_key["width"] = size.x
+	new_key["height"] = size.y
+	new_key["color"] = paint_color

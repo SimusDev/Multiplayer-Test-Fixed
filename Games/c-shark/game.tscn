@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://chiodmkr5e04q"]
+[gd_scene load_steps=34 format=3 uid="uid://chiodmkr5e04q"]
 
 [ext_resource type="Script" uid="uid://cbh86e6q83v1a" path="res://Games/c-shark/game.gd" id="1_0dwbj"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_rc7g2"]
@@ -729,10 +729,27 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_tj70j"]
+resource_name = "zombri_died"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.60526, 6.38936, -36.777), Vector3(-2.60526, 6.38936, -36.777)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7y5x4"]
 _data = {
 &"RESET": SubResource("Animation_1c2vk"),
-&"new_animation": SubResource("Animation_o02pu")
+&"new_animation": SubResource("Animation_o02pu"),
+&"zombri_died": SubResource("Animation_tj70j")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk6ab"]
@@ -870,6 +887,8 @@ stream = ExtResource("17_o02pu")
 volume_db = -10.718
 script = ExtResource("18_1c2vk")
 metadata/_custom_type_script = "uid://d0oiki227an05"
+
+[node name="Marker3D" type="Marker3D" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="Node" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Area3D" to="Node" method="_on_area_3d_area_entered"]

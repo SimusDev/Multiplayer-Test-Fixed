@@ -26,6 +26,7 @@ var current_ammo:int = 30
 var current_inventory_ammmo = 360
 
 var can_fire:bool = true : set = set_can_fire
+var reloading:bool = false
 
 func _ready() -> void:
 	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
@@ -79,9 +80,7 @@ func spawn_cartridge_bullet():
 	cartridge.linear_velocity = cartridge_point.global_transform.basis.x.normalized()
 
 func fire():
-	if !can_fire:
-		return
-	if current_ammo <= 0:
+	if !can_fire or current_ammo <= 0 or reloading:
 		return
 	
 	can_fire = false
@@ -101,7 +100,7 @@ func fire():
 	weapon_holder.root.ui.update.emit()
 
 func reload():
-	can_fire = false
+	reloading = true
 	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = true
 	weapon_holder.root.ui.update.emit()
 	await get_tree().create_timer(reload_time).timeout
@@ -109,10 +108,10 @@ func reload():
 	
 
 func reload_finished():
-	can_fire = true
 	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = false
 	current_inventory_ammmo -= (properties.magazine_max_ammo - current_ammo)
 	current_ammo = properties.magazine_max_ammo
+	reloading = false
 	weapon_holder.root.ui.update.emit()
 
 func fire_synced():
@@ -128,7 +127,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reload"): reload()
 
 
-
+ 
 
 
 

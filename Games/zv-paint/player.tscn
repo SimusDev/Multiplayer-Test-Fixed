@@ -52,7 +52,7 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
-[sub_resource type="LabelSettings" id="LabelSettings_gpf5r"]
+[sub_resource type="LabelSettings" id="LabelSettings_k6co1"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("tool", "nickname")]
 script = ExtResource("1_734jo")
@@ -65,9 +65,8 @@ script = ExtResource("1_26nb7")
 properties = Array[ExtResource("2_hbnso")]([SubResource("Resource_6xbr0"), SubResource("Resource_734jo"), SubResource("Resource_gpf5r")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="tool" type="Node2D" parent="." node_paths=PackedStringArray("paint_user")]
+[node name="tool" type="Node2D" parent="."]
 script = ExtResource("5_wivwv")
-paint_user = NodePath("")
 
 [node name="Pencil" type="Node2D" parent="tool"]
 script = ExtResource("6_wivwv")
@@ -82,7 +81,7 @@ offset_top = -20.0
 offset_right = 180.0
 offset_bottom = -3.0
 text = "player1"
-label_settings = SubResource("LabelSettings_gpf5r")
+label_settings = SubResource("LabelSettings_k6co1")
 horizontal_alignment = 1
 clip_text = true
 script = ExtResource("4_hbnso")
@@ -96,3 +95,5 @@ move_right = "move_right"
 move_up = "move_forward"
 move_down = "move_backward"
 metadata/_custom_type_script = "uid://cxl1bgj1rfms3"
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]

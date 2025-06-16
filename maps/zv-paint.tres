@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_2tqtt")
 visible = true
-is_favorite = false
+is_favorite = true
 scene_path = "uid://mqvf3yfa3ixi"
 code = "zv_paint"
 name = "ZV Paint"
