@@ -1,11 +1,14 @@
 extends CharacterBody3D
 class_name CSharkPlayer
 
+@export_group("Controls Refrences")
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 @export var health:W_ComponentHealth
 @export var ui:CanvasLayer
+@export var weapon_holder:CSharkWeaponHolder
 
+@export_group("Other Refrences")
 @onready var animation_tree:AnimationTree =  $Spiderman.get_animation_tree()
 @onready var animation_player:AnimationPlayer = $Spiderman.get_animation_player()
 
@@ -13,12 +16,20 @@ class_name CSharkPlayer
 @export var model:W_AnimatedModel3D
 @export var c_s_zombie_target:CSharkZombieTarget
 
+@export_group("Prefabs")
+@export var crosshair_scene:PackedScene
+
+@export_group("other")
 @export var death_assets:Array[AudioStream]
+
+var crosshair:Node3D = null
 
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
 
+
 func _physics_process(delta: float) -> void:
+
 	set_movement_blend()
 
 func set_movement_blend():
@@ -57,7 +68,8 @@ func _on_w_component_health_died() -> void:
 	death_audio.play()
 
 	movement.enabled = false
-	
+	movement.input_enabled = false
+	weapon_holder.enabled = false
 	
 
 

@@ -2,7 +2,7 @@ extends Node
 class_name PaintGame
 
 static var instance
-static var canvas
+static var canvas:Control
 
 static var brushes:Dictionary = {
 }
@@ -10,16 +10,17 @@ static var brushes:Dictionary = {
 static func clear_canvas():
 	for rect in canvas.get_children():
 		rect.queue_free()
+	canvas.update()
 
 static func load_brushes():
 	clear_canvas()
-	
-	for brush in brushes:
+	print(brushes)
+	for brush in brushes.values():
 		var rect = ColorRect.new()
+		rect.rect_position = Vector2(brush["x"], brush["y"])
+		rect.rect_size = Vector2(brush["width"], brush["height"])
+		rect.color = brush["color"]
 		canvas.add_child(rect)
-		
-		rect.global_position = brushes[brush]["position"]
-		rect.size = brushes[brush]["size"]
 
 func on_brushes_synced():
 	load_brushes()

@@ -49,13 +49,16 @@ func _chose_target() -> CSharkZombieTarget:
 	var target_with_max_priory:CSharkZombieTarget = null
 
 	for target in targets:
+		
+		var dist = global_position.distance_to(target.global_position)
+		
 		if target.priory < 0:
 			return
 		if target_with_max_priory == null:
 			target_with_max_priory = target
 			return target_with_max_priory
 		
-		if target.priory > target_with_max_priory.priory:
+		if (target.priory * int(dist))  > (target_with_max_priory.priory * int(dist)):
 			target_with_max_priory = target
 
 	return target_with_max_priory

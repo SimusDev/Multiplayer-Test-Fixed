@@ -14,7 +14,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if !is_multiplayer_authority():
 		return
-	
 	if event is InputEventMouseMotion and tool_enabled:
 		var global_position = event.global_position
 		

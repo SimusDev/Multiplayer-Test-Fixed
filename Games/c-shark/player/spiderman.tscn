@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_t8l62"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_1psrn"]
 [ext_resource type="AudioStream" uid="uid://dw7h4rjnjv6k6" path="res://Games/c-shark/audio/death/death1.wav" id="2_ci5s8"]
+[ext_resource type="PackedScene" uid="uid://d0lea4ynjn21t" path="res://Games/c-shark/scenes/crosshair.tscn" id="2_seyjf"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_08ks4"]
 [ext_resource type="Script" uid="uid://ct47lcyahk7tn" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.gd" id="3_ailfn"]
 [ext_resource type="AudioStream" uid="uid://dct4o6600lgwt" path="res://Games/c-shark/audio/death/death3.wav" id="3_seyjf"]
-[ext_resource type="AudioStream" uid="uid://dcmewcsqdodg2" path="res://Games/c-shark/audio/death/death5.wav" id="4_4sl1o"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_odfyr"]
 [ext_resource type="Animation" uid="uid://7do7faoew25w" path="res://Games/c-shark/player/resources/reloading.res" id="6_qawmd"]
 [ext_resource type="Script" uid="uid://jpuavxpe3v56" path="res://Games/c-shark/components/emotions-manager.gd" id="8_08ks4"]
@@ -420,16 +420,18 @@ size = Vector3(0.694141, 2.2, 0.766528)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7khb"]
 size = Vector3(1.06414, 2.48988, 0.9)
 
-[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "health", "ui", "emotions_manager", "model", "c_s_zombie_target")]
+[node name="Spiderman" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "health", "ui", "weapon_holder", "emotions_manager", "model", "c_s_zombie_target")]
 script = ExtResource("1_ailfn")
 movement = NodePath("W_FPCSourceLikeMovement")
 camera = NodePath("W_FPCSourceLikeCamera")
 health = NodePath("W_ComponentHealth")
 ui = NodePath("canvas")
+weapon_holder = NodePath("hand_attachment/WeaponHolder")
 emotions_manager = NodePath("EmotinosManager")
 model = NodePath("Spiderman")
 c_s_zombie_target = NodePath("CSharkZombieTarget")
-death_assets = Array[AudioStream]([ExtResource("2_ci5s8"), ExtResource("3_seyjf"), ExtResource("4_4sl1o")])
+crosshair_scene = ExtResource("2_seyjf")
+death_assets = Array[AudioStream]([ExtResource("2_ci5s8"), ExtResource("3_seyjf")])
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("2_1psrn")
@@ -440,6 +442,7 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="Spiderman/model3d" index="0"]
+<<<<<<< HEAD
 transform = Transform3D(0.995212, 0.0789193, 0.0576494, -0.0516006, -0.0766505, 0.995722, 0.0830006, -0.993929, -0.0722114, -0.07961, -0.00790278, 0.0918689)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
@@ -481,6 +484,21 @@ bones/47/rotation = Quaternion(-0.597538, -0.104512, 0.114344, 0.786735)
 bones/49/rotation = Quaternion(0.995162, 0.0286604, 0.0937371, 0.00668419)
 bones/50/rotation = Quaternion(0.118535, 0.0822262, 0.0335596, 0.98897)
 bones/51/rotation = Quaternion(-0.644605, 0.0906629, -0.08103, 0.754784)
+=======
+transform = Transform3D(0.993043, 0.0977747, 0.0656206, -0.0596, -0.0632772, 0.996214, 0.101557, -0.993193, -0.0570097, -0.0804188, -0.007085, 0.063959)
+
+[node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0319219, 0.00555814, 0.0189219, 0.999296)
+bones/2/rotation = Quaternion(-0.0915364, 0.00764186, 0.031878, 0.995262)
+bones/3/rotation = Quaternion(0.285035, -0.000830193, 0.00437843, 0.958507)
+bones/4/rotation = Quaternion(-0.0844352, -0.000505649, 0.00474633, 0.996418)
+bones/45/rotation = Quaternion(0.982686, 0.0765724, -0.134194, 0.102259)
+bones/46/rotation = Quaternion(0.152452, -0.0174465, -0.039603, 0.987363)
+bones/47/rotation = Quaternion(-0.597368, -0.103438, 0.112984, 0.787202)
+bones/49/rotation = Quaternion(0.995299, 0.0305011, 0.0911724, 0.011722)
+bones/50/rotation = Quaternion(0.106495, 0.0824655, 0.0315899, 0.990384)
+bones/51/rotation = Quaternion(-0.635381, 0.0860755, -0.0840455, 0.76277)
+>>>>>>> 8c7498fb9038b144a4e9a92ad3b0e893140c8b02
 
 [node name="AnimationPlayer" parent="Spiderman/model3d" index="1"]
 libraries = {
@@ -583,7 +601,11 @@ debug_color = Color(0.156695, 0.516905, 1, 0.419608)
 debug_fill = false
 
 [node name="hand_attachment" type="BoneAttachment3D" parent="."]
+<<<<<<< HEAD
 transform = Transform3D(0.438312, -0.0334163, 0.898201, -0.0388578, -0.999078, -0.0182074, 0.897982, -0.0269218, -0.439206, 0.394946, 1.21611, -0.04189)
+=======
+transform = Transform3D(0.262577, -0.0616709, 0.962939, -0.963972, -0.0607579, 0.258968, 0.0425354, -0.996244, -0.0754021, 0.164902, 1.9642, -0.578629)
+>>>>>>> 8c7498fb9038b144a4e9a92ad3b0e893140c8b02
 bone_name = "Right wrist"
 bone_idx = 29
 use_external_skeleton = true
@@ -596,7 +618,6 @@ root = NodePath("../..")
 metadata/_custom_type_script = "uid://swfbs1sb2xnk"
 
 [node name="Ak_47" parent="hand_attachment/WeaponHolder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("12_n4uej")]
-shoot_cooldown = 0.1
 weapon_holder = NodePath("..")
 
 [node name="canvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("weapon_holder")]
