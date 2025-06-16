@@ -24,6 +24,8 @@ func _process(_delta: float) -> void:
 	taverna_label.text = "ТЫ В ТАВЕРНЕ !!! \n" + str(taverna_time)
 
 func show_taverna():
+	
+	
 	taverna_timer.wait_time = taverna_time
 	taverna_timer.start()
 	

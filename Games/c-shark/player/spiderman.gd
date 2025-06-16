@@ -32,7 +32,7 @@ func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
 
 func respawn():
-	if not can_respawn:
+	if not can_respawn or not is_multiplayer_authority():
 		return
 	ui.ui_instance.hide_taverna()
 	self.health.heal(self.health.max_health)
@@ -68,6 +68,9 @@ func _on_w_component_health_health_changed() -> void:
 	$nickname.update()
 
 func _on_w_component_health_died() -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	c_s_zombie_target.priory = -1
 	
 	var death_audio = AudioStreamPlayer3D.new()
@@ -86,9 +89,6 @@ func _on_w_component_health_died() -> void:
 	
 	await get_tree().create_timer(respawn_cooldown).timeout
 	respawn()
-
-
-
 
 
 
