@@ -10,3 +10,4 @@ func _process(delta: float) -> void:
 	targets_label.text = "Targets: "+str(zombie.targets)
 	current_target_label.text = "Current Target: "+str(zombie.current_target)
 	health_label.text = "Health: "+str(zombie.health.health)
+	

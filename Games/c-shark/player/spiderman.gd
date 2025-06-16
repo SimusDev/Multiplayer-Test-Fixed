@@ -22,10 +22,21 @@ class_name CSharkPlayer
 @export_group("other")
 @export var death_assets:Array[AudioStream]
 
+@export_group("Settings")
+@export var can_respawn:bool = true
+@export var respawn_cooldown:float = 10.0
+
 var crosshair:Node3D = null
 
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
+
+func respawn():
+	if not can_respawn:
+		return
+	ui.ui_instance.hide_taverna()
+	self.health.heal(self.health.max_health)
+	self.global_position = CSharkGame.instance.mp_spawner.spawn_points.pick_random().global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -71,7 +82,10 @@ func _on_w_component_health_died() -> void:
 	movement.input_enabled = false
 	weapon_holder.enabled = false
 	
-
+	ui.ui_instance.show_taverna()
+	
+	await get_tree().create_timer(respawn_cooldown).timeout
+	respawn()
 
 
 

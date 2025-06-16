@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2a8jlilyyau"]
+[gd_scene load_steps=7 format=3 uid="uid://b2a8jlilyyau"]
 
 [ext_resource type="Script" uid="uid://86a883horaqt" path="res://Games/c-shark/player/ui.gd" id="1_mnsav"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_q5xbg"]
@@ -16,6 +16,12 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_58otl"]
 font_size = 15
 outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ldjbj"]
+font_size = 75
+font_color = Color(1, 1, 1, 0.764706)
+outline_size = 11
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ui" type="Control"]
@@ -57,6 +63,7 @@ outline_color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
 [node name="reloading_label" type="Label" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.533333)
 layout_mode = 0
 offset_left = 3.0
@@ -72,3 +79,40 @@ font_size = 15
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="taverna" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rect" type="ColorRect" parent="taverna"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.231373)
+
+[node name="label" type="Label" parent="taverna"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 264.0
+offset_right = 1283.0
+offset_bottom = 340.0
+text = "ТЫ В ТАВЕРНЕ !!!"
+label_settings = SubResource("LabelSettings_ldjbj")
+horizontal_alignment = 1
+clip_text = true
+script = ExtResource("2_q5xbg")
+font_size = 15
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="Timer" type="Timer" parent="taverna"]
+one_shot = true

@@ -755,8 +755,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk6ab"]
 size = Vector3(6.61316, 6.77686, 6.30615)
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" node_paths=PackedStringArray("mp_spawner")]
 script = ExtResource("1_0dwbj")
+mp_spawner = NodePath("SD_MPPlayerSpawner")
 
 [node name="Sky3D" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dhujx")

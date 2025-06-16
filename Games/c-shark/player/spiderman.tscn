@@ -54,8 +54,8 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 [sub_resource type="Resource" id="Resource_2vk17"]
 script = ExtResource("4_odfyr")
 tickrate = 32.0
-tickrate_mode = 2
-sync_mode = 0
+tickrate_mode = 0
+sync_mode = 1
 properties = Array[String](["health", "max_health"])
 sync_at_start = true
 interpolation_enabled = false
@@ -442,26 +442,26 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="Spiderman/model3d" index="0"]
-transform = Transform3D(0.995203, 0.0817202, 0.0538113, -0.0475374, -0.0768697, 0.995907, 0.0855224, -0.993685, -0.0726161, -0.07535, -0.00761347, 0.0927458)
+transform = Transform3D(0.993489, 0.093659, 0.0648822, -0.0590053, -0.0642125, 0.99619, 0.0974687, -0.99353, -0.058268, -0.0798854, -0.00724046, 0.0651834)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0323977, 0.00812389, 0.0197286, 0.999247)
-bones/2/rotation = Quaternion(-0.0904184, 0.012365, 0.0361159, 0.995172)
-bones/3/rotation = Quaternion(0.286363, -0.00215954, 0.00512431, 0.958105)
-bones/4/rotation = Quaternion(-0.0830697, -0.00177029, 0.00574223, 0.996526)
-bones/7/rotation = Quaternion(0.470947, 0.419395, 0.681385, -0.371525)
-bones/8/rotation = Quaternion(-0.538131, 0.15239, -0.0660243, 0.826337)
-bones/9/rotation = Quaternion(-0.000325237, 0.0209482, -0.0135728, 0.999688)
-bones/10/rotation = Quaternion(-0.0728801, -0.261411, -0.00870433, 0.962433)
-bones/27/rotation = Quaternion(-0.461886, -0.245148, 0.0893423, 0.847692)
-bones/28/rotation = Quaternion(-0.00136262, -0.0209162, 0.0568666, 0.998162)
-bones/29/rotation = Quaternion(-0.0756619, 0.153855, -0.0155705, 0.985069)
-bones/45/rotation = Quaternion(0.983989, 0.0733726, -0.135567, 0.0894655)
-bones/46/rotation = Quaternion(0.1478, -0.00812643, -0.0402809, 0.988163)
-bones/47/rotation = Quaternion(-0.596189, -0.104755, 0.114502, 0.787702)
-bones/49/rotation = Quaternion(0.995172, 0.0267401, 0.0942206, 0.00630084)
-bones/50/rotation = Quaternion(0.117412, 0.0822663, 0.0332891, 0.98911)
-bones/51/rotation = Quaternion(-0.644392, 0.0892931, -0.0816213, 0.755065)
+bones/1/rotation = Quaternion(0.0320059, 0.00579172, 0.0189666, 0.999291)
+bones/2/rotation = Quaternion(-0.0914956, 0.00809842, 0.0322581, 0.99525)
+bones/3/rotation = Quaternion(0.285401, -0.000809402, 0.00417903, 0.958399)
+bones/4/rotation = Quaternion(-0.0840561, -0.000507691, 0.00456245, 0.99645)
+bones/7/rotation = Quaternion(0.47043, 0.418781, 0.684277, -0.367538)
+bones/8/rotation = Quaternion(-0.532487, 0.157384, -0.0633106, 0.829264)
+bones/9/rotation = Quaternion(-0.000306424, 0.0209484, -0.0127884, 0.999699)
+bones/10/rotation = Quaternion(-0.0719751, -0.262974, -0.00768775, 0.962084)
+bones/27/rotation = Quaternion(-0.462375, -0.245025, 0.0929867, 0.847069)
+bones/28/rotation = Quaternion(-0.00139602, -0.0209146, 0.0582625, 0.998081)
+bones/29/rotation = Quaternion(-0.0804801, 0.152326, -0.0144025, 0.984943)
+bones/45/rotation = Quaternion(0.982733, 0.0761697, -0.134023, 0.102332)
+bones/46/rotation = Quaternion(0.152463, -0.0158968, -0.0397124, 0.987383)
+bones/47/rotation = Quaternion(-0.597163, -0.103357, 0.112861, 0.787386)
+bones/49/rotation = Quaternion(0.99529, 0.0300993, 0.0913639, 0.0119965)
+bones/50/rotation = Quaternion(0.107996, 0.0822614, 0.0318165, 0.990231)
+bones/51/rotation = Quaternion(-0.636088, 0.0873927, -0.0833664, 0.762105)
 
 [node name="AnimationPlayer" parent="Spiderman/model3d" index="1"]
 libraries = {
@@ -566,7 +566,7 @@ debug_color = Color(0.156695, 0.516905, 1, 0.419608)
 debug_fill = false
 
 [node name="hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.450728, -0.0386947, 0.891823, -0.0295608, -0.999158, -0.0284118, 0.892171, -0.0135571, -0.451492, 0.396963, 1.21291, -0.026089)
+transform = Transform3D(0.429055, -0.0286963, 0.902823, -0.0171772, -0.999573, -0.0236081, 0.903114, -0.00537894, -0.429364, 0.392135, 1.22078, -0.0103424)
 bone_name = "Right wrist"
 bone_idx = 29
 use_external_skeleton = true

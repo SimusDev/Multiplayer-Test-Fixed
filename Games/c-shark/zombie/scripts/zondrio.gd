@@ -45,25 +45,24 @@ func _on_tick():
 
 
 func _chose_target() -> CSharkZombieTarget:
-	if !enabled:
-		return
+	if !enabled || targets.is_empty():
+		return null
 
-	var target_with_max_priory:CSharkZombieTarget = null
+	var best_target: CSharkZombieTarget = null
+	var best_score: float = -1.0
 
 	for target in targets:
-		
-		var dist = global_position.distance_to(target.global_position)
-		
 		if target.priory < 0:
-			return
-		if target_with_max_priory == null:
-			target_with_max_priory = target
-			return target_with_max_priory
+			continue  # Пропускаем цели с отрицательным приоритетом
+			
+		var distance = global_position.distance_to(target.global_position)
+		var score = target.priory / (distance + 0.1)  # +0.1 чтобы избежать деления на 0
 		
-		if (target.priory / int(dist)) > (target_with_max_priory.priory / int(dist)):
-			target_with_max_priory = target
+		if score > best_score || best_target == null:
+			best_score = score
+			best_target = target
 
-	return target_with_max_priory
+	return best_target
 
 func move_to(_position:Vector3):
 	state_machine.switch($SD_NodeStateMachine/walk)
