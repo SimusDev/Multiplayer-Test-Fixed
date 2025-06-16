@@ -42,6 +42,8 @@ func _on_tick():
 	if !current_target:
 		stop_move()
 
+	print(current_target)
+
 func _chose_target() -> CSharkZombieTarget:
 	if !enabled:
 		return
