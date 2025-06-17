@@ -10,6 +10,7 @@ class_name CSharkWeapon
 @export var bullet_scene:PackedScene               # |
 @export var properties:R_WeaponProperties          # |
 @export var sound:AudioStream                      # |
+@export var sound_empty:AudioStream
 @export var setup:bool = false : set = setup_weapon# |
 @export var reload_time:float = 2.0
 @export var shoot_cooldown:float = 0.1
@@ -23,7 +24,7 @@ class_name CSharkWeapon
 
 @onready var shoot_cooldown_timer:Timer = Timer.new()
 var current_ammo:int = 30
-var current_inventory_ammmo = 360
+var current_inventory_ammo = 960
 
 var can_fire:bool = true : set = set_can_fire
 var reloading:bool = false
@@ -39,7 +40,6 @@ func _ready() -> void:
 func set_can_fire(value:bool):
 	can_fire = value
 
-
 func setup_weapon(value:bool) -> void:
 	if not value or not model_scene:
 		return
@@ -51,7 +51,6 @@ func setup_weapon(value:bool) -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	if get_parent() is CSharkWeaponHolder:weapon_holder = get_parent()
-	
 	
 	model = model_scene.instantiate()
 	model.name = "model3d"
@@ -68,8 +67,7 @@ func spawn_bullet():
 
 	var direction = -rifle_point.global_transform.basis.z.normalized()
 	
-	# Придаём пуле мгновенный импульс (без apply_force)
-	var bullet_speed = 150.0  # Настрой под свою игру
+	var bullet_speed = 150.0
 	bullet.linear_velocity = direction * bullet_speed
 
 func spawn_cartridge_bullet():
@@ -80,19 +78,25 @@ func spawn_cartridge_bullet():
 	cartridge.linear_velocity = cartridge_point.global_transform.basis.x.normalized()
 
 func fire():
-	if !can_fire or current_ammo <= 0 or reloading:
+	if !can_fire || reloading:
 		return
 	
-	can_fire = false
-	shoot_cooldown_timer.start()
+	set_can_fire(false)
 	
 	randomize()
 	var audio_player = AudioStreamPlayer3D.new()
 	add_child(audio_player)
 	
+	if current_ammo == 0:
+		audio_player.stream = sound_empty
+		audio_player.pitch_scale = randf_range(0.9, 1.05)
+		audio_player.play()
+		return
+
 	audio_player.stream = sound
 	audio_player.pitch_scale = randf_range(0.9, 1.05)
 	audio_player.play(.41)
+	shoot_cooldown_timer.start()
 	
 	current_ammo -= 1
 	spawn_cartridge_bullet()
@@ -100,7 +104,7 @@ func fire():
 	weapon_holder.root.ui.update.emit()
 
 func reload():
-	if !weapon_holder.enabled:
+	if !weapon_holder.enabled || current_inventory_ammo == 0 || current_ammo == properties.magazine_max_ammo:
 		return
 	reloading = true
 	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = true
@@ -111,8 +115,12 @@ func reload():
 
 func reload_finished():
 	weapon_holder.root.ui.get_node("ui").get_node("reloading_label").visible = false
-	current_inventory_ammmo -= (properties.magazine_max_ammo - current_ammo)
-	current_ammo = properties.magazine_max_ammo
+	var ammo_needed = properties.magazine_max_ammo - current_ammo
+	var ammo_to_take = min(ammo_needed, current_inventory_ammo)
+
+	current_inventory_ammo -= ammo_to_take
+	current_ammo += ammo_to_take
+
 	reloading = false
 	weapon_holder.root.ui.update.emit()
 

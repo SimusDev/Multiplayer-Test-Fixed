@@ -71,6 +71,7 @@ height = 0.5
 [node name="bullet6_5x55" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 2
+collision_priority = 2.0
 script = ExtResource("1_m5rds")
 bullet_properties = ExtResource("2_11cr6")
 wall_bullet_scene = ExtResource("2_odbvt")

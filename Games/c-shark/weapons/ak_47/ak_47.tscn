@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj3nohiim3kfk"]
+[gd_scene load_steps=12 format=3 uid="uid://bj3nohiim3kfk"]
 
 [ext_resource type="Script" uid="uid://cdsdk55p1owdm" path="res://Games/c-shark/components/weapon.gd" id="1_kmba2"]
 [ext_resource type="PackedScene" uid="uid://bs06vejb2bbc8" path="res://Games/counter-strike/models/weapons/ak47/ak_47.tscn" id="2_8y63a"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dv6cts6h5n6u6" path="res://Games/c-shark/bullets/6.5x55/scene/ak_bullet.tscn" id="3_8y63a"]
 [ext_resource type="AudioStream" uid="uid://484fgwue1kda" path="res://Games/c-shark/audio/fire/ak_47/fire1.wav" id="4_4mcc4"]
 [ext_resource type="PackedScene" uid="uid://bsaqu6og45i08" path="res://Games/c-shark/bullets/6.5x55/scene/cartridge_bullet.tscn" id="6_1bbvr"]
+[ext_resource type="AudioStream" uid="uid://dahd4uduv1l0y" path="res://Games/c-shark/audio/fire/empty.wav" id="6_mo82r"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="7_yuq3n"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="8_mo82r"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="9_p0a5k"]
@@ -30,6 +31,7 @@ model_scene = ExtResource("2_8y63a")
 bullet_scene = ExtResource("3_8y63a")
 properties = ExtResource("3_1bbvr")
 sound = ExtResource("4_4mcc4")
+sound_empty = ExtResource("6_mo82r")
 model = NodePath("model3d")
 cartridge_bullet_scene = ExtResource("6_1bbvr")
 rifle_point = NodePath("Marker3D")

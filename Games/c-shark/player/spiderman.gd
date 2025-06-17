@@ -36,6 +36,9 @@ func respawn():
 		return
 	ui.ui_instance.hide_taverna()
 	
+	c_s_zombie_target.priory = 1
+	c_s_zombie_target.monitorable = true
+	
 	self.movement.enabled = true
 	self.movement.input_enabled = true
 	self.weapon_holder.enabled = true
@@ -43,17 +46,17 @@ func respawn():
 	self.health.heal(self.health.max_health)
 	self.global_position = CSharkGame.instance.mp_spawner.spawn_points.pick_random().global_position
 
-
 func _physics_process(delta: float) -> void:
 
-	set_movement_blend()
+	set_model_blend()
 
-func set_movement_blend():
+func set_model_blend():
 	var actor_velocity: Vector3 = velocity * transform.basis
 	var blend_position: Vector2 = Vector2(-actor_velocity.z, actor_velocity.x)
 	
 	model.tree.set("parameters/StateMachine/walk/blend_position", blend_position)
 	model.tree.set("parameters/StateMachine/run/blend_position", blend_position)
+	model.tree.set("parameters/pistol_blend/blend_amount", Input.is_action_pressed("aim"))
 
 func on_state_enter(state: SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
@@ -78,13 +81,13 @@ func _on_w_component_health_died() -> void:
 	
 	c_s_zombie_target.priory = -1
 	
-	var death_audio = AudioStreamPlayer3D.new()
+	var death_audio = SD_MPSyncedAudioStreamPlayer3D.new()
 	add_child(death_audio)
 	death_audio.stream = death_assets[randi()%death_assets.size()]
 	death_audio.finished.connect(death_audio.queue_free)
 	
-	death_audio.volume_db = 10
-	death_audio.play()
+	death_audio.volume_db = 20
+	death_audio.play_synced()
 
 	movement.enabled = false
 	movement.input_enabled = false
