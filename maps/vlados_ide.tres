@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://bfvgrbs8030xo"]
+
+[ext_resource type="Texture2D" uid="uid://3ipbhsg3n6xn" path="res://Games/vlados_ide/icons/folder_empty.png" id="1_auibd"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_rulis"]
+
+[resource]
+script = ExtResource("1_rulis")
+visible = true
+is_favorite = true
+scene_path = "uid://b6s4yjace82j7"
+code = "vlados_ide"
+name = "Vlados Ide"
+icon = ExtResource("1_auibd")
+description = ""
+metadata/_custom_type_script = "uid://dr6n65i48b73y"
