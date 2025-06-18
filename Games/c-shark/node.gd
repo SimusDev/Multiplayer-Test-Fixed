@@ -20,8 +20,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		$"..".add_child(zondri)
 		zondri.scale = Vector3(2,2,2)
 		zondri.position = $"../Node3D".position
-		zondri.health.max_health = 100000
-		zondri.health.health = 100000
+		zondri.health.max_health = 1000
+		zondri.health.health = 1000
 		zondri.health.died.connect(play_death_anim)
 	
 	$"../Camera3D".current = false
@@ -29,7 +29,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	for player in $"..".get_children():
 		if player is CSharkPlayer:
 			if player.is_multiplayer_authority():
-				player.camera.get_node("Camera3D").current = true
+				player.camera.camera.current = true
 
 
 func play_death_anim():

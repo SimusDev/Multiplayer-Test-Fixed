@@ -442,26 +442,46 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="Spiderman/model3d" index="0"]
-transform = Transform3D(0.994415, 0.0869772, 0.0597944, -0.0541537, -0.0658294, 0.996359, 0.0905971, -0.994031, -0.0607516, -0.0776832, -0.00777835, 0.073498)
+transform = Transform3D(0.993919, 0.0902354, 0.0631197, -0.0569601, -0.0692818, 0.995968, 0.094245, -0.993506, -0.0637207, -0.0752779, -0.00714015, 0.0684076)
 
 [node name="Skeleton3D" parent="Spiderman/model3d/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0336329, 0.00860386, 0.0194398, 0.999208)
-bones/2/rotation = Quaternion(-0.0881015, 0.0136299, 0.0346805, 0.995414)
-bones/3/rotation = Quaternion(0.285962, -0.00189437, 0.00360347, 0.958232)
-bones/4/rotation = Quaternion(-0.0834812, -0.00166259, 0.00420858, 0.996499)
-bones/7/rotation = Quaternion(0.47211, 0.416408, 0.685547, -0.365708)
-bones/8/rotation = Quaternion(-0.530559, 0.151476, -0.0667175, 0.831331)
-bones/9/rotation = Quaternion(-0.000314323, 0.0209483, -0.0131178, 0.999695)
-bones/10/rotation = Quaternion(-0.0687623, -0.262322, -0.0100905, 0.962474)
-bones/27/rotation = Quaternion(-0.462225, -0.245443, 0.0890842, 0.847449)
-bones/28/rotation = Quaternion(-0.001382, -0.0209153, 0.0576764, 0.998115)
-bones/29/rotation = Quaternion(-0.0769014, 0.156714, -0.015488, 0.984524)
-bones/45/rotation = Quaternion(0.982996, 0.0749597, -0.135493, 0.0987003)
-bones/46/rotation = Quaternion(0.151333, -0.0108612, -0.0394148, 0.987637)
-bones/47/rotation = Quaternion(-0.596985, -0.103933, 0.113588, 0.78734)
-bones/49/rotation = Quaternion(0.995253, 0.0290492, 0.0922594, 0.0107415)
-bones/50/rotation = Quaternion(0.112638, 0.08232, 0.0328229, 0.989676)
-bones/51/rotation = Quaternion(-0.640154, 0.0884359, -0.0829306, 0.758621)
+bones/1/rotation = Quaternion(0.0326621, 0.00651482, 0.0192203, 0.99926)
+bones/2/rotation = Quaternion(-0.0904617, 0.00934585, 0.0332437, 0.995301)
+bones/3/rotation = Quaternion(0.285846, -0.000991408, 0.00426845, 0.958266)
+bones/4/rotation = Quaternion(-0.0835975, -0.000684034, 0.00469962, 0.996488)
+bones/7/rotation = Quaternion(0.470848, 0.418425, 0.684026, -0.367873)
+bones/8/rotation = Quaternion(-0.532597, 0.154659, -0.0639259, 0.829659)
+bones/9/rotation = Quaternion(-0.000312076, 0.0209483, -0.0130226, 0.999696)
+bones/10/rotation = Quaternion(-0.0717548, -0.263396, -0.00908839, 0.961973)
+bones/11/rotation = Quaternion(-0.0493877, -0.0348286, -0.0334389, 0.997612)
+bones/12/rotation = Quaternion(-0.150015, -0.0139444, 0.0231338, 0.988315)
+bones/14/rotation = Quaternion(-0.217634, -0.0318258, 0.0237566, 0.975222)
+bones/15/rotation = Quaternion(-0.150704, -0.000744984, 0.0201875, 0.988373)
+bones/17/rotation = Quaternion(-0.11993, -0.0379982, -0.00200236, 0.992053)
+bones/18/rotation = Quaternion(-0.150588, 0.000334346, 0.0210128, 0.988373)
+bones/20/rotation = Quaternion(-0.166799, -0.0355307, 0.00631075, 0.98533)
+bones/21/rotation = Quaternion(-0.180693, 0.000516216, 0.0244311, 0.983236)
+bones/23/rotation = Quaternion(-0.181002, -0.0301077, -0.243554, 0.952372)
+bones/24/rotation = Quaternion(0.120173, 0.0959713, 0.252553, 0.955283)
+bones/27/rotation = Quaternion(-0.463393, -0.243928, 0.0929604, 0.846832)
+bones/28/rotation = Quaternion(-0.0013981, -0.0209145, 0.0583492, 0.998076)
+bones/29/rotation = Quaternion(-0.0789708, 0.153221, -0.014742, 0.984921)
+bones/30/rotation = Quaternion(-0.0426721, 0.0347041, 0.0359837, 0.997838)
+bones/31/rotation = Quaternion(-0.150465, 0.0139444, -0.020003, 0.988315)
+bones/33/rotation = Quaternion(-0.21221, 0.0318016, -0.017715, 0.976546)
+bones/34/rotation = Quaternion(-0.151092, 0.000745156, -0.017043, 0.988373)
+bones/36/rotation = Quaternion(-0.113895, 0.0379612, 0.00604701, 0.992749)
+bones/37/rotation = Quaternion(-0.150993, -0.000334343, -0.0178705, 0.988373)
+bones/39/rotation = Quaternion(-0.160965, 0.0354758, -0.00130433, 0.986322)
+bones/40/rotation = Quaternion(-0.181163, -0.000516275, -0.0206609, 0.983236)
+bones/42/rotation = Quaternion(-0.184072, 0.0356357, 0.261868, 0.946717)
+bones/43/rotation = Quaternion(0.118208, -0.0854548, -0.289199, 0.946091)
+bones/45/rotation = Quaternion(0.983314, 0.0737074, -0.132769, 0.100162)
+bones/46/rotation = Quaternion(0.151064, -0.0155689, -0.0397457, 0.987602)
+bones/47/rotation = Quaternion(-0.595895, -0.103074, 0.112353, 0.788455)
+bones/49/rotation = Quaternion(0.995271, 0.0278614, 0.092128, 0.0131352)
+bones/50/rotation = Quaternion(0.111613, 0.0822553, 0.032079, 0.989822)
+bones/51/rotation = Quaternion(-0.636036, 0.0884913, -0.0833379, 0.762025)
 
 [node name="AnimationPlayer" parent="Spiderman/model3d" index="1"]
 libraries = {
@@ -488,14 +508,16 @@ key_sprint = "sprint"
 key_crouch = "crouch"
 
 [node name="W_FPCSourceLikeCamera" type="Node3D" parent="." node_paths=PackedStringArray("body", "camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.143, -0.095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 script = ExtResource("3_ailfn")
 body = NodePath("..")
-camera = NodePath("Camera3D")
+camera = NodePath("pivot/Camera3D")
 metadata/_custom_type_script = "uid://ctr1af1pl05wf"
 
-[node name="Camera3D" type="Camera3D" parent="W_FPCSourceLikeCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.7)
+[node name="pivot" type="Node3D" parent="W_FPCSourceLikeCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105, 0.19, 0.96)
+
+[node name="Camera3D" type="Camera3D" parent="W_FPCSourceLikeCamera/pivot"]
 
 [node name="EmotinosManager" type="Node" parent="." node_paths=PackedStringArray("model_to_animate")]
 script = ExtResource("8_08ks4")
@@ -566,7 +588,7 @@ debug_color = Color(0.156695, 0.516905, 1, 0.419608)
 debug_fill = false
 
 [node name="hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.445926, -0.0382438, 0.894254, -0.0114652, -0.999247, -0.0370167, 0.894996, 0.00625389, -0.446028, 0.389395, 1.21565, -0.0178095)
+transform = Transform3D(0.433322, -0.0343235, 0.900586, -0.0229305, -0.999369, -0.0270551, 0.900946, -0.00892754, -0.433835, 0.385966, 1.2189, -0.00880335)
 bone_name = "Right wrist"
 bone_idx = 29
 use_external_skeleton = true

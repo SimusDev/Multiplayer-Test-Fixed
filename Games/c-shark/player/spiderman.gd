@@ -27,9 +27,25 @@ class_name CSharkPlayer
 @export var respawn_cooldown:float = 10.0
 
 var crosshair:Node3D = null
+var aiming:bool = false : set = set_aiming
+
+func set_aiming(val):
+	print(val)
+	aiming = val
+	var tween = get_tree().create_tween()
+	tween.tween_property(
+		camera.camera,
+		"position",
+		Vector3(0.3, -0.2, -0.5) * int(val),
+		0.2
+	)
+
 
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(on_state_enter)
+
+func _input(event: InputEvent) -> void:
+	set_aiming(Input.is_action_pressed("aim"))
 
 func respawn():
 	if not can_respawn:
@@ -56,7 +72,7 @@ func set_model_blend():
 	
 	model.tree.set("parameters/StateMachine/walk/blend_position", blend_position)
 	model.tree.set("parameters/StateMachine/run/blend_position", blend_position)
-	model.tree.set("parameters/pistol_blend/blend_amount", Input.is_action_pressed("aim"))
+	model.tree.set("parameters/pistol_blend/blend_amount", float(aiming))
 
 func on_state_enter(state: SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
