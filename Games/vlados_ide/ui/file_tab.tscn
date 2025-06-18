@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0356bf8w8h7n"]
+
+[ext_resource type="Script" uid="uid://sxbsiypq2v1x" path="res://Games/vlados_ide/file_tab.gd" id="1_vmen5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78jgc"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmen5"]
+bg_color = Color(0, 0, 0, 0.462745)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdc1q"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82l2k"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="file_tab" type="Button"]
+custom_minimum_size = Vector2(150, 32)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1130.0
+offset_bottom = -688.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_78jgc")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vmen5")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_mdc1q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_mdc1q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_82l2k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_82l2k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_78jgc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_78jgc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_82l2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_82l2k")
+text = "main.cpp aasdasasd"
+text_overrun_behavior = 3
+script = ExtResource("1_vmen5")
