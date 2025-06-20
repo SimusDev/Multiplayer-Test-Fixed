@@ -59,3 +59,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_82l2k")
 text = "main.cpp aasdasasd"
 text_overrun_behavior = 3
 script = ExtResource("1_vmen5")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 132.0
+offset_top = -3.0
+offset_right = 151.0
+offset_bottom = 22.0
+text = "X"
+flat = true

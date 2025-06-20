@@ -6,8 +6,9 @@ class_name IdeFolder extends Button
 @onready var folder_empty_icon:Texture=preload("res://Games/vlados_ide/icons/folder_empty.png")
 
 var path:String = "C:/dev/gds/test_folder"
-
 var is_open:bool = false
+
+var folders_count:int = 0
 
 func _ready() -> void:
 	update()
@@ -62,6 +63,10 @@ func dir_files():
 				files.append(file_name)
 			file_name = dir.get_next()
 	return files
+
+func calculate_folder_count():
+	folders_count = container.get_child_count()
+	return folders_count
 
 func dir_folders():
 	var dir = DirAccess.open(path)

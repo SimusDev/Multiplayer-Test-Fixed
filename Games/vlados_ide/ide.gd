@@ -17,18 +17,20 @@ enum TYPES {
 }
 
 
+
 var base_folder_path:String = "C:/dev/gds"
-var current_file_path:String = "C:/dev/gds/test.txt"
+var current_file_path:String
 
 func _ready() -> void:
 	instance = self
 	
 	on_file_open.connect(open_current_file)
 	
-	text_edit.text = read_file_text(current_file_path)
 	update_panel()
 
 func _input(event: InputEvent) -> void:
+	if current_file_path == "":
+		return
 	if Input.is_action_just_pressed("save_file"):
 		write_file_text(current_file_path, text_edit.text)
 
@@ -72,13 +74,14 @@ func dir_contents(path:String):
 	return content
 
 func read_file_text(path:String):
-	print(path)
+	if path == "": return
 	var file = FileAccess.open(path, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
 	return content
 
 func write_file_text(path:String, content):
+	if path == "": return
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		messages.send_message("Successfully saved file " + '"'+str(file)+'"')
