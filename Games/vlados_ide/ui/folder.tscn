@@ -14,6 +14,8 @@ border_color = Color(1, 1, 1, 1)
 [node name="folder" type="Button"]
 offset_right = 171.0
 offset_bottom = 29.0
+theme_override_constants/h_separation = -105
+theme_override_constants/icon_max_width = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_82l2k")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_82l2k")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_82l2k")
@@ -28,6 +30,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_82l2k")
 text = "> Folder name"
 icon = ExtResource("1_82l2k")
 alignment = 0
+text_overrun_behavior = 3
 expand_icon = true
 script = ExtResource("1_tbjjr")
 

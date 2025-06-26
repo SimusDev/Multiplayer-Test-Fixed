@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6s4yjace82j7"]
+[gd_scene load_steps=6 format=3 uid="uid://b6s4yjace82j7"]
 
 [ext_resource type="Script" uid="uid://crj27klinx7m8" path="res://Games/vlados_ide/ide.gd" id="1_68us6"]
 [ext_resource type="Script" uid="uid://27f0s1wh06iu" path="res://Games/vlados_ide/messages.gd" id="2_2jmh8"]
+[ext_resource type="Script" uid="uid://idvfpobwukct" path="res://Games/vlados_ide/file_system.gd" id="2_t4u28"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4u28"]
 bg_color = Color(1, 1, 1, 1)
@@ -53,8 +54,9 @@ layout_mode = 0
 offset_right = 342.0
 offset_bottom = 720.0
 
-[node name="file_system" type="VBoxContainer" parent="canvas/ui/panel/ScrollContainer"]
+[node name="file_system" type="Control" parent="canvas/ui/panel/ScrollContainer"]
 layout_mode = 2
+script = ExtResource("2_t4u28")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="canvas/ui"]
 layout_mode = 0
@@ -151,4 +153,3 @@ offset_left = 350.0
 offset_top = 32.0
 offset_right = 436.0
 offset_bottom = 49.0
-text = "main.cpp"
