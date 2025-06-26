@@ -4,6 +4,8 @@ extends Node
 
 @export var menu: SD_UIInterfaceMenu
 
+@export var _toolbar_popups: Dictionary[String, PackedScene] = {}
+
 func _ready() -> void:
 	update_bg()
 	
@@ -25,8 +27,7 @@ func _input(event: InputEvent) -> void:
 		if SD_Platforms.is_debug_build() or SD_Platforms.is_pc():
 			set_visible(not is_visible())
 			
-	if Input.is_action_just_pressed("console.enter"):
-		pass
+
 
 
 func update_bg() -> void:
@@ -48,3 +49,12 @@ func _on_sd_ui_interface_menu_closed() -> void:
 func _on_sd_ui_interface_menu_opened() -> void:
 	update_bg()
 	console.visibility_changed.emit()
+
+func popup(menu_name: String) -> void:
+	if _toolbar_popups.has(menu_name):
+		var scene: PackedScene = _toolbar_popups[menu_name] as PackedScene
+		var menu: Node = scene.instantiate()
+		add_child(menu)
+
+func _on_ui_console_interface_toolbutton_pressed(button: Button) -> void:
+	popup(button.name)

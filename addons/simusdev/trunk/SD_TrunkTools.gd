@@ -8,6 +8,9 @@ const TOOLS_PATH: String = "res://addons/simusdev/tools/"
 
 var _available_tools: Dictionary[String, String] = {}
 
+func get_available_tool_list() -> Array[String]:
+	return _available_tools.keys() as Array[String]
+
 func _ready() -> void:
 	console = SimusDev.console
 	canvas = SimusDev.canvas
@@ -34,6 +37,11 @@ func register_tool(scene_path: String) -> void:
 		console.write_from_object(self, "TOOL REGISTERED!: %s; USE tools.open %s FOR OPEN THE INTERFACE!" % [tool, tool], SD_ConsoleCategories.CATEGORY.WARNING)
 	else:
 		console.write_from_object(self, "FAILED TO REGISTER TOOL: %s" % [scene_path], SD_ConsoleCategories.CATEGORY.WARNING)
+
+func unregister_tool(tool: String) -> void:
+	if _available_tools.has(tool):
+		console.write_from_object(self, "TOOL UNREGISTERED: %s" % [_available_tools[tool]], SD_ConsoleCategories.CATEGORY.WARNING)
+		_available_tools.erase(tool)
 
 func register_tool_from_scene(scene: PackedScene) -> void:
 	register_tool(scene.resource_path)

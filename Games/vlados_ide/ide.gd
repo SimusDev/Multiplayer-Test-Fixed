@@ -17,15 +17,15 @@ enum TYPES {
 }
 
 
-var base_folder_path:String = "C:/dev/gds"
-var current_file_path:String = "C:/dev/gds/test.txt"
+var base_folder_path:String = "C:/Users/simusdev"
+var current_file_path:String = "C:/Users/simusdev/test.txt"
 
 func _ready() -> void:
 	instance = self
 	
 	on_file_open.connect(open_current_file)
 	
-	text_edit.text = read_file_text(current_file_path)
+	#text_edit.text = read_file_text(current_file_path)
 	update_panel()
 
 func _input(event: InputEvent) -> void:

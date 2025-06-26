@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://f6dcco1gu4y0"]
+[gd_scene load_steps=5 format=3 uid="uid://f6dcco1gu4y0"]
 
 [ext_resource type="Script" uid="uid://cfgg6on8dt5pk" path="res://addons/simusdev/interfaces/text_editor/text_editor.gd" id="1_1goq3"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_23mn0"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_5ed6e"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="4_vg7qn"]
 
 [node name="text_editor" type="Control" node_paths=PackedStringArray("_editor", "_file_dialog", "_label_current_file")]
 layout_mode = 3
@@ -73,6 +74,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_23mn0")
 text = "USERDATA SAVE AS"
 
+[node name="close" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_23mn0")
+text = "X"
+
 [node name="editor" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -122,11 +129,19 @@ popup_window = true
 show_hidden_files = true
 use_native_dialog = true
 
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_vg7qn")
+target = NodePath("..")
+open_at_start = true
+center_at_start = true
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
 [connection signal="pressed" from="HBoxContainer/open_file" to="." method="_on_open_file_pressed"]
 [connection signal="pressed" from="HBoxContainer/open_user" to="." method="_on_open_user_pressed"]
 [connection signal="pressed" from="HBoxContainer/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="HBoxContainer/save_as" to="." method="_on_save_as_pressed"]
 [connection signal="pressed" from="HBoxContainer/save_as_user" to="." method="_on_save_as_user_pressed"]
+[connection signal="pressed" from="HBoxContainer/close" to="." method="_on_close_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="filename_filter_changed" from="FileDialog" to="." method="_on_file_dialog_filename_filter_changed"]

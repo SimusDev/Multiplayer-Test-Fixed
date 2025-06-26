@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxm1e33vaki5d"]
+
+[ext_resource type="PackedScene" uid="uid://iigttmn8ai0p" path="res://addons/simusdev/ui/dynamic/panel.tscn" id="1_w20j6"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_5eghy"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_u3n7u"]
+[ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="3_5eghy"]
+[ext_resource type="PackedScene" uid="uid://ciiimna4xqhpc" path="res://addons/simusdev/ui/label.tscn" id="5_mas8h"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="6_2jo02"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjf6e"]
+font = ExtResource("6_2jo02")
+font_size = 18
+
+[node name="Base" type="Control"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_vertical_guides_ = []
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Panel" parent="." instance=ExtResource("1_w20j6")]
+self_modulate = Color(0.051971, 0.051971, 0.051971, 1)
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_5eghy")
+TARGET_INPUT = NodePath("..")
+TARGET_DRAG = NodePath("..")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_u3n7u")
+target = NodePath("..")
+open_at_start = true
+center_at_start = true
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="SD_UIControlDynamicSettings" type="Node" parent="."]
+script = ExtResource("3_5eghy")
+metadata/_custom_type_script = "uid://b63uuflcyfsli"
+
+[node name="close" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="title" parent="." instance=ExtResource("5_mas8h")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.125
+offset_right = 0.0
+offset_bottom = 0.0
+text = "WINDOW"
+label_settings = SubResource("LabelSettings_kjf6e")
+horizontal_alignment = 1
+vertical_alignment = 1
+font_size = 18
+
+[node name="container" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.125
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="close" to="." method="queue_free"]

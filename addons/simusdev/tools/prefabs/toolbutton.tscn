@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1115h67qymry"]
+
+[ext_resource type="Script" uid="uid://daolwqaiuvcb2" path="res://addons/simusdev/tools/prefabs/toolbutton.gd" id="1_mkkja"]
+[ext_resource type="PackedScene" uid="uid://ciiimna4xqhpc" path="res://addons/simusdev/ui/label.tscn" id="2_ir6kn"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_w7oc4"]
+[ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="4_om07o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j83bt"]
+font = ExtResource("3_w7oc4")
+font_size = 24
+
+[node name="Toolbutton" type="Button"]
+custom_minimum_size = Vector2(712, 64)
+offset_right = 712.0
+offset_bottom = 64.0
+script = ExtResource("1_mkkja")
+
+[node name="Label" parent="." instance=ExtResource("2_ir6kn")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.144001
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TOOL"
+label_settings = SubResource("LabelSettings_j83bt")
+horizontal_alignment = 1
+vertical_alignment = 1
+font_size = 24
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.06
+anchor_bottom = 1.0
+offset_right = 0.279999
+texture = ExtResource("4_om07o")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

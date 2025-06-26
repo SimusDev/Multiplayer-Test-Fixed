@@ -10,6 +10,7 @@ signal interface_opened(node: Node)
 signal interface_closed(node: Node)
 
 @export var open_at_start: bool = false
+@export var center_at_start: bool = false
 @export var input_action: String = ""
 
 @onready var _ui: SD_TrunkUI = SimusDev.ui
@@ -22,6 +23,7 @@ func _ready() -> void:
 	
 	if open_at_start:
 		open()
+		center()
 
 func _exit_tree() -> void:
 	close()
@@ -60,3 +62,8 @@ func open(interface: CanvasItem = target) -> void:
 
 func close(interface: CanvasItem = target) -> void:
 	_ui.close_interface(interface)
+
+func center() -> void:
+	if target is Control:
+		var center_pos: Vector2 = Vector2.ZERO
+		target.position = center_pos

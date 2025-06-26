@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciiimna4xqhpc"]
+
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="1_0prw0"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_kw0x8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nx56n"]
+font = ExtResource("1_0prw0")
+
+[node name="Label" type="Label"]
+offset_right = 1.0
+offset_bottom = 17.0
+label_settings = SubResource("LabelSettings_nx56n")
+clip_text = true
+script = ExtResource("2_kw0x8")
+font = ExtResource("1_0prw0")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"

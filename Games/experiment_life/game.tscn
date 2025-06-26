@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdcf45f1jrm0y"]
+
+[ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/experiment_life/components/levels/EL_LevelHandler.gd" id="1_8a3r7"]
+[ext_resource type="Resource" uid="uid://dp0vr3ifxvjni" path="res://Games/experiment_life/levels/world.tres" id="2_wcwho"]
+
+[node name="Game" type="Node"]
+
+[node name="EL_LevelHandler" type="Node" parent="."]
+script = ExtResource("1_8a3r7")
+initial_level = ExtResource("2_wcwho")
+metadata/_custom_type_script = "uid://gbb5kioauq2f"

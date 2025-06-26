@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bswwjdjra4rnm"]
 
-[ext_resource type="Script" uid="uid://bo8hkf0b4wec6" path="res://Games/experiment_life/entities/player/player.gd" id="1_yd33r"]
+[ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/experiment_life/components/player/EL_PlayerComponent.gd" id="1_k5ng1"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/experiment_life/models/player/source/animated_model.tscn" id="2_6d6yq"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_k5ng1"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="3_q3met"]
@@ -59,7 +59,11 @@ size = Vector3(0.840088, 1.13914, 0.817444)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 0
-script = ExtResource("1_yd33r")
+
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source")]
+script = ExtResource("1_k5ng1")
+source = NodePath("..")
+metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 
 [node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("2_6d6yq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

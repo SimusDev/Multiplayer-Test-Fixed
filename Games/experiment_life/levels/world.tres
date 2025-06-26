@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EL_LevelResource" load_steps=3 format=3 uid="uid://dp0vr3ifxvjni"]
+
+[ext_resource type="Script" uid="uid://vthkd6cok4dp" path="res://Games/experiment_life/components/levels/EL_LevelResource.gd" id="1_6br6y"]
+[ext_resource type="Texture2D" uid="uid://di2aaale26tq5" path="res://Games/experiment_life/el_icon.png" id="1_rku45"]
+
+[resource]
+script = ExtResource("1_6br6y")
+scene_path = "uid://bjw6ottvxevb2"
+icon = ExtResource("1_rku45")
+name = "world"
+metadata/_custom_type_script = "uid://vthkd6cok4dp"

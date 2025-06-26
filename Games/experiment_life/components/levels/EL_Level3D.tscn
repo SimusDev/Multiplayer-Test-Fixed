@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bswhfkonnoa80"]
+
+[ext_resource type="Script" uid="uid://w7ydag63i22q" path="res://Games/experiment_life/components/levels/EL_Level3D.gd" id="1_lj6rm"]
+
+[node name="level" type="Node3D"]
+script = ExtResource("1_lj6rm")

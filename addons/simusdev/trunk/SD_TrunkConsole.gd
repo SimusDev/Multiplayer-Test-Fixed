@@ -1,7 +1,7 @@
 extends SD_Console
 class_name SD_TrunkConsole
 
-var _console_prefab: PackedScene = preload("res://addons/simusdev/console/prefabs/ui_console.tscn")
+var _console_prefab: PackedScene = preload("res://addons/simusdev/console/prefabs/ui_console_new.tscn")
 var _debug_prefab: PackedScene = preload("res://addons/simusdev/debug/ui_debug_interface.tscn")
 
 var _console_node: Node = null
@@ -35,7 +35,7 @@ func _ready() -> void:
 		
 		_debug_node = _debug_prefab.instantiate()
 		
-		var canvas: CanvasLayer = SimusDev.canvas.get_last_layer()
+		var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
 		canvas.add_child(_console_node)
 		canvas.add_child(_debug_node)
 	

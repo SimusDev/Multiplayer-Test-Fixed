@@ -37,6 +37,9 @@ func update_source(source: Control) -> void:
 		source.color = picked_color
 		return
 	
+	if source is ReferenceRect:
+		source.border_color = picked_color
+		return
 	
 	if self_modulate:
 		source.self_modulate = picked_color

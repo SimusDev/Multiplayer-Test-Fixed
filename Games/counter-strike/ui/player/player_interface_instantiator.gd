@@ -7,6 +7,6 @@ func _ready() -> void:
 	await player.ready
 	
 	if player.is_multiplayer_authority():
-		var ui: PlayerUI = interface_scene.instantiate()
+		var ui: CS_PlayerUI = interface_scene.instantiate()
 		ui.player = player
 		player.add_child(ui)

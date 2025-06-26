@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7dqse1jtyoy8"]
+
+[ext_resource type="PackedScene" uid="uid://dxm1e33vaki5d" path="res://addons/simusdev/ui/popups/base.tscn" id="1_rxofl"]
+[ext_resource type="Script" uid="uid://cgl6toxcuqfjh" path="res://addons/simusdev/tools/prefabs/tools_menu.gd" id="2_vgwfp"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_mv0i3"]
+[ext_resource type="PackedScene" uid="uid://c1115h67qymry" path="res://addons/simusdev/tools/prefabs/toolbutton.tscn" id="4_easmh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_easmh"]
+font = ExtResource("3_mv0i3")
+font_size = 18
+
+[node name="Base" node_paths=PackedStringArray("container") instance=ExtResource("1_rxofl")]
+offset_right = 928.0
+offset_bottom = 464.0
+script = ExtResource("2_vgwfp")
+button_scene = ExtResource("4_easmh")
+container = NodePath("container/ScrollContainer/CenterContainer/GridContainer")
+
+[node name="Panel" parent="." index="0"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" parent="." index="5"]
+text = "TOOLS"
+label_settings = SubResource("LabelSettings_easmh")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="container" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="container/ScrollContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="container/ScrollContainer/CenterContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

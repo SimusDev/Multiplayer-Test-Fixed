@@ -93,6 +93,21 @@ func get_value_as_float() -> float:
 func get_value_as_bool() -> bool:
 	return bool(get_value_as_int())
 
+func get_value_as_vector2() -> Vector2:
+	var parsed: Variant = str_to_var("Vector2" + _value)
+	if parsed is Vector2:
+		return parsed
+	return Vector2.ZERO
+
+func get_value_as_vector3() -> Vector3:
+	var parsed: Variant = str_to_var("Vector3" + _value)
+	if parsed is Vector3:
+		return parsed
+	return Vector3.ZERO
+
+func get_value_as_variant() -> Variant:
+	return str_to_var(_value)
+
 func get_code() -> String:
 	var fullcode: String = ""
 	for group in groups:

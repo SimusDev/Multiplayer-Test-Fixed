@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjw6ottvxevb2"]
 
-[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_eegyl"]
+[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/prefabs/sky_3d.tscn" id="1_eegyl"]
 [ext_resource type="Terrain3DMaterial" uid="uid://doghywcrpghxf" path="res://Games/experiment_life/terrain/materials.tres" id="2_1f5qg"]
 [ext_resource type="Terrain3DAssets" uid="uid://cdt8j2qsdy3ev" path="res://Games/experiment_life/terrain/assets.tres" id="3_qxlxm"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="4_xgoab"]

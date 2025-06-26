@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bolcqigkebx7f"]
+
+[ext_resource type="PackedScene" uid="uid://c05smkggeoqyj" path="res://addons/simusdev/tools/base/base_tool_interface.tscn" id="1_cmvac"]
+[ext_resource type="PackedScene" uid="uid://f6dcco1gu4y0" path="res://addons/simusdev/interfaces/text_editor/text_editor.tscn" id="2_h25ex"]
+
+[node name="text_editor" instance=ExtResource("1_cmvac")]
+
+[node name="ColorRect" parent="." index="0"]
+visible = false
+
+[node name="text_editor" parent="." index="1" instance=ExtResource("2_h25ex")]
+layout_mode = 1

@@ -82,3 +82,7 @@ func _on_save_as_user_pressed() -> void:
 	access = FileDialog.Access.ACCESS_USERDATA
 	file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	open_file_dialog()
+
+
+func _on_close_pressed() -> void:
+	get_parent().queue_free()

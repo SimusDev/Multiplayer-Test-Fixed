@@ -15,3 +15,4 @@ script = ExtResource("1_o65w5")
 
 [node name="container" parent="." instance=ExtResource("2_lh7nx")]
 layout_mode = 1
+font_size = 9

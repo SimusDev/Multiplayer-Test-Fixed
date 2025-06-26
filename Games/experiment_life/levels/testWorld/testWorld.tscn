@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ds5o1cem2trlx"]
 
-[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/sky_3d.tscn" id="1_jogwf"]
-[ext_resource type="Texture2D" uid="uid://cmeh5y3kx5lrj" path="res://addons/kenney_prototype_textures/orange/texture_09.png" id="2_ratwx"]
+[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/prefabs/sky_3d.tscn" id="1_jogwf"]
+[ext_resource type="Texture2D" uid="uid://cmeh5y3kx5lrj" path="res://Games/cars/textures/prototype/orange/texture_09.png" id="2_ratwx"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_25t15"]
 [ext_resource type="PackedScene" uid="uid://bswwjdjra4rnm" path="res://Games/experiment_life/entities/player/player.tscn" id="4_ca5cu"]
 

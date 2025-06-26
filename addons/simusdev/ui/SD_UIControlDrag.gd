@@ -29,6 +29,11 @@ signal on_target_drag_input(control: Control)
 var _target: Control
 var _target_drag: Control
 
+signal drag_start()
+signal drag_end()
+
+signal zoom_changed()
+
 func _ready():
 	_create_zoom_input_event(zoom_input_up, 4)
 	_create_zoom_input_event(zoom_input_down, 5)
@@ -66,6 +71,8 @@ func set_zoom(value: float) -> void:
 	value = clamp(value, zoom_min_scale, zoom_max_scale)
 	current_zoom = value
 	update_zoom()
+	
+	zoom_changed.emit()
 
 func get_zoom() -> float:
 	if is_instance_valid(_target_drag):
@@ -119,6 +126,14 @@ func _on_target_input(event: InputEvent):
 	
 	clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	
-	if event is InputEventMouseMotion and clicked:
-		_target_drag.position += event.relative * current_zoom
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if clicked:
+				drag_start.emit()
+			else:
+				drag_end.emit()
+	
+	if event is InputEventMouseMotion:
+		if clicked:
+			_target_drag.position += event.relative * current_zoom
 	on_target_drag_input.emit(_target_drag)

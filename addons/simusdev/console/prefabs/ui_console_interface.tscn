@@ -1,29 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=11 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
+[ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="2_4hjv0"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_b1316"]
 [ext_resource type="PackedScene" uid="uid://iigttmn8ai0p" path="res://addons/simusdev/ui/dynamic/panel.tscn" id="2_oq7w7"]
 [ext_resource type="PackedScene" uid="uid://cpvew16xiutxp" path="res://addons/simusdev/console/prefabs/ui_console_output.tscn" id="4_xlpwh"]
+[ext_resource type="PackedScene" uid="uid://bhknf7eo4vpiu" path="res://addons/simusdev/console/prefabs/ui_toolbar_button.tscn" id="5_bjtgq"]
+[ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="6_n8mr8"]
+[ext_resource type="Texture2D" uid="uid://bwopwrnp3rtd0" path="res://addons/simusdev/Game/icons/ui_icon_moregames.png" id="7_yc77v"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="9_cbm6i"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq7w7"]
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbm6i"]
 
-[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_drag")]
+[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_drag", "toolbar_container")]
 custom_minimum_size = Vector2(768, 512)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 512.0
+offset_right = 832.0
 offset_bottom = 512.0
 script = ExtResource("1_oq7w7")
 _drag = NodePath("SE_UIControlDrag")
+toolbar_container = NodePath("toolbar/VBoxContainer")
+metadata/_edit_vertical_guides_ = [784.0, 0.0]
+metadata/_edit_horizontal_guides_ = [471.0, 512.0]
+
+[node name="SD_UIControlDynamicSettings" type="Node" parent="." node_paths=PackedStringArray("sources")]
+script = ExtResource("2_4hjv0")
+sources = [NodePath("../rect/refrect"), NodePath("../toolbar/refrect")]
+metadata/_custom_type_script = "uid://b63uuflcyfsli"
 
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_b1316")
@@ -32,19 +36,109 @@ TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[node name="bg" parent="." instance=ExtResource("2_oq7w7")]
-self_modulate = Color(0.0338533, 0.0338533, 0.0338533, 1)
+[node name="panel" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.802)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" parent="panel" instance=ExtResource("2_oq7w7")]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 
-[node name="bg_frame" parent="." instance=ExtResource("2_oq7w7")]
+[node name="rect" type="Control" parent="."]
 layout_mode = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_oq7w7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="refrect" type="ReferenceRect" parent="rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+editor_only = false
+
+[node name="toolbar" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.942
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.255981
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="toolbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="settings" parent="toolbar/VBoxContainer" instance=ExtResource("5_bjtgq")]
+visible = false
+layout_mode = 2
+icon = ExtResource("6_n8mr8")
+expand_icon = true
+
+[node name="tools" parent="toolbar/VBoxContainer" instance=ExtResource("5_bjtgq")]
+layout_mode = 2
+icon = ExtResource("7_yc77v")
+expand_icon = true
+
+[node name="refrect" type="ReferenceRect" parent="toolbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+editor_only = false
 
 [node name="ui_console_output" parent="." instance=ExtResource("4_xlpwh")]
 layout_mode = 1
 anchors_preset = -1
-anchor_bottom = 0.934
-offset_bottom = -0.208008
+anchor_right = 0.942
+anchor_bottom = 0.92
+offset_right = 0.255981
+offset_bottom = -0.0400085
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.951
+anchor_right = 0.942
+anchor_bottom = 1.0
+offset_top = 0.0879822
+offset_right = 0.255981
+theme_override_fonts/font = ExtResource("9_cbm6i")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cbm6i")
+placeholder_text = "ENTER COMMAND HERE..."
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+deselect_on_focus_loss_enabled = false
 
 [connection signal="draw" from="." to="." method="_on_draw"]
-[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="drag_end" from="SE_UIControlDrag" to="." method="_on_se_ui_control_drag_drag_end"]
+[connection signal="drag_start" from="SE_UIControlDrag" to="." method="_on_se_ui_control_drag_drag_start"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
