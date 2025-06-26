@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=16 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
 [ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="2_4hjv0"]
@@ -9,16 +9,32 @@
 [ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="6_n8mr8"]
 [ext_resource type="Texture2D" uid="uid://bwopwrnp3rtd0" path="res://addons/simusdev/Game/icons/ui_icon_moregames.png" id="7_yc77v"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="9_cbm6i"]
+[ext_resource type="PackedScene" uid="uid://bjtllekn7shxu" path="res://addons/simusdev/console/prefabs/ui_console_tips.tscn" id="10_0c7w3"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="11_74bac"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="12_7dls8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbm6i"]
 
-[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_drag", "toolbar_container")]
+[sub_resource type="Resource" id="Resource_21h2m"]
+script = ExtResource("12_7dls8")
+code = "clear"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_vievh"]
+script = ExtResource("12_7dls8")
+code = "console.clear"
+value = ""
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_tips", "_drag", "toolbar_container")]
 custom_minimum_size = Vector2(768, 512)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 832.0
 offset_bottom = 512.0
 script = ExtResource("1_oq7w7")
+_tips = NodePath("ui_console_tips")
 _drag = NodePath("SE_UIControlDrag")
 toolbar_container = NodePath("toolbar/VBoxContainer")
 metadata/_edit_vertical_guides_ = [784.0, 0.0]
@@ -138,7 +154,23 @@ emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 deselect_on_focus_loss_enabled = false
 
+[node name="ui_console_tips" parent="." instance=ExtResource("10_0c7w3")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.942
+offset_right = 0.255981
+offset_bottom = 194.0
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("11_74bac")
+commands = Array[ExtResource("12_7dls8")]([SubResource("Resource_21h2m"), SubResource("Resource_vievh")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="drag_end" from="SE_UIControlDrag" to="." method="_on_se_ui_control_drag_drag_end"]
 [connection signal="drag_start" from="SE_UIControlDrag" to="." method="_on_se_ui_control_drag_drag_start"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="tip_selected" from="ui_console_tips" to="." method="_on_ui_console_tips_tip_selected"]
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]

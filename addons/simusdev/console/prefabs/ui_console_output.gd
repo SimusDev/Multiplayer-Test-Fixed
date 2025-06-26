@@ -16,4 +16,6 @@ func _on_console_updated() -> void:
 		var msg: SD_ConsoleMessage = buffer[0]
 		container.init_message(msg)
 		console.erase_message_from_buffer(msg)
-	
+
+func clear_messages() -> void:
+	container.clear_messages()

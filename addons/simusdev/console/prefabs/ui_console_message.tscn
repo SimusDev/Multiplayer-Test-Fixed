@@ -9,9 +9,10 @@ font_size = 9
 
 [node name="ui_console_message" type="Label"]
 offset_right = 187.0
-offset_bottom = 17.0
+offset_bottom = 11.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
+text = "trextdasdas"
 label_settings = SubResource("LabelSettings_dyb4x")
 vertical_alignment = 1
 autowrap_mode = 1

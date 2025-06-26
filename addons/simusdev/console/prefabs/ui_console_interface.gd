@@ -1,6 +1,7 @@
 extends Control
 
 @onready var _base: SD_TrunkConsole = SimusDev.console
+@export var _tips: Control
 
 @export var _drag: SE_UIControlDrag
 
@@ -9,6 +10,8 @@ extends Control
 signal toolbutton_pressed(button: Button)
 
 func _ready() -> void:
+	_tips.initialize(_base)
+	
 	var upd_commands: Array[SD_ConsoleCommand] = [
 		_base.create_command("ui.console.zoom", 1.0),
 		_base.create_command("ui.console.position", Vector2(0, 0)),
@@ -43,8 +46,22 @@ func _on_se_ui_control_drag_drag_end() -> void:
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	_base.try_execute($LineEdit.text)
 	$LineEdit.text = ""
+	_tips.clear_tips()
 	
 
 
 func _on_draw() -> void:
+	$LineEdit.grab_focus()
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	_tips.update_tips(new_text)
+
+func _on_sd_node_console_commands_on_executed(command: SD_ConsoleCommand) -> void:
+	if command.get_code() == "clear" or command.get_code() == "console.clear":
+		_base.clear_message_buffer()
+		$ui_console_output.clear_messages()
+
+func _on_ui_console_tips_tip_selected(cmd: SD_ConsoleCommand) -> void:
+	$LineEdit.text = ""
+	$LineEdit.insert_text_at_caret(cmd.get_code() + " " + cmd.get_value_as_string())
 	$LineEdit.grab_focus()
