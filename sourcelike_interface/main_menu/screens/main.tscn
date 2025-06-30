@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://o7jtge2xsoh7"]
+
+[ext_resource type="Script" uid="uid://idslyd7spk5" path="res://sourcelike_interface/main_menu/screens/main.gd" id="1_xxop7"]
+[ext_resource type="PackedScene" uid="uid://ifr1hdhssphu" path="res://sourcelike_interface/buttons/menu_button.tscn" id="2_e1ny1"]
+[ext_resource type="PackedScene" uid="uid://iilap6hj3ukm" path="res://sourcelike_interface/main_menu/game_name.tscn" id="3_mjmkv"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxop7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -373.0
+offset_right = 228.0
+grow_vertical = 0
+
+[node name="play" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+label_text = "PLAY"
+
+[node name="settings" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+label_text = "SETTINGS"
+
+[node name="quit" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+label_text = "QUIT"
+
+[node name="game_name" parent="." instance=ExtResource("3_mjmkv")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -501.0
+offset_right = 541.0
+offset_bottom = -373.0
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

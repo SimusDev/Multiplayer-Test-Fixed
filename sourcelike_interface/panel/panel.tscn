@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://rh1ejxw8p0h5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pga5e"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="panel" type="Panel"]
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pga5e")

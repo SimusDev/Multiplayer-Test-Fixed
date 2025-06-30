@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ifr1hdhssphu"]
+
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="1_c66pn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c66pn"]
+font_size = 24
+
+[node name="button_base" instance=ExtResource("1_c66pn")]
+
+[node name="SD_Label" parent="." index="0"]
+label_settings = SubResource("LabelSettings_c66pn")
+font_size = 24

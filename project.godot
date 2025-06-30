@@ -32,6 +32,7 @@ Maps="*res://singletons/s_Maps.tscn"
 EventBus="*res://singletons/S_EventBus.gd"
 UI="*res://singletons/s_UI.tscn"
 GameSaver="*res://singletons/s_GameSaver.gd"
+SoundPlayer="*res://singletons/s_SoundPlayer.tscn"
 
 [display]
 

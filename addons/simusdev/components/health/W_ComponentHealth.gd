@@ -24,6 +24,9 @@ func set_health(points: float) -> void:
 	if points == health:
 		return
 	
+	if points > 0:
+		_died = false
+	
 	health = points
 	health = clamp(health, 0.0, max_health)
 	__on_health_changed_()

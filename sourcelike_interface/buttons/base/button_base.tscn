@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bljjnlsmf83ub"]
+
+[ext_resource type="PackedScene" uid="uid://iwil0srdra6x" path="res://addons/simusdev/Game/buttons/button_base.tscn" id="1_r37rx"]
+[ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="2_6pa0w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pa0w"]
+
+[node name="button_base" instance=ExtResource("1_r37rx")]
+script = ExtResource("2_6pa0w")
+label_text = "srcbutton"
+
+[node name="SD_Label" parent="." index="0"]
+text = "srcbutton"
+label_settings = SubResource("LabelSettings_6pa0w")

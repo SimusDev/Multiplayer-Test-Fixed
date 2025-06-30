@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://boxyfhle2aj0x"]
+
+[ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="1_026q3"]
+
+[node name="panel_default" instance=ExtResource("1_026q3")]
+self_modulate = Color(0.466, 0.466, 0.466, 0.85)

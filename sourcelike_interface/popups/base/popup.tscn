@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://dikf5wpxs1m1o"]
+
+[ext_resource type="Script" uid="uid://dg7wmk3gl3lw7" path="res://sourcelike_interface/popups/base/popup.gd" id="1_0725h"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_73qqt"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_llgnl"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_i1ise"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="5_5mkl5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ducjh"]
+font_size = 18
+
+[node name="Popup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 375.0
+mouse_filter = 2
+script = ExtResource("1_0725h")
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_llgnl")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="." instance=ExtResource("2_73qqt")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("2_73qqt")]
+self_modulate = Color(0.466, 0.466, 0.466, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.08
+offset_right = 0.0
+offset_bottom = -1.90735e-06
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.176
+grow_horizontal = 2
+grow_vertical = 2
+text = "WINDOW"
+label_settings = SubResource("LabelSettings_ducjh")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_i1ise")
+font_size = 18
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="button_base" parent="head" instance=ExtResource("5_5mkl5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "X"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

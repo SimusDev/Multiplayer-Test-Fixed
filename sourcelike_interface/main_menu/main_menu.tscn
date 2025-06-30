@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwblpo4ebmcbt"]
+
+[ext_resource type="Script" uid="uid://davdo0033ayq5" path="res://sourcelike_interface/main_menu/main_menu.gd" id="1_y5q5u"]
+[ext_resource type="Texture2D" uid="uid://bca30dtdawa87" path="res://sourcelike_interface/textures/mm_back.jpg" id="2_5d0as"]
+[ext_resource type="Script" uid="uid://drrp66tdm6xl6" path="res://sourcelike_interface/menu_switcher/menu_switcher.gd" id="2_kmrou"]
+[ext_resource type="PackedScene" uid="uid://o7jtge2xsoh7" path="res://sourcelike_interface/main_menu/screens/main.tscn" id="3_kmrou"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y5q5u")
+
+[node name="bg" type="TextureRect" parent="."]
+self_modulate = Color(0.589096, 0.589096, 0.589096, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5d0as")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="slike_menu_switcher" type="Control" parent="." node_paths=PackedStringArray("root", "initial_screen")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kmrou")
+root = NodePath("..")
+initial_screen = NodePath("main")
+metadata/_custom_type_script = "uid://drrp66tdm6xl6"
+
+[node name="main" parent="slike_menu_switcher" instance=ExtResource("3_kmrou")]
+layout_mode = 1

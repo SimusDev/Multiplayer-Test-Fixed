@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://iilap6hj3ukm"]
+
+[ext_resource type="Script" uid="uid://d2kx36bwl30rq" path="res://sourcelike_interface/main_menu/game_name.gd" id="1_7hbd1"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_jn02e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_awi1t"]
+font_size = 32
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_77dlp"]
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 1)
+
+[node name="game_name" type="Control"]
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 128.0
+mouse_filter = 2
+script = ExtResource("1_7hbd1")
+
+[node name="name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.406
+offset_bottom = 0.0319977
+grow_horizontal = 2
+grow_vertical = 2
+text = "Multiplayer-Test"
+label_settings = SubResource("LabelSettings_awi1t")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_jn02e")
+font_size = 32
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="devs" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.225
+anchor_top = 0.328
+anchor_right = 0.852
+anchor_bottom = 0.617
+offset_left = -0.200005
+offset_top = 0.0159988
+offset_right = -0.22403
+offset_bottom = 0.0239944
+grow_horizontal = 2
+grow_vertical = 2
+text = "by zxcvxld and simusdev"
+label_settings = SubResource("LabelSettings_77dlp")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_jn02e")
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
