@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
+
+[resource]
+script = ExtResource("1_xt5by")
+developer = ""
+monetization = Dictionary[String, Variant]({
+"autoselect_sdk": true,
+"create_singleton": true,
+"enabled": true,
+"pause_when_ad_show": true
+})
+game = Dictionary[String, Variant]({
+"minimize_feature": true,
+"mute_audio_when_minimized": true,
+"pause_when_minimized": false
+})
+console = Dictionary[String, Variant]({
+"disable_on_release": true,
+"enabled": true,
+"gd_print": true
+})
+tools = Array[PackedScene]([])

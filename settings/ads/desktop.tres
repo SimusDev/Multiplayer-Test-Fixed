@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SD_SettingsAdsSDK" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/simusdev/monetization/settings/SD_SettingsAdsSDK.gd" id="1_v01s1"]
+
+[resource]
+script = ExtResource("1_v01s1")
+_data = Dictionary[String, Variant]({
+"enabled": true
+})
