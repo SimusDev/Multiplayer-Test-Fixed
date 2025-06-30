@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=2 format=3 uid="uid://d3ntfbgjij4eh"]
 
 [ext_resource type="Script" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
 
@@ -17,7 +17,7 @@ game = Dictionary[String, Variant]({
 "pause_when_minimized": false
 })
 console = Dictionary[String, Variant]({
-"disable_on_release": true,
+"disable_on_release": false,
 "enabled": true,
 "gd_print": true
 })
