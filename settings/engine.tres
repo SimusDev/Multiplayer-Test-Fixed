@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_xt5by")
-developer = ""
+developer = "zxcvlxd and simusdev"
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
 "create_singleton": true,
