@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbqbbof7wnn2m"]
+
+[ext_resource type="PackedScene" uid="uid://cyxpiljtqpdc6" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface.tscn" id="1_3yorp"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_enp4a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4uk7"]
+font = ExtResource("2_enp4a")
+font_size = 64
+
+[node name="ad_interface" instance=ExtResource("1_3yorp")]
+
+[node name="Label" parent="panel" index="0"]
+text = "REWARDED!!!"
+label_settings = SubResource("LabelSettings_j4uk7")

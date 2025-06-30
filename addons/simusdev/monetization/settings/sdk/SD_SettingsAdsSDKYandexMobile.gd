@@ -1,0 +1,2 @@
+extends SD_SettingsAdsSDK
+class_name SD_SettingsAdsSDKYandexMobile

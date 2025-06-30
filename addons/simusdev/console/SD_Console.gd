@@ -77,6 +77,15 @@ func get_command_by_code(code: String) -> SD_ConsoleCommand:
 func get_commands_list() -> Array[SD_ConsoleCommand]:
 	return _commands
 
+func get_available_commands_list() -> Array[SD_ConsoleCommand]:
+	var result: Array[SD_ConsoleCommand] = []
+	for cmd in get_commands_list():
+		if cmd.is_private():
+			continue
+		result.append(cmd)
+		
+	return result
+
 func update_console() -> void:
 	on_update.emit()
 
@@ -150,6 +159,10 @@ func try_execute(value) -> SD_ConsoleCommand:
 		return null
 	
 	var command: SD_ConsoleCommand = get_command_by_code(parsed.get_code())
+	if command and command.is_private():
+		write_error("cant execute, command is private!")
+		return command
+	
 	if command:
 		var arguments: Array[String] = parsed.get_arguments()
 		

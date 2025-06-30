@@ -19,12 +19,14 @@
 script = ExtResource("12_7dls8")
 code = "clear"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_vievh"]
 script = ExtResource("12_7dls8")
 code = "console.clear"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_tips", "_drag", "toolbar_container")]

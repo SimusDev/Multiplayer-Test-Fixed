@@ -5,6 +5,8 @@ var _pause_priority: int = 0
 
 var pause_when_minimized: bool = false
 
+var _gamesettings: SD_NodeGameSettingsSingleton
+
 func get_window() -> SD_TrunkWindow:
 	return SimusDev.window
 
@@ -26,6 +28,17 @@ func _ready() -> void:
 	
 	get_window().focused_in.connect(func(): if pause_when_minimized: pause_subtract_priority())
 	get_window().focused_out.connect(func(): if pause_when_minimized: pause_add_priority())
+	
+	var settings: Dictionary = SimusDev.get_settings().game
+	_gamesettings = SD_NodeGameSettingsSingleton.new()
+	
+	_gamesettings.minimize_feature = settings.minimize_feature
+	_gamesettings.mute_audio_when_minimized = settings.mute_audio_when_minimized
+	_gamesettings.pause_when_minimized = settings.pause_when_minimized
+	
+	SimusDev.add_child(_gamesettings)
+	_gamesettings.name = "SD_NodeGameSettingsSingleton"
+	
 
 func _on_command_updated(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():

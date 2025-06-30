@@ -14,11 +14,6 @@ func import_from_resource(resource: SD_LocalizationResource) -> void:
 	_data.parse(resource.DATA)
 	update_localization()
 
-func import_from_file(path: String) -> SD_Config:
-	var cfg := SD_Config.new()
-	cfg.load_config(path)
-	return cfg
-
 func set_text_to_key(key: String, text: String, language: String = _current_language) -> void:
 	update_localization()
 

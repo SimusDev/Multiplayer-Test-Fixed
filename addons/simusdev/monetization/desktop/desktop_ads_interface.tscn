@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://caxp71yqlpnof"]
+[gd_scene load_steps=5 format=3 uid="uid://caxp71yqlpnof"]
 
 [ext_resource type="Script" uid="uid://76krag05yyvb" path="res://addons/simusdev/monetization/desktop/desktop_ads_interface.gd" id="1_f5x2b"]
-[ext_resource type="PackedScene" uid="uid://cyxpiljtqpdc6" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface.tscn" id="2_fqxns"]
+[ext_resource type="PackedScene" uid="uid://iu68m1ppjfgn" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface_interstitial.tscn" id="2_qbxru"]
+[ext_resource type="PackedScene" uid="uid://cbqbbof7wnn2m" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface_reward.tscn" id="3_0u8j1"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_7owwg"]
 
 [node name="desktop_ads_interface" type="CanvasLayer" node_paths=PackedStringArray("_back", "_front", "_fade", "_label_cooldown")]
@@ -12,8 +13,8 @@ _back = NodePath("back")
 _front = NodePath("front")
 _fade = NodePath("back/fade")
 _label_cooldown = NodePath("front/cooldown_label")
-interstitial_scene = ExtResource("2_fqxns")
-reward_scene = ExtResource("2_fqxns")
+interstitial_scene = ExtResource("2_qbxru")
+reward_scene = ExtResource("3_0u8j1")
 
 [node name="back" type="CanvasLayer" parent="."]
 layer = 128

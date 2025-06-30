@@ -21,6 +21,14 @@ enum MODE {
 
 var _node: SD_NodeCursor = null
 
+func _ready() -> void:
+	var custom_scene: PackedScene = SimusDev.get_settings().custom_cursor_node
+	if custom_scene:
+		var node: SD_NodeCursor = SD_NodeCursor.new()
+		apply_cursor_node(node)
+		node.add_child(custom_scene.instantiate())
+		SimusDev.canvas.get_last_layer().add_child(node)
+
 func set_mode(mode: MODE) -> void:
 	var mouse_mode: int = int(mode)
 	
@@ -39,3 +47,6 @@ func get_mode() -> int:
 func apply_cursor_node(node: SD_NodeCursor) -> void:
 	_node = node
 	set_mode(int(Input.mouse_mode))
+
+func get_node() -> SD_NodeCursor:
+	return _node

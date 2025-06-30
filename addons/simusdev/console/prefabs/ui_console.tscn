@@ -18,30 +18,35 @@
 script = ExtResource("5_6og7q")
 code = "cmd.list"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_y7hwx"]
 script = ExtResource("5_6og7q")
 code = "console.hide"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_6og7q"]
 script = ExtResource("5_6og7q")
 code = "console.show"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_pql12"]
 script = ExtResource("5_6og7q")
 code = "console.clear"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_2udmi"]
 script = ExtResource("5_6og7q")
 code = "clear"
 value = ""
+private = false
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="ui_console" type="CanvasLayer" node_paths=PackedStringArray("line_edit", "_container", "_tips", "input")]

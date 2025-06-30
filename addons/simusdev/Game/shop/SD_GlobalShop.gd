@@ -38,7 +38,7 @@ func _initialize_full_code() -> void:
 	_fullcode = get_path()
 	
 	var splitted := _fullcode.split("/root/", false)
-	_fullcode = "shop." + splitted[0]
+	_fullcode = "gs." + splitted[0]
 	
 	_fullcode = _fullcode.replacen("/", ".")
 
@@ -56,6 +56,13 @@ func remove_shop_node(node: SD_ShopNode) -> void:
 
 func get_shop_nodes() -> Array[SD_ShopNode]:
 	return _nodes
+
+func get_shop_nodes_by_group(group: String) -> Array[SD_ShopNode]:
+	var result: Array[SD_ShopNode] = []
+	for node in get_shop_nodes():
+		if node.group == group:
+			result.append(node)
+	return result
 
 func get_shop_node_by_name(_name: String) -> SD_ShopNode:
 	for node in _nodes:

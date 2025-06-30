@@ -223,6 +223,9 @@ func get_unique_id() -> int:
 	return HOST_ID
 
 func close_server() -> void:
+	close_peer()
+
+func close_peer() -> void:
 	for i in _players:
 		i.deinitialize()
 	
@@ -232,6 +235,7 @@ func close_server() -> void:
 	_is_server_created = false
 	_is_connected_to_server = false
 	server_closed.emit()
+
 
 func create_server(port: int, dedicated: bool = false) -> void:
 	if _is_server_created:
@@ -276,15 +280,7 @@ func create_client(address: String, port: int) -> void:
 		
 
 func close_client() -> void:
-	for i in _players:
-		i.deinitialize()
-	_players = []
-	
-	_peer.close()
-	_peer = ENetMultiplayerPeer.new()
-	_is_server_created = false
-	_is_connected_to_server = false
-	client_closed.emit(_peer)
+	close_peer()
 
 func get_connected_peers() -> PackedInt32Array:
 	if multiplayer:

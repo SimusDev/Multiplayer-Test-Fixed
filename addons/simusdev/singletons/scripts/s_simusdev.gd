@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION: String = "BETA 4.0"
+const VERSION: String = "4.1"
 
 signal on_notification(what: int)
 
@@ -48,9 +48,14 @@ var _autoload_classes = [
 	SD_BooleansStorage.new(),
 ]
 
+var _settings: SD_EngineSettings
+
 func _ready() -> void:
+	_settings = SD_EngineSettings.create_or_get()
+	
 	canvas._ready()
 	console._ready()
+	write_engine_info()
 	eventbus._ready()
 	localization._ready()
 	window._ready()
@@ -64,11 +69,11 @@ func _ready() -> void:
 	
 	game._ready()
 	monetization._ready()
-	var _s_monetization := SD_Monetization.new(monetization)
 	
 	tools._ready()
 	
 	ui._ready()
+	cursor._ready()
 	
 	multiplayerAPI = SD_MultiplayerSingleton.new()
 	multiplayerAPI.tree_entered.connect(
@@ -82,12 +87,29 @@ func _ready() -> void:
 	
 	_initialize_commands()
 	
-	write_engine_info()
+	
 	
 
 func _initialize_commands() -> void:
 	console.on_command_executed.connect(_on_command_executed)
-	console.create_commands_by_list(["quit", "engine.quit", "engine.version", "engine.info"])
+	
+	var exec_commands: Array[SD_ConsoleCommand] = [
+		console.create_command("quit"),
+		console.create_command("engine.quit"),
+		console.create_command("engine.version"),
+		console.create_command("engine.info"),
+	]
+	
+	var update_commands: Array[SD_ConsoleCommand] = [
+		console.create_command("engine.max_fps", 0),
+	]
+	
+	for e_cmd in exec_commands:
+		e_cmd.executed.connect(_on_command_executed.bind(e_cmd))
+	
+	for u_cmd in update_commands:
+		u_cmd.updated.connect(_on_command_updated.bind(u_cmd))
+		u_cmd.update_command()
 
 func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_unique_code():
@@ -100,9 +122,17 @@ func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
 		"engine.version":
 			write_engine_info()
 
+func _on_command_updated(cmd: SD_ConsoleCommand) -> void:
+	match cmd.get_unique_code():
+		"engine.max_fps":
+			Engine.max_fps = cmd.get_value_as_int()
+
 func write_engine_info() -> void:
-	var info: String = "SimusEngine: Version: %s" % [str(SimusDev.VERSION)]
+	var info: String = "SimusDev Plugin: Version: %s" % [str(SimusDev.VERSION)]
 	console.write_info(info)
+	
+	if !get_settings().developer.is_empty():
+		console.write_info("Game Developed by: %s" % get_settings().developer)
 
 func _process(delta: float) -> void:
 	process.emit(delta)
@@ -114,6 +144,8 @@ func _physics_process(delta: float) -> void:
 	
 	modloader._physics_process(delta)
 
+func get_settings() -> SD_EngineSettings:
+	return _settings
 
 func quit(exit_code: int = 0) -> void:
 	get_tree().quit(exit_code)

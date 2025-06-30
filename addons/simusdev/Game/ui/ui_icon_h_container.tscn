@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0c7y333l58m"]
+
+[ext_resource type="Script" uid="uid://b1eqky4ydlite" path="res://addons/simusdev/Game/ui/ui_icon_h_container.gd" id="1_5ighq"]
+
+[node name="ui_icon_h_container" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("1_5ighq")
+
+[node name="left" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.195
+anchor_bottom = 1.0
+offset_right = 0.079998
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="right" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.805
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0800171
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

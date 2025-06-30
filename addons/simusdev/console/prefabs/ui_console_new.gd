@@ -18,15 +18,21 @@ func _ready() -> void:
 	InputMap.add_action("console.enter")
 	InputMap.action_add_event("console.open_close", key_open_close)
 	InputMap.action_add_event("console.enter", key_enter)
+	
+	
+	var enabled: bool = SimusDev.get_settings().console.enabled
+	
+	if SD_Platforms.is_release_build():
+		if SimusDev.get_settings().console.disable_on_release:
+			enabled = false
+	
+	set_process_input(enabled)
+	if not enabled:
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("console.open_close"):
-		if console.disable_console_on_release and SD_Platforms.is_release_build():
-			return
-			
-		if SD_Platforms.is_debug_build() or SD_Platforms.is_pc():
-			set_visible(not is_visible())
-			
+		set_visible(not is_visible())
 
 
 

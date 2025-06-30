@@ -9,8 +9,6 @@ var _debug_node: Node = null
 
 const SETTINGS_PATH: String = "console.ini"
 
-var disable_console_on_release: bool = true
-
 var can_open_or_close: bool = true : set = set_can_open_or_close
 
 signal visibility_changed()
@@ -26,16 +24,24 @@ func set_can_open_or_close(value: bool) -> void:
 
 func _ready() -> void:
 	initialize(SETTINGS_PATH)
+	initialize_engine_settings()
 	
-	if SD_Platforms.has_debug_console_feature():
-		_console_node = _console_prefab.instantiate()
-		
-		if _console_node is CanvasItem:
-			_console_node.visible = false
-		
-		_debug_node = _debug_prefab.instantiate()
-		
-		var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
-		canvas.add_child(_console_node)
-		canvas.add_child(_debug_node)
+	gd_print = SimusDev.get_settings().console.gd_print
 	
+	_console_node = _console_prefab.instantiate()
+	
+	if _console_node is CanvasItem:
+		_console_node.visible = false
+	
+	_debug_node = _debug_prefab.instantiate()
+	
+	var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
+	canvas.add_child(_console_node)
+	canvas.add_child(_debug_node)
+
+func initialize_engine_settings() -> void:
+	var storage: SD_ConsoleNodeCommandObjectStorage = SimusDev.get_settings().commands
+	if !storage:
+		return
+	
+	storage.initialize()

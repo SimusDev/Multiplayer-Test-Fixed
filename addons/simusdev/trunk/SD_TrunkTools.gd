@@ -25,6 +25,11 @@ func _ready() -> void:
 	
 	for cmd in commands:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
+	
+	
+	for scenetool in SimusDev.get_settings().tools:
+		if scenetool:
+			register_tool_from_scene(scenetool)
 
 func get_tool_canvas() -> CanvasLayer:
 	return canvas.get_layer(1)
@@ -42,6 +47,9 @@ func unregister_tool(tool: String) -> void:
 	if _available_tools.has(tool):
 		console.write_from_object(self, "TOOL UNREGISTERED: %s" % [_available_tools[tool]], SD_ConsoleCategories.CATEGORY.WARNING)
 		_available_tools.erase(tool)
+
+func unregister_tool_from_scene(scene: PackedScene) -> void:
+	unregister_tool(scene.resource_path.get_basename().get_file())
 
 func register_tool_from_scene(scene: PackedScene) -> void:
 	register_tool(scene.resource_path)

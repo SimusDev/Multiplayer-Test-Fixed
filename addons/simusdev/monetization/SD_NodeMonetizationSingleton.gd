@@ -1,39 +1,61 @@
+@tool
 extends SD_NodeMonetization
 class_name SD_NodeMonetizationSingleton
 
-@export var auto_select_sdk: bool = true
-@export var pause_when_ad_show: bool = true
+signal sdk_setup(sdk: SD_AdsSDK)
 
-@onready var console: SD_TrunkConsole = SimusDev.console
+var console: SD_TrunkConsole
 
 static var instance: SD_NodeMonetizationSingleton
 
-@export_group("SDK_Yandex")
-
-@export_group("SDK_YandexMobile")
-
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	console = SimusDev.console
+	
 	if is_instance_valid(instance):
 		print("SD_NodeMonetizationSingleton is SINGLETON!!!, please, remove other instances.")
-		SimusDev.quit()
+		
 		return
 	
 	instance = self
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	
-	var monetization := SD_Monetization.instance()
-	if pause_when_ad_show:
+	var monetization: SD_TrunkMonetization = SD_Monetization.instance()
+	if SimusDev.get_settings().monetization.pause_when_ad_show:
 		monetization.on_interstitial_opened.connect(_add_pause_priority)
 		monetization.on_interstitial_closed.connect(_subtract_pause_priority)
 		
 		monetization.on_reward_opened.connect(_add_pause_priority)
 		monetization.on_reward_closed.connect(_subtract_pause_priority)
-		
-	if auto_select_sdk:
-		_select_proper_sdk()
+	
+	if SimusDev.get_settings().monetization.autoselect_sdk:
+		_setup_all_sdk()
 	
 	_initialize_commands()
+
+func _select_proper_sdk() -> SD_AdsSDK:
+	var current_code: String = "desktop"
+	
+	if SD_Platforms.is_mobile():
+		current_code = "yandex_mobile"
+	
+	if SD_Platforms.is_web():
+		current_code = "yandex"
+	
+	
+	var to_switch: SD_AdsSDK = SD_Monetization.switch_sdk_by_code(current_code)
+	
+	return to_switch
+
+
+func _setup_all_sdk() -> void:
+	var selected: SD_AdsSDK = _select_proper_sdk()
+	selected.initialize(SD_Monetization.get_instance())
+	sdk_setup.emit(selected)
+	
 
 func _initialize_commands() -> void:
 	var list: Array[String] = [
@@ -44,6 +66,7 @@ func _initialize_commands() -> void:
 	
 	for cmd in commands:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
+
 
 func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():
@@ -57,14 +80,3 @@ func _add_pause_priority() -> void:
 
 func _subtract_pause_priority() -> void:
 	SimusDev.game.pause_subtract_priority()
-
-func _select_proper_sdk() -> SD_AdsSDK:
-	if SD_Platforms.is_pc():
-		return SD_Monetization.switch_sdk_by_code("desktop")
-	
-	var current_code: String = "yandex_mobile"
-	
-	if SD_Platforms.is_web():
-		current_code = "yandex"
-	
-	return SD_Monetization.switch_sdk_by_code(current_code)

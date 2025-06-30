@@ -12,9 +12,6 @@ signal on_reward_closed()
 signal on_reward_rewarded()
 signal on_reward_error()
 
-@export var _show_interstitial_at_start: bool = false
-@export var _show_reward_at_start: bool = false
-
 func _ready() -> void:
 	
 	_trunk.on_interstitial_loaded.connect(func(): on_interstitial_loaded.emit())
@@ -27,12 +24,7 @@ func _ready() -> void:
 	_trunk.on_reward_closed.connect(func(): on_reward_closed.emit())
 	_trunk.on_reward_rewarded.connect(func(): on_reward_rewarded.emit())
 	_trunk.on_reward_error.connect(func(): on_reward_error.emit())
-	
-	if _show_interstitial_at_start:
-		show_interstitial()
-	
-	if _show_reward_at_start:
-		show_reward()
+
 
 func load_interstitial() -> void:
 	_trunk.load_interstitial()

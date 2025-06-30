@@ -20,6 +20,9 @@ container = NodePath("container/ScrollContainer/CenterContainer/GridContainer")
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="close" parent="." index="4"]
+theme_override_fonts/font = ExtResource("3_mv0i3")
+
 [node name="title" parent="." index="5"]
 text = "TOOLS"
 label_settings = SubResource("LabelSettings_easmh")

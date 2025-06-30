@@ -7,6 +7,11 @@ func initialize(cmd: SD_ConsoleCommand) -> void:
 	_cmd = cmd
 	modulate.a = 0.0
 	
+	if cmd.is_private():
+		text = "(private) %s" % cmd.get_code()
+		set("theme_override_colors/font_color", Color(1, 0, 0, 1))
+		return
+	
 	if cmd.is_value_invalid():
 		text = cmd.get_code()
 	else:

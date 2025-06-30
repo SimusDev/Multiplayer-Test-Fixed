@@ -13,7 +13,7 @@ signal on_reward_rewarded()
 signal on_reward_error()
 
 var _sdks: Array[SD_AdsSDK] = [
-	#SD_AdsSDKDesktop.new("desktop"),
+	SD_AdsSDKDesktop.new("desktop"),
 	SD_AdsSDKYandex.new("yandex"),
 	SD_AdsSDKYandexMobile.new("yandex_mobile"),
 ]
@@ -23,15 +23,23 @@ var _current_sdk: SD_AdsSDK
 var _enabled: bool = true
 var _interstital_enabled: bool = true
 
+var _s_monetization: SD_Monetization
+
 static func console() -> SD_TrunkConsole:
 	return SimusDev.console
 
 func _ready() -> void:
+	_s_monetization = SD_Monetization.new(self)
+	
+	_enabled = SimusDev.get_settings().monetization.enabled
+	if not _enabled:
+		return
+	
+	
 	for sdk in _sdks:
 		if sdk.is_initialized():
 			continue
 		
-		sdk.initialize(self)
 		
 		sdk.on_interstitial_loaded.connect(func(): on_interstitial_loaded.emit())
 		sdk.on_interstitial_opened.connect(func(): on_interstitial_opened.emit())
@@ -43,6 +51,14 @@ func _ready() -> void:
 		sdk.on_reward_closed.connect(func(): on_reward_closed.emit())
 		sdk.on_reward_rewarded.connect(func(): on_reward_rewarded.emit())
 		sdk.on_reward_error.connect(func(): on_reward_error.emit())
+		
+		#sdk.initialize(self)
+	
+	if SimusDev.get_settings().monetization.create_singleton:
+		var singleton: SD_NodeMonetizationSingleton = SD_NodeMonetizationSingleton.new()
+		SimusDev.add_child(singleton)
+		singleton.name = "SD_NodeMonetizationSingleton"
+	
 
 func call_method_on_current_sdk(method: String, args: Array = []):
 	if not _current_sdk:

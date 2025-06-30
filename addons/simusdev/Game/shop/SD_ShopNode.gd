@@ -9,6 +9,7 @@ var initialize_at_start := true
 @export var unique_code: String = ""
 
 @export var unique_data: Dictionary[String, Variant] = {}
+@export var group: String = ""
 
 @onready var console := SimusDev.console
 
@@ -16,6 +17,8 @@ var _shop: SD_GlobalShop
 var _fullcode: String
 
 var _command_data_list: Dictionary[SD_ConsoleCommand, String] = {}
+
+var override_name: String = ""
 
 signal initialized()
 
@@ -28,17 +31,19 @@ static func find_shop(from: Node) -> SD_GlobalShop:
 	return find_shop(from.get_parent())
 
 func _ready() -> void:
+	name = override_name
+	
 	var founded_shop := find_shop(self)
 	if founded_shop:
 		if founded_shop is SD_GlobalShop:
-			founded_shop.initialized.connect(_on_shop_initialized)
+			founded_shop.initialized.connect(_on_shop_initialized.bind(founded_shop))
 
-func try_initialize() -> bool:
+func try_initialize(shop: SD_GlobalShop) -> bool:
 	if _shop != null:
 		console.write_from_object(self, "node already initialized!", SD_ConsoleCategories.CATEGORY.ERROR)
 		return false
 	
-	var founded_shop := find_shop(self)
+	var founded_shop: SD_GlobalShop = shop
 	if founded_shop == null:
 		console.write_from_object(self, "cant find shop! place this node under shop node!", SD_ConsoleCategories.CATEGORY.ERROR)
 		return false
@@ -64,9 +69,9 @@ func try_initialize_command_data(command: SD_ConsoleCommand, key: String) -> voi
 	command.updated.connect(_on_command_data_updated.bind(command, key))
 	_command_data_list[command] = key
 
-func _on_shop_initialized() -> void:
+func _on_shop_initialized(shop: SD_GlobalShop) -> void:
 	if initialize_at_start:
-		try_initialize()
+		try_initialize(shop)
 
 func get_shop() -> SD_GlobalShop:
 	return _shop

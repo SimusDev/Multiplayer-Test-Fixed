@@ -11,6 +11,8 @@ var _settings: SD_Settings
 
 var _help_data: Array[SD_ConsoleCommandHelp]
 
+var _private: bool = false
+
 signal updated()
 signal executed()
 
@@ -53,6 +55,14 @@ func execute(args: Array[String] = []) -> void:
 	
 	executed.emit()
 	
+
+func is_private() -> bool:
+	return _private
+
+func set_private(value: bool = true) -> SD_ConsoleCommand:
+	_private = value
+	return self
+
 
 func is_value_invalid() -> bool:
 	return _value.is_empty()

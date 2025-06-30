@@ -35,6 +35,10 @@ func update_cooldown_label() -> void:
 	_label_cooldown.visible = _current_cooldown > 0
 
 func open_ad(scene: PackedScene, cooldown: float = 5) -> Node:
+	var sdk: SD_AdsSDK = SD_Monetization.instance().get_sdk_by_code("desktop")
+	if sdk.get_settings().get_value("enabled") == false:
+		return
+	
 	if get_current_ad_node():
 		return null
 	

@@ -80,4 +80,7 @@ func select_tip_by_index(index: int) -> int:
 	return index
 
 func select_tip_command(cmd: SD_ConsoleCommand) -> void:
+	if cmd.is_private():
+		return
+	
 	tip_selected.emit(cmd)

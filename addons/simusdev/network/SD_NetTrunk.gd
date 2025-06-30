@@ -13,7 +13,7 @@ func init(singleton: SD_NetworkSingleton) -> void:
 	if script is Script:
 		var global_class: String = script.get_global_name()
 		name = global_class.validate_node_name()
-		console.write_info("Network Trunk initialized: %s" % global_class)
+		#console.write_info("Network Trunk initialized: %s" % global_class)
 	
 	_post_init()
 

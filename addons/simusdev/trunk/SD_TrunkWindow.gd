@@ -13,6 +13,8 @@ func _ready() -> void:
 	var console: SD_TrunkConsole = SimusDev.console
 	var _commands: Array[SD_ConsoleCommand] = [
 		console.create_command("window.mode", ProjectSettings.get_setting("display/window/size/mode")),
+		console.create_command("window.vsync", ProjectSettings.get_setting("display/window/vsync/vsync_mode"))
+		
 	]
 	
 	for cmd in _commands:
@@ -25,6 +27,8 @@ func _on_command_updated(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():
 		"window.mode":
 			set_mode(cmd.get_value_as_int())
+		"window.vsync":
+			set_vsync_mode(cmd.get_value_as_int())
 
 func update_mode() -> void:
 	if _is_minimized and minimize_feature:
@@ -40,6 +44,12 @@ func set_mode(mode: int) -> void:
 	_mode = mode
 	update_mode()
 	
+
+func set_vsync_mode(mode: int) -> void:
+	DisplayServer.window_set_vsync_mode(mode)
+
+func get_vsync_mode() -> int:
+	return DisplayServer.window_get_vsync_mode()
 
 func get_mode() -> int:
 	return _mode
