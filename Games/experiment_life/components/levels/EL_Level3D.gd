@@ -17,6 +17,9 @@ static func instantiate(parent: Node, resource: EL_LevelResource) -> EL_Level3D:
 	level.init(resource)
 	parent.add_child(level)
 	
+	var level_scene: PackedScene = load(resource.scene_path) as PackedScene
+	level.add_child(level_scene.instantiate())
+	
 	return level
 
 func _enter_tree() -> void:
