@@ -17,5 +17,9 @@ func _ready() -> void:
 	instance = self
 	
 	SimusDev.window.minimize_feature = minimize_feature
+	
+	if SD_Platforms.is_release_build():
+		SimusDev.window.minimize_feature = SimusDev.get_settings().game.minimize_feature_on_release
+	
 	SimusDev.game.pause_when_minimized = pause_when_minimized
 	SimusDev.audio.mute_when_minimized = mute_audio_when_minimized

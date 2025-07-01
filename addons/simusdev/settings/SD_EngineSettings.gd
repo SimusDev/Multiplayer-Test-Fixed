@@ -2,6 +2,7 @@ extends Resource
 class_name SD_EngineSettings
 
 @export var developer: String = ""
+@export var game_code: String = ""
 
 @export var monetization: Dictionary[String, Variant] = {
 	"enabled": true,
@@ -11,7 +12,8 @@ class_name SD_EngineSettings
 }
 
 @export var game: Dictionary[String, Variant] = {
-	"minimize_feature": true,
+	"minimize_feature": false,
+	"minimize_feature_on_release": true,
 	"mute_audio_when_minimized": true,
 	"pause_when_minimized": false,
 }

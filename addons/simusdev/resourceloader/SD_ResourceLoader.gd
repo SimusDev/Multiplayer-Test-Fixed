@@ -6,14 +6,20 @@ static func get_db() -> SD_DBResource:
 static func get_console() -> SD_Console:
 	return SimusDev.console
 
+static func debug_write(section: String, text: Variant, category: int) -> void:
+	var msg: String = "SD_ResourceLoader[section: %s] %s" % [section, str(text)]
+	get_console().write(msg, category)
+
 static func load(path: String, resource_section := get_db().SECTION_RESOURCE) -> Object:
 	var loaded_resource: Object = null
 	if get_db().has_resource(path):
+		debug_write(resource_section, "cant load, resource already loaded! %s" % path, SD_ConsoleCategories.CATEGORY.WARNING)
 		#throw_error_resource_already_loaded(path)
 		return get_db().get_resource(path)
 	
 	var path_file_extension: String = path.get_extension()
 	if path_file_extension.is_empty():
+		debug_write(resource_section, "failed to load resource! %s" % path, SD_ConsoleCategories.CATEGORY.ERROR)
 		#throw_error_load(path)
 		return loaded_resource
 	
@@ -25,17 +31,17 @@ static func load(path: String, resource_section := get_db().SECTION_RESOURCE) ->
 		loaded_resource = load_runtime(path)
 	
 	if loaded_resource == null:
-		#throw_error_load(path)
+		debug_write(resource_section, "failed to load resource! %s" % path, SD_ConsoleCategories.CATEGORY.ERROR)
 		return loaded_resource
 	
 	get_db().add_resource(path, loaded_resource, resource_section)
-	#throw_info_resource_loaded(path)
+	debug_write(resource_section, "resource loaded! %s" % path, SD_ConsoleCategories.CATEGORY.INFO)
 	
 	if loaded_resource.has_method("_loaded_by_resource_loader"):
 		loaded_resource._loaded_by_resource_loader()
 	return loaded_resource
 
-static  func clear_section(section: String) -> void:
+static func clear_section(section: String) -> void:
 	get_db().clear_section(section)
 
 static func load_runtime(path: String) -> Object:
