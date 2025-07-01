@@ -8,3 +8,9 @@ func _ready() -> void:
 	if map:
 		spawn_at.call_deferred("add_child", map)
 	
+	await get_tree().create_timer(1.0)
+	Maps.server_ready = true
+
+func _exit_tree() -> void:
+	Maps.server_ready = false
+	Maps.server_unload_current_map()

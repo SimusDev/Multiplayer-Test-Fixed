@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://drirostqh7mig"]
+
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="1_6xs6e"]
+[ext_resource type="Script" uid="uid://rjvuh8iogjay" path="res://sourcelike_interface/popups/scripts/play.gd" id="2_x0jnd"]
+[ext_resource type="PackedScene" uid="uid://ckixh0ocyfgyg" path="res://commands/last_port.tscn" id="3_8wi11"]
+[ext_resource type="PackedScene" uid="uid://cnems64x804he" path="res://commands/last_ip.tscn" id="4_sxyqf"]
+[ext_resource type="PackedScene" uid="uid://cn1foipkrj278" path="res://commands/nickname.tscn" id="5_wlmek"]
+[ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="6_sxyqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxyqf"]
+font_size = 18
+
+[node name="Popup" instance=ExtResource("1_6xs6e")]
+script = ExtResource("2_x0jnd")
+
+[node name="last_port" parent="." index="0" instance=ExtResource("3_8wi11")]
+
+[node name="last_ip" parent="." index="1" instance=ExtResource("4_sxyqf")]
+
+[node name="nickname" parent="." index="2" instance=ExtResource("5_wlmek")]
+
+[node name="title" parent="head" index="0"]
+text = "PLAY"
+label_settings = SubResource("LabelSettings_sxyqf")
+
+[node name="vBoxContainer" type="VBoxContainer" parent="content" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="le_nickname" type="LineEdit" parent="content/vBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+placeholder_text = "NICKNAME"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="le_ip" type="LineEdit" parent="content/vBoxContainer" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+placeholder_text = "IP"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="le_port" type="LineEdit" parent="content/vBoxContainer" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+placeholder_text = "PORT"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="host" parent="content/vBoxContainer" index="3" instance=ExtResource("6_sxyqf")]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+label_text = "HOST"
+
+[node name="connect" parent="content/vBoxContainer" index="4" instance=ExtResource("6_sxyqf")]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+label_text = "CONNECT"
+
+[connection signal="pressed" from="content/vBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="content/vBoxContainer/connect" to="." method="_on_connect_pressed"]

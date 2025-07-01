@@ -65,5 +65,6 @@ func close(interface: CanvasItem = target) -> void:
 
 func center() -> void:
 	if target is Control:
-		var center_pos: Vector2 = Vector2.ZERO
+		var center_pos: Vector2 = Vector2(get_tree().root.get_size()) / 2
+		center_pos -= target.get_global_rect().size / 2
 		target.position = center_pos

@@ -15,7 +15,7 @@ version="0.10"
 [application]
 
 config/name="Multiplayer-Test"
-run/main_scene="uid://do51aphwtdub7"
+run/main_scene="uid://c31uhxfwryhme"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

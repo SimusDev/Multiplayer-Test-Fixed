@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg4dsosimfgrn"]
+[gd_scene load_steps=8 format=3 uid="uid://dg4dsosimfgrn"]
 
 [ext_resource type="Script" uid="uid://cprsa3ecpfiow" path="res://world/GameWorld.gd" id="1_uvpr4"]
 [ext_resource type="Script" uid="uid://cg20f3igakhjf" path="res://scripts/map/MapSpawnerComponent.gd" id="2_xbm2x"]
+[ext_resource type="Script" uid="uid://dm1owovrrxpce" path="res://addons/simusdev/console/SD_NodeConsoleCommand.gd" id="3_e1afn"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_23ybk"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="5_lollj"]
+[ext_resource type="PackedScene" uid="uid://cwblpo4ebmcbt" path="res://sourcelike_interface/main_menu/main_menu.tscn" id="6_23ybk"]
+
+[sub_resource type="Resource" id="Resource_gu5kp"]
+script = ExtResource("5_lollj")
+update_at_start = true
+code = "main_menu"
+value = ""
+private = false
+binds = Array[ExtResource("4_23ybk")]([])
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="GameWorld" type="Node"]
 script = ExtResource("1_uvpr4")
@@ -10,3 +23,17 @@ script = ExtResource("1_uvpr4")
 script = ExtResource("2_xbm2x")
 spawn_at = NodePath(".")
 metadata/_custom_type_script = "uid://cg20f3igakhjf"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 78
+
+[node name="mm_cmd" type="Node" parent="CanvasLayer"]
+script = ExtResource("3_e1afn")
+command = SubResource("Resource_gu5kp")
+metadata/_custom_type_script = "uid://dm1owovrrxpce"
+
+[node name="main_menu" parent="CanvasLayer" instance=ExtResource("6_23ybk")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="on_executed" from="CanvasLayer/mm_cmd" to="." method="_on_mm_cmd_on_executed"]

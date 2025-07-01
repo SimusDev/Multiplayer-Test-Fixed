@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmasgig7numkn"]
+
+[ext_resource type="Script" uid="uid://b2h6dgoh3wwss" path="res://sourcelike_interface/main_menu/screens/connecting.gd" id="1_ebt54"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_ujwwt"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_jlphf"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="4_032yj"]
+[ext_resource type="PackedScene" uid="uid://ckixh0ocyfgyg" path="res://commands/last_port.tscn" id="4_q2d25"]
+[ext_resource type="PackedScene" uid="uid://cnems64x804he" path="res://commands/last_ip.tscn" id="5_032yj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_66vut"]
+
+[node name="connecting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ebt54")
+
+[node name="panel_default" parent="." instance=ExtResource("2_ujwwt")]
+self_modulate = Color(0.126, 0.126, 0.126, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="panel_default"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONNECTING..."
+label_settings = SubResource("LabelSettings_66vut")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_jlphf")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="cancel" parent="panel_default" instance=ExtResource("4_032yj")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.899
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.279907
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "CANCEL"
+
+[node name="last_port" parent="." instance=ExtResource("4_q2d25")]
+
+[node name="last_ip" parent="." instance=ExtResource("5_032yj")]
+
+[connection signal="pressed" from="panel_default/cancel" to="." method="_on_cancel_pressed"]

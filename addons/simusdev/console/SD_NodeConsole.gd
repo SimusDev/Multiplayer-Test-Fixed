@@ -14,13 +14,12 @@ signal on_command_removed(command: SD_ConsoleCommand)
 signal on_command_executed(command: SD_ConsoleCommand)
 
 func _ready() -> void:
-	if is_multiplayer_authority():
-		console.on_update.connect(func(): on_update.emit())
-		console.on_write.connect(func(message: SD_ConsoleMessage): on_write.emit(message))
-		console.on_command_added.connect(func(command: SD_ConsoleCommand): on_command_added.emit(command))
-		console.on_command_removed.connect(func(command: SD_ConsoleCommand): on_command_removed.emit(command))
-		console.on_command_executed.connect(func(command: SD_ConsoleCommand): on_command_executed.emit(command))
-		
+	console.on_update.connect(func(): on_update.emit())
+	console.on_write.connect(func(message: SD_ConsoleMessage): on_write.emit(message))
+	console.on_command_added.connect(func(command: SD_ConsoleCommand): on_command_added.emit(command))
+	console.on_command_removed.connect(func(command: SD_ConsoleCommand): on_command_removed.emit(command))
+	console.on_command_executed.connect(func(command: SD_ConsoleCommand): on_command_executed.emit(command))
+	
 
 func create_command(code: String, value: Variant = null) -> SD_ConsoleCommand:
 	return console.create_command(code, value)

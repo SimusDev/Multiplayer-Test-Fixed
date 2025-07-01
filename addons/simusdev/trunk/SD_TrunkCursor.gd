@@ -28,6 +28,25 @@ func _ready() -> void:
 		apply_cursor_node(node)
 		node.add_child(custom_scene.instantiate())
 		SimusDev.canvas.get_last_layer().add_child(node)
+	
+	var commands: Array[SD_ConsoleCommand] = [
+		SimusDev.console.create_command("cursor.reset_mode"),
+		SimusDev.console.create_command("cursor.set_mode"),
+	]
+	
+	for cmd in commands:
+		cmd.executed.connect(_on_command_executed.bind(cmd))
+		cmd.update_command()
+
+func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
+	match cmd.get_code():
+		"cursor.reset_mode":
+			reset_mode()
+		"cursor.set_mode":
+			set_mode(cmd.get_value_as_int())
+
+func reset_mode() -> void:
+	set_mode(MODE.VISIBLE)
 
 func set_mode(mode: MODE) -> void:
 	var mouse_mode: int = int(mode)

@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://hbilltuk72kq"]
+
+[ext_resource type="Script" uid="uid://dlkfywpbt8odw" path="res://sourcelike_interface/main_menu/screens/loading.gd" id="1_l488u"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_11p7j"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_xurmo"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="4_s3rwh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywe55"]
+
+[node name="loading" type="Control" node_paths=PackedStringArray("message", "bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l488u")
+message = NodePath("panel_default/Label")
+bar = NodePath("panel_default/ProgressBar")
+
+[node name="panel_default" parent="." instance=ExtResource("2_11p7j")]
+self_modulate = Color(0.126, 0.126, 0.126, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="panel_default"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_ywe55")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_xurmo")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="ProgressBar" type="ProgressBar" parent="panel_default"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cancel" parent="panel_default" instance=ExtResource("4_s3rwh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.899
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.279907
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "CANCEL"
+
+[node name="refresh" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="refresh" to="." method="_on_refresh_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c31uhxfwryhme"]
+
+[ext_resource type="PackedScene" uid="uid://cwblpo4ebmcbt" path="res://sourcelike_interface/main_menu/main_menu.tscn" id="1_bedoq"]
+
+[node name="source_menu" type="Node"]
+
+[node name="main_menu" parent="." instance=ExtResource("1_bedoq")]
+ingame = false

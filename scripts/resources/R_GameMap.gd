@@ -9,3 +9,5 @@ class_name R_GameMap
 @export var name: String = ""
 @export var icon: Texture = null
 @export_multiline var description: String = ""
+
+static var selected: R_GameMap = null

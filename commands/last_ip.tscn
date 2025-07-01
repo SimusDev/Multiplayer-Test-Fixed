@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnems64x804he"]
+
+[ext_resource type="Script" uid="uid://dm1owovrrxpce" path="res://addons/simusdev/console/SD_NodeConsoleCommand.gd" id="1_isbp4"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="2_ouqdv"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_ooaed"]
+
+[sub_resource type="Resource" id="Resource_isbp4"]
+script = ExtResource("3_ooaed")
+update_at_start = true
+code = "last_ip"
+value = "localhost"
+private = false
+binds = Array[ExtResource("2_ouqdv")]([])
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="last_ip" type="Node"]
+script = ExtResource("1_isbp4")
+command = SubResource("Resource_isbp4")
+metadata/_custom_type_script = "uid://dm1owovrrxpce"

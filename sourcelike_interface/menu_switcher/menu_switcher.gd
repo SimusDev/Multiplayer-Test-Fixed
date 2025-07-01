@@ -7,6 +7,7 @@ class_name slike_menu_switcher
 var _screen: Node
 
 signal switched(node: Node)
+signal switched_from(node: Node)
 
 func get_current_screen() -> Node:
 	return _screen
@@ -24,6 +25,9 @@ static func find_above(node: Node) -> slike_menu_switcher:
 	
 	return find_above(node.get_parent())
 
+func switch_to_initial() -> void:
+	switch(initial_screen)
+
 func switch(node: Node) -> Node:
 	if not node:
 		return node
@@ -32,11 +36,21 @@ func switch(node: Node) -> Node:
 		if i is CanvasItem:
 			i.hide()
 	
+	if _screen:
+		switched_from.emit(_screen)
+	
 	if node in get_children():
 		if node is CanvasItem:
 			node.visible = true
+			_screen = node
 			switched.emit(node)
 		
 		
 	
 	return node
+
+func switch_by_name(node_name: String) -> Node:
+	for i in get_children():
+		if i.name == node_name:
+			return switch(i)
+	return null

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://lgu6fvrtbstd"]
+
+[ext_resource type="PackedScene" uid="uid://drirostqh7mig" path="res://sourcelike_interface/popups/play.tscn" id="1_bly6m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u0cx1"]
+font_size = 18
+
+[node name="Popup" instance=ExtResource("1_bly6m")]
+
+[node name="title" parent="head" index="0"]
+text = "HOST"
+label_settings = SubResource("LabelSettings_u0cx1")
+
+[node name="le_ip" parent="content/vBoxContainer" index="1"]
+visible = false
+
+[node name="connect" parent="content/vBoxContainer" index="4"]
+visible = false

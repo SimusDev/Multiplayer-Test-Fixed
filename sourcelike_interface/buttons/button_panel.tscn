@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://e4idhqmode5u"]
+
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="1_7a2fe"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_hyuuk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyuuk"]
+
+[node name="button_panel" instance=ExtResource("1_7a2fe")]
+
+[node name="SD_Label" parent="." index="0"]
+label_settings = SubResource("LabelSettings_hyuuk")
+
+[node name="panel_default" parent="." index="1" instance=ExtResource("2_hyuuk")]
+self_modulate = Color(0.125911, 0.125911, 0.125911, 0.9)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

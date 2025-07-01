@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://bco6upx38lqnf"]
+
+[ext_resource type="Script" uid="uid://ih5c83poin31" path="res://sourcelike_interface/main_menu/screens/lobby.gd" id="1_4ekvd"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_edimt"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="3_65e8i"]
+[ext_resource type="PackedScene" uid="uid://ba60xhdbe4xbv" path="res://sourcelike_interface/lobby/src_map.tscn" id="3_gvont"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_gvont"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gfawa"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_si84o"]
+font_size = 24
+
+[node name="lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ekvd")
+map_ui = ExtResource("3_gvont")
+
+[node name="maps" parent="." instance=ExtResource("2_edimt")]
+self_modulate = Color(0.212305, 0.212305, 0.212305, 0.9)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.933
+offset_right = 591.0
+offset_bottom = 0.23999
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="maps"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="maps/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="host_waiting" type="ColorRect" parent="maps"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043, 0.043, 0.043, 0.77)
+
+[node name="SD_Label" type="Label" parent="maps/host_waiting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "WAITING HOST..."
+label_settings = SubResource("LabelSettings_gfawa")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_gvont")
+font_size = 48
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="panel_default" parent="." instance=ExtResource("2_edimt")]
+self_modulate = Color(0.126, 0.126, 0.126, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cancel" parent="panel_default" instance=ExtResource("3_65e8i")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "QUIT"
+
+[node name="SD_Label" parent="panel_default/cancel" index="0"]
+text = "QUIT"
+label_settings = SubResource("LabelSettings_si84o")
+font_size = 24
+
+[node name="refresh" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="pressed" from="panel_default/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="timeout" from="refresh" to="." method="_on_refresh_timeout"]
+
+[editable path="panel_default/cancel"]

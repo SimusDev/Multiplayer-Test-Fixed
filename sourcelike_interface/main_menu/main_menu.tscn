@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwblpo4ebmcbt"]
+[gd_scene load_steps=9 format=3 uid="uid://cwblpo4ebmcbt"]
 
 [ext_resource type="Script" uid="uid://davdo0033ayq5" path="res://sourcelike_interface/main_menu/main_menu.gd" id="1_y5q5u"]
 [ext_resource type="Texture2D" uid="uid://bca30dtdawa87" path="res://sourcelike_interface/textures/mm_back.jpg" id="2_5d0as"]
 [ext_resource type="Script" uid="uid://drrp66tdm6xl6" path="res://sourcelike_interface/menu_switcher/menu_switcher.gd" id="2_kmrou"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_m0rh1"]
 [ext_resource type="PackedScene" uid="uid://o7jtge2xsoh7" path="res://sourcelike_interface/main_menu/screens/main.tscn" id="3_kmrou"]
+[ext_resource type="PackedScene" uid="uid://cmasgig7numkn" path="res://sourcelike_interface/main_menu/screens/connecting.tscn" id="5_nbn3x"]
+[ext_resource type="PackedScene" uid="uid://bco6upx38lqnf" path="res://sourcelike_interface/main_menu/screens/lobby.tscn" id="6_m0rh1"]
+[ext_resource type="PackedScene" uid="uid://hbilltuk72kq" path="res://sourcelike_interface/main_menu/screens/loading.tscn" id="8_8d58j"]
 
-[node name="main_menu" type="Control"]
+[node name="main_menu" type="Control" node_paths=PackedStringArray("switcher")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +18,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y5q5u")
+switcher = NodePath("slike_menu_switcher")
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_m0rh1")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
 
 [node name="bg" type="TextureRect" parent="."]
 self_modulate = Color(0.589096, 0.589096, 0.589096, 1)
@@ -39,4 +59,17 @@ initial_screen = NodePath("main")
 metadata/_custom_type_script = "uid://drrp66tdm6xl6"
 
 [node name="main" parent="slike_menu_switcher" instance=ExtResource("3_kmrou")]
+visible = false
+layout_mode = 1
+
+[node name="connecting" parent="slike_menu_switcher" instance=ExtResource("5_nbn3x")]
+visible = false
+layout_mode = 1
+
+[node name="lobby" parent="slike_menu_switcher" instance=ExtResource("6_m0rh1")]
+visible = false
+layout_mode = 1
+
+[node name="loading" parent="slike_menu_switcher" instance=ExtResource("8_8d58j")]
+visible = false
 layout_mode = 1

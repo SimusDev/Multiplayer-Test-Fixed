@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfdhp2rry6cs2"]
+
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="1_qghud"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qghud"]
+font_size = 18
+
+[node name="Popup" instance=ExtResource("1_qghud")]
+offset_right = 851.0
+offset_bottom = 545.0
+
+[node name="title" parent="head" index="0"]
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_qghud")

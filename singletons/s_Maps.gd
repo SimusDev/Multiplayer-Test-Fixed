@@ -7,6 +7,10 @@ var _map_list: Array[R_GameMap] = []
 var _current_map: R_GameMap
 var _current_map_scene: PackedScene
 
+var server_ready: bool = false
+
+signal server_ready_recieved(status: bool, map: R_GameMap)
+
 func _ready() -> void:
 	for path in SD_FileSystem.get_all_files_with_extension_from_directory(PATH_TO_MAPS, SD_FileExtensions.EC_RESOURCE):
 		var resource: Resource = load(path)
@@ -29,12 +33,12 @@ func change_map_to(map: R_GameMap) -> void:
 	_current_map = map
 	get_tree().change_scene_to_file("res://scenes/loading_map.tscn")
 
-func return_to_lobby() -> void:
-	_return_to_lobby_rpc.rpc()
+func return_to_menu() -> void:
+	_return_to_menu_rpc.rpc()
 
 @rpc("any_peer", "call_local")
-func _return_to_lobby_rpc() -> void:
-	get_tree().change_scene_to_file("res://scenes/lobby.tscn")
+func _return_to_menu_rpc() -> void:
+	get_tree().change_scene_to_file("res://sourcelike_interface/scenes/source_menu.tscn")
 
 func server_change_map_to(map: R_GameMap) -> void:
 	if not map:
@@ -43,6 +47,12 @@ func server_change_map_to(map: R_GameMap) -> void:
 	SyncedData.set_data_value("current_map_code", map.code)
 	_change_map_rpc.rpc(map.code)
 
+func set_current_map(map: R_GameMap) -> void:
+	_current_map = map
+
+func load_gameworld() -> void:
+	get_tree().change_scene_to_file("res://world/GameWorld.tscn")
+
 @rpc("any_peer", "call_local")
 func _change_map_rpc(map_code: String) -> void:
 	change_map_to(get_map_by_code(map_code))
@@ -50,6 +60,7 @@ func _change_map_rpc(map_code: String) -> void:
 func server_unload_current_map() -> void:
 	if SimusDev.multiplayerAPI.is_server():
 		_current_map = null
+		_current_map_scene = null
 		SyncedData.set_data_value("current_map_code", "")
 
 func get_current_server_map_code() -> String:
@@ -61,10 +72,11 @@ func get_map_by_code(code: String) -> R_GameMap:
 			return map
 	return null
 
-func _on_sd_node_console_commands_on_executed(command: SD_ConsoleCommand) -> void:
-	match command.get_code():
-		"map.change":
-			var map: R_GameMap = get_map_by_code(command.get_value_as_string())
-			server_change_map_to(map)
-		"lobby":
-			return_to_lobby()
+func request_server_ready() -> void:
+	SD_Multiplayer.sync_call_function_on_server(self, _request_server_ready_from_client, [SD_Multiplayer.get_unique_id()])
+
+func _request_server_ready_from_client(peer: int) -> void:
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_server_ready_from_server, [server_ready, get_current_map()])
+
+func _recieve_server_ready_from_server(status: bool, map: R_GameMap) -> void:
+	server_ready_recieved.emit(status, map)
