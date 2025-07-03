@@ -13,7 +13,6 @@ func create_audio(stream: AudioStream, bus: String = "Master") -> AudioStreamPla
 func create_audio_interface(stream: AudioStream) -> AudioStreamPlayer:
 	return create_audio(stream, "interface")
 
-
 func play_global_audio(stream:AudioStream, bus:String) -> void:
 	var player = create_audio(stream, bus)
 	add_child(player)
