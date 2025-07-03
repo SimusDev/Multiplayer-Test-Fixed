@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_qju8x")
-visible = true
+visible = false
 is_favorite = false
 scene_path = "uid://ch21uchuqv4fv"
 code = "my_rally_car"

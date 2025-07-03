@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="R_GameMap" load_steps=2 format=3 uid="uid://i18xhw7h2743"]
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://i18xhw7h2743"]
 
 [ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="1_8opot"]
+[ext_resource type="Texture2D" uid="uid://b5qprmd6lovto" path="res://Games/source_game/textures/game_icon.png" id="1_bvme0"]
 
 [resource]
 script = ExtResource("1_8opot")
 visible = true
-is_favorite = false
-scene_path = ""
-code = ""
-name = ""
+is_favorite = true
+scene_path = "uid://u3r0rjbc5tny"
+code = "source_game"
+name = "Source"
+icon = ExtResource("1_bvme0")
 description = ""
 metadata/_custom_type_script = "uid://dr6n65i48b73y"
