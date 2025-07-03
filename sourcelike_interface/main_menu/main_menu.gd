@@ -8,7 +8,7 @@ class_name slike_main_menu
 func _ready() -> void:
 	if ingame:
 		$bg.hide()
-		hide()
+		$SD_UIInterfaceMenu.close()
 	
 	else:
 		$SD_UIInterfaceMenu.open()

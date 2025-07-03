@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=2 format=3 uid="uid://d3ntfbgjij4eh"]
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=3 format=3 uid="uid://d3ntfbgjij4eh"]
 
 [ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
+[ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="1_xwjdh"]
 
 [resource]
 script = ExtResource("1_xt5by")
 developer = "zxcvlxd and simusdev"
+game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
 "create_singleton": true,
@@ -13,6 +15,7 @@ monetization = Dictionary[String, Variant]({
 })
 game = Dictionary[String, Variant]({
 "minimize_feature": false,
+"minimize_feature_on_release": false,
 "mute_audio_when_minimized": true,
 "pause_when_minimized": false
 })
@@ -21,4 +24,13 @@ console = Dictionary[String, Variant]({
 "enabled": true,
 "gd_print": true
 })
+audio = Dictionary[String, Variant]({
+"bus_volume_max": 1.0,
+"bus_volume_min": 0.0
+})
+popups = Dictionary[String, Variant]({
+"base_path": "res://popups/%.tscn",
+"canvas_layer": 16
+})
+popups_default_animations = Array[ExtResource("1_xwjdh")]([])
 tools = Array[PackedScene]([])

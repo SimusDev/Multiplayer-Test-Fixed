@@ -1,6 +1,6 @@
 extends Node
 
-@onready var console: SD_TrunkConsole = SimusDev.console
+var console: SD_TrunkConsole = SimusDev.console
 
 @export var menu: SD_UIInterfaceMenu
 
@@ -23,8 +23,7 @@ func _ready() -> void:
 	var enabled: bool = SimusDev.get_settings().console.enabled
 	
 	if SD_Platforms.is_release_build():
-		if SimusDev.get_settings().console.disable_on_release:
-			enabled = false
+		enabled = not SimusDev.get_settings().console.disable_on_release
 	
 	set_process_input(enabled)
 	if not enabled:

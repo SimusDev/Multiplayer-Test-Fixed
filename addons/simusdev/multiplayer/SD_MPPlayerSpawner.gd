@@ -8,68 +8,84 @@ class_name SD_MPPlayerSpawner
 @export var spawn_points: Array[Node]
 
 var singleton: SD_MultiplayerSingleton
+var spawner: SD_MPClientNodeSpawner
 
-var _players: Dictionary[int, Node]
+var _players: Dictionary[SD_MultiplayerPlayer, Node] = {}
 
-signal spawned(player: SD_MultiplayerPlayer, instance: Node)
-signal despawned(player: SD_MultiplayerPlayer, instance: Node)
+func _pick_spawnpoint() -> Node:
+	if spawn_points.is_empty():
+		return null
+	return spawn_points.pick_random()
 
-func get_players() -> Dictionary[int, Node]:
-	return _players
+func is_client() -> bool:
+	return !is_server()
 
-func pick_spawn_point() -> Node:
-	var picked: Node = spawn_points.pick_random()
-	if picked:
-		if (picked is Node2D) or (picked is Node3D):
-			return picked
-	return null
+func is_server() -> bool:
+	return SD_Multiplayer.is_server()
 
 func _ready() -> void:
-	singleton = SD_MultiplayerSingleton.get_instance()
-	if not singleton:
+	singleton = SD_Multiplayer.get_singleton()
+	spawner = SD_MPClientNodeSpawner.new()
+	spawner.start_name = "spawner"
+	spawner.detect_roots.append(parent)
+	spawner.spawn_list.append(player_scene)
+	add_child(spawner)
+	
+	if is_server():
+		singleton.player_connected.connect(_on_server_player_connected)
+		singleton.player_disconnected.connect(_on_server_player_disconnected)
+		
+		_spawn_server_players()
+		
+
+func _spawn_server_players() -> void:
+	for player in SD_Multiplayer.get_connected_players():
+		_server_spawn(player)
+
+func _on_server_player_connected(player: SD_MultiplayerPlayer) -> void:
+	if _players.has(player):
 		return
 	
-	singleton.player_connected.connect(_on_player_connected)
-	singleton.player_disconnected.connect(_on_player_disconnected)
-	
-	for player in singleton.get_connected_players():
-		local_spawn(player)
+	_server_spawn(player)
 
-func _on_player_connected(player: SD_MultiplayerPlayer) -> void:
-	local_spawn(player)
-
-func _on_player_disconnected(player: SD_MultiplayerPlayer) -> void:
-	local_despawn(player)
-
-func local_spawn(player: SD_MultiplayerPlayer) -> void:
-	if _players.has(player.get_peer_id()):
+func _on_server_player_disconnected(player: SD_MultiplayerPlayer) -> void:
+	if not _players.has(player):
 		return
+	
+	_server_despawn(player)
+
+
+func _server_spawn(player: SD_MultiplayerPlayer) -> void:
+	if is_client():
+		return
+	
 	
 	var instance: Node = player_scene.instantiate()
-	_players[player.get_peer_id()] = instance
-	instance.set_multiplayer_authority(player.get_peer_id())
+	_players[player] = instance
 	player.set_node(instance)
-	var generated_name: String = str(player.get_peer_id())
+	
 	instance.tree_entered.connect(
 		func():
-			if instance:
-				instance.name = generated_name.validate_node_name()
-				
-				if instance.has_method("set_global_position"):
-					var spawn_point: Node = pick_spawn_point()
-					if spawn_point:
-						if spawn_point.has_method("set_global_position"):
-							instance.set_global_position(spawn_point.get_global_position())
-					
-				spawned.emit(player, instance)
+			instance.name = str(player.get_peer_id())
+			var point: Node = _pick_spawnpoint()
+			if !point:
+				return
+			
+			if instance.has_method("get_global_position"):
+				if point.has_method("get_global_position"):
+					instance.call("set_global_position", point.call("get_global_position"))
+			
 	)
 	
-	parent.call_deferred("add_child", instance)
+	parent.add_child.call_deferred(instance)
 	
 
-func local_despawn(player: SD_MultiplayerPlayer) -> void:
-	if _players.has(player.get_peer_id()):
-		var instance: Node = _players[player.get_peer_id()]
-		_players.erase(player.get_peer_id())
-		despawned.emit(player, instance)
-		instance.call_deferred("queue_free")
+func _server_despawn(player: SD_MultiplayerPlayer) -> void:
+	if is_client():
+		return
+	
+	var instance: Node = _players.get(player, null) as Node
+	if instance:
+		instance.queue_free()
+	
+	_players.erase(player)

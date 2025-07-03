@@ -47,11 +47,11 @@ static func normalize_path(path: String) -> String:
 	return result
 
 static func make_directory(path: String) -> void:
+	if SD_Platforms.is_release_build():
+		if path.begins_with(PATH_RES):
+			return
+		
 	path = normalize_path(path)
-	#if path_is_file(path):
-		#return
-	#
-	
 	DirAccess.make_dir_recursive_absolute(path)
 
 static func is_path_is_folder(path: String) -> bool:
@@ -63,6 +63,15 @@ static func is_path_is_file(path: String) -> bool:
 static func is_file_exists(path: String) -> bool:
 	var access = DirAccess.open(path.get_base_dir())
 	if access != null:
+		var ext_code: String = SD_FileExtensions.get_extension_code_from_path(path)
+		if not ext_code.is_empty():
+			if SD_Platforms.is_release_build():
+				var prefix: String = SD_FileExtensions.get_extension_code_import_prefix(ext_code)
+				if prefix:
+					path += prefix
+		
+		
+		
 		return access.file_exists(path)
 	return false
 
@@ -112,7 +121,6 @@ static func get_only_files_from_directory(path: String, loop_through_folders := 
 
 static func get_only_folders_from_directory(path: String, loop_through_folders := false) -> Array:
 	return get_files_from_directory(path, loop_through_folders, LOOP_ONLY_FOLDERS)
-
 
 static func is_path_ends_with_import_prefix(path: String, extension_code: String) -> bool:
 	return SD_FileExtensions.is_path_ends_with_import_prefix(path, extension_code)
