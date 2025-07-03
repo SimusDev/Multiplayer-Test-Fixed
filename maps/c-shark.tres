@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_8uvl5")
-visible = true
+visible = false
 is_favorite = false
 scene_path = "uid://chiodmkr5e04q"
 code = "c-shark"

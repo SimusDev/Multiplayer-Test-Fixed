@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://ckgrvgsjahpj4"]
+
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_kpqdw"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="2_7lw5d"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="2_d1rl6"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_ilpss"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_0gjdh"]
+
+[sub_resource type="Resource" id="Resource_5ijcx"]
+script = ExtResource("3_0gjdh")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_4cdfe"]
+script = ExtResource("3_0gjdh")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 30.0
+node_path = NodePath("../SourceCamera")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7edsi"]
+radial_segments = 16
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7edsi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cdeub"]
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lnx3r"]
+top_radius = 0.355
+bottom_radius = 0.355
+height = 0.215
+radial_segments = 16
+
+[node name="source_player" type="CharacterBody3D"]
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("1_kpqdw")
+properties = Array[ExtResource("2_ilpss")]([SubResource("Resource_5ijcx"), SubResource("Resource_4cdfe")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="body_mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7edsi")
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7edsi")
+
+[node name="collision_crouch" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cdeub")
+
+[node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
+actor = NodePath("..")
+
+[node name="SourceCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("2_d1rl6")]
+camera = NodePath("../SourceCamera")
+movement = NodePath("../SourceMovement")
+collision_normal = NodePath("../collision_normal")
+collision_crouch = NodePath("../collision_crouch")
+ceiling_detection = NodePath("../ceiling_raycast")
+crouch_camera_position = NodePath("../crouch_camera_pos")
+
+[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_7lw5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+body = NodePath("..")
+
+[node name="face" type="MeshInstance3D" parent="SourceCamera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.395)
+mesh = SubResource("CylinderMesh_lnx3r")
+skeleton = NodePath("../..")
+
+[node name="label" type="Label3D" parent="SourceCamera/face"]
+transform = Transform3D(-1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 3.55271e-15, 1, -8.74228e-08, 1, 3.55271e-15, 0, 0.111, 0)
+shaded = true
+texture_filter = 0
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "face"
+font_size = 37
+
+[node name="ceiling_raycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_camera_pos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
