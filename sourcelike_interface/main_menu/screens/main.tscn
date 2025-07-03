@@ -50,32 +50,44 @@ visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "CONTINUE"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="host" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "HOST"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="connect" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "CONNECT"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="settings" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "SETTINGS"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="quit" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "QUIT"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="quit_to_main_menu" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "QUIT TO MENU"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/host" to="." method="_on_host_pressed"]

@@ -65,6 +65,8 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 label_text = "CANCEL"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="refresh" type="Timer" parent="."]
 wait_time = 0.25
