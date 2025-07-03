@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=2 format=3 uid="uid://d3ntfbgjij4eh"]
 
-[ext_resource type="Script" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
+[ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
 
 [resource]
 script = ExtResource("1_xt5by")

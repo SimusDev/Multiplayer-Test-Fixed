@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dikf5wpxs1m1o"]
+[gd_scene load_steps=9 format=3 uid="uid://dikf5wpxs1m1o"]
 
+[ext_resource type="Texture2D" uid="uid://creapfd3aw450" path="res://sourcelike_interface/gmod_reference.png" id="1_ep3dq"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_5mkl5"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_73qqt"]
+[ext_resource type="Texture2D" uid="uid://1iyybqe410mv" path="res://sourcelike_interface/gmod_bg_placeholder.png" id="2_i5mer"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_llgnl"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_i1ise"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="5_5mkl5"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_llgnl"]
+[sub_resource type="LabelSettings" id="LabelSettings_ep3dq"]
 font_size = 18
 
 [node name="Popup" type="Control"]
@@ -17,6 +19,16 @@ offset_bottom = 375.0
 mouse_filter = 2
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
+
+[node name="GmodReference" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-430, 72)
+texture = ExtResource("1_ep3dq")
+
+[node name="GmodBgPlaceholder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(296, 139)
+texture = ExtResource("2_i5mer")
 
 [node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_5mkl5")
@@ -62,7 +74,7 @@ offset_left = 0.176
 grow_horizontal = 2
 grow_vertical = 2
 text = "WINDOW"
-label_settings = SubResource("LabelSettings_llgnl")
+label_settings = SubResource("LabelSettings_ep3dq")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("3_i1ise")
@@ -84,10 +96,32 @@ label_text = "X"
 
 [node name="content" type="Control" parent="."]
 layout_mode = 1
-anchor_top = 0.08
+anchor_left = 0.00976563
+anchor_top = 0.178667
+anchor_right = 0.990234
+anchor_bottom = 0.989333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+layout_mode = 0
+anchor_top = -0.0855264
+anchor_right = 1.0
+anchor_bottom = -0.00328948
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="head/button_base" to="." method="queue_free"]

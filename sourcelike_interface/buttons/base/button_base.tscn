@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="2_6pa0w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6pa0w"]
+font_color = Color(0, 0, 0, 1)
 
 [node name="button_base" instance=ExtResource("1_r37rx")]
 script = ExtResource("2_6pa0w")

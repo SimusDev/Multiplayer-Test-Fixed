@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		current_modulate = MODULATE_PRESSED
 	
 	modulate = lerp(modulate, current_modulate, actual_speed)
+	set_min_size_x()
 
 func set_label_text(value: String) -> void:
 	label_text = value
@@ -50,3 +51,6 @@ func set_localization_key(value: String) -> void:
 func set_localization_placeholder(value: String) -> void:
 	localization_placeholder = value
 	if _label: _label.localization_placeholder = value
+
+func set_min_size_x():
+	self.custom_minimum_size.x = _label.size.x
