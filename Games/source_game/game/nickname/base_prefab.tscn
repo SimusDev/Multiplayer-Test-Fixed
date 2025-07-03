@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkfq8wyb1c8t3"]
+
+[ext_resource type="Script" uid="uid://dvcndqtsn1s7r" path="res://Games/source_game/game/nickname/script.gd" id="1_0sn7v"]
+
+[node name="base_nickname" type="Node3D"]
+script = ExtResource("1_0sn7v")
+
+[node name="label" type="Label3D" parent="."]
+billboard = 1
+text = "nickname"

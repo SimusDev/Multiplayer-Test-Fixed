@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=15 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_kpqdw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_ilpss"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_0gjdh"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="8_0gjdh"]
 
 [sub_resource type="Resource" id="Resource_5ijcx"]
 script = ExtResource("3_0gjdh")
@@ -114,3 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 script = ExtResource("7_ilpss")
 hide_at_start = true
 nodes = [NodePath("../body_mesh"), NodePath("../SourceCamera/face")]
+
+[node name="nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("8_0gjdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+authority_node = NodePath("..")
