@@ -46,7 +46,6 @@ func _ready() -> void:
 
 
 func _do_footstep():
-	print("current surface: ", get(current_surface), ", ", "player on floor: ", player.is_on_floor())
 	if !get(current_surface) or !player.is_on_floor() or !player.velocity:
 		return
 	 

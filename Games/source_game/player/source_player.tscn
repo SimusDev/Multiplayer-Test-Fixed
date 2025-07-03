@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=87 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -79,6 +79,7 @@
 [ext_resource type="AudioStream" uid="uid://4ma5b6x7fokl" path="res://sounds/hl2/player/footsteps/slosh2.wav" id="77_77jy0"]
 [ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="78_ia2t2"]
 [ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="79_l7c0e"]
+[ext_resource type="PackedScene" uid="uid://cfhs2ejbqnxkv" path="res://Games/source_game/items/steampunk_vape/steampunk_vape.tscn" id="80_kou6u"]
 
 [sub_resource type="Resource" id="Resource_5ijcx"]
 script = ExtResource("3_0gjdh")
@@ -164,6 +165,7 @@ body = NodePath("..")
 
 [node name="face" type="MeshInstance3D" parent="SourceCamera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.395)
+visible = false
 mesh = SubResource("CylinderMesh_lnx3r")
 skeleton = NodePath("../..")
 
@@ -220,3 +222,11 @@ ladder = Array[AudioStream]([ExtResource("64_xunsx"), ExtResource("65_n6g3j"), E
 wade = Array[AudioStream]([ExtResource("68_wxr10"), ExtResource("69_663cx"), ExtResource("70_feli0"), ExtResource("71_rvt2t"), ExtResource("72_xbqvd"), ExtResource("73_6gamx"), ExtResource("74_1oyyu"), ExtResource("75_ud2iu")])
 slosh = Array[AudioStream]([ExtResource("76_2ks7t"), ExtResource("77_77jy0"), ExtResource("78_ia2t2"), ExtResource("79_l7c0e")])
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
+
+[node name="steampunk_vape" parent="." instance=ExtResource("80_kou6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+base_pos = Vector3(0.313959, 0.202435, -0.577019)
+vaping_pos = Vector3(0, 0.2, -0.420495)
+vaping_rot = Vector3(45, 0, 0)
+
+[editable path="SourceCamera"]

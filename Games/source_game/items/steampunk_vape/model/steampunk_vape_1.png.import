@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c2nwsdfgw20ow"
+path.s3tc="res://.godot/imported/steampunk_vape_1.png-05fa039435819315ef98206bae121237.s3tc.ctex"
+path.etc2="res://.godot/imported/steampunk_vape_1.png-05fa039435819315ef98206bae121237.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "bf90f29eb2ac0dbb8387cd71366dc149"
+}
+
+[deps]
+
+source_file="res://Games/source_game/items/steampunk_vape/model/steampunk_vape_1.png"
+dest_files=["res://.godot/imported/steampunk_vape_1.png-05fa039435819315ef98206bae121237.s3tc.ctex", "res://.godot/imported/steampunk_vape_1.png-05fa039435819315ef98206bae121237.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://Games/source_game/items/steampunk_vape/steampunk_vape_3.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
