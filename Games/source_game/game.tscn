@@ -104,11 +104,18 @@ tonemap_white = 6.0
 
 [node name="source_game" type="Node"]
 
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("2_hjpvw")
+player_scene = ExtResource("13_aahtd")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
 [node name="source_flatgrass" parent="." instance=ExtResource("1_07hh0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28455, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09583, 0)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.42389, 2.1)
@@ -152,10 +159,3 @@ script = ExtResource("11_rwrbd")
 update_in_editor = false
 dome_path = NodePath("../Skydome")
 total_hours = 9.85
-
-[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("2_hjpvw")
-player_scene = ExtResource("13_aahtd")
-parent = NodePath("..")
-spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
