@@ -13,8 +13,57 @@ var _help_data: Array[SD_ConsoleCommandHelp]
 
 var _private: bool = false
 
+var _variant_type_string: String = ""
+var _variant_type: int = -1
+
+var _number_minmax_enabled: bool = false
+var _number_min_value: float = 0
+var _number_max_value: float = 0
+
 signal updated()
 signal executed()
+
+func number_get_min_value() -> float:
+	return _number_min_value
+
+func number_get_max_value() -> float:
+	return _number_max_value
+
+func number_set_min_max_value(min: float, max: float) -> SD_ConsoleCommand:
+	if not is_variant_type_number():
+		return self
+	
+	_number_minmax_enabled = true
+	_number_min_value = min
+	_number_max_value = max
+	
+	_number_update_minmax()
+	return self
+
+func _number_update_minmax() -> void:
+	if not _number_minmax_enabled:
+		return
+	
+	var cur_float: float = get_value_as_float()
+	
+	if cur_float > _number_max_value:
+		set_value(_number_max_value)
+	if cur_float < _number_min_value:
+		set_value(_number_min_value)
+
+
+func _number_get_clamped_value(from: float) -> float:
+	var clamped: float = clamp(from, _number_min_value, _number_max_value)
+	return clamped
+
+func is_variant_type_number() -> bool:
+	return (_variant_type == TYPE_FLOAT) or (_variant_type == TYPE_INT)
+
+func get_variant_type() -> int:
+	return _variant_type
+
+func get_variant_type_string() -> String:
+	return _variant_type_string
 
 func deinit() -> void:
 	_console.remove_command(self)
@@ -28,9 +77,14 @@ func init(console: SD_Console, settings: SD_Settings, cmd_code: String, cmd_valu
 		_value = ""
 		
 	
-	_settings.on_setting_added.connect(_on_setting_added)
-	_settings.on_setting_removed.connect(_on_setting_removed)
-	_settings.on_setting_changed.connect(_on_setting_changed)
+	var variant: Variant = str_to_var(_value)
+	_variant_type = typeof(variant)
+	_variant_type_string = type_string(_variant_type)
+	
+	
+	if _variant_type_string == "Nil":
+		_variant_type_string = "String"
+		_variant_type = TYPE_STRING
 	
 	if !_value.is_empty():
 		_settings.add_setting(get_code(), get_value())
@@ -39,22 +93,12 @@ func init(console: SD_Console, settings: SD_Settings, cmd_code: String, cmd_valu
 	updated.emit()
 	update_command()
 
-func _on_setting_added(setting: String) -> void:
-	pass
-
-func _on_setting_removed(setting: String) -> void:
-	pass
-
-func _on_setting_changed(setting: String) -> void:
-	pass
-
 func execute(args: Array[String] = []) -> void:
 	_arguments = args.duplicate()
 	if !args.is_empty():
 		set_value(args[0])
 	
 	executed.emit()
-	
 
 func is_private() -> bool:
 	return _private
@@ -62,7 +106,6 @@ func is_private() -> bool:
 func set_private(value: bool = true) -> SD_ConsoleCommand:
 	_private = value
 	return self
-
 
 func is_value_invalid() -> bool:
 	return _value.is_empty()
@@ -72,6 +115,11 @@ func get_arguments() -> Array[String]:
 
 func set_value(value: Variant) -> void:
 	_value = str(value)
+	_number_update_minmax()
+	
+	if get_variant_type() == TYPE_INT:
+		_value = str(int(get_value_as_string()))
+	
 	_settings.change_setting(get_code(), get_value())
 	update_command()
 
@@ -116,6 +164,9 @@ func get_value_as_vector3() -> Vector3:
 	return Vector3.ZERO
 
 func get_value_as_variant() -> Variant:
+	if get_variant_type_string() == "String":
+		var parsed: String = "'%s'" % _value
+		return str_to_var(parsed)
 	return str_to_var(_value)
 
 func get_code() -> String:

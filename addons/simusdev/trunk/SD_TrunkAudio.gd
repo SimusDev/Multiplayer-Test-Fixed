@@ -25,9 +25,7 @@ func _ready() -> void:
 	audio.trunk = self
 	
 	var commands: Array[SD_ConsoleCommand] = [
-		_console.create_command("audio.set_bus_volume")
 	]
-	commands[0].help_set("audio.set_bus_volume <bus_name> <volume>")
 	
 	for cmd in commands:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
