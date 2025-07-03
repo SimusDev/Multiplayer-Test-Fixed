@@ -101,8 +101,8 @@ shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1
 shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
 shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
 shader_parameter/_cumulus_clouds_mie_intensity = 1.0
-shader_parameter/_moon_matrix = Basis(2.98023e-08, -0.86062, 0.509248, -0.678364, 0.374158, 0.63232, -0.734726, -0.345455, -0.583813)
-shader_parameter/_deep_space_matrix = Basis(0.656553, 0.75428, 0, 0.207908, -0.180971, -0.961262, -0.725061, 0.631119, -0.275638)
+shader_parameter/_moon_matrix = Basis(0, -0.86062, 0.509247, -0.678363, 0.374158, 0.632321, -0.734727, -0.345455, -0.583813)
+shader_parameter/_deep_space_matrix = Basis(0.656553, 0.75428, 0, 0.207908, -0.180971, -0.961261, -0.72506, 0.631119, -0.275638)
 
 [sub_resource type="Sky" id="Sky_i3jxi"]
 sky_material = SubResource("ShaderMaterial_dvgr3")
@@ -111,7 +111,7 @@ sky_material = SubResource("ShaderMaterial_dvgr3")
 background_mode = 2
 sky = SubResource("Sky_i3jxi")
 ambient_light_source = 3
-ambient_light_color = Color(0.815612, 0.754497, 0.723872, 1)
+ambient_light_color = Color(0.815611, 0.754496, 0.723871, 1)
 ambient_light_sky_contribution = 0.95
 reflected_light_source = 2
 tonemap_mode = 3
@@ -160,12 +160,12 @@ sky_contribution = 0.95
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.671545, 0.740964, 0.782324, 0.461525, 0.418286, -0.622871, 0.579674, 0.525366, 0.740964, 0.418286, 0.525366)
-light_color = Color(0.996731, 0.922045, 0.88462, 1)
+transform = Transform3D(0, -0.671545, 0.740964, 0.782325, 0.461525, 0.418285, -0.622871, 0.579675, 0.525366, 0.740964, 0.418285, 0.525366)
+light_color = Color(0.996731, 0.922044, 0.884619, 1)
 shadow_enabled = true
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.678364, -0.734726, -0.86062, 0.374158, -0.345455, 0.509248, 0.63232, -0.583813, -0.734726, -0.345455, -0.583813)
+transform = Transform3D(0, -0.678363, -0.734727, -0.86062, 0.374158, -0.345455, 0.509247, 0.632321, -0.583813, -0.734727, -0.345455, -0.583813)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
@@ -173,7 +173,7 @@ light_energy = 0.0
 script = ExtResource("10_ha5cx")
 tonemap_level = 1.0
 sun_azimuth = -125.338
-sun_altitude = -65.2735
+sun_altitude = -65.2736
 moon_azimuth = -308.47
 moon_altitude = -110.21
 fog_visible = false

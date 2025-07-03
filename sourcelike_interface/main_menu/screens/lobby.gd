@@ -12,9 +12,13 @@ func _ready() -> void:
 	menu_switcher.switched_from.connect(_on_menu_switched_from)
 	
 	for map in Maps.get_map_list():
+		if !map.visible: continue
+		
 		var map_interface: Control = map_ui.instantiate()
 		map_interface.resource = map
 		%VBoxContainer.add_child(map_interface)
+		
+		if map.is_favorite: %VBoxContainer.move_child(map_interface, 0)
 
 func _on_menu_switched(node: Node) -> void:
 	if node != self:

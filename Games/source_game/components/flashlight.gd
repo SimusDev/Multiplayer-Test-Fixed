@@ -8,7 +8,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if !is_multiplayer_authority(): return
 	
-	if Input.is_action_just_pressed(input_key):
+	if event.is_pressed() and event.as_text().to_lower() == input_key:
 		SD_Multiplayer.sync_call_function(self, sync)
 
 func sync():

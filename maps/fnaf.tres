@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_x1esr")
-visible = true
+visible = false
 is_favorite = false
 scene_path = "uid://dnw8e7bnrwhc"
 code = "fnaf"

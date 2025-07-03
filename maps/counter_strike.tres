@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("2_s4b86")
+visible = true
+is_favorite = false
 scene_path = "uid://dinoshagmu1i7"
 code = "counter_strike"
 name = "Counter-Strike"

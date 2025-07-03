@@ -47,6 +47,7 @@ size_flags_vertical = 3
 
 [node name="host_waiting" type="ColorRect" parent="maps"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +95,8 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 label_text = "QUIT"
+audio_streams = Array[AudioStream]([])
+audio_bus = "Master"
 
 [node name="SD_Label" parent="panel_default/cancel" index="0"]
 text = "QUIT"
