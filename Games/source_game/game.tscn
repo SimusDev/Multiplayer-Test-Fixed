@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=18 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="9_lg245"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="10_ha5cx"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="11_rwrbd"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvgr3"]
 shader = ExtResource("2_tn3t5")
@@ -150,7 +151,9 @@ update_in_editor = false
 dome_path = NodePath("../Skydome")
 total_hours = 9.85
 
-[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("2_hjpvw")
+player_scene = ExtResource("13_aahtd")
+parent = NodePath("..")
 spawn_points = [null, null, null]
 metadata/_custom_type_script = "uid://crxce7oinuqn4"
