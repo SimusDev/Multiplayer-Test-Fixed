@@ -25,10 +25,16 @@ func _recieve_audio_position_and_play(is_playing: bool, pos: float, stream_path:
 
 func play_synced(from_pos: float = 0.0) -> void:
 	_play_synced_rpc.rpc(from_pos)
+func stop_synced():
+	_stop_synced_rpc.rpc()
 
 @rpc("any_peer", "call_local", "reliable")
 func _play_synced_rpc(from_pos: float) -> void:
 	play(from_pos)
+
+@rpc("any_peer", "call_local", "reliable")
+func _stop_synced_rpc() -> void:
+	stop()
 
 func set_stream_synced(_stream: AudioStream) -> void:
 	_set_stream_synced_rpc(_stream.resource_path)
