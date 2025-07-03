@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=14 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_kpqdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="2_d1rl6"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_ilpss"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_0gjdh"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
 
 [sub_resource type="Resource" id="Resource_5ijcx"]
 script = ExtResource("3_0gjdh")
@@ -68,6 +69,13 @@ shape = SubResource("CapsuleShape3D_cdeub")
 
 [node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
 actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
 
 [node name="SourceCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("2_d1rl6")]
 camera = NodePath("../SourceCamera")
@@ -101,3 +109,8 @@ target_position = Vector3(0, 1, 0)
 
 [node name="crouch_camera_pos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
+script = ExtResource("7_ilpss")
+hide_at_start = true
+nodes = [NodePath("../body_mesh"), NodePath("../SourceCamera/face")]
