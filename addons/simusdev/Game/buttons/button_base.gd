@@ -30,6 +30,9 @@ func _ready() -> void:
 	
 
 func _on_button_pressed() -> void:
+	if audio_streams.is_empty():
+		return
+	
 	var picked_stream: AudioStream = audio_streams.pick_random()
 	if picked_stream:
 		_audioplayer.create(picked_stream).play()

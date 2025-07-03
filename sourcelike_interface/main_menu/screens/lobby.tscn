@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ba60xhdbe4xbv" path="res://sourcelike_interface/lobby/src_map.tscn" id="3_gvont"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_gvont"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_gfawa"]
+[sub_resource type="LabelSettings" id="LabelSettings_gvont"]
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_si84o"]
+[sub_resource type="LabelSettings" id="LabelSettings_gfawa"]
 font_size = 24
 
 [node name="lobby" type="Control"]
@@ -63,7 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "WAITING HOST..."
-label_settings = SubResource("LabelSettings_gfawa")
+label_settings = SubResource("LabelSettings_gvont")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -97,7 +97,7 @@ label_text = "QUIT"
 
 [node name="SD_Label" parent="panel_default/cancel" index="0"]
 text = "QUIT"
-label_settings = SubResource("LabelSettings_si84o")
+label_settings = SubResource("LabelSettings_gfawa")
 font_size = 24
 
 [node name="refresh" type="Timer" parent="."]
