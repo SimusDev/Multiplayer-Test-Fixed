@@ -1,5 +1,6 @@
 class_name SourceFlashlight extends SpotLight3D
 
+@export var sound:AudioStream = preload("res://sounds/hl2/items/flashlight1.wav")
 @export var input_key:String
 
 func _ready() -> void:
@@ -12,4 +13,10 @@ func _input(event: InputEvent) -> void:
 		SD_Multiplayer.sync_call_function(self, sync)
 
 func sync():
+	var audio = SoundPlayer.create_audio_3d(sound)
+	add_child(audio)
+	audio.play()
+	
+	
+	
 	visible = not visible

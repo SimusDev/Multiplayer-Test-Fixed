@@ -101,8 +101,6 @@ shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1
 shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
 shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
 shader_parameter/_cumulus_clouds_mie_intensity = 1.0
-shader_parameter/_moon_matrix = Basis(0, -0.86062, 0.509247, -0.678363, 0.374158, 0.632321, -0.734727, -0.345455, -0.583813)
-shader_parameter/_deep_space_matrix = Basis(0.656553, 0.75428, 0, 0.207908, -0.180971, -0.961261, -0.72506, 0.631119, -0.275638)
 shader_parameter/_moon_matrix = Basis(0, -0.890989, 0.454026, -0.637008, 0.349989, 0.686825, -0.770858, -0.289218, -0.567567)
 shader_parameter/_deep_space_matrix = Basis(0.712322, 0.701853, -2.98023e-08, 0.193458, -0.196343, -0.961262, -0.674664, 0.684727, -0.275638)
 
@@ -113,10 +111,8 @@ sky_material = SubResource("ShaderMaterial_dvgr3")
 background_mode = 2
 sky = SubResource("Sky_i3jxi")
 ambient_light_source = 3
-ambient_light_color = Color(0.815611, 0.754496, 0.723871, 1)
-ambient_light_sky_contribution = 0.95
 ambient_light_color = Color(0.75824, 0.662375, 0.614338, 1)
-ambient_light_sky_contribution = 0.7
+ambient_light_sky_contribution = 0.95
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0
@@ -164,12 +160,6 @@ sky_contribution = 0.95
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.671545, 0.740964, 0.782325, 0.461525, 0.418285, -0.622871, 0.579675, 0.525366, 0.740964, 0.418285, 0.525366)
-light_color = Color(0.996731, 0.922044, 0.884619, 1)
-shadow_enabled = true
-
-[node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.678363, -0.734727, -0.86062, 0.374158, -0.345455, 0.509247, 0.632321, -0.583813, -0.734727, -0.345455, -0.583813)
 transform = Transform3D(0, -0.625152, 0.780503, 0.814791, 0.4525, 0.362435, -0.579755, 0.635947, 0.509369, 0.780503, 0.362435, 0.509369)
 light_color = Color(0.994497, 0.868763, 0.805758, 1)
 shadow_enabled = true
@@ -179,13 +169,14 @@ transform = Transform3D(0, -0.637008, -0.770857, -0.890989, 0.349989, -0.289218,
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
+[node name="MoonLight2" type="DirectionalLight3D" parent="Sky3D"]
+transform = Transform3D(0, -0.637008, -0.770857, -0.890989, 0.349989, -0.289218, 0.454026, 0.686825, -0.567567, -0.770857, -0.289218, -0.567567)
+light_color = Color(0.572549, 0.776471, 0.956863, 1)
+light_energy = 0.0
+
 [node name="Skydome" type="Node" parent="Sky3D"]
 script = ExtResource("10_ha5cx")
 tonemap_level = 1.0
-sun_azimuth = -125.338
-sun_altitude = -65.2736
-moon_azimuth = -308.47
-moon_altitude = -110.21
 sun_azimuth = -123.129
 sun_altitude = -68.7502
 moon_azimuth = -306.363
