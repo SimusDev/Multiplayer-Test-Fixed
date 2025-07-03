@@ -28,7 +28,6 @@ func _on_quit_pressed() -> void:
 func _on_settings_pressed() -> void:
 	slike_popups.open_base_path("settings", menu)
 
-
 func _on_host_pressed() -> void:
 	slike_popups.open_base_path("host", menu)
 

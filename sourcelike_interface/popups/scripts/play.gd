@@ -13,6 +13,8 @@ func save_cmds() -> void:
 	cmd_nickname.set_value(%le_nickname.text)
 	cmd_ip.set_value(%le_ip.text)
 	cmd_port.set_value(%le_port.text)
+	
+	SD_Multiplayer.set_username(cmd_nickname.get_value_as_string())
 
 func _on_host_pressed() -> void:
 	save_cmds()
