@@ -69,4 +69,5 @@ label_text = "CANCEL"
 [node name="refresh" type="Timer" parent="."]
 wait_time = 0.25
 
+[connection signal="pressed" from="panel_default/cancel" to="." method="_on_cancel_pressed"]
 [connection signal="timeout" from="refresh" to="." method="_on_refresh_timeout"]
