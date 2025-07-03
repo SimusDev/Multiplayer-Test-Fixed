@@ -30,7 +30,20 @@ signal despawn_begin(node: Node, path: String)
 
 @export var bake_at_runtime: bool = false
 
+@export var spawn_list: Array[PackedScene] = []
 
+var start_name: String
+
+func can_detect_node(node: Node) -> bool:
+	var scene: PackedScene
+	if node.scene_file_path.is_empty():
+		return false
+	
+	if spawn_list.is_empty():
+		return true
+	
+	scene = load(node.scene_file_path)
+	return spawn_list.has(scene)
 
 func _bake(value: bool) -> void:
 	if (not value) or (not Engine.is_editor_hint()):
@@ -80,6 +93,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	if not start_name.is_empty():
+		name = start_name
+	
 	if not SD_Multiplayer.is_active():
 		return
 	
@@ -99,6 +115,9 @@ func _server_send_all_nodes_to_peer(peer: int) -> void:
 	for root in detect_roots:
 		var children: Array[Node] = root.get_children()
 		for child in children:
+			if not can_detect_node(child):
+				continue
+			
 			var data: Dictionary = serialize_node_and_get_data(child)
 			nodes.append(data)
 	
@@ -118,6 +137,9 @@ func _on_server_node_added(node: Node) -> void:
 	if not node:
 		return
 	
+	if not can_detect_node(node):
+		return
+	
 	if not can_process_server_node(node):
 		return
 	
@@ -133,6 +155,9 @@ func _on_server_node_removed(node: Node) -> void:
 	if not node:
 		return
 	
+	if not can_detect_node(node):
+		return
+	
 	if not can_process_server_node(node):
 		return
 	
@@ -145,6 +170,10 @@ func serialize_node_and_get_data(node: Node) -> Dictionary:
 	data["authority"] = node.get_multiplayer_authority()
 	data["name"] = node.name
 	data["index"] = node.get_index()
+	
+	var mp_player: SD_MultiplayerPlayer = SD_MultiplayerPlayer.find_in_node(node)
+	if mp_player:
+		data["mp_player_id"] = mp_player.get_peer_id()
 	
 	if node.has_method("get_global_position"):
 		data["global_position"] = node.call("get_global_position")
@@ -194,7 +223,15 @@ func deserialize_node_data(data: Dictionary) -> Node:
 	
 	if node:
 		SD_Multiplayer.get_singleton().set_node_multiplayer_authority_recursive(node, data['authority'])
+		
+		if data.has("mp_player_id"):
+			var peer_id: int = data.get("mp_player_id", SD_Multiplayer.SERVER_ID)
+			var player: SD_MultiplayerPlayer = SD_Multiplayer.get_player_by_peer_id(peer_id)
+			if player:
+				player.set_node(node)
 			
+			
+		
 	
 	var properties: Dictionary = data["server_properties"]
 	for path: String in properties:

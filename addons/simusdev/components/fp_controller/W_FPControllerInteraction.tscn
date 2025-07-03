@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://1socw5vr6em3"]
-
-[ext_resource type="Script" uid="uid://cs2ym2bhvbssm" path="res://addons/simusdev/components/fp_controller/W_FPControllerInteraction.gd" id="1_ip70q"]
-
-[node name="W_FPControllerInteraction" type="Node3D"]
-script = ExtResource("1_ip70q")

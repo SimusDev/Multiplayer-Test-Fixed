@@ -69,7 +69,4 @@ static func has_feature_editor() -> bool:
 	return OS.has_feature("editor")
 
 static func has_debug_console_feature() -> bool:
-	if is_pc():
-		return true
-	return is_debug_build()
-	
+	return true
