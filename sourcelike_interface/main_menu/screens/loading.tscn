@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_xurmo"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="4_s3rwh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ywe55"]
+[sub_resource type="LabelSettings" id="LabelSettings_l488u"]
 
 [node name="loading" type="Control" node_paths=PackedStringArray("message", "bar")]
 layout_mode = 3
@@ -38,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_ywe55")
+label_settings = SubResource("LabelSettings_l488u")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

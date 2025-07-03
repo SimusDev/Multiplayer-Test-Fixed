@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ciiimna4xqhpc" path="res://addons/simusdev/ui/label.tscn" id="5_mas8h"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="6_2jo02"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_kjf6e"]
+[sub_resource type="LabelSettings" id="LabelSettings_mas8h"]
 font = ExtResource("6_2jo02")
 font_size = 18
 
@@ -60,7 +60,7 @@ anchor_bottom = 0.125
 offset_right = 0.0
 offset_bottom = 0.0
 text = "WINDOW"
-label_settings = SubResource("LabelSettings_kjf6e")
+label_settings = SubResource("LabelSettings_mas8h")
 horizontal_alignment = 1
 vertical_alignment = 1
 font_size = 18

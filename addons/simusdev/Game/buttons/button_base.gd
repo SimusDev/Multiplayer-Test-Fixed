@@ -14,11 +14,28 @@ extends SD_UIButton
 @export var MODULATE_POINTED := Color(0.8, 0.8, 0.8, 1.0)
 @export var MODULATE_PRESSED := Color(0.5, 0.5, 0.5, 1.0)
 
+@export_group("Audio")
+@export var audio_streams: Array[AudioStream] = []
+@export var audio_bus: String = "Master"
+
 @export_group("references")
 @export var _label: SD_Label
+@export var _audioplayer: SD_NodeAudioPlayer
 
 func _ready() -> void:
 	super()
+	
+	_audioplayer.default_bus = audio_bus
+	pressed.connect(_on_button_pressed)
+	
+
+func _on_button_pressed() -> void:
+	if audio_streams.is_empty():
+		return
+	
+	var picked_stream: AudioStream = audio_streams.pick_random()
+	if picked_stream:
+		_audioplayer.create(picked_stream).play()
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

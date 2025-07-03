@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://iwil0srdra6x"]
+[gd_scene load_steps=5 format=3 uid="uid://iwil0srdra6x"]
 
 [ext_resource type="Script" uid="uid://d3hl1o8xonbst" path="res://addons/simusdev/Game/buttons/button_base.gd" id="1_gw2n8"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_2qbhj"]
+[ext_resource type="Script" uid="uid://08xtpu1i0me3" path="res://addons/simusdev/audio/SD_NodeAudioPlayer.gd" id="3_ccfcg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3iksd"]
 
-[node name="button_base" type="Button" node_paths=PackedStringArray("_label")]
+[node name="button_base" type="Button" node_paths=PackedStringArray("_label", "_audioplayer")]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 157.0
 offset_bottom = 51.0
@@ -13,6 +14,7 @@ focus_mode = 0
 script = ExtResource("1_gw2n8")
 label_text = "button_base"
 _label = NodePath("SD_Label")
+_audioplayer = NodePath("SD_NodeAudioPlayer")
 
 [node name="SD_Label" type="Label" parent="."]
 layout_mode = 1
@@ -28,3 +30,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 script = ExtResource("2_2qbhj")
+
+[node name="SD_NodeAudioPlayer" type="Node" parent="."]
+script = ExtResource("3_ccfcg")
+metadata/_custom_type_script = "uid://08xtpu1i0me3"
