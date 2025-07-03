@@ -24,6 +24,18 @@ class_name SD_EngineSettings
 	"gd_print": true,
 }
 
+@export var audio: Dictionary[String, Variant] = {
+	"bus_volume_min": 0.0,
+	"bus_volume_max": 1.0,
+}
+
+@export var popups: Dictionary[String, Variant] = {
+	"base_path": "res://popups/%.tscn",
+	"canvas_layer": 16,
+}
+
+@export var popups_default_animations: Array[SD_PopupAnimationResource] = []
+
 @export var commands: SD_ConsoleNodeCommandObjectStorage
 @export var tools: Array[PackedScene] = []
 

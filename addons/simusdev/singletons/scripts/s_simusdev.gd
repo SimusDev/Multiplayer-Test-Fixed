@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION: String = "4.1"
+const VERSION: String = "4.11"
 
 signal on_notification(what: int)
 
@@ -25,6 +25,7 @@ var tools := SD_TrunkTools.new()
 
 var ui := SD_TrunkUI.new()
 var cursor := SD_TrunkCursor.new()
+var popups := SD_TrunkPopups.new()
 
 var multiplayerAPI: SD_MultiplayerSingleton
 var network: SD_NetworkSingleton
@@ -74,6 +75,7 @@ func _ready() -> void:
 	
 	ui._ready()
 	cursor._ready()
+	popups._ready()
 	
 	multiplayerAPI = SD_MultiplayerSingleton.new()
 	multiplayerAPI.tree_entered.connect(

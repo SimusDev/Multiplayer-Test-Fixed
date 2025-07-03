@@ -12,8 +12,8 @@ signal focused_out()
 func _ready() -> void:
 	var console: SD_TrunkConsole = SimusDev.console
 	var _commands: Array[SD_ConsoleCommand] = [
-		console.create_command("window.mode", ProjectSettings.get_setting("display/window/size/mode")),
-		console.create_command("window.vsync", ProjectSettings.get_setting("display/window/vsync/vsync_mode"))
+		console.create_command("window.mode", ProjectSettings.get_setting("display/window/size/mode")).number_set_min_max_value(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED, DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN),
+		console.create_command("window.vsync", ProjectSettings.get_setting("display/window/vsync/vsync_mode")).number_set_min_max_value(DisplayServer.VSyncMode.VSYNC_DISABLED, DisplayServer.VSyncMode.VSYNC_MAILBOX)
 		
 	]
 	
@@ -44,6 +44,14 @@ func set_mode(mode: int) -> void:
 	_mode = mode
 	update_mode()
 	
+
+func set_fullscreen(fullscreen: bool = true) -> void:
+	var cmd: SD_ConsoleCommand = SimusDev.console.get_command_by_code("window.mode")
+	
+	if fullscreen:
+		cmd.set_value(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		cmd.set_value(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func set_vsync_mode(mode: int) -> void:
 	DisplayServer.window_set_vsync_mode(mode)

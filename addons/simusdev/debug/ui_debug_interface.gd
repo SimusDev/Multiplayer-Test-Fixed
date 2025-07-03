@@ -6,9 +6,12 @@ extends CanvasLayer
 
 var _debug_interface_instance: CanvasLayer = null
 
+@onready var _sd_label_fps_debug: SD_LabelFPSDebug = $SD_LabelFPSDebug
+
 func _ready() -> void:
 	var commands: Array[SD_ConsoleCommand] = [
-		console.create_command("debug.interface", false)
+		console.create_command("debug.interface", false),
+		console.create_command("fps.show", false)
 	]
 	
 	for cmd in commands:
@@ -28,3 +31,5 @@ func _on_command_updated(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():
 		"debug.interface":
 			_update_debug_interface(cmd)
+		"fps.show":
+			_sd_label_fps_debug.visible = cmd.get_value_as_bool()

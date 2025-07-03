@@ -17,28 +17,28 @@ func _init(bus_id: int) -> void:
 	
 	#console.write_from_object(self, "initialized!", SD_ConsoleCategories.CATEGORY.SUCCESS)
 	
-	_cmd = console.create_command("bus.volume." + _name, AudioServer.get_bus_volume_db(bus_id))
-	_cmd.updated.connect(_on_cmd_updated)
+	_cmd = console.create_command("volume." + _name, db_to_linear(AudioServer.get_bus_volume_db(bus_id)))
 	
+	var settings: Dictionary = SimusDev.get_settings().audio
+	_cmd.number_set_min_max_value(settings.bus_volume_min, settings.bus_volume_max)
+	
+	_cmd.updated.connect(_on_cmd_updated)
 	_on_cmd_updated()
 
 func _on_cmd_updated() -> void:
-	AudioServer.set_bus_volume_db(get_id(), get_volume_db())
-
-func set_volume_db(volumedb: float) -> void:
-	_cmd.set_value(volumedb)
-
-func get_volume_db() -> float:
-	return _cmd.get_value_as_float()
+	AudioServer.set_bus_volume_db(get_id(), linear_to_db(get_volume()))
 
 func set_volume(volume: float) -> void:
-	set_volume_db(linear_to_db(volume))
+	_cmd.set_value(volume)
 
 func get_volume() -> float:
-	return db_to_linear(get_volume_db())
+	return _cmd.get_value_as_float()
 
 func get_id() -> int:
 	return _id
 
 func get_name() -> String:
 	return _name
+
+func get_command() -> SD_ConsoleCommand:
+	return _cmd

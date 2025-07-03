@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://4u30cq7ft1tx"]
+[gd_scene load_steps=6 format=3 uid="uid://4u30cq7ft1tx"]
 
 [ext_resource type="Script" uid="uid://1ivhe7qls3kp" path="res://addons/simusdev/debug/ui_debug_interface.gd" id="1_wmtp2"]
 [ext_resource type="PackedScene" uid="uid://dkh4hy3p6qq74" path="res://addons/simusdev/debug/ui_interface.tscn" id="2_htiw4"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_wcort"]
+[ext_resource type="Script" uid="uid://4ch8u8wq8ibm" path="res://addons/simusdev/localization/SD_LabelFPSDebug.gd" id="3_wmtp2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wcort"]
+font = ExtResource("3_wcort")
+font_size = 21
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ui_debug_interface" type="CanvasLayer"]
 layer = 128
 script = ExtResource("1_wmtp2")
 debug_interface_scene = ExtResource("2_htiw4")
+
+[node name="SD_LabelFPSDebug" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 329.0
+offset_bottom = 25.0
+text = "FPS: 144.0"
+label_settings = SubResource("LabelSettings_wcort")
+script = ExtResource("3_wmtp2")
+metadata/_custom_type_script = "uid://4ch8u8wq8ibm"
