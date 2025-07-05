@@ -28,8 +28,8 @@ func _on_quit_pressed() -> void:
 func _on_settings_pressed() -> void:
 	slike_popups.open_base_path("settings", menu)
 
-func _on_host_pressed() -> void:
-	slike_popups.open_base_path("host", menu)
+func _on_start_game_pressed() -> void:
+	slike_popups.open_base_path("start_game", menu)
 
 func _on_connect_pressed() -> void:
 	slike_popups.open_base_path("connect", menu)

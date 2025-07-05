@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgooh43spfet7"]
+
+[ext_resource type="Script" uid="uid://cttmowv0xv2e0" path="res://addons/simusdev/subviewport/SD_SubViewport.gd" id="1_1m1xg"]
+[ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="1_vwr10"]
+
+[node name="SD_SubViewport" type="SubViewport"]
+size = Vector2i(64, 64)
+script = ExtResource("1_1m1xg")
+metadata/_custom_type_script = "uid://cttmowv0xv2e0"
+
+[node name="border" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_vwr10")

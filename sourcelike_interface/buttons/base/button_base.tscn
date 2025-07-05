@@ -9,8 +9,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="button_base" instance=ExtResource("1_r37rx")]
 script = ExtResource("2_6pa0w")
 label_text = "srcbutton"
-audio_streams = null
-audio_bus = null
+audio_bus = "Master"
 
 [node name="SD_Label" parent="." index="0"]
 text = "srcbutton"

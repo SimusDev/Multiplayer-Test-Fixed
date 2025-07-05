@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xxop7")
-buttons = [NodePath("VBoxContainer/host"), NodePath("VBoxContainer/connect"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit")]
+buttons = [NodePath("VBoxContainer/start_game"), NodePath("VBoxContainer/connect"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit")]
 buttons_ingame = [NodePath("VBoxContainer/continue"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit"), NodePath("VBoxContainer/quit_to_main_menu")]
 buttons_container = NodePath("VBoxContainer")
 
@@ -50,47 +50,36 @@ visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "CONTINUE"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
-[node name="host" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+[node name="start_game" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-label_text = "HOST"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
+label_text = "START GAME"
 
 [node name="connect" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "CONNECT"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="settings" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "SETTINGS"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="quit" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "QUIT"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="quit_to_main_menu" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "QUIT TO MENU"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="VBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/start_game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

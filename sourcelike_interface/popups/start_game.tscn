@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://82la0v53craw"]
+
+[ext_resource type="Script" uid="uid://cn4koh1kawkv4" path="res://sourcelike_interface/popups/scripts/start_game.gd" id="2_gxx3g"]
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="2_ri7yn"]
+[ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="3_61h68"]
+[ext_resource type="PackedScene" uid="uid://ckixh0ocyfgyg" path="res://commands/last_port.tscn" id="3_opad6"]
+[ext_resource type="PackedScene" uid="uid://cnems64x804he" path="res://commands/last_ip.tscn" id="4_00tsx"]
+[ext_resource type="PackedScene" uid="uid://cn1foipkrj278" path="res://commands/nickname.tscn" id="5_6vo6t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_opad6"]
+font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00tsx"]
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.288518, 0.288518, 0.288518, 1)
+corner_detail = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pga5e"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.288518, 0.288518, 0.288518, 1)
+corner_detail = 20
+anti_aliasing = false
+
+[node name="start_game" node_paths=PackedStringArray("start_btn") instance=ExtResource("2_ri7yn")]
+script = ExtResource("2_gxx3g")
+start_btn = NodePath("content/tab_container/host_btn")
+
+[node name="last_port" parent="." index="0" instance=ExtResource("3_opad6")]
+
+[node name="last_ip" parent="." index="1" instance=ExtResource("4_00tsx")]
+
+[node name="nickname" parent="." index="2" instance=ExtResource("5_6vo6t")]
+
+[node name="title" parent="head" index="2"]
+text = "START GAME"
+label_settings = SubResource("LabelSettings_opad6")
+
+[node name="vBoxContainer" type="VBoxContainer" parent="content/border" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="le_nickname" type="LineEdit" parent="content/border/vBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_00tsx")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
+placeholder_text = "NICKNAME"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="le_ip" type="LineEdit" parent="content/border/vBoxContainer" index="1"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
+placeholder_text = "IP"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="le_port" type="LineEdit" parent="content/border/vBoxContainer" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_00tsx")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
+placeholder_text = "PORT"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="host" parent="content/border/vBoxContainer" index="3" instance=ExtResource("3_61h68")]
+custom_minimum_size = Vector2(75, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+label_text = "HOST"
+
+[node name="connect" parent="content/border/vBoxContainer" index="4" instance=ExtResource("3_61h68")]
+visible = false
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+label_text = "CONNECT"
+
+[node name="host_btn" parent="content/tab_container" index="0" instance=ExtResource("3_61h68")]
+layout_mode = 2
+text = "host"
+label_text = "host"
+
+[node name="connect_btn" parent="content/tab_container" index="1" instance=ExtResource("3_61h68")]
+layout_mode = 2
+text = "connect"
+label_text = "connect"
+
+[connection signal="pressed" from="content/border/vBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="content/border/vBoxContainer/connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="content/tab_container/host_btn" to="." method="_on_host_btn_pressed"]
+[connection signal="pressed" from="content/tab_container/connect_btn" to="." method="_on_connect_btn_pressed"]
