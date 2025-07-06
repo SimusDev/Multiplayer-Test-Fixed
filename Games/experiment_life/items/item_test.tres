@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EL_ItemStack" load_steps=3 format=3 uid="uid://di2e6n8p8qvuj"]
+
+[ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="1_8lipk"]
+[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/experiment_life/components/inventory/EL_ItemStack.gd" id="1_bnvo3"]
+
+[resource]
+script = ExtResource("1_bnvo3")
+icon = ExtResource("1_8lipk")
+name = "шестерёнка епта"
+p_source_node_path = ""
+p_inventory_node_path = ""
+metadata/_custom_type_script = "uid://ca018ytdj1cv3"

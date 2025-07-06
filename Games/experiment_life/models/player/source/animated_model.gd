@@ -10,6 +10,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	visible = !is_multiplayer_authority()
+	
 	_movement_playback = get_tree_parameter("parameters/movement_sm/playback")
 	
 	#_movement.state_machine.transitioned.connect(_on_state_machine_transitioned)

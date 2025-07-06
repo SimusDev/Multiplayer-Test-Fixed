@@ -212,6 +212,7 @@ func _serialize_properties(node: Node, parsed_path: String, to_data: Dictionary)
 		properties[property] = SD_Multiplayer.serialize_var_into_packet(node.get(property))
 	
 	
+	
 
 func deserialize_node_data(data: Dictionary) -> Node:
 	var node: Node = null
@@ -239,7 +240,7 @@ func deserialize_node_data(data: Dictionary) -> Node:
 		if path.begins_with("/"):
 			parsed_path = path.erase(0)
 		
-		var ser_node: Node = node.get_node_or_null(parsed_path)
+		var ser_node: Node = node.get_node_or_null(parsed_path) 
 		if path == "@root":
 			ser_node = node
 		
@@ -248,7 +249,13 @@ func deserialize_node_data(data: Dictionary) -> Node:
 			for property in node_properties:
 				var packet: Dictionary = node_properties[property]
 				var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
-				ser_node.set(property, value)
+				
+				var node_property_value: Variant = ser_node.get(property)
+				if node_property_value is Array:
+					node_property_value.append_array(value)
+				if node_property_value is Dictionary:
+					node_property_value.merge(value, true)
+				
 		
 	
 	return node
