@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bydsgtx61il6h"
+path.bptc="res://.godot/imported/half-_life_2_dr_isaac_kleiner_6.png-b24d5901b06e38e900c31d84ccb70edd.bptc.ctex"
+path.astc="res://.godot/imported/half-_life_2_dr_isaac_kleiner_6.png-b24d5901b06e38e900c31d84ccb70edd.astc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "c172436beff72d87266d03ed7320f02a"
+}
+
+[deps]
+
+source_file="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_6.png"
+dest_files=["res://.godot/imported/half-_life_2_dr_isaac_kleiner_6.png-b24d5901b06e38e900c31d84ccb70edd.bptc.ctex", "res://.godot/imported/half-_life_2_dr_isaac_kleiner_6.png-b24d5901b06e38e900c31d84ccb70edd.astc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=true
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

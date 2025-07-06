@@ -31,20 +31,6 @@ class_name SourceFootsteps extends SD_MPSyncedAudioStreamPlayer3D
 
 @export_category("Settings")
 @export var current_surface:String = "tile"
-@export var footsteps_rate:float = 2
-
-@export_group("References") 
-@export var footstep_timer = Timer.new()
-
-func _physics_process(_delta: float) -> void:
-	if player.velocity.length() > 1.0: footstep_timer.wait_time = footsteps_rate / player.velocity.length()
-
-func _ready() -> void:
-	add_child(footstep_timer)
-	footstep_timer.timeout.connect(_do_footstep)
-	footstep_timer.wait_time = footsteps_rate
-	footstep_timer.start()
-
 
 func _do_footstep():
 	if !get(current_surface) or !player.is_on_floor() or !player.velocity:
@@ -54,4 +40,4 @@ func _do_footstep():
 	var rand_idx = randi()% (get(current_surface).size() - 1)
 	stream = get(current_surface)[rand_idx]
 	
-	play_synced()
+	play()

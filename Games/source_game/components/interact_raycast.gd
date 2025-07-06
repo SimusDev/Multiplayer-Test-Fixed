@@ -15,7 +15,6 @@ func set_collider(_collider:Node3D):
 	
 	if !_collider: return
 
-	object_info._update(_collider)
 
 func _process(_delta: float) -> void:
 	set_collider(get_collider())
