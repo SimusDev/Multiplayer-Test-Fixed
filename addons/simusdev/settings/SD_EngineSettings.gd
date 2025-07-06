@@ -20,6 +20,7 @@ class_name SD_EngineSettings
 
 @export var console: Dictionary[String, Variant] = {
 	"enabled": true,
+	"enabled_desktop_override": true,
 	"disable_on_release": true,
 	"gd_print": true,
 }
@@ -30,11 +31,25 @@ class_name SD_EngineSettings
 }
 
 @export var popups: Dictionary[String, Variant] = {
-	"base_path": "res://popups/%.tscn",
+	"enabled": true,
+	"base_path": "res://popups/%s.tscn",
 	"canvas_layer": 16,
 }
 
+@export var localization: Dictionary[String, Variant] = {
+	"enabled": true
+}
+
+@export var localization_flags: Dictionary[String, Texture] = {
+	
+}
+
+@export var localization_language_unique_name: Dictionary[String, String] = {
+	
+}
+
 @export var popups_default_animations: Array[SD_PopupAnimationResource] = []
+@export var popups_container: SD_PopupContainerResource
 
 @export var commands: SD_ConsoleNodeCommandObjectStorage
 @export var tools: Array[PackedScene] = []

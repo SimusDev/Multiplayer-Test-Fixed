@@ -10,10 +10,15 @@ class_name SD_NodeSceneLoader
 var _is_loading: bool = false
 var _current_path: String = ""
 
+var _loaded_scene: PackedScene
+
 signal loading_finished(packed_scene: PackedScene)
 signal loading_progress(progress_percents: float)
 signal loading_failed()
 signal loading_invalid_resource()
+
+func get_loaded_scene() -> PackedScene:
+	return _loaded_scene
 
 func _ready() -> void:
 	if LOAD_AT_START:
@@ -36,6 +41,7 @@ func _process(delta: float) -> void:
 	if status == ResourceLoader.THREAD_LOAD_LOADED:
 		_is_loading = false
 		var loaded: PackedScene = ResourceLoader.load_threaded_get(_current_path)
+		_loaded_scene = loaded
 		loading_finished.emit(loaded)
 		
 		if CHANGE_SCENE_AFTER_LOAD:

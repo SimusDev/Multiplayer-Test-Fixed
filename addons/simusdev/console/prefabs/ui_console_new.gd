@@ -21,9 +21,15 @@ func _ready() -> void:
 	
 	
 	var enabled: bool = SimusDev.get_settings().console.enabled
+	if !enabled:
+		return
+	
 	
 	if SD_Platforms.is_release_build():
 		enabled = not SimusDev.get_settings().console.disable_on_release
+	
+	if SD_Platforms.is_pc():
+		enabled = SimusDev.get_settings().console.enabled_desktop_override
 	
 	set_process_input(enabled)
 	if not enabled:

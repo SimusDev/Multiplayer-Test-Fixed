@@ -6,6 +6,7 @@ class_name SD_RichTextLabel
 @export var localization_enabled: bool = false : set = set_localization_enabled, get = get_localization_enabled
 @export var localization_key: String = "" : set = set_localization_key, get = get_localization_key
 @export_multiline var localization_placeholder: String = "" : set = set_localization_placeholder, get = get_localization_placeholder
+@export var format: Array[String] = [] : set = set_format
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -42,10 +43,21 @@ func get_localization_enabled() -> bool:
 func get_localization_placeholder() -> String:
 	return localization_placeholder
 
+func set_format(new_format: Array[String]) -> void:
+	format = new_format
+	update_localization()
+
 func update_localization() -> void:
 	if localization_enabled:
 		if Engine.is_editor_hint():
-			text = localization_placeholder
+			if format.is_empty():
+				text = localization_placeholder
+			else:
+				text = localization_placeholder % format
 			return
 		
-		text = get_localization().get_text_from_key(localization_key)
+		var text_key: String = get_localization().get_text_from_key(localization_key)
+		if format.is_empty():
+			text = text_key
+		else:
+			text = text_key % format

@@ -15,6 +15,29 @@ signal interface_closed(node: Node)
 
 @onready var _ui: SD_TrunkUI = SimusDev.ui
 
+static func find_in(node: Node) -> SD_UIInterfaceMenu:
+	if node.has_meta("SD_UIInterfaceMenu"):
+		return node.get_meta("SD_UIInterfaceMenu") as SD_UIInterfaceMenu
+	return null
+
+static func find_or_create(node: Node) -> SD_UIInterfaceMenu:
+	if node.has_meta("SD_UIInterfaceMenu"):
+		return node.get_meta("SD_UIInterfaceMenu") as SD_UIInterfaceMenu
+	
+	for child in node.get_children():
+		if child is SD_UIInterfaceMenu:
+			return child
+	
+	var interface: SD_UIInterfaceMenu = SD_UIInterfaceMenu.new()
+	node.set_meta("SD_UIInterfaceMenu", interface)
+	return interface
+	
+
+func _enter_tree() -> void:
+	if !target:
+		target = get_parent()
+	target.set_meta("SD_UIInterfaceMenu", self)
+
 func _ready() -> void:
 	_ui.interface_opened.connect(_on_interface_opened_)
 	_ui.interface_closed.connect(_on_interface_closed_)
@@ -23,6 +46,8 @@ func _ready() -> void:
 	
 	if open_at_start:
 		open()
+	
+	if center_at_start:
 		center()
 
 func _exit_tree() -> void:

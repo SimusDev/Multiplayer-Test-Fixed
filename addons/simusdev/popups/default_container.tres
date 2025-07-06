@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SD_PopupContainerResource" load_steps=3 format=3 uid="uid://cypylva3tt7q4"]
+
+[ext_resource type="Script" uid="uid://7pcjhosfggyf" path="res://addons/simusdev/popups/SD_PopupContainerResource.gd" id="1_1ka3e"]
+[ext_resource type="PackedScene" uid="uid://hbvv10q5bmp5" path="res://addons/simusdev/popups/animation/fade.tscn" id="1_p4qfj"]
+
+[resource]
+script = ExtResource("1_1ka3e")
+content_behind = Array[PackedScene]([ExtResource("1_p4qfj")])
+content_front = Array[PackedScene]([])
+metadata/_custom_type_script = "uid://7pcjhosfggyf"

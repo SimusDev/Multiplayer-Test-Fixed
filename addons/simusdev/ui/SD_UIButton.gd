@@ -4,6 +4,8 @@ class_name SD_UIButton
 
 var _is_mouse_pointed: bool = false
 
+signal mouse_pointed(pointed: bool)
+
 func _ready() -> void:
 	mouse_entered.connect(_set_mouse_pointed.bind(true))
 	mouse_exited.connect(_set_mouse_pointed.bind(false))
@@ -13,10 +15,8 @@ func _ready() -> void:
 		
 
 func _set_mouse_pointed(value: bool) -> void:
-	if not SD_Platforms.is_pc():
-		return
-	
 	_is_mouse_pointed = value
+	mouse_pointed.emit(value)
 	
 
 func is_mouse_pointed() -> bool:

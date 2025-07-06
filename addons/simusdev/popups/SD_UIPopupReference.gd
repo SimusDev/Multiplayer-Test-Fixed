@@ -8,6 +8,9 @@ var _parent: Node
 var _source: Control
 var _animation: SD_UIPopupAnimation
 var _animation_resource: SD_PopupAnimationResource
+var _interface: SD_UIInterfaceMenu
+
+var _container: SD_UIPopupContainer
 
 var ui: SD_TrunkUI
 
@@ -19,10 +22,20 @@ signal state_enter(state: STATE)
 signal state_exit(state: STATE)
 signal state_transitioned(state: STATE)
 
+signal on_open()
+signal on_opened()
+
+signal on_close()
+signal on_closed()
+
 enum STATE {
+	OPEN,
 	OPENING,
+	OPENED,
 	IDLE,
+	CLOSE,
 	CLOSING,
+	CLOSED,
 }
 
 func get_state() -> STATE:
@@ -50,15 +63,34 @@ func _enter_tree() -> void:
 func get_source() -> Control:
 	return _source
 
+func get_container() -> SD_UIPopupContainer:
+	return _container
+
+func close() -> void:
+	switch_state(STATE.CLOSE)
+
+func open() -> void:
+	switch_state(STATE.OPEN)
+
 func get_animation() -> SD_UIPopupAnimation:
 	return _animation
 
+func get_interface() -> SD_UIInterfaceMenu:
+	return _interface
+
+func set_animation_resource(resource: SD_PopupAnimationResource) -> SD_UIPopupReference:
+	_animation_resource = resource
+	
+	if _animation:
+		_animation.animation = resource
+	
+	return self
+
+func get_animation_resource() -> SD_PopupAnimationResource:
+	return _animation_resource
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
-func _exit_tree() -> void:
-	if is_instance_valid(ui):
-		ui.close_interface(self)
 
 func instantiate() -> SD_UIPopupReference:
 	if _instantiated:
@@ -70,8 +102,12 @@ func instantiate() -> SD_UIPopupReference:
 	_animation.reference = self
 	self.add_child(_animation)
 	
-	_parent.add_child(_source)
-	ui.open_interface(self)
+	
+	var container_resource: SD_PopupContainerResource = SimusDev.popups.get_container_resource()
+	_container = SD_UIPopupContainer.create(container_resource, self)
+
+	_container.popups_holder.add_child(_source)
+	_parent.add_child(_container)
 	
 	_instantiated = true
 	return self
@@ -86,9 +122,18 @@ static func create(parent: Node, source: Control, animation: SD_PopupAnimationRe
 	reference._parent = parent
 	reference._animation_resource = animation
 	
+	
 	source.set_meta("SD_UIPopupReference", reference)
 	
-	if not (reference in source.get_children()):
+	var interface: SD_UIInterfaceMenu = SD_UIInterfaceMenu.find_or_create(source)
+	reference._interface = interface
+	interface.target = source
+	interface.center_at_start = true
+	interface.open_at_start = true
+	if not interface in source.get_children():
+		source.add_child(interface)
+	
+	if not reference in source.get_children():
 		source.add_child(reference)
 	return reference
 	

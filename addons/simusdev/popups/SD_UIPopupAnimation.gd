@@ -7,16 +7,86 @@ var animation: SD_PopupAnimationResource
 
 var _player: AnimationPlayer
 
+var container_resource: SD_PopupContainerResource
+
 func _ready() -> void:
-	if not animation:
-		return
+	container_resource = reference.get_container().resource
+	var default_animations: Array[SD_PopupAnimationResource] = SimusDev.get_settings().popups_default_animations
+	if default_animations.is_empty():
+		animation = SimusDev.popups.get_default_animation_resource()
+	else:
+		animation = default_animations.pick_random()
+	
+	reference.state_transitioned.connect(_on_state_transitioned)
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	var library: AnimationLibrary = AnimationLibrary.new()
-	library.add_animation("open", animation.open)
-	library.add_animation("close", animation.close)
+	if animation:
+		var library: AnimationLibrary = AnimationLibrary.new()
+		library.add_animation("open", animation.open)
+		library.add_animation("close", animation.close)
+		
+		_player = AnimationPlayer.new()
+		_player.process_mode = Node.PROCESS_MODE_ALWAYS
+		_player.add_animation_library("", library)
+		
+		_player.ready.connect(_on_player_ready)
+		reference.get_container().popups_holder.add_child.call_deferred(_player)
+
+func _player_play_animation(anim_name: String) -> void:
+	if not _player:
+		return
 	
-	_player = AnimationPlayer.new()
-	_player.add_animation_library("lib", library)
-	add_child(_player)
+	_player.stop()
+	_player.play(anim_name)
+	
+func _on_player_ready() -> void:
+	_player.animation_finished.connect(_on_player_animation_finished)
+	reference.switch_state(SD_UIPopupReference.STATE.OPEN)
+
+func _on_player_animation_finished(animation: String) -> void:
+	match animation:
+		"open":
+			reference.switch_state(SD_UIPopupReference.STATE.OPENED)
+		"close":
+			reference.switch_state(SD_UIPopupReference.STATE.CLOSED)
+
+func _on_state_transitioned(state: SD_UIPopupReference.STATE) -> void:
+	match state:
+		SD_UIPopupReference.STATE.OPEN:
+			if container_resource.manage_popup_process_mode:
+				reference.get_source().process_mode = Node.PROCESS_MODE_DISABLED
+			
+			_player_play_animation("open")
+			reference.switch_state(SD_UIPopupReference.STATE.OPENING)
+			reference.on_open.emit()
+			
+		SD_UIPopupReference.STATE.OPENING:
+			if not _player:
+				reference.switch_state(SD_UIPopupReference.STATE.OPENED)
+			
+		SD_UIPopupReference.STATE.OPENED:
+			reference.switch_state(SD_UIPopupReference.STATE.IDLE)
+			reference.on_opened.emit()
+			
+		SD_UIPopupReference.STATE.IDLE:
+			if container_resource.manage_popup_process_mode:
+				reference.get_source().process_mode = Node.PROCESS_MODE_INHERIT
+			
+		SD_UIPopupReference.STATE.CLOSE:
+			if container_resource.manage_popup_process_mode:
+				reference.get_source().process_mode = Node.PROCESS_MODE_DISABLED
+			
+			_player_play_animation("close")
+			reference.switch_state(SD_UIPopupReference.STATE.CLOSING)
+			reference.on_close.emit()
+			
+		SD_UIPopupReference.STATE.CLOSING:
+			if not _player:
+				reference.switch_state(SD_UIPopupReference.STATE.CLOSED)
+			
+			
+		SD_UIPopupReference.STATE.CLOSED:
+			reference.on_closed.emit()
+			reference.get_container().queue_free()
+			

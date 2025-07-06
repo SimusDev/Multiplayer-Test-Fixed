@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SD_PopupAnimationResource" load_steps=4 format=3 uid="uid://c5hv631ywb8vo"]
+
+[ext_resource type="Animation" uid="uid://b7hv3bjruvhyp" path="res://addons/simusdev/popups/animation/close.res" id="1_2q2tp"]
+[ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="1_dgvoa"]
+[ext_resource type="Animation" uid="uid://dvdidg1t2thob" path="res://addons/simusdev/popups/animation/open.res" id="2_6mjia"]
+
+[resource]
+script = ExtResource("1_dgvoa")
+open = ExtResource("2_6mjia")
+close = ExtResource("1_2q2tp")
+audio_open = Array[AudioStream]([])
+audio_close = Array[AudioStream]([])
+metadata/_custom_type_script = "uid://bpr665ltjd8ed"
