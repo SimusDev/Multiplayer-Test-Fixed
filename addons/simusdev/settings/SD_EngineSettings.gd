@@ -23,6 +23,7 @@ class_name SD_EngineSettings
 	"enabled_desktop_override": true,
 	"disable_on_release": true,
 	"gd_print": true,
+	"hide_private_commands": true,
 }
 
 @export var audio: Dictionary[String, Variant] = {
@@ -30,10 +31,17 @@ class_name SD_EngineSettings
 	"bus_volume_max": 1.0,
 }
 
+@export var ui: Dictionary[String, Variant] = {
+	"dynamic_size_min": 0.5,
+	"dynamic_size_max": 1.0,
+}
+
 @export var popups: Dictionary[String, Variant] = {
 	"enabled": true,
+	"apply_ui_dynamic_size": true,
 	"base_path": "res://popups/%s.tscn",
 	"canvas_layer": 16,
+	"input": "ui_cancel",
 }
 
 @export var localization: Dictionary[String, Variant] = {

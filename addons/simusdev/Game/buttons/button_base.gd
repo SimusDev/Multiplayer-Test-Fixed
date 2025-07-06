@@ -42,6 +42,9 @@ func __on_button_pressed() -> void:
 		_audioplayer.create(picked_stream).play()
 
 func __on_mouse_pointed(value: bool) -> void:
+	if !value:
+		return
+	
 	if audio_streams_point.is_empty():
 		return
 	

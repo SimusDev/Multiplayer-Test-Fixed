@@ -91,5 +91,9 @@ func close(interface: CanvasItem = target) -> void:
 func center() -> void:
 	if target is Control:
 		var center_pos: Vector2 = SimusDev.canvas.get_canvas_center_node().position
-		center_pos -= target.get_global_rect().size / 2
+		center_pos -= (target.size * target.scale) / 2
 		target.position = center_pos
+
+func center_if_can() -> void:
+	if center_at_start:
+		center()

@@ -37,7 +37,7 @@ func get_tool_canvas() -> CanvasLayer:
 func register_tool(scene_path: String) -> void:
 	var scene: PackedScene = load(scene_path)
 	if scene:
-		var tool: String = scene_path.get_basename().get_file()
+		var tool: String = scene_path.get_basename()
 		_available_tools[tool] = scene_path
 		console.write_from_object(self, "TOOL REGISTERED!: %s; USE tools.open %s FOR OPEN THE INTERFACE!" % [tool, tool], SD_ConsoleCategories.CATEGORY.WARNING)
 	else:
@@ -49,7 +49,7 @@ func unregister_tool(tool: String) -> void:
 		_available_tools.erase(tool)
 
 func unregister_tool_from_scene(scene: PackedScene) -> void:
-	unregister_tool(scene.resource_path.get_basename().get_file())
+	unregister_tool(scene.resource_path.get_basename())
 
 func register_tool_from_scene(scene: PackedScene) -> void:
 	register_tool(scene.resource_path)

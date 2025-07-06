@@ -23,6 +23,9 @@ var _number_max_value: float = 0
 signal updated()
 signal executed()
 
+static func get_or_create(code: String, value: Variant = "") -> SD_ConsoleCommand:
+	return SimusDev.console.create_command(code, value)
+
 func number_get_min_value() -> float:
 	return _number_min_value
 

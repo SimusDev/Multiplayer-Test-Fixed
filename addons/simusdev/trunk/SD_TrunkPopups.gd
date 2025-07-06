@@ -14,6 +14,13 @@ var _container_resource: SD_PopupContainerResource
 
 var _s_class: SD_Popups
 
+signal on_open(popup: SD_UIPopupReference)
+signal on_close(popup: SD_UIPopupReference)
+
+var _input: SD_NodeInput
+
+var _input_key: String
+
 func get_active() -> Array[SD_UIPopupReference]:
 	return _active
 
@@ -40,7 +47,26 @@ func _ready() -> void:
 	SimusDev.add_child(_canvas)
 	_canvas.name = "Popups"
 	
+	if not str(settings.get("input", "")).is_empty():
+		_input = SD_NodeInput.new()
+		_canvas.add_child(_input)
+		_input.name = "input"
+		
+		_input.on_input.connect(_on_input)
+		
 	_s_class = SD_Popups.new(self)
+
+func _on_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(settings.get("input", "ui_cancel")):
+		close_last_active()
+
+func close_last_active() -> void:
+	if _active.is_empty():
+		return
+	
+	var last: SD_UIPopupReference = _active[_active.size() - 1]
+	if last:
+		last.close()
 
 func get_default_animation_resource() -> SD_PopupAnimationResource:
 	return _default_animation

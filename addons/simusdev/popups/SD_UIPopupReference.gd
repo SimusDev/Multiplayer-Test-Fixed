@@ -61,10 +61,17 @@ func _enter_tree() -> void:
 		_source.set_meta("SD_UIPopupReference", self)
 
 func get_source() -> Control:
-	return _source
+	if _source:
+		return _source
+	return root
 
 func get_container() -> SD_UIPopupContainer:
 	return _container
+
+func get_popups_holder() -> SD_UIPopupsHolder:
+	if _container:
+		return _container.popups_holder
+	return null
 
 func close() -> void:
 	switch_state(STATE.CLOSE)
@@ -90,10 +97,32 @@ func get_animation_resource() -> SD_PopupAnimationResource:
 	return _animation_resource
 
 func _ready() -> void:
+	ui = SimusDev.ui
+	
+	if not root:
+		root = get_parent()
+	
+	_create_animation()
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	if SimusDev.get_settings().popups.get("apply_ui_dynamic_size", true) == true:
+		ui.command_dynamic_size.updated.connect(_on_command_dynamic_size_updated.bind(ui.command_dynamic_size))
+		_on_command_dynamic_size_updated(ui.command_dynamic_size)
+		
+		if _interface:
+			_interface.center_if_can()
 
-func instantiate() -> SD_UIPopupReference:
-	if _instantiated:
+func _on_command_dynamic_size_updated(cmd: SD_ConsoleCommand) -> void:
+	if !get_popups_holder():
+		return
+	
+	get_popups_holder().scale = Vector2(cmd.get_value_as_float(), cmd.get_value_as_float())
+	
+
+
+func _create_animation() -> void:
+	if _animation:
 		return
 	
 	_animation = SD_UIPopupAnimation.new()
@@ -101,7 +130,12 @@ func instantiate() -> SD_UIPopupReference:
 	_animation.animation = _animation_resource
 	_animation.reference = self
 	self.add_child(_animation)
+
+func instantiate() -> SD_UIPopupReference:
+	if _instantiated:
+		return
 	
+	_create_animation()
 	
 	var container_resource: SD_PopupContainerResource = SimusDev.popups.get_container_resource()
 	_container = SD_UIPopupContainer.create(container_resource, self)
