@@ -8,7 +8,7 @@ class_name SD_MPPlayerSpawner
 @export var spawn_points: Array[Node]
 
 var singleton: SD_MultiplayerSingleton
-var spawner: SD_MPClientNodeSpawner
+@export var spawner: SD_MPClientNodeSpawner
 
 var _players: Dictionary[SD_MultiplayerPlayer, Node] = {}
 
@@ -25,11 +25,13 @@ func is_server() -> bool:
 
 func _ready() -> void:
 	singleton = SD_Multiplayer.get_singleton()
-	spawner = SD_MPClientNodeSpawner.new()
-	spawner.start_name = "spawner"
-	spawner.detect_roots.append(parent)
-	spawner.spawn_list.append(player_scene)
-	add_child(spawner)
+	
+	if not spawner:
+		spawner = SD_MPClientNodeSpawner.new()
+		spawner.start_name = "spawner"
+		spawner.detect_roots.append(parent)
+		spawner.spawn_list.append(player_scene)
+		add_child(spawner)
 	
 	if is_server():
 		singleton.player_connected.connect(_on_server_player_connected)
