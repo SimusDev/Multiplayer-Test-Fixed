@@ -49,9 +49,17 @@ func set_fullscreen(fullscreen: bool = true) -> void:
 	var cmd: SD_ConsoleCommand = SimusDev.console.get_command_by_code("window.mode")
 	
 	if fullscreen:
-		cmd.set_value(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		cmd.set_value(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		cmd.set_value(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func set_vsync(vsync: bool = true) -> void:
+	var cmd: SD_ConsoleCommand = SimusDev.console.get_command_by_code("window.vsync")
+	
+	if vsync:
+		cmd.set_value(DisplayServer.VSYNC_ENABLED)
+	else:
+		cmd.set_value(DisplayServer.VSYNC_DISABLED)
 
 func set_vsync_mode(mode: int) -> void:
 	DisplayServer.window_set_vsync_mode(mode)

@@ -10,27 +10,41 @@ game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
 "create_singleton": true,
-"enabled": false,
+"enabled": true,
 "pause_when_ad_show": true
 })
 game = Dictionary[String, Variant]({
 "minimize_feature": false,
-"minimize_feature_on_release": false,
+"minimize_feature_on_release": true,
 "mute_audio_when_minimized": true,
 "pause_when_minimized": false
 })
 console = Dictionary[String, Variant]({
-"disable_on_release": false,
+"disable_on_release": true,
 "enabled": true,
-"gd_print": true
+"enabled_desktop_override": true,
+"gd_print": true,
+"hide_private_commands": true
 })
 audio = Dictionary[String, Variant]({
 "bus_volume_max": 1.0,
 "bus_volume_min": 0.0
 })
-popups = Dictionary[String, Variant]({
-"base_path": "res://popups/%.tscn",
-"canvas_layer": 16
+ui = Dictionary[String, Variant]({
+"dynamic_size_max": 1.0,
+"dynamic_size_min": 0.5
 })
+popups = Dictionary[String, Variant]({
+"apply_ui_dynamic_size": true,
+"base_path": "res://popups/%s.tscn",
+"canvas_layer": 16,
+"enabled": true,
+"input": "ui_cancel"
+})
+localization = Dictionary[String, Variant]({
+"enabled": true
+})
+localization_flags = Dictionary[String, Texture]({})
+localization_language_unique_name = Dictionary[String, String]({})
 popups_default_animations = Array[ExtResource("1_xwjdh")]([])
 tools = Array[PackedScene]([])

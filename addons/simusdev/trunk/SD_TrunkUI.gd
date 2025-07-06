@@ -10,7 +10,15 @@ var _active_interfaces: Array[Node]
 
 const ACTION_CLOSE_MENU: String = "sd_ui_close_menu"
 
+var command_dynamic_size: SD_ConsoleCommand
+
 func _ready() -> void:
+	command_dynamic_size = SimusDev.console.create_command("ui.dynamic.size", 1.0)
+	var min: float = SimusDev.get_settings().ui.get("dynamic_size_min", 0.5)
+	var max: float = SimusDev.get_settings().ui.get("dynamic_size_max", 1.0)
+	
+	command_dynamic_size.number_set_min_max_value(min, max)
+	
 	InputMap.add_action(ACTION_CLOSE_MENU)
 	
 	var event: InputEventKey = InputEventKey.new()

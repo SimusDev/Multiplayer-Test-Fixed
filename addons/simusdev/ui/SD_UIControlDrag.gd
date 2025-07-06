@@ -45,7 +45,6 @@ func _ready():
 			if (_input is Control) and (_drag is Control):
 				apply_drag(_input, _drag)
 	
-	
 	update_zoom()
 #/////////////////////////////////////////////////////////////////
 
@@ -135,5 +134,5 @@ func _on_target_input(event: InputEvent):
 	
 	if event is InputEventMouseMotion:
 		if clicked:
-			_target_drag.position += event.relative * current_zoom
+			_target_drag.position += event.relative * _target_drag.scale
 	on_target_drag_input.emit(_target_drag)

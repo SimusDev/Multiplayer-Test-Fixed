@@ -16,6 +16,7 @@ extends SD_UIButton
 
 @export_group("Audio")
 @export var audio_streams: Array[AudioStream] = []
+@export var audio_streams_point: Array[AudioStream] = []
 @export var audio_bus: String = "Master"
 
 @export_group("references")
@@ -25,15 +26,29 @@ extends SD_UIButton
 func _ready() -> void:
 	super()
 	
-	_audioplayer.default_bus = audio_bus
-	pressed.connect(_on_button_pressed)
-	
+	if not Engine.is_editor_hint():
+		_audioplayer.default_bus = audio_bus
+		pressed.connect(__on_button_pressed)
+		
+		
+		mouse_pointed.connect(__on_mouse_pointed)
 
-func _on_button_pressed() -> void:
+func __on_button_pressed() -> void:
 	if audio_streams.is_empty():
 		return
 	
 	var picked_stream: AudioStream = audio_streams.pick_random()
+	if picked_stream:
+		_audioplayer.create(picked_stream).play()
+
+func __on_mouse_pointed(value: bool) -> void:
+	if !value:
+		return
+	
+	if audio_streams_point.is_empty():
+		return
+	
+	var picked_stream: AudioStream = audio_streams_point.pick_random()
 	if picked_stream:
 		_audioplayer.create(picked_stream).play()
 

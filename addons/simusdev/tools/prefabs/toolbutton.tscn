@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="3_w7oc4"]
 [ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="4_om07o"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_j83bt"]
+[sub_resource type="LabelSettings" id="LabelSettings_ir6kn"]
 font = ExtResource("3_w7oc4")
 font_size = 24
 
@@ -27,7 +27,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "TOOL"
-label_settings = SubResource("LabelSettings_j83bt")
+label_settings = SubResource("LabelSettings_ir6kn")
 horizontal_alignment = 1
 vertical_alignment = 1
 font_size = 24

@@ -8,8 +8,12 @@ var _console: SD_Console
 
 signal tip_selected(cmd: SD_ConsoleCommand)
 
+var _saved_messages: SD_ConsoleCommand
+
 func initialize(con: SD_Console) -> void:
 	_console = con
+	
+	_saved_messages = con.create_command("console.saved.messages", []).set_private()
 
 func clear_tips() -> void:
 	current_tip_index = -1
