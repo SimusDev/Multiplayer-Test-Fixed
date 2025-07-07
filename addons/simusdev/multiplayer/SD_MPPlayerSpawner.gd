@@ -32,8 +32,7 @@ func _ready() -> void:
 		spawner.spawn_list.append(player_scene)
 		add_child(spawner)
 	
-	if not spawner.detect_roots.has(parent):
-		spawner.detect_roots.append(parent)
+	spawner.add_detect_root(parent)
 	
 	if is_server():
 		singleton.player_connected.connect(_on_server_player_connected)
