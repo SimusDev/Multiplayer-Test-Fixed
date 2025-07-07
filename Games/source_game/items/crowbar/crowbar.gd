@@ -15,6 +15,8 @@ func _on_item_use():
 func impact():
 	var surface:String = "concrete"
 	
+	print(SourcePlayer.instance)
+	
 	if not is_instance_valid(SourcePlayer.instance):
 		print("Asdsdsdsd")
 		return
