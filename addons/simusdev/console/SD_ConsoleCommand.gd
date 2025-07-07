@@ -20,6 +20,8 @@ var _number_minmax_enabled: bool = false
 var _number_min_value: float = 0
 var _number_max_value: float = 0
 
+var _deinited: bool = false
+
 signal updated()
 signal executed()
 
@@ -69,12 +71,13 @@ func get_variant_type_string() -> String:
 	return _variant_type_string
 
 func deinit() -> void:
+	_deinited = true
 	_console.remove_command(self)
 
 func init(console: SD_Console, settings: SD_Settings, cmd_code: String, cmd_value: Variant) -> void:
 	_console = console
 	_settings = settings
-	_code = cmd_code
+	_code = cmd_code.replacen(" ", "")
 	_value = str(cmd_value)
 	if cmd_value == null:
 		_value = ""
@@ -159,6 +162,12 @@ func get_value_as_array() -> Array:
 	if parsed is Array:
 		return parsed
 	return []
+
+func get_value_as_dictionary() -> Dictionary:
+	var parsed: Variant = str_to_var(_value)
+	if parsed is Dictionary:
+		return parsed
+	return {}
 
 func get_value_as_vector2() -> Vector2:
 	var parsed: Variant = str_to_var("Vector2" + _value)

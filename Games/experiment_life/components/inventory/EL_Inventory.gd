@@ -2,8 +2,13 @@
 extends WG_Inventory
 class_name EL_Inventory
 
-@export var source: Node
+var _spawner: SD_MPClientNodeSpawner
 
-func _enter_tree() -> void:
-	if !source:
-		source = get_parent()
+func _ready() -> void:
+	super()
+	
+	_spawner = SD_MPClientNodeSpawner.new()
+	_spawner.start_name = "spawner"
+	_spawner.add_detect_root(self)
+	add_child(_spawner)
+	move_child(_spawner, 0)

@@ -4,6 +4,7 @@ class_name W_ComponentHealth
 
 signal died()
 signal health_changed()
+signal max_health_changed()
 
 @export var enabled: bool = true
 @export var target: Node
@@ -36,11 +37,15 @@ func set_max_health(points: float) -> void:
 	if not enabled:
 		return
 	
+	if max_health == points:
+		return
+	
 	max_health = points
 	
 	if Engine.is_editor_hint():
 		health = max_health
 	
+	max_health_changed.emit(max_health)
 
 func apply_damage(points: float) -> void:
 	if god_mode:

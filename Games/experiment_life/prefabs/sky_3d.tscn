@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbk7bp4f55jkr"]
+[gd_scene load_steps=21 format=3 uid="uid://bbk7bp4f55jkr"]
 
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_6bqv8"]
 [ext_resource type="Texture2D" uid="uid://c1vwcdcdvb74a" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/Milkyway.jpg" id="2_74f58"]
@@ -13,8 +13,9 @@
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="11_0upgm"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="12_2nqg6"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="13_lvng5"]
+[ext_resource type="Script" uid="uid://tn5ft48d70d" path="res://Games/experiment_life/scripts/sky3d.gd" id="14_4k2ao"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocb0p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4k2ao"]
 shader = ExtResource("1_6bqv8")
 shader_parameter/_sky_visible = true
 shader_parameter/_color_correction_params = Vector2(0, 1)
@@ -87,12 +88,12 @@ shader_parameter/_cumulus_clouds_mie_intensity = 1.0
 shader_parameter/_moon_matrix = Basis(0, -0.959302, 0.282381, -0.528112, 0.23979, 0.814615, -0.849174, -0.149129, -0.50662)
 shader_parameter/_deep_space_matrix = Basis(0.736043, 0.676935, -2.98023e-08, 0.186589, -0.202882, -0.961262, -0.650711, 0.70753, -0.275638)
 
-[sub_resource type="Sky" id="Sky_x42t2"]
-sky_material = SubResource("ShaderMaterial_ocb0p")
+[sub_resource type="Sky" id="Sky_44dsh"]
+sky_material = SubResource("ShaderMaterial_4k2ao")
 
-[sub_resource type="Environment" id="Environment_fbcvv"]
+[sub_resource type="Environment" id="Environment_mw6ga"]
 background_mode = 2
-sky = SubResource("Sky_x42t2")
+sky = SubResource("Sky_44dsh")
 ambient_light_source = 3
 ambient_light_color = Color(0.760107, 0.665286, 0.617772, 1)
 reflected_light_source = 2
@@ -132,7 +133,7 @@ mode = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [node name="Sky3D" type="WorldEnvironment"]
-environment = SubResource("Environment_fbcvv")
+environment = SubResource("Environment_mw6ga")
 camera_attributes = SubResource("CameraAttributesPractical_jvo7l")
 script = ExtResource("8_6uq0r")
 fog_enabled = false
@@ -172,3 +173,6 @@ total_hours = 8.0
 script = ExtResource("11_0upgm")
 properties = Array[ExtResource("12_2nqg6")]([SubResource("Resource_h015u"), SubResource("Resource_0upgm")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="script" type="Node" parent="."]
+script = ExtResource("14_4k2ao")
