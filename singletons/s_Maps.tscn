@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://133al35wsih6"]
+[gd_scene load_steps=3 format=3 uid="uid://133al35wsih6"]
 
 [ext_resource type="Script" uid="uid://dldaixrmmmmit" path="res://singletons/s_Maps.gd" id="1_reb5k"]
+[ext_resource type="Resource" uid="uid://38a1ca7sgp7d" path="res://dedicated_server.tres" id="2_jr467"]
 
 [node name="s_Maps" type="Node"]
 script = ExtResource("1_reb5k")
+dedicated_server = ExtResource("2_jr467")

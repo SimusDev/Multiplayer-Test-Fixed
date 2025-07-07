@@ -68,5 +68,11 @@ static func is_app_hint() -> bool:
 static func has_feature_editor() -> bool:
 	return OS.has_feature("editor")
 
+static func is_project_builded() -> bool:
+	if is_release_build():
+		return true
+	
+	return is_debug_build() and not has_feature_editor()
+
 static func has_debug_console_feature() -> bool:
 	return true

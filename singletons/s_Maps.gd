@@ -1,5 +1,6 @@
 extends Node
 
+@export var dedicated_server: R_DedicatedServer
 @export var PATH_TO_MAPS: String = "res://maps"
 
 var _map_list: Array[R_GameMap] = []
@@ -12,6 +13,11 @@ var server_ready: bool = false
 signal server_ready_recieved(status: bool, map: R_GameMap)
 
 func _ready() -> void:
+	if OS.has_feature("dedicated_server") or OS.has_feature("server"):
+		dedicated_server.enabled = true
+	
+	SD_Multiplayer.set_dedicated_server(dedicated_server.enabled)
+	
 	for path in SD_FileSystem.get_all_files_with_extension_from_directory(PATH_TO_MAPS, SD_FileExtensions.EC_RESOURCE):
 		var resource: Resource = load(path)
 		if resource is R_GameMap:
@@ -44,6 +50,8 @@ func server_change_map_to(map: R_GameMap) -> void:
 	if not map:
 		return
 	
+	_current_map = map
+	
 	SyncedData.set_data_value("current_map_code", map.code)
 	_change_map_rpc.rpc(map.code)
 
@@ -51,7 +59,7 @@ func set_current_map(map: R_GameMap) -> void:
 	_current_map = map
 
 func load_gameworld() -> void:
-	get_tree().change_scene_to_file("res://world/GameWorld.tscn")
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 @rpc("any_peer", "call_local")
 func _change_map_rpc(map_code: String) -> void:

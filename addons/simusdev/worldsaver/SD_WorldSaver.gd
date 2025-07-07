@@ -13,7 +13,7 @@ const EXTENSTION: String = ".tres"
 
 static func get_base_path() -> String:
 	if SD_Platforms.is_pc():
-		if SD_Platforms.is_release_build():
+		if SD_Platforms.is_project_builded():
 			return SD_FileSystem.normalize_path("runtime://.saves")
 		else:
 			return "res://.saves"

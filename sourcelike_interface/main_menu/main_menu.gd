@@ -13,6 +13,14 @@ func _ready() -> void:
 	else:
 		$SD_UIInterfaceMenu.open()
 		SimusDev.cursor.reset_mode()
+	
+	if not ingame:
+		if SD_Multiplayer.is_dedicated_server():
+			SimusDev.console.write_events("dedicated server is running...")
+			SimusDev.console.write_info("game name: %s" % Maps.dedicated_server.game_map.name)
+			
+			SD_Multiplayer.create_server(Maps.dedicated_server.port, true)
+			Maps.server_change_map_to(Maps.dedicated_server.game_map)
 
 func open() -> void:
 	$SD_UIInterfaceMenu.open()

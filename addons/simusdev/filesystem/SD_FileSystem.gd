@@ -31,7 +31,7 @@ static func normalize_path(path: String) -> String:
 		if SD_Platforms.is_windows():
 			result = result.replacen(PATH_USER, "")
 			
-			if SD_Platforms.has_feature_editor():
+			if not SD_Platforms.is_project_builded():
 				return PATH_RES.path_join(result)
 			
 			var normalized: String = OS.get_executable_path().get_base_dir().path_join(result)
@@ -47,7 +47,7 @@ static func normalize_path(path: String) -> String:
 	return result
 
 static func make_directory(path: String) -> void:
-	if SD_Platforms.is_release_build():
+	if SD_Platforms.is_project_builded():
 		if path.begins_with(PATH_RES):
 			return
 		
@@ -65,7 +65,7 @@ static func is_file_exists(path: String) -> bool:
 	if access != null:
 		var ext_code: String = SD_FileExtensions.get_extension_code_from_path(path)
 		if not ext_code.is_empty():
-			if SD_Platforms.is_release_build():
+			if SD_Platforms.is_project_builded():
 				var prefix: String = SD_FileExtensions.get_extension_code_import_prefix(ext_code)
 				if prefix:
 					path += prefix

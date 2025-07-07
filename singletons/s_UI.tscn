@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://wxx8cu0dqyn8" path="res://singletons/s_UI.gd" id="1_7b1hs"]
 [ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="2_3sjbs"]
 
-[node name="s_UI" type="Node" node_paths=PackedStringArray("_active_input", "_input_close")]
+[node name="s_UI" type="Node" node_paths=PackedStringArray("_active_input", "_inactive_input", "_input_close")]
 script = ExtResource("1_7b1hs")
 _active_input = NodePath("active_input")
+_inactive_input = NodePath("inactive_input")
 _input_close = NodePath("input_close")
 
 [node name="input_close" type="Node2D" parent="."]
@@ -15,6 +16,13 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 
 [node name="active_input" type="Node2D" parent="."]
 script = ExtResource("2_3sjbs")
+depends_on_console = false
+disable_input_when_invisible_in_tree = false
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[node name="inactive_input" type="Node2D" parent="."]
+script = ExtResource("2_3sjbs")
+depends_on_console = false
 disable_input_when_invisible_in_tree = false
 metadata/_custom_type_script = "uid://d2voalokbx57v"
 

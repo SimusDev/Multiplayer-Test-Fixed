@@ -248,7 +248,6 @@ func create_server(port: int, dedicated: bool = false) -> void:
 		multiplayer.multiplayer_peer = _peer
 		multiplayer.peer_connected.connect(_on_peer_connected)
 		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-		
 		set_multiplayer_authority(_peer.get_unique_id())
 		
 		_is_server_created = true

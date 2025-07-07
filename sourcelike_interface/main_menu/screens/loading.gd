@@ -19,8 +19,6 @@ func _on_menu_switched(node: Node) -> void:
 		return
 	
 	bar.hide()
-	$refresh.stop()
-	$refresh.start(0.0)
 	
 	message.show()
 	message.text = "LOADING..."
@@ -31,6 +29,9 @@ func _on_menu_switched(node: Node) -> void:
 	
 	if SD_Multiplayer.is_server():
 		_on_server_ready_recieved(true, R_GameMap.selected)
+	else:
+		$refresh.stop()
+		$refresh.start(0.0)
 
 func _on_menu_switched_from(node: Node) -> void:
 	if node != self:
@@ -46,6 +47,7 @@ func _on_menu_switched_from(node: Node) -> void:
 
 func _on_server_ready_recieved(ready: bool, map: R_GameMap) -> void:
 	if ready:
+		Maps.set_current_map(map)
 		
 		$refresh.stop()
 		message.text = "MAP RECIEVED: %s, LOADING..." % map.name
@@ -68,8 +70,7 @@ func _on_loader_loading_finished(scene: PackedScene, map: R_GameMap) -> void:
 	Maps.set_current_map_scene(scene)
 	Maps.set_current_map(map)
 	Maps.load_gameworld()
-	
-	
+
 
 func update_progressbar() -> void:
 	if is_instance_valid(_loader):

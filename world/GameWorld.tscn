@@ -14,6 +14,8 @@ code = "main_menu"
 value = ""
 private = false
 binds = Array[ExtResource("4_23ybk")]([])
+number_min_value = 0.0
+number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="GameWorld" type="Node"]

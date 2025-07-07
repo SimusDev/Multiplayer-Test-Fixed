@@ -10,24 +10,38 @@ signal interface_opened(node: Node)
 signal interface_closed(node: Node)
 
 @onready var _active_input: SD_NodeInput = UI.get_active_input()
+@onready var _inactive_input: SD_NodeInput = UI.get_inactive_input()
 
 @export var open_at_start: bool = false
 @export var input_action: String = ""
 
 func _ready() -> void:
-	UI.interface_opened.connect(_on_interface_opened_)
-	UI.interface_closed.connect(_on_interface_closed_)
+	SimusDev.ui.interface_opened.connect(_on_interface_opened_)
+	SimusDev.ui.interface_closed.connect(_on_interface_closed_)
 	
 	UI.get_active_input().on_action_just_pressed.connect(_on_action_just_pressed)
-	
+	UI.get_inactive_input().on_action_just_pressed.connect(_on_inactive_action_just_pressed)
+
 	target.hide()
 	
 	if open_at_start:
 		open()
 
 func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
+	print(action)
+	
 	if action == input_action:
-		open()
+		if target.visible:
+			close()
+		else:
+			open()
+
+func _on_inactive_action_just_pressed(action: String, bind: SD_Keybind) -> void:
+	if action == input_action:
+		if target.visible:
+			close()
+		else:
+			open()
 
 func _on_interface_opened_(node: Node) -> void:
 	interface_opened.emit(node)
@@ -44,7 +58,7 @@ func _on_interface_closed_(node: Node) -> void:
 		closed.emit()
 
 func open(interface: CanvasItem = target) -> void:
-	UI.open_interface(interface)
+	SimusDev.ui.open_interface(interface)
 
 func close(interface: CanvasItem = target) -> void:
-	UI.close_interface(interface)
+	SimusDev.ui.close_interface(interface)
