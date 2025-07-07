@@ -12,23 +12,23 @@ func set_collider(_collider:Variant):
 	collider = _collider
 	collider_changed.emit(collider)
 	
-	if !_collider or _collider is SourcePlayer:
-		SourcePlayerUI.get_instance().object_info.hide()
-		current_object = null
-		return
 	
-	if _collider.is_in_group("props"):
-		SourcePlayerUI.get_instance().object_info.show()
-		detect_object(_collider)
+	if SourcePlayerUI.instance:
+		if !_collider or _collider is SourcePlayer:
+			SourcePlayerUI.get_instance().object_info.hide()
+			current_object = null
+			return
+	
+		if _collider.is_in_group("props"):
+			SourcePlayerUI.get_instance().object_info.show()
+			detect_object(_collider)
 
 func _process(_delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	set_collider(get_collider())
 
 func detect_object(obj:RigidBody3D):
-	if !is_multiplayer_authority():
-		return
-	
-	
 	var object_info = SourcePlayerUI.get_instance().get_node("object_info")
 	object_info.get_node("name_label").text = str(obj.name)
 	

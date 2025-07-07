@@ -23,7 +23,7 @@
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="19_dvgr3"]
 [ext_resource type="PackedScene" uid="uid://dqoa3thrweoor" path="res://Games/source_game/game/3dmodels/toilet/toilet.tscn" id="19_rwrbd"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="20_i3jxi"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="21_jxt0a"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="23_lvrp7"]
