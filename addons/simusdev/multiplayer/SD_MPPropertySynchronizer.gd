@@ -220,7 +220,7 @@ func send_property_to_peer(node: Node, property: String, value: Variant = null, 
 	
 	
 	var node_path: NodePath = get_path_to(node)
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_property_from_peer_rpc_recieve, [node_path, property, value, SD_Multiplayer.get_unique_id()]) 
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_property_from_peer_rpc_recieve, [node_path, property, value, SD_Multiplayer.get_unique_id()], reliable) 
 	
 	property_sent.emit(node, property, value, peer)
 

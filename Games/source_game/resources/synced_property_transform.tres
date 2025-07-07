@@ -13,5 +13,5 @@ interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("..")
 reliable = false
-mode = 1
+mode = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"

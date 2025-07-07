@@ -7,5 +7,7 @@ func _ready() -> void:
 	update()
 
 func update():
-	label.text = SD_MultiplayerPlayer.find_in_node(authority_node).get_username() #EZ
+	var mp_player: SD_MultiplayerPlayer = SD_MultiplayerPlayer.find_in_node(authority_node)
+	if mp_player:
+		label.text = mp_player.get_username() #EZ
 # WW
