@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://dk4nnihi62s17"]
+
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_bs653"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
+[ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/experiment_life/components/player/EL_PlayerComponent.gd" id="1_ypfrq"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_22h6b"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_2jxb3"]
+[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
+
+[sub_resource type="Resource" id="Resource_gfa31"]
+script = ExtResource("3_2jxb3")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
+albedo_texture = ExtResource("5_22h6b")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ht5r7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osawl"]
+
+[node name="s1mple" type="CharacterBody3D"]
+
+[node name="sync" type="Node" parent="."]
+script = ExtResource("1_bs653")
+properties = Array[ExtResource("2_22h6b")]([SubResource("Resource_gfa31")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source")]
+script = ExtResource("1_ypfrq")
+source = NodePath("..")
+metadata/_custom_type_script = "uid://b3v82ef34b3t8"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2jxb3")
+mesh = SubResource("CapsuleMesh_ht5r7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_osawl")
+
+[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_osawl")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
