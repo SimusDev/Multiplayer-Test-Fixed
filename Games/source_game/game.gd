@@ -30,6 +30,8 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:
 		return
 	
+	
+	
 	match command.get_code():
 		
 		"time.set":
@@ -83,6 +85,7 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 			#player.movement.gravity = command.get_value_as_float()
 
 func teleport_player(player:Node3D, position:Vector3):
+	if !is_instance_valid(player): return
 	player.global_position = position
 	SimusDev.console.write_info(str(player) + " position: " + str(position))
 
