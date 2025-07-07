@@ -1,11 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=16 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_bs653"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
 [ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/experiment_life/components/player/EL_PlayerComponent.gd" id="1_ypfrq"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_22h6b"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_2jxb3"]
 [ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="7_g4hgc"]
+[ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
 
 [sub_resource type="Resource" id="Resource_gfa31"]
 script = ExtResource("3_2jxb3")
@@ -14,7 +18,7 @@ tickrate_mode = 0
 sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
-interpolation_enabled = false
+interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("..")
 reliable = false
@@ -28,9 +32,19 @@ uv1_triplanar = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ht5r7"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osawl"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
+size = Vector3(1, 1.99615, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1dqb"]
+size = Vector3(1, 1.14554, 1)
 
 [node name="s1mple" type="CharacterBody3D"]
+collision_layer = 0
+
+[node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
+script = ExtResource("1_ep68v")
+hide_at_start = true
+nodes = [NodePath("../MeshInstance3D")]
 
 [node name="sync" type="Node" parent="."]
 script = ExtResource("1_bs653")
@@ -47,9 +61,43 @@ material_override = SubResource("StandardMaterial3D_2jxb3")
 mesh = SubResource("CapsuleMesh_ht5r7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_osawl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01474, 0)
+shape = SubResource("BoxShape3D_j2tsh")
+
+[node name="CollisionShape3D_CR" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
+shape = SubResource("BoxShape3D_p1dqb")
 
 [node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_osawl")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("7_g4hgc")]
+camera = NodePath("../W_FPCSourceLikePlayerCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+collision_normal = NodePath("../CollisionShape3D")
+collision_crouch = NodePath("../CollisionShape3D")
+ceiling_detection = NodePath("../ceiling_detection")
+crouch_camera_position = NodePath("../crouch_camera_position")
+
+[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("8_ep68v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86401, 0)
+movement = NodePath("../W_FPCSourceLikeMovement")
+body = NodePath("..")
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_j2tsh")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="ceiling_detection" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_camera_position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
