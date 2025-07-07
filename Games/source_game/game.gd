@@ -6,6 +6,7 @@ var sv_cheats:bool = false : set = set_sv_cheats
 
 @export var ambience:AudioStreamPlayer
 @export var sky_3d:Sky3D
+@export var mp_player_spawner:SD_MPPlayerSpawner
 
 
 func _ready() -> void:
@@ -17,6 +18,13 @@ func _process(delta: float) -> void:
 	else:
 		ambience.volume_db = lerp(ambience.volume_db, -80.0, delta)
 
+func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
+	var timer = Timer.new()
+	timer.wait_time = sec
+	timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))
+	timer.timeout.connect(timer.queue_free)
+	add_child(timer)
+	timer.start()
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:

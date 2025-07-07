@@ -41,6 +41,10 @@ func _physics_process(_delta: float) -> void:
 
 func _on_health_died() -> void:
 	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
+	if SD_Multiplayer.is_server():
+		SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
+		queue_free()
+
 
 func _on_health_health_changed() -> void:
 	if is_multiplayer_authority():

@@ -245,10 +245,11 @@ top_radius = 0.185
 bottom_radius = 0.215
 height = 0.21
 
-[node name="source_game" type="Node" node_paths=PackedStringArray("ambience", "sky_3d")]
+[node name="source_game" type="Node" node_paths=PackedStringArray("ambience", "sky_3d", "mp_player_spawner")]
 script = ExtResource("1_lvrp7")
 ambience = NodePath("ambience")
 sky_3d = NodePath("Sky3D")
+mp_player_spawner = NodePath("SD_MPPlayerSpawner")
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
