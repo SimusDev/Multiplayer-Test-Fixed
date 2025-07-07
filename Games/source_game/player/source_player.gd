@@ -18,7 +18,6 @@ func _ready() -> void:
 
 	if is_multiplayer_authority():
 		instance = self
-		SourcePlayerUI.instance.update(health.health)
 		var new_player_ui = player_ui.instantiate()
 		canvas.add_child(new_player_ui)
 
