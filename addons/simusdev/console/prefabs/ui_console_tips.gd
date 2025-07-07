@@ -58,19 +58,27 @@ func _input(event: InputEvent) -> void:
 			var key: String = event.as_text_key_label().to_lower()
 			match key:
 				"tab":
-					switch_saved_message()
+					switch_current_tip()
 				"up":
-					current_tip_index -= 1
-					current_tip_index = select_tip_by_index(current_tip_index)
+					switch_saved_message(1)
 				"down":
-					current_tip_index += 1
-					current_tip_index = select_tip_by_index(current_tip_index)
+					switch_saved_message(-1)
 
-func switch_saved_message() -> void:
-	_saved_message_id += 1
+func switch_current_tip() -> void:
+	current_tip_index += 1
+	current_tip_index = select_tip_by_index(current_tip_index)
+
+func switch_saved_message(range: int = 0) -> void:
 	var array: Array = _saved_messages.get_value_as_array()
+	if array.is_empty():
+		return
+	
+	_saved_message_id += range
+	
 	if _saved_message_id > array.size() - 1:
 		_saved_message_id = 0
+	if _saved_message_id < 0:
+		_saved_message_id = array.size() - 1
 	
 	var saved_tip: String = SD_Array.get_value_from_array(array, _saved_message_id, "")
 	if not saved_tip.is_empty():
@@ -121,3 +129,8 @@ func _on_try_executed(exec: String) -> void:
 	_saved_messages.set_value(array)
 	
 	_saved_message_id = -1
+
+func _on_sd_node_console_commands_on_executed(command: SD_ConsoleCommand) -> void:
+	match command.get_code():
+		"clear":
+			_saved_messages.set_value([])

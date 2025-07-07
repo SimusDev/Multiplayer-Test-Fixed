@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=16 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
 [ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="2_4hjv0"]
@@ -20,17 +20,6 @@
 script = ExtResource("12_7dls8")
 update_at_start = true
 code = "clear"
-value = ""
-private = false
-binds = Array[ExtResource("13_7dls8")]([])
-number_min_value = 0.0
-number_max_value = 0.0
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
-[sub_resource type="Resource" id="Resource_vievh"]
-script = ExtResource("12_7dls8")
-update_at_start = true
-code = "console.clear"
 value = ""
 private = false
 binds = Array[ExtResource("13_7dls8")]([])
@@ -175,7 +164,7 @@ offset_bottom = 194.0
 
 [node name="SD_NodeConsoleCommands" type="Node" parent="."]
 script = ExtResource("11_74bac")
-commands = Array[ExtResource("12_7dls8")]([SubResource("Resource_21h2m"), SubResource("Resource_vievh")])
+commands = Array[ExtResource("12_7dls8")]([SubResource("Resource_21h2m")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [connection signal="draw" from="." to="." method="_on_draw"]
