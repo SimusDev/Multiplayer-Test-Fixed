@@ -20,5 +20,5 @@ func set_model_blend():
 	model.set_tree_parameter("parameters/StateMachine/run/blend_position", blend_position)
 	model.set_tree_parameter("parameters/look_dir/blend_position", camera.rotation_degrees.x / 90.0)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	set_model_blend()
