@@ -15,6 +15,9 @@ func _on_item_use():
 func impact():
 	var surface:String = "concrete"
 	
+	if not is_instance_valid(SourcePlayer.instance):
+		return
+	
 	if SourcePlayer.instance.interact_raycast.get_collider():
 		SoundPlayer.play_global_audio_3d(SourcePlayer.instance.interact_raycast.get_collision_point(),
 			preload("res://sounds/hl2/physics/concrete/concrete_impact_bullet2.wav"))
