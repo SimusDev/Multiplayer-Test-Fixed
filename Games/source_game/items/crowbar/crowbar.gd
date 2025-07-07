@@ -16,6 +16,7 @@ func impact():
 	var surface:String = "concrete"
 	
 	if not is_instance_valid(SourcePlayer.instance):
+		print("Asdsdsdsd")
 		return
 	
 	if SourcePlayer.instance.interact_raycast.get_collider():
@@ -26,4 +27,4 @@ func impact():
 		var collider = player_interact_raycast.get_collider()
 		if collider:
 			if collider is SourcePlayer:
-					collider.health.apply_damage(damage)
+				collider.health.apply_damage(damage)
