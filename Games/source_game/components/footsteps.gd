@@ -40,4 +40,5 @@ func _do_footstep():
 	var rand_idx = randi()% (get(current_surface).size())
 	stream = get(current_surface)[rand_idx]
 	
+
 	play()
