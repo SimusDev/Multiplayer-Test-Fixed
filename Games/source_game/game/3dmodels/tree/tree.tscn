@@ -49,7 +49,6 @@ _surfaces = [{
 "vertex_count": 44,
 "vertex_data": PackedByteArray("sLfZPYDReLx35Ui25dqcPSbSeLyyxS49JZoePux2bz+VR/A0NLfrPOfReLxC5dg8JZoePux2bz+VR/A0NLfrPBrReLxPYte85dqcPdrQeLz6yy69sLfZPYDReLx35Ui2JBOcPXvWtz93xi69JZoePux2bz+VR/A0JZoePux2bz+VR/A0XyyYPelXbD+w6ti8JBOcPXnWtz81yy49XyyYPelXbD+w6ti8JurRPZZv5T9MPm42JurRPZZv5T9MPm42AjEPPvTyHD8VyC49PAD+Pcw+bj9KyS49XyyYPeZXbD9i7Ng85Da2PfELHT8K7di8AjEPPvnyHD+XyS698g7cPZpytz8l9hY2PAD+Pcw+bj9KyS49XyyYPeZXbD9i7Ng8Gt7VPAR/uD9R8Ng8Gt7VPAZ/uD/B5ti88g7cPZpytz8l9hY2v4cZPoiMmT7Qs/i1MKP0PWkPnT7rxi496S4vPnvmHD+mQkG15Da2Pe0LHT8I6tg8FZePPaG3oj7J59g8PAD+PdE+bj9iyC69FZePPae3oj5J79i86S4vPnvmHD+mQkG1MKP0PXMPnT7Byi69v4cZPoiMmT7Qs/i1zDTWPXB0mz+2qsM1/TiWPQodmz9byi49fnW+PLaTmj+K7tg8fnW+PLiTmj+I6Ni8/TiWPQ0dmz9Rxy69PAD+PdE+bj9iyC69zDTWPXB0mz+2qsM1hPCwcIp+tETomj18phxtP7zyQY1lgLdBBznNiAcAHGa88kGNvX/jPu8ID7kD/11mOvyOGgPkYECE8LBwS4GXOtP7veKA20dEvPJBjVSAb0G88kGNmX9IPrcHf0RR+KcZQ50ohKcknDu3B39EqPi8GfmMBfPUBdcZ+YwF85az6EIHobd/jSGyPxCgnYObKjpGhDtDeAoHLmaSADO38P+SZLT/BSEu3ntA+//8f/9/vDsQoJ2DtypMRoQ7Q3iiB1RmFjuNia4EmBmMCRa7xvqIZvv//H//f85D9vMPdN2AUTuKn9V88y0xN+f+6376f2xAOjedgOYAPRs/OpKGlAqzGGD86d+R1eU5gwY/unf1RGfn/ut++n9SQNz8cB8b0tRI9vMPdPB+rkQ19siJ73+dP92bToJEIrJDPDgLemYEpWbyBcRHTPyDGa39IeSC3So8YPzp3zDVpjk19siJ9H+6Pw==")
 }]
-blend_shape_mode = 0
 
 [sub_resource type="Skin" id="Skin_jeryj"]
 resource_name = "Skin"
@@ -94,6 +93,7 @@ bind/11/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.623823, 0.0919617, -2.
 [node name="tree" type="Node3D"]
 
 [node name="birch_move_ARM" type="Node3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="birch_move_ARM"]
 bones/0/name = "bark"
