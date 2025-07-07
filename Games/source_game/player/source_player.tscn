@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=93 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_ilpss"]
 [ext_resource type="PackedScene" uid="uid://cq0fecxbg4nlf" path="res://Games/source_game/player/ui/player_ui.tscn" id="2_inl2s"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_0gjdh"]
-[ext_resource type="Script" uid="uid://g63pblfvykit" path="res://addons/simusdev/components/health/W_ComponentHealth.gd" id="6_2q6gp"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="6_2q6gp"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="7_4cdfe"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="8_0gjdh"]
@@ -127,20 +127,6 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
-[sub_resource type="Resource" id="Resource_2q6gp"]
-script = ExtResource("3_0gjdh")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
-properties = Array[String](["health"])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 30.0
-node_path = NodePath("../Health")
-reliable = false
-mode = 0
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7edsi"]
 radius = 0.335526
 
@@ -176,7 +162,7 @@ canvas = NodePath("canvas")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("1_kpqdw")
-properties = Array[ExtResource("2_ilpss")]([SubResource("Resource_5ijcx"), SubResource("Resource_4cdfe"), SubResource("Resource_kim0n"), SubResource("Resource_2q6gp")])
+properties = Array[ExtResource("2_ilpss")]([SubResource("Resource_5ijcx"), SubResource("Resource_4cdfe"), SubResource("Resource_kim0n")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="collision_normal" type="CollisionShape3D" parent="."]
@@ -188,7 +174,7 @@ shape = SubResource("CapsuleShape3D_cdeub")
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("6_2q6gp")
 target = NodePath("..")
-metadata/_custom_type_script = "uid://g63pblfvykit"
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
 [node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
 actor = NodePath("..")
