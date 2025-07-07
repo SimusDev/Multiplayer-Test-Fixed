@@ -43,22 +43,22 @@ func _ready() -> void:
 
 func _spawn_server_players() -> void:
 	for player in SD_Multiplayer.get_connected_players():
-		_server_spawn(player)
+		server_spawn(player)
 
 func _on_server_player_connected(player: SD_MultiplayerPlayer) -> void:
 	if _players.has(player):
 		return
 	
-	_server_spawn(player)
+	server_spawn(player)
 
 func _on_server_player_disconnected(player: SD_MultiplayerPlayer) -> void:
 	if not _players.has(player):
 		return
 	
-	_server_despawn(player)
+	server_despawn(player)
 
 
-func _server_spawn(player: SD_MultiplayerPlayer) -> void:
+func server_spawn(player: SD_MultiplayerPlayer) -> void:
 	if is_client():
 		return
 	
@@ -80,10 +80,12 @@ func _server_spawn(player: SD_MultiplayerPlayer) -> void:
 			
 	)
 	
+	instance.tree_exited.connect(server_despawn.bind(player))
+	
 	parent.add_child.call_deferred(instance)
 	
 
-func _server_despawn(player: SD_MultiplayerPlayer) -> void:
+func server_despawn(player: SD_MultiplayerPlayer) -> void:
 	if is_client():
 		return
 	
