@@ -1,4 +1,4 @@
-class_name SourceFootsteps extends SD_MPSyncedAudioStreamPlayer3D
+class_name SourceFootsteps extends AudioStreamPlayer3D
 
 @export var player:CharacterBody3D
 

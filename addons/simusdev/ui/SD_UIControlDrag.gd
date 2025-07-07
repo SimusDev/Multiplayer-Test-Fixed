@@ -109,6 +109,8 @@ func _create_zoom_input_event(action: String, button: int) -> void:
 	InputMap.action_add_event(action, event_mouse)
 
 func _unhandled_input(event: InputEvent) -> void:
+	return
+	
 	if Input.is_action_just_pressed(zoom_input_up):
 		add_zoom(get_current_zoom_strength())
 	if Input.is_action_just_pressed(zoom_input_down):
@@ -136,3 +138,8 @@ func _on_target_input(event: InputEvent):
 		if clicked:
 			_target_drag.position += event.relative * _target_drag.scale
 	on_target_drag_input.emit(_target_drag)
+	
+	if Input.is_action_just_pressed(zoom_input_up):
+		add_zoom(get_current_zoom_strength())
+	if Input.is_action_just_pressed(zoom_input_down):
+		subtract_zoom(get_current_zoom_strength())
