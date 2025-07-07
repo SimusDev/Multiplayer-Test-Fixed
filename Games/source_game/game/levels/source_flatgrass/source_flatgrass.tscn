@@ -15,9 +15,6 @@ size = Vector3(11.2825, 4.20569, 13.5794)
 [node name="source_flatgrass" parent="." instance=ExtResource("1_itvjo")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 192, 0)
 
-[node name="source_flatgrass2" parent="." instance=ExtResource("1_itvjo")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 192, 14.0605)
-
 [node name="ReverbZone" type="Area3D" parent="."]
 script = ExtResource("2_hxghk")
 

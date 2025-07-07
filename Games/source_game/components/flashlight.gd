@@ -7,10 +7,12 @@ func _ready() -> void:
 	SD_Multiplayer.request_and_sync_var_from_server(self, "visible")
 
 func _input(event: InputEvent) -> void:
-	if !is_multiplayer_authority(): return
+	if !is_multiplayer_authority() or SimusDev.console.is_visible(): return
 	
-	if event.is_pressed() and event.as_text().to_lower() == input_key:
-		SD_Multiplayer.sync_call_function(self, sync)
+	
+	if event is InputEventKey and event.is_pressed(): #SEX
+		if event.keycode == KEY_F:
+			SD_Multiplayer.sync_call_function(self, sync)
 
 func sync():
 	var audio = SoundPlayer.create_audio_3d(sound)

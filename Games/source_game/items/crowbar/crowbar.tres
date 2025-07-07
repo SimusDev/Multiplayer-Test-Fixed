@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceItem" load_steps=2 format=3 uid="uid://dea2xnmud65yj"]
+
+[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="1_8afr0"]
+
+[resource]
+script = ExtResource("1_8afr0")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+type = 0
+metadata/_custom_type_script = "uid://drk2kpbhybbiw"

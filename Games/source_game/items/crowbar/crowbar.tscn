@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmepknoq0be13"]
+
+[ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_k756q"]
+[ext_resource type="Resource" uid="uid://dea2xnmud65yj" path="res://Games/source_game/items/crowbar/crowbar.tres" id="2_k756q"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k756q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enwn5"]
+albedo_texture = SubResource("NoiseTexture2D_k756q")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k756q"]
+material = SubResource("StandardMaterial3D_enwn5")
+radius = 0.025
+height = 1.0
+
+[sub_resource type="Animation" id="Animation_b6hyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_enwn5"]
+resource_name = "fire"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.4),
+"transitions": PackedFloat32Array(0.287175, 0.210224, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.5), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.785398, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"impact"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tykw"]
+_data = {
+&"RESET": SubResource("Animation_b6hyk"),
+&"fire": SubResource("Animation_enwn5")
+}
+
+[node name="crowbar" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_k756q")
+resource = ExtResource("2_k756q")
+use_cooldown = 0.31
+model = NodePath("model")
+metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="sync" type="Node" parent="."]
+script = ExtResource("3_4tykw")
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="model" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_k756q")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4tykw")
+}

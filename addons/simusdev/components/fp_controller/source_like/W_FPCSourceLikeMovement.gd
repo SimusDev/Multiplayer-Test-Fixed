@@ -59,8 +59,7 @@ func set_sprinting(value: bool) -> void:
 	sprinting_status_changed.emit()
 
 func _enabled_status_changed() -> void:
-	set_process(enabled)
-	set_physics_process(enabled)
+	input_enabled = enabled
 
 func get_current_state() -> SD_State:
 	return state_machine.get_current_state()

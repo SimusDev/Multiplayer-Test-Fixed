@@ -13,9 +13,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if sky_3d.current_time > 19.0: ambience.volume_db = lerp(ambience.volume_db, -20.0, delta)
+	if sky_3d.current_time > 19.0 or sky_3d.current_time < 6.0: ambience.volume_db = lerp(ambience.volume_db, -20.0, delta)
 	else:
-		ambience.volume_db = lerp(ambience.volume_db, -80.0, 5.0 * delta)
+		ambience.volume_db = lerp(ambience.volume_db, -80.0, delta)
 
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:

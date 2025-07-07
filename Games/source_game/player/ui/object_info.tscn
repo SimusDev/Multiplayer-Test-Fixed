@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqm6pmfcnkn31"]
+
+[ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="1_7g0xh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7g0xh"]
+font_color = Color(0.913725, 0, 0, 1)
+
+[node name="object_info" type="Control"]
+layout_mode = 3
+anchor_left = -0.100781
+anchor_top = -0.177778
+anchor_right = 0.0992187
+anchor_bottom = 0.177778
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7g0xh")
+expand_mode = 1
+
+[node name="name_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0742188
+anchor_top = 0.0859375
+anchor_right = 0.578125
+anchor_bottom = 0.152344
+text = "obj_name: WW"
+label_settings = SubResource("LabelSettings_7g0xh")
+metadata/_edit_use_anchors_ = true
