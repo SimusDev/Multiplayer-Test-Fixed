@@ -115,21 +115,23 @@ func add_detect_root(root: Node) -> void:
 	if detect_roots.has(root):
 		return
 	
+	detect_roots.append(root)
+	
 	if SD_Multiplayer.is_server():
 		root.child_entered_tree.connect(_on_server_node_added)
 		root.child_exiting_tree.connect(_on_server_node_removed)
 		
-		detect_roots.append(root)
 
 func remove_detect_root(root: Node) -> void:
 	if not detect_roots.has(root):
 		return
 	
+	detect_roots.erase(root)
+	
 	if SD_Multiplayer.is_server():
 		root.child_entered_tree.disconnect(_on_server_node_added)
 		root.child_exiting_tree.disconnect(_on_server_node_removed)
 		
-		detect_roots.erase(root)
 
 func request_spawn_all_nodes() -> void:
 	if detect_roots.is_empty():
