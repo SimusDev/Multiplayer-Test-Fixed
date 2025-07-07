@@ -484,6 +484,7 @@ func _request_response_send_unreliable() -> void:
 @rpc("any_peer", "reliable")
 func _request_and_sync_var_recieve(serialized: Variant) -> void:
 	_request_and_sync_var_recieve_local(serialized)
+
 @rpc("any_peer", "unreliable")
 func _request_and_sync_var_recieve_unreliable(serialized: Variant) -> void:
 	_request_and_sync_var_recieve_local(serialized)
@@ -528,6 +529,7 @@ func _request_and_sync_var_recieve_local(serialized: Variant) -> void:
 		var value: Variant = deserialize_var_from_packet(deserialized)
 		node.set(property, value)
 		
+		
 		var array: Array = _requested_sync_vars_callables.get(path, [])
 		if array.is_empty():
 			return
@@ -535,13 +537,16 @@ func _request_and_sync_var_recieve_local(serialized: Variant) -> void:
 		var callable_object: Object = array[0]
 		var callable_method: String = array[1]
 		
+		#print(callable_method, " / ", value)
+		
+		
 		if not callable_method.is_empty():
 			if is_instance_valid(callable_object):
 				callable_object.call(callable_method)
 		
 		_requested_sync_vars_callables.erase(path)
 
-func _request_and_sync_var_local(serialized: Variant, reliable: bool) -> void:
+func _request_and_sync_var_local(serialized: Variant, reliable: bool, peer: int) -> void:
 	var deserialized: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
 	
 	var node: Node = get_node_or_null(deserialized["node_path"])
@@ -552,9 +557,9 @@ func _request_and_sync_var_local(serialized: Variant, reliable: bool) -> void:
 		
 		var new_serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
 		if reliable:
-			_request_and_sync_var_recieve.rpc_id(multiplayer.get_remote_sender_id(), new_serialized)
+			_request_and_sync_var_recieve.rpc_id(peer, new_serialized)
 		else:
-			_request_and_sync_var_recieve_unreliable.rpc_id(multiplayer.get_remote_sender_id(), new_serialized)
+			_request_and_sync_var_recieve_unreliable.rpc_id(peer, new_serialized)
 
 var _requested_sync_vars_callables: Dictionary[String, Array]
 
@@ -722,11 +727,11 @@ func request_and_sync_var_from_server(node: Node, property: String, callable: Ca
 
 @rpc("any_peer", "reliable")
 func _request_and_sync_var_rpc(serialized: Variant, reliable: bool) -> void:
-	_request_and_sync_var_local(serialized, reliable)
+	_request_and_sync_var_local(serialized, reliable, multiplayer.get_remote_sender_id())
 
 @rpc("any_peer", "unreliable")
 func _request_and_sync_var_rpc_unreliable(serialized: Variant, reliable: bool) -> void:
-	_request_and_sync_var_local(serialized, reliable)
+	_request_and_sync_var_local(serialized, reliable, multiplayer.get_remote_sender_id())
 
 func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	if not is_active():
