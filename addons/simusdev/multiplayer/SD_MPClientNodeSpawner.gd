@@ -42,6 +42,9 @@ func can_detect_node(node: Node) -> bool:
 	if spawn_list.is_empty():
 		return true
 	
+	if node.scene_file_path.is_empty():
+		return false
+	
 	var scene: PackedScene
 	scene = load(node.scene_file_path)
 	return spawn_list.has(scene)

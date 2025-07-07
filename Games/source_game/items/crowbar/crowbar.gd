@@ -13,21 +13,14 @@ func _on_item_use():
 	animation_player.play("fire")
 
 func impact():
-	print("impact on host: ", SD_Multiplayer.is_server(), " with auth: ", is_multiplayer_authority())
-	
 	var surface:String = "concrete"
-	if SourcePlayer.instance.interact_raycast.collider == null: return
 	
-	SoundPlayer.play_global_audio_3d(SourcePlayer.instance.interact_raycast.get_collision_point(),
-		preload("res://sounds/hl2/physics/concrete/concrete_impact_bullet2.wav"))
+	if SourcePlayer.instance.interact_raycast.get_collider():
+		SoundPlayer.play_global_audio_3d(SourcePlayer.instance.interact_raycast.get_collision_point(),
+			preload("res://sounds/hl2/physics/concrete/concrete_impact_bullet2.wav"))
 	
-	var collider = player_interact_raycast.get_collider()
-	if collider is SourcePlayer:
-		if SD_Multiplayer.is_server():
-			collider.health.apply_damage(damage)
-			print(str(SourcePlayer.instance.name) + "'s", " collider target: ", collider.name)
-
-
-
-
-#
+	if SD_Multiplayer.is_server():
+		var collider = player_interact_raycast.get_collider()
+		if collider:
+			if collider is SourcePlayer:
+					collider.health.apply_damage(damage)

@@ -3,8 +3,6 @@ class_name C_HealthComponent
 
 func _ready() -> void:
 	if SD_Multiplayer.is_server():
-		health = 2.5
-		max_health = 3.9
 		health_changed.connect(_on_server_health_changed)
 		max_health_changed.connect(_on_server_max_health_changed)
 		return

@@ -44,4 +44,5 @@ func _on_health_died() -> void:
 
 func _on_health_health_changed() -> void:
 	if is_multiplayer_authority():
-		SourcePlayerUI.instance.update(health.health)
+		if SourcePlayerUI.instance:
+			SourcePlayerUI.instance.update(health.health)
