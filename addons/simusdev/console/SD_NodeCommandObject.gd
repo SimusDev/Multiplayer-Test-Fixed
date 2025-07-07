@@ -25,3 +25,9 @@ func initialize() -> SD_ConsoleCommand:
 	
 	if update_at_start: source.update_command()
 	return source
+
+func deinitialize() -> void:
+	if not source:
+		return
+	
+	source.deinit()

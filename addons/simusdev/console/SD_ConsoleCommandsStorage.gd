@@ -15,5 +15,9 @@ func initialize() -> void:
 	
 	
 
+func deinitialize() -> void:
+	for cmd in _cmd_list:
+		cmd.deinit()
+
 func get_command_list() -> Array[SD_ConsoleCommand]:
 	return _cmd_list

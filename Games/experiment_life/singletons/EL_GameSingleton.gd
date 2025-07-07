@@ -2,6 +2,7 @@ extends Node
 class_name EL_GameSingleton
 
 @export var gamedata: EL_SModuleGameData
+@export var commands: EL_SModuleCommands
 
 static var instance: EL_GameSingleton
 

@@ -59,8 +59,7 @@ func set_sprinting(value: bool) -> void:
 	sprinting_status_changed.emit()
 
 func _enabled_status_changed() -> void:
-	set_process(enabled)
-	set_physics_process(enabled)
+	input_enabled = enabled
 
 func get_current_state() -> SD_State:
 	return state_machine.get_current_state()
@@ -96,6 +95,7 @@ func _ready() -> void:
 	if not is_authority() or console.is_visible():
 		add_disable_priority()
 		return
+	
 	console.visibility_changed.connect(_on_console_visibility_changed)
 	
 	if actor.is_on_floor():

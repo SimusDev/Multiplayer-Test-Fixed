@@ -36,13 +36,13 @@ signal despawn_begin(node: Node, path: String)
 var start_name: String
 
 func can_detect_node(node: Node) -> bool:
-	var scene: PackedScene
-	if node.scene_file_path.is_empty():
+	if node == self:
 		return false
 	
 	if spawn_list.is_empty():
 		return true
 	
+	var scene: PackedScene
 	scene = load(node.scene_file_path)
 	return spawn_list.has(scene)
 
@@ -105,12 +105,28 @@ func _ready() -> void:
 	
 	if SD_Multiplayer.is_server():
 		for root in detect_roots:
-			root.child_entered_tree.connect(_on_server_node_added)
-			root.child_exiting_tree.connect(_on_server_node_removed)
+			add_detect_root(root)
 	else:
 		if spawn_at_start:
 			request_spawn_all_nodes()
 		
+
+func add_detect_root(root: Node) -> void:
+	if detect_roots.has(root):
+		return
+	
+	if SD_Multiplayer.is_server():
+		root.child_entered_tree.connect(_on_server_node_added)
+		root.child_exiting_tree.connect(_on_server_node_removed)
+
+func remove_detect_root(root: Node) -> void:
+	if not detect_roots.has(root):
+		return
+	
+	if SD_Multiplayer.is_server():
+		root.child_entered_tree.disconnect(_on_server_node_added)
+		root.child_exiting_tree.disconnect(_on_server_node_removed)
+
 
 func request_spawn_all_nodes() -> void:
 	if detect_roots.is_empty():

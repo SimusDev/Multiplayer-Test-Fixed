@@ -47,18 +47,6 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	on_input.emit(event)
-
-	for bind_obj in keybinds.get_bind_list():
-		var bind: String = bind_obj.get_code()
-		
-		if bind_is_pressed(bind):
-			on_action_pressed.emit(bind, bind_obj)
-			
-		if bind_is_just_pressed(bind):
-			on_action_just_pressed.emit(bind, bind_obj)
-			
-		if bind_is_just_released(bind):
-			on_action_just_released.emit(bind, bind_obj)
 	
 	for action in InputMap.get_actions():
 		
@@ -91,27 +79,3 @@ func is_action_just_released(action: String) -> bool:
 	if !get_input_status():
 		return false
 	return Input.is_action_just_released(action)
-
-func bind_is_pressed(code: String) -> bool:
-	return SD_Binds.is_pressed(code) and get_input_status()
-
-func bind_is_just_pressed(code: String) -> bool:
-	return SD_Binds.is_just_pressed(code) and get_input_status()
-
-func bind_is_just_released(code: String) -> bool:
-	return SD_Binds.is_just_released(code) and get_input_status()
-
-static func bind_has_by_code(code: String) -> bool:
-	return SD_Binds.has_by_code(code)
-
-static func bind_get_by_code(code: String) -> SD_Keybind:
-	return SD_Binds.get_by_code(code)
-
-static func bind_remove_by_code(code: String) -> void:
-	return SD_Binds.remove_by_code(code)
-
-static func bind_add_by_code(code: String, key: String) -> SD_Keybind:
-	return SD_Binds.add_by_code(code, key)
-
-static func bind_change_by_code(code: String, new_key: String) -> SD_Keybind:
-	return SD_Binds.change_by_code(code, new_key)

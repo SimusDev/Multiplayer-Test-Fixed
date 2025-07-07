@@ -8,6 +8,7 @@ var canvas := SD_TrunkCanvas.new()
 var console := SD_TrunkConsole.new()
 var eventbus := SD_TrunkEventBus.new()
 var localization := SD_TrunkLocalization.new()
+var input := SD_TrunkInput.new()
 var keybinds := SD_TrunkKeybinds.new()
 var modloader := SD_TrunkModLoader.new()
 
@@ -62,8 +63,8 @@ func _ready() -> void:
 	window._ready()
 	audio._ready()
 	
+	input._ready()
 	keybinds._ready()
-	var _s_keybinds := SD_Binds.new(keybinds)
 	
 	modloader._ready()
 	

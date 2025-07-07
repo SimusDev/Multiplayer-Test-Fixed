@@ -6,7 +6,7 @@ class_name EL_LevelHandler
 @export var singleton: EL_GameSingleton
 
 func _ready() -> void:
-	await singleton.ready
+	await singleton.gamedata.load_finished
 	
 	change_local(initial_level)
 

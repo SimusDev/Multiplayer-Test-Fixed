@@ -426,7 +426,7 @@ func _initialize() -> void:
 		environment.sky.sky_material.shader = _sky_shader
 		
 	# Set a reference to the sky material for easy access.
-	sky_material = environment.sky.sky_material
+		sky_material = environment.sky.sky_material
 		
 	# Create default camera attributes
 	if camera_attributes == null:

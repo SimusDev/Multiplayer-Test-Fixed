@@ -57,7 +57,7 @@ func remove_command(command: SD_ConsoleCommand) -> void:
 	if not has_command_by_code(command.get_code()):
 		return
 	
-	command.deinit()
+	#command.deinit()
 	_commands.erase(command)
 	command.executed.disconnect(__on_command_executed)
 	on_command_removed.emit(command)

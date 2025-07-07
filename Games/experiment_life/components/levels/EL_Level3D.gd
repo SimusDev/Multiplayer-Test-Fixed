@@ -17,7 +17,7 @@ var _sections: Dictionary[String, EL_LevelSection3D] = {}
 func _ready() -> void:
 	_parse_sections()
 	
-	_spawner.request_spawn_all_nodes()
+	
 
 func get_section(section_name: String) -> EL_LevelSection3D:
 	var section: EL_LevelSection3D = _sections.get(section_name, null)
@@ -29,7 +29,7 @@ func _parse_sections() -> void:
 	for i in get_children():
 		if i is EL_LevelSection3D:
 			_sections[i.name] = i
-			_spawner.detect_roots.append(i)
+			_spawner.add_detect_root(i)
 
 static func instantiate(parent: Node, resource: EL_LevelResource) -> EL_Level3D:
 	var scene: PackedScene = load(PREFAB_PATH)
@@ -39,7 +39,9 @@ static func instantiate(parent: Node, resource: EL_LevelResource) -> EL_Level3D:
 	parent.add_child(level)
 	
 	var level_scene: PackedScene = load(resource.scene_path) as PackedScene
-	level.add_child(level_scene.instantiate())
+	level.get_section("LevelScene").add_child(level_scene.instantiate())
+	
+	level._spawner.request_spawn_all_nodes()
 	
 	return level
 
