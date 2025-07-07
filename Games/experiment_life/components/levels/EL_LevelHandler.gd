@@ -3,7 +3,11 @@ class_name EL_LevelHandler
 
 @export var initial_level: EL_LevelResource
 
+@export var singleton: EL_GameSingleton
+
 func _ready() -> void:
+	await singleton.ready
+	
 	change_local(initial_level)
 
 func _clear_levels() -> void:

@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xxop7")
 buttons = [NodePath("VBoxContainer/start_game"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit")]
-buttons_ingame = [NodePath("VBoxContainer/continue"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit"), NodePath("VBoxContainer/quit_to_main_menu")]
+buttons_ingame = [NodePath("VBoxContainer/continue"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit_to_main_menu")]
 buttons_container = NodePath("VBoxContainer")
 
 [node name="last_ip" parent="." instance=ExtResource("2_qljke")]

@@ -5,6 +5,8 @@ signal on_update()
 
 signal on_write(message: SD_ConsoleMessage)
 
+signal on_try_executed(execute: String)
+
 signal on_command_added(command: SD_ConsoleCommand)
 signal on_command_removed(command: SD_ConsoleCommand)
 
@@ -153,6 +155,8 @@ func execute_command(command: SD_ConsoleCommand, args: Array[String] = []) -> vo
 
 func try_execute(value) -> SD_ConsoleCommand:
 	var parsed := SD_ConsoleParsedExecute.new(value)
+	
+	on_try_executed.emit(str(value))
 	
 	if parsed.is_invalid():
 		write_error("cant execute: %s" % [str(value)])

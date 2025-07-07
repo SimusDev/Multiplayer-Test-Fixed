@@ -11,7 +11,8 @@ signal despawned(node: Node, path: String)
 signal spawn_begin(node: Node, parent: Node, wish_global_pos: Variant, wish_name: String, path: String)
 signal despawn_begin(node: Node, path: String)
 
-@export var auto_hande_logic: bool = true
+@export var auto_handle_logic: bool = true
+@export var spawn_at_start: bool = true
 
 @export var APPEND_PROPERTIES_TO_BASE_TYPES : Dictionary[String, PackedStringArray] = {
 	"Node2D" : ["transform"],
@@ -107,8 +108,15 @@ func _ready() -> void:
 			root.child_entered_tree.connect(_on_server_node_added)
 			root.child_exiting_tree.connect(_on_server_node_removed)
 	else:
-		SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])
+		if spawn_at_start:
+			request_spawn_all_nodes()
 		
+
+func request_spawn_all_nodes() -> void:
+	if detect_roots.is_empty():
+		return
+	
+	SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])
 
 func _server_send_all_nodes_to_peer(peer: int) -> void:
 	var nodes: Array = []
@@ -279,7 +287,7 @@ func spawn(data: Dictionary) -> void:
 		str(data["path"]),
 		
 		)
-		if parent and auto_hande_logic:
+		if parent and auto_handle_logic:
 			node.tree_entered.connect(
 				func():
 					node.name = data["name"]
@@ -301,7 +309,7 @@ func despawn(path: NodePath) -> void:
 	
 	var node: Node = get_node_or_null(path)
 	despawn_begin.emit(node, str(path))
-	if node and auto_hande_logic:
+	if node and auto_handle_logic:
 		node.tree_exited.connect(
 			func():
 				despawned.emit(node)
