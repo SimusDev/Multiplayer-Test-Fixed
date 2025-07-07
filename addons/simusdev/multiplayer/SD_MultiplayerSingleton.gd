@@ -74,7 +74,6 @@ func _ready() -> void:
 	
 	
 	var commands: Array[SD_ConsoleCommand] = [
-		console.create_command("multiplayer.name", _username),
 		console.create_command("connect"),
 		console.create_command("disconnect"),
 	]

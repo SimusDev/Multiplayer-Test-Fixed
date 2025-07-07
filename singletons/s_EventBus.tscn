@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://8s68seq70c0g"]
+[gd_scene load_steps=6 format=3 uid="uid://8s68seq70c0g"]
 
 [ext_resource type="Script" uid="uid://cw74yk2bn2g3c" path="res://singletons/S_EventBus.gd" id="1_rdo0e"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="2_12ywh"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_ssncy"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_lovbx"]
+
+[sub_resource type="Resource" id="Resource_m8upu"]
+script = ExtResource("3_ssncy")
+update_at_start = true
+code = "test.sync"
+value = ""
+private = false
+binds = Array[ExtResource("4_lovbx")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="s_EventBus" type="Node"]
 script = ExtResource("1_rdo0e")
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("2_12ywh")
+commands = Array[ExtResource("3_ssncy")]([SubResource("Resource_m8upu")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]

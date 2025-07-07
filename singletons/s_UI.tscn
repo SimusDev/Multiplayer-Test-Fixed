@@ -16,13 +16,11 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 
 [node name="active_input" type="Node2D" parent="."]
 script = ExtResource("2_3sjbs")
-depends_on_console = false
 disable_input_when_invisible_in_tree = false
 metadata/_custom_type_script = "uid://d2voalokbx57v"
 
 [node name="inactive_input" type="Node2D" parent="."]
 script = ExtResource("2_3sjbs")
-depends_on_console = false
 disable_input_when_invisible_in_tree = false
 metadata/_custom_type_script = "uid://d2voalokbx57v"
 

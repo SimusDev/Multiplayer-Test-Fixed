@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=90 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -81,7 +81,6 @@
 [ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="78_ia2t2"]
 [ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="79_l7c0e"]
 [ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://Games/source_game/game/3dmodels/dr_kleiner/animated_model.tscn" id="81_kim0n"]
-[ext_resource type="PackedScene" uid="uid://c3wmuhwufchlg" path="res://Games/source_game/game/prefabs/mp_property_transform.tscn" id="82_inl2s"]
 
 [sub_resource type="Resource" id="Resource_5ijcx"]
 script = ExtResource("3_0gjdh")
@@ -240,8 +239,6 @@ metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
 [node name="W_AnimatedModel3D" parent="." instance=ExtResource("81_kim0n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
-
-[node name="mp_property_transform" parent="." instance=ExtResource("82_inl2s")]
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
