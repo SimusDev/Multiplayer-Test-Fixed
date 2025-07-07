@@ -16,8 +16,8 @@ func impact():
 	var surface:String = "concrete"
 	
 	if SourcePlayer.instance.interact_raycast.collider == null: return
-	
 	SoundPlayer.play_global_audio_3d(SourcePlayer.instance.interact_raycast.get_collision_point(), preload("res://sounds/hl2/physics/concrete/concrete_impact_bullet2.wav"))
 	var collider = SourcePlayer.instance.interact_raycast.get_collider()
 	if collider is SourcePlayer:
-		collider.health.apply_damage(damage)
+		if SD_Multiplayer.is_server():
+			collider.health.apply_damage(damage)
