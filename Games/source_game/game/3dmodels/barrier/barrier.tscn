@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://dj1xqmdjysums"]
+[gd_scene load_steps=7 format=4 uid="uid://dj1xqmdjysums"]
 
 [ext_resource type="Texture2D" uid="uid://cpftdba8ekct7" path="res://Games/source_game/game/3dmodels/barrier/barrier_barrier_barrier_barrier.png" id="1_fkxob"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_5cqfo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cqfo"]
 resource_name = "barrier_barrier.bmp"
@@ -59,3 +60,8 @@ skin = SubResource("Skin_8w5bq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_fkxob")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("2_5cqfo")
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"

@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xxop7")
-buttons = [NodePath("VBoxContainer/start_game"), NodePath("VBoxContainer/connect"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit")]
+buttons = [NodePath("VBoxContainer/start_game"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit")]
 buttons_ingame = [NodePath("VBoxContainer/continue"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit"), NodePath("VBoxContainer/quit_to_main_menu")]
 buttons_container = NodePath("VBoxContainer")
 
@@ -56,12 +56,6 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "START GAME"
 
-[node name="connect" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
-visible = false
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-label_text = "CONNECT"
-
 [node name="settings" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -80,7 +74,6 @@ label_text = "QUIT TO MENU"
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/start_game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit_to_main_menu" to="." method="_on_quit_to_main_menu_pressed"]

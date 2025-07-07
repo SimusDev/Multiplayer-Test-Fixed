@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=4 uid="uid://dqoa3thrweoor"]
+[gd_scene load_steps=33 format=4 uid="uid://dqoa3thrweoor"]
 
 [ext_resource type="Texture2D" uid="uid://dur5xwtcogbc" path="res://Games/source_game/game/3dmodels/toilet/toilet_toilet_toilet_water.png" id="1_cqcn3"]
 [ext_resource type="Texture2D" uid="uid://b5qb4byi7ywib" path="res://Games/source_game/game/3dmodels/toilet/toilet_toilet_toilet_shitter.png" id="2_fgmdj"]
 [ext_resource type="Texture2D" uid="uid://3sqbf43j50gk" path="res://Games/source_game/game/3dmodels/toilet/toilet_toilet_toilet_chrome_handle.png" id="3_gwxc8"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="4_fgmdj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3um4t"]
 resource_name = "toilet_water.bmp"
@@ -204,6 +205,11 @@ bones/4/scale = Vector3(1, 1, 1)
 [node name="shitter_ref2" type="MeshInstance3D" parent="toilet_ARM/Skeleton3D"]
 mesh = SubResource("ArrayMesh_cqcn3")
 skin = SubResource("Skin_karno")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("4_fgmdj")
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="CollisionShape3D23" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_fgmdj")
