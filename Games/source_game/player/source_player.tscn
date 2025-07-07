@@ -215,8 +215,9 @@ player = NodePath("../..")
 [node name="item_container" type="Node3D" parent="SourceCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, -0.5)
 
-[node name="crowbar" parent="SourceCamera/item_container" instance=ExtResource("11_lhwgh")]
+[node name="crowbar" parent="SourceCamera/item_container" node_paths=PackedStringArray("player_interact_raycast") instance=ExtResource("11_lhwgh")]
 process_mode = 3
+player_interact_raycast = NodePath("../../interact_raycast")
 use_cooldown = 0.135
 
 [node name="ceiling_raycast" type="RayCast3D" parent="."]

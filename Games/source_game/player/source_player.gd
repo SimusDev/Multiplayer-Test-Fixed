@@ -1,8 +1,8 @@
 class_name SourcePlayer extends CharacterBody3D
 
-static var instance:SourcePlayer = null
+static var instance:SourcePlayer
 
-@export var health:W_ComponentHealth
+@export var health:C_HealthComponent
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 @export var model:W_AnimatedModel3D
@@ -18,8 +18,12 @@ func _ready() -> void:
 
 	if is_multiplayer_authority():
 		instance = self
+		
 		var new_player_ui = player_ui.instantiate()
 		canvas.add_child(new_player_ui)
+		
+	if SourcePlayerUI.instance:
+		SourcePlayerUI.instance.update(health.health)
 
 func _on_state_enter(state:SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
@@ -39,4 +43,5 @@ func _on_health_died() -> void:
 	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
 
 func _on_health_health_changed() -> void:
-	SourcePlayerUI.instance.update(health.health)
+	if is_multiplayer_authority():
+		SourcePlayerUI.instance.update(health.health)
