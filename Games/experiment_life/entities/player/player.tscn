@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bswwjdjra4rnm"]
+[gd_scene load_steps=15 format=3 uid="uid://bswwjdjra4rnm"]
 
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/experiment_life/components/player/EL_PlayerComponent.gd" id="1_k5ng1"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/experiment_life/models/player/source/animated_model.tscn" id="2_6d6yq"]
 [ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/experiment_life/components/inventory/EL_Inventory.gd" id="2_im0pj"]
-[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/experiment_life/components/inventory/EL_ItemStack.gd" id="3_ap1ka"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_k5ng1"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="3_q3met"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="4_0r8hq"]
-[ext_resource type="Resource" uid="uid://di2e6n8p8qvuj" path="res://Games/experiment_life/items/item_test.tres" id="4_eh5y8"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="4_jyhyi"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="5_8g0ve"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="5_p7spj"]
@@ -68,9 +66,9 @@ script = ExtResource("1_k5ng1")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 
-[node name="EL_Inventory" type="Node" parent="."]
+[node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("source")]
 script = ExtResource("2_im0pj")
-_initial_items = Array[ExtResource("3_ap1ka")]([ExtResource("4_eh5y8")])
+source = NodePath("..")
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
 [node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("2_6d6yq")]

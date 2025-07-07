@@ -1,13 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfsckyn582nca"]
+[gd_scene load_steps=2 format=3 uid="uid://bfsckyn582nca"]
 
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="1_cp6g4"]
-[ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/experiment_life/components/inventory/EL_Inventory.gd" id="2_upnlk"]
 
-[node name="SD_MPClientNodeSpawner" type="Node" node_paths=PackedStringArray("detect_roots")]
+[node name="SD_MPClientNodeSpawner" type="Node"]
 script = ExtResource("1_cp6g4")
-detect_roots = [NodePath(""), NodePath("")]
-scripts_to_sync = Array[Script]([ExtResource("2_upnlk")])
-_baked_properties = Dictionary[Script, Array]({
-ExtResource("2_upnlk"): Array[String](["s_items"])
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
 })
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"

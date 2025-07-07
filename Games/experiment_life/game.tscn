@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdcf45f1jrm0y"]
+[gd_scene load_steps=5 format=3 uid="uid://bdcf45f1jrm0y"]
 
 [ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/experiment_life/components/levels/EL_LevelHandler.gd" id="1_8a3r7"]
 [ext_resource type="Resource" uid="uid://dp0vr3ifxvjni" path="res://Games/experiment_life/levels/world.tres" id="2_wcwho"]
+[ext_resource type="Script" uid="uid://by61272w1oc43" path="res://Games/experiment_life/singletons/EL_GameSingleton.gd" id="3_wcwho"]
+[ext_resource type="Script" uid="uid://b6vtbie572lqf" path="res://Games/experiment_life/singletons/EL_SModuleGameData.gd" id="4_iwi0m"]
 
 [node name="Game" type="Node"]
 
-[node name="EL_LevelHandler" type="Node" parent="."]
+[node name="EL_LevelHandler" type="Node" parent="." node_paths=PackedStringArray("singleton")]
 script = ExtResource("1_8a3r7")
 initial_level = ExtResource("2_wcwho")
+singleton = NodePath("../EL_GameSingleton")
 metadata/_custom_type_script = "uid://gbb5kioauq2f"
+
+[node name="EL_GameSingleton" type="Node" parent="." node_paths=PackedStringArray("gamedata")]
+script = ExtResource("3_wcwho")
+gamedata = NodePath("EL_SModuleGameData")
+metadata/_custom_type_script = "uid://by61272w1oc43"
+
+[node name="EL_SModuleGameData" type="Node" parent="EL_GameSingleton"]
+script = ExtResource("4_iwi0m")
+metadata/_custom_type_script = "uid://b6vtbie572lqf"

@@ -154,6 +154,12 @@ func get_value_as_float() -> float:
 func get_value_as_bool() -> bool:
 	return bool(get_value_as_int())
 
+func get_value_as_array() -> Array:
+	var parsed: Variant = str_to_var(_value)
+	if parsed is Array:
+		return parsed
+	return []
+
 func get_value_as_vector2() -> Vector2:
 	var parsed: Variant = str_to_var("Vector2" + _value)
 	if parsed is Vector2:

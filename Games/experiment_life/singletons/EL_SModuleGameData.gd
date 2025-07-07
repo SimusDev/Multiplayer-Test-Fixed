@@ -1,0 +1,2 @@
+extends EL_SModule
+class_name EL_SModuleGameData

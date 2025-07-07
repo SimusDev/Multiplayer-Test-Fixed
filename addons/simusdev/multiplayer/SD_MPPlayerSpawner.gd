@@ -29,9 +29,11 @@ func _ready() -> void:
 	if not spawner:
 		spawner = SD_MPClientNodeSpawner.new()
 		spawner.start_name = "spawner"
-		spawner.detect_roots.append(parent)
 		spawner.spawn_list.append(player_scene)
 		add_child(spawner)
+	
+	if not spawner.detect_roots.has(parent):
+		spawner.detect_roots.append(parent)
 	
 	if is_server():
 		singleton.player_connected.connect(_on_server_player_connected)

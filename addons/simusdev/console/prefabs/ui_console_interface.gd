@@ -61,7 +61,13 @@ func _on_sd_node_console_commands_on_executed(command: SD_ConsoleCommand) -> voi
 		_base.clear_message_buffer()
 		$ui_console_output.clear_messages()
 
-func _on_ui_console_tips_tip_selected(cmd: SD_ConsoleCommand) -> void:
+func _insert_text_at_caret(text: String) -> void:
 	$LineEdit.text = ""
-	$LineEdit.insert_text_at_caret(cmd.get_code() + " " + cmd.get_value_as_string())
+	$LineEdit.insert_text_at_caret(text)
 	$LineEdit.grab_focus()
+
+func _on_ui_console_tips_tip_selected(cmd: SD_ConsoleCommand) -> void:
+	_insert_text_at_caret(cmd.get_code() + " " + cmd.get_value_as_string())
+
+func _on_ui_console_tips_tip_selected_text(text: String) -> void:
+	_insert_text_at_caret(text)

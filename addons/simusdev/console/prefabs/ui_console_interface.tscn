@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=17 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
 [ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="2_4hjv0"]
@@ -12,21 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://bjtllekn7shxu" path="res://addons/simusdev/console/prefabs/ui_console_tips.tscn" id="10_0c7w3"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="11_74bac"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="12_7dls8"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="13_7dls8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbm6i"]
 
 [sub_resource type="Resource" id="Resource_21h2m"]
 script = ExtResource("12_7dls8")
+update_at_start = true
 code = "clear"
 value = ""
 private = false
+binds = Array[ExtResource("13_7dls8")]([])
+number_min_value = 0.0
+number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_vievh"]
 script = ExtResource("12_7dls8")
+update_at_start = true
 code = "console.clear"
 value = ""
 private = false
+binds = Array[ExtResource("13_7dls8")]([])
+number_min_value = 0.0
+number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_tips", "_drag", "toolbar_container")]
@@ -175,4 +184,5 @@ metadata/_custom_type_script = "uid://38osx81mny15"
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="tip_selected" from="ui_console_tips" to="." method="_on_ui_console_tips_tip_selected"]
+[connection signal="tip_selected_text" from="ui_console_tips" to="." method="_on_ui_console_tips_tip_selected_text"]
 [connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]
