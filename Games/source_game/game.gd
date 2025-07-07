@@ -31,6 +31,10 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 			
 			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time, [value])
 		
+		"time.freeze":
+			var value = command.get_value_as_bool()
+			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time_freeze, [value])
+		
 		"player.teleport":
 			if command.get_arguments().size() < 4:
 				return
@@ -77,6 +81,10 @@ func teleport_player(player:Node3D, position:Vector3):
 func set_time(value:float):
 	sky_3d.current_time = value
 	SimusDev.console.write_info("current_time: " + str(value))
+
+func set_time_freeze(value:bool):
+	sky_3d.enable_game_time = !value
+	SimusDev.console.write_info("time.freeze: " + str(value))
 
 func set_sv_cheats(value:bool) -> void:
 	sv_cheats = value
