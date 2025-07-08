@@ -1,11 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddd0epmcwelof"]
+[gd_scene load_steps=14 format=3 uid="uid://ddd0epmcwelof"]
 
 [ext_resource type="Script" uid="uid://bfaipcx37nytw" path="res://interface/chat/chat_interface.gd" id="1_rru54"]
 [ext_resource type="PackedScene" uid="uid://dd0a6oh3fnwk3" path="res://interface/chat/message.tscn" id="2_upsdc"]
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="2_yv0xc"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="4_upsdc"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="5_2y122"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="6_4n2ll"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="6_383sf"]
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="7_6jw8o"]
+[ext_resource type="FontFile" uid="uid://bxdxqu2e31ua5" path="res://addons/simusdev/fonts/default_stalker_font.ttf" id="8_owk0r"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="8_pi1nf"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="9_pfc8b"]
 
-[node name="chat_interface" type="Control" node_paths=PackedStringArray("line_edit", "history", "container")]
+[sub_resource type="LabelSettings" id="LabelSettings_2y122"]
+font = ExtResource("6_4n2ll")
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2u5yh"]
+bg_color = Color(0.478431, 0.478431, 0.478431, 0.960784)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.288518, 0.288518, 0.288518, 1)
+corner_detail = 20
+expand_margin_left = 5.0
+anti_aliasing = false
+
+[node name="chat_interface" type="Control" node_paths=PackedStringArray("c_ui_interface", "line_edit", "history", "container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,74 +38,188 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rru54")
+c_ui_interface = NodePath("C_UIInterfaceComponent")
 message_scene = ExtResource("2_upsdc")
-line_edit = NodePath("messager/LineEdit")
-history = NodePath("messager/history")
+line_edit = NodePath("Popup/content/LineEdit")
+history = NodePath("Popup/content/history")
 container = NodePath("VBoxContainer")
 metadata/_custom_type_script = "uid://dnrhf3cyyqskh"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.015
-anchor_top = 0.304
-anchor_right = 0.423
-anchor_bottom = 0.654
-offset_left = -0.200001
-offset_top = 0.11998
-offset_right = -0.440002
-offset_bottom = 0.119965
-mouse_filter = 2
-alignment = 2
-
-[node name="messager" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.967
-anchor_right = 0.013
-anchor_bottom = 0.967
-offset_left = 0.360001
-offset_top = -221.24
-offset_right = 529.36
-offset_bottom = -0.240051
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="history" type="RichTextLabel" parent="messager"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.118
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -0.078001
-offset_right = -1.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LineEdit" type="LineEdit" parent="messager"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.112
-offset_bottom = 0.0240002
-placeholder_text = "ENTER MESSAGE HERE..."
-
 [node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_yv0xc")
-target = NodePath("../messager")
+target = NodePath("../Popup")
 input_action = "chat"
 metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
 
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("4_upsdc")
-TARGET_INPUT = NodePath("../messager/history")
-TARGET_DRAG = NodePath("../messager")
+TARGET_INPUT = NodePath("..")
+TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[connection signal="draw" from="messager" to="." method="_on_messager_draw"]
-[connection signal="text_submitted" from="messager/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0148437
+anchor_top = 0.304167
+anchor_right = 0.410937
+anchor_bottom = 0.654167
+offset_bottom = 3.05176e-05
+mouse_filter = 2
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Popup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 471.0
+offset_right = 531.0
+offset_bottom = 687.0
+mouse_filter = 2
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="Popup" node_paths=PackedStringArray("target")]
+script = ExtResource("5_2y122")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="SE_UIControlDrag" type="Node" parent="Popup" node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("4_upsdc")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="Popup" instance=ExtResource("6_383sf")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="Popup" instance=ExtResource("6_383sf")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="Popup/head"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00976563
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game chat"
+label_settings = SubResource("LabelSettings_2y122")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("8_pi1nf")
+font = ExtResource("6_4n2ll")
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+metadata/_edit_use_anchors_ = true
+
+[node name="button_base" parent="Popup/head" instance=ExtResource("9_pfc8b")]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.953125
+anchor_top = 0.166667
+anchor_right = 0.980469
+anchor_bottom = 0.733333
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+text_overrun_behavior = 4
+label_text = "x"
+metadata/_edit_use_anchors_ = true
+
+[node name="content" type="Control" parent="Popup"]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.180556
+anchor_right = 0.990234
+anchor_bottom = 0.962963
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="Popup/content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="Popup/content"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0401135
+anchor_right = 1.0
+anchor_bottom = 0.12235
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="history" type="RichTextLabel" parent="Popup/content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0159363
+anchor_top = 0.0414201
+anchor_right = 0.98008
+anchor_bottom = 0.751479
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_4n2ll")
+theme_override_fonts/mono_font = ExtResource("7_6jw8o")
+theme_override_fonts/italics_font = ExtResource("6_4n2ll")
+theme_override_fonts/bold_italics_font = ExtResource("8_owk0r")
+theme_override_fonts/bold_font = ExtResource("8_owk0r")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="Popup/content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00796813
+anchor_top = 0.828402
+anchor_right = 1.00199
+anchor_bottom = 0.982249
+theme_override_colors/caret_color = Color(0.118581, 0.118581, 0.118581, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_4n2ll")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2u5yh")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_2u5yh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2u5yh")
+placeholder_text = "ENTER MESSAGE HERE..."
+caret_blink = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="interface_opened" from="C_UIInterfaceComponent" to="." method="_on_c_ui_interface_component_interface_opened"]
+[connection signal="pressed" from="Popup/head/button_base" to="." method="_on_button_base_pressed"]
+[connection signal="text_submitted" from="Popup/content/LineEdit" to="." method="_on_line_edit_text_submitted"]

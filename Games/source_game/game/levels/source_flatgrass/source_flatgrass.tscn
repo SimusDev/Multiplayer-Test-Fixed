@@ -8,7 +8,7 @@
 size = Vector3(13.4061, 6.84499, 27.2583)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cchrm"]
-size = Vector3(11.2825, 4.20569, 13.5794)
+size = Vector3(9.23219, 4.20569, 13.5794)
 
 [node name="source_flatgrass" type="Node3D"]
 
@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.179081, 2.92249, 0.383219)
 shape = SubResource("BoxShape3D_hxghk")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ReverbZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34491, 1.60284, 0.0166669)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3701, 1.60284, 0.0166669)
 shape = SubResource("BoxShape3D_cchrm")
 debug_color = Color(0, 0.545098, 0.635294, 0.8)
 
@@ -1399,4 +1399,4 @@ transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -32, 0, -4)
 transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -33, 0, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.751841, 0.153921, -0.641126, 0, 0.97237, 0.233446, 0.659344, 0.175515, -0.731068, -14.7288, 11.2197, -13.0658)
+transform = Transform3D(-0.751841, 0.153921, -0.641126, 0, 0.97237, 0.233446, 0.659344, 0.175515, -0.731068, -17.8088, 11.2197, -17.7008)

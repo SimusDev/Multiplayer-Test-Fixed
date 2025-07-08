@@ -178,6 +178,8 @@ metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
 [node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
 actor = NodePath("..")
+_move_speed = 5.0
+_crouch_speed = 2.5
 key_forward = "move_forward"
 key_backward = "move_backward"
 key_left = "move_left"

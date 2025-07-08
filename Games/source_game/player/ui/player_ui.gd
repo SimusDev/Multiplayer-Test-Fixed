@@ -13,4 +13,4 @@ func _ready() -> void:
 	set_instance(self)
 
 static func update(_health:float):
-	instance.health.text = str(_health)
+	instance.health.text = str(_health) + " :hp"

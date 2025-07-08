@@ -22,6 +22,8 @@ func set_collider(_collider:Variant):
 		if _collider.is_in_group("props"):
 			SourcePlayerUI.get_instance().object_info.show()
 			detect_object(_collider)
+		else:
+			SourcePlayerUI.get_instance().object_info.hide()
 
 func _process(_delta: float) -> void:
 	if !is_multiplayer_authority():
