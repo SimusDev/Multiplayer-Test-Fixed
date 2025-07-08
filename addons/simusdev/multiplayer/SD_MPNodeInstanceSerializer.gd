@@ -1,8 +1,11 @@
 extends Node
 class_name SD_MPNodeInstanceSerializer
 
-@export var include_scripts: Array[Script] = []
-@export var exclude_scripts: Array[Script] = []
+@export var _private_fields: PackedStringArray = [
+	"_",
+	"p_",
+	"m_",
+]
 
 func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 	var script: Script = node.get_script()
@@ -18,62 +21,45 @@ func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 			
 			for p_dict: Dictionary in properties:
 				var p_name: String = p_dict.name
+				for p_field in _private_fields:
+					if p_name.begins_with(p_field):
+						continue
 				
 				var ser_property: Variant = SD_Multiplayer.serialize_var_into_packet(node.get(p_name))
 				saved_properties[p_name] = ser_property
 				
 				#print(p_name, " : ", node.get(p_name))
-				
 			
-	
+			node.name = node.name.validate_node_name()
+			saved_properties[".node_name."] = node.name
+
+
+
 	for child in node.get_children():
 		_serialize_properties(data, child, root)
 		
 
-func serialize(node: Node) -> Dictionary:
+func serialize(node: Node) -> SD_MPNodeInstanceSerialized:
 	var data: Dictionary = {}
 	
+	var synced_properties: Dictionary = {}
+	data["synced_properties"] = synced_properties
+
 	if node.scene_file_path.is_empty():
-		data["var_to_str"] = var_to_str(node)
+		if node.get_script() != null:
+			data["script"] = node.get_script()
+		
 	else:
 		data["scene_file_path"] = node.scene_file_path
 		
-		var synced_properties: Dictionary = {}
-		data["synced_properties"] = synced_properties
-		
-		_serialize_properties(synced_properties, node, node)
-		
 	
-	return SD_Multiplayer.serialize_var_into_packet(data)
+	_serialize_properties(synced_properties, node, node)
+	
+	var resource := SD_MPNodeInstanceSerialized.new()
+	resource._serializer = self
+	resource.packet = SD_Multiplayer.serialize_var_into_packet(data)
+	return resource
 
-func deserialize(serialized: Variant) -> Node:
-	var data: Dictionary = SD_Multiplayer.deserialize_var_from_packet(serialized) as Dictionary
-	
-	var instance: Node = null
-	
-	if data.has("var_to_str"):
-		instance = str_to_var(data.var_to_str)
-	else:
-		var scene: PackedScene = load(data.scene_file_path)
-		instance = scene.instantiate()
-		
-		var synced_properties: Dictionary = data.get("synced_properties", {}) as Dictionary
-		
-		for path in synced_properties:
-			var founded: Node = instance.get_node_or_null(path)
-			if !founded:
-				continue
-			
-			var synced: Dictionary = synced_properties.get(path, {})
-			
-			for p_name: String in synced:
-				var packet: Variant = synced[p_name]
-				var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
-				founded.set(p_name, value)
-			
-		
-		#print(data.get("synced_properties"))
-		
-	
-	return instance
-	
+func _apply_node_name(node: Node, new_name: String) -> void:
+	node.name = new_name
+	node.tree_entered.disconnect(_apply_node_name)

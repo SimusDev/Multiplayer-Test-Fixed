@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=17 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_bs653"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_22h6b"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_2jxb3"]
 [ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
+[ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/experiment_life/components/inventory/EL_Inventory.gd" id="6_p1dqb"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="7_g4hgc"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
@@ -55,6 +56,12 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 script = ExtResource("1_ypfrq")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
+
+[node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
+script = ExtResource("6_p1dqb")
+_source = NodePath("..")
+_initial_slots = 24
+metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2jxb3")
