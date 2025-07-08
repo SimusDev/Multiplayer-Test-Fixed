@@ -58,6 +58,9 @@ enum VARIABLE_TYPE {
 }
 
 func is_active() -> bool:
+	if not multiplayer:
+		return false
+	
 	return multiplayer.has_multiplayer_peer() and (_is_server_created or _is_connected_to_server)
 
 func _exit_tree() -> void:

@@ -2,26 +2,44 @@
 extends Node
 class_name WG_Inventory
 
-signal initialized()
-
-@export var source: Node
+@export var _source: Node
 @export var _initial_slots: int = 18
-@export var _hotbar_slots: Array[WG_InventorySlot] = []
 
+var _selected_slot: WG_InventorySlot = null
 var _slots: Array[WG_InventorySlot] = []
 
-var serializer: SD_MPNodeInstanceSerializer
+var _serializer: SD_MPNodeInstanceSerializer
+
+signal slot_selected(slot: W_InventorySlot)
+signal slot_deselected(slot: W_InventorySlot)
+
+signal item_added(item: WG_ItemStack)
+signal item_removed(item: WG_ItemStack)
+signal item_moved_to(slot: WG_InventorySlot, item: WG_ItemStack)
+
+func get_selected_slot() -> WG_InventorySlot:
+	return _selected_slot
+
+func set_selected_slot(slot: WG_InventorySlot) -> void:
+	SD_Multiplayer.sync_call_function(self, _set_selected_slot_local, [slot])
+
+func _set_selected_slot_local(slot: WG_InventorySlot) -> void:
+	if _slots.has(slot):
+		slot_deselected.emit(_selected_slot)
+		_selected_slot = slot
+		slot_selected.emit(_selected_slot)
+	
+	
 
 func _enter_tree() -> void:
-	if !source:
-		source = get_parent()
-
+	if !_source:
+		_source = get_parent()
 
 func _ready() -> void:
-	serializer = SD_MPNodeInstanceSerializer.new()
-	add_child(serializer)
-	serializer.name = "serializer"
-	move_child(serializer, 0)
+	_serializer = SD_MPNodeInstanceSerializer.new()
+	add_child(_serializer)
+	_serializer.name = "serializer"
+	move_child(_serializer, 0)
 	
 	if SD_Multiplayer.is_not_server():
 		
@@ -32,34 +50,52 @@ func _ready() -> void:
 		
 		return
 	
-	for child in get_children():
-		if child is WG_InventorySlot:
-			add_slot(child)
-	
 	for id in _initial_slots:
 		var slot: WG_InventorySlot = WG_InventorySlot.new()
 		slot.start_name = str(id)
-		add_slot(slot)
 		add_child(slot)
+	
+	for child in get_children():
+		if child is WG_InventorySlot:
+			_add_slot_local(child)
+	
+	_selected_slot = SD_Array.get_value_from_array(_slots, 0, null)
 
 func _send_all_slots_to_client(peer: int) -> void:
 	var _slots: Array = []
 	for server_slot in get_slots():
-		_slots.append(serializer.serialize(server_slot))
+		var serialized: SD_MPNodeInstanceSerialized = _serializer.serialize(server_slot)
+		_slots.append(serialized)
 	
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_all_slots_from_server, [_slots])
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_all_slots_from_server, [_slots, str(get_path_to(_selected_slot))])
 
-func _recieve_all_slots_from_server(serialized: Array) -> void:
+func _recieve_all_slots_from_server(serialized: Array, selected_slot_path: String) -> void:
 	for data in serialized:
-		var slot: WG_InventorySlot = serializer.deserialize(data)
-		add_slot(slot)
-		
+		if data is SD_MPNodeInstanceSerialized:
+			var slot: WG_InventorySlot = data.deserialize().instance
+			_add_slot_local(slot)
+	
+	_selected_slot = get_node_or_null(selected_slot_path)
 
 func get_slots() -> Array[WG_InventorySlot]:
 	return _slots
 
-func add_slot(slot: WG_InventorySlot) -> void:
-	if SD_Multiplayer.is_not_server():
+func has_slot(slot: WG_InventorySlot) -> bool:
+	return _slots.has(slot)
+
+func create_slot(slot_name: String) -> WG_InventorySlot:
+	var slot := WG_InventorySlot.new()
+	slot.start_name = slot_name
+	add_child(slot)
+	
+	SD_Multiplayer.sync_call_function(self, _add_slot_local, [slot])
+	return slot
+
+func remove_slot(slot: W_InventorySlot) -> void:
+	SD_Multiplayer.sync_call_function(self, _remove_slot_local, [slot])
+
+func _add_slot_local(slot: WG_InventorySlot) -> void:
+	if not slot:
 		return
 	
 	if _slots.has(slot):
@@ -73,8 +109,8 @@ func add_slot(slot: WG_InventorySlot) -> void:
 	
 	_slots.append(slot)
 
-func remove_slot(slot: WG_InventorySlot) -> void:
-	if SD_Multiplayer.is_not_server():
+func _remove_slot_local(slot: WG_InventorySlot) -> void:
+	if not slot:
 		return
 	
 	if _slots.has(slot):

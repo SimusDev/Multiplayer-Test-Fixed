@@ -14,6 +14,7 @@ const EC_SCRIPT := "script"
 const EC_TEXTURE := "texture"
 const EC_RESOURCE := "resource"
 const EC_RESOURCE_PACK := "resource_pack"
+const EC_AUDIO := "audio"
 
 const EXTENSIONS_CODES := {
 	EC_CONFIG:
@@ -38,6 +39,8 @@ const EXTENSIONS_CODES := {
 		["tres", "res"],
 	EC_RESOURCE_PACK:
 		["zip", "pck"],
+	EC_AUDIO:
+		["ogg", "mp3", "wav"],
 	
 	
 }
