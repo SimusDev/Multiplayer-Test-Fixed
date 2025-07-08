@@ -13,7 +13,12 @@ signal max_health_changed()
 @export var health: float = 100.0 : set = set_health, get = get_health
 @export var max_health: float = 100.0 : set = set_max_health, get = get_max_health
 
+var _last_health: float = 100.0
+
 var _died: bool = false
+
+func get_last_health() -> int:
+	return _last_health
 
 func kill() -> void:
 	set_health(0)
@@ -51,9 +56,11 @@ func apply_damage(points: float) -> void:
 	if god_mode:
 		return
 	
+	_last_health = health
 	health -= points
 
 func heal(points: float) -> void:
+	_last_health = health
 	health += points
 
 func get_max_health() -> float:

@@ -39,20 +39,51 @@ func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 		_serialize_properties(data, child, root)
 		
 
+func _serialize_children(data: Dictionary, node: Node, root: Node) -> void:
+	
+	for child in node.get_children():
+		_serialize_children(data, child, root)
+	
+	if node == root:
+		return
+	
+	var scene: PackedScene = PackedScene.new()
+	scene.pack(node)
+	print(var_to_str(scene))
+	
+	var path: String = root.get_path_to(node)
+	var child_data: Dictionary = data.get_or_add(path, {}) as Dictionary
+	
+	if node.scene_file_path.is_empty():
+		
+		child_data
+	
+	#print(child_data)
+
+func _get_path_to_root_from_name(from: String, root: Node) -> String:
+	return from
+
+func _get_path_to_root_from_name_recursive(from: String, root: Node) -> String:
+	return from
+
 func serialize(node: Node) -> SD_MPNodeInstanceSerialized:
 	var data: Dictionary = {}
 	
 	var synced_properties: Dictionary = {}
 	data["synced_properties"] = synced_properties
-
+	
+	var synced_children: Dictionary = {}
+	data["synced_children"] = synced_children
+	
 	if node.scene_file_path.is_empty():
-		if node.get_script() != null:
-			data["script"] = node.get_script()
-		
+		var scene: PackedScene = PackedScene.new()
+		scene.pack(node)
+		data["packed_scene"] = scene
 	else:
 		data["scene_file_path"] = node.scene_file_path
 		
 	
+	#_serialize_children(synced_children, node, node)
 	_serialize_properties(synced_properties, node, node)
 	
 	var resource := SD_MPNodeInstanceSerialized.new()

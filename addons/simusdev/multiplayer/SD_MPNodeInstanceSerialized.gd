@@ -10,12 +10,9 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 	
 	var instance: Node = null
 	
-	if data.has("script"):
-		var script: Script = data.script as Script
-		if script is GDScript:
-			instance = script.new()
-		else:
-			instance = Node.new()
+	if data.has("packed_scene"):
+		var scene: PackedScene = data.packed_scene as PackedScene
+		instance = scene.instantiate()
 		
 	else:
 		var scene: PackedScene = load(data.scene_file_path)
