@@ -73,6 +73,7 @@ func spawn_from_data(data: SD_WorldSavedNodeData) -> void:
 				_console.write_from_object(self, "instance spawned: %s" % node_path, SD_ConsoleCategories.CATEGORY.INFO)
 				
 
+
 func find_node_from_data(data: SD_WorldSavedNodeData) -> Node:
 	var founded_node: Node = get_node_or_null(data.init_path)
 	if founded_node:
