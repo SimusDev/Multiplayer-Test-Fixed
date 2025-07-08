@@ -49,10 +49,12 @@ func unregister_tool(tool: String) -> void:
 		_available_tools.erase(tool)
 
 func unregister_tool_from_scene(scene: PackedScene) -> void:
-	unregister_tool(scene.resource_path.get_basename())
+	if scene:
+		unregister_tool(scene.resource_path.get_basename())
 
 func register_tool_from_scene(scene: PackedScene) -> void:
-	register_tool(scene.resource_path)
+	if scene:
+		register_tool(scene.resource_path)
 
 func load_tool_scene(tool_path: String) -> PackedScene:
 	var actual_path: String = _available_tools.get(tool_path, "")

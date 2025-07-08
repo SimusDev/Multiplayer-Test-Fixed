@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6gh8mnrcsbsn"]
+
+[ext_resource type="PackedScene" uid="uid://dvo0gx8seyk12" path="res://Games/sandbox/tools/base.tscn" id="1_nubvl"]
+
+[node name="t_spawner" instance=ExtResource("1_nubvl")]

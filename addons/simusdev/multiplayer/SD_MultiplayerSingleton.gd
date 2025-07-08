@@ -759,11 +759,11 @@ func sync_call_function_on_server(node: Node, callable: Callable, args: Array = 
 	sync_call_function_on_peer(HOST_ID, node, callable, args, reliable)
 
 func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array, reliable: bool = true) -> void:
-	if not get_connected_peers().has(peer):
-		return
-	
 	if SD_Multiplayer.get_unique_id() == peer:
 		node.callv(callable.get_method(), args)
+		return
+	
+	if not get_connected_peers().has(peer):
 		return
 	
 	var packet: Array = [

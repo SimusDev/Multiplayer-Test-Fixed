@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdcf45f1jrm0y"]
+
+[ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/sandbox/components/levels/SB_LevelHandler.gd" id="1_8a3r7"]
+[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/sandbox/prefabs/sky_3d.tscn" id="1_euvie"]
+[ext_resource type="Resource" uid="uid://dp0vr3ifxvjni" path="res://Games/sandbox/levels/world.tres" id="2_wcwho"]
+[ext_resource type="Script" uid="uid://by61272w1oc43" path="res://Games/sandbox/singletons/SB_GameSingleton.gd" id="3_wcwho"]
+[ext_resource type="Script" uid="uid://b6vtbie572lqf" path="res://Games/sandbox/singletons/SB_SModuleGameData.gd" id="4_iwi0m"]
+[ext_resource type="Resource" uid="uid://bq5mt5wdddhg4" path="res://Games/sandbox/resources/prefabs.tres" id="5_3ity0"]
+[ext_resource type="Script" uid="uid://ducwl5wbq2u66" path="res://Games/sandbox/singletons/SB_SModuleCommands.gd" id="5_14fed"]
+[ext_resource type="PackedScene" uid="uid://b6gh8mnrcsbsn" path="res://Games/sandbox/tools/spawner/tool.tscn" id="5_ab5mh"]
+
+[node name="Game" type="Node"]
+
+[node name="Sky3D" parent="." instance=ExtResource("1_euvie")]
+
+[node name="EL_LevelHandler" type="Node" parent="." node_paths=PackedStringArray("singleton")]
+script = ExtResource("1_8a3r7")
+initial_level = ExtResource("2_wcwho")
+singleton = NodePath("../EL_GameSingleton")
+metadata/_custom_type_script = "uid://gbb5kioauq2f"
+
+[node name="EL_GameSingleton" type="Node" parent="." node_paths=PackedStringArray("gamedata", "commands")]
+script = ExtResource("3_wcwho")
+gamepath = "res://Games/experiment_life"
+gamedata = NodePath("EL_SModuleGameData")
+commands = NodePath("EL_SModuleCommands")
+tools = Array[PackedScene]([ExtResource("5_ab5mh")])
+prefabs = ExtResource("5_3ity0")
+metadata/_custom_type_script = "uid://by61272w1oc43"
+
+[node name="EL_SModuleGameData" type="Node" parent="EL_GameSingleton"]
+script = ExtResource("4_iwi0m")
+objects_path = "res://Games/experiment_life/objects"
+metadata/_custom_type_script = "uid://b6vtbie572lqf"
+
+[node name="EL_SModuleCommands" type="Node" parent="EL_GameSingleton"]
+script = ExtResource("5_14fed")
+metadata/_custom_type_script = "uid://ducwl5wbq2u66"

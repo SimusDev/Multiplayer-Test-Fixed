@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://b3qkc3wi7bhw3"]
+
+[ext_resource type="Texture2D" uid="uid://dgwflv2a4wy7q" path="res://icon.png" id="1_gw1pk"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="2_6ot0k"]
+
+[resource]
+script = ExtResource("2_6ot0k")
+visible = true
+is_favorite = true
+scene_path = "uid://bdcf45f1jrm0y"
+code = "sandbox"
+name = "SandBox"
+icon = ExtResource("1_gw1pk")
+description = "NE CLICKBAIT !!!!!!!!"
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

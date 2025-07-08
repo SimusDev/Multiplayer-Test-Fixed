@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwc6oxx5o0w2j"]
+
+[ext_resource type="Script" uid="uid://dt7thisxucjkt" path="res://Games/sandbox/ui/loading/loading.gd" id="1_nit4g"]
+
+[node name="LevelLoading" type="CanvasLayer"]
+script = ExtResource("1_nit4g")

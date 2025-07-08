@@ -30,6 +30,9 @@ static func find_in(node: Node) -> WG_Inventory:
 	
 	return null
 
+func get_source() -> Node:
+	return _source
+
 func get_selected_slot() -> WG_InventorySlot:
 	return _selected_slot
 
@@ -61,6 +64,13 @@ func get_free_slot() -> WG_InventorySlot:
 		if slot.get_items().is_empty():
 			return slot
 	return null
+
+func get_free_slots() -> Array[WG_InventorySlot]:
+	var result: Array[WG_InventorySlot] = []
+	for slot in _slots:
+		if slot.get_items().is_empty():
+			result.append(slot)
+	return result
 
 func try_add_item_to_free_slot(item: WG_ItemStack) -> void:
 	var slot: WG_InventorySlot = get_free_slot()
@@ -130,6 +140,12 @@ func get_selected_item() -> WG_ItemStack:
 		return _selected_slot.get_item()
 	return null
 
+func get_items() -> Array[WG_ItemStack]:
+	var result: Array[WG_ItemStack] = []
+	for slot in _slots:
+		result.append_array(slot.get_items())
+	return result
+
 func has_slot(slot: WG_InventorySlot) -> bool:
 	return _slots.has(slot)
 
@@ -169,3 +185,24 @@ func _remove_slot_local(slot: WG_InventorySlot) -> void:
 	slot.queue_free()
 	
 	_slots.erase(slot)
+
+func transfer_item(item: WG_ItemStack, to: WG_Inventory) -> void:
+	transfer_items([item], to)
+
+func transfer_items(items: Array[WG_ItemStack], to: WG_Inventory) -> void:
+	SD_Multiplayer.sync_call_function(self, _transfer_items_local, [items, to])
+
+func _transfer_items_local(items: Array[WG_ItemStack], to: WG_Inventory) -> void:
+	if (items.is_empty() or not to):
+		return
+	
+	if not to.is_inside_tree():
+		return
+	
+	var transfer: Array[WG_ItemStack] = items.duplicate()
+	while !transfer.is_empty():
+		var cur_item: WG_ItemStack = transfer[0]
+		var free_slot: WG_InventorySlot = to.get_free_slot()
+		cur_item.move_to(free_slot)
+		
+		transfer.pop_front()

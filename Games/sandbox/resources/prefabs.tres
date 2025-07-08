@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ELR_Prefabs" load_steps=3 format=3 uid="uid://bq5mt5wdddhg4"]
+
+[ext_resource type="PackedScene" uid="uid://dgqfpw7ecp6fw" path="res://Games/sandbox/prefabs/synchronization/transform/transform.tscn" id="1_5ntox"]
+[ext_resource type="Script" uid="uid://hurjurapji6w" path="res://Games/sandbox/scripts/resources/ELR_Prefabs.gd" id="1_6es67"]
+
+[resource]
+script = ExtResource("1_6es67")
+_list = Dictionary[String, PackedScene]({})
+p_sync_transform = ExtResource("1_5ntox")
+metadata/_custom_type_script = "uid://hurjurapji6w"

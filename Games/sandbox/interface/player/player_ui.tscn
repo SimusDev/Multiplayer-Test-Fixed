@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvjgqoyulpo85"]
+
+[ext_resource type="Script" uid="uid://cosy2vid7js7w" path="res://Games/sandbox/interface/player/player_ui.gd" id="1_jkbj6"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_byydr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_px2ai"]
+
+[node name="PlayerUi" type="CanvasLayer"]
+script = ExtResource("1_jkbj6")
+
+[node name="client_or_server" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -237.0
+offset_top = 5.0
+offset_right = -7.0
+offset_bottom = 53.0
+grow_horizontal = 0
+text = "SERVER"
+label_settings = SubResource("LabelSettings_px2ai")
+horizontal_alignment = 2
+clip_text = true
+script = ExtResource("2_byydr")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
