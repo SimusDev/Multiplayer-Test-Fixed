@@ -1,5 +1,6 @@
 class_name SourceProp extends Node
 
+@export var surface:String
 @export var rigid_body:RigidBody3D
 const synced_property_scene:PackedScene = preload("res://Games/source_game/game/prefabs/mp_property_transform.tscn")
 

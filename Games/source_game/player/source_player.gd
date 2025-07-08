@@ -4,8 +4,6 @@ static var instance:SourcePlayer
 
 @export_group("Health")
 @export var health:C_HealthComponent
-var grounding_assets:Array[AudioStream]
-@export var hurt_grounding_assets:Array[AudioStream]
 @export var take_damage_assets:Array[AudioStream]
 
 @export_group("Controls")
@@ -13,7 +11,6 @@ var grounding_assets:Array[AudioStream]
 @export var camera:W_FPCSourceLikeCamera
 
 @export_group("Physics")
-@export var physics_handler:SourcePhysicsHandler
 @export var max_safe_fall_speed: float = 10.0
 @export var base_fall_damage: float = 8.0
 @export var fall_damage_multiplier: float = 1
@@ -36,8 +33,6 @@ func _ready() -> void:
 
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )
-	
-	physics_handler.grounded.connect(_on_grounded)
 
 	if is_multiplayer_authority():
 		instance = self
@@ -61,23 +56,6 @@ func set_model_blend():
 
 func _physics_process(_delta: float) -> void:
 	set_model_blend()
-
-func _on_grounded():
-	randomize()
-	var fall_speed = -physics_handler.last_velocity.y
-	var damage = 0.0
-	grounding_assets = footsteps_component.get(footsteps_component.current_surface)
-	
-	var grounding_sound:AudioStream = grounding_assets.pick_random()
-	
-	
-	if fall_speed > max_safe_fall_speed:
-		damage = (fall_speed + randf_range(base_fall_damage-2, base_fall_damage+2)) * fall_damage_multiplier
-		damage = max(damage, 0)
-		grounding_sound = hurt_grounding_assets.pick_random()
-	
-	health.apply_damage(damage)
-	SoundPlayer.play_global_audio_3d(self.global_position, grounding_sound)
 
 func _on_health_died() -> void:
 	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))

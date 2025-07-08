@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=3 uid="uid://chyunnwrsr8cq"]
+
+[ext_resource type="Script" uid="uid://pf622qfdiljm" path="res://addons/simusdev/components/animated_model/W_AnimatedModel3D.gd" id="1_7idgo"]
+[ext_resource type="PackedScene" uid="uid://dvhn3wr74ct05" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_model.tscn" id="2_nd1ge"]
+[ext_resource type="Animation" uid="uid://cec1hb5ttmc46" path="res://Games/source_game/enemy/zombie_creature/animations/idle.res" id="3_lx5ct"]
+[ext_resource type="Animation" uid="uid://col2f6suonohp" path="res://Games/source_game/enemy/zombie_creature/animations/walk.res" id="4_lx5ct"]
+[ext_resource type="Animation" uid="uid://b5p7jpsj1bd7n" path="res://Games/source_game/enemy/zombie_creature/animations/run.res" id="5_ji0iy"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ji0iy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blkx5"]
+animation = &"zombie/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbqn3"]
+animation = &"zombie/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s77j2"]
+animation = &"zombie/run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4rbf"]
+animation = &"zombie/idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qwoo7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_rbqn3")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_s77j2")
+blend_point_1/pos = -1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_p4rbf")
+blend_point_2/pos = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3qa0s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_blkx5"]
+states/idle/node = SubResource("AnimationNodeAnimation_blkx5")
+states/idle/position = Vector2(354, 100)
+states/move/node = SubResource("AnimationNodeBlendSpace1D_qwoo7")
+states/move/position = Vector2(568, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3qa0s")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rbqn3"]
+graph_offset = Vector2(-251.722, 128.227)
+nodes/state_machine/node = SubResource("AnimationNodeStateMachine_blkx5")
+nodes/state_machine/position = Vector2(0, 180)
+node_connections = [&"output", 0, &"state_machine"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s77j2"]
+_data = {
+&"idle": ExtResource("3_lx5ct"),
+&"run": ExtResource("5_ji0iy"),
+&"walk": ExtResource("4_lx5ct")
+}
+
+[node name="zombie_creature_animatied_model" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
+script = ExtResource("1_7idgo")
+model_scene = ExtResource("2_nd1ge")
+library = SubResource("AnimationLibrary_ji0iy")
+blend_tree = SubResource("AnimationNodeBlendTree_rbqn3")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/Skeleton3D")
+metadata/_custom_type_script = "uid://pf622qfdiljm"
+
+[node name="model3d" parent="." instance=ExtResource("2_nd1ge")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"zombie": SubResource("AnimationLibrary_s77j2")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = SubResource("AnimationNodeBlendTree_rbqn3")
+anim_player = NodePath("../AnimationPlayer")
+parameters/state_machine/move/blend_position = -0.00359714

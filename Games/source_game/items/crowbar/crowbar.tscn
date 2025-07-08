@@ -60,7 +60,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_enwn5"]
 resource_name = "fire"
-length = 0.4
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -68,7 +68,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
+"times": PackedFloat32Array(0, 0.1, 0.233333),
 "transitions": PackedFloat32Array(0.287175, 0.210224, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.5), Vector3(0, 0, 0)]
@@ -80,7 +80,7 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
+"times": PackedFloat32Array(0, 0.1, 0.233333),
 "transitions": PackedFloat32Array(0.5, 0.5, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.785398, 0, 0), Vector3(0, 0, 0)]
@@ -109,7 +109,6 @@ _data = {
 [node name="crowbar" type="Node3D" node_paths=PackedStringArray("model")]
 script = ExtResource("1_k756q")
 resource = ExtResource("2_k756q")
-use_cooldown = 0.31
 model = NodePath("model")
 metadata/_custom_type_script = "uid://dj1vged070hd"
 

@@ -9,6 +9,7 @@
 resource_name = "toilet_water.bmp"
 cull_mode = 2
 albedo_texture = ExtResource("1_cqcn3")
+metallic_specular = 0.0
 roughness = 0.5
 texture_filter = 0
 
@@ -162,6 +163,14 @@ points = PackedVector3Array(-0.430458, 0.898288, -0.169031, 0.416106, 1.06005, -
 
 [node name="toilet" type="RigidBody3D" groups=["props"]]
 mass = 15.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.4, 0.09)
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("4_fgmdj")
+surface = "concrete"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="toilet_ARM" type="Node3D" parent="."]
 
@@ -205,11 +214,6 @@ bones/4/scale = Vector3(1, 1, 1)
 [node name="shitter_ref2" type="MeshInstance3D" parent="toilet_ARM/Skeleton3D"]
 mesh = SubResource("ArrayMesh_cqcn3")
 skin = SubResource("Skin_karno")
-
-[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
-script = ExtResource("4_fgmdj")
-rigid_body = NodePath("..")
-metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="CollisionShape3D23" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_fgmdj")

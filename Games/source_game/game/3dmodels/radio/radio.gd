@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	while true:
 		play_track_stream(get_next())
-		await get_tree().create_timer(2.5).timeout
+		await get_tree().create_timer(5).timeout
 
 func initialize() -> void:
 	set_assets(load_assets(data_folder))
@@ -31,16 +31,20 @@ func load_assets(from_path:String) -> Array[AudioStream]:
 	return result
 
 func play_track(at_position:int) -> void:
-	set_current_position(at_position)
-	set_current_stream(assets[at_position])
+	if !SD_Multiplayer.is_server(): return
+	
+	SD_Multiplayer.sync_call_function(self, set_current_position, [at_position])
+	SD_Multiplayer.sync_call_function(self, set_current_stream, [assets[at_position]])
 	audio_player.stream = get_current_stream()
-	audio_player.play()
+	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
 
 func play_track_stream(stream:AudioStream) -> void:
-	set_current_position(assets.find(stream))
-	set_current_stream(stream)
+	if !SD_Multiplayer.is_server(): return
+	
+	SD_Multiplayer.sync_call_function(self, set_current_position, [assets.find(stream)])
+	SD_Multiplayer.sync_call_function(self, set_current_stream, [stream])
 	audio_player.stream = get_current_stream()
-	audio_player.play()
+	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
 
 func play_next():
 	play_track_stream(get_next())

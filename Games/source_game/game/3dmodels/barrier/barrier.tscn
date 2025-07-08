@@ -43,6 +43,12 @@ points = PackedVector3Array(-0.333947, 0.0100965, -1.51849, -0.333947, 0.0904589
 [node name="barrier" type="RigidBody3D" groups=["props"]]
 mass = 50.0
 
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("2_5cqfo")
+surface = "concrete"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
 [node name="barrier_ARM" type="Node3D" parent="."]
 
 [node name="Skeleton3D" type="Skeleton3D" parent="barrier_ARM"]
@@ -60,8 +66,3 @@ skin = SubResource("Skin_8w5bq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_fkxob")
-
-[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
-script = ExtResource("2_5cqfo")
-rigid_body = NodePath("..")
-metadata/_custom_type_script = "uid://d2inw684rgrh8"
