@@ -9,6 +9,7 @@ signal moved_to(slot: W_InventorySlot)
 
 signal quantity_changed(new: int)
 signal using_changed(id: int, status: bool)
+signal used(id: int)
 
 @export var resource: WG_ItemStackResource
 
@@ -17,6 +18,8 @@ func _on_local_data_changed(key: Variant, new_value: Variant) -> void:
 		if key.begins_with(".using."):
 			var id: int = int(key.replacen(".using."))
 			using_changed.emit(bool(new_value))
+			if new_value:
+				used.emit(id)
 	
 	match key:
 		"quantity":
