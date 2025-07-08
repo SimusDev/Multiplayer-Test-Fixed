@@ -185,6 +185,7 @@ shape = SubResource("CapsuleShape3D_cdeub")
 [node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("7_suq2s")
 player = NodePath("..")
+max_safe_fall_speed = 15.0
 hard_grounding_sounds = Array[AudioStream]([ExtResource("14_x0g0d"), ExtResource("15_qmy00")])
 metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
