@@ -13,10 +13,11 @@ var server_ready: bool = false
 signal server_ready_recieved(status: bool, map: R_GameMap)
 
 func _ready() -> void:
-	if OS.has_feature("dedicated_server") or OS.has_feature("server"):
-		dedicated_server.enabled = true
+	if dedicated_server:
+		if OS.has_feature("dedicated_server") or OS.has_feature("server"):
+			dedicated_server.enabled = true
 	
-	SD_Multiplayer.set_dedicated_server(dedicated_server.enabled)
+		SD_Multiplayer.set_dedicated_server(dedicated_server.enabled)
 	
 	for path in SD_FileSystem.get_all_files_with_extension_from_directory(PATH_TO_MAPS, SD_FileExtensions.EC_RESOURCE):
 		var resource: Resource = load(path)
