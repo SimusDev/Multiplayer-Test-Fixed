@@ -36,7 +36,6 @@ func _on_connect_pressed() -> void:
 
 func _on_quit_to_main_menu_pressed() -> void:
 	SD_Multiplayer.close_peer()
-	slike_scenechanger.change_to_menu()
 
 func _on_continue_pressed() -> void:
 	menu.close()

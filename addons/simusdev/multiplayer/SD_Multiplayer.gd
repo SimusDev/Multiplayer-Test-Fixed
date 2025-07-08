@@ -96,6 +96,9 @@ static func send_and_sync_var_to_all_peers(node: Node, property: String, reliabl
 static func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.sync_call_function(node, callable, args, reliable)
 
+static func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.sync_call_function_except_self(node, callable, args, reliable)
+
 static func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.sync_call_function_on_peer(peer, node, callable, args, reliable)
 

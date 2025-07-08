@@ -748,6 +748,13 @@ func sync_call_function(node: Node, callable: Callable, args: Array = [], reliab
 	for peer in get_connected_peers():
 		sync_call_function_on_peer(peer, node, callable, args, reliable)
 
+func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	for peer in get_connected_peers():
+		if peer == SD_Multiplayer.get_unique_id():
+			continue
+		sync_call_function_on_peer(peer, node, callable, args, reliable)
+
+
 func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	sync_call_function_on_peer(HOST_ID, node, callable, args, reliable)
 

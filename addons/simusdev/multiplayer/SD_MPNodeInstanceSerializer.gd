@@ -91,7 +91,6 @@ func serialize(node: Node) -> SD_MPNodeInstanceSerialized:
 	_serialize_properties(synced_properties, node, node)
 	
 	var resource := SD_MPNodeInstanceSerialized.new()
-	resource._serializer = self
 	resource.packet = SD_Multiplayer.serialize_var_into_packet(data)
 	return resource
 

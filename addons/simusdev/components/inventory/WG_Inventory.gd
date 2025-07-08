@@ -35,6 +35,17 @@ func _enter_tree() -> void:
 	if !_source:
 		_source = get_parent()
 
+func get_free_slot() -> WG_InventorySlot:
+	for slot in _slots:
+		if slot.get_items().is_empty():
+			return slot
+	return null
+
+func try_add_item_to_free_slot(item: WG_ItemStack) -> void:
+	var slot: WG_InventorySlot = get_free_slot()
+	if slot:
+		slot.add_item(item)
+
 func _ready() -> void:
 	_serializer = SD_MPNodeInstanceSerializer.new()
 	add_child(_serializer)
@@ -44,6 +55,9 @@ func _ready() -> void:
 	if SD_Multiplayer.is_not_server():
 		
 		for i in get_children():
+			if i == _serializer:
+				continue
+			
 			i.queue_free()
 		
 		SD_Multiplayer.sync_call_function_on_server(self, _send_all_slots_to_client, [SD_Multiplayer.get_unique_id()])
@@ -72,13 +86,28 @@ func _send_all_slots_to_client(peer: int) -> void:
 func _recieve_all_slots_from_server(serialized: Array, selected_slot_path: String) -> void:
 	for data in serialized:
 		if data is SD_MPNodeInstanceSerialized:
-			var slot: WG_InventorySlot = data.deserialize().instance
+			var des: SD_MPNodeInstanceDeserialized = data.deserialize()
+			var slot: WG_InventorySlot = des.instance
 			_add_slot_local(slot)
+			
+			
+			
+			
 	
 	_selected_slot = get_node_or_null(selected_slot_path)
 
 func get_slots() -> Array[WG_InventorySlot]:
 	return _slots
+
+func get_selected_items() -> Array[WG_ItemStack]:
+	if _selected_slot:
+		return _selected_slot.get_items()
+	return []
+
+func get_selected_item() -> WG_ItemStack:
+	if _selected_slot:
+		return _selected_slot.get_item()
+	return null
 
 func has_slot(slot: WG_InventorySlot) -> bool:
 	return _slots.has(slot)

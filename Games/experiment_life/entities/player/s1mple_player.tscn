@@ -65,31 +65,23 @@ _source = NodePath("..")
 _initial_slots = 0
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
-[node name="testslot1" type="Node" parent="EL_Inventory"]
+[node name="slot123" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="testslot2" type="Node" parent="EL_Inventory"]
+[node name="slot78" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="testslot3" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
-metadata/_custom_type_script = "uid://co6ddscxxrcwc"
-
-[node name="megaitem123" type="Node" parent="EL_Inventory/testslot3"]
+[node name="pistol" type="Node" parent="EL_Inventory/slot78"]
 script = ExtResource("8_l8c2a")
 metadata/_custom_type_script = "uid://ca018ytdj1cv3"
 
-[node name="superitem33" type="Node" parent="EL_Inventory/testslot3"]
+[node name="gun" type="Node" parent="EL_Inventory/slot78"]
 script = ExtResource("8_l8c2a")
 metadata/_custom_type_script = "uid://ca018ytdj1cv3"
 
-[node name="testslot4" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
-metadata/_custom_type_script = "uid://co6ddscxxrcwc"
-
-[node name="testslot5" type="Node" parent="EL_Inventory"]
+[node name="slotcykablya" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 

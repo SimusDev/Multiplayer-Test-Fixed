@@ -4,5 +4,4 @@ class_name EL_Inventory
 
 func _ready() -> void:
 	super()
-	_serializer.serialize(self).deserialize()
 	

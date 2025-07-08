@@ -7,6 +7,33 @@ var _inventory: WG_Inventory
 
 signal moved_to(slot: W_InventorySlot)
 
+signal quantity_changed(new: int)
+signal using_changed(id: int, status: bool)
+
+@export var resource: WG_ItemStackResource
+
+func _on_local_data_changed(key: Variant, new_value: Variant) -> void:
+	if key is String:
+		if key.begins_with(".using."):
+			var id: int = int(key.replacen(".using."))
+			using_changed.emit(bool(new_value))
+	
+	match key:
+		"quantity":
+			quantity_changed.emit(new_value)
+
+
+func set_using(id: int = 0, status: bool = true) -> void:
+	data_set_value(".using.%s" % [str(id)], status)
+
+func is_using(id: int = 0) -> bool:
+	return data_get_value(".using.%s" % [str(id)], false)
+
+func use(id: int = 0) -> void:
+	set_using(id, true)
+	set_using(id, false)
+
+
 func get_slot() -> WG_InventorySlot:
 	return _slot
 
@@ -33,9 +60,6 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	_slot._remove_item_local(self)
-
-func _on_local_data_changed(key: Variant, new_value: Variant) -> void:
-	pass
 
 func get_quantity() -> int:
 	return data_get_value("quantity", 1)
@@ -71,6 +95,12 @@ func data_set_value(key: Variant, value: Variant) -> void:
 	SD_Multiplayer.sync_call_function(self, data_set_value_local, [key, value])
 
 func data_set_value_local(key: Variant, value: Variant) -> void:
+	if data.has(key):
+		var cur_value: Variant = data[key]
+		if cur_value == value:
+			return
+		
+		
 	data[key] = value
 	data_changed.emit(key, value)
 	
