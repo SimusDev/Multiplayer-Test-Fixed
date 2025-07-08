@@ -109,7 +109,6 @@ func _on_console_visibility_changed() -> void:
 		add_disable_priority()
 	else:
 		subtract_disable_priority()
-	
 
 func _physics_process(delta: float) -> void:
 	if input_enabled and enabled:

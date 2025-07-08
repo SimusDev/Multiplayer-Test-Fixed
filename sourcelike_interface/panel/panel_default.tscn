@@ -1,20 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://boxyfhle2aj0x"]
+[gd_scene load_steps=2 format=3 uid="uid://boxyfhle2aj0x"]
 
 [ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="1_026q3"]
-[ext_resource type="Texture2D" uid="uid://1iyybqe410mv" path="res://sourcelike_interface/gmod_bg_placeholder.png" id="2_3m124"]
-[ext_resource type="Texture2D" uid="uid://creapfd3aw450" path="res://sourcelike_interface/gmod_reference.png" id="3_u3ehr"]
 
 [node name="panel_default" instance=ExtResource("1_026q3")]
 self_modulate = Color(0.47788, 0.47788, 0.47788, 0.960784)
-
-[node name="GmodBgPlaceholder" type="Sprite2D" parent="." index="0"]
-visible = false
-show_behind_parent = true
-position = Vector2(-7, 49)
-texture = ExtResource("2_3m124")
-
-[node name="GmodReference2" type="Sprite2D" parent="." index="1"]
-visible = false
-show_behind_parent = true
-position = Vector2(354, 59)
-texture = ExtResource("3_u3ehr")
