@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgqfpw7ecp6fw"]
+
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_4hjk0"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_5c2tt"]
+[ext_resource type="Resource" uid="uid://dh8hgq25sjspj" path="res://Games/experiment_life/components/synchronization/transform/transform.tres" id="3_4hjk0"]
+
+[node name="Transform" type="Node"]
+script = ExtResource("1_4hjk0")
+properties = Array[ExtResource("2_5c2tt")]([ExtResource("3_4hjk0")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"

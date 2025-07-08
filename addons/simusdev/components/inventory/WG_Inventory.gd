@@ -17,6 +17,19 @@ signal item_added(item: WG_ItemStack)
 signal item_removed(item: WG_ItemStack)
 signal item_moved_to(slot: WG_InventorySlot, item: WG_ItemStack)
 
+static func find_in(node: Node) -> WG_Inventory:
+	if node is WG_ItemStack:
+		return node
+	
+	if node.has_meta("WG_Inventory"):
+		return node.get_meta("WG_Inventory")
+	
+	for child in node.get_children():
+		if child is WG_Inventory:
+			return child
+	
+	return null
+
 func get_selected_slot() -> WG_InventorySlot:
 	return _selected_slot
 
@@ -24,6 +37,9 @@ func set_selected_slot(slot: WG_InventorySlot) -> void:
 	SD_Multiplayer.sync_call_function(self, _set_selected_slot_local, [slot])
 
 func _set_selected_slot_local(slot: WG_InventorySlot) -> void:
+	if not slot:
+		return
+	
 	if _slots.has(slot):
 		slot_deselected.emit(_selected_slot)
 		_selected_slot = slot
@@ -34,6 +50,11 @@ func _set_selected_slot_local(slot: WG_InventorySlot) -> void:
 func _enter_tree() -> void:
 	if !_source:
 		_source = get_parent()
+	
+	_source.set_meta("WG_Inventory", self)
+
+func _exit_tree() -> void:
+	_source.remove_meta("WG_Inventory")
 
 func get_free_slot() -> WG_InventorySlot:
 	for slot in _slots:

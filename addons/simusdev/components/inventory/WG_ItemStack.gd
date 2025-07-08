@@ -98,12 +98,7 @@ func data_set_value(key: Variant, value: Variant) -> void:
 	SD_Multiplayer.sync_call_function(self, data_set_value_local, [key, value])
 
 func data_set_value_local(key: Variant, value: Variant) -> void:
-	if data.has(key):
-		var cur_value: Variant = data[key]
-		if cur_value == value:
-			return
-		
-		
+	
 	data[key] = value
 	data_changed.emit(key, value)
 	

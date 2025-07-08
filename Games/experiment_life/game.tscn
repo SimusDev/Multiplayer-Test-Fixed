@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdcf45f1jrm0y"]
+[gd_scene load_steps=8 format=3 uid="uid://bdcf45f1jrm0y"]
 
 [ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/experiment_life/components/levels/EL_LevelHandler.gd" id="1_8a3r7"]
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/experiment_life/prefabs/sky_3d.tscn" id="1_euvie"]
 [ext_resource type="Resource" uid="uid://dp0vr3ifxvjni" path="res://Games/experiment_life/levels/world.tres" id="2_wcwho"]
 [ext_resource type="Script" uid="uid://by61272w1oc43" path="res://Games/experiment_life/singletons/EL_GameSingleton.gd" id="3_wcwho"]
 [ext_resource type="Script" uid="uid://b6vtbie572lqf" path="res://Games/experiment_life/singletons/EL_SModuleGameData.gd" id="4_iwi0m"]
+[ext_resource type="Resource" uid="uid://bq5mt5wdddhg4" path="res://Games/experiment_life/resources/prefabs.tres" id="5_3ity0"]
 [ext_resource type="Script" uid="uid://ducwl5wbq2u66" path="res://Games/experiment_life/singletons/EL_SModuleCommands.gd" id="5_14fed"]
 
 [node name="Game" type="Node"]
@@ -21,6 +22,7 @@ metadata/_custom_type_script = "uid://gbb5kioauq2f"
 script = ExtResource("3_wcwho")
 gamedata = NodePath("EL_SModuleGameData")
 commands = NodePath("EL_SModuleCommands")
+prefabs = ExtResource("5_3ity0")
 metadata/_custom_type_script = "uid://by61272w1oc43"
 
 [node name="EL_SModuleGameData" type="Node" parent="EL_GameSingleton"]
