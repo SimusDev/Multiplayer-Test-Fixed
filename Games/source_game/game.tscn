@@ -272,7 +272,7 @@ metadata/_custom_type_script = "uid://5by2ms76p5wg"
 [node name="source_flatgrass" parent="." instance=ExtResource("1_07hh0")]
 
 [node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09583, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.42389, 2.1)
