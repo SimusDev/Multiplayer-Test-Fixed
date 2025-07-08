@@ -1,2 +1,0 @@
-extends WG_ItemStack
-class_name EL_ItemStack

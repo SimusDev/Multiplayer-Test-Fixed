@@ -1,0 +1,123 @@
+[gd_scene load_steps=17 format=3 uid="uid://dk4nnihi62s17"]
+
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
+[ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="1_ypfrq"]
+[ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_p1dqb"]
+[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
+[ext_resource type="Resource" uid="uid://cokbg8gf0bwd2" path="res://Games/sandbox/objects/item/test.tres" id="6_j2tsh"]
+[ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="6_p1dqb"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="7_g4hgc"]
+[ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="7_l8c2a"]
+[ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
+[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="8_l8c2a"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
+albedo_texture = ExtResource("5_22h6b")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ht5r7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
+size = Vector3(1, 1.99615, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1dqb"]
+size = Vector3(1, 1.14554, 1)
+
+[node name="s1mple" type="CharacterBody3D"]
+collision_layer = 0
+
+[node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
+script = ExtResource("1_ep68v")
+hide_at_start = true
+nodes = [NodePath("../MeshInstance3D")]
+
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "p_health")]
+script = ExtResource("1_ypfrq")
+source = NodePath("..")
+_interface = ExtResource("3_p1dqb")
+p_health = NodePath("../C_HealthComponent")
+metadata/_custom_type_script = "uid://b3v82ef34b3t8"
+
+[node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
+script = ExtResource("6_p1dqb")
+_source = NodePath("..")
+_initial_slots = 0
+metadata/_custom_type_script = "uid://blryw67pt5b2q"
+
+[node name="slot1" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="slot2" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="slot3" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="test_item" type="Node" parent="EL_Inventory/slot3"]
+script = ExtResource("8_l8c2a")
+object = ExtResource("6_j2tsh")
+metadata/_custom_type_script = "uid://ca018ytdj1cv3"
+
+[node name="slot4" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="slot5" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="slot6" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2jxb3")
+mesh = SubResource("CapsuleMesh_ht5r7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01474, 0)
+shape = SubResource("BoxShape3D_j2tsh")
+
+[node name="CollisionShape3D_CR" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
+shape = SubResource("BoxShape3D_p1dqb")
+
+[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_osawl")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("7_g4hgc")]
+camera = NodePath("../W_FPCSourceLikePlayerCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+collision_normal = NodePath("../CollisionShape3D")
+collision_crouch = NodePath("../CollisionShape3D")
+ceiling_detection = NodePath("../ceiling_detection")
+crouch_camera_position = NodePath("../crouch_camera_position")
+
+[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("8_ep68v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86401, 0)
+movement = NodePath("../W_FPCSourceLikeMovement")
+body = NodePath("..")
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_j2tsh")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="ceiling_detection" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_camera_position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)

@@ -1,2 +1,0 @@
-extends Node3D
-class_name EL_LevelSection3D

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bswhfkonnoa80"]
+
+[ext_resource type="Script" uid="uid://w7ydag63i22q" path="res://Games/sandbox/components/levels/SB_Level3D.gd" id="1_lj6rm"]
+[ext_resource type="PackedScene" uid="uid://bfsckyn582nca" path="res://Games/sandbox/prefabs/sd_mp_client_node_spawner.tscn" id="2_pjrny"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_e7ouf"]
+[ext_resource type="PackedScene" uid="uid://dk4nnihi62s17" path="res://Games/sandbox/entities/player/s1mple_player.tscn" id="4_e7ouf"]
+[ext_resource type="Script" uid="uid://dt30t8qnm1nkw" path="res://Games/sandbox/components/levels/SB_LevelSection3D.gd" id="5_e7ouf"]
+
+[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner")]
+script = ExtResource("1_lj6rm")
+_spawner = NodePath("SD_MPClientNodeSpawner")
+
+[node name="SD_MPClientNodeSpawner" parent="." instance=ExtResource("2_pjrny")]
+spawn_at_start = false
+
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points", "spawner")]
+script = ExtResource("3_e7ouf")
+player_scene = ExtResource("4_e7ouf")
+parent = NodePath("../Players")
+spawn_points = [NodePath("../Players")]
+spawner = NodePath("../SD_MPClientNodeSpawner")
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="LevelScene" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")
+metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
+
+[node name="Default" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")
+
+[node name="Objects" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")
+
+[node name="Items" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")
+
+[node name="Players" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51172, 0)
+script = ExtResource("5_e7ouf")
+
+[node name="Props" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")

@@ -42,27 +42,6 @@ func _on_inventory_slot_deselected(slot: WG_InventorySlot) -> void:
 	if self == slot:
 		deselected.emit()
 
-func _ready() -> void:
-	if SD_Multiplayer.is_not_server():
-		for i in get_children():
-			i.queue_free()
-		
-		#SD_Multiplayer.sync_call_function_on_server(self, _send_items_to_client, [SD_Multiplayer.get_unique_id()])
-		
-		return
-
-func _send_items_to_client(peer: int) -> void:
-	var items: Array = []
-	for item in get_items():
-		items.append(_inventory._serializer.serialize(item))
-	
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_items_from_server, [items])
-
-func _recieve_items_from_server(items: Array) -> void:
-	for item in items:
-		if item is SD_MPNodeInstanceSerialized:
-			_add_item_local(item.deserialize().instance)
-
 func select() -> void:
 	_inventory.set_selected_slot(self)
 
@@ -78,7 +57,11 @@ func get_item() -> WG_ItemStack:
 	return _items.pick_random()
 
 func add_item(item: WG_ItemStack) -> void:
-	SD_Multiplayer.sync_call_function(self, _add_item_local, [item])
+	_add_item_local(item)
+	SD_Multiplayer.sync_call_function_except_self(self, _add_item_local, [_inventory._serializer.serialize(item)])
+
+func _add_item_serialized(data: SD_MPNodeInstanceSerialized) -> void:
+	_add_item_local(data.deserialize().instance)
 
 func _add_item_local(item: WG_ItemStack) -> void:
 	if not item:
@@ -96,7 +79,8 @@ func _add_item_local(item: WG_ItemStack) -> void:
 	item_added.emit(item)
 
 func remove_item(item: WG_ItemStack) -> void:
-	SD_Multiplayer.sync_call_function(self, _remove_item_local, [item])
+	_remove_item_local_path(get_path_to(item))
+	SD_Multiplayer.sync_call_function_except_self(self, _remove_item_local_path, [str(get_path_to(item))])
 
 func _remove_item_local(item: WG_ItemStack) -> void:
 	if not item:
@@ -108,3 +92,7 @@ func _remove_item_local(item: WG_ItemStack) -> void:
 	item_removed.emit(item)
 	item.queue_free()
 	
+
+func _remove_item_local_path(item_path: String) -> void:
+	var item: WG_ItemStack = get_node_or_null(item_path)
+	_remove_item_local(item)

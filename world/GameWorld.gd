@@ -10,8 +10,7 @@ func _exit_tree() -> void:
 	_instance = null
 
 func _ready() -> void:
-	if not SD_Multiplayer.is_server():
-		SD_Multiplayer.get_singleton().server_disconnected.connect(_on_server_disconnected)
+	SD_Multiplayer.get_singleton().server_disconnected.connect(_on_server_disconnected)
 
 func _on_server_disconnected() -> void:
 	slike_scenechanger.change_to_menu()

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SB_LevelResource" load_steps=3 format=3 uid="uid://dp0vr3ifxvjni"]
+
+[ext_resource type="Texture2D" uid="uid://di2aaale26tq5" path="res://Games/sandbox/el_icon.png" id="1_rku45"]
+[ext_resource type="Script" uid="uid://vthkd6cok4dp" path="res://Games/sandbox/components/levels/SB_LevelResource.gd" id="2_rku45"]
+
+[resource]
+script = ExtResource("2_rku45")
+scene_path = "uid://b1lhcsnod41nx"
+icon = ExtResource("1_rku45")
+name = "world"
+metadata/_custom_type_script = "uid://vthkd6cok4dp"

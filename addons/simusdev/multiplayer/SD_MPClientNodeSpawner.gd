@@ -50,13 +50,10 @@ func can_detect_node(node: Node) -> bool:
 	return spawn_list.has(scene)
 
 func _bake(value: bool) -> void:
-	if (not value) or (not Engine.is_editor_hint()):
+	if (not value):
 		return
 	
 	_baked_properties.clear()
-	
-
-
 	
 	for _script in scripts_to_sync:
 		if !_script:
@@ -100,11 +97,11 @@ func _ready() -> void:
 	if not start_name.is_empty():
 		name = start_name
 	
-	if not SD_Multiplayer.is_active():
-		return
-	
 	if bake_at_runtime:
 		_bake(true)
+	
+	if not SD_Multiplayer.is_active():
+		return
 	
 	if SD_Multiplayer.is_server():
 		for root in detect_roots:
