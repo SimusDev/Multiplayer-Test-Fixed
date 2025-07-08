@@ -42,6 +42,27 @@ func _on_inventory_slot_deselected(slot: WG_InventorySlot) -> void:
 	if self == slot:
 		deselected.emit()
 
+func _ready() -> void:
+	if SD_Multiplayer.is_not_server():
+		for i in get_children():
+			i.queue_free()
+		
+		#SD_Multiplayer.sync_call_function_on_server(self, _send_items_to_client, [SD_Multiplayer.get_unique_id()])
+		
+		return
+
+func _send_items_to_client(peer: int) -> void:
+	var items: Array = []
+	for item in get_items():
+		items.append(_inventory._serializer.serialize(item))
+	
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_items_from_server, [items])
+
+func _recieve_items_from_server(items: Array) -> void:
+	for item in items:
+		if item is SD_MPNodeInstanceSerialized:
+			_add_item_local(item.deserialize().instance)
+
 func select() -> void:
 	_inventory.set_selected_slot(self)
 

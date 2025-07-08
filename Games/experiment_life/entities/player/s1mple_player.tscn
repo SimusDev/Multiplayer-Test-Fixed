@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=19 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_bs653"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
 [ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/experiment_life/components/inventory/EL_Inventory.gd" id="6_p1dqb"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="7_g4hgc"]
+[ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/experiment_life/components/inventory/EL_InventorySlot.gd" id="7_l8c2a"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
+[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/experiment_life/components/inventory/EL_ItemStack.gd" id="8_l8c2a"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
 
 [sub_resource type="Resource" id="Resource_gfa31"]
@@ -60,8 +62,36 @@ metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 [node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("6_p1dqb")
 _source = NodePath("..")
-_initial_slots = 24
+_initial_slots = 0
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
+
+[node name="testslot1" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="testslot2" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="testslot3" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="megaitem123" type="Node" parent="EL_Inventory/testslot3"]
+script = ExtResource("8_l8c2a")
+metadata/_custom_type_script = "uid://ca018ytdj1cv3"
+
+[node name="superitem33" type="Node" parent="EL_Inventory/testslot3"]
+script = ExtResource("8_l8c2a")
+metadata/_custom_type_script = "uid://ca018ytdj1cv3"
+
+[node name="testslot4" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="testslot5" type="Node" parent="EL_Inventory"]
+script = ExtResource("7_l8c2a")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2jxb3")
