@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cladxpfafvbho"]
+
+[ext_resource type="Script" uid="uid://coccppiijwv5x" path="res://Games/sandbox/tools/spawner/object.gd" id="1_a5d7i"]
+[ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="1_n7phr"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="1_v08us"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a5d7i"]
+
+[node name="object" type="Control"]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 248.0
+offset_bottom = 152.0
+script = ExtResource("1_a5d7i")
+metadata/_edit_horizontal_guides_ = [100.0]
+
+[node name="panel" parent="." instance=ExtResource("1_n7phr")]
+self_modulate = Color(0.136826, 0.136826, 0.136826, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_a5d7i")
+clip_text = true
+script = ExtResource("1_v08us")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+metadata/_edit_use_anchors_ = true

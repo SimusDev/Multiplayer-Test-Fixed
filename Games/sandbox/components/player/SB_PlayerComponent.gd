@@ -8,7 +8,7 @@ class_name SB_PlayerComponent
 @export var _synchronize_transform: Array[Node3D] = []
 @export var _interface: PackedScene
 
-@onready var _prefabs: ELR_Prefabs = SB_GameSingleton.instance.prefabs
+@onready var _prefabs: SBR_Prefabs = SB_GameSingleton.instance.prefabs
 
 @export_category("References")
 @export var p_health: C_HealthComponent

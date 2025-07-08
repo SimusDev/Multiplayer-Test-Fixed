@@ -1,5 +1,5 @@
 extends Resource
-class_name ELR_Prefabs
+class_name SBR_Prefabs
 
 @export var _list: Dictionary[String, PackedScene] = {}
 

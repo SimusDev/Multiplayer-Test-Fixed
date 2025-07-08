@@ -7,7 +7,7 @@ class_name SB_GameSingleton
 @export var commands: SB_SModuleCommands
 
 @export var tools: Array[PackedScene] = []
-@export var prefabs: ELR_Prefabs
+@export var prefabs: SBR_Prefabs
 
 static var instance: SB_GameSingleton
 

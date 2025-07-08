@@ -34,10 +34,9 @@ script = ExtResource("1_ep68v")
 hide_at_start = true
 nodes = [NodePath("../MeshInstance3D")]
 
-[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "_synchronize_transform", "p_health")]
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "p_health")]
 script = ExtResource("1_ypfrq")
 source = NodePath("..")
-_synchronize_transform = [NodePath("../W_FPCSourceLikePlayerCamera")]
 _interface = ExtResource("3_p1dqb")
 p_health = NodePath("../C_HealthComponent")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
