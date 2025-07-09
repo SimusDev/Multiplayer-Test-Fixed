@@ -81,7 +81,6 @@ func _ready() -> void:
 		console.create_command("disconnect"),
 	]
 	
-	
 	for cmd in commands:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
 
@@ -247,6 +246,7 @@ func create_server(port: int, dedicated: bool = false) -> void:
 	
 	var err = _peer.create_server(port)
 	if err == OK:
+		_peer.host.compress(ENetConnection.COMPRESS_FASTLZ)
 		multiplayer.multiplayer_peer = _peer
 		multiplayer.peer_connected.connect(_on_peer_connected)
 		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -272,6 +272,7 @@ func create_client(address: String, port: int) -> void:
 	
 	var err = _peer.create_client(address, port)
 	if err == OK:
+		_peer.host.compress(ENetConnection.COMPRESS_FASTLZ)
 		multiplayer.multiplayer_peer = _peer
 		set_multiplayer_authority(_peer.get_unique_id())
 		client_created.emit(address, port)

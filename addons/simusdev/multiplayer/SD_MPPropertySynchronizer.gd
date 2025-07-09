@@ -233,7 +233,6 @@ func _recieve_properties_from_peer_rpc_recieve(path: NodePath, synced: Dictionar
 	for property: String in synced:
 		var value: Variant = synced[property]
 		get_synced_data_properties(node).set(property, value)
-		print(get_synced_data_properties(node))
 		property_recieved.emit(node, property, value, from_peer)
 		
 		for base in get_synced_bases(node):
