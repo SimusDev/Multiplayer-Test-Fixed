@@ -108,6 +108,9 @@ func execute(args: Array[String] = []) -> void:
 			value += i
 			value += " "
 		
+		if value.ends_with(" "):
+			value.erase(value.length() - 1)
+		
 		set_value(value)
 	
 	executed.emit()
