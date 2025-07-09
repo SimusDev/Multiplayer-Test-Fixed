@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="R_DedicatedServer" load_steps=3 format=3 uid="uid://38a1ca7sgp7d"]
 
-[ext_resource type="Script" path="res://scripts/r_dedicated_server.gd" id="1_f0smc"]
+[ext_resource type="Script" uid="uid://dtf4pn3kud42d" path="res://scripts/r_dedicated_server.gd" id="1_f0smc"]
 
 [sub_resource type="Resource" id="Resource_f0smc"]
 metadata/__load_path__ = "res://maps/experiment_life.tres"

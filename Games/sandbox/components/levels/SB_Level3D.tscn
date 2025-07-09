@@ -8,22 +8,25 @@
 
 [node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner")]
 script = ExtResource("1_lj6rm")
-_spawner = NodePath("SD_MPClientNodeSpawner")
+_spawner = NodePath("ObjectsSpawner")
 
-[node name="SD_MPClientNodeSpawner" parent="." instance=ExtResource("2_pjrny")]
-spawn_at_start = false
+[node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
+auto_handle_spawn = false
 
-[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points", "spawner")]
+[node name="PlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("3_e7ouf")
 player_scene = ExtResource("4_e7ouf")
 parent = NodePath("../Players")
 spawn_points = [NodePath("../Players")]
-spawner = NodePath("../SD_MPClientNodeSpawner")
 metadata/_custom_type_script = "uid://crxce7oinuqn4"
 
 [node name="LevelScene" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
+
+[node name="Players" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51172, 0)
+script = ExtResource("5_e7ouf")
 
 [node name="Default" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
@@ -31,12 +34,8 @@ script = ExtResource("5_e7ouf")
 [node name="Objects" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 
-[node name="Items" type="Node3D" parent="."]
-script = ExtResource("5_e7ouf")
-
-[node name="Players" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51172, 0)
-script = ExtResource("5_e7ouf")
-
 [node name="Props" type="Node3D" parent="."]
+script = ExtResource("5_e7ouf")
+
+[node name="Items" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")

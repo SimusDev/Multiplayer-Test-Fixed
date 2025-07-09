@@ -11,7 +11,6 @@ var _singleton: SD_MultiplayerSingleton
 var _synced_data: Dictionary[Node, Dictionary]
 var _synced_bases: Dictionary[Node, Array]
 
-
 func set_synced_data_property(node: Node, property: String, value: Variant) -> void:
 	var properties: Dictionary = get_synced_data_properties(node)
 	properties[property] = value

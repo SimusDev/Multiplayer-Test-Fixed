@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdcf45f1jrm0y"]
+[gd_scene load_steps=10 format=3 uid="uid://bdcf45f1jrm0y"]
 
 [ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/sandbox/components/levels/SB_LevelHandler.gd" id="1_8a3r7"]
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/sandbox/prefabs/sky_3d.tscn" id="1_euvie"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bq5mt5wdddhg4" path="res://Games/sandbox/resources/prefabs.tres" id="5_3ity0"]
 [ext_resource type="Script" uid="uid://ducwl5wbq2u66" path="res://Games/sandbox/singletons/SB_SModuleCommands.gd" id="5_14fed"]
 [ext_resource type="PackedScene" uid="uid://b6gh8mnrcsbsn" path="res://Games/sandbox/tools/spawner/tool.tscn" id="5_ab5mh"]
+[ext_resource type="Resource" uid="uid://dnyuficp8p0ko" path="res://Games/sandbox/resources/network.tres" id="7_yk1wo"]
 
 [node name="Game" type="Node"]
 
@@ -26,11 +27,12 @@ gamedata = NodePath("EL_SModuleGameData")
 commands = NodePath("EL_SModuleCommands")
 tools = Array[PackedScene]([ExtResource("5_ab5mh")])
 prefabs = ExtResource("5_3ity0")
+network = ExtResource("7_yk1wo")
 metadata/_custom_type_script = "uid://by61272w1oc43"
 
 [node name="EL_SModuleGameData" type="Node" parent="EL_GameSingleton"]
 script = ExtResource("4_iwi0m")
-objects_path = "res://Games/experiment_life/objects"
+objects_path = "res://Games/sandbox/objects"
 metadata/_custom_type_script = "uid://b6vtbie572lqf"
 
 [node name="EL_SModuleCommands" type="Node" parent="EL_GameSingleton"]

@@ -3,7 +3,7 @@ extends Object
 class_name SD_MPDataCompressor
 
 const DEFAULT_MODE: int = FileAccess.COMPRESSION_GZIP
-const MIN_BYTES_TO_COMPRESS: int = 1000
+const MIN_BYTES_TO_COMPRESS: int = 250
 
 static func try_compress(data: Variant, mode: int = DEFAULT_MODE) -> PackedByteArray:
 	var bytes: PackedByteArray = var_to_bytes(data)

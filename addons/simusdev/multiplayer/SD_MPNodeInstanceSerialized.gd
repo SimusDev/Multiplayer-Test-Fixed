@@ -4,7 +4,7 @@ class_name SD_MPNodeInstanceSerialized
 @export var packet: Dictionary = {}
 
 func deserialize() -> SD_MPNodeInstanceDeserialized:
-	var data: Dictionary = SD_Multiplayer.deserialize_var_from_packet(packet)
+	var data: Dictionary = SD_Multiplayer.deserialize_var_from_packet(packet) as Dictionary
 	
 	var instance: Node = null
 	
@@ -26,7 +26,6 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 	var root_dict: Dictionary = synced_children.get(synced_children.keys()[0], {}) as Dictionary
 	_instantiate_synced_children(instance, instance, root_dict.children)
 	
-	
 	var synced_properties: Dictionary = data.get("synced_properties", {}) as Dictionary
 	for path in synced_properties:
 		var founded: Node = instance.get_node_or_null(path)
@@ -38,11 +37,7 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 			
 			for p_name: String in synced:
 				if p_name == ".node_name.":
-					founded.tree_entered.connect(
-						func():
-							founded.name = synced[".node_name."]
-					)
-					
+					instance.name = synced[".node_name."]
 					continue
 				
 				var packet: Variant = synced[p_name]
@@ -57,10 +52,8 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 	resource.instance = instance
 	return resource
 
-
 func _instantiate_synced_children(main_root: Node, root: Node, root_dict: Dictionary) -> void:
 	for node_name in root_dict:
-		
 		var node_data: Dictionary = root_dict[node_name]
 		var children: Dictionary = node_data.get("children", {}) as Dictionary
 		var instance: Node = null

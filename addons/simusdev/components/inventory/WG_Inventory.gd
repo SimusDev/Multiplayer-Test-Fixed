@@ -3,15 +3,17 @@ extends Node
 class_name WG_Inventory
 
 @export var _source: Node
-@export var _initial_slots: int = 18
 
 var _selected_slot: WG_InventorySlot = null
 var _slots: Array[WG_InventorySlot] = []
 
 var _serializer: SD_MPNodeInstanceSerializer
 
-signal slot_selected(slot: W_InventorySlot)
-signal slot_deselected(slot: W_InventorySlot)
+signal slot_selected(slot: WG_InventorySlot)
+signal slot_deselected(slot: WG_InventorySlot)
+
+signal slot_added(slot: WG_InventorySlot)
+signal slot_removed(slot: WG_InventorySlot)
 
 signal item_added(item: WG_ItemStack)
 signal item_removed(item: WG_ItemStack)
@@ -94,11 +96,6 @@ func _ready() -> void:
 		SD_Multiplayer.sync_call_function_on_server(self, _send_all_slots_to_client, [SD_Multiplayer.get_unique_id()])
 		
 		return
-	
-	for id in _initial_slots:
-		var slot: WG_InventorySlot = WG_InventorySlot.new()
-		slot.start_name = str(id)
-		add_child(slot)
 	
 	for child in get_children():
 		if child is WG_InventorySlot:

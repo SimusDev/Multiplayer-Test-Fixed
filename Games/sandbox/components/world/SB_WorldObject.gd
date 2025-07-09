@@ -25,12 +25,12 @@ static func get_references() -> Dictionary[String, SB_WorldObject]:
 static func get_reference_list() -> Array[SB_WorldObject]:
 	return _reference_list
 
-func _init() -> void:
-	if id.is_empty():
-		id = get_level_section().to_lower() + "." + resource_path.get_basename().get_file()
-	
+func register() -> void:
+	id = "%s.%s" % [get_level_section(), resource_path.get_file().get_basename()]
 	_references[id] = self
 	_reference_list.append(self)
+	SimusDev.console.write_info("object registered: %s" % id)
+
 
 func get_prefab() -> PackedScene:
 	return prefab

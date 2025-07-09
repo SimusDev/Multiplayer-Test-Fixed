@@ -3,14 +3,15 @@
 extends Node
 class_name SD_MPClientNodeSpawner
 
-@export var detect_roots: Array[Node]
+@export var _detect_roots: Array[Node]
 
 signal spawned(node: Node, path: String)
 signal despawned(node: Node, path: String)
 
-signal spawn_begin(node: Node, parent: Node, wish_global_pos: Variant, wish_name: String, path: String)
+signal spawn_begin(node: Node, parent: Node, wish_transform: Variant, wish_name: String, path: String)
 signal despawn_begin(node: Node, path: String)
 
+@export var auto_handle_spawn: bool = true
 @export var auto_handle_logic: bool = true
 @export var spawn_at_start: bool = true
 
@@ -103,8 +104,9 @@ func _ready() -> void:
 	if not SD_Multiplayer.is_active():
 		return
 	
+	
 	if SD_Multiplayer.is_server():
-		for root in detect_roots:
+		for root in _detect_roots:
 			add_detect_root(root)
 	else:
 		if spawn_at_start:
@@ -112,36 +114,36 @@ func _ready() -> void:
 		
 
 func add_detect_root(root: Node) -> void:
-	if detect_roots.has(root):
+	if _detect_roots.has(root):
 		return
 	
-	detect_roots.append(root)
+	_detect_roots.append(root)
 	
-	if SD_Multiplayer.is_server():
-		root.child_entered_tree.connect(_on_server_node_added)
-		root.child_exiting_tree.connect(_on_server_node_removed)
+	if SD_Multiplayer.is_server() and auto_handle_spawn:
+		root.child_entered_tree.connect(server_update_add.bind(root))
+		root.child_exiting_tree.connect(server_update_remove.bind(root))
 		
 
 func remove_detect_root(root: Node) -> void:
-	if not detect_roots.has(root):
+	if not _detect_roots.has(root):
 		return
 	
-	detect_roots.erase(root)
+	_detect_roots.erase(root)
 	
 	if SD_Multiplayer.is_server():
-		root.child_entered_tree.disconnect(_on_server_node_added)
-		root.child_exiting_tree.disconnect(_on_server_node_removed)
+		root.child_entered_tree.disconnect(server_update_add)
+		root.child_exiting_tree.disconnect(server_update_remove)
 		
 
 func request_spawn_all_nodes() -> void:
-	if detect_roots.is_empty():
+	if _detect_roots.is_empty():
 		return
 	
 	SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])
 
 func _server_send_all_nodes_to_peer(peer: int) -> void:
 	var nodes: Array = []
-	for root in detect_roots:
+	for root in _detect_roots:
 		var children: Array[Node] = root.get_children()
 		for child in children:
 			if not can_detect_node(child):
@@ -158,36 +160,31 @@ func _client_recieve_all_nodes_from_server(nodes: Array) -> void:
 	for node_data in nodes:
 		spawn(node_data)
 
-func can_process_server_node(node: Node) -> bool:
-	var can: bool = detect_roots.has(node.get_parent())
-	return can
-
-func _on_server_node_added(node: Node) -> void:
-	if not node:
+func server_update_add(node: Node, root: Node) -> void:
+	if SD_Multiplayer.is_not_server():
+		return
+	
+	if (!node) or (!root):
 		return
 	
 	if not can_detect_node(node):
 		return
 	
-	if not can_process_server_node(node):
-		return
-	
-	
 	node.name = node.name.validate_node_name()
-	if not node.is_node_ready():
+	if !node.is_node_ready():
 		await node.ready
 	
 	var data: Dictionary = serialize_node_and_get_data(node)
 	SD_Multiplayer.sync_call_function(self, spawn, [data])
 
-func _on_server_node_removed(node: Node) -> void:
-	if not node:
+func server_update_remove(node: Node, root: Node) -> void:
+	if SD_Multiplayer.is_not_server():
+		return
+	
+	if (!node) or (!root):
 		return
 	
 	if not can_detect_node(node):
-		return
-	
-	if not can_process_server_node(node):
 		return
 	
 	SD_Multiplayer.sync_call_function(self, despawn, [get_path_to(node)])
@@ -204,8 +201,8 @@ func serialize_node_and_get_data(node: Node) -> Dictionary:
 	if mp_player:
 		data["mp_player_id"] = mp_player.get_peer_id()
 	
-	if node.has_method("get_global_position"):
-		data["global_position"] = node.call("get_global_position")
+	if "transform" in node:
+		data["transform"] = node.transform
 	
 	if not node.scene_file_path.is_empty():
 		data["scene_file"] = node.scene_file_path
@@ -300,10 +297,10 @@ func spawn(data: Dictionary) -> void:
 	var node: Node = deserialize_node_data(data)
 	if node:
 		var parent: Node = get_node_or_null(data["parent_path"])
-		var wish_position: Variant = data.get("global_position", null)
+		var wish_transform: Variant = data.get("transform", null)
 		spawn_begin.emit(node, 
 		parent, 
-		wish_position, 
+		wish_transform, 
 		data["name"], 
 		str(data["path"]),
 		
@@ -314,8 +311,8 @@ func spawn(data: Dictionary) -> void:
 					node.name = data["name"]
 					node.name = node.name.validate_node_name()
 					
-					if data.has("global_position"):
-						node.call("set_global_position", data["global_position"])
+					if "transform" in node:
+						node.transform = wish_transform
 					
 					parent.move_child(node, data['index'])
 					
@@ -329,6 +326,10 @@ func despawn(path: NodePath) -> void:
 		return
 	
 	var node: Node = get_node_or_null(path)
+	if !node:
+		return
+	
+	
 	despawn_begin.emit(node, str(path))
 	if node and auto_handle_logic:
 		node.tree_exited.connect(

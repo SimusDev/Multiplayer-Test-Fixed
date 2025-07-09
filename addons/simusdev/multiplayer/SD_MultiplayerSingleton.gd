@@ -409,7 +409,6 @@ func _request_node_existence_rpc_sender_recieve(result: bool, node_path: String)
 func _request_node_existence_rpc_sender_recieve_unreliable(result: bool, node_path: String) -> void:
 	_request_node_existence_rpc_sender_recieve_local(result, node_path)
 
-
 func _request_node_existence_rpc_sender_recieve_local(result: bool, node_path: String) -> void:
 	for peer in _requested_nodes_existence:
 		var array: Array[SD_MPRecievedNodeExistence] = _requested_nodes_existence[peer]

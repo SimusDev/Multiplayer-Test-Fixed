@@ -44,36 +44,53 @@ metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 [node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("6_p1dqb")
 _source = NodePath("..")
-_initial_slots = 0
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
-[node name="slot1" type="Node" parent="EL_Inventory"]
+[node name="h1" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="slot2" type="Node" parent="EL_Inventory"]
+[node name="h2" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="slot3" type="Node" parent="EL_Inventory"]
+[node name="h3" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="test_item" type="Node" parent="EL_Inventory/slot3"]
+[node name="itemtest" type="Node" parent="EL_Inventory/h3"]
 script = ExtResource("8_l8c2a")
 object = ExtResource("6_j2tsh")
 metadata/_custom_type_script = "uid://ca018ytdj1cv3"
 
-[node name="slot4" type="Node" parent="EL_Inventory"]
+[node name="h4" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="slot5" type="Node" parent="EL_Inventory"]
+[node name="h5" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="slot6" type="Node" parent="EL_Inventory"]
+[node name="h6" type="Node" parent="EL_Inventory"]
 script = ExtResource("7_l8c2a")
+keys = Dictionary[String, Variant]({
+"hotbar": true
+})
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

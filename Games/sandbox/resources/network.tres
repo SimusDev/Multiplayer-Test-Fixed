@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SBR_Network" load_steps=2 format=3 uid="uid://dnyuficp8p0ko"]
+
+[ext_resource type="Script" uid="uid://civinj6tkr1ry" path="res://Games/sandbox/scripts/resources/SBR_Network.gd" id="1_li2wf"]
+
+[resource]
+script = ExtResource("1_li2wf")
+metadata/_custom_type_script = "uid://civinj6tkr1ry"

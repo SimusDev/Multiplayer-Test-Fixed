@@ -6,8 +6,6 @@ class_name SB_LevelHandler
 @export var singleton: SB_GameSingleton
 
 func _ready() -> void:
-	await singleton.gamedata.load_finished
-	
 	change_local(initial_level)
 
 func _clear_levels() -> void:

@@ -2,6 +2,8 @@
 extends Node
 class_name WG_InventorySlot
 
+@export var keys: Dictionary[String, Variant] = {}
+
 var start_name: String
 
 var _inventory: WG_Inventory
@@ -27,6 +29,11 @@ func _enter_tree() -> void:
 	
 	item_added.connect(_on_slot_item_added)
 	item_removed.connect(_on_slot_item_removed)
+	
+	_inventory.slot_added.emit(self)
+
+func _exit_tree() -> void:
+	_inventory.slot_removed.emit(self)
 
 func _on_slot_item_added(item: WG_ItemStack) -> void:
 	_inventory.item_added.emit(item)

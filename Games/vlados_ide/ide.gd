@@ -21,10 +21,6 @@ enum TYPES {
 var base_folder_path:String = "C:/Users/simusdev"
 var current_file_path:String = "C:/Users/simusdev/test.txt"
 
-var base_folder_path:String = "C:/dev/gds"
-var current_file_path:String
-
-
 func _ready() -> void:
 	instance = self
 	

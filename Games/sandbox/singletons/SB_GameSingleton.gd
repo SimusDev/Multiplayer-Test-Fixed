@@ -8,6 +8,7 @@ class_name SB_GameSingleton
 
 @export var tools: Array[PackedScene] = []
 @export var prefabs: SBR_Prefabs
+@export var network: SBR_Network
 
 static var instance: SB_GameSingleton
 

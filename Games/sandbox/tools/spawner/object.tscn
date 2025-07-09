@@ -7,13 +7,26 @@
 [sub_resource type="LabelSettings" id="LabelSettings_a5d7i"]
 
 [node name="object" type="Control"]
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(193, 118)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 248.0
-offset_bottom = 152.0
+offset_right = 193.0
+offset_bottom = 118.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
 script = ExtResource("1_a5d7i")
 metadata/_edit_horizontal_guides_ = [100.0]
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="panel" parent="." instance=ExtResource("1_n7phr")]
 self_modulate = Color(0.136826, 0.136826, 0.136826, 1)
@@ -44,8 +57,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "object.name"
 label_settings = SubResource("LabelSettings_a5d7i")
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 script = ExtResource("1_v08us")
+localization_enabled = true
+localization_key = "object.name"
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

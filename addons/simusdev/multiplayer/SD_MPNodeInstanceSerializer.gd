@@ -20,10 +20,14 @@ func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 			var saved_properties: Dictionary = data[path]
 			
 			for p_dict: Dictionary in properties:
+				var private: bool = false
 				var p_name: String = p_dict.name
 				for p_field in _private_fields:
 					if p_name.begins_with(p_field):
-						continue
+						private = true
+				
+				if private:
+					continue
 				
 				var ser_property: Variant = SD_Multiplayer.serialize_var_into_packet(node.get(p_name))
 				saved_properties[p_name] = ser_property
@@ -61,6 +65,7 @@ func _serialize_children(data: Dictionary, node: Node, root: Node) -> void:
 	else:
 		child_data["scene_file_path"] = node.scene_file_path
 	
+	
 
 func _get_path_to_root_from_name(from: String, root: Node) -> String:
 	return from
@@ -93,7 +98,3 @@ func serialize(node: Node) -> SD_MPNodeInstanceSerialized:
 	var resource := SD_MPNodeInstanceSerialized.new()
 	resource.packet = SD_Multiplayer.serialize_var_into_packet(data)
 	return resource
-
-func _apply_node_name(node: Node, new_name: String) -> void:
-	node.name = new_name
-	node.tree_entered.disconnect(_apply_node_name)

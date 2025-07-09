@@ -10,6 +10,8 @@ class_name SB_PlayerComponent
 
 @onready var _prefabs: SBR_Prefabs = SB_GameSingleton.instance.prefabs
 
+@onready var _level: SB_Level3D
+
 @export_category("References")
 @export var p_health: C_HealthComponent
 
@@ -21,7 +23,12 @@ static func get_local() -> SB_PlayerComponent:
 func get_player() -> SD_MultiplayerPlayer:
 	return SD_MultiplayerPlayer.find_in_node(source)
 
+func get_level() -> SB_Level3D:
+	return _level
+
 func _ready() -> void:
+	_level = SB_Level3D.find_above(self)
+	
 	var transform_sync: PackedScene = _prefabs.p_sync_transform
 	
 	var p_sync: SD_MPPropertySynchronizer = transform_sync.instantiate()
@@ -34,6 +41,7 @@ func _ready() -> void:
 			sync.set_multiplayer_authority(get_multiplayer_authority())
 			node.add_child.call_deferred(sync)
 	
+	await source.ready
 	if is_multiplayer_authority():
 		add_child(_interface.instantiate())
 

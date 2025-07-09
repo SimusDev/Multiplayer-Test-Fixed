@@ -14,6 +14,9 @@ var _sections: Dictionary[String, SB_LevelSection3D] = {}
 
 @export var _spawner: SD_MPClientNodeSpawner
 
+func get_spawner() -> SD_MPClientNodeSpawner:
+	return _spawner
+
 static func find_above(node: Node) -> SB_Level3D:
 	if node is SB_Level3D:
 		return node
@@ -35,8 +38,10 @@ func get_section(section_name: String) -> SB_LevelSection3D:
 func _parse_sections() -> void:
 	for i in get_children():
 		if i is SB_LevelSection3D:
+			i._level = self
 			_sections[i.name] = i
 			_spawner.add_detect_root(i)
+
 
 static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
 	var scene: PackedScene = load(PREFAB_PATH)
@@ -75,3 +80,16 @@ func deinit() -> void:
 
 func _exit_tree() -> void:
 	deinitialized.emit()
+
+func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> Node:
+	if !object:
+		return
+	
+	var section: SB_LevelSection3D = get_section(object.get_level_section())
+	return section.spawn_local(object, true, settings)
+
+
+func spawn_request(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> void:
+	SimusDev.console.write_info("spawn requested: %s" % object.id)
+	SD_Multiplayer.sync_call_function_on_server(self, spawn_local, [object, instantiate, settings])
+	

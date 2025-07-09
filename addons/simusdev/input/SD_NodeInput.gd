@@ -2,13 +2,13 @@
 extends Node2D
 class_name SD_NodeInput
 
-@export var depends_on_console: bool = true
+@export var depends_on_interface: bool = true
 @export var enabled: bool = true
 @export var disable_input_when_invisible_in_tree: bool = true
 
 @onready var keybinds: SD_TrunkKeybinds = SimusDev.keybinds
 
-@onready var console: SD_TrunkConsole = SimusDev.console
+@onready var ui: SD_TrunkUI = SimusDev.ui
 
 var _status: bool = false
 
@@ -20,21 +20,20 @@ signal on_action_just_pressed(action: String, bind: SD_Keybind)
 signal on_action_just_released(action: String, bind: SD_Keybind)
 
 func _ready() -> void:
-	console.visibility_changed.connect(_update_input_status)
+	ui.interface_opened_or_closed.connect(_interface_opened_or_closed)
 	_update_input_status()
 
-func _on_console_visibility_changed(visibility: bool) -> void:
+func _interface_opened_or_closed(interface: Node, status: bool) -> void:
 	_update_input_status()
 
 func _update_input_status() -> void:
-	if console.is_visible() and depends_on_console:
-		_status = false
-		return
-	
 	_status = enabled
 	
 	if disable_input_when_invisible_in_tree and !is_visible_in_tree():
 		_status = false
+	
+	if depends_on_interface:
+		_status = not ui.has_active_interface()
 
 func update_input_status() -> void:
 	_update_input_status()

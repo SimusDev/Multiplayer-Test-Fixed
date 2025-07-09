@@ -21,10 +21,10 @@ static func get_or_create(code: String, value: Variant = "") -> SB_ConCommand:
 	
 
 static func get_or_create_server(code: String, value: Variant = "") -> SB_ConCommand:
-	return get_or_create(CMD_PREFIX_SERVER + code)
+	return get_or_create(CMD_PREFIX_SERVER + code, value)
 
 static func get_or_create_client(code: String, value: Variant = "") -> SB_ConCommand:
-	return get_or_create(CMD_PREFIX_CLIENT + code)
+	return get_or_create(CMD_PREFIX_CLIENT + code, value)
 
 func _exit_tree() -> void:
 	for cmd in _commands.keys():
