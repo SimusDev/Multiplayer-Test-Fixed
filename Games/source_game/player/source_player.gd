@@ -62,13 +62,13 @@ func _physics_process(_delta: float) -> void:
 
 func _on_health_died() -> void:
 	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
+	var new_ragdoll_model = ragdoll_model.instantiate()
+	new_ragdoll_model.global_position = global_position
+	SourceGame.instance.add_child(new_ragdoll_model)
+	new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
+	
 	if SD_Multiplayer.is_server():
 		SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
-		
-		var new_ragdoll_model = ragdoll_model.instantiate()
-		new_ragdoll_model.global_position = global_position
-		SourceGame.instance.add_child(new_ragdoll_model)
-		new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
 		
 		if is_multiplayer_authority():
 			SourcePlayer.instance = null
