@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=54 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
+[ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="33_fcmfk"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -444,5 +445,8 @@ material = SubResource("StandardMaterial3D_7hhbe")
 
 [node name="zombie_creature" parent="." instance=ExtResource("31_ij05y")]
 transform = Transform3D(0.812328, 0, 0.583201, 0, 1, 0, -0.583201, 0, 0.812328, -6.98527, 4.62492, 15.2648)
+
+[node name="dr_kleiner" parent="." instance=ExtResource("33_fcmfk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 8.4712, 2.60671)
 
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

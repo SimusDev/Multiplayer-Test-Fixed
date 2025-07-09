@@ -14,6 +14,7 @@ static var instance:SourcePlayer
 @export var max_safe_fall_speed: float = 10.0
 @export var base_fall_damage: float = 8.0
 @export var fall_damage_multiplier: float = 1
+@export var ragdoll_model:PackedScene
 
 @export_group("UI")
 @export var player_ui:PackedScene
@@ -63,6 +64,11 @@ func _on_health_died() -> void:
 	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
 	if SD_Multiplayer.is_server():
 		SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
+		
+		var new_ragdoll_model = ragdoll_model.instantiate()
+		new_ragdoll_model.global_position = global_position
+		SourceGame.instance.add_child(new_ragdoll_model)
+		new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
 		
 		if is_multiplayer_authority():
 			SourcePlayer.instance = null

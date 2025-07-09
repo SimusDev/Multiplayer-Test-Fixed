@@ -1,13 +1,13 @@
 [gd_scene load_steps=29 format=4 uid="uid://dwpb4vcsaovcf"]
 
-[ext_resource type="Texture2D" uid="uid://ddq3xg2uyev3f" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_0.png" id="1_di6ve"]
-[ext_resource type="Texture2D" uid="uid://c7rb1dgskvc22" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_1.png" id="2_gyqjm"]
-[ext_resource type="Texture2D" uid="uid://ben00nxp82lv5" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_2.png" id="3_f3jul"]
-[ext_resource type="Texture2D" uid="uid://coywscisnj4s2" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_4.png" id="3_gyqjm"]
-[ext_resource type="Texture2D" uid="uid://byo6qf54ihntd" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_5.png" id="4_f3jul"]
-[ext_resource type="Texture2D" uid="uid://bydsgtx61il6h" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_6.png" id="5_hokce"]
-[ext_resource type="Texture2D" uid="uid://df453pydx2y7d" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_7.png" id="6_8mjwt"]
-[ext_resource type="Texture2D" uid="uid://c7xrxn70r4cqn" path="res://src/player/model/half-_life_2_dr_isaac_kleiner_8.png" id="8_hokce"]
+[ext_resource type="Texture2D" uid="uid://ddq3xg2uyev3f" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_0.png" id="1_di6ve"]
+[ext_resource type="Texture2D" uid="uid://c7rb1dgskvc22" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_1.png" id="2_gyqjm"]
+[ext_resource type="Texture2D" uid="uid://ben00nxp82lv5" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_2.png" id="3_f3jul"]
+[ext_resource type="Texture2D" uid="uid://coywscisnj4s2" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_4.png" id="3_gyqjm"]
+[ext_resource type="Texture2D" uid="uid://byo6qf54ihntd" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_5.png" id="4_f3jul"]
+[ext_resource type="Texture2D" uid="uid://bydsgtx61il6h" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_6.png" id="5_hokce"]
+[ext_resource type="Texture2D" uid="uid://df453pydx2y7d" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_7.png" id="6_8mjwt"]
+[ext_resource type="Texture2D" uid="uid://c7xrxn70r4cqn" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_8.png" id="8_hokce"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mjwt"]
 resource_name = "eyeball_l"
