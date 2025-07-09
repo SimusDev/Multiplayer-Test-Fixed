@@ -136,9 +136,6 @@ func remove_detect_root(root: Node) -> void:
 		
 
 func request_spawn_all_nodes() -> void:
-	if _detect_roots.is_empty():
-		return
-	
 	SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])
 
 func _server_send_all_nodes_to_peer(peer: int) -> void:
@@ -151,8 +148,6 @@ func _server_send_all_nodes_to_peer(peer: int) -> void:
 			
 			var data: Dictionary = serialize_node_and_get_data(child)
 			nodes.append(data)
-	
-	#print(nodes)
 	
 	SD_Multiplayer.sync_call_function_on_peer(peer, self, _client_recieve_all_nodes_from_server, [nodes])
 
@@ -308,15 +303,17 @@ func spawn(data: Dictionary) -> void:
 		if parent and auto_handle_logic:
 			node.tree_entered.connect(
 				func():
-					node.name = data["name"]
-					node.name = node.name.validate_node_name()
-					
-					if "transform" in node:
-						node.transform = wish_transform
-					
-					parent.move_child(node, data['index'])
-					
-					spawned.emit(node)
+					if is_instance_valid(node):
+						node.name = data["name"]
+						node.name = node.name.validate_node_name()
+						
+						if "transform" in node:
+							if wish_transform != null:
+								node.transform = wish_transform
+						
+						parent.move_child(node, data['index'])
+						
+						spawned.emit(node)
 			)
 			
 			parent.add_child.call_deferred(node)
