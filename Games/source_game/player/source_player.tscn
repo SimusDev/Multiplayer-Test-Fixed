@@ -95,9 +95,6 @@
 
 [sub_resource type="Resource" id="Resource_5ijcx"]
 script = ExtResource("3_0gjdh")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
@@ -105,13 +102,13 @@ interpolation_speed = 30.0
 node_path = NodePath("..")
 reliable = false
 mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_4cdfe"]
 script = ExtResource("3_0gjdh")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
@@ -119,13 +116,13 @@ interpolation_speed = 30.0
 node_path = NodePath("../SourceCamera")
 reliable = false
 mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_kim0n"]
 script = ExtResource("3_0gjdh")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["velocity"])
 sync_at_start = true
 interpolation_enabled = false
@@ -133,6 +130,9 @@ interpolation_speed = 30.0
 node_path = NodePath("..")
 reliable = false
 mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7edsi"]
@@ -233,10 +233,12 @@ script = ExtResource("9_kou6u")
 player = NodePath("../..")
 
 [node name="item_container" type="Node3D" parent="SourceCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, -0.5)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 1, 0.226963, -0.231307, -0.446835)
 
-[node name="crowbar" parent="SourceCamera/item_container" node_paths=PackedStringArray("player_interact_raycast") instance=ExtResource("11_lhwgh")]
+[node name="crowbar" parent="SourceCamera/item_container" node_paths=PackedStringArray("player", "player_interact_raycast") instance=ExtResource("11_lhwgh")]
 process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+player = NodePath("../../..")
 player_interact_raycast = NodePath("../../interact_raycast")
 strength = 15.0
 
@@ -280,6 +282,34 @@ metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 [node name="W_AnimatedModel3D" parent="." instance=ExtResource("81_kim0n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
 
+[node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
+bones/0/position = Vector3(-0.0113452, 3.75376, 0.0430081)
+bones/0/rotation = Quaternion(-0.0362999, -0.0430166, -0.0275855, 0.998034)
+bones/1/rotation = Quaternion(-0.0112846, 0.0158666, 0.0260362, 0.999471)
+bones/2/rotation = Quaternion(0.0105753, 0.00306381, 0.0145924, 0.999833)
+bones/3/rotation = Quaternion(0.0103016, 0.00318049, 0.0146102, 0.999835)
+bones/4/rotation = Quaternion(0.116304, -0.00227503, 0.00291874, 0.993207)
+bones/5/rotation = Quaternion(-0.139943, 0.00680684, -0.00119917, 0.990135)
+bones/7/rotation = Quaternion(-0.686453, -0.314487, 0.520127, -0.399184)
+bones/8/rotation = Quaternion(0.469051, 0.12759, 0.0595874, 0.871872)
+bones/9/rotation = Quaternion(0.00148977, 0.000336968, 0.0132843, 0.999911)
+bones/10/rotation = Quaternion(0.0822556, -0.251885, -0.0202761, 0.964042)
+bones/31/rotation = Quaternion(0.68438, -0.313261, 0.538804, 0.378394)
+bones/32/rotation = Quaternion(0.397198, -0.227535, -0.0795107, 0.885517)
+bones/33/rotation = Quaternion(0.00621594, 0.00017507, -0.0569424, 0.998358)
+bones/34/rotation = Quaternion(0.0937113, 0.135686, 0.0442481, 0.985317)
+bones/55/rotation = Quaternion(0.138947, 0.0667113, 0.984684, -0.0814917)
+bones/56/rotation = Quaternion(-0.136178, -0.00828081, 0.0292547, 0.990218)
+bones/57/rotation = Quaternion(0.513317, -0.119269, -0.000348242, 0.849871)
+bones/60/rotation = Quaternion(-0.0919482, -0.0202778, 0.995215, -0.0261146)
+bones/61/rotation = Quaternion(-0.0855683, 0.0842413, -0.0253948, 0.99244)
+bones/62/rotation = Quaternion(0.54927, 0.116707, -0.0312573, 0.826864)
+bones/63/rotation = Quaternion(0.323492, 0.0275293, -0.000161792, 0.945831)
+
+[node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
+parameters/item_right_hand_blend/blend_amount = 0.0
+parameters/melee_attack_blend/blend_amount = 0
+
 [node name="canvas" type="CanvasLayer" parent="."]
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
@@ -287,3 +317,5 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
+[editable path="W_AnimatedModel3D"]
+[editable path="W_AnimatedModel3D/model3d"]

@@ -2,6 +2,15 @@ class_name SourceReverbZone extends Area3D
 
 var reverb_effect: AudioEffectReverb = null
 
+func _exit_tree() -> void:
+	if reverb_effect != null:
+		var bus_idx = AudioServer.get_bus_index("Master")
+		for i in AudioServer.get_bus_effect_count(bus_idx):
+			if AudioServer.get_bus_effect(bus_idx, i) == reverb_effect:
+				AudioServer.remove_bus_effect(bus_idx, i)
+				break
+		reverb_effect = null
+
 func _ready() -> void:
 	body_entered.connect(turn_on) 
 	body_exited.connect(turn_off)

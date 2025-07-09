@@ -20,6 +20,16 @@ static var sounds:Dictionary = {
 					preload("res://sounds/hl2/physics/body/body_medium_impact_soft5.wav"),
 					preload("res://sounds/hl2/physics/body/body_medium_impact_soft6.wav"),
 					preload("res://sounds/hl2/physics/body/body_medium_impact_soft7.wav"),
+				],
+			"hard" =
+				[
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft1.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft2.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft3.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft4.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft5.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft6.wav"),
+					preload("res://sounds/hl2/physics/body/body_medium_impact_soft7.wav"),
 				]
 			},
 		"scrape" =
