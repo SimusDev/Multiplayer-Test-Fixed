@@ -30,6 +30,8 @@ func _ready() -> void:
 	movement.state_machine.state_enter.connect(_on_state_enter)
 	model.set_tree_parameter("parameters/look_dir_add/add_amount", 1.0)
 	model.on_footstep.connect(func(): $footsteps._do_footstep())
+	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1)
+	model.set_tree_parameter("parameters/melee_attack_blend/blend_amount", 1)
 
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )

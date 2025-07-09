@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=53 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
 [ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/game/3dmodels/radio/radio.tscn" id="23_dt7qg"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="23_lvrp7"]
+[ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
@@ -89,9 +90,6 @@ metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_lg245"]
 script = ExtResource("5_dvi7y")
-tickrate = 1.0
-tickrate_mode = 0
-sync_mode = 1
 properties = Array[String](["current_time", "minutes_per_day"])
 sync_at_start = true
 interpolation_enabled = false
@@ -99,6 +97,9 @@ interpolation_speed = 30.0
 node_path = NodePath("../Sky3D")
 reliable = false
 mode = 0
+tickrate = 1.0
+tickrate_mode = 0
+sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvgr3"]
@@ -368,6 +369,10 @@ transform = Transform3D(0.916062, 0, 0.401037, 0, 1, 0, -0.401037, 0, 0.916062, 
 
 [node name="radio" parent="props" instance=ExtResource("23_dt7qg")]
 transform = Transform3D(-3.80151e-08, -0.493608, -0.869685, -2.15763e-08, 0.869685, -0.493608, 1, 0, -4.37114e-08, -5.45704, 2.10723, 13.2234)
+
+[node name="doll" parent="props" instance=ExtResource("24_7hhbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32044, 1.05739, 11.9864)
+mass = 1.0
 
 [node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="."]
 multimesh = SubResource("MultiMesh_lvrp7")
