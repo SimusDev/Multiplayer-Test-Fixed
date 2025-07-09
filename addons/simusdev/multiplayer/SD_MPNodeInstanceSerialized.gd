@@ -36,9 +36,6 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 		if founded:
 			
 			for p_name: String in synced:
-				if p_name == ".node_name.":
-					instance.name = synced[".node_name."]
-					continue
 				
 				var packet: Variant = synced[p_name]
 				var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)

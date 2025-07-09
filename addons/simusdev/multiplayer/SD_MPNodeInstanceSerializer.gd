@@ -35,7 +35,7 @@ func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 				#print(p_name, " : ", node.get(p_name))
 			
 			node.name = node.name.validate_node_name()
-			saved_properties[".node_name."] = node.name
+			saved_properties["name"] = SD_Multiplayer.serialize_var_into_packet(node.name)
 
 
 
