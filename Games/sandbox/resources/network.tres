@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_akly7")
-tickrate = 32.0
+tickrate = 4.0
 tickrate_mode = 0
 sync_mode = 1
-interpolation_enabled = true
-interpolation_speed = 30.0
+interpolation_enabled = false
+interpolation_speed = 32.0
 metadata/_custom_type_script = "uid://civinj6tkr1ry"
