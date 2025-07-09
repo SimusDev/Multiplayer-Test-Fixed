@@ -1,10 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvjgqoyulpo85"]
+[gd_scene load_steps=10 format=3 uid="uid://cvjgqoyulpo85"]
 
 [ext_resource type="Script" uid="uid://cosy2vid7js7w" path="res://Games/sandbox/interface/player/player_ui.gd" id="1_jkbj6"]
 [ext_resource type="Script" uid="uid://eaoaxdvyyuyt" path="res://Games/sandbox/components/interface/SB_PopupInterfaceOpener.gd" id="2_o87ne"]
 [ext_resource type="PackedScene" uid="uid://dhtahobxcif2o" path="res://Games/sandbox/interface/player/debug.tscn" id="2_px2ai"]
 [ext_resource type="PackedScene" uid="uid://bpk25c1qfdshe" path="res://Games/sandbox/interface/inventory/inventory.tscn" id="3_nacok"]
 [ext_resource type="PackedScene" uid="uid://dxe1diw458epe" path="res://Games/sandbox/interface/hotbar/hotbar.tscn" id="5_nacok"]
+[ext_resource type="Script" uid="uid://b663u5rfjkr72" path="res://Games/sandbox/components/sync/SB_Synchronizer.gd" id="6_txi4n"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="7_hxedk"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="8_g0g3e"]
+
+[sub_resource type="Resource" id="Resource_t0fbo"]
+script = ExtResource("8_g0g3e")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String]([])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [node name="PlayerUi" type="CanvasLayer"]
 script = ExtResource("1_jkbj6")
@@ -19,3 +36,8 @@ metadata/_custom_type_script = "uid://eaoaxdvyyuyt"
 [node name="debug" parent="." instance=ExtResource("2_px2ai")]
 
 [node name="Hotbar" parent="." instance=ExtResource("5_nacok")]
+
+[node name="SB_Synchronizer" type="Node" parent="."]
+script = ExtResource("6_txi4n")
+properties = Array[ExtResource("7_hxedk")]([SubResource("Resource_t0fbo")])
+metadata/_custom_type_script = "uid://b663u5rfjkr72"

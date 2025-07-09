@@ -138,6 +138,9 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 func _process(delta: float) -> void:
 	for mp in properties:
 		if mp is SD_MPPSSyncedProperty:
+			if mp.sync_mode == SD_MPPSSyncedProperty.SYNC_MODE.DISABLED:
+				continue
+				
 			if mp.tickrate_mode == mp.TICKRATE_MODE.IDLE and (mp.sync_mode == mp.SYNC_MODE.ALWAYS):
 				_refresh(mp, delta)
 			else:
