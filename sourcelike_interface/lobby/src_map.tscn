@@ -48,6 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SD_UIInterfaceMenu" parent="Popup" index="0"]
+global = false
 center_at_start = false
 
 [node name="SE_UIControlDrag" parent="Popup" index="1"]

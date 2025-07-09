@@ -13,8 +13,7 @@ const PREFAB_PATH: String = "res://Games/sandbox/components/levels/SB_Level3D.ts
 var _sections: Dictionary[String, SB_LevelSection3D] = {}
 
 @export var _spawner: SD_MPClientNodeSpawner
-
-@export var _spawner_section_exclude: Array[SB_LevelSection3D] = []
+@export var _spawner_exclude_section: Array[SB_LevelSection3D] = []
 
 func get_spawner() -> SD_MPClientNodeSpawner:
 	return _spawner
@@ -30,6 +29,7 @@ static func find_above(node: Node) -> SB_Level3D:
 
 func _ready() -> void:
 	_parse_sections()
+	_spawner.request_spawn_all_nodes()
 
 func get_section(section_name: String) -> SB_LevelSection3D:
 	var section: SB_LevelSection3D = _sections.get(section_name, null)
@@ -43,9 +43,9 @@ func _parse_sections() -> void:
 			i._level = self
 			_sections[i.name] = i
 			
-			if not _spawner_section_exclude.has(i):
+			if not _spawner_exclude_section.has(i):
 				_spawner.add_detect_root(i)
-
+				
 
 static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
 	var scene: PackedScene = load(PREFAB_PATH)
@@ -56,8 +56,6 @@ static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
 	
 	var level_scene: PackedScene = load(resource.scene_path) as PackedScene
 	level.get_section("LevelScene").add_child(level_scene.instantiate())
-	
-	level._spawner.request_spawn_all_nodes()
 	
 	return level
 

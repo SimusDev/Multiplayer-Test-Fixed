@@ -13,7 +13,8 @@ var _disable_priority: int = 0
 
 func is_authority() -> bool:
 	if multiplayer_authorative:
-		return is_multiplayer_authority()
+		if SD_Multiplayer.is_active():
+			return is_multiplayer_authority()
 	return true
 
 func _enter_tree() -> void:

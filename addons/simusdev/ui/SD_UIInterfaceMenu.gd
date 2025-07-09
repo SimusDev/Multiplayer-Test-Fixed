@@ -9,6 +9,7 @@ signal closed()
 signal interface_opened(node: Node)
 signal interface_closed(node: Node)
 
+@export var global: bool = true
 @export var open_at_start: bool = false
 @export var center_at_start: bool = false
 @export var input_action: String = ""
@@ -39,6 +40,9 @@ func _enter_tree() -> void:
 	target.set_meta("SD_UIInterfaceMenu", self)
 
 func _ready() -> void:
+	if not target:
+		return
+	
 	_ui.interface_opened.connect(_on_interface_opened_)
 	_ui.interface_closed.connect(_on_interface_closed_)
 	
@@ -83,9 +87,17 @@ func _on_interface_closed_(node: Node) -> void:
 		closed.emit()
 
 func open(interface: CanvasItem = target) -> void:
+	if not global:
+		_on_interface_opened_(interface)
+		return
+		
 	_ui.open_interface(interface)
 
 func close(interface: CanvasItem = target) -> void:
+	if not global:
+		_on_interface_closed_(interface)
+		return
+	
 	_ui.close_interface(interface)
 
 func center() -> void:

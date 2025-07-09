@@ -13,6 +13,7 @@ func _ready() -> void:
 
 [node name="SD_MPClientNodeSpawner" type="Node"]
 script = ExtResource("1_cp6g4")
+auto_handle_spawn = false
 APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 "CharacterBody3D": PackedStringArray("transform"),
 "Node2D": PackedStringArray("transform"),

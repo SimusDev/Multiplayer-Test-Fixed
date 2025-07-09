@@ -54,5 +54,8 @@ func has_active_interface() -> bool:
 func is_interface_active(node: Node) -> bool:
 	return _active_interfaces.has(node)
 
+func get_active_interfaces() -> Array[Node]:
+	return _active_interfaces
+
 func _update_UI() -> void:
 	pass

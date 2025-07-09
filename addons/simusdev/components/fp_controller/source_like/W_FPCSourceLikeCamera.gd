@@ -46,13 +46,14 @@ func _enabled_status_changed() -> void:
 	set_mouse_captured(enabled)
 
 func _ready() -> void:
-	if not is_authority() or SimusDev.ui.has_active_interface() or console.is_visible():
+	print(SimusDev.ui.get_active_interfaces())
+	
+	if not is_authority() or SimusDev.ui.has_active_interface():
 		add_disable_priority()
 		return
 	
 	
-	
-	console.visibility_changed.connect(_on_console_visibility_changed)
+	#console.visibility_changed.connect(_on_console_visibility_changed)
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	
 	if make_current_at_start:

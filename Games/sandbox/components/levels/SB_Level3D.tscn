@@ -6,13 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dk4nnihi62s17" path="res://Games/sandbox/entities/player/s1mple_player.tscn" id="4_e7ouf"]
 [ext_resource type="Script" uid="uid://dt30t8qnm1nkw" path="res://Games/sandbox/components/levels/SB_LevelSection3D.gd" id="5_e7ouf"]
 
-[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner", "_spawner_section_exclude")]
+[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner", "_spawner_exclude_section")]
 script = ExtResource("1_lj6rm")
 _spawner = NodePath("ObjectsSpawner")
-_spawner_section_exclude = [NodePath("Players")]
+_spawner_exclude_section = [NodePath("Players")]
 
 [node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
-auto_handle_spawn = false
 
 [node name="PlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("3_e7ouf")

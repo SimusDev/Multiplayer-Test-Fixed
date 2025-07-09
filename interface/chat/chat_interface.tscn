@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddd0epmcwelof"]
+[gd_scene load_steps=13 format=3 uid="uid://ddd0epmcwelof"]
 
 [ext_resource type="Script" uid="uid://bfaipcx37nytw" path="res://interface/chat/chat_interface.gd" id="1_rru54"]
 [ext_resource type="PackedScene" uid="uid://dd0a6oh3fnwk3" path="res://interface/chat/message.tscn" id="2_upsdc"]
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="2_yv0xc"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="4_upsdc"]
-[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="5_2y122"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="6_4n2ll"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="6_383sf"]
 [ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="7_6jw8o"]
@@ -12,7 +11,7 @@
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="8_pi1nf"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="9_pfc8b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2y122"]
+[sub_resource type="LabelSettings" id="LabelSettings_owk0r"]
 font = ExtResource("6_4n2ll")
 font_size = 18
 outline_size = 3
@@ -40,14 +39,14 @@ mouse_filter = 2
 script = ExtResource("1_rru54")
 c_ui_interface = NodePath("C_UIInterfaceComponent")
 message_scene = ExtResource("2_upsdc")
-line_edit = NodePath("Popup/content/LineEdit")
-history = NodePath("Popup/content/history")
+line_edit = NodePath("chat/content/LineEdit")
+history = NodePath("chat/content/history")
 container = NodePath("VBoxContainer")
 metadata/_custom_type_script = "uid://dnrhf3cyyqskh"
 
 [node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_yv0xc")
-target = NodePath("../Popup")
+target = NodePath("../chat")
 input_action = "chat"
 metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
 
@@ -70,7 +69,7 @@ mouse_filter = 2
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Popup" type="Control" parent="."]
+[node name="chat" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 19.0
@@ -81,18 +80,13 @@ mouse_filter = 2
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="Popup" node_paths=PackedStringArray("target")]
-script = ExtResource("5_2y122")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
-
-[node name="SE_UIControlDrag" type="Node" parent="Popup" node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+[node name="SE_UIControlDrag" type="Node" parent="chat" node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("4_upsdc")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[node name="bg" parent="Popup" instance=ExtResource("6_383sf")]
+[node name="bg" parent="chat" instance=ExtResource("6_383sf")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +96,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="head" parent="Popup" instance=ExtResource("6_383sf")]
+[node name="head" parent="chat" instance=ExtResource("6_383sf")]
 self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -113,7 +107,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 
-[node name="title" type="Label" parent="Popup/head"]
+[node name="title" type="Label" parent="chat/head"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00976563
@@ -122,7 +116,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Game chat"
-label_settings = SubResource("LabelSettings_2y122")
+label_settings = SubResource("LabelSettings_owk0r")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("8_pi1nf")
@@ -133,7 +127,7 @@ outline_color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
 
-[node name="button_base" parent="Popup/head" instance=ExtResource("9_pfc8b")]
+[node name="button_base" parent="chat/head" instance=ExtResource("9_pfc8b")]
 self_modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -149,7 +143,7 @@ text_overrun_behavior = 4
 label_text = "x"
 metadata/_edit_use_anchors_ = true
 
-[node name="content" type="Control" parent="Popup"]
+[node name="content" type="Control" parent="chat"]
 layout_mode = 1
 anchor_left = 0.00976563
 anchor_top = 0.180556
@@ -159,7 +153,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="border" type="ReferenceRect" parent="Popup/content"]
+[node name="border" type="ReferenceRect" parent="chat/content"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,7 +166,7 @@ border_color = Color(0.309804, 0.309804, 0.309804, 1)
 border_width = 0.8
 editor_only = false
 
-[node name="tab_container" type="HBoxContainer" parent="Popup/content"]
+[node name="tab_container" type="HBoxContainer" parent="chat/content"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -182,7 +176,7 @@ anchor_bottom = 0.12235
 theme_override_constants/separation = -1
 metadata/_edit_use_anchors_ = true
 
-[node name="history" type="RichTextLabel" parent="Popup/content"]
+[node name="history" type="RichTextLabel" parent="chat/content"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0159363
@@ -198,7 +192,7 @@ theme_override_fonts/bold_italics_font = ExtResource("8_owk0r")
 theme_override_fonts/bold_font = ExtResource("8_owk0r")
 metadata/_edit_use_anchors_ = true
 
-[node name="LineEdit" type="LineEdit" parent="Popup/content"]
+[node name="LineEdit" type="LineEdit" parent="chat/content"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00796813
@@ -221,5 +215,5 @@ caret_blink = true
 metadata/_edit_use_anchors_ = true
 
 [connection signal="interface_opened" from="C_UIInterfaceComponent" to="." method="_on_c_ui_interface_component_interface_opened"]
-[connection signal="pressed" from="Popup/head/button_base" to="." method="_on_button_base_pressed"]
-[connection signal="text_submitted" from="Popup/content/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="chat/head/button_base" to="." method="_on_button_base_pressed"]
+[connection signal="text_submitted" from="chat/content/LineEdit" to="." method="_on_line_edit_text_submitted"]

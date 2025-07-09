@@ -13,7 +13,6 @@ signal despawn_begin(node: Node, path: String)
 
 @export var auto_handle_spawn: bool = true
 @export var auto_handle_logic: bool = true
-@export var spawn_at_start: bool = true
 
 @export var APPEND_PROPERTIES_TO_BASE_TYPES : Dictionary[String, PackedStringArray] = {
 	"Node2D" : ["transform"],
@@ -109,9 +108,9 @@ func _ready() -> void:
 		for root in _detect_roots:
 			add_detect_root(root)
 	else:
-		if spawn_at_start:
+		if auto_handle_spawn == true:
 			request_spawn_all_nodes()
-		
+	
 
 func add_detect_root(root: Node) -> void:
 	if _detect_roots.has(root):
