@@ -27,6 +27,6 @@ func play_global_audio(stream:AudioStream, bus:String = "Master") -> void:
 
 func play_global_audio_3d(position:Vector3 , stream:AudioStream, bus:String = "Master") -> void:
 	var player3d = create_audio_3d(stream, bus)
-	player3d.global_position = position
 	add_child(player3d)
+	player3d.global_position = position
 	player3d.play()
