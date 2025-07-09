@@ -13,7 +13,7 @@ func get_username() -> String:
 	return get_data_value("_username_", "")
 
 func set_username(name: String) -> void:
-	set_data_value("_username_", name)
+	set_data_value("_username_", name.replacen(" ", ""))
 
 func get_data_value(key: String, default_value: Variant = null) -> Variant:
 	if is_instance_valid(_data):

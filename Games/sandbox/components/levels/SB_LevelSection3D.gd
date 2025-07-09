@@ -3,7 +3,7 @@ class_name SB_LevelSection3D
 
 var _level: SB_Level3D
 
-func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> Node:
+func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> SBR_ObjectInstance:
 	if not object:
 		SimusDev.console.write_error("[%s] cant spawn null object")
 		return
@@ -14,18 +14,23 @@ func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_
 		return
 	
 	
+	var obj_instance := SBR_ObjectInstance.new()
+	obj_instance.settings = settings
+	obj_instance._parent = self
+	obj_instance._spawner = _level.get_spawner()
+	
 	var instance: Node = scene.instantiate()
+	
+	obj_instance._source = instance
+	
 	if instantiate:
-		add_child(instance)
+		obj_instance.instantiate()
+	
+	return obj_instance
+
+func despawn_local(node: Node, settings: SB_LevelSpawnSettings = null) -> void:
+	node.queue_free()
 	
 	if settings:
-		if instance is Node3D:
-			instance.global_position = settings.global_position
-	
-	_level.get_spawner().server_update_add(instance, self)
-	
-	return instance
-
-func despawn_local(node: Node) -> void:
-	node.queue_free()
-	_level.get_spawner().server_update_remove(node, node.get_parent())
+		if settings.handle_spawner:
+			_level.get_spawner().server_update_remove(node, node.get_parent())
