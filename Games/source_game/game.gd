@@ -8,7 +8,6 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var sky_3d:Sky3D
 @export var mp_player_spawner:SD_MPPlayerSpawner
 
-
 func _ready() -> void:
 	instance = self
 

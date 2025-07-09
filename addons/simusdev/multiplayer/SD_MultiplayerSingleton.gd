@@ -523,10 +523,10 @@ func _send_and_sync_var_rpc_unreliable(packet: Variant) -> void:
 
 func _request_and_sync_var_recieve_local(serialized: Variant) -> void:
 	var deserialized: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
-	var path: String = deserialized["owner_node_path"]
+	var path: String = deserialized["op"]
 	var node: Node = get_node_or_null(path)
 	if node:
-		var property: String = deserialized["property"]
+		var property: String = deserialized["p"]
 		var value: Variant = deserialize_var_from_packet(deserialized)
 		node.set(property, value)
 		
@@ -546,9 +546,9 @@ func _request_and_sync_var_recieve_local(serialized: Variant) -> void:
 func _request_and_sync_var_local(serialized: Variant, reliable: bool) -> void:
 	var deserialized: Dictionary = SD_MPDataCompressor.deserialize_data(serialized)
 	
-	var node: Node = get_node_or_null(deserialized["node_path"])
+	var node: Node = get_node_or_null(deserialized["np"])
 	if node:
-		var property: String = deserialized["property"]
+		var property: String = deserialized["p"]
 		
 		var packet: Dictionary = serialize_object_var_into_packet(node, property)
 		
@@ -582,7 +582,7 @@ func _serialize_array_into_packet(array: Array) -> Dictionary[String, Variant]:
 	for i in array:
 		ser_array.append(serialize_var_into_packet(i))
 	
-	packet["value"] = ser_array
+	packet["v"] = ser_array
 	return packet
 
 func _serialize_dictionary_into_packet(dictionary: Dictionary) -> Dictionary[String, Variant]:
@@ -594,7 +594,7 @@ func _serialize_dictionary_into_packet(dictionary: Dictionary) -> Dictionary[Str
 		var ser_value: Dictionary = serialize_var_into_packet(dictionary[key])
 		ser_dict[ser_key] = ser_value
 	
-	packet["value"] = ser_dict
+	packet["v"] = ser_dict
 	return packet
 
 func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant]:
@@ -606,21 +606,21 @@ func _serialize_object_into_packet(object: Object) -> Dictionary[String, Variant
 	
 	if object is Node:
 		packet.set("type", VARIABLE_TYPE.NODE)
-		packet.set("node_path", object.get_path())
-		packet.set("property_node_path", object.get_path())
+		packet.set("np", object.get_path())
+		packet.set("pnp", object.get_path())
 		return packet
 	
 	if object is Resource:
 		packet.set("type", VARIABLE_TYPE.RESOURCE)
 		if object.resource_local_to_scene or object.resource_path.is_empty():
-			packet.set("var_to_str", var_to_str(object))
+			packet.set("vts", var_to_str(object))
 		else:
-			packet.set("resource_path", object.resource_path)
+			packet.set("rp", object.resource_path)
 		return packet
 	
 	if object is Object:
 		packet.set("type", VARIABLE_TYPE.OBJECT)
-		packet.set("var_to_str", var_to_str(object))
+		packet.set("vts", var_to_str(object))
 		return packet
 	
 	
@@ -636,7 +636,7 @@ func serialize_var_into_packet(variable: Variant) -> Dictionary[String, Variant]
 		packet = callable.call(variable)
 		return packet
 	
-	packet["value"] = variable
+	packet["v"] = variable
 	return packet
 
 func serialize_object_var_into_packet(object: Object, property: String) -> Dictionary[String, Variant]:
@@ -649,8 +649,8 @@ func serialize_object_var_into_packet(object: Object, property: String) -> Dicti
 	
 	var property_value: Variant = node.get(property)
 	var packet: Dictionary[String, Variant] = serialize_var_into_packet(property_value)
-	packet["owner_node_path"] = str(node.get_path())
-	packet["property"] = property
+	packet["op"] = str(node.get_path())
+	packet["p"] = property
 	
 	return packet
 
@@ -664,8 +664,8 @@ func deserialize_var_from_packet(serialized: Variant) -> Variant:
 	
 	var result: Variant = serialized
 	
-	if serialized.has("value"):
-		result = serialized.get("value", null)
+	if serialized.has("v"):
+		result = serialized.get("v", null)
 		
 		if result is Array:
 			var parsed: Array = []
@@ -681,17 +681,17 @@ func deserialize_var_from_packet(serialized: Variant) -> Variant:
 		
 		return result
 	
-	if serialized.has("property_node_path"):
-		var node: Node = get_node_or_null(serialized["property_node_path"])
+	if serialized.has("pnp"):
+		var node: Node = get_node_or_null(serialized["pnp"])
 		return node
 	
-	var use_str_to_var: bool = serialized.has("var_to_str")
+	var use_str_to_var: bool = serialized.has("vts")
 	if use_str_to_var:
-		result = str_to_var(serialized["var_to_str"])
+		result = str_to_var(serialized["vts"])
 		return result
 	
-	if serialized.has("resource_path"):
-		result = load(serialized["resource_path"])
+	if serialized.has("rp"):
+		result = load(serialized["rp"])
 		return result
 	
 	return result
@@ -704,8 +704,8 @@ func request_and_sync_var(node: Node, property: String, callable: Callable, reli
 		return
 	
 	var packet: Dictionary[String, Variant] = {
-		"node_path": str(node.get_path()),
-		"property": property,
+		"np": str(node.get_path()),
+		"p": property,
 	}
 	
 	
