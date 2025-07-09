@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvua5f1minnmg" path="res://addons/simusdev/console/prefabs/ui_console_tip_button.tscn" id="2_utyun"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_abmeg"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_3w80n"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_ydapg"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_ydapg"]
 
 [sub_resource type="Resource" id="Resource_gwko0"]
 script = ExtResource("4_3w80n")

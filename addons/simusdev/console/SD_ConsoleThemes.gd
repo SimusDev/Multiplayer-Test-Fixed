@@ -9,6 +9,7 @@ var previous_theme:Theme = null
 @onready var console_command_set_theme:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("console.theme.set")
 @onready var console_command_set_custom_theme:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("console.theme.set")
 @onready var console_command_apply_theme:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("console.theme.apply")
+var console_command_save_theme:SD_ConsoleCommand
 
 #res://addons/simusdev/console/themes/console_default_theme.tres
 #res://addons/simusdev/console/themes/console_default_theme.tres
@@ -19,6 +20,8 @@ func _init() -> void:
 	instance = self
 
 func _ready() -> void:
+	console_command_save_theme = SD_ConsoleCommand.get_or_create("console.theme.save", "res://addons/simusdev/console/themes/console_default_theme.tres")
+	console_command_save_theme.set_private() #EZ
 	theme_changed.connect(apply_theme)
 	console_command_set_theme.executed.connect(
 		func():
@@ -26,17 +29,20 @@ func _ready() -> void:
 	)
 	console_command_apply_theme.executed.connect(apply_theme.bind(theme))
 
+	set_theme(load(console_command_save_theme.get_value_as_string().replacen(" ", "")))
+#EZ
 func load_theme(path:String) -> Theme:
-	print(console_command_set_theme.get_value_as_string())
 	return load(themes_base_path + path.replacen(" ", ""))
 
 func set_theme(new_theme:Theme) -> void:
 	if !new_theme: return
 	theme = new_theme
 	theme_changed.emit()
-func get_theme() -> Theme: return theme
+	console_command_save_theme.set_value(new_theme.resource_path)
+
+func get_theme() -> Theme:
+	return theme
 
 func apply_theme():
-	
 	for node:Control in apply_nodes:
 		node.theme = theme

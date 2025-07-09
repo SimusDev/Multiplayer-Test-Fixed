@@ -1,9 +1,13 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c2rk443yrli2k"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c2rk443yrli2k"]
 
 [ext_resource type="StyleBox" uid="uid://dafjk3hxgto0e" path="res://addons/simusdev/console/styles/focus_default.tres" id="1_1kkhj"]
 [ext_resource type="StyleBox" uid="uid://bi8uusr0jtjvu" path="res://addons/simusdev/console/styles/panel_bg.tres" id="2_43sxk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kkhj"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
 [resource]
 Button/styles/focus = ExtResource("1_1kkhj")
 LineEdit/styles/focus = ExtResource("1_1kkhj")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_1kkhj")
 Panel/styles/panel = ExtResource("2_43sxk")
