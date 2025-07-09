@@ -135,18 +135,28 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 
 #region REFRESHING
 
-func _process(delta: float) -> void:
-	for mp in properties:
-		if mp is SD_MPPSSyncedProperty:
-			if mp.sync_mode == SD_MPPSSyncedProperty.SYNC_MODE.DISABLED:
-				continue
-				
-			if mp.tickrate_mode == mp.TICKRATE_MODE.IDLE and (mp.sync_mode == mp.SYNC_MODE.ALWAYS):
-				_refresh(mp, delta)
-			else:
-				_hook_property_node_property_change(mp, delta)
+func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
+	if property.sync_mode == property.SYNC_MODE.DISABLED:
+		return
+		
+	if (property.sync_mode == property.SYNC_MODE.ALWAYS):
+		_refresh(property, delta)
+	else:
+		_hook_property_node_property_change(property, delta)
 	
 	_interpolate(delta)
+
+
+func _process(delta: float) -> void:
+	for mp in properties:
+		if mp.tickrate_mode == mp.TICKRATE_MODE.IDLE:
+			_hook_sync(mp, delta)
+
+func _physics_process(delta: float) -> void:
+	for mp in properties:
+		if mp.tickrate_mode == mp.TICKRATE_MODE.PHYSICS:
+			_hook_sync(mp, delta)
+	
 
 var _mp_node_properties_hook: Dictionary[SD_MPPSSyncedProperty, Dictionary]
 func _hook_property_node_property_change(mp_property: SD_MPPSSyncedProperty, delta: float) -> void:
@@ -158,13 +168,7 @@ func _hook_property_node_property_change(mp_property: SD_MPPSSyncedProperty, del
 			synchronize(mp_property)
 			properties.set(property, node.get(property))
 
-func _physics_process(delta: float) -> void:
-	for mp in properties:
-		if mp is SD_MPPSSyncedProperty:
-			if mp.tickrate_mode == mp.TICKRATE_MODE.PHYSICS:
-				if mp.sync_mode == mp.SYNC_MODE.ALWAYS:
-					_refresh(mp, delta)
-	
+
 
 var _mp_properties_cooldown: Dictionary[SD_MPPSSyncedProperty, float] = {}
 

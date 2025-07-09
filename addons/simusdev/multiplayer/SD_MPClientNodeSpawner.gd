@@ -119,8 +119,8 @@ func add_detect_root(root: Node) -> void:
 	_detect_roots.append(root)
 	
 	if SD_Multiplayer.is_server() and auto_handle_spawn:
-		root.child_entered_tree.connect(server_update_add.bind(root))
-		root.child_exiting_tree.connect(server_update_remove.bind(root))
+		root.child_entered_tree.connect(_on_server_root_node_add.bind(root))
+		root.child_exiting_tree.connect(_on_server_root_node_remove.bind(root))
 		
 
 func remove_detect_root(root: Node) -> void:
@@ -130,9 +130,18 @@ func remove_detect_root(root: Node) -> void:
 	_detect_roots.erase(root)
 	
 	if SD_Multiplayer.is_server():
-		root.child_entered_tree.disconnect(server_update_add)
-		root.child_exiting_tree.disconnect(server_update_remove)
+		root.child_entered_tree.disconnect(_on_server_root_node_add)
+		root.child_exiting_tree.disconnect(_on_server_root_node_remove)
 		
+
+func _on_server_root_node_add(node: Node, root: Node) -> void:
+	if auto_handle_spawn:
+		server_update_add(node, root)
+
+func _on_server_root_node_remove(node: Node, root: Node) -> void:
+	if auto_handle_spawn:
+		server_update_remove(node, root)
+
 
 func request_spawn_all_nodes() -> void:
 	SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])

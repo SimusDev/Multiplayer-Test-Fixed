@@ -14,7 +14,6 @@ metadata/_custom_type_script = "uid://d4a7udqxkhed1"
 [node name="inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("2_ri2vy")
 _source = NodePath("..")
-_initial_slots = 0
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
 [node name="slot" type="Node" parent="inventory"]

@@ -4,14 +4,14 @@
 
 [resource]
 script = ExtResource("1_vyk0m")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
-interpolation_speed = 30.0
+interpolation_speed = 64.0
 node_path = NodePath("..")
 reliable = false
 mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
