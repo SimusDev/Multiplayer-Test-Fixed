@@ -27,6 +27,11 @@ func _ready() -> void:
 func _on_drag_syncronized(value:bool, target:Node3D):
 	SD_Multiplayer.sync_call_function(self, _on_drag, [value, target])
 
+func _process(delta: float) -> void:
+	if is_drag and drag_target:
+		rigid_body.global_position = lerp(rigid_body.global_position, drag_target.global_position, 50 * delta)
+		rigid_body.global_rotation_degrees = lerp(rigid_body.global_rotation_degrees, drag_target.global_rotation_degrees, 50 * delta)
+
 func _on_drag(value:bool, target:Node3D):
 	is_drag = value
 	drag_target = target
@@ -35,8 +40,3 @@ func _on_drag(value:bool, target:Node3D):
 	if SD_Multiplayer.is_not_server(): return
 	rigid_body.freeze = is_static and is_drag
 	rigid_body.position = rigid_body.position * float(!is_drag)
-
-
-func _process(delta: float) -> void:
-	if is_drag and drag_target:
-		rigid_body.global_position = lerp(rigid_body.global_position, drag_target.global_position, 50 * delta)
