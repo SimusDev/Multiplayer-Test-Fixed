@@ -80,7 +80,8 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
 				SimusDev.console.write_error("expected 1 arguments")
 				return
-			find_and_kill_player(command.get_value_as_string())
+			
+			SD_Multiplayer.sync_call_function_on_server(self, find_and_kill_player, [command.get_value_as_string()])
 
 func find_player(nickname:String) -> SD_MultiplayerPlayer:
 	var picked_player:SD_MultiplayerPlayer = null
@@ -92,7 +93,8 @@ func find_player(nickname:String) -> SD_MultiplayerPlayer:
 
 func find_and_kill_player(nickname:String):
 	var player = find_player(nickname).get_node() as SourcePlayer
-	player.health.kill()
+	if player:
+		player.health.kill()
 
 func teleport_player(player:Node3D, position:Vector3):
 	if !is_instance_valid(player): return
