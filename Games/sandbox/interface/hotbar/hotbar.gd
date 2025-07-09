@@ -29,8 +29,8 @@ func _ready() -> void:
 
 func _slot_added(slot: WG_InventorySlot) -> void:
 	if SD_Multiplayer.is_not_server():
-		pass
-		#print(slot)
+		print(slot)
+	
 	if slot is SB_InventorySlot:
 		add_slot(slot)
 

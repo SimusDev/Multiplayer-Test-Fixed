@@ -14,6 +14,8 @@ var _sections: Dictionary[String, SB_LevelSection3D] = {}
 
 @export var _spawner: SD_MPClientNodeSpawner
 
+@export var _spawner_section_exclude: Array[SB_LevelSection3D] = []
+
 func get_spawner() -> SD_MPClientNodeSpawner:
 	return _spawner
 
@@ -40,7 +42,9 @@ func _parse_sections() -> void:
 		if i is SB_LevelSection3D:
 			i._level = self
 			_sections[i.name] = i
-			_spawner.add_detect_root(i)
+			
+			if not _spawner_section_exclude.has(i):
+				_spawner.add_detect_root(i)
 
 
 static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
