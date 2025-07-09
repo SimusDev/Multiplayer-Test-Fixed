@@ -27,7 +27,7 @@ func update_source(source: Control) -> void:
 	
 	var value: String = cmd_color.get_value_as_string()
 	var parsed: Variant = str_to_var(value)
-	
+	#CCCCCCCCCCCCCCC HI AHAIO
 	var picked_color: Color = DEFAULT_COLOR
 	if parsed is Color:
 		picked_color = parsed
