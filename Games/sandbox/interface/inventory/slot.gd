@@ -1,12 +1,38 @@
 extends Control
+class_name sb_ui_slot
 
 @export var reference: SB_InventorySlot
 
+@onready var _icon: TextureRect = $_icon
+
 func _ready() -> void:
-	reference.item_added.connect(update_icon)
-	reference.item_removed.connect(update_icon)
+	reference.item_added.connect(_item_added)
+	reference.item_removed.connect(_item_removed)
 	
 	update_icon(reference.get_item())
 
+func _item_added(item: SB_ItemStack) -> void:
+	update_icon(item)
+
+func _item_removed(item: SB_ItemStack) -> void:
+	update_icon(item)
+
 func update_icon(item: SB_ItemStack) -> void:
-	pass
+	if not item:
+		return
+	
+	if not item.object:
+		return
+	
+	
+	_icon.texture = item.object.icon
+	
+	
+
+func _on_sd_ui_drag_and_drop_dropped(draggable: Control, at: Control) -> void:
+	if draggable is sb_ui_slot:
+		if at is sb_ui_slot:
+			var item: SB_ItemStack = reference.get_item()
+			
+			if item:
+				item.move_to(at.reference)

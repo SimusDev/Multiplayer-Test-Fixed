@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="EL_WorldItemStack" load_steps=4 format=3 uid="uid://cokbg8gf0bwd2"]
+[gd_resource type="Resource" script_class="SB_WorldItemStack" load_steps=5 format=3 uid="uid://cokbg8gf0bwd2"]
 
 [ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="1_uydoh"]
 [ext_resource type="PackedScene" uid="uid://cc75uvmymxf8t" path="res://Games/sandbox/objects/item/prop.tscn" id="2_l2drt"]
 [ext_resource type="Script" uid="uid://dse3mtrewn3cl" path="res://Games/sandbox/components/world/SB_WorldItemStack.gd" id="3_b484l"]
+[ext_resource type="Resource" uid="uid://dsu6qf8xmycd7" path="res://Games/sandbox/objects/item/viewmodel.tres" id="4_7618l"]
 
 [resource]
 script = ExtResource("3_b484l")
@@ -11,4 +12,6 @@ icon = ExtResource("1_uydoh")
 name = "test"
 description = ""
 prefab = ExtResource("2_l2drt")
+viewmodel = ExtResource("4_7618l")
+viewmodel_player = ExtResource("4_7618l")
 metadata/_custom_type_script = "uid://dse3mtrewn3cl"

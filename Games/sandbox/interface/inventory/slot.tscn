@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkvjgxc7upod1"]
+[gd_scene load_steps=4 format=3 uid="uid://dkvjgxc7upod1"]
 
 [ext_resource type="Script" uid="uid://c0b1pnvvrndye" path="res://Games/sandbox/interface/inventory/slot.gd" id="1_pehm3"]
 [ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="2_imq2w"]
+[ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="3_u7edm"]
 
 [node name="slot" type="Control"]
 custom_minimum_size = Vector2(72, 72)
@@ -21,3 +22,24 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="_icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SD_UIDragAndDrop" type="Node2D" parent="." node_paths=PackedStringArray("input_node", "draggable_node", "drop_node", "preview_node")]
+script = ExtResource("3_u7edm")
+input_node = NodePath("..")
+draggable_node = NodePath("..")
+drop_node = NodePath("..")
+preview_node = NodePath("../_icon")
+metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
+
+[connection signal="dropped" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_dropped"]

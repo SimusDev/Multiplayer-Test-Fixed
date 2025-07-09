@@ -66,6 +66,7 @@ func _enter_tree() -> void:
 	
 	_slot._add_item_local(self)
 	
+	return
 	if not is_node_ready():
 		await ready
 		synchronize_data()

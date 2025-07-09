@@ -656,7 +656,7 @@ func serialize_object_var_into_packet(object: Object, property: String) -> Dicti
 
 func deserialize_var_from_packet(serialized: Variant) -> Variant:
 	if not serialized is Dictionary:
-		return
+		return serialized
 	
 	if serialized is Dictionary:
 		if serialized.is_empty():
