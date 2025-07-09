@@ -22,12 +22,15 @@ func set_synced_data_property(node: Node, property: String, value: Variant) -> v
 func get_synced_data__property(node: Node, property: String, default_value: Variant = null) -> Variant:
 	var properties: Dictionary = get_synced_data_properties(node)
 	return properties.get(property, default_value)
-	
 
 func get_synced_data_properties(node: Node) -> Dictionary:
-	var properties: Dictionary = _synced_data_.get_or_add(node, {}) as Dictionary
-	return properties
+	if node.has_meta("_mp_synced_data"):
+		return node.get_meta("_mp_synced_data") as Dictionary
 	
+	var data: Dictionary
+	node.set_meta("_mp_synced_data", data)
+	return data
+
 func get_synced_bases(node: Node) -> Array[SD_MPPSSyncedBase]:
 	if not _synced_bases.has(node):
 		_synced_bases[node] = [] as Array[SD_MPPSSyncedBase]

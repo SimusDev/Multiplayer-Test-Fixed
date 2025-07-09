@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_akly7")
-tickrate = 1.0
+tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 interpolation_enabled = true
