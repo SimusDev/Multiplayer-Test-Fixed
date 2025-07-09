@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name SD_MPNodeInstanceSerializer
 
@@ -7,37 +8,46 @@ class_name SD_MPNodeInstanceSerializer
 	"m_",
 ]
 
+@export var _private_properties: PackedStringArray = []
+
+func _enter_tree() -> void:
+	if _private_properties.is_empty():
+		var properties: Array[Dictionary] = get_property_list()
+		for key in properties:
+			_private_properties.append(key.name)
+
 func _serialize_properties(data: Dictionary, node: Node, root: Node) -> void:
 	var script: Script = node.get_script()
-	if script != null:
-		if script is Script:
-			var properties: Array[Dictionary] = script.get_script_property_list()
-			var path: String = root.get_path_to(node)
-			
-			if not data.has(path):
-				data[path] = {}
-			
-			var saved_properties: Dictionary = data[path]
-			
-			for p_dict: Dictionary in properties:
-				var private: bool = false
-				var p_name: String = p_dict.name
-				for p_field in _private_fields:
-					if p_name.begins_with(p_field):
-						private = true
-				
-				if private:
-					continue
-				
-				var ser_property: Variant = SD_Multiplayer.serialize_var_into_packet(node.get(p_name))
-				saved_properties[p_name] = ser_property
-				
-				#print(p_name, " : ", node.get(p_name))
-			
-			node.name = node.name.validate_node_name()
-			saved_properties["name"] = SD_Multiplayer.serialize_var_into_packet(node.name)
-
-
+	
+	var properties: Array[Dictionary] = node.get_property_list()
+	var path: String = root.get_path_to(node)
+	
+	if not data.has(path):
+		data[path] = {}
+	
+	var saved_properties: Dictionary = data[path]
+	
+	for p_dict: Dictionary in properties:
+		var private: bool = false
+		var p_name: String = p_dict.name
+		
+		for p_field in _private_fields:
+			if p_name.begins_with(p_field):
+				private = true
+		
+		if _private_properties.has(p_name):
+			private = true
+		
+		if private:
+			continue
+		
+		var ser_property: Variant = SD_Multiplayer.serialize_var_into_packet(node.get(p_name))
+		saved_properties[p_name] = ser_property
+		
+		#print(p_name, " : ", node.get(p_name))
+	
+	node.name = node.name.validate_node_name()
+	saved_properties["name"] = SD_Multiplayer.serialize_var_into_packet(node.name)
 
 	for child in node.get_children():
 		_serialize_properties(data, child, root)

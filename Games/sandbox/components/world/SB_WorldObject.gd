@@ -9,6 +9,10 @@ class_name SB_WorldObject
 @export_group("World")
 @export var prefab: PackedScene : get = get_prefab
 
+@export_group("ViewModel")
+@export var viewmodel: SBR_ViewModel
+@export var viewmodel_player: SBR_ViewModel
+
 static var _references: Dictionary[String, SB_WorldObject] = {}
 static var _reference_list: Array[SB_WorldObject] = []
 

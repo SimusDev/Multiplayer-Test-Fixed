@@ -15,6 +15,9 @@ func do_bob_footstep() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 	
+	if not is_multiplayer_authority():
+		return
+	
 	if not movement.is_on_floor():
 		return
 	

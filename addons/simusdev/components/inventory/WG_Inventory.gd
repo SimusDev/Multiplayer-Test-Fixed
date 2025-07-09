@@ -19,6 +19,13 @@ signal item_added(item: WG_ItemStack)
 signal item_removed(item: WG_ItemStack)
 signal item_moved_to(slot: WG_InventorySlot, item: WG_ItemStack)
 
+signal initialized()
+
+var _init: bool = false
+
+func is_initialized() -> bool:
+	return _init
+
 static func find_in(node: Node) -> WG_Inventory:
 	if node is WG_ItemStack:
 		return node
@@ -102,6 +109,10 @@ func _ready() -> void:
 			_add_slot_local(child)
 	
 	_selected_slot = SD_Array.get_value_from_array(_slots, 0, null)
+	slot_selected.emit(_selected_slot)
+	
+	_init = true
+	initialized.emit()
 
 func _send_all_slots_to_client(peer: int) -> void:
 	var _slots: Array = []
@@ -123,6 +134,10 @@ func _recieve_all_slots_from_server(serialized: Array, selected_slot_path: Strin
 			
 	
 	_selected_slot = get_node_or_null(selected_slot_path)
+	slot_selected.emit(_selected_slot)
+	
+	_init = true
+	initialized.emit()
 
 func get_slots() -> Array[WG_InventorySlot]:
 	return _slots

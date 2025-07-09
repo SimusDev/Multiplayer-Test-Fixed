@@ -36,10 +36,13 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 		if founded:
 			
 			for p_name: String in synced:
+				if p_name == "keys":
+					print(synced[p_name])
 				
-				var packet: Variant = synced[p_name]
-				var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
-				founded.set(p_name, value)
+				if p_name in founded:
+					var packet: Variant = synced[p_name]
+					var value: Variant = SD_Multiplayer.deserialize_var_from_packet(packet)
+					founded.set(p_name, value)
 			
 	
 	#print(data.get("synced_properties"))

@@ -2,7 +2,7 @@
 extends Node
 class_name WG_InventorySlot
 
-@export var keys: Dictionary[String, Variant] = {}
+@export var keys: Dictionary = {}
 
 var start_name: String
 
@@ -83,6 +83,8 @@ func _add_item_local(item: WG_ItemStack) -> void:
 	else:
 		add_child(item)
 	
+	_items.append(item)
+	
 	item_added.emit(item)
 
 func remove_item(item: WG_ItemStack) -> void:
@@ -98,6 +100,8 @@ func _remove_item_local(item: WG_ItemStack) -> void:
 	
 	item_removed.emit(item)
 	item.queue_free()
+	
+	_items.erase(item)
 	
 
 func _remove_item_local_path(item_path: String) -> void:

@@ -21,6 +21,9 @@ var _interface: Dictionary[SB_InventorySlot, Control] = {}
 func _ready() -> void:
 	$SD_NodeInput.enabled = switch_enabled
 	
+	if not inventory.is_initialized():
+		await inventory.initialized
+	
 	for slot in inventory.get_slots():
 		_slot_added(slot)
 	
@@ -28,9 +31,6 @@ func _ready() -> void:
 	inventory.slot_removed.connect(_slot_removed)
 
 func _slot_added(slot: WG_InventorySlot) -> void:
-	if SD_Multiplayer.is_not_server():
-		print(slot)
-	
 	if slot is SB_InventorySlot:
 		add_slot(slot)
 
@@ -39,12 +39,13 @@ func _slot_removed(slot: WG_InventorySlot) -> void:
 		remove_slot(slot)
 
 func add_slot(slot: SB_InventorySlot) -> void:
-	
 	if not slot:
 		return
 	
 	if not slot.keys.has("hotbar") or _interface.has(slot):
 		return
+	
+	_slots.append(slot)
 	
 	var ui: Control = slot_scene.instantiate()
 	ui.reference = slot
@@ -58,6 +59,8 @@ func remove_slot(slot: SB_InventorySlot) -> void:
 	if not slot.keys.has("hotbar") or !_interface.has(slot):
 		return
 	
+	_slots.erase(slot)
+	
 	var ui: Control = _interface.get(slot) as Control
 	_interface.erase(slot)
 	ui.queue_free()
@@ -67,6 +70,6 @@ func _on_sd_node_input_on_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if actions.has(event.as_text_key_label()):
 			var id: int = event.as_text_key_label().to_int()
-			var picked: SB_InventorySlot = SD_Array.get_value_from_array(_slots, id)
+			var picked: SB_InventorySlot = SD_Array.get_value_from_array(_slots, id - 1)
 			if picked:
 				picked.select()

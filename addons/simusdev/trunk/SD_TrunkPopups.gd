@@ -49,6 +49,7 @@ func _ready() -> void:
 	
 	if not str(settings.get("input", "")).is_empty():
 		_input = SD_NodeInput.new()
+		_input.depends_on_interface = false
 		_canvas.add_child(_input)
 		_input.name = "input"
 		

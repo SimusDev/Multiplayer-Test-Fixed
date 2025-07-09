@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=18 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
 [ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
 [ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="8_l8c2a"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
+[ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_eod0d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
 albedo_texture = ExtResource("5_22h6b")
@@ -34,9 +35,10 @@ script = ExtResource("1_ep68v")
 hide_at_start = true
 nodes = [NodePath("../MeshInstance3D")]
 
-[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "p_health")]
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "_synchronize_transform", "p_health")]
 script = ExtResource("1_ypfrq")
 source = NodePath("..")
+_synchronize_transform = [NodePath("../W_FPCSourceLikePlayerCamera")]
 _interface = ExtResource("3_p1dqb")
 p_health = NodePath("../C_HealthComponent")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
@@ -122,6 +124,12 @@ crouch_camera_position = NodePath("../crouch_camera_position")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86401, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
+
+[node name="SB_EntityViewModel" type="Node3D" parent="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("_inventory")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0408556, -0.501495, -0.85956)
+script = ExtResource("12_eod0d")
+_inventory = NodePath("../../EL_Inventory")
+metadata/_custom_type_script = "uid://cg7guu20kh5el"
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_j2tsh")]
 actor = NodePath("..")
