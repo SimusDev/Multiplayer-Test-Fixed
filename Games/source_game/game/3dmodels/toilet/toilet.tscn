@@ -162,9 +162,9 @@ points = PackedVector3Array(-0.131886, 0.495973, 0.519784, 0.400125, 0.608539, -
 points = PackedVector3Array(-0.430458, 0.898288, -0.169031, 0.416106, 1.06005, -0.174566, 0.408385, 1.05593, -0.409926, 0.385089, 0.617305, -0.39598, -0.327354, 1.05542, -0.4455, -0.328102, 0.62478, -0.158529, -0.343316, 0.626471, -0.40885, 0.353215, 0.625485, -0.158911, -0.430458, 0.936859, -0.0917653, -0.390974, 1.06092, -0.174169, 0.380729, 0.975521, -0.458731, 0.400043, 0.975521, -0.130416, -0.411059, 0.975521, -0.420044, -0.300919, 0.631104, -0.4234, 0.438756, 0.975521, -0.169031, -0.353117, 0.975521, -0.458731, 0.326652, 0.631104, -0.4234, -0.256547, 0.898288, -0.0917653, 0.371172, 1.05523, -0.140978, 0.438756, 0.975521, -0.420044, -0.350506, 0.622045, -0.175215, -0.346027, 1.05588, -0.140571, 0.375606, 0.622857, -0.175587, 0.353574, 1.05542, -0.4455, -0.275861, 0.956145, -0.0917653, -0.383232, 1.0566, -0.41034, -0.430458, 0.956145, -0.169031, -0.430458, 0.917574, -0.0917653, -0.333803, 0.898288, -0.0917653, -0.430458, 0.898288, -0.111091)
 
 [node name="toilet" type="RigidBody3D" groups=["props"]]
-mass = 15.0
+mass = 25.0
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0.4, 0.09)
+center_of_mass = Vector3(0, -0.1, -0.1)
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("4_fgmdj")
@@ -173,6 +173,7 @@ rigid_body = NodePath("..")
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="toilet_ARM" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="toilet_ARM"]
 bones/0/name = "shitter"
@@ -216,70 +217,93 @@ mesh = SubResource("ArrayMesh_cqcn3")
 skin = SubResource("Skin_karno")
 
 [node name="CollisionShape3D23" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_fgmdj")
 
 [node name="CollisionShape3D22" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gwxc8")
 
 [node name="CollisionShape3D21" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_idv31")
 
 [node name="CollisionShape3D20" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_86ocf")
 
 [node name="CollisionShape3D19" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_76xn5")
 
 [node name="CollisionShape3D18" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_7fmke")
 
 [node name="CollisionShape3D17" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_5gbud")
 
 [node name="CollisionShape3D16" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_sg8g5")
 
 [node name="CollisionShape3D15" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_82kae")
 
 [node name="CollisionShape3D14" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_fk2eg")
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_i2qly")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_knijt")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_htxyl")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_aey7i")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_rp6k0")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_agu1t")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_nkjjm")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_lessk")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_rlnol")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_kfaks")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_u7yow")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_4cv3f")
 
 [node name="CollisionShape3D24" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_t3xnp")

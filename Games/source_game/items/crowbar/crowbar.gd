@@ -4,7 +4,7 @@ class_name SourceWeaponMelee extends SourceItem
 @export var player_interact_raycast:SourceInteractRaycast
 @onready var animation_player = $animation_player
 @export var damage:float = 10.0
-@export var strength:float = 40.0
+@export var strength:float = 25.0
 
 func _ready() -> void:
 	on_use.connect(_on_item_use)
@@ -30,8 +30,8 @@ func impact():
 				collider.health.apply_damage(damage)
 			
 			if collider is RigidBody3D:
-				var direction = (collider.global_position - player_interact_raycast.get_collision_point()).normalized()
-				collider.apply_impulse(direction * strength, Vector3.ZERO)
+				var direction = (collider.global_position - player.global_position).normalized()
+				collider.apply_impulse(direction * strength, player_interact_raycast.get_collision_point() - collider.global_position)
 				
 				var sound_array:Array = SourceSurfaces.sounds[
 						collider.get_node("SourceProp").surface
