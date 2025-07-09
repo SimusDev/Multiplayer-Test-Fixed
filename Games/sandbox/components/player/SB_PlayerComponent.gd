@@ -4,7 +4,7 @@ class_name SB_PlayerComponent
 
 @export var source: Node
 
-
+@export var process_when_authority: bool = true
 @export var _synchronize_transform: Array[Node3D] = []
 @export var _interface: PackedScene
 
@@ -44,6 +44,9 @@ func _ready() -> void:
 	await source.ready
 	if is_multiplayer_authority():
 		add_child(_interface.instantiate())
+	else:
+		if not process_when_authority:
+			source.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _enter_tree() -> void:
 	if !source:

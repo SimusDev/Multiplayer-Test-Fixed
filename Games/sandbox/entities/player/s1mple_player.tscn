@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=18 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
 [ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
@@ -13,9 +13,6 @@
 [ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="8_l8c2a"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_eod0d"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="14_3ca3v"]
-[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="15_2g5i4"]
-[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="16_gqqo1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
 albedo_texture = ExtResource("5_22h6b")
@@ -30,20 +27,6 @@ size = Vector3(1, 1.99615, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_p1dqb"]
 size = Vector3(1, 1.14554, 1)
 
-[sub_resource type="Resource" id="Resource_av8e7"]
-script = ExtResource("16_gqqo1")
-properties = Array[String](["transform"])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 30.0
-node_path = NodePath("..")
-reliable = false
-mode = 1
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
-
 [node name="s1mple" type="CharacterBody3D"]
 collision_layer = 0
 
@@ -55,6 +38,7 @@ nodes = [NodePath("../MeshInstance3D")]
 [node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "_synchronize_transform", "p_health")]
 script = ExtResource("1_ypfrq")
 source = NodePath("..")
+process_when_authority = false
 _synchronize_transform = [NodePath("../W_FPCSourceLikePlayerCamera")]
 _interface = ExtResource("3_p1dqb")
 p_health = NodePath("../C_HealthComponent")
@@ -163,8 +147,3 @@ target_position = Vector3(0, 1, 0)
 
 [node name="crouch_camera_position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
-
-[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
-script = ExtResource("14_3ca3v")
-properties = Array[ExtResource("15_2g5i4")]([SubResource("Resource_av8e7")])
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
