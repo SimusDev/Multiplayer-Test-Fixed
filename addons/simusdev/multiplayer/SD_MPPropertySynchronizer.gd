@@ -12,20 +12,16 @@ var _synced_bases: Dictionary[Node, Array] = {}
 
 @export var auto_set_multiplayer_authority: bool = true
 
-func set_synced_data_property(node: Node, property: String, value: Variant) -> void:
-	var properties: Dictionary = get_synced_data_properties(node)
-	properties[property] = value
-	
 
-func get_synced_data__property(node: Node, property: String, default_value: Variant = null) -> Variant:
-	var properties: Dictionary = get_synced_data_properties(node)
+func get_synced_data_property(node: Node, property: String, default_value: Variant = null) -> Variant:
+	var properties: Dictionary[String, Variant] = get_synced_data_properties(node)
 	return properties.get(property, default_value)
 
-func get_synced_data_properties(node: Node) -> Dictionary:
+func get_synced_data_properties(node: Node) -> Dictionary[String, Variant]:
 	if node.has_meta("_mp_synced_data"):
-		return node.get_meta("_mp_synced_data") as Dictionary
+		return node.get_meta("_mp_synced_data") as Dictionary[String, Variant]
 	
-	var data: Dictionary
+	var data: Dictionary[String, Variant] = {}
 	node.set_meta("_mp_synced_data", data)
 	return data
 
@@ -101,25 +97,16 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 	if not node:
 		return
 	
-	if SD_Multiplayer.is_active():
-		match mp_property.mode:
-			SD_MPPSSyncedProperty.MODE.FROM_SERVER:
-				if not multiplayer.is_server():
-					if mp_property is SD_MPPSSyncedProperty:
-						recieve_properties_from_peer(node, mp_property.properties, SD_MultiplayerSingleton.HOST_ID, mp_property.reliable)
-
-			
-			SD_MPPSSyncedProperty.MODE.AUTHORITY:
-				if is_multiplayer_authority():
-					if mp_property is SD_MPPSSyncedProperty:
-						for peer in SD_Multiplayer.get_connected_peers():
-							if peer == SD_Multiplayer.get_unique_id():
-								continue
-							
-							send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
-				else:
-					if mp_property is SD_MPPSSyncedProperty:
-						recieve_properties_from_peer(node, mp_property.properties, get_multiplayer_authority(), mp_property.reliable)
+	if is_multiplayer_authority():
+		if mp_property is SD_MPPSSyncedProperty:
+			for peer in SD_Multiplayer.get_connected_peers():
+				if peer == SD_Multiplayer.get_unique_id():
+					continue
+				
+				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
+	else:
+		if mp_property is SD_MPPSSyncedProperty:
+			recieve_properties_from_peer(node, mp_property.properties, get_multiplayer_authority(), mp_property.reliable)
 
 
 #region REFRESHING
@@ -205,7 +192,7 @@ func _interpolate(base: SD_MPPSSyncedBase, delta: float) -> void:
 			if synced_properties.has(property):
 				var current_value: Variant = node.get(property)
 				if INTERPOLATING_VARTYPES.has(typeof(current_value)):
-					var synced_value: Variant = get_synced_data__property(node, property)
+					var synced_value: Variant = get_synced_data_property(node, property)
 					if base.interpolation_enabled:
 						current_value = lerp(current_value, synced_value, base.interpolation_speed * delta)
 						node.set(property, current_value)
@@ -245,7 +232,8 @@ func _recieve_properties_from_peer_rpc_recieve(path: NodePath, synced: Dictionar
 	var node: Node = get_node_or_null(path)
 	for property: String in synced:
 		var value: Variant = synced[property]
-		set_synced_data_property(node, property, value)
+		get_synced_data_properties(node).set(property, value)
+		print(get_synced_data_properties(node))
 		property_recieved.emit(node, property, value, from_peer)
 		
 		for base in get_synced_bases(node):
