@@ -102,7 +102,13 @@ func init(console: SD_Console, settings: SD_Settings, cmd_code: String, cmd_valu
 func execute(args: Array[String] = []) -> void:
 	_arguments = args.duplicate()
 	if !args.is_empty():
-		set_value(args[0])
+		var value: String = ""
+		
+		for i in args:
+			value += i
+			value += " "
+		
+		set_value(value)
 	
 	executed.emit()
 
@@ -119,7 +125,7 @@ func is_value_invalid() -> bool:
 func get_arguments() -> Array[String]:
 	return _arguments
 
-func set_value(value: Variant) -> void:
+func set_value(value: Variant, update: bool = true) -> void:
 	_value = str(value)
 	_number_update_minmax()
 	
@@ -127,7 +133,9 @@ func set_value(value: Variant) -> void:
 		_value = str(int(get_value_as_string()))
 	
 	_settings.change_setting(get_code(), get_value())
-	update_command()
+	
+	if update:
+		update_command()
 
 func help_set(help_info: String, args_count: int = 0) -> SD_ConsoleCommandHelp:
 	var help := SD_ConsoleCommandHelp.new(self, help_info, args_count)

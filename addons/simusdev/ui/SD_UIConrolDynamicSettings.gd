@@ -16,7 +16,6 @@ func _ready() -> void:
 	for cmd in commands:
 		cmd.updated.connect(_on_cmd_updated.bind(cmd))
 	
-	
 	update_sources()
 
 func update_sources() -> void:
@@ -31,16 +30,12 @@ func update_source(source: Control) -> void:
 	for i in args.size():
 		value += args[i]
 	
-	var executed_expression = Expression.new()
-	var executed_parse: Variant = executed_expression.parse(value)
-	if executed_parse != OK:
-		SimusDev.console.write_error(executed_expression.get_error_text())
-		return
-	var parsed: Variant = executed_expression.execute()
+	var parsed: Variant = str_to_var(value)
 	
 	var picked_color: Color = DEFAULT_COLOR
 	if parsed is Color:
 		picked_color = parsed
+		cmd_color.set_value("Color" + str(picked_color), false)
 	
 	if source is ColorRect:
 		source.color = picked_color
