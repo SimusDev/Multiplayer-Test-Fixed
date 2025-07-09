@@ -25,17 +25,12 @@ func update_sources() -> void:
 func update_source(source: Control) -> void:
 	var cmd_color: SD_ConsoleCommand = console.create_command("ui.dynamic.color", DEFAULT_COLOR)
 	
-	var args: Array[String] = cmd_color.get_arguments()
-	var value: String = ""
-	for i in args.size():
-		value += args[i]
-	
+	var value: String = cmd_color.get_value_as_string()
 	var parsed: Variant = str_to_var(value)
 	
 	var picked_color: Color = DEFAULT_COLOR
 	if parsed is Color:
 		picked_color = parsed
-		cmd_color.set_value("Color" + str(picked_color), false)
 	
 	if source is ColorRect:
 		source.color = picked_color
