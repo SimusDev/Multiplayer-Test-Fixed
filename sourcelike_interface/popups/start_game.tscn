@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://82la0v53craw"]
+[gd_scene load_steps=14 format=3 uid="uid://82la0v53craw"]
 
-[ext_resource type="Script" path="res://sourcelike_interface/popups/scripts/start_game.gd" id="2_gxx3g"]
+[ext_resource type="Script" uid="uid://cn4koh1kawkv4" path="res://sourcelike_interface/popups/scripts/start_game.gd" id="2_gxx3g"]
 [ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="2_ri7yn"]
 [ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="3_61h68"]
 [ext_resource type="PackedScene" uid="uid://ckixh0ocyfgyg" path="res://commands/last_port.tscn" id="3_opad6"]
 [ext_resource type="PackedScene" uid="uid://cnems64x804he" path="res://commands/last_ip.tscn" id="4_00tsx"]
 [ext_resource type="PackedScene" uid="uid://cn1foipkrj278" path="res://commands/nickname.tscn" id="5_6vo6t"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="7_00tsx"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_opad6"]
+[sub_resource type="LabelSettings" id="LabelSettings_00tsx"]
+font = ExtResource("7_00tsx")
 font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00tsx"]
 bg_color = Color(0.180005, 0.180005, 0.180005, 1)
@@ -30,6 +34,24 @@ border_color = Color(0.288518, 0.288518, 0.288518, 1)
 corner_detail = 20
 anti_aliasing = false
 
+[sub_resource type="LabelSettings" id="LabelSettings_6vo6t"]
+font = ExtResource("7_00tsx")
+font_size = 26
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6wuw"]
+font = ExtResource("7_00tsx")
+font_size = 26
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bj8o"]
+font = ExtResource("7_00tsx")
+font_size = 26
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="start_game" node_paths=PackedStringArray("start_btn") instance=ExtResource("2_ri7yn")]
 script = ExtResource("2_gxx3g")
 start_btn = NodePath("content/tab_container/host_btn")
@@ -40,9 +62,16 @@ start_btn = NodePath("content/tab_container/host_btn")
 
 [node name="nickname" parent="." index="2" instance=ExtResource("5_6vo6t")]
 
-[node name="title" parent="head" index="2"]
+[node name="title" parent="head" index="0"]
+anchor_left = 0.0273438
+anchor_top = 0.1
+offset_left = 0.0
 text = "START GAME"
-label_settings = SubResource("LabelSettings_opad6")
+label_settings = SubResource("LabelSettings_00tsx")
+font = ExtResource("7_00tsx")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="vBoxContainer" type="VBoxContainer" parent="content/border" index="0"]
 layout_mode = 1
@@ -59,6 +88,16 @@ custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_colors/selection_color = Color(1, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.74558, 0.74558, 0.74558, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_00tsx")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_00tsx")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
@@ -75,6 +114,16 @@ custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_colors/selection_color = Color(1, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.74558, 0.74558, 0.74558, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_00tsx")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
 placeholder_text = "IP"
@@ -89,6 +138,16 @@ custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_colors/selection_color = Color(1, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.74558, 0.74558, 0.74558, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_00tsx")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_00tsx")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_pga5e")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pga5e")
@@ -103,7 +162,17 @@ custom_minimum_size = Vector2(75, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-label_text = "HOST"
+label_text = "Start"
+
+[node name="SD_Label" parent="content/border/vBoxContainer/host" index="0"]
+anchors_preset = -1
+anchor_top = 0.0833333
+text = "Start"
+label_settings = SubResource("LabelSettings_6vo6t")
+font = ExtResource("7_00tsx")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="connect" parent="content/border/vBoxContainer" index="4" instance=ExtResource("3_61h68")]
 visible = false
@@ -116,14 +185,38 @@ label_text = "CONNECT"
 [node name="host_btn" parent="content/tab_container" index="0" instance=ExtResource("3_61h68")]
 layout_mode = 2
 text = "host"
-label_text = "host"
+label_text = "Host"
+
+[node name="SD_Label" parent="content/tab_container/host_btn" index="0"]
+anchors_preset = -1
+anchor_top = 0.12
+text = "Host"
+label_settings = SubResource("LabelSettings_k6wuw")
+font = ExtResource("7_00tsx")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="connect_btn" parent="content/tab_container" index="1" instance=ExtResource("3_61h68")]
 layout_mode = 2
 text = "connect"
-label_text = "connect"
+label_text = "Connect"
+
+[node name="SD_Label" parent="content/tab_container/connect_btn" index="0"]
+anchors_preset = -1
+anchor_top = 0.12
+text = "Connect"
+label_settings = SubResource("LabelSettings_1bj8o")
+font = ExtResource("7_00tsx")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="content/border/vBoxContainer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="content/border/vBoxContainer/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="content/tab_container/host_btn" to="." method="_on_host_btn_pressed"]
 [connection signal="pressed" from="content/tab_container/connect_btn" to="." method="_on_connect_btn_pressed"]
+
+[editable path="content/border/vBoxContainer/host"]
+[editable path="content/tab_container/host_btn"]
+[editable path="content/tab_container/connect_btn"]

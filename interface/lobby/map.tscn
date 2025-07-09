@@ -1,99 +1,206 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqy28xcgyja2o"]
+[gd_scene load_steps=11 format=3 uid="uid://bqy28xcgyja2o"]
 
 [ext_resource type="Script" uid="uid://bjyvgy0hcmp5e" path="res://interface/lobby/map.gd" id="1_etous"]
-[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_pqke2"]
-[ext_resource type="Texture2D" uid="uid://d3uckgbxm6i6h" path="res://textures/lobby/map.png" id="2_w4d1w"]
 [ext_resource type="Texture2D" uid="uid://box6vb54v3d48" path="res://textures/icons/heart.png" id="3_pqke2"]
-[ext_resource type="Texture2D" uid="uid://b6a43rx6bnnnq" path="res://textures/lobby/play-btn.png" id="4_vq7g4"]
-[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_2mqy2"]
-[ext_resource type="Texture2D" uid="uid://cn7lb0qk6pmuc" path="res://textures/lobby/play-btn-pressed.png" id="5_vq7g4"]
+[ext_resource type="Texture2D" uid="uid://v7vs41iw8jp3" path="res://Games/counter-strike/maps/de_dust2/icon.png" id="5_c4awn"]
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="6_vq7g4"]
+[ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="6_w4d1w"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_2mqy2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w4d1w"]
+font = ExtResource("8_2mqy2")
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4awn"]
+font = ExtResource("8_2mqy2")
+font_size = 14
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vq7g4"]
+font = ExtResource("8_2mqy2")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mqy2"]
+font = ExtResource("8_2mqy2")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Map" type="Control"]
-custom_minimum_size = Vector2(512, 256)
+custom_minimum_size = Vector2(280, 170)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 256.0
+offset_right = 280.0
+offset_bottom = 170.0
 script = ExtResource("1_etous")
 
-[node name="bg" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("2_w4d1w")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0234375
-anchor_top = 0.0585938
-anchor_right = 0.501953
-anchor_bottom = 0.683594
-grow_vertical = 2
-texture = ExtResource("2_pqke2")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="map_and_desc" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.426
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.112015
-grow_horizontal = 2
-grow_vertical = 2
-text = "MAP_NAME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="play" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0214844
-anchor_top = 0.703125
-anchor_right = 0.521484
-anchor_bottom = 0.953125
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_vq7g4")
-texture_pressed = ExtResource("5_vq7g4")
-texture_hover = ExtResource("4_vq7g4")
-texture_disabled = ExtResource("4_vq7g4")
-texture_focused = ExtResource("4_vq7g4")
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="label" type="Label" parent="play"]
+[node name="Popup" parent="." instance=ExtResource("6_vq7g4")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
-label_settings = SubResource("LabelSettings_vq7g4")
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-script = ExtResource("5_2mqy2")
-metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
-[node name="favorite" type="TextureRect" parent="."]
+[node name="SD_UIInterfaceMenu" parent="Popup" index="0"]
+center_at_start = false
+
+[node name="SE_UIControlDrag" parent="Popup" index="1"]
+drag_enabled = false
+
+[node name="favorite" type="TextureRect" parent="Popup/head" index="0"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.912109
-anchor_top = 0.046875
-anchor_right = 0.974609
-anchor_bottom = 0.171875
+anchor_left = 0.0215054
+anchor_top = 0.166667
+anchor_right = 0.0967742
+anchor_bottom = 0.833333
 texture = ExtResource("3_pqke2")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[node name="shadow" type="TextureRect" parent="Popup/head/favorite"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.08333
+anchor_bottom = 1.08333
+texture = ExtResource("3_pqke2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="title" parent="Popup/head" index="1"]
+anchor_left = 0.128571
+anchor_top = 0.166667
+anchor_right = 0.989286
+offset_left = 0.0
+text = "map_name"
+label_settings = SubResource("LabelSettings_w4d1w")
+text_overrun_behavior = 3
+font = ExtResource("8_2mqy2")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="button_base" parent="Popup/head" index="2"]
+visible = false
+
+[node name="content" parent="Popup" index="4"]
+anchor_left = 0.0107527
+anchor_top = 0.191617
+anchor_right = 0.989247
+anchor_bottom = 0.982036
+
+[node name="tab_container" parent="Popup/content" index="1"]
+visible = false
+
+[node name="icon" type="TextureRect" parent="Popup/content" index="2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0401099
+anchor_top = 0.0552585
+anchor_right = 0.273705
+anchor_bottom = 0.531551
+offset_left = 1.01075
+offset_top = 0.074852
+offset_right = 1.01075
+offset_bottom = 0.074852
+grow_vertical = 2
+texture = ExtResource("5_c4awn")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="desc" type="Label" parent="Popup/content" index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.335793
+anchor_top = 0.0520945
+anchor_right = 0.948979
+anchor_bottom = 0.937701
+grow_horizontal = 2
+grow_vertical = 2
+text = "desc"
+label_settings = SubResource("LabelSettings_c4awn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="play" parent="Popup/content" index="4" instance=ExtResource("6_w4d1w")]
+layout_mode = 0
+anchor_left = 0.0182496
+anchor_top = 0.773975
+anchor_right = 0.299294
+anchor_bottom = 0.937701
+offset_right = 0.0
+offset_bottom = 0.0
+label_text = "start"
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_Label" parent="Popup/content/play" index="0"]
+offset_top = 2.0
+text = "start"
+label_settings = SubResource("LabelSettings_vq7g4")
+font = ExtResource("8_2mqy2")
+font_size = 16
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+autosize_rect = false
+
+[node name="panel_default" parent="Popup/content/play" index="1"]
+anchors_preset = -1
+anchor_top = 0.0454545
+anchor_bottom = 0.954545
+metadata/_edit_use_anchors_ = true
+
+[node name="favorite" parent="Popup/content" index="5" instance=ExtResource("6_w4d1w")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0182496
+anchor_top = 0.595365
+anchor_right = 0.299294
+anchor_bottom = 0.759091
+offset_right = 0.0
+offset_bottom = 0.0
+label_text = "favorite"
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_Label" parent="Popup/content/favorite" index="0"]
+offset_left = -0.0107527
+offset_top = 2.42515
+offset_right = -0.0107498
+offset_bottom = 0.425148
+text = "favorite"
+label_settings = SubResource("LabelSettings_2mqy2")
+font = ExtResource("8_2mqy2")
+font_size = 16
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+autosize_rect = false
+
+[node name="panel_default" parent="Popup/content/favorite" index="1"]
+anchors_preset = -1
+anchor_top = 0.0454545
+anchor_bottom = 0.954545
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Popup/content/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Popup/content/favorite" to="." method="_on_favorite_pressed"]
+
+[editable path="Popup"]
+[editable path="Popup/content/play"]
+[editable path="Popup/content/favorite"]

@@ -26,24 +26,28 @@ map_ui = ExtResource("3_gvont")
 self_modulate = Color(0.212305, 0.212305, 0.212305, 0.9)
 layout_mode = 1
 anchors_preset = -1
-anchor_bottom = 0.933
-offset_right = 591.0
-offset_bottom = 0.23999
+anchor_right = 0.695313
+anchor_bottom = 0.933333
+offset_right = 0.0
+offset_bottom = 0.0
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="maps"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="maps/ScrollContainer"]
+[node name="VBoxContainer" type="GridContainer" parent="maps/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
+columns = 3
 
 [node name="host_waiting" type="ColorRect" parent="maps"]
 unique_name_in_owner = true
@@ -95,8 +99,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 label_text = "QUIT"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="SD_Label" parent="panel_default/cancel" index="0"]
 text = "QUIT"

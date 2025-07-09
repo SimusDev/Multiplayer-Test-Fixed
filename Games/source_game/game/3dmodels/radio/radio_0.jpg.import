@@ -2,15 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cydxi25dne8nv"
+uid="uid://b86fmrnoxj4n1"
 path.s3tc="res://.godot/imported/radio_0.jpg-c0d0305df661650a035f6784da793f01.s3tc.ctex"
 path.etc2="res://.godot/imported/radio_0.jpg-c0d0305df661650a035f6784da793f01.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "a537e147d46383891a397fd0a11bb629"
 }
 
 [deps]
