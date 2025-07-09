@@ -21,9 +21,14 @@ func _init() -> void:
 func _ready() -> void:
 	theme_changed.connect(apply_theme)
 	console_command_set_theme.executed.connect(
-		func(): set_theme(load(themes_base_path + console_command_set_theme.get_value_as_string()))
-		)
+		func():
+			set_theme(load_theme(console_command_set_theme.get_value_as_string()))
+	)
 	console_command_apply_theme.executed.connect(apply_theme.bind(theme))
+
+func load_theme(path:String) -> Theme:
+	print(console_command_set_theme.get_value_as_string())
+	return load(themes_base_path + path.replacen(" ", ""))
 
 func set_theme(new_theme:Theme) -> void:
 	if !new_theme: return
