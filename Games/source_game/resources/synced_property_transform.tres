@@ -4,14 +4,18 @@
 
 [resource]
 script = ExtResource("1_pteun")
-tickrate = 64.0
-tickrate_mode = 0
-sync_mode = 1
 properties = Array[String](["transform"])
 sync_at_start = true
-interpolation_enabled = true
+interpolation_enabled = false
 interpolation_speed = 64.0
 node_path = NodePath("..")
 reliable = false
 mode = 0
+tickrate = 64.0
+tickrate_mode = 0
+<<<<<<< HEAD
+sync_mode = 1
+=======
+sync_mode = 0
+>>>>>>> 8c57eb2fc5142245ff777280cf6c5fb1b6283f57
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"

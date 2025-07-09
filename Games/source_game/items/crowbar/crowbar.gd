@@ -10,8 +10,6 @@ func _ready() -> void:
 	on_use.connect(_on_item_use)
 
 func _on_item_use():
-	player.model.get_animation_player().play("melee")
-	
 	if is_instance_valid(animation_player):
 		if animation_player.is_playing():return
 		animation_player.play("fire")

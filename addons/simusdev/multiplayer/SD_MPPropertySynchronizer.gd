@@ -8,26 +8,24 @@ class_name SD_MPPropertySynchronizer
 
 var _singleton: SD_MultiplayerSingleton
 
-var _synced_data: Dictionary[Node, Dictionary]
-var _synced_bases: Dictionary[Node, Array]
+var _synced_data_: Dictionary[Node, Dictionary] = {}
+var _synced_bases: Dictionary[Node, Array] = {}
+
+@export var auto_set_multiplayer_authority: bool = true
 
 func set_synced_data_property(node: Node, property: String, value: Variant) -> void:
 	var properties: Dictionary = get_synced_data_properties(node)
 	properties[property] = value
-	
-	_synced_data[node] = properties
+	_synced_data_[node] = properties
 	
 
-func get_synced_data_property(node: Node, property: String, default_value: Variant = null) -> Variant:
+func get_synced_data__property(node: Node, property: String, default_value: Variant = null) -> Variant:
 	var properties: Dictionary = get_synced_data_properties(node)
 	return properties.get(property, default_value)
 	
 
 func get_synced_data_properties(node: Node) -> Dictionary:
-	if not _synced_data.has(node):
-		_synced_data.set(node, {})
-	
-	var properties: Dictionary = _synced_data.get(node) as Dictionary
+	var properties: Dictionary = _synced_data_.get_or_add(node, {}) as Dictionary
 	return properties
 	
 func get_synced_bases(node: Node) -> Array[SD_MPPSSyncedBase]:
@@ -46,8 +44,8 @@ signal property_sent(node: Node, property: String, value: Variant, to_peer: int)
 
 
 
-func get_synced_data() -> Dictionary[Node, Dictionary]:
-	return _synced_data
+func get_synced_data_() -> Dictionary[Node, Dictionary]:
+	return _synced_data_
 
 func _ready() -> void:
 	if not SD_Multiplayer.is_active():
@@ -63,7 +61,10 @@ func _ready() -> void:
 	
 	for mp_property in properties:
 		init_property(mp_property)
-
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	set_multiplayer_authority(get_parent().get_multiplayer_authority())
 
 var _initialized_properties: Array[SD_MPPSSyncedBase] = []
 func init_property(mp_property: SD_MPPSSyncedBase) -> void:
@@ -136,37 +137,39 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 #region REFRESHING
 
 func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
-	if property.sync_mode == property.SYNC_MODE.DISABLED:
-		return
-		
-	if (property.sync_mode == property.SYNC_MODE.ALWAYS):
-		_refresh(property, delta)
-	else:
-		_hook_property_node_property_change(property, delta)
-	
-	_interpolate(delta)
+	_refresh(property, delta)
+	_interpolate(property, delta)
 
 
 func _process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	for mp in properties:
 		if mp.tickrate_mode == mp.TICKRATE_MODE.IDLE:
 			_hook_sync(mp, delta)
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	for mp in properties:
 		if mp.tickrate_mode == mp.TICKRATE_MODE.PHYSICS:
 			_hook_sync(mp, delta)
 	
 
-var _mp_node_properties_hook: Dictionary[SD_MPPSSyncedProperty, Dictionary]
+var _mp_node_properties_hook: Dictionary[SD_MPPSSyncedProperty, Dictionary] = {}
 func _hook_property_node_property_change(mp_property: SD_MPPSSyncedProperty, delta: float) -> void:
 	var node: Node = get_node_or_null(mp_property.node_path)
 	var properties: Dictionary = _mp_node_properties_hook.get_or_add(mp_property, {}) as Dictionary
-	for property in properties:
-		var property_value: Variant = properties.get(property, null)
-		if property_value != node.get(property):
+	for property in mp_property.properties:
+		var property_value: Variant = properties.get_or_add(property, node.get(property))
+		
+		var node_value: Variant = node.get(property)
+		
+		if property_value != node_value:
 			synchronize(mp_property)
-			properties.set(property, node.get(property))
+			properties.set(property, node_value)
 
 
 
@@ -181,7 +184,12 @@ func _refresh(mp_property: SD_MPPSSyncedProperty, delta: float) -> void:
 		current_cooldown = mp_property.get_tickrate_in_seconds()
 		
 		_mp_properties_cooldown.set(mp_property, current_cooldown)
-		synchronize(mp_property)
+		
+		if mp_property.sync_mode == mp_property.SYNC_MODE.ALWAYS:
+			synchronize(mp_property)
+		else:
+			_hook_property_node_property_change(mp_property, delta)
+		
 		return
 	
 	
@@ -200,19 +208,19 @@ const INTERPOLATING_VARTYPES = [
 	TYPE_TRANSFORM3D,
 ]
 
-func _interpolate(delta: float) -> void:
-	for base in properties:
-		if base is SD_MPPSSyncedProperty:
-			var node: Node = get_node_or_null(base.node_path)
-			for property in base.properties:
-				var synced_properties: Dictionary = get_synced_data_properties(node)
-				if synced_properties.has(property):
-					var current_value: Variant = node.get(property)
-					if INTERPOLATING_VARTYPES.has(typeof(current_value)):
-						var synced_value: Variant = get_synced_data_property(node, property)
-						if base.interpolation_enabled:
-							current_value = lerp(current_value, synced_value, base.interpolation_speed * delta)
-							node.set(property, current_value)
+func _interpolate(base: SD_MPPSSyncedBase, delta: float) -> void:
+	if base is SD_MPPSSyncedProperty:
+		var node: Node = get_node_or_null(base.node_path)
+		for property in base.properties:
+			var synced_properties: Dictionary = get_synced_data_properties(node)
+			
+			if synced_properties.has(property):
+				var current_value: Variant = node.get(property)
+				if INTERPOLATING_VARTYPES.has(typeof(current_value)):
+					var synced_value: Variant = get_synced_data__property(node, property)
+					if base.interpolation_enabled:
+						current_value = lerp(current_value, synced_value, base.interpolation_speed * delta)
+						node.set(property, current_value)
 #endregion
 
 #region SEND_AND_RECIEVE
@@ -223,7 +231,6 @@ func send_property_to_peer(node: Node, property: String, value: Variant = null, 
 	
 	if value == null:
 		value = node.get(property)
-	
 	
 	var node_path: NodePath = get_path_to(node)
 	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_property_from_peer_rpc_recieve, [node_path, property, value, SD_Multiplayer.get_unique_id()], reliable) 
