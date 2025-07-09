@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://blyyw6brttkfj"]
+
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_gfs0h"]
+
+[sub_resource type="GDScript" id="GDScript_gfs0h"]
+resource_name = "death_camera_script"
+script/source = "extends Node3D
+
+@onready var camera = $W_FPCSourceLikeCamera
+
+func make_current():
+	camera.enabled = true
+"
+
+[node name="death_camera" type="Node3D"]
+script = SubResource("GDScript_gfs0h")
+
+[node name="W_FPCSourceLikeCamera" parent="." instance=ExtResource("1_gfs0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.8)
+camera_angle_max = 0.0
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_boost = "sprint"
+key_slowdown = "crouch"

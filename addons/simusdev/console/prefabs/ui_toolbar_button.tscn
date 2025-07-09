@@ -1,7 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhknf7eo4vpiu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q336e"]
+[gd_scene format=3 uid="uid://bhknf7eo4vpiu"]
 
 [node name="ui_toolbar_button" type="Button"]
 custom_minimum_size = Vector2(0, 48)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_q336e")

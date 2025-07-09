@@ -1,20 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://b61lprpvlhi8c"]
+[gd_scene load_steps=15 format=3 uid="uid://b61lprpvlhi8c"]
 
 [ext_resource type="Script" uid="uid://108pj18k02g2" path="res://addons/simusdev/console/prefabs/ui_console_interface.gd" id="1_oq7w7"]
 [ext_resource type="Script" uid="uid://b63uuflcyfsli" path="res://addons/simusdev/ui/SD_UIConrolDynamicSettings.gd" id="2_4hjv0"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_b1316"]
 [ext_resource type="PackedScene" uid="uid://iigttmn8ai0p" path="res://addons/simusdev/ui/dynamic/panel.tscn" id="2_oq7w7"]
+[ext_resource type="Script" uid="uid://cw8eins00okax" path="res://addons/simusdev/console/SD_ConsoleThemes.gd" id="4_vievh"]
 [ext_resource type="PackedScene" uid="uid://cpvew16xiutxp" path="res://addons/simusdev/console/prefabs/ui_console_output.tscn" id="4_xlpwh"]
 [ext_resource type="PackedScene" uid="uid://bhknf7eo4vpiu" path="res://addons/simusdev/console/prefabs/ui_toolbar_button.tscn" id="5_bjtgq"]
 [ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="6_n8mr8"]
 [ext_resource type="Texture2D" uid="uid://bwopwrnp3rtd0" path="res://addons/simusdev/Game/icons/ui_icon_moregames.png" id="7_yc77v"]
-[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="9_cbm6i"]
 [ext_resource type="PackedScene" uid="uid://bjtllekn7shxu" path="res://addons/simusdev/console/prefabs/ui_console_tips.tscn" id="10_0c7w3"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="11_74bac"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="12_7dls8"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="13_7dls8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbm6i"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="13_7dls8"]
 
 [sub_resource type="Resource" id="Resource_21h2m"]
 script = ExtResource("12_7dls8")
@@ -52,6 +50,11 @@ TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
+[node name="SD_ConsoleThemes" type="Node" parent="." node_paths=PackedStringArray("apply_nodes")]
+script = ExtResource("4_vievh")
+apply_nodes = [NodePath("..")]
+metadata/_custom_type_script = "uid://cw8eins00okax"
+
 [node name="panel" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0.802)
 layout_mode = 1
@@ -63,7 +66,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" parent="panel" instance=ExtResource("2_oq7w7")]
-self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 
 [node name="rect" type="Control" parent="."]
@@ -134,7 +136,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.942
 anchor_bottom = 0.92
-offset_right = 0.255981
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -1.74396
 offset_bottom = -0.0400085
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -145,8 +149,6 @@ anchor_right = 0.942
 anchor_bottom = 1.0
 offset_top = 0.0879822
 offset_right = 0.255981
-theme_override_fonts/font = ExtResource("9_cbm6i")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cbm6i")
 placeholder_text = "ENTER COMMAND HERE..."
 keep_editing_on_text_submit = true
 context_menu_enabled = false

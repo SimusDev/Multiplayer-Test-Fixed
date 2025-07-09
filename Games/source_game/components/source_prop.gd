@@ -30,7 +30,7 @@ func _on_drag_syncronized(value:bool, target:Node3D):
 func _process(delta: float) -> void:
 	if is_drag and drag_target:
 		rigid_body.global_position = lerp(rigid_body.global_position, drag_target.global_position, 50 * delta)
-		rigid_body.global_rotation_degrees = lerp(rigid_body.global_rotation_degrees, drag_target.global_rotation_degrees, 50 * delta)
+		rigid_body.global_rotation_degrees = drag_target.global_rotation_degrees
 
 func _on_drag(value:bool, target:Node3D):
 	is_drag = value

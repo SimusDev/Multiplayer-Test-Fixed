@@ -92,17 +92,21 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
-	if not is_authority() or console.is_visible():
+	if not is_authority():
 		add_disable_priority()
 		return
 	
-	console.visibility_changed.connect(_on_console_visibility_changed)
+	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_closed)
 	
-	if actor.is_on_floor():
-		state_machine.switch_by_name("ground")
+	if actor.is_on_floor(): state_machine.switch_by_name("ground")
 	else:
 		state_machine.switch_by_name("air")
-	
+
+
+func _on_interface_opened_closed(node:Node, status:bool):
+	if status: add_disable_priority()
+	else:
+		subtract_disable_priority()
 
 func _on_console_visibility_changed() -> void:
 	if console.is_visible():

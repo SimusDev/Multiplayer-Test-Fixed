@@ -23,11 +23,20 @@ func update_sources() -> void:
 	for s in sources:
 		update_source(s)
 
-
 func update_source(source: Control) -> void:
 	var cmd_color: SD_ConsoleCommand = console.create_command("ui.dynamic.color", DEFAULT_COLOR)
-	var value: String = cmd_color.get_value_as_string()
-	var parsed: Variant = str_to_var(value)
+	
+	var args: Array[String] = cmd_color.get_arguments()
+	var value: String = ""
+	for i in args.size():
+		value += args[i]
+	
+	var executed_expression = Expression.new()
+	var executed_parse: Variant = executed_expression.parse(value)
+	if executed_parse != OK:
+		SimusDev.console.write_error(executed_expression.get_error_text())
+		return
+	var parsed: Variant = executed_expression.execute()
 	
 	var picked_color: Color = DEFAULT_COLOR
 	if parsed is Color:

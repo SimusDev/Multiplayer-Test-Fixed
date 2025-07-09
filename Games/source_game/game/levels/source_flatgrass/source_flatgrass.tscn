@@ -1397,6 +1397,3 @@ transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -32, 0, -4)
 
 [node name="tree77" parent="trees" instance=ExtResource("3_cchrm")]
 transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -33, 0, 1)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.751841, 0.153921, -0.641126, 0, 0.97237, 0.233446, 0.659344, 0.175515, -0.731068, -17.8088, 11.2197, -17.7008)

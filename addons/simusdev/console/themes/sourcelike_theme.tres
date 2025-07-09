@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bwhd45id04skj"]
+
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_hkwob"]
+[ext_resource type="StyleBox" uid="uid://bih71ovdh4sr8" path="res://sourcelike_interface/styles/button_disabled.tres" id="2_42ix0"]
+[ext_resource type="StyleBox" uid="uid://bpkki4oi1j23s" path="res://sourcelike_interface/styles/panel.tres" id="3_0lpiu"]
+[ext_resource type="StyleBox" uid="uid://dbtwgaapo00ne" path="res://sourcelike_interface/styles/panel_default.tres" id="4_43bsm"]
+[ext_resource type="StyleBox" uid="uid://cswud3l4slgjt" path="res://sourcelike_interface/styles/line_edit_default.tres" id="5_5dkx3"]
+[ext_resource type="StyleBox" uid="uid://dtcs86ygjtp7d" path="res://sourcelike_interface/styles/line_edit_disabled.tres" id="6_qs0sw"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0.118581, 0.118582, 0.118582, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+Button/colors/icon_hover_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/colors/icon_hover_pressed_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/colors/icon_normal_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/colors/icon_pressed_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_hkwob")
+Button/styles/disabled = ExtResource("2_42ix0")
+Button/styles/focus = ExtResource("3_0lpiu")
+Button/styles/hover = ExtResource("3_0lpiu")
+Button/styles/normal = ExtResource("3_0lpiu")
+Button/styles/pressed = ExtResource("4_43bsm")
+Label/fonts/font = ExtResource("1_hkwob")
+LineEdit/fonts/font = ExtResource("1_hkwob")
+LineEdit/styles/focus = ExtResource("5_5dkx3")
+LineEdit/styles/normal = ExtResource("5_5dkx3")
+LineEdit/styles/read_only = ExtResource("6_qs0sw")
+Panel/styles/panel = ExtResource("4_43bsm")

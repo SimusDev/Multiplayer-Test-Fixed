@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=56 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
 [ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="33_fcmfk"]
 
@@ -89,6 +90,17 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
+[sub_resource type="Resource" id="Resource_ioj0b"]
+script = ExtResource("19_dt7qg")
+update_at_start = true
+code = "player.kill"
+value = ""
+private = false
+binds = Array[ExtResource("20_ij05y")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
 [sub_resource type="Resource" id="Resource_lg245"]
 script = ExtResource("5_dvi7y")
 properties = Array[String](["current_time", "minutes_per_day"])
@@ -97,7 +109,6 @@ interpolation_enabled = false
 interpolation_speed = 32.0
 node_path = NodePath("../Sky3D")
 reliable = false
-mode = 0
 tickrate = 1.0
 tickrate_mode = 0
 sync_mode = 1
@@ -271,15 +282,16 @@ top_radius = 0.01
 bottom_radius = 0.01
 height = 4.0
 
-[node name="source_game" type="Node" node_paths=PackedStringArray("ambience", "sky_3d", "mp_player_spawner")]
+[node name="source_game" type="Node" node_paths=PackedStringArray("ambience", "sky_3d", "mp_player_spawner", "death_camera")]
 script = ExtResource("1_lvrp7")
 ambience = NodePath("ambience")
 sky_3d = NodePath("Sky3D")
 mp_player_spawner = NodePath("SD_MPPlayerSpawner")
+death_camera = NodePath("death_camera")
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
-commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk")])
+commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
@@ -336,6 +348,7 @@ light_energy = 0.0
 
 [node name="MoonLight2" type="DirectionalLight3D" parent="Sky3D"]
 transform = Transform3D(0, -0.637008, -0.770857, -0.890989, 0.349989, -0.289218, 0.454026, 0.686825, -0.567567, -0.770857, -0.289218, -0.567567)
+visible = false
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
@@ -396,6 +409,8 @@ sgt_tool_shape = {
 }
 metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
+
+[node name="death_camera" parent="." instance=ExtResource("28_ioj0b")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00190245, 0.999998, 0, -0.999998, -0.00190245, 0, 5.7406, 1.63228)

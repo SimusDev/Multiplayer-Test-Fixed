@@ -8,9 +8,10 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var sky_3d:Sky3D
 @export var mp_player_spawner:SD_MPPlayerSpawner
 
+@export var death_camera:Node3D
+
 func _ready() -> void:
 	instance = self
-
 
 func _process(delta: float) -> void:
 	if sky_3d.current_time > 19.0 or sky_3d.current_time < 6.0: ambience.volume_db = lerp(ambience.volume_db, -20.0, delta)
@@ -24,53 +25,48 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	timer.timeout.connect(timer.queue_free)
 	add_child(timer)
 	timer.start()
+	death_camera.global_position = _for.get_node().global_position
+	death_camera.make_current()
+
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:
 		return
 	
-	
-	
 	match command.get_code():
 		
 		"time.set":
-			var value = command.get_value_as_float()
-			if value in range(0.0, 24.0):
+			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				SimusDev.console.write_error("command expected 1 arguments")
 				return
-			
+			var value = command.get_value_as_float()
 			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time, [value])
 		
 		"time.freeze":
+			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				SimusDev.console.write_error("command expected 1 arguments")
+				return
 			var value = command.get_value_as_bool()
 			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time_freeze, [value])
 		
 		"player.teleport":
+			if command.get_arguments().size() < 4 or command.get_arguments().size() > 4:
+				SimusDev.console.write_error("command expected 4 arguments")
+				return
 			if command.get_arguments().size() < 4:
 				return
-			#p x y z 
+			
 			var args:Array[String] = command.get_arguments()
-			var player_name:String = args[0]
 			
-			var vec_position:Vector3 = Vector3(
-				float(args[1]),
-				float(args[2]),
-				float(args[3])
-				)
- 			
-			var picked_player:SD_MultiplayerPlayer = null
+			var player_nickname:String = args[0]
+			var vec_position:Vector3 = Vector3( float(args[1]), float(args[2]), float(args[3]) )
 			
-			for p:SD_MultiplayerPlayer in SD_Multiplayer.get_connected_players():
-				if p.get_username() == player_name:
-					picked_player = p
-					break
-			
-			if !picked_player:
-				return
-			
-			
-			SD_Multiplayer.sync_call_function(SourceGame.instance, teleport_player, [picked_player.get_node(), vec_position])
+			SD_Multiplayer.sync_call_function(SourceGame.instance, teleport_player, [find_player(player_nickname).get_node(), vec_position])
 		
 		"sv_cheats":
+			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				SimusDev.console.write_error("expected 1 arguments")
+				return
 			SD_Multiplayer.sync_call_function(
 				SourceGame.instance,
 				set_sv_cheats,
@@ -79,9 +75,24 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 
 		"noclip":
 			SimusDev.console.write_error("cant noclip yet. :(")
-			return
-			#var player:SourcePlayer = SD_Multiplayer.get_authority_player().get_node()
-			#player.movement.gravity = command.get_value_as_float()
+
+		"player.kill":
+			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				SimusDev.console.write_error("expected 1 arguments")
+				return
+			find_and_kill_player(command.get_value_as_string())
+
+func find_player(nickname:String) -> SD_MultiplayerPlayer:
+	var picked_player:SD_MultiplayerPlayer = null
+	for p:SD_MultiplayerPlayer in SD_Multiplayer.get_connected_players():
+		if p.get_username() == nickname:
+			picked_player = p
+			break
+	return picked_player
+
+func find_and_kill_player(nickname:String):
+	var player = find_player(nickname).get_node() as SourcePlayer
+	player.health.kill()
 
 func teleport_player(player:Node3D, position:Vector3):
 	if !is_instance_valid(player): return

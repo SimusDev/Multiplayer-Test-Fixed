@@ -5,8 +5,24 @@ signal object_detected(obj)
 
 @export var player:SourcePlayer
 @export var drag_item_link_node:Node3D
+var is_drag_item:bool = false
+
 var collider:Node3D = null : set = set_collider
 var current_object = null
+
+func _input(event: InputEvent) -> void:
+	if is_drag_item:
+		player.camera.enabled = !Input.is_action_pressed("rotate_item")
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if Input.is_action_pressed("rotate_item"):
+			if event is InputEventMouseMotion:
+				var sens:float = 1.0 * 0.25
+				
+				var rot_x = -event.relative.y
+				var rot_y = -event.relative.x
+				
+				drag_item_link_node.rotation_degrees.x += rot_x * sens
+				drag_item_link_node.rotation_degrees.y += rot_y * sens
 
 func set_collider(_collider:Variant):
 	collider = _collider
@@ -48,6 +64,7 @@ func drag_prop(object:RigidBody3D):
 	drag_item_link_node.global_position = get_collision_point()
 	drag_item_link_node.global_rotation_degrees = source_prop_component.rigid_body.global_rotation_degrees
 	source_prop_component.drag.emit(!source_prop_component.is_drag, drag_item_link_node)
+	is_drag_item = source_prop_component.is_drag
 
 func detect_entity(ent:Node3D):
 	if !is_multiplayer_authority():
