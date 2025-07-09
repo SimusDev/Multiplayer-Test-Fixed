@@ -112,22 +112,17 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 #region REFRESHING
 
 func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
-	_refresh(property, delta)
-	_interpolate(property, delta)
-
+	if is_multiplayer_authority():
+		_refresh(property, delta)
+	else:
+		_interpolate(property, delta)
 
 func _process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
-	
 	for mp in properties:
 		if mp.tickrate_mode == mp.TICKRATE_MODE.IDLE:
 			_hook_sync(mp, delta)
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
-	
 	for mp in properties:
 		if mp.tickrate_mode == mp.TICKRATE_MODE.PHYSICS:
 			_hook_sync(mp, delta)
@@ -229,7 +224,6 @@ func _recieve_property_from_peer_rpc_sender(path: NodePath, properties: Array, t
 	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_properties_from_peer_rpc_recieve, [path, synced, SD_Multiplayer.get_unique_id()], reliable)
 
 func _recieve_properties_from_peer_rpc_recieve(path: NodePath, synced: Dictionary, from_peer: int) -> void:
-	Expression
 	var node: Node = get_node_or_null(path)
 	for property: String in synced:
 		var value: Variant = synced[property]
