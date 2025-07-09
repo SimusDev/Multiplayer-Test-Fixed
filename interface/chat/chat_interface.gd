@@ -16,6 +16,8 @@ func _ready() -> void:
 	if SimusDev.multiplayerAPI.is_server():
 		SimusDev.multiplayerAPI.player_connected.connect(_on_server_player_connected)
 		SimusDev.multiplayerAPI.player_disconnected.connect(_on_server_player_disconnected)
+	
+	$chat/content/LineEdit.editable = false
 
 func _on_server_player_connected(player: SD_MultiplayerPlayer) -> void:
 	send_message("%s joined the server!" % player.get_username(), Color.YELLOW)
@@ -67,3 +69,17 @@ func _on_button_base_pressed() -> void:
 
 func _on_c_ui_interface_component_interface_opened(node: Node) -> void:
 	line_edit.grab_focus()
+
+func _on_visibility_changed() -> void:
+	$chat/content/LineEdit.editable = false
+	if visible:
+		await get_tree().process_frame
+		$chat/content/LineEdit.editable = true
+		_on_messager_draw()
+
+
+func _on_draw() -> void:
+	_on_visibility_changed()
+
+func _on_hidden() -> void:
+	_on_visibility_changed()

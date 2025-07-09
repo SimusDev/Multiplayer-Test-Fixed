@@ -211,9 +211,12 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_2u5yh")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_2u5yh")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2u5yh")
 placeholder_text = "ENTER MESSAGE HERE..."
+keep_editing_on_text_submit = true
 caret_blink = true
 metadata/_edit_use_anchors_ = true
 
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="interface_opened" from="C_UIInterfaceComponent" to="." method="_on_c_ui_interface_component_interface_opened"]
 [connection signal="pressed" from="chat/head/button_base" to="." method="_on_button_base_pressed"]
 [connection signal="text_submitted" from="chat/content/LineEdit" to="." method="_on_line_edit_text_submitted"]
