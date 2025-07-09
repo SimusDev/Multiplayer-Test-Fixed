@@ -104,12 +104,12 @@ func execute(args: Array[String] = []) -> void:
 	if !args.is_empty():
 		var value: String = ""
 		
-		for i in args:
+		for id in args.size():
+			var i: String = args[id]
 			value += i
-			value += " "
-		
-		if value.ends_with(" "):
-			value.erase(value.length() - 1)
+			
+			if !id == args.size() - 1:
+				value += " "
 		
 		set_value(value)
 	
