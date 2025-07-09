@@ -1,21 +1,21 @@
 [gd_scene load_steps=18 format=3 uid="uid://dk4nnihi62s17"]
 
-[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_ep68v"]
-[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_osawl"]
-[ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="1_ypfrq"]
-[ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_p1dqb"]
-[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="5_22h6b"]
-[ext_resource type="Resource" uid="uid://cokbg8gf0bwd2" path="res://Games/sandbox/objects/item/test.tres" id="6_j2tsh"]
-[ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="6_p1dqb"]
-[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="7_g4hgc"]
-[ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="7_l8c2a"]
-[ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="8_ep68v"]
-[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="8_l8c2a"]
-[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_j2tsh"]
-[ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_eod0d"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
+[ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="2_gv642"]
+[ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_n84i3"]
+[ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="4_st6l1"]
+[ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="5_64jhk"]
+[ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="6_pq8we"]
+[ext_resource type="Resource" uid="uid://cokbg8gf0bwd2" path="res://Games/sandbox/objects/item/test.tres" id="7_h05vk"]
+[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="8_wy3vx"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="9_u0j1b"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_xtx5c"]
+[ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="11_10rrw"]
+[ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
-albedo_texture = ExtResource("5_22h6b")
+albedo_texture = ExtResource("8_wy3vx")
 uv1_scale = Vector3(2, 2, 2)
 uv1_triplanar = true
 
@@ -31,66 +31,59 @@ size = Vector3(1, 1.14554, 1)
 collision_layer = 0
 
 [node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
-script = ExtResource("1_ep68v")
+script = ExtResource("1_uxd2n")
 hide_at_start = true
 nodes = [NodePath("../MeshInstance3D")]
 
 [node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "_synchronize_transform", "p_health")]
-script = ExtResource("1_ypfrq")
+script = ExtResource("2_gv642")
 source = NodePath("..")
 process_when_authority = false
 _synchronize_transform = [NodePath("../W_FPCSourceLikePlayerCamera")]
-_interface = ExtResource("3_p1dqb")
+_interface = ExtResource("3_n84i3")
 p_health = NodePath("../C_HealthComponent")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 
 [node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("_source")]
-script = ExtResource("6_p1dqb")
+script = ExtResource("4_st6l1")
 _source = NodePath("..")
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
 [node name="h1" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
+script = ExtResource("5_64jhk")
 keys = {
 "hotbar": true
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="h2" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
+script = ExtResource("5_64jhk")
 keys = {
 "hotbar": true
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="h3" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
+script = ExtResource("5_64jhk")
 keys = {
 "hotbar": true
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="itemtest" type="Node" parent="EL_Inventory/h3"]
-script = ExtResource("8_l8c2a")
-object = ExtResource("6_j2tsh")
+script = ExtResource("6_pq8we")
+object = ExtResource("7_h05vk")
 metadata/_custom_type_script = "uid://ca018ytdj1cv3"
 
 [node name="h4" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
+script = ExtResource("5_64jhk")
 keys = {
 "hotbar": true
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
 [node name="h5" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
-keys = {
-"hotbar": true
-}
-metadata/_custom_type_script = "uid://co6ddscxxrcwc"
-
-[node name="h6" type="Node" parent="EL_Inventory"]
-script = ExtResource("7_l8c2a")
+script = ExtResource("5_64jhk")
 keys = {
 "hotbar": true
 }
@@ -109,11 +102,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
 shape = SubResource("BoxShape3D_p1dqb")
 
 [node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("1_osawl")
+script = ExtResource("9_u0j1b")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
-[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("7_g4hgc")]
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_xtx5c")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../CollisionShape3D")
@@ -121,18 +114,18 @@ collision_crouch = NodePath("../CollisionShape3D")
 ceiling_detection = NodePath("../ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_position")
 
-[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("8_ep68v")]
+[node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("11_10rrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86401, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 
 [node name="SB_EntityViewModel" type="Node3D" parent="W_FPCSourceLikePlayerCamera" node_paths=PackedStringArray("_inventory")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0408556, -0.501495, -0.85956)
-script = ExtResource("12_eod0d")
+script = ExtResource("12_30ur2")
 _inventory = NodePath("../../EL_Inventory")
 metadata/_custom_type_script = "uid://cg7guu20kh5el"
 
-[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_j2tsh")]
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("13_ip4yb")]
 actor = NodePath("..")
 key_forward = "move_forward"
 key_backward = "move_backward"

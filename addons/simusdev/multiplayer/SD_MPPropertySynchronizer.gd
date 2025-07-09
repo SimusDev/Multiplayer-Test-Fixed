@@ -1,5 +1,4 @@
-@icon("res://addons/simusdev/icons/MultiplayerSynchronizer.svg")
-extends Node
+extends SD_MPSynchronizer
 class_name SD_MPPropertySynchronizer
 
 #region VARIABLES
@@ -18,11 +17,11 @@ func get_synced_data_property(node: Node, property: String, default_value: Varia
 	return properties.get(property, default_value)
 
 func get_synced_data_properties(node: Node) -> Dictionary[String, Variant]:
-	if node.has_meta("_mp_synced_data"):
-		return node.get_meta("_mp_synced_data") as Dictionary[String, Variant]
+	if node.has_meta("mp_synced_data"):
+		return node.get_meta("mp_synced_data") as Dictionary[String, Variant]
 	
 	var data: Dictionary[String, Variant] = {}
-	node.set_meta("_mp_synced_data", data)
+	node.set_meta("mp_synced_data", data)
 	return data
 
 func get_synced_bases(node: Node) -> Array[SD_MPPSSyncedBase]:
@@ -53,6 +52,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	set_multiplayer_authority(get_parent().get_multiplayer_authority())
+	
 
 var _initialized_properties: Array[SD_MPPSSyncedBase] = []
 func init_property(mp_property: SD_MPPSSyncedBase) -> void:
@@ -211,7 +211,7 @@ func send_properties_to_peer(node: Node, properties: Array, peer: int = SD_Multi
 		synced[property] = node.get(property)
 		property_sent.emit(property, node.get(property))
 	
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_properties_from_peer_rpc_recieve, [node_path, synced, SD_Multiplayer.get_unique_id()], reliable) 
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_properties_from_peer_rpc_recieve, [node_path, synced, SD_Multiplayer.get_unique_id()], reliable)
 	
 
 func recieve_properties_from_peer(node: Node, properties: Array, peer: int = SD_MultiplayerSingleton.HOST_ID, reliable: bool = false) -> void:
@@ -226,18 +226,29 @@ func _recieve_property_from_peer_rpc_sender(path: NodePath, properties: Array, t
 	for property in properties:
 		synced[property] = node.get(property)
 		
-	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_properties_from_peer_rpc_recieve, [path, synced, to_peer, SD_Multiplayer.get_unique_id()], reliable)
+	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_properties_from_peer_rpc_recieve, [path, synced, SD_Multiplayer.get_unique_id()], reliable)
 
 func _recieve_properties_from_peer_rpc_recieve(path: NodePath, synced: Dictionary, from_peer: int) -> void:
+	Expression
 	var node: Node = get_node_or_null(path)
 	for property: String in synced:
 		var value: Variant = synced[property]
-		get_synced_data_properties(node).set(property, value)
+		get_synced_data_properties(node)[property] = value
 		property_recieved.emit(node, property, value, from_peer)
 		
 		for base in get_synced_bases(node):
 			if base is SD_MPPSSyncedProperty:
 				if base.properties.has(property):
+					
+					if !node.has_meta("synced_at_start"):
+						node.set_meta("synced_at_start", {})
+					
+					var dict: Dictionary = node.get_meta("synced_at_start", {}) as Dictionary
+					
+					if not dict.has(property):
+						node.set(property, value)
+						dict[property] = value
+					
 					if not base.interpolation_enabled:
 						node.set(property, value)
 		

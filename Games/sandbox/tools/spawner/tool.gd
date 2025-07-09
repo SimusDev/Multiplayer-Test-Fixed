@@ -78,7 +78,7 @@ func request_spawn(settings: SB_LevelSpawnSettings) -> void:
 	var y: float = _cmd_y.get_source().get_value_as_float()
 	var z: float = _cmd_z.get_source().get_value_as_float()
 	var s_position: Vector3 = Vector3(x, y, z)
-	settings.global_position = s_position
+	settings.position = s_position
 	
 	player.get_level().spawn_request(object, true, settings)
 

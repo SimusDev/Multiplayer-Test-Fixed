@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://ct6tedwo5b8ms" path="res://Games/sandbox/interface/player/debug.gd" id="1_2gebf"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_lcrn8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ftpr0"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_2gebf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcrn8"]
 
 [node name="debug" type="Control" node_paths=PackedStringArray("_position")]
 layout_mode = 3
@@ -22,10 +22,10 @@ _position = NodePath("position")
 layout_mode = 1
 offset_left = 7.0
 offset_top = 4.0
-offset_right = 237.0
+offset_right = 709.0
 offset_bottom = 52.0
 text = "POSITION"
-label_settings = SubResource("LabelSettings_ftpr0")
+label_settings = SubResource("LabelSettings_2gebf")
 clip_text = true
 script = ExtResource("2_lcrn8")
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
@@ -41,7 +41,7 @@ offset_right = -7.0
 offset_bottom = 53.0
 grow_horizontal = 0
 text = "SERVER"
-label_settings = SubResource("LabelSettings_2gebf")
+label_settings = SubResource("LabelSettings_lcrn8")
 horizontal_alignment = 2
 clip_text = true
 script = ExtResource("2_lcrn8")

@@ -10,7 +10,6 @@ interpolation_enabled = false
 interpolation_speed = 64.0
 node_path = NodePath("..")
 reliable = false
-mode = 0
 tickrate = 64.0
 tickrate_mode = 0
 sync_mode = 0

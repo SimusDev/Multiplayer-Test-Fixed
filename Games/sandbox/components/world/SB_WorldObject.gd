@@ -40,4 +40,4 @@ func get_prefab() -> PackedScene:
 	return prefab
 
 func get_level_section() -> String:
-	return "Objects"
+	return "objects"

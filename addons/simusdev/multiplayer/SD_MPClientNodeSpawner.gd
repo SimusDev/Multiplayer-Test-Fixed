@@ -315,9 +315,10 @@ func spawn(data: Dictionary) -> void:
 						node.name = data["name"]
 						node.name = node.name.validate_node_name()
 						
-						if "transform" in node:
-							if wish_transform != null:
-								node.transform = wish_transform
+						#print(data)
+						
+						if wish_transform != null:
+							node.transform = wish_transform
 						
 						parent.move_child(node, data['index'])
 						

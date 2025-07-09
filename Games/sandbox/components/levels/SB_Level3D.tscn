@@ -2,40 +2,38 @@
 
 [ext_resource type="Script" uid="uid://w7ydag63i22q" path="res://Games/sandbox/components/levels/SB_Level3D.gd" id="1_lj6rm"]
 [ext_resource type="PackedScene" uid="uid://bfsckyn582nca" path="res://Games/sandbox/prefabs/sd_mp_client_node_spawner.tscn" id="2_pjrny"]
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_e7ouf"]
-[ext_resource type="PackedScene" uid="uid://dk4nnihi62s17" path="res://Games/sandbox/entities/player/s1mple_player.tscn" id="4_e7ouf"]
+[ext_resource type="Resource" uid="uid://4voaroknyk47" path="res://Games/sandbox/objects/entities/player/object.tres" id="4_chiaj"]
+[ext_resource type="Script" uid="uid://6oxpegjg1ovh" path="res://Games/sandbox/components/player/SB_PlayerSpawnerDespawner.gd" id="5_007gb"]
 [ext_resource type="Script" uid="uid://dt30t8qnm1nkw" path="res://Games/sandbox/components/levels/SB_LevelSection3D.gd" id="5_e7ouf"]
 
-[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner", "_spawner_exclude_section")]
+[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner")]
 script = ExtResource("1_lj6rm")
 _spawner = NodePath("ObjectsSpawner")
-_spawner_exclude_section = [NodePath("Players")]
 
 [node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
 
-[node name="PlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("3_e7ouf")
-player_scene = ExtResource("4_e7ouf")
-parent = NodePath("../Players")
-spawn_points = [NodePath("../Players")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
+[node name="SB_PlayerSpawnerDespawner" type="Node" parent="." node_paths=PackedStringArray("_level")]
+script = ExtResource("5_007gb")
+_object = ExtResource("4_chiaj")
+_level = NodePath("..")
+metadata/_custom_type_script = "uid://6oxpegjg1ovh"
 
 [node name="LevelScene" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
 
-[node name="Players" type="Node3D" parent="."]
+[node name="players" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51172, 0)
 script = ExtResource("5_e7ouf")
 
-[node name="Default" type="Node3D" parent="."]
+[node name="default" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 
-[node name="Objects" type="Node3D" parent="."]
+[node name="objects" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 
-[node name="Props" type="Node3D" parent="."]
+[node name="props" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 
-[node name="Items" type="Node3D" parent="."]
+[node name="items" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SB_WorldPlayer" load_steps=4 format=3 uid="uid://4voaroknyk47"]
+
+[ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="1_tr66n"]
+[ext_resource type="PackedScene" uid="uid://dk4nnihi62s17" path="res://Games/sandbox/objects/entities/player/s1mple_player.tscn" id="2_4cjcq"]
+[ext_resource type="Script" uid="uid://jph0g27kr3xg" path="res://Games/sandbox/components/world/SB_WorldPlayer.gd" id="2_8536q"]
+
+[resource]
+script = ExtResource("2_8536q")
+id = ""
+icon = ExtResource("1_tr66n")
+name = "player_epta"
+description = "zonbi!"
+prefab = ExtResource("2_4cjcq")
+metadata/_custom_type_script = "uid://jph0g27kr3xg"

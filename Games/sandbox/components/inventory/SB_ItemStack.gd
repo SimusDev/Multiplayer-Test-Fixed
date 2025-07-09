@@ -24,7 +24,7 @@ func _on_dropped() -> void:
 	
 	var source: Node = get_inventory().get_source()
 	if source is Node3D:
-		var drop: Node = _section.spawn_local(object, true)
+		var drop: Node = _section.spawn_local(object, true).get_source()
 		if drop is Node3D:
 			drop.global_position = source.global_position
 		

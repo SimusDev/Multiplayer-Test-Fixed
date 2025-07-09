@@ -35,7 +35,7 @@ func get_section(section_name: String) -> SB_LevelSection3D:
 	var section: SB_LevelSection3D = _sections.get(section_name, null)
 	if section:
 		return section
-	return _sections["Default"]
+	return _sections["default"]
 
 func _parse_sections() -> void:
 	for i in get_children():
@@ -83,12 +83,12 @@ func deinit() -> void:
 func _exit_tree() -> void:
 	deinitialized.emit()
 
-func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> Node:
+func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> SBR_ObjectInstance:
 	if !object:
-		return
+		return null
 	
 	var section: SB_LevelSection3D = get_section(object.get_level_section())
-	return section.spawn_local(object, true, settings)
+	return section.spawn_local(object, instantiate, settings)
 
 
 func spawn_request(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> void:

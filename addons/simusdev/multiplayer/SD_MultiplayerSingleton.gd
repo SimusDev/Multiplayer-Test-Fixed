@@ -210,7 +210,7 @@ func get_username() -> String:
 	return _username
 
 func set_username(new_name: String) -> void:
-	_username = new_name
+	_username = new_name.replacen(" ", "")
 	var player: SD_MultiplayerPlayer = get_authority_player()
 	if player:
 		player.set_username(new_name)
