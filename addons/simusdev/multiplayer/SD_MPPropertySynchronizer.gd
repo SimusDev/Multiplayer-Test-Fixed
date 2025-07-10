@@ -97,15 +97,14 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 	if not node:
 		return
 	
-	if is_multiplayer_authority():
-		if mp_property is SD_MPPSSyncedProperty:
+	if mp_property is SD_MPPSSyncedProperty:
+		if is_multiplayer_authority():
 			for peer in SD_Multiplayer.get_connected_peers():
 				if peer == SD_Multiplayer.get_unique_id():
 					continue
 				
 				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
-	else:
-		if mp_property is SD_MPPSSyncedProperty:
+		else:
 			recieve_properties_from_peer(node, mp_property.properties, get_multiplayer_authority(), mp_property.reliable)
 
 
