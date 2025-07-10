@@ -112,7 +112,6 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 
 func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
 	var node: Node = get_node(property.node_path)
-	
 	if node.is_multiplayer_authority():
 		_refresh(property, delta)
 	else:
