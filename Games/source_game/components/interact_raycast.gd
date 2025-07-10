@@ -10,6 +10,10 @@ var is_drag_item:bool = false
 var collider:Node3D = null : set = set_collider
 var current_object = null
 
+func _exit_tree() -> void:
+	if is_drag_item and current_object:
+		drag_prop(current_object)
+
 func _input(event: InputEvent) -> void:
 	if is_drag_item:
 		player.camera.enabled = !Input.is_action_pressed("rotate_item")
