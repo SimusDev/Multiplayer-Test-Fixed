@@ -90,4 +90,7 @@ func _on_died() -> void:
 			target.queue_free()
 
 func get_parsed_string_value(value: int) -> String:
-	return str(value)
+	return str(round(value))
+
+func get_parsed_string_value_int(value: int) -> String:
+	return str(int(round(value)))

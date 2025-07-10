@@ -22,18 +22,6 @@ metadata/_custom_type_script = "uid://6oxpegjg1ovh"
 script = ExtResource("5_e7ouf")
 metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
 
-[node name="players" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51172, 0)
-script = ExtResource("5_e7ouf")
-
 [node name="default" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
-
-[node name="objects" type="Node3D" parent="."]
-script = ExtResource("5_e7ouf")
-
-[node name="props" type="Node3D" parent="."]
-script = ExtResource("5_e7ouf")
-
-[node name="items" type="Node3D" parent="."]
-script = ExtResource("5_e7ouf")
+metadata/_custom_type_script = "uid://dt30t8qnm1nkw"

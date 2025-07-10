@@ -807,4 +807,8 @@ func set_node_multiplayer_authority_recursive(node: Node, id: int) -> void:
 	node.set_multiplayer_authority(id)
 	for child in SD_TrunkGame.get_node_all_children(node):
 		child.set_multiplayer_authority(id)
-	
+
+func is_authority(node: Node) -> bool:
+	if is_active():
+		return node.is_multiplayer_authority()
+	return true

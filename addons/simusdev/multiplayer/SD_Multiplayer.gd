@@ -134,3 +134,6 @@ static func kick_peer(peer: int) -> void:
 
 static func kick(player: SD_MultiplayerPlayer) -> void:
 	_singleton.kick(player)
+
+static func is_authority(node: Node) -> bool:
+	return _singleton.is_authority(node)

@@ -38,6 +38,15 @@ func get_section(section_name: String) -> SB_LevelSection3D:
 	return _sections["default"]
 
 func _parse_sections() -> void:
+	for l_section in SB_WorldObject.get_level_section_list():
+		if has_node(l_section):
+			continue
+		
+		var section := SB_LevelSection3D.new()
+		section.name = l_section
+		add_child(section)
+		
+	
 	for i in get_children():
 		if i is SB_LevelSection3D:
 			i._level = self

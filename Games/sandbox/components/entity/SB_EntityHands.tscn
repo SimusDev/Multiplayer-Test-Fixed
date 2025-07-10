@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx3sria83pjfe"]
-
-[ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="1_o23al"]
-
-[node name="SB_EntityHands" type="Node3D"]
-script = ExtResource("1_o23al")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SB_WorldObject" load_steps=4 format=3 uid="uid://rbewomlc1ajk"]
+
+[ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="1_jt5es"]
+[ext_resource type="Script" uid="uid://b605s7ckgx8tk" path="res://Games/sandbox/components/world/SB_WorldObject.gd" id="1_q5shv"]
+[ext_resource type="PackedScene" uid="uid://cc75uvmymxf8t" path="res://Games/sandbox/objects/item/prop.tscn" id="2_58aq3"]
+
+[resource]
+script = ExtResource("1_q5shv")
+id = ""
+icon = ExtResource("1_jt5es")
+name = "piska"
+description = ""
+prefab = ExtResource("2_58aq3")
+metadata/_custom_type_script = "uid://b605s7ckgx8tk"

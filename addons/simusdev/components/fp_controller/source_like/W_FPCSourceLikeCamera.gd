@@ -98,7 +98,10 @@ func _on_interface_opened_or_closed(node: Node, status: bool) -> void:
 		subtract_disable_priority()
 
 func set_mouse_captured(value: bool) -> void:
-	if !is_multiplayer_authority(): return
+	if is_inside_tree():
+		if !is_multiplayer_authority(): 
+			return
+	
 	var cursor: SD_TrunkCursor = SimusDev.cursor
 	_mouse_captured = value
 	

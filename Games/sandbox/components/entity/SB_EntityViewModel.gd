@@ -7,8 +7,22 @@ class_name SB_EntityViewModel
 
 var _root: SB_ViewModelRoot3D
 
+var _slot: SB_InventorySlot
+
+static func find_above(node: Node) -> SB_EntityViewModel:
+	if node == SimusDev.get_tree().root:
+		return null
+	
+	if node is SB_EntityViewModel:
+		return node
+	
+	return find_above(node.get_parent())
+
 func _ready() -> void:
 	set_inventory(_inventory)
+
+func get_slot() -> SB_InventorySlot:
+	return _slot
 
 func set_inventory(inv: SB_Inventory) -> void:
 	_inventory = inv
@@ -45,6 +59,8 @@ func _create_root(item: SB_ItemStack) -> void:
 	add_child(_root)
 
 func _selected(slot: SB_InventorySlot) -> void:
+	_slot = slot
+	
 	if not slot:
 		return
 	

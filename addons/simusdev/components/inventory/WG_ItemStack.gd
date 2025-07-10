@@ -19,7 +19,7 @@ signal picked_up()
 func _on_local_data_changed(key: Variant, new_value: Variant) -> void:
 	if key is String:
 		if key.begins_with(".using."):
-			var id: int = int(key.replacen(".using."))
+			var id: int = int(key.replacen(".using.", ""))
 			using_changed.emit(bool(new_value))
 			if new_value:
 				used.emit(id)
