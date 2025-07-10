@@ -105,7 +105,7 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 				
 				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
 		else:
-			recieve_properties_from_peer(node, mp_property.properties, get_multiplayer_authority(), mp_property.reliable)
+			recieve_properties_from_peer(node, mp_property.properties, node.get_multiplayer_authority(), mp_property.reliable)
 
 
 #region REFRESHING
