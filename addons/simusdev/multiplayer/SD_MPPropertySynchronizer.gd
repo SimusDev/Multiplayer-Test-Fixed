@@ -111,7 +111,9 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 #region REFRESHING
 
 func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
-	if is_multiplayer_authority():
+	var node: Node = get_node(property.node_path)
+	
+	if node.is_multiplayer_authority():
 		_refresh(property, delta)
 	else:
 		_interpolate(property, delta)
