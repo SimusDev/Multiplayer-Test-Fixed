@@ -58,6 +58,9 @@ func get_node() -> Node:
 	return _node
 
 static func find_in_node(node: Node) -> SD_MultiplayerPlayer:
+	if !node:
+		return null
+	
 	if node.has_meta("SD_MultiplayerPlayer"):
 		return node.get_meta("SD_MultiplayerPlayer")
 	return null

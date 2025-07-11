@@ -11,6 +11,7 @@ script = ExtResource("1_lj6rm")
 _spawner = NodePath("ObjectsSpawner")
 
 [node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
+auto_handle_spawn = false
 
 [node name="SB_PlayerSpawnerDespawner" type="Node" parent="." node_paths=PackedStringArray("_level")]
 script = ExtResource("5_007gb")

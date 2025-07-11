@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://wk87tt30urh8"]
+
+[ext_resource type="Texture2D" uid="uid://deuogt1h1bof8" path="res://Games/cars/textures/prototype/dark/texture_08.png" id="1_ypfjs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jxb3"]
+albedo_texture = ExtResource("1_ypfjs")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ht5r7"]
+
+[node name="s1mple_player_model" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2jxb3")
+mesh = SubResource("CapsuleMesh_ht5r7")
+skeleton = NodePath("../..")

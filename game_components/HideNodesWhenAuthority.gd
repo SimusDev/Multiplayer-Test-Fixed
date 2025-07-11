@@ -9,5 +9,6 @@ func _ready() -> void:
 
 func hide_nodes() -> void:
 	for node in nodes:
-		if node.is_multiplayer_authority() and node.has_method("hide"):
-				node.hide()
+		if node:
+			if node.is_multiplayer_authority() and node.has_method("hide"):
+					node.hide()

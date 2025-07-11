@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2g73c2oha4jm"]
+
+[ext_resource type="Script" uid="uid://bqpho6onxqxnu" path="res://Games/sandbox/scenes/lobby.gd" id="1_odip3"]
+[ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/sandbox/prefabs/sky_3d.tscn" id="2_4t8pa"]
+[ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="3_0qe1c"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_h51sv"]
+[ext_resource type="PackedScene" uid="uid://cfdh572oq6lof" path="res://Games/sandbox/interface/lobby/player.tscn" id="6_l30qh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h51sv"]
+font_size = 48
+
+[node name="Lobby" type="Node"]
+script = ExtResource("1_odip3")
+lobby_player = ExtResource("6_l30qh")
+metadata/_edit_horizontal_guides_ = [86.0]
+
+[node name="SD_Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.119
+offset_bottom = 0.32
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOBBY"
+label_settings = SubResource("LabelSettings_h51sv")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("5_h51sv")
+font_size = 48
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="Sky3D" parent="." instance=ExtResource("2_4t8pa")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 55.0
+
+[node name="PlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("_detect_roots")]
+script = ExtResource("3_0qe1c")
+_detect_roots = [NodePath("../players/CenterContainer/GridContainer")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
+
+[node name="players" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.837
+offset_top = 86.0
+offset_bottom = 0.359985
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="players"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="players/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(266, 58)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.914
+anchor_right = 0.5
+anchor_bottom = 0.914
+offset_left = -133.0
+offset_top = -29.08
+offset_right = 133.0
+offset_bottom = 28.92
+grow_horizontal = 2
+grow_vertical = 0
+text = "START GAME"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

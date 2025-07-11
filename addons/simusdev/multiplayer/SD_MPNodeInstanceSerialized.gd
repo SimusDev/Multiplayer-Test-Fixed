@@ -36,8 +36,6 @@ func deserialize() -> SD_MPNodeInstanceDeserialized:
 		if founded:
 			
 			for p_name: String in synced:
-				if p_name == "keys":
-					print(synced[p_name])
 				
 				if p_name in founded:
 					var packet: Variant = synced[p_name]

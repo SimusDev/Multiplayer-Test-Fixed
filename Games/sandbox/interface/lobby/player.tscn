@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfdh572oq6lof"]
+
+[ext_resource type="PackedScene" uid="uid://b44r0yjmkjy2u" path="res://Games/sandbox/models/s1mple_player/s1mple_player_model_lobby.tscn" id="1_12464"]
+[ext_resource type="Script" uid="uid://tuo5a4qysbu0" path="res://Games/sandbox/interface/lobby/player.gd" id="1_fhw7i"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_2hdq7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fhw7i"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_udypi"]
+
+[node name="Player" type="Control"]
+custom_minimum_size = Vector2(248, 248)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 248.0
+offset_bottom = 248.0
+size_flags_horizontal = 0
+script = ExtResource("1_fhw7i")
+metadata/_edit_horizontal_guides_ = [27.0]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1080, 1080)
+
+[node name="s1mple_player_model_lobby" parent="SubViewport" instance=ExtResource("1_12464")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.45024)
+fov = 20.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.109
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0320015
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_fhw7i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SD_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.109
+offset_bottom = -0.0320015
+grow_horizontal = 2
+grow_vertical = 2
+text = "simusdev"
+label_settings = SubResource("LabelSettings_udypi")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_2hdq7")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
