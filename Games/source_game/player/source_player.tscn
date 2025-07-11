@@ -106,6 +106,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_4cdfe"]
@@ -119,6 +120,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_kim0n"]
@@ -132,6 +134,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_utg5q"]
@@ -145,6 +148,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7edsi"]
@@ -172,13 +176,13 @@ noise = SubResource("FastNoiseLite_kou6u")
 
 [node name="source_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "canvas", "model", "interact_raycast", "footsteps_component")]
 script = ExtResource("1_4cdfe")
-health = NodePath("Health")
 take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
-movement = NodePath("SourceMovement")
-camera = NodePath("SourceCamera")
 max_safe_fall_speed = 15.0
 ragdoll_model = ExtResource("7_6qnpk")
 player_ui = ExtResource("2_inl2s")
+health = NodePath("Health")
+movement = NodePath("SourceMovement")
+camera = NodePath("SourceCamera")
 canvas = NodePath("canvas")
 model = NodePath("W_AnimatedModel3D")
 interact_raycast = NodePath("SourceCamera/interact_raycast")
@@ -318,21 +322,6 @@ bones/7/rotation = Quaternion(-0.686909, -0.313903, 0.51991, -0.399143)
 bones/8/rotation = Quaternion(0.46869, 0.128685, 0.0595514, 0.871908)
 bones/9/rotation = Quaternion(0.00146874, 0.000336955, 0.0130967, 0.999913)
 bones/10/rotation = Quaternion(0.0814557, -0.251554, -0.0191972, 0.964218)
-bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
-bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
-bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
-bones/15/rotation = Quaternion(0.0452996, -0.0080699, 0.0659134, 0.996764)
-bones/16/rotation = Quaternion(0.149442, -0.000245918, -0.0422956, 0.987866)
-bones/17/rotation = Quaternion(0.0693605, 0.000803979, -0.0129754, 0.997507)
-bones/19/rotation = Quaternion(0.113756, -0.0176685, 0.033825, 0.992775)
-bones/20/rotation = Quaternion(0.14936, 2.3146e-05, -0.049342, 0.987551)
-bones/21/rotation = Quaternion(0.157931, 0.00209245, -0.0353633, 0.986815)
-bones/23/rotation = Quaternion(0.159868, -0.0209712, 0.0222201, 0.986665)
-bones/24/rotation = Quaternion(0.17885, -0.00191226, -0.0472152, 0.982741)
-bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
-bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
-bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
-bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
 bones/31/rotation = Quaternion(0.685156, -0.312232, 0.538618, 0.378104)
 bones/32/rotation = Quaternion(0.39635, -0.228222, -0.0810145, 0.885584)
 bones/33/rotation = Quaternion(0.00625161, 0.000175068, -0.0572687, 0.998339)
@@ -355,7 +344,6 @@ bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
 bones/55/rotation = Quaternion(0.137787, 0.0704014, 0.984675, -0.0804559)
 bones/56/rotation = Quaternion(-0.13262, -0.0111084, 0.0291733, 0.990675)
 bones/57/rotation = Quaternion(0.511561, -0.118936, 2.07792e-05, 0.850975)
-bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
 bones/60/rotation = Quaternion(-0.0910329, -0.0175912, 0.995349, -0.0261671)
 bones/61/rotation = Quaternion(-0.0812101, 0.0843586, -0.0246929, 0.992814)
 bones/62/rotation = Quaternion(0.546469, 0.115451, -0.0316161, 0.828881)
