@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=20 format=3 uid="uid://dk4nnihi62s17"]
 
+[ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="2_gv642"]
 [ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_n84i3"]
@@ -15,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
 [ext_resource type="PackedScene" uid="uid://d1v4nixukw0j1" path="res://Games/sandbox/prefabs/nickname/nickname.tscn" id="14_gv642"]
-[ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="16_st6l1"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="17_64jhk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
 size = Vector3(1, 1.99615, 1)
@@ -25,6 +26,7 @@ size = Vector3(1, 1.14554, 1)
 
 [node name="s1mple" type="CharacterBody3D"]
 collision_layer = 0
+script = ExtResource("1_64jhk")
 
 [node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
 script = ExtResource("1_uxd2n")
@@ -146,8 +148,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52249, 0)
 source = NodePath("..")
 health = NodePath("../C_HealthComponent")
 
-[node name="footstep" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.934453, 0)
-script = ExtResource("16_st6l1")
-streams = Array[AudioStream]([null, null, null])
-metadata/_custom_type_script = "uid://dcdd6kovrah03"
+[node name="SD_NodeInput" type="Node2D" parent="."]
+script = ExtResource("17_64jhk")
+multiplayer_authorative = true
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="on_action_just_pressed" from="SD_NodeInput" to="." method="_on_sd_node_input_on_action_just_pressed"]

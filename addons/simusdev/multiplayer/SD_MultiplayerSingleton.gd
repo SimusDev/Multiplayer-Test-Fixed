@@ -828,6 +828,25 @@ func _sync_call_function_recieve_rpc_unreliable(serialized: Variant) -> void:
 
 #endregion
 
+func __invoke_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	var object: Object = callable.get_object()
+	if object is Node:
+		var node: Node = object
+		if node.get_multiplayer_authority() == SD_Multiplayer.get_unique_id():
+			SD_Multiplayer.sync_call_function_except_self(self, __invoke_func_receive, [node, callable.get_method(), args, node.get_multiplayer_authority()], reliable)
+		
+
+func __invoke_func_receive(node: Node, method: String, args: Array, authority: int) -> void:
+	if node:
+		node.callv(method, args)
+
+func invoke_func(callable: Callable, args: Array = []) -> void:
+	__invoke_func(callable, args, true)
+
+func invoke_func_unreliable(callable: Callable, args: Array = []) -> void:
+	__invoke_func(callable, args, false)
+
+
 
 func set_node_multiplayer_authority_recursive(node: Node, id: int) -> void:
 	node.set_multiplayer_authority(id)

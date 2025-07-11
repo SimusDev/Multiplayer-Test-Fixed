@@ -152,3 +152,9 @@ static func throw_event_on_peer(peer: int, event: Variant, args: Variant = null,
 
 static func bind_events(callable: Callable) -> void:
 	_singleton.bind_events(callable)
+
+static func invoke_func(callable: Callable, args: Array = []) -> void:
+	_singleton.invoke_func(callable, args)
+
+static func invoke_func_unreliable(callable: Callable, args: Array = []) -> void:
+	_singleton.invoke_func_unreliable(callable, args)

@@ -19,7 +19,19 @@ signal on_action_pressed(action: String, bind: SD_Keybind)
 signal on_action_just_pressed(action: String, bind: SD_Keybind)
 signal on_action_just_released(action: String, bind: SD_Keybind)
 
+@export var multiplayer_authorative: bool = false
+
+func is_authorative() -> bool:
+	if multiplayer_authorative:
+		return SD_Multiplayer.is_authority(self)
+	return true
+
 func _ready() -> void:
+	if !is_authorative():
+		enabled = false
+		_update_input_status()
+		return
+	
 	ui.interface_opened_or_closed.connect(_interface_opened_or_closed)
 	_update_input_status()
 
