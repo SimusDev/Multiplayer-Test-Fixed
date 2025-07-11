@@ -36,7 +36,7 @@ anti_aliasing = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_6vo6t"]
 font = ExtResource("7_00tsx")
-font_size = 20
+font_size = 26
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -47,13 +47,13 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bj8o"]
 font = ExtResource("7_00tsx")
-font_size = 19
+font_size = 26
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t560a"]
 font = ExtResource("7_00tsx")
-font_size = 21
+font_size = 26
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -175,7 +175,6 @@ anchor_top = 0.0833333
 text = "Start"
 label_settings = SubResource("LabelSettings_6vo6t")
 font = ExtResource("7_00tsx")
-font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
@@ -207,7 +206,6 @@ anchor_top = 0.12
 text = "Host"
 label_settings = SubResource("LabelSettings_1bj8o")
 font = ExtResource("7_00tsx")
-font_size = 19
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
@@ -223,7 +221,6 @@ anchor_top = 0.12
 text = "Connect"
 label_settings = SubResource("LabelSettings_t560a")
 font = ExtResource("7_00tsx")
-font_size = 21
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true

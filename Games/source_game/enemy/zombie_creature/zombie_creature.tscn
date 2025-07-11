@@ -21,6 +21,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_pb25s"]
@@ -34,6 +35,7 @@ reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pktsj"]
