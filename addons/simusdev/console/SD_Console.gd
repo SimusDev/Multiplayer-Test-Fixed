@@ -18,6 +18,7 @@ var _message_buffer: Array[SD_ConsoleMessage] = []
 var _settings := SD_Settings.new()
 
 var _commands: Array[SD_ConsoleCommand] = []
+var _commands_by_code: Dictionary[String, SD_ConsoleCommand]
 
 var gd_print: bool = true
 
@@ -49,6 +50,7 @@ func add_command(command: SD_ConsoleCommand) -> void:
 		return
 	
 	_commands.append(command)
+	_commands_by_code[command.get_code()] = command
 	command.executed.connect(__on_command_executed.bind(command))
 	on_command_added.emit(command)
 	update_console()
@@ -59,6 +61,7 @@ func remove_command(command: SD_ConsoleCommand) -> void:
 	
 	#command.deinit()
 	_commands.erase(command)
+	_commands_by_code.erase(command.get_code())
 	command.executed.disconnect(__on_command_executed)
 	on_command_removed.emit(command)
 	update_console()
@@ -67,14 +70,10 @@ func has_command(command: SD_ConsoleCommand) -> bool:
 	return has_command_by_code(command.get_code())
 
 func has_command_by_code(code: String) -> bool:
-	var cmd := get_command_by_code(code)
-	return cmd != null
+	return _commands_by_code.has(code)
 
 func get_command_by_code(code: String) -> SD_ConsoleCommand:
-	for cmd in _commands:
-		if cmd.get_code() == code:
-			return cmd
-	return null
+	return _commands_by_code.get(code)
 
 func get_commands_list() -> Array[SD_ConsoleCommand]:
 	return _commands
