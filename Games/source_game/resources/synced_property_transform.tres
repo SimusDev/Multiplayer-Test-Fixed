@@ -13,4 +13,5 @@ reliable = false
 tickrate = 64.0
 tickrate_mode = 0
 sync_mode = 1
+sync = 0
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
