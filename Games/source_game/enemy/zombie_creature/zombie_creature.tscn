@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cw5oibpawydbh"]
+[gd_scene load_steps=13 format=3 uid="uid://cw5oibpawydbh"]
 
 [ext_resource type="Script" uid="uid://ddyrchekq1gjg" path="res://Games/source_game/components/enemy_ai.gd" id="1_c1i8f"]
 [ext_resource type="PackedScene" uid="uid://chyunnwrsr8cq" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.tscn" id="1_jud0w"]
+[ext_resource type="Script" uid="uid://cwwbc3iv1ybwo" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.gd" id="1_k8hqk"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_pb25s"]
 [ext_resource type="Script" uid="uid://c8k38reui1r1m" path="res://Games/source_game/components/enemy_ai_vision.gd" id="2_0rgwb"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_k8hqk"]
@@ -22,48 +23,407 @@ tickrate_mode = 0
 sync_mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
+[sub_resource type="Resource" id="Resource_pb25s"]
+script = ExtResource("3_a04ck")
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 32.0
+node_path = NodePath("..")
+reliable = false
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pktsj"]
 radius = 0.319827
 height = 1.75965
 
 [node name="zombie_creature" type="CharacterBody3D"]
+script = ExtResource("1_k8hqk")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("1_pb25s")
-properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143")])
+properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143"), SubResource("Resource_pb25s")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="EnemyAI" type="Node" parent="."]
+[node name="EnemyAI" type="Node" parent="." node_paths=PackedStringArray("enemy", "vision", "navigation_agent")]
 script = ExtResource("1_c1i8f")
+enemy = NodePath("..")
+vision = NodePath("../EnemyAI_Vision")
+navigation_agent = NodePath("../NavigationAgent3D")
 metadata/_custom_type_script = "uid://ddyrchekq1gjg"
 
 [node name="EnemyAI_Vision" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_0rgwb")
 metadata/_custom_type_script = "uid://c8k38reui1r1m"
 
-[node name="RayCast3D" type="RayCast3D" parent="EnemyAI_Vision"]
-target_position = Vector3(0, 0, 10)
+[node name="1" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
 
-[node name="RayCast3D2" type="RayCast3D" parent="EnemyAI_Vision"]
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
-target_position = Vector3(0, 0, 10)
+[node name="2" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
 
-[node name="RayCast3D3" type="RayCast3D" parent="EnemyAI_Vision"]
-transform = Transform3D(0.996195, 0, 0.0871558, 0, 1, 0, -0.0871558, 0, 0.996195, 0, 0, 0)
-target_position = Vector3(0, 0, 10)
+[node name="3" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.996195, 0, 0.0871558, 0, 1, 0, -0.0871558, 0, 0.996195, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
 
-[node name="RayCast3D4" type="RayCast3D" parent="EnemyAI_Vision"]
-transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
-target_position = Vector3(0, 0, 10)
+[node name="4" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
 
-[node name="RayCast3D5" type="RayCast3D" parent="EnemyAI_Vision"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
-target_position = Vector3(0, 0, 10)
+[node name="5" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="6" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="7" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="8" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, 0.906308, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="9" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.906308, 0, -0.422618, 0, 1, 0, 0.422618, 0, 0.906308, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="10" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="11" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="12" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.573577, 0, -0.819152, 0, 1, 0, 0.819152, 0, 0.573577, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="13" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="14" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="15" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, 0.422618, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="16" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="17" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="18" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.34202, 0, 0.939692, 0, 1, 0, -0.939692, 0, 0.34202, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="19" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="20" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.573577, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573577, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="21" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707107, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="22" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.766044, 0, 0.642787, 0, 1, 0, -0.642787, 0, 0.766044, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="23" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="24" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.937396, 0, 0.348265, 0, 1, 0, -0.348265, 0, 0.937396, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="25" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.941947, 0, -0.33576, 0, 1, 0, 0.33576, 0, 0.941947, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="26" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.869333, 0, -0.494226, 0, 1, 0, 0.494226, 0, 0.869333, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="27" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.82295, 0, -0.568113, 0, 1, 0, 0.568113, 0, 0.82295, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="28" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.64787, 0, -0.76175, 0, 1, 0, 0.76175, 0, 0.64787, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="29" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.711796, 0, -0.702386, 0, 1, 0, 0.702386, 0, 0.711796, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="30" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.505751, 0, -0.862679, 0, 1, 0, 0.862679, 0, 0.505751, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="31" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.428639, 0, -0.903476, 0, 1, 0, 0.903476, 0, 0.428639, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="32" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.348265, 0, -0.937396, 0, 1, 0, 0.937396, 0, 0.348265, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="33" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="34" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.996195, 0, 0.0871556, 0, 1, 0, -0.0871556, 0, -0.996195, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="35" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.996195, 0, -0.0871559, 0, 1, 0, 0.0871559, 0, -0.996195, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="36" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="37" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, -0.984808, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="38" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="39" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="40" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.906308, 0, -0.422618, 0, 1, 0, 0.422618, 0, -0.906308, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="41" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="42" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.819152, 0, -0.573577, 0, 1, 0, 0.573577, 0, -0.819152, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="43" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.766045, 0, 0.642788, 0, 1, 0, -0.642788, 0, -0.766045, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="44" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.573577, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573577, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="45" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="46" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, -0.642788, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="47" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="48" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, -0.173648, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="49" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="50" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, -0.34202, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="51" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="52" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.573577, 0, -0.819152, 0, 1, 0, 0.819152, 0, -0.573577, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="53" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.707107, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707107, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="54" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.766044, 0, -0.642787, 0, 1, 0, 0.642787, 0, -0.766044, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="55" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="56" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.937396, 0, -0.348265, 0, 1, 0, 0.348265, 0, -0.937396, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="57" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.941947, 0, 0.33576, 0, 1, 0, -0.33576, 0, -0.941947, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="58" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.869333, 0, 0.494226, 0, 1, 0, -0.494226, 0, -0.869333, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="59" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.82295, 0, 0.568113, 0, 1, 0, -0.568113, 0, -0.82295, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="60" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.64787, 0, 0.76175, 0, 1, 0, -0.76175, 0, -0.64787, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="61" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.711796, 0, 0.702386, 0, 1, 0, -0.702386, 0, -0.711796, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="62" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.505751, 0, 0.862679, 0, 1, 0, -0.862679, 0, -0.505751, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="63" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.428639, 0, 0.903476, 0, 1, 0, -0.903476, 0, -0.428639, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="64" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.348265, 0, 0.937396, 0, 1, 0, -0.937396, 0, -0.348265, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="65" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.180197, 0, 0.98363, 0, 1, 0, -0.98363, 0, -0.180197, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="66" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.0937824, 0, 0.995592, 0, 1, 0, -0.995593, 0, -0.0937824, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="67" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.0805253, 0, 0.996752, 0, 1, 0, -0.996752, 0, 0.0805253, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="68" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.00665378, 0, 0.999978, 0, 1, 0, -0.999978, 0, -0.00665378, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="69" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.0937821, 0, -0.995592, 0, 1, 0, 0.995592, 0, 0.0937821, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="70" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.180197, 0, -0.98363, 0, 1, 0, 0.98363, 0, 0.180197, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="71" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.00665369, 0, -0.999978, 0, 1, 0, 0.999978, 0, 0.00665369, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
+
+[node name="72" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(-0.0805254, 0, -0.996752, 0, 1, 0, 0.996753, 0, -0.0805254, 0, 0.643806, 0)
+target_position = Vector3(0, 0, 25)
+collide_with_areas = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="zombie_creature_animatied_model" parent="." instance=ExtResource("1_jud0w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.786477, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.786477, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_pktsj")
