@@ -25,6 +25,9 @@ var _deinited: bool = false
 signal updated()
 signal executed()
 
+func get_console() -> SD_Console:
+	return _console
+
 static func get_or_create(code: String, value: Variant = "") -> SD_ConsoleCommand:
 	return SimusDev.console.create_command(code, value)
 
@@ -127,6 +130,9 @@ func is_value_invalid() -> bool:
 
 func get_arguments() -> Array[String]:
 	return _arguments
+
+func get_argument(index: int = 0) -> String:
+	return SD_Array.get_value_from_array(_arguments, index, "")
 
 func set_value(value: Variant, update: bool = true) -> void:
 	_value = str(value)

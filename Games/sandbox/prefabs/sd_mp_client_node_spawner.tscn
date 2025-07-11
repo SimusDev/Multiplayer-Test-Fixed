@@ -6,6 +6,8 @@
 script/source = "extends Node
 
 func _ready() -> void:
+	get_parent().auto_handle_spawn = false
+	
 	for path in SD_FileSystem.get_all_files_with_extension_from_directory(SB_GameSingleton.instance.gamepath, SD_FileExtensions.EC_SCRIPT):
 		var script: Script = load(path)
 		get_parent().scripts_to_sync.append(script)
@@ -13,7 +15,6 @@ func _ready() -> void:
 
 [node name="SD_MPClientNodeSpawner" type="Node"]
 script = ExtResource("1_cp6g4")
-auto_handle_spawn = false
 APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 "CharacterBody3D": PackedStringArray("transform"),
 "Node2D": PackedStringArray("transform"),

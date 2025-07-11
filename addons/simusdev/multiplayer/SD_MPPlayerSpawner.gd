@@ -65,7 +65,7 @@ func server_spawn(player: SD_MultiplayerPlayer) -> void:
 	
 	var instance: Node = player_scene.instantiate()
 	_players[player] = instance
-	player.set_node(instance)
+	player.set_player_node(instance)
 	
 	instance.tree_entered.connect(
 		func():

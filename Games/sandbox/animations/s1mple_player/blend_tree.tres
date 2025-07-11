@@ -1,0 +1,18 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=4 format=3 uid="uid://b6t40u7yjw5l2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jtl6s"]
+animation = &"library/breath"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_fk8w7"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jtl6s"]
+
+[resource]
+graph_offset = Vector2(-477.912, -120.236)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_jtl6s")
+nodes/Animation/position = Vector2(-480, -40)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_fk8w7")
+nodes/Blend2/position = Vector2(-240, -40)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jtl6s")
+nodes/StateMachine/position = Vector2(-540, 120)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"StateMachine", &"output", 0, &"Blend2"]

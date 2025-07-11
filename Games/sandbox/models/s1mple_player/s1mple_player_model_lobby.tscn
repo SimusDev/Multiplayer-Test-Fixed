@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b44r0yjmkjy2u"]
+
+[ext_resource type="PackedScene" uid="uid://wk87tt30urh8" path="res://Games/sandbox/models/s1mple_player/s1mple_player_model.tscn" id="1_hossb"]
+
+[node name="s1mple_player_model_lobby" type="Node3D"]
+
+[node name="s1mple_player_model" parent="." instance=ExtResource("1_hossb")]

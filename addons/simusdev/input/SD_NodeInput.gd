@@ -34,6 +34,8 @@ func _update_input_status() -> void:
 	
 	if depends_on_interface:
 		_status = not ui.has_active_interface()
+	
+	
 
 func update_input_status() -> void:
 	_update_input_status()

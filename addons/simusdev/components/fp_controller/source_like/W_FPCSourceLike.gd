@@ -11,14 +11,25 @@ signal enabled_status_changed(status: bool)
 
 var _disable_priority: int = 0
 
-func is_authority() -> bool:
-	if multiplayer_authorative:
-		if SD_Multiplayer.is_active():
-			return is_multiplayer_authority()
-	return true
+static var _instance_list: Array[W_FPCSourceLike] = []
+
+static func get_instance_list() -> Array[W_FPCSourceLike]:
+	return _instance_list
 
 func _enter_tree() -> void:
-	_enabled_status_changed()
+	SD_Array.append_to_array_no_repeat(_instance_list, self)
+
+func _exit_tree() -> void:
+	SD_Array.erase_from_array(_instance_list, self)
+
+func is_authority() -> bool:
+	if multiplayer_authorative:
+		return is_multiplayer_authority()
+	return true
+
+func _ready() -> void:
+	if is_authority():
+		_enabled_status_changed()
 
 func set_enabled_status(status: bool) -> void:
 	enabled = status
@@ -46,7 +57,6 @@ func subtract_disable_priority() -> void:
 func set_disable_priority(value: int) -> void:
 	_disable_priority = value
 	enabled = _disable_priority <= 0
-
 
 func get_enabled_status() -> bool:
 	return enabled 

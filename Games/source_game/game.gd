@@ -25,7 +25,7 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	timer.timeout.connect(timer.queue_free)
 	add_child(timer)
 	timer.start()
-	death_camera.global_position = _for.get_node().global_position
+	death_camera.global_position = _for.get_player_node().global_position
 	death_camera.make_current()
 
 
@@ -61,7 +61,7 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 			var player_nickname:String = args[0]
 			var vec_position:Vector3 = Vector3( float(args[1]), float(args[2]), float(args[3]) )
 			
-			SD_Multiplayer.sync_call_function(SourceGame.instance, teleport_player, [find_player(player_nickname).get_node(), vec_position])
+			SD_Multiplayer.sync_call_function(SourceGame.instance, teleport_player, [find_player(player_nickname).get_player_node(), vec_position])
 		
 		"sv_cheats":
 			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
@@ -94,6 +94,8 @@ func find_player(nickname:String) -> SD_MultiplayerPlayer:
 func find_and_kill_player(nickname:String):
 	var player = find_player(nickname).get_node() as SourcePlayer
 	if is_instance_valid(player):
+	var player = find_player(nickname).get_player_node() as SourcePlayer
+	if player:
 		player.health.kill()
 
 func teleport_player(player:Node3D, position:Vector3):

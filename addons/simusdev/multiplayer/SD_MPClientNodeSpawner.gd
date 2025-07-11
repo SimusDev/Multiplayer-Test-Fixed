@@ -35,6 +35,8 @@ signal despawn_begin(node: Node, path: String)
 
 var start_name: String
 
+var _init_roots: Array[Node] = []
+
 func can_detect_node(node: Node) -> bool:
 	if node == self:
 		return false
@@ -100,10 +102,6 @@ func _ready() -> void:
 	if bake_at_runtime:
 		_bake(true)
 	
-	if not SD_Multiplayer.is_active():
-		return
-	
-	
 	if SD_Multiplayer.is_server():
 		for root in _detect_roots:
 			add_detect_root(root)
@@ -111,32 +109,44 @@ func _ready() -> void:
 		if auto_handle_spawn == true:
 			request_spawn_all_nodes()
 	
+	
 
 func add_detect_root(root: Node) -> void:
-	if _detect_roots.has(root):
+	if SD_Multiplayer.is_not_server():
 		return
 	
-	_detect_roots.append(root)
+	if _init_roots.has(root):
+		return
 	
-	if SD_Multiplayer.is_server() and auto_handle_spawn:
-		root.child_entered_tree.connect(_on_server_root_node_add.bind(root))
-		root.child_exiting_tree.connect(_on_server_root_node_remove.bind(root))
-		
-
-func remove_detect_root(root: Node) -> void:
 	if not _detect_roots.has(root):
-		return
-	
-	_detect_roots.erase(root)
+		_detect_roots.append(root)
 	
 	if SD_Multiplayer.is_server():
-		root.child_entered_tree.disconnect(_on_server_root_node_add)
-		root.child_exiting_tree.disconnect(_on_server_root_node_remove)
-		
+		root.child_entered_tree.connect(_on_server_root_node_add.bind(root))
+		root.child_exiting_tree.connect(_on_server_root_node_remove.bind(root))
+	
+	_init_roots.append(root)
+
+func remove_detect_root(root: Node) -> void:
+	if SD_Multiplayer.is_not_server():
+		return
+	
+	if !_init_roots.has(root):
+		return
+	
+	if _detect_roots.has(root):
+		_detect_roots.erase(root)
+	
+	root.child_entered_tree.disconnect(_on_server_root_node_add)
+	root.child_exiting_tree.disconnect(_on_server_root_node_remove)
+	
+	_init_roots.erase(root)
+	
 
 func _on_server_root_node_add(node: Node, root: Node) -> void:
 	if auto_handle_spawn:
 		server_update_add(node, root)
+
 
 func _on_server_root_node_remove(node: Node, root: Node) -> void:
 	if auto_handle_spawn:
@@ -258,7 +268,7 @@ func deserialize_node_data(data: Dictionary) -> Node:
 			var peer_id: int = data.get("mp_player_id", SD_Multiplayer.SERVER_ID)
 			var player: SD_MultiplayerPlayer = SD_Multiplayer.get_player_by_peer_id(peer_id)
 			if player:
-				player.set_node(node)
+				player.set_player_node(node)
 			
 			
 		

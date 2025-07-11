@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://wk87tt30urh8"]
+
+[ext_resource type="Script" uid="uid://ca1oqcrptmq6o" path="res://Games/sandbox/models/s1mple_player/s_1_mple_player_model.gd" id="1_yo210"]
+[ext_resource type="PackedScene" uid="uid://dvtuqut8pbem" path="res://Games/sandbox/models/s1mple_player/model.tscn" id="2_jpuyt"]
+[ext_resource type="AnimationLibrary" uid="uid://cdmvqwt6vjson" path="res://Games/sandbox/animations/s1mple_player/library.res" id="3_uq2tj"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://b6t40u7yjw5l2" path="res://Games/sandbox/animations/s1mple_player/blend_tree.tres" id="4_uq2tj"]
+
+[node name="s1mple_player_model" type="Node3D" node_paths=PackedStringArray("model", "tree", "player")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+script = ExtResource("1_yo210")
+model_scene = ExtResource("2_jpuyt")
+library = ExtResource("3_uq2tj")
+blend_tree = ExtResource("4_uq2tj")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+
+[node name="model3d" type="Node3D" parent="." instance=ExtResource("2_jpuyt")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"library": ExtResource("3_uq2tj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("4_uq2tj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 0.00683594

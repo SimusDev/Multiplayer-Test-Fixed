@@ -11,7 +11,7 @@ func _ready() -> void:
 		$SD_UIInterfaceMenu.close()
 	
 	else:
-		$SD_UIInterfaceMenu.open()
+		show()
 		SimusDev.cursor.reset_mode()
 	
 	if not ingame:
