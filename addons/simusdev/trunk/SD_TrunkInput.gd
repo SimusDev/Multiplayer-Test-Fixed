@@ -18,9 +18,9 @@ func _ready() -> void:
 	
 	_cmd_action_binds = SD_ConsoleCommand.get_or_create("actions.bind", {}).set_private()
 	
-	_cmd_bind = SD_ConsoleCommand.get_or_create("inputmap.bind", "action cmd")
-	_cmd_bind.help_set("inputmap.bind <action> <command>")
-	_cmd_bind.help_set("inputmap.bind <action> <command>", 1)
+	_cmd_bind = SD_ConsoleCommand.get_or_create("inputmap.bind", "action cmd []")
+	_cmd_bind.help_set("inputmap.bind <action> <command>, <args> (example: ['true'])")
+	_cmd_bind.help_set("inputmap.bind <action> <command>, <args> (example: ['true'])")
 	
 	_cmd_bind.executed.connect(_on_bind_executed)
 	
