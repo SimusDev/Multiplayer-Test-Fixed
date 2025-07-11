@@ -137,3 +137,18 @@ static func kick(player: SD_MultiplayerPlayer) -> void:
 
 static func is_authority(node: Node) -> bool:
 	return _singleton.is_authority(node)
+
+static func throw_event(event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	_singleton.throw_event(event, args, reliable)
+
+static func throw_event_on_server(event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	_singleton.throw_event_on_server(event, args, reliable)
+
+static func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	_singleton.throw_event_on_player(player, event, args, reliable)
+
+static func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	_singleton.throw_event_on_peer(peer, event, args, reliable)
+
+static func bind_events(callable: Callable) -> void:
+	_singleton.bind_events(callable)

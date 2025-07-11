@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=19 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="2_gv642"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
 [ext_resource type="PackedScene" uid="uid://d1v4nixukw0j1" path="res://Games/sandbox/prefabs/nickname/nickname.tscn" id="14_gv642"]
+[ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="16_st6l1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
 size = Vector3(1, 1.99615, 1)
@@ -141,6 +142,12 @@ target_position = Vector3(0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
 
 [node name="Nickname" parent="." node_paths=PackedStringArray("source", "health") instance=ExtResource("14_gv642")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2821, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52249, 0)
 source = NodePath("..")
 health = NodePath("../C_HealthComponent")
+
+[node name="footstep" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.934453, 0)
+script = ExtResource("16_st6l1")
+streams = Array[AudioStream]([null, null, null])
+metadata/_custom_type_script = "uid://dcdd6kovrah03"

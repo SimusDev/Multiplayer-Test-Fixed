@@ -13,7 +13,7 @@ class_name W_FPCSourceLikeCamera
 @export_group("Mouse Settings")
 @export var mouse_sensitivity: float = 1.0
 
-@export var _mouse_captured: bool = true
+@export var _mouse_captured: bool = false
 
 @export_group("Free Camera")
 @export var freecam_speed: float = 10.0
@@ -26,19 +26,47 @@ class_name W_FPCSourceLikeCamera
 @export var key_boost: String = "boost"
 @export var key_slowdown: String = "slowdown"
 
+static var _active_camera_list: Array[W_FPCSourceLikeCamera] = []
+
+static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
+	return _active_camera_list
+
 func _exit_tree() -> void:
-	if is_authority() and enabled:
-		set_mouse_captured(false)
+	super()
+	
+	enabled = false
+	
+	if !_active_camera_list.is_empty():
+		var camera: W_FPCSourceLikeCamera = _active_camera_list[_active_camera_list.size() - 1]
+		if is_instance_valid(camera):
+			camera.make_current()
+
+func _enter_tree() -> void:
+	super()
+	
 
 func make_current() -> void:
 	if camera:
 		camera.make_current()
+		enabled = true
 
 func set_current(value: bool) -> void:
 	if camera:
 		camera.current = value
+		enabled = true
 
 func _enabled_status_changed() -> void:
+	if enabled:
+		
+		for i in get_instance_list():
+			if i is W_FPCSourceLikeCamera:
+				if not i == self:
+					i.enabled = false
+		
+		SD_Array.append_to_array_no_repeat(_active_camera_list, self)
+	else:
+		SD_Array.erase_from_array(_active_camera_list, self)
+	
 	set_process(enabled)
 	set_physics_process(enabled)
 	set_process_input(enabled)
@@ -46,6 +74,8 @@ func _enabled_status_changed() -> void:
 	set_mouse_captured(enabled)
 
 func _ready() -> void:
+	super()
+	
 	if not is_authority():
 		add_disable_priority()
 		return
@@ -54,8 +84,9 @@ func _ready() -> void:
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	
 	if make_current_at_start:
-		make_current()
-		set_mouse_captured(true)
+		if is_authority():
+			make_current()
+			set_mouse_captured(true)
 
 	if SimusDev.ui.has_active_interface():
 		add_disable_priority()
@@ -98,10 +129,6 @@ func _on_interface_opened_or_closed(node: Node, status: bool) -> void:
 		subtract_disable_priority()
 
 func set_mouse_captured(value: bool) -> void:
-	if is_inside_tree():
-		if !is_multiplayer_authority(): 
-			return
-	
 	var cursor: SD_TrunkCursor = SimusDev.cursor
 	_mouse_captured = value
 	

@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 		camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
 
 func _ready() -> void:
+	super()
+	
 	if not is_authority():
 		add_disable_priority()
 		return

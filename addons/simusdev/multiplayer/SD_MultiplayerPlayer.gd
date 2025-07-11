@@ -9,6 +9,8 @@ const HOST_ID: int = 1
 
 var _data: SD_MPSyncedData
 
+signal event_recieved(event: Variant, args: Variant)
+
 func get_username() -> String:
 	return get_data_value("_username_", "")
 
@@ -49,12 +51,12 @@ func deinitialize() -> void:
 
 var _node: Node
 
-func set_node(node: Node) -> void:
+func set_player_node(node: Node) -> void:
 	_node = node
 	node.set_multiplayer_authority(get_peer_id())
 	node.set_meta("SD_MultiplayerPlayer", self)
 
-func get_node() -> Node:
+func get_player_node() -> Node:
 	return _node
 
 static func find_in_node(node: Node) -> SD_MultiplayerPlayer:

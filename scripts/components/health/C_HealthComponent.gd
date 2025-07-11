@@ -11,19 +11,13 @@ func _ready() -> void:
 	SD_Multiplayer.request_and_sync_var_from_server(self, "max_health")
 
 func _on_server_health_changed() -> void:
-	SD_Multiplayer.sync_call_function(self, _synchronize_health, [health])
+	SD_Multiplayer.sync_call_function_except_self(self, _synchronize_health, [health])
 
 func _on_server_max_health_changed() -> void:
-	SD_Multiplayer.sync_call_function(self, _synchronize_max_health, [max_health])
+	SD_Multiplayer.sync_call_function_except_self(self, _synchronize_max_health, [max_health])
 
 func _synchronize_health(synced: float) -> void:
-	if SD_Multiplayer.is_server():
-		return
-	
 	health = synced
 
 func _synchronize_max_health(synced: float) -> void:
-	if SD_Multiplayer.is_server():
-		return
-	
 	max_health = synced

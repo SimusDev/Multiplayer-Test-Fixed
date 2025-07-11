@@ -1,6 +1,8 @@
 extends AudioStreamPlayer2D
 class_name SD_MPAudioStreamPlayer2D
 
+@export var streams: Array[AudioStream] = []
+
 func _ready() -> void:
 	synchronize_playback()
 
@@ -28,8 +30,24 @@ func _recieve_playback_from_server(args: Array) -> void:
 	
 	play(args[1])
 
+func _exit_tree() -> void:
+	if SD_Multiplayer.is_server():
+		if is_queued_for_deletion():
+			SD_Multiplayer.sync_call_function_except_self(self, queue_free)
+
 func sync_play(from: float = 0.0) -> void:
-	SD_Multiplayer.sync_call_function(self, play, [from])
+	var picked_stream: AudioStream
+	if !streams.is_empty():
+		picked_stream = streams.pick_random()
+	
+	if picked_stream:
+		SD_Multiplayer.sync_call_function(self, __sync_play, [from, picked_stream])
+	else:
+		SD_Multiplayer.sync_call_function(self, play, [from])
+
+func __sync_play(from: float, picked_stream: AudioStream) -> void:
+	stream = picked_stream
+	play(from)
 
 func sync_seek(to: float) -> void:
 	SD_Multiplayer.sync_call_function(self, seek, [to])

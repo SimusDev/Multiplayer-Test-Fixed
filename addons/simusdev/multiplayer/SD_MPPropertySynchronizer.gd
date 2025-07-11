@@ -98,6 +98,14 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 		return
 	
 	if mp_property is SD_MPPSSyncedProperty:
+		if mp_property.sync == mp_property.SYNC.FROM_SERVER:
+			for peer in SD_Multiplayer.get_connected_peers():
+				if peer == SD_Multiplayer.get_unique_id():
+					continue
+					
+				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
+			return
+		
 		if is_multiplayer_authority():
 			for peer in SD_Multiplayer.get_connected_peers():
 				if peer == SD_Multiplayer.get_unique_id():
@@ -112,10 +120,15 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 
 func _hook_sync(property: SD_MPPSSyncedBase, delta: float) -> void:
 	var node: Node = get_node(property.node_path)
-	if node.is_multiplayer_authority():
+	if !node:
+		return
+	
+	if (node.is_multiplayer_authority() and property.sync == property.SYNC.AUTHORITY) or (SD_Multiplayer.is_server() and property.sync == property.SYNC.FROM_SERVER):
 		_refresh(property, delta)
-	else:
-		_interpolate(property, delta)
+		return
+	
+	
+	_interpolate(property, delta)
 
 func _process(delta: float) -> void:
 	for mp in properties:

@@ -25,6 +25,26 @@ signal server_disconnected()
 
 signal data_from_peer_recieved(data: SD_MPRecievedDBData)
 
+signal event_recieved(event: Variant, args: Variant)
+
+func throw_event(event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	sync_call_function(self, _recieve_event, [event, args], reliable)
+
+func throw_event_on_server(event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	sync_call_function_on_server(self, _recieve_event, [event, args], reliable)
+
+func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	sync_call_function_on_peer(player.get_peer_id(), self, _recieve_event, [event, args], reliable)
+
+func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, reliable: bool = true) -> void:
+	sync_call_function_on_peer(peer, self, _recieve_event, [event, args], reliable)
+
+func bind_events(callable: Callable) -> void:
+	event_recieved.connect(callable)
+
+func _recieve_event(event: Variant, args: Variant) -> void:
+	event_recieved.emit(event, args)
+
 const HOST_ID: int = 1
 
 var _is_server_created: bool = false
@@ -85,11 +105,7 @@ func _ready() -> void:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
 
 func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
-	
 	match cmd.get_code():
-		"multiplayer.name":
-			
-			set_username(cmd.get_value_as_string())
 		"connect":
 			var args: Array = cmd.get_arguments()
 			if args.size() >= 2:
@@ -750,8 +766,6 @@ func sync_call_function(node: Node, callable: Callable, args: Array = [], reliab
 
 func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	for peer in get_connected_peers():
-		if peer == SD_Multiplayer.get_unique_id():
-			continue
 		sync_call_function_on_peer(peer, node, callable, args, reliable)
 
 

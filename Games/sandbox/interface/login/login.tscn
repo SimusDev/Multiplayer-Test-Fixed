@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0qqos1tvadl7"]
+
+[ext_resource type="Script" uid="uid://b5koc6b5gnybm" path="res://Games/sandbox/interface/login/login.gd" id="1_jemvb"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_cgcm1"]
+[ext_resource type="Script" uid="uid://d37ybu2k33ck7" path="res://addons/simusdev/ui/SD_UIButton.gd" id="3_v5kl0"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="4_pk0v2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5kl0"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_cgcm1"]
+font_size = 24
+
+[node name="Login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jemvb")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(944, 491)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = -245.5
+offset_right = 472.0
+offset_bottom = 245.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="status" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.921
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.138031
+grow_horizontal = 2
+grow_vertical = 2
+text = "STATUS"
+label_settings = SubResource("LabelSettings_v5kl0")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_cgcm1")
+font_size = 24
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="nickname" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.095
+offset_bottom = 0.0899963
+grow_horizontal = 2
+grow_vertical = 2
+text = "REGISTER"
+label_settings = SubResource("LabelSettings_cgcm1")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_cgcm1")
+font_size = 24
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+placeholder_text = "ENTER PASSWORD"
+alignment = 1
+max_length = 16
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="SD_UIButton" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+text = "ENTER"
+script = ExtResource("3_v5kl0")
+metadata/_custom_type_script = "uid://d37ybu2k33ck7"
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_pk0v2")
+target = NodePath("..")
+open_at_start = true
+center_at_start = true
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[connection signal="text_submitted" from="Panel/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Panel/HBoxContainer/SD_UIButton" to="." method="_on_sd_ui_button_pressed"]

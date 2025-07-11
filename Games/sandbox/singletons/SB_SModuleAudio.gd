@@ -1,0 +1,2 @@
+extends SB_SModule
+class_name SB_SModuleAudio

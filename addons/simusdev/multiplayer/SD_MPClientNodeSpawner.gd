@@ -268,7 +268,7 @@ func deserialize_node_data(data: Dictionary) -> Node:
 			var peer_id: int = data.get("mp_player_id", SD_Multiplayer.SERVER_ID)
 			var player: SD_MultiplayerPlayer = SD_Multiplayer.get_player_by_peer_id(peer_id)
 			if player:
-				player.set_node(node)
+				player.set_player_node(node)
 			
 			
 		
