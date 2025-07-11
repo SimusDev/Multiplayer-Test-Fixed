@@ -42,7 +42,7 @@ func load_resources() -> void:
 	
 	for file in files_to_load:
 		var loaded: Variant = load_resource(file)
-		if file_time >= 0.0:
+		if file_time > 0.0:
 			await get_tree().create_timer(file_time).timeout
 	
 	call_deferred("emit_signal", "loading_finished")

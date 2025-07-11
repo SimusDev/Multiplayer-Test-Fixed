@@ -86,7 +86,11 @@ func is_active() -> bool:
 func _exit_tree() -> void:
 	_instance = null
 
+var settings: SD_MultiplayerSettings = SimusDev.get_settings().multiplayer
 func _ready() -> void:
+	if !settings:
+		settings = SD_MultiplayerSettings.new()
+	
 	_static_class = SD_Multiplayer.new(self)
 	if _instance == null:
 		_instance = self
@@ -103,6 +107,12 @@ func _ready() -> void:
 	
 	for cmd in commands:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
+	
+	if settings.dedicated_server:
+		create_server(settings.dedicated_server_port)
+		if settings.dedicated_server_scene:
+			get_tree().change_scene_to_packed.call_deferred(settings.dedicated_server_scene)
+		
 
 func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():
@@ -155,7 +165,9 @@ func _send_player_data_to_server_and_create_player(data: Dictionary) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func _update_connected_players_rpc() -> void:
 	if is_client():
-		update_connected_players()
+		if settings.show_all_connected_players:
+			update_connected_players()
+		
 		client_players_updated.emit()
 
 @rpc("any_peer", "call_local", "reliable")
@@ -260,7 +272,7 @@ func create_server(port: int, dedicated: bool = false) -> void:
 	
 	set_dedicated_server(dedicated)
 	
-	var err = _peer.create_server(port)
+	var err = _peer.create_server(port, 4000)
 	if err == OK:
 		_peer.host.compress(ENetConnection.COMPRESS_FASTLZ)
 		multiplayer.multiplayer_peer = _peer

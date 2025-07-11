@@ -152,5 +152,6 @@ func _on_state_transitioned(state: SD_UIPopupReference.STATE) -> void:
 			
 		SD_UIPopupReference.STATE.CLOSED:
 			reference.on_closed.emit()
-			reference.get_container().queue_free()
+			if is_instance_valid(reference.get_container()):
+				reference.get_container().queue_free()
 			
