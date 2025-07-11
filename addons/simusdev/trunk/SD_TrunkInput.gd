@@ -24,7 +24,6 @@ func _ready() -> void:
 	
 	_cmd_bind.executed.connect(_on_bind_executed)
 	
-	
 	_cmd_unbind = SD_ConsoleCommand.get_or_create("inputmap.unbind", "action cmd")
 	_cmd_unbind.help_set("inputmap.bind <action>")
 	_cmd_unbind.help_set("inputmap.bind <action>", 1)
