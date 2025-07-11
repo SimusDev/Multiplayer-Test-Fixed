@@ -15,7 +15,7 @@ model = NodePath("model3d")
 tree = NodePath("AnimationTree")
 player = NodePath("AnimationPlayer")
 
-[node name="model3d" type="Node3D" parent="." instance=ExtResource("2_jpuyt")]
+[node name="model3d" parent="." instance=ExtResource("2_jpuyt")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../model3d")
