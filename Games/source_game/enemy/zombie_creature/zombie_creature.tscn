@@ -1,10 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw5oibpawydbh"]
+[gd_scene load_steps=11 format=3 uid="uid://cw5oibpawydbh"]
 
 [ext_resource type="Script" uid="uid://ddyrchekq1gjg" path="res://Games/source_game/components/enemy_ai.gd" id="1_c1i8f"]
 [ext_resource type="PackedScene" uid="uid://chyunnwrsr8cq" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.tscn" id="1_jud0w"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_pb25s"]
 [ext_resource type="Script" uid="uid://c8k38reui1r1m" path="res://Games/source_game/components/enemy_ai_vision.gd" id="2_0rgwb"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="2_k8hqk"]
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_n5qw2"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_a04ck"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="3_c1i8f"]
+
+[sub_resource type="Resource" id="Resource_ei143"]
+script = ExtResource("3_a04ck")
+properties = Array[String](["visible_objects", "visible_targets"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 32.0
+node_path = NodePath("../EnemyAI_Vision")
+reliable = false
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pktsj"]
 radius = 0.319827
@@ -12,15 +28,39 @@ height = 1.75965
 
 [node name="zombie_creature" type="CharacterBody3D"]
 
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("1_pb25s")
+properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
 [node name="EnemyAI" type="Node" parent="."]
 script = ExtResource("1_c1i8f")
 metadata/_custom_type_script = "uid://ddyrchekq1gjg"
 
-[node name="EnemyAI_Vision" type="Area3D" parent="."]
+[node name="EnemyAI_Vision" type="Node3D" parent="."]
 script = ExtResource("2_0rgwb")
 metadata/_custom_type_script = "uid://c8k38reui1r1m"
 
 [node name="RayCast3D" type="RayCast3D" parent="EnemyAI_Vision"]
+target_position = Vector3(0, 0, 10)
+
+[node name="RayCast3D2" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+
+[node name="RayCast3D3" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.996195, 0, 0.0871558, 0, 1, 0, -0.0871558, 0, 0.996195, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+
+[node name="RayCast3D4" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+
+[node name="RayCast3D5" type="RayCast3D" parent="EnemyAI_Vision"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="zombie_creature_animatied_model" parent="." instance=ExtResource("1_jud0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.786477, 0)
@@ -47,3 +87,8 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 process_mode = 4
 script = ExtResource("3_c1i8f")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+billboard = 2
+text = "sex"

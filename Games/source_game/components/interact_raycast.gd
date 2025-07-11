@@ -65,6 +65,7 @@ func show_object_info(object:RigidBody3D):
 
 func drag_prop(object:RigidBody3D):
 	var source_prop_component = current_object.get_node("SourceProp") as SourceProp
+	drag_item_link_node.tree_exited.connect( func(): source_prop_component.drag.emit(!source_prop_component.is_drag, drag_item_link_node))
 	drag_item_link_node.global_position = get_collision_point()
 	drag_item_link_node.global_rotation_degrees = source_prop_component.rigid_body.global_rotation_degrees
 	source_prop_component.drag.emit(!source_prop_component.is_drag, drag_item_link_node)

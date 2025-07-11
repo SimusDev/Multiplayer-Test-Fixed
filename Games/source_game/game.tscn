@@ -294,6 +294,8 @@ script = ExtResource("18_wirdf")
 commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
+[node name="source_flatgrass" parent="." instance=ExtResource("1_07hh0")]
+
 [node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("2_hjpvw")
 player_scene = ExtResource("13_aahtd")
@@ -306,10 +308,8 @@ script = ExtResource("3_h0jfs")
 properties = Array[ExtResource("4_152x2")]([SubResource("Resource_lg245")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="source_flatgrass" parent="." instance=ExtResource("1_07hh0")]
-
 [node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.865716, 6.13851)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53703, 0, -1.80009)
@@ -379,7 +379,7 @@ day = 3
 transform = Transform3D(0.715544, 0.00188579, -0.698565, -0.00263545, 0.999996, 0, 0.698562, 0.00184103, 0.715546, -3.09546, 0.429427, 12.7232)
 
 [node name="toilet" parent="props" instance=ExtResource("19_rwrbd")]
-transform = Transform3D(0.916062, 0, 0.401037, 0, 1, 0, -0.401037, 0, 0.916062, -3.5, 4.20896, -5.7)
+transform = Transform3D(-0.980419, 0, 0.196921, 0, 1, 0, -0.196921, 0, -0.980419, -3.5, 2.00896, 16.6)
 
 [node name="radio" parent="props" instance=ExtResource("23_dt7qg")]
 transform = Transform3D(-3.80151e-08, -0.493608, -0.869685, -2.15763e-08, 0.869685, -0.493608, 1, 0, -4.37114e-08, -5.45704, 2.40723, 13.2234)
@@ -458,10 +458,10 @@ transform = Transform3D(0.81816, -0.574991, 0, 0.574991, 0.81816, 0, 0, 0, 1, 0.
 mesh = SubResource("CylinderMesh_ij05y")
 material = SubResource("StandardMaterial3D_7hhbe")
 
-[node name="zombie_creature" parent="." instance=ExtResource("31_ij05y")]
-transform = Transform3D(0.812328, 0, 0.583201, 0, 1, 0, -0.583201, 0, 0.812328, -6.98527, 4.62492, 15.2648)
-
 [node name="dr_kleiner" parent="." instance=ExtResource("33_fcmfk")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 8.4712, 2.60671)
+
+[node name="zombie_creature" parent="." instance=ExtResource("31_ij05y")]
+transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 0, 0.9, 9.70368)
 
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]
