@@ -94,8 +94,6 @@ func find_player(nickname:String) -> SD_MultiplayerPlayer:
 func find_and_kill_player(nickname:String):
 	var player = find_player(nickname).get_node() as SourcePlayer
 	if is_instance_valid(player):
-	var player = find_player(nickname).get_player_node() as SourcePlayer
-	if player:
 		player.health.kill()
 
 func teleport_player(player:Node3D, position:Vector3):
