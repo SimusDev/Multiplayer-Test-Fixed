@@ -95,9 +95,8 @@ func init(console: SD_Console, settings: SD_Settings, cmd_code: String, cmd_valu
 		_variant_type_string = "String"
 		_variant_type = TYPE_STRING
 	
-	if !_value.is_empty():
-		_settings.add_setting(get_code(), get_value())
-		_value = _settings.get_setting_value(get_code(), "")
+	_settings.add_setting(get_code(), get_value())
+	_value = _settings.get_setting_value(get_code(), "")
 	
 	updated.emit()
 	update_command()

@@ -17,7 +17,10 @@ func _enabled_status_changed() -> void:
 	_on_crouched_status_changed()
 
 func _physics_process(delta: float) -> void:
-	movement.crouch_disabled = ceiling_detection.is_colliding()
+	if ceiling_detection:
+		movement.crouch_disabled = ceiling_detection.is_colliding()
+	else:
+		movement.crouch_disabled = movement.actor.is_on_ceiling()
 	
 func _process(delta: float) -> void:
 	if movement.is_crouched:

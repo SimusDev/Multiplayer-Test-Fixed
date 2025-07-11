@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://d37ybu2k33ck7" path="res://addons/simusdev/ui/SD_UIButton.gd" id="3_v5kl0"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="4_pk0v2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_v5kl0"]
+[sub_resource type="LabelSettings" id="LabelSettings_pk0v2"]
 font_size = 24
 
-[sub_resource type="LabelSettings" id="LabelSettings_cgcm1"]
+[sub_resource type="LabelSettings" id="LabelSettings_c8erb"]
 font_size = 24
 
 [node name="Login" type="Control"]
@@ -46,7 +46,7 @@ offset_top = -0.138031
 grow_horizontal = 2
 grow_vertical = 2
 text = "STATUS"
-label_settings = SubResource("LabelSettings_v5kl0")
+label_settings = SubResource("LabelSettings_pk0v2")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -64,7 +64,7 @@ offset_bottom = 0.0899963
 grow_horizontal = 2
 grow_vertical = 2
 text = "REGISTER"
-label_settings = SubResource("LabelSettings_cgcm1")
+label_settings = SubResource("LabelSettings_c8erb")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

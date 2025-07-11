@@ -13,18 +13,20 @@ func _init() -> void:
 	instance = self
 
 func _ready() -> void:
+	set_multiplayer_authority(SD_Multiplayer.get_unique_id())
 	if SimusDev.multiplayerAPI.is_server():
 		SimusDev.multiplayerAPI.player_connected.connect(_on_server_player_connected)
 		SimusDev.multiplayerAPI.player_disconnected.connect(_on_server_player_disconnected)
 	
 	$chat/content/LineEdit.editable = false
+	
+	SD_Multiplayer.request_and_sync_var_from_server(%history, "text")
 
 func _on_server_player_connected(player: SD_MultiplayerPlayer) -> void:
 	send_message("%s joined the server!" % player.get_username(), Color.YELLOW)
 
 func _on_server_player_disconnected(player: SD_MultiplayerPlayer) -> void:
 	send_message("%s disconnected from server!" % player.get_username(), Color.INDIAN_RED)
-
 
 func _on_messager_draw() -> void:
 	line_edit.grab_click_focus()
@@ -44,10 +46,9 @@ func send_message_from_player(player: SD_MultiplayerPlayer, msg: String, color: 
 	send_message(message, color)
 
 func send_message(msg: String, color: Color = Color.WHITE) -> void:
-	_send_message_rpc.rpc(msg, color)
+	SD_Multiplayer.call_func(_synced_send, [msg, color])
 
-@rpc("any_peer", "call_local")
-func _send_message_rpc(msg: String, color: Color = Color.WHITE) -> void:
+func _synced_send(msg: String, color: Color) -> void:
 	history.text += msg
 	history.text += "\n"
 	
@@ -62,7 +63,6 @@ func _send_message_rpc(msg: String, color: Color = Color.WHITE) -> void:
 	
 	message.label_settings = label_settings
 	container.add_child(message)
-
 
 func _on_button_base_pressed() -> void:
 	$C_UIInterfaceComponent.close()

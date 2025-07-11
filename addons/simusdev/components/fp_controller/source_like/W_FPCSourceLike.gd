@@ -56,6 +56,8 @@ func subtract_disable_priority() -> void:
 
 func set_disable_priority(value: int) -> void:
 	_disable_priority = value
+	if _disable_priority < 0:
+		_disable_priority = 0
 	enabled = _disable_priority <= 0
 
 func get_enabled_status() -> bool:

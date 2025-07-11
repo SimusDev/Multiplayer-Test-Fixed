@@ -4,6 +4,8 @@ class_name MapSpawnerComponent
 @export var spawn_at: Node
 
 func _ready() -> void:
+	SimusDev.console.try_execute("clear")
+	
 	var scene: PackedScene = Maps.get_current_map_scene()
 	
 	if scene:

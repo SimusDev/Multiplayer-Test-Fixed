@@ -12,8 +12,11 @@ class_name SB_PlayerComponent
 
 @onready var _level: SB_Level3D
 
+
 @export_category("References")
+@export var p_movement: W_FPCSourceLikeMovement
 @export var p_health: C_HealthComponent
+@export var p_skin: SB_EntitySkin
 
 static var _local: SB_PlayerComponent
 
@@ -31,10 +34,6 @@ func _ready() -> void:
 	
 	var transform_sync: PackedScene = _prefabs.p_sync_transform
 	
-	var p_sync: SD_MPPropertySynchronizer = transform_sync.instantiate()
-	p_sync.set_multiplayer_authority(get_multiplayer_authority())
-	source.add_child.call_deferred(p_sync)
-	
 	for node in _synchronize_transform:
 		if node:
 			var sync: SD_MPPropertySynchronizer = transform_sync.instantiate()
@@ -42,11 +41,11 @@ func _ready() -> void:
 			node.add_child.call_deferred(sync)
 	
 	await source.ready
-	if is_multiplayer_authority():
-		add_child(_interface.instantiate())
-	else:
-		if not process_when_authority:
-			source.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	if p_movement:
+		if p_movement.server_authorative and SD_Multiplayer.is_not_server():
+			get_source().set_process(false)
+			get_source().set_physics_process(false)
 
 func _enter_tree() -> void:
 	if !source:

@@ -202,7 +202,14 @@ func _interpolate(base: SD_MPPSSyncedBase, delta: float) -> void:
 				if INTERPOLATING_VARTYPES.has(typeof(current_value)):
 					var synced_value: Variant = get_synced_data_property(node, property)
 					if base.interpolation_enabled:
-						current_value = lerp(current_value, synced_value, base.interpolation_speed * delta)
+						if property == "rotation":
+							current_value.x = lerp_angle(current_value.x, synced_value.x, base.interpolation_speed * delta)
+							current_value.y = lerp_angle(current_value.y, synced_value.y, base.interpolation_speed * delta)
+							
+							if current_value is Vector3:
+								current_value.z = lerp_angle(current_value.z, synced_value.z, base.interpolation_speed * delta)
+						else:
+							current_value = lerp(current_value, synced_value, base.interpolation_speed * delta)
 						node.set(property, current_value)
 #endregion
 

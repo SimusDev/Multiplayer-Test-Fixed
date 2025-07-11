@@ -27,6 +27,9 @@ signal data_from_peer_recieved(data: SD_MPRecievedDBData)
 
 signal event_recieved(event: Variant, args: Variant)
 
+var _cached_nodes: Array[String] = []
+var _cached_resources: Array[String] = []
+
 func throw_event(event: Variant, args: Variant = null, reliable: bool = true) -> void:
 	sync_call_function(self, _recieve_event, [event, args], reliable)
 
@@ -792,6 +795,11 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 	if not get_connected_peers().has(peer):
 		return
 	
+	var node_path: String = str(node.get_path())
+	var cache: int = 0
+	if !_cached_nodes.has(node_path):
+		pass
+	
 	var packet: Array = [
 		str(node.get_path()),
 		str(callable.get_method()),
@@ -807,6 +815,9 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 	else:
 		_sync_call_function_recieve_rpc_unreliable.rpc_id(peer, serialized)
 
+
+func _recieve_cached_node_path(path: String) -> void:
+	_cached_nodes
 
 func _sync_call_function_local(serialized: Variant) -> void:
 	var deserialized: Array = SD_MPDataCompressor.deserialize_data(serialized)
@@ -826,27 +837,20 @@ func _sync_call_function_recieve_rpc(serialized: Variant) -> void:
 func _sync_call_function_recieve_rpc_unreliable(serialized: Variant) -> void:
 	_sync_call_function_local(serialized)
 
+
+func call_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	sync_call_function(callable.get_object() as Node, callable, args, reliable)
+
+func call_func_on(peer: int, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	sync_call_function_on_peer(peer, callable.get_object() as Node, callable, args, reliable)
+
+func call_func_on_server(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	sync_call_function_on_server(callable.get_object() as Node, callable, args, reliable)
+
+func call_func_except_self(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	sync_call_function_except_self(callable.get_object() as Node, callable, args, reliable)
+
 #endregion
-
-func __invoke_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	var object: Object = callable.get_object()
-	if object is Node:
-		var node: Node = object
-		if node.get_multiplayer_authority() == SD_Multiplayer.get_unique_id():
-			SD_Multiplayer.sync_call_function_except_self(self, __invoke_func_receive, [node, callable.get_method(), args, node.get_multiplayer_authority()], reliable)
-		
-
-func __invoke_func_receive(node: Node, method: String, args: Array, authority: int) -> void:
-	if node:
-		node.callv(method, args)
-
-func invoke_func(callable: Callable, args: Array = []) -> void:
-	__invoke_func(callable, args, true)
-
-func invoke_func_unreliable(callable: Callable, args: Array = []) -> void:
-	__invoke_func(callable, args, false)
-
-
 
 func set_node_multiplayer_authority_recursive(node: Node, id: int) -> void:
 	node.set_multiplayer_authority(id)

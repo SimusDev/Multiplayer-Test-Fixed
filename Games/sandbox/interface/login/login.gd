@@ -12,7 +12,7 @@ func _ready() -> void:
 		return
 	
 	
-	saved_pass = SB_ConCommand.get_or_create_client("password", "")
+	saved_pass = SB_ConCommand.get_or_create_client("password", "123")
 	
 	%nickname.text = player.get_username()
 	%LineEdit.text = saved_pass.get_source().get_value_as_string()
@@ -34,6 +34,9 @@ func _on_event(event, args) -> void:
 		else:
 			%status.text = "REGISTER"
 		show()
+		
+		$%LineEdit.grab_focus()
+		$%LineEdit.grab_click_focus()
 	
 	if event is SB_EventPlayerLoginError:
 		%status.self_modulate = Color.RED

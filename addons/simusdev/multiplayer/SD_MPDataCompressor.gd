@@ -39,7 +39,7 @@ static func serialize_data(data: Variant, mode: int = DEFAULT_MODE) -> Variant:
 static func deserialize_data(data: Variant, mode: int = DEFAULT_MODE) -> Variant:
 	if data is PackedByteArray:
 		var bytes: PackedByteArray = data.decompress_dynamic(-1, mode)
-		var decompressed: String = bytes_to_var(bytes)
+		var decompressed: String = str(bytes_to_var(bytes))
 		var object: Variant = str_to_var(decompressed)
 		return object
 	return str_to_var(data)

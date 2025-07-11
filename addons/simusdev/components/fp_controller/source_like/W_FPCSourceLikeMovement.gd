@@ -7,6 +7,8 @@ class_name W_FPCSourceLikeMovement
 @export var state_machine: SD_NodeStateMachine
 
 @export_group("Movement")
+@export var server_authorative: bool = false
+@export var reliable_input: bool = false
 @export var crouch_disabled: bool = false
 @export var is_crouched: bool = false : set = set_crouched
 @export var is_sprinting: bool = false : set = set_sprinting
@@ -39,6 +41,8 @@ var wish_direction: Vector3 = Vector3.ZERO
 @export var key_sprint: String = "key_sprint"
 @export var key_crouch: String = "key_crouch"
 
+var _handle_input: PackedStringArray = []
+
 signal jumped()
 
 signal crouched_status_changed()
@@ -50,6 +54,9 @@ func set_crouched(value: bool) -> void:
 	
 	is_crouched = value
 	crouched_status_changed.emit()
+	
+	if server_authorative and SD_Multiplayer.is_server():
+		SD_Multiplayer.call_func_except_self(set_crouched, [value])
 
 func set_sprinting(value: bool) -> void:
 	if is_sprinting == value:
@@ -57,6 +64,9 @@ func set_sprinting(value: bool) -> void:
 	
 	is_sprinting = value
 	sprinting_status_changed.emit()
+	
+	if server_authorative and SD_Multiplayer.is_server():
+		SD_Multiplayer.call_func_except_self(set_sprinting, [value])
 
 func _enabled_status_changed() -> void:
 	input_enabled = enabled
@@ -92,15 +102,37 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
+	_handle_input.append(key_forward)
+	_handle_input.append(key_backward)
+	_handle_input.append(key_left)
+	_handle_input.append(key_right)
+	_handle_input.append(key_sprint)
+	_handle_input.append(key_crouch)
+	_handle_input.append(key_jump)
+	
+	if server_authorative:
+		if SD_Multiplayer.is_server():
+			if !SD_Multiplayer.is_authority(self):
+				set_process(true)
+				set_physics_process(true)
+				return
+	
 	if not is_authority():
 		add_disable_priority()
 		return
 	
+
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_closed)
 	
-	if actor.is_on_floor(): state_machine.switch_by_name("ground")
-	else:
-		state_machine.switch_by_name("air")
+	if !server_authorative:
+		if actor.is_on_floor(): 
+			state_machine.switch_by_name("ground")
+		else:
+			state_machine.switch_by_name("air")
+	
+	SD_Multiplayer.request_and_sync_var_from_server(self, "server_authorative")
+	SD_Multiplayer.request_and_sync_var_from_server(self, "is_crouched")
+	SD_Multiplayer.request_and_sync_var_from_server(self, "is_sprinting")
 
 
 func _on_interface_opened_closed(node:Node, status:bool):
@@ -115,12 +147,28 @@ func _on_console_visibility_changed() -> void:
 		subtract_disable_priority()
 
 func _physics_process(delta: float) -> void:
+	if server_authorative and SD_Multiplayer.is_not_server():
+		return
+	
+	
 	if input_enabled and enabled:
-		var input_dir: Vector2 = Input.get_vector(key_left, key_right, key_forward, key_backward).normalized()
-		wish_direction = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 		
-		is_sprinting = Input.is_action_pressed(key_sprint)
-		is_crouched = Input.is_action_pressed(key_crouch)
+		var direction: Vector3 = Vector3.ZERO
+		#print(_is_input_pressed(key_forward))
+		if _is_input_pressed(key_forward):
+			print(SD_Multiplayer.is_server())
+			direction.z = -1
+		if _is_input_pressed(key_backward):
+			direction.z = 1
+		if _is_input_pressed(key_left):
+			direction.x = -1
+		if _is_input_pressed(key_right):
+			direction.x = 1
+		
+		wish_direction = self.global_transform.basis * direction.normalized()
+		
+		is_sprinting = _is_input_pressed(key_sprint)
+		is_crouched = _is_input_pressed(key_crouch)
 	else:
 		wish_direction = Vector3.ZERO
 	
@@ -131,12 +179,38 @@ func _physics_process(delta: float) -> void:
 	
 	actor.move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if not SD_Multiplayer.is_authority(self):
+		return
+	
+	if !auto_bhop and Input.is_action_just_pressed(key_jump):
+		jump()
+
+	for action in _handle_input:
+		if Input.is_action_just_pressed(action):
+			if server_authorative:
+				SD_Multiplayer.call_func_on_server(_server_set_input_pressed, [action, true], reliable_input)
+			else:
+				_server_actions[action] = true
+		elif Input.is_action_just_released(action):
+			if server_authorative:
+				SD_Multiplayer.call_func_on_server(_server_set_input_pressed, [action, false], reliable_input)
+			else:
+				_server_actions[action] = false
+
+var _server_actions: Dictionary[String, bool] = {}
+func _server_set_input_pressed(action: String, pressed: bool) -> void:
+	_server_actions[action] = pressed
+
+func _is_input_pressed(action: String) -> bool:
+	return _server_actions.get(action, false) as bool
+
 func _handle_ground_physics(delta: float) -> void:
 	#actor.velocity.x = wish_direction.x * get_wish_move_speed()
 	#actor.velocity.z = wish_direction.z * get_wish_move_speed()
 
 	if input_enabled and enabled:
-		if (!auto_bhop and Input.is_action_just_pressed(key_jump)) or (auto_bhop and Input.is_action_pressed(key_jump)):
+		if (auto_bhop and _is_input_pressed(key_jump)):
 			jump()
 	
 	var cur_speed_in_wish_dir: float = actor.velocity.dot(wish_direction)
@@ -191,8 +265,19 @@ func _handle_air_physics(delta: float) -> void:
 		actor.velocity += accel_speed * wish_direction
 	
 func jump() -> void:
-	actor.velocity.y = jump_force
-	state_machine.switch_by_name("jump")
+	if !SD_Multiplayer.is_authority(self):
+		return
+	
+	if server_authorative:
+		SD_Multiplayer.call_func_on_server(_jump_s, [], reliable_input)
+	else:
+		_jump_s()
+
+func _jump_s() -> void:
+	if actor.is_on_floor():
+		actor.velocity.y = jump_force
+		state_machine.switch_by_name("jump")
+
 
 func _on_state_machine_state_enter(state: SD_State) -> void:
 	if state.name == "jump":

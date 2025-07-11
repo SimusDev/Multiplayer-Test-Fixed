@@ -2,7 +2,7 @@ extends Node3D
 class_name SB_NicknamePrefab
 
 @export var source: Node3D
-@export var health: C_HealthComponent
+@export var health: SB_EntityHealth
 
 @onready var label: Label3D = $Label3D
 

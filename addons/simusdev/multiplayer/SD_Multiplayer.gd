@@ -105,6 +105,18 @@ static func sync_call_function_on_peer(peer: int, node: Node, callable: Callable
 static func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
 	_singleton.sync_call_function_on_server(node, callable, args, reliable)
 
+static func call_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.call_func(callable, args, reliable)
+
+static func call_func_on(peer: int, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.call_func_on(peer, callable, args, reliable)
+
+static func call_func_on_server(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.call_func_on_server(callable, args, reliable)
+
+static func call_func_except_self(callable: Callable, args: Array = [], reliable: bool = true) -> void:
+	_singleton.call_func_except_self(callable, args, reliable)
+
 static func request_response_from_peer(peer_id: int, result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
 	_singleton.request_response_from_peer(peer_id, result, timeout, reliable)
 
@@ -129,6 +141,9 @@ static func deserialize_var_from_packet(serialized: Dictionary) -> Variant:
 static func get_unique_id() -> int:
 	return _singleton.get_unique_id()
 
+static func get_multiplayer_authority() -> int:
+	return get_unique_id()
+
 static func kick_peer(peer: int) -> void:
 	_singleton.kick_peer(peer)
 
@@ -152,9 +167,3 @@ static func throw_event_on_peer(peer: int, event: Variant, args: Variant = null,
 
 static func bind_events(callable: Callable) -> void:
 	_singleton.bind_events(callable)
-
-static func invoke_func(callable: Callable, args: Array = []) -> void:
-	_singleton.invoke_func(callable, args)
-
-static func invoke_func_unreliable(callable: Callable, args: Array = []) -> void:
-	_singleton.invoke_func_unreliable(callable, args)

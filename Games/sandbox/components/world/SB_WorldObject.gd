@@ -1,7 +1,8 @@
+@tool
 extends Resource
 class_name SB_WorldObject
 
-@export var id: String 
+@export var id: String
 @export var icon: Texture
 @export var name: String
 @export_multiline var description: String
@@ -44,6 +45,14 @@ func register() -> void:
 	if not _level_section_list.has(get_level_section()):
 		_level_section_list.append(get_level_section())
 	
+
+static func find_in(node: Node) -> SB_WorldObject:
+	if node.has_meta("SB_WorldObject"):
+		return node.get_meta("SB_WorldObject")
+	return null
+
+func set_in(node: Node) -> void:
+	node.set_meta("SB_WorldObject", self)
 
 func get_prefab() -> PackedScene:
 	return prefab

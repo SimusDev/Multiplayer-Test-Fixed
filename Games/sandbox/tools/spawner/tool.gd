@@ -48,7 +48,7 @@ func _ready() -> void:
 		var ui: Control = _object_scene.instantiate()
 		_ui_list.append(ui)
 		_container.add_child(ui)
-		ui.pressed.connect(_on_ui_pressed.bind(ui.object))
+		ui.pressed.connect(_on_ui_pressed.bind(object))
 		ui.init(object, self)
 		$SD_UIControlSearch.bind(object.id, ui)
 	
@@ -58,9 +58,13 @@ func _ready() -> void:
 		_cmd_selected.get_source().set_value(picked_object.id)
 		_cmd_search.get_source().set_value(picked_object.id)
 	
-	var selected_obj: SB_WorldObject = SB_WorldObject.get_by_id(_cmd_selected.get_source().get_value_as_string())
 	
+	
+	var selected_obj: SB_WorldObject = SB_WorldObject.get_by_id(_cmd_selected.get_source().get_value_as_string())
 	set_selected(selected_obj)
+	
+	$l_search.text = _cmd_search.get_source().get_value_as_string()
+	$SD_UIControlSearch.update($l_search.text)
 
 func _on_ui_pressed(object: SB_WorldObject) -> void:
 	set_selected(object)

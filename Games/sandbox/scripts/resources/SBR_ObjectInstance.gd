@@ -1,12 +1,17 @@
 extends Resource
 class_name SBR_ObjectInstance
 
+var _object: SB_WorldObject
+
 var _source: Node
 var _parent: Node
 
 var settings: SB_LevelSpawnSettings
 
 var _spawner: SD_MPClientNodeSpawner
+
+func get_object() -> SB_WorldObject:
+	return _object
 
 func get_source() -> Node:
 	return _source

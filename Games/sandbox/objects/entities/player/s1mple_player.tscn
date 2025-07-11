@@ -1,22 +1,54 @@
-[gd_scene load_steps=20 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=26 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="2_gv642"]
+[ext_resource type="Script" uid="uid://bie6t8nqas4fi" path="res://Games/sandbox/components/entity/SB_EntityHealth.gd" id="2_st6l1"]
+[ext_resource type="Script" uid="uid://b663u5rfjkr72" path="res://Games/sandbox/components/sync/SB_Synchronizer.gd" id="2_u0j1b"]
 [ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_n84i3"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_xtx5c"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_10rrw"]
 [ext_resource type="Script" uid="uid://nq1n3w0kvtbw" path="res://Games/sandbox/components/entity/SB_EntityInventoryItemUsage.gd" id="4_n84i3"]
 [ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="4_st6l1"]
 [ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="5_64jhk"]
 [ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="6_pq8we"]
 [ext_resource type="Resource" uid="uid://cokbg8gf0bwd2" path="res://Games/sandbox/objects/item/test.tres" id="7_h05vk"]
-[ext_resource type="PackedScene" uid="uid://wk87tt30urh8" path="res://Games/sandbox/models/s1mple_player/s1mple_player_model.tscn" id="9_n84i3"]
-[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="9_u0j1b"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_xtx5c"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="11_10rrw"]
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
+[ext_resource type="PackedScene" uid="uid://wk87tt30urh8" path="res://Games/sandbox/models/s1mple_player/s1mple_player_model.tscn" id="13_pq8we"]
 [ext_resource type="PackedScene" uid="uid://d1v4nixukw0j1" path="res://Games/sandbox/prefabs/nickname/nickname.tscn" id="14_gv642"]
-[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="17_64jhk"]
+[ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
+[ext_resource type="Resource" uid="uid://b6008tmb0cj4" path="res://Games/sandbox/objects/skin/sas.tres" id="18_pq8we"]
+
+[sub_resource type="Resource" id="Resource_30ur2"]
+script = ExtResource("4_10rrw")
+properties = Array[String](["position"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 32.0
+node_path = NodePath("..")
+reliable = false
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_u0j1b"]
+script = ExtResource("4_10rrw")
+properties = Array[String](["rotation"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 32.0
+node_path = NodePath("..")
+reliable = false
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
 size = Vector3(1, 1.99615, 1)
@@ -28,18 +60,29 @@ size = Vector3(1, 1.14554, 1)
 collision_layer = 0
 script = ExtResource("1_64jhk")
 
+[node name="SB_Synchronizer" type="Node" parent="."]
+script = ExtResource("2_u0j1b")
+properties = Array[ExtResource("3_xtx5c")]([SubResource("Resource_30ur2"), SubResource("Resource_u0j1b")])
+metadata/_custom_type_script = "uid://b663u5rfjkr72"
+
+[node name="SB_EntityHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_st6l1")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bie6t8nqas4fi"
+
 [node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
 script = ExtResource("1_uxd2n")
 hide_at_start = true
-nodes = [NodePath("../s1mple_player_model")]
+nodes = [null]
 
-[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "_synchronize_transform", "p_health")]
+[node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "p_movement", "p_health", "p_skin")]
 script = ExtResource("2_gv642")
 source = NodePath("..")
 process_when_authority = false
-_synchronize_transform = [NodePath("../W_FPCSourceLikePlayerCamera")]
 _interface = ExtResource("3_n84i3")
-p_health = NodePath("../C_HealthComponent")
+p_movement = NodePath("../W_FPCSourceLikeMovement")
+p_health = NodePath("../SB_EntityHealth")
+p_skin = NodePath("../SB_EntitySkin")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 
 [node name="SB_EntityInventoryItemUsage" type="Node" parent="." node_paths=PackedStringArray("_source", "_inventory")]
@@ -93,7 +136,13 @@ keys = {
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
-[node name="s1mple_player_model" parent="." instance=ExtResource("9_n84i3")]
+[node name="SB_EntitySkin" type="Node3D" parent="." node_paths=PackedStringArray("_source")]
+script = ExtResource("17_64jhk")
+_source = NodePath("..")
+m_current_skin = ExtResource("18_pq8we")
+metadata/_custom_type_script = "uid://bbsduhwdk5jac"
+
+[node name="s1mple_player_model" parent="SB_EntitySkin" instance=ExtResource("13_pq8we")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01474, 0)
@@ -102,11 +151,6 @@ shape = SubResource("BoxShape3D_j2tsh")
 [node name="CollisionShape3D_CR" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
 shape = SubResource("BoxShape3D_p1dqb")
-
-[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("9_u0j1b")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
 [node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_xtx5c")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
@@ -129,6 +173,7 @@ metadata/_custom_type_script = "uid://cg7guu20kh5el"
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("13_ip4yb")]
 actor = NodePath("..")
+server_authorative = true
 key_forward = "move_forward"
 key_backward = "move_backward"
 key_left = "move_left"
@@ -146,11 +191,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
 [node name="Nickname" parent="." node_paths=PackedStringArray("source", "health") instance=ExtResource("14_gv642")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52249, 0)
 source = NodePath("..")
-health = NodePath("../C_HealthComponent")
-
-[node name="SD_NodeInput" type="Node2D" parent="."]
-script = ExtResource("17_64jhk")
-multiplayer_authorative = true
-metadata/_custom_type_script = "uid://d2voalokbx57v"
-
-[connection signal="on_action_just_pressed" from="SD_NodeInput" to="." method="_on_sd_node_input_on_action_just_pressed"]
+health = NodePath("../SB_EntityHealth")

@@ -3,6 +3,15 @@ class_name SB_LevelSection3D
 
 var _level: SB_Level3D
 
+static func find_above(node: Node) -> SB_LevelSection3D:
+	if node is SB_LevelSection3D:
+		return node
+	
+	if node == SimusDev.get_tree().root:
+		return null
+	
+	return find_above(node.get_parent())
+
 func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> SBR_ObjectInstance:
 	if not object:
 		SimusDev.console.write_error("[%s] cant spawn null object")
@@ -18,8 +27,10 @@ func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_
 	obj_instance.settings = settings
 	obj_instance._parent = self
 	obj_instance._spawner = _level.get_spawner()
+	obj_instance._object = object
 	
 	var instance: Node = scene.instantiate()
+	object.set_in(instance)
 	
 	obj_instance._source = instance
 	

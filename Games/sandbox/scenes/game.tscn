@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdcf45f1jrm0y"]
+[gd_scene load_steps=15 format=3 uid="uid://bdcf45f1jrm0y"]
 
 [ext_resource type="Script" uid="uid://gbb5kioauq2f" path="res://Games/sandbox/components/levels/SB_LevelHandler.gd" id="1_8a3r7"]
 [ext_resource type="PackedScene" uid="uid://bbk7bp4f55jkr" path="res://Games/sandbox/prefabs/sky_3d.tscn" id="1_euvie"]
+[ext_resource type="Script" uid="uid://b7x1ov0be4nim" path="res://Games/sandbox/events/SB_EventBus.gd" id="2_urad5"]
 [ext_resource type="Resource" uid="uid://dp0vr3ifxvjni" path="res://Games/sandbox/levels/world.tres" id="2_wcwho"]
 [ext_resource type="Script" uid="uid://by61272w1oc43" path="res://Games/sandbox/singletons/SB_GameSingleton.gd" id="3_wcwho"]
 [ext_resource type="Script" uid="uid://b6vtbie572lqf" path="res://Games/sandbox/singletons/SB_SModuleGameData.gd" id="4_iwi0m"]
@@ -10,11 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://b6gh8mnrcsbsn" path="res://Games/sandbox/tools/spawner/tool.tscn" id="5_ab5mh"]
 [ext_resource type="Resource" uid="uid://dnyuficp8p0ko" path="res://Games/sandbox/resources/network.tres" id="7_yk1wo"]
 [ext_resource type="PackedScene" uid="uid://c0qqos1tvadl7" path="res://Games/sandbox/interface/login/login.tscn" id="10_dr7ho"]
+[ext_resource type="Script" uid="uid://drae5ak55vnyf" path="res://Games/sandbox/singletons/SB_SModuleRagdolls.gd" id="11_q7uj5"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="11_si5o7"]
+[ext_resource type="Script" uid="uid://cgtvs0cw5hdui" path="res://Games/sandbox/singletons/SB_SModuleSkins.gd" id="12_dx5bs"]
 
 [node name="Game" type="Node"]
 
 [node name="Sky3D" parent="." instance=ExtResource("1_euvie")]
+
+[node name="SB_EventBus" type="Node" parent="."]
+script = ExtResource("2_urad5")
+metadata/_custom_type_script = "uid://b7x1ov0be4nim"
 
 [node name="EL_LevelHandler" type="Node" parent="." node_paths=PackedStringArray("singleton")]
 script = ExtResource("1_8a3r7")
@@ -40,6 +47,14 @@ metadata/_custom_type_script = "uid://b6vtbie572lqf"
 [node name="EL_SModuleCommands" type="Node" parent="EL_GameSingleton"]
 script = ExtResource("5_14fed")
 metadata/_custom_type_script = "uid://ducwl5wbq2u66"
+
+[node name="SB_SModuleRagdolls" type="Node" parent="EL_GameSingleton"]
+script = ExtResource("11_q7uj5")
+metadata/_custom_type_script = "uid://drae5ak55vnyf"
+
+[node name="SB_SModuleSkins" type="Node" parent="EL_GameSingleton"]
+script = ExtResource("12_dx5bs")
+metadata/_custom_type_script = "uid://cgtvs0cw5hdui"
 
 [node name="Login" parent="." instance=ExtResource("10_dr7ho")]
 

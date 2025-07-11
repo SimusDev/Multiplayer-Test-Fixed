@@ -177,6 +177,7 @@ theme_override_constants/separation = -1
 metadata/_edit_use_anchors_ = true
 
 [node name="history" type="RichTextLabel" parent="chat/content"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0159363
@@ -214,6 +215,8 @@ placeholder_text = "ENTER MESSAGE HERE..."
 caret_blink = true
 metadata/_edit_use_anchors_ = true
 
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="interface_opened" from="C_UIInterfaceComponent" to="." method="_on_c_ui_interface_component_interface_opened"]
 [connection signal="pressed" from="chat/head/button_base" to="." method="_on_button_base_pressed"]
 [connection signal="text_submitted" from="chat/content/LineEdit" to="." method="_on_line_edit_text_submitted"]
