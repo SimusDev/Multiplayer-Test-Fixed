@@ -445,7 +445,7 @@ process_mode = 4
 script = ExtResource("3_c1i8f")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="chasing" type="Node" parent="state_machine"]
+[node name="attack" type="Node" parent="state_machine"]
 process_mode = 4
 script = ExtResource("3_c1i8f")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"

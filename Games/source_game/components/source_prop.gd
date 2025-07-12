@@ -6,6 +6,8 @@ signal drag
 @export var rigid_body:RigidBody3D
 const synced_property_scene:PackedScene = preload("res://Games/source_game/game/prefabs/mp_property_transform.tscn")
 
+@onready var navigation_obstacle:NavigationObstacle3D = NavigationObstacle3D.new()
+
 var is_drag:bool = false
 var drag_target:Node3D = null
 
@@ -17,6 +19,9 @@ func _ready() -> void:
 	
 	rigid_body.freeze = SD_Multiplayer.is_not_server()
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()
+	
+	add_child(navigation_obstacle)
+	#navigation_obstacle.
 	
 	if synced_property_scene:
 		var synced_property:SD_MPPropertySynchronizer = synced_property_scene.instantiate()
