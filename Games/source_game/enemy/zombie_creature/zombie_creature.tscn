@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_pb25s"]
 script = ExtResource("3_a04ck")
-properties = Array[String](["transform"])
+properties = Array[String](["transform", "velocity"])
 sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 32.0
@@ -103,7 +103,7 @@ node_path = NodePath("..")
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
-sync = 0
+sync = 1
 callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
