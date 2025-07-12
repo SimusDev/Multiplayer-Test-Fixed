@@ -36,7 +36,7 @@ func pick_target() -> AI_Visible:
 			target_priority /= enemy.global_position.distance_to(visible_target.global_position)
 			print(target_priority)
 			
-			if target_priority > float(current_target.ai_priority):
+			if target_priority > float(current_target.ai_priority * 2):
 				picked_target = visible_target
 				return visible_target
 			
