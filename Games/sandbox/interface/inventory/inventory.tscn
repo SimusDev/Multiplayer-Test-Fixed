@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpk25c1qfdshe"]
+[gd_scene load_steps=8 format=3 uid="uid://bpk25c1qfdshe"]
 
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="1_rst25"]
 [ext_resource type="Script" uid="uid://djgoqh171xgok" path="res://Games/sandbox/interface/inventory/inventory.gd" id="1_uvvdc"]
 [ext_resource type="PackedScene" uid="uid://dkvjgxc7upod1" path="res://Games/sandbox/interface/inventory/slot.tscn" id="2_8ucd7"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_udvas"]
 [ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="4_udvas"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_t0o00"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8ucd7"]
+[sub_resource type="LabelSettings" id="LabelSettings_t0o00"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -19,6 +20,13 @@ mouse_filter = 2
 script = ExtResource("1_uvvdc")
 slot_scene = ExtResource("2_8ucd7")
 metadata/_edit_horizontal_guides_ = [164.0]
+
+[node name="SD_UIDragAndDrop" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("3_udvas")
+TARGET_INPUT = NodePath("../panel")
+TARGET_DRAG = NodePath("../panel")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_rst25")
@@ -41,6 +49,7 @@ offset_right = 454.0
 offset_bottom = 250.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 
 [node name="SD_Label" type="Label" parent="panel"]
 unique_name_in_owner = true
@@ -50,7 +59,7 @@ anchor_right = 1.0
 anchor_bottom = 0.10978
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_8ucd7")
+label_settings = SubResource("LabelSettings_t0o00")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
