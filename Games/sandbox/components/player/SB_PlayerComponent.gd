@@ -10,8 +10,8 @@ class_name SB_PlayerComponent
 
 @onready var _prefabs: SBR_Prefabs = SB_GameSingleton.instance.prefabs
 
-@onready var _level: SB_Level3D
-
+var _level: SB_Level3D
+var _level_section: SB_LevelSection3D
 
 @export_category("References")
 @export var p_movement: W_FPCSourceLikeMovement
@@ -29,8 +29,12 @@ func get_player() -> SD_MultiplayerPlayer:
 func get_level() -> SB_Level3D:
 	return _level
 
+func get_level_section() -> SB_LevelSection3D:
+	return _level_section
+
 func _ready() -> void:
 	_level = SB_Level3D.find_above(self)
+	_level_section = SB_LevelSection3D.find_above(self)
 	
 	var transform_sync: PackedScene = _prefabs.p_sync_transform
 	

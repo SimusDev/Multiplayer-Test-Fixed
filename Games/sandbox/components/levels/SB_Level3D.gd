@@ -99,8 +99,19 @@ func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_
 	var section: SB_LevelSection3D = get_section(object.get_level_section())
 	return section.spawn_local(object, instantiate, settings)
 
-
 func spawn_request(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> void:
-	SimusDev.console.write_info("spawn requested: %s" % object.id)
-	SD_Multiplayer.sync_call_function_on_server(self, spawn_local, [object, instantiate, settings])
+	var section: SB_LevelSection3D = get_section(object.get_level_section())
+	section.spawn_request(object, instantiate, settings)
+
+func despawn_request(object: Object) -> void:
+	SimusDev.console.write_info("despawn request: %s" % [str(object)])
+	SD_Multiplayer.call_func_on_server(_despawn_request_server, [object])
+
+func _despawn_request_server(object: Object) -> void:
 	
+	if !object:
+		return
+	
+	if object is Node:
+		object.queue_free()
+		SimusDev.console.write_info("despawed: %s" % [str(object)])

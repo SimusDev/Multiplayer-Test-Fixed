@@ -12,14 +12,21 @@ extends Control
 	"6",
 ]
 
-@onready var inventory: SB_Inventory = SB_Inventory.find_in(SB_PlayerComponent.get_local().get_source())
+@onready var inventory: SB_Inventory
 
 var _slots: Array[SB_InventorySlot] = []
 
 var _interface: Dictionary[SB_InventorySlot, Control] = {}
 
 func _ready() -> void:
+	if SB_PlayerComponent.get_local():
+		inventory = SB_Inventory.find_in(SB_PlayerComponent.get_local().get_source())
+	
+	
 	$SD_NodeInput.enabled = switch_enabled
+	
+	if not inventory:
+		return
 	
 	if not inventory.is_initialized():
 		await inventory.initialized

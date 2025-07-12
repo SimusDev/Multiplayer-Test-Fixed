@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://gsim5nki34dc"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://ct7n5hbddorg0"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwoo7"]
 animation = &"zombie/attack"
