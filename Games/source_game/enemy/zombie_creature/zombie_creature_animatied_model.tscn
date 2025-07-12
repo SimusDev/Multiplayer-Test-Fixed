@@ -1,109 +1,88 @@
-[gd_scene load_steps=26 format=3 uid="uid://chyunnwrsr8cq"]
+[gd_scene load_steps=5 format=3 uid="uid://chyunnwrsr8cq"]
 
 [ext_resource type="Script" uid="uid://c6fadyxkc0ggh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.gd" id="1_ji0iy"]
 [ext_resource type="PackedScene" uid="uid://dvhn3wr74ct05" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_model.tscn" id="2_nd1ge"]
-[ext_resource type="Animation" uid="uid://cec1hb5ttmc46" path="res://Games/source_game/enemy/zombie_creature/animations/idle.res" id="3_lx5ct"]
-[ext_resource type="Animation" uid="uid://col2f6suonohp" path="res://Games/source_game/enemy/zombie_creature/animations/walk.res" id="4_lx5ct"]
-[ext_resource type="Animation" uid="uid://b5p7jpsj1bd7n" path="res://Games/source_game/enemy/zombie_creature/animations/run.res" id="5_ji0iy"]
-[ext_resource type="Animation" uid="uid://g7ab714t1fps" path="res://Games/source_game/enemy/zombie_creature/animations/attack.res" id="6_blkx5"]
+[ext_resource type="AnimationLibrary" uid="uid://chc7g0ugvidd0" path="res://Games/source_game/enemy/zombie_creature/animations/zombie_lib.res" id="3_nd1ge"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://gsim5nki34dc" path="res://Games/source_game/enemy/zombie_creature/animations/zombie_creature_animatied_model.tres" id="4_lx5ct"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_s77j2"]
-_data = {
-&"attack": ExtResource("6_blkx5"),
-&"idle": ExtResource("3_lx5ct"),
-&"run": ExtResource("5_ji0iy"),
-&"walk": ExtResource("4_lx5ct")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blkx5"]
-animation = &"zombie/idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lx5ct"]
-animation = &"zombie/idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji0iy"]
-animation = &"zombie/run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbqn3"]
-animation = &"zombie/run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s77j2"]
-animation = &"zombie/run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4rbf"]
-animation = &"zombie/run"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qwoo7"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_lx5ct")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ji0iy")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_rbqn3")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_s77j2")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_p4rbf")
-blend_point_4/pos = Vector2(0, -1)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwoo7"]
-animation = &"zombie/attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3qa0s"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4sy32"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y2fq2"]
-
-[sub_resource type="Curve" id="Curve_3qa0s"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ki0f"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_3qa0s")
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iidvx"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_3qa0s")
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s360a"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_3qa0s")
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms1kn"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_3qa0s")
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_blkx5"]
-states/idle/node = SubResource("AnimationNodeAnimation_blkx5")
-states/idle/position = Vector2(354, 100)
-states/move/node = SubResource("AnimationNodeBlendSpace2D_qwoo7")
-states/move/position = Vector2(585, 100)
-states/zombie_attack/node = SubResource("AnimationNodeAnimation_qwoo7")
-states/zombie_attack/position = Vector2(468, 31)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3qa0s"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_4sy32"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_y2fq2"), "idle", "zombie_attack", SubResource("AnimationNodeStateMachineTransition_0ki0f"), "zombie_attack", "idle", SubResource("AnimationNodeStateMachineTransition_iidvx"), "zombie_attack", "move", SubResource("AnimationNodeStateMachineTransition_s360a"), "move", "zombie_attack", SubResource("AnimationNodeStateMachineTransition_ms1kn")]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rbqn3"]
-graph_offset = Vector2(-31.8141, 151.087)
-nodes/state_machine/node = SubResource("AnimationNodeStateMachine_blkx5")
-nodes/state_machine/position = Vector2(0, 180)
-node_connections = [&"output", 0, &"state_machine"]
-
-[node name="zombie_creature_animatied_model" type="Node3D"]
+[node name="zombie_creature_animatied_model" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
 script = ExtResource("1_ji0iy")
+model_scene = ExtResource("2_nd1ge")
+library = ExtResource("3_nd1ge")
+blend_tree = ExtResource("4_lx5ct")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/Skeleton3D")
 metadata/_custom_type_script = "uid://pf622qfdiljm"
 
 [node name="model3d" parent="." instance=ExtResource("2_nd1ge")]
 
+[node name="Skeleton3D" parent="model3d" index="1"]
+bones/0/position = Vector3(0.00990867, 0.900047, -0.0248542)
+bones/0/rotation = Quaternion(0.100867, -0.164801, -0.0168781, 0.981011)
+bones/1/rotation = Quaternion(-0.0508472, -0.00542793, 0.0185492, 0.998519)
+bones/2/rotation = Quaternion(0.0650032, -0.0126861, 0.0104909, 0.997749)
+bones/3/rotation = Quaternion(0.0651063, -0.011748, 0.0109496, 0.997749)
+bones/4/rotation = Quaternion(0.0202767, 0.0296533, -0.0202189, 0.99915)
+bones/5/rotation = Quaternion(-0.195972, 0.121985, -0.0351994, 0.972356)
+bones/7/rotation = Quaternion(-0.554267, -0.409254, 0.636883, -0.345948)
+bones/8/rotation = Quaternion(0.350708, 0.0533593, 0.124119, 0.926688)
+bones/9/rotation = Quaternion(0.0676854, 0.0536998, 0.667226, 0.739828)
+bones/10/rotation = Quaternion(-0.231309, 0.18071, -0.02393, 0.95565)
+bones/11/rotation = Quaternion(0.180805, 0.0941683, 0.269489, 0.941179)
+bones/12/rotation = Quaternion(0.0463029, 0.0159338, -0.034449, 0.998206)
+bones/13/rotation = Quaternion(0.0251107, -0.102126, -0.282163, 0.953585)
+bones/15/rotation = Quaternion(0.102803, -0.0795545, 0.144666, 0.980905)
+bones/16/rotation = Quaternion(0.177132, -0.0034403, -0.0246517, 0.983872)
+bones/17/rotation = Quaternion(0.341819, -0.000922921, -0.0467457, 0.938602)
+bones/19/rotation = Quaternion(-0.00961993, -0.0110796, 0.08442, 0.996322)
+bones/20/rotation = Quaternion(0.451446, -0.0106837, -0.0618114, 0.890091)
+bones/21/rotation = Quaternion(0.154085, -0.0053087, -0.0218354, 0.987802)
+bones/23/rotation = Quaternion(-0.161543, -0.0257268, -0.040969, 0.985679)
+bones/24/rotation = Quaternion(0.219073, -0.00671866, -0.0324839, 0.975144)
+bones/25/rotation = Quaternion(0.312605, -0.00330462, -0.0464083, 0.948743)
+bones/27/rotation = Quaternion(-0.0509495, 0.0174586, -0.154567, 0.986513)
+bones/28/rotation = Quaternion(0.230243, -0.00543696, -0.0360958, 0.972448)
+bones/29/rotation = Quaternion(0.457846, -0.00311682, -0.0761082, 0.885763)
+bones/31/rotation = Quaternion(0.605365, -0.386813, 0.590612, 0.367542)
+bones/32/rotation = Quaternion(0.414799, 0.0166878, -0.14223, 0.898573)
+bones/33/rotation = Quaternion(0.0722555, -0.0537407, -0.692544, 0.715733)
+bones/34/rotation = Quaternion(0.0288232, -0.231321, -0.00106017, 0.97245)
+bones/35/rotation = Quaternion(0.016942, -0.0722454, -0.49896, 0.863442)
+bones/36/rotation = Quaternion(-0.0276215, 0.0619675, 0.450441, 0.890225)
+bones/37/rotation = Quaternion(-0.0140613, 0.00716009, -0.289727, 0.956979)
+bones/39/rotation = Quaternion(-0.19666, 0.00361971, -0.0284103, 0.980053)
+bones/40/rotation = Quaternion(0.378028, 0.00339793, 0.0536733, 0.924231)
+bones/41/rotation = Quaternion(0.0712654, 0.00154554, 0.0109211, 0.997396)
+bones/43/rotation = Quaternion(-0.141134, 0.0144211, -0.0320098, 0.989368)
+bones/44/rotation = Quaternion(0.495742, 0.00976054, 0.0670047, 0.865826)
+bones/45/rotation = Quaternion(0.376483, 0.00504967, 0.0525601, 0.924918)
+bones/47/rotation = Quaternion(0.11984, 0.012452, 0.0125144, 0.992636)
+bones/48/rotation = Quaternion(0.0573246, 0.00672072, 0.00860854, 0.998296)
+bones/49/rotation = Quaternion(0.0488931, 0.00341428, 0.00701434, 0.998774)
+bones/51/rotation = Quaternion(0.235201, 0.0148637, 0.03408, 0.971235)
+bones/52/rotation = Quaternion(0.464195, 0.00431424, 0.0720377, 0.882788)
+bones/53/rotation = Quaternion(0.364431, 0.00349368, 0.056009, 0.929538)
+bones/55/rotation = Quaternion(0.138702, 0.38284, 0.896457, -0.174812)
+bones/56/rotation = Quaternion(-0.433548, -0.0684687, 0.035123, 0.897839)
+bones/57/rotation = Quaternion(0.556281, -0.0239074, -0.0941335, 0.825299)
+bones/58/rotation = Quaternion(0.287643, -0.0728767, 0.0218904, 0.95471)
+bones/60/rotation = Quaternion(-0.128454, 0.333118, 0.928156, 0.105161)
+bones/61/rotation = Quaternion(-0.440615, 0.0768401, -0.0342537, 0.893746)
+bones/62/rotation = Quaternion(0.591681, 0.0207113, 0.0784992, 0.802074)
+bones/63/rotation = Quaternion(0.284423, 0.073087, -0.021752, 0.955661)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../model3d")
 libraries = {
-&"zombie": SubResource("AnimationLibrary_s77j2")
+&"zombie": ExtResource("3_nd1ge")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model3d")
-tree_root = SubResource("AnimationNodeBlendTree_rbqn3")
+tree_root = ExtResource("4_lx5ct")
 anim_player = NodePath("../AnimationPlayer")
 parameters/state_machine/move/blend_position = Vector2(0, 0)
+
+[editable path="model3d"]

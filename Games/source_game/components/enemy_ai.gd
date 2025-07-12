@@ -4,9 +4,10 @@ class_name EnemyAI extends Node
 @export var vision:EnemyAI_Vision
 @export var navigation_agent:NavigationAgent3D
 @export_category("Settings")
+@export var damage:float = 15.0
 @export var move_speed:float = 3.0
 @export var rotation_speed:float = 5.0
-@export var attack_range:float = 2.5
+@export var attack_range:float = 5.5
 @export var tick_rate:float = 32.0
 var tick_timer:Timer = Timer.new()
 
@@ -65,6 +66,13 @@ func chase_target():
 	
 	if enemy.global_position.distance_to(current_target_position) < attack_range:
 		enemy.state_machine.switch_by_name("attack")
+
+
+func attack_current_target():
+	if !SD_Multiplayer.is_server():
+		return
+	
+	current_target.target_health_component.apply_damage(damage)
 
 func _physics_process(delta: float) -> void:
 	enemy.global_transform.basis = lerp(enemy.global_transform.basis, target_rotation, rotation_speed * delta)

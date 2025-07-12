@@ -13,4 +13,4 @@ func _ready() -> void:
 	set_instance(self)
 
 static func update(_health:float):
-	instance.health.text = str(_health) + " :hp"
+	instance.health.text = str(roundf(_health)) + " :hp"

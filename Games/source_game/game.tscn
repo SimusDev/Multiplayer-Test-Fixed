@@ -33,7 +33,6 @@
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
 [ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
-[ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="33_fcmfk"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -287,6 +286,10 @@ top_radius = 0.01
 bottom_radius = 0.01
 height = 4.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcmfk"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.490196)
+
 [node name="source_game" type="Node" node_paths=PackedStringArray("ambience", "sky_3d", "mp_player_spawner", "death_camera")]
 script = ExtResource("1_lvrp7")
 ambience = NodePath("ambience")
@@ -331,7 +334,7 @@ properties = Array[ExtResource("4_152x2")]([SubResource("Resource_lg245")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.865716, 6.13851)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.3, 9.06572, -0.26149)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53703, 0, -1.80009)
@@ -466,10 +469,13 @@ transform = Transform3D(0.81816, -0.574991, 0, 0.574991, 0.81816, 0, 0, 0, 1, 0.
 mesh = SubResource("CylinderMesh_ij05y")
 material = SubResource("StandardMaterial3D_7hhbe")
 
-[node name="dr_kleiner" parent="." instance=ExtResource("33_fcmfk")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 8.4712, 2.60671)
-
 [node name="zombie_creature" parent="." instance=ExtResource("31_ij05y")]
-transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, -8.33642, 0.9, 16.135)
+transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, -8.33642, 13.7, 0.335)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3, 11.9166, 0.709729)
+use_collision = true
+size = Vector3(1, 8.43323, 15.4062)
+material = SubResource("StandardMaterial3D_fcmfk")
 
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

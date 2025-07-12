@@ -1,0 +1,76 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://gsim5nki34dc"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwoo7"]
+animation = &"zombie/attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blkx5"]
+animation = &"zombie/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lx5ct"]
+animation = &"zombie/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji0iy"]
+animation = &"zombie/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbqn3"]
+animation = &"zombie/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s77j2"]
+animation = &"zombie/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4rbf"]
+animation = &"zombie/run"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qwoo7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_lx5ct")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ji0iy")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_rbqn3")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_s77j2")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_p4rbf")
+blend_point_4/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3qa0s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4sy32"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y2fq2"]
+
+[sub_resource type="Curve" id="Curve_3qa0s"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ki0f"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_3qa0s")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iidvx"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_3qa0s")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s360a"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_3qa0s")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms1kn"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_3qa0s")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_blkx5"]
+states/attack/node = SubResource("AnimationNodeAnimation_qwoo7")
+states/attack/position = Vector2(468, 31)
+states/idle/node = SubResource("AnimationNodeAnimation_blkx5")
+states/idle/position = Vector2(354, 100)
+states/move/node = SubResource("AnimationNodeBlendSpace2D_qwoo7")
+states/move/position = Vector2(585, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3qa0s"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_4sy32"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_y2fq2"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_0ki0f"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_iidvx"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_s360a"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_ms1kn")]
+
+[resource]
+graph_offset = Vector2(-31.8141, 151.087)
+nodes/state_machine/node = SubResource("AnimationNodeStateMachine_blkx5")
+nodes/state_machine/position = Vector2(0, 180)
+node_connections = [&"output", 0, &"state_machine"]

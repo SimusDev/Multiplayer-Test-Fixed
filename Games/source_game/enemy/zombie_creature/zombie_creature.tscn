@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cw5oibpawydbh"]
+[gd_scene load_steps=82 format=3 uid="uid://cw5oibpawydbh"]
 
 [ext_resource type="Script" uid="uid://ddyrchekq1gjg" path="res://Games/source_game/components/enemy_ai.gd" id="1_c1i8f"]
 [ext_resource type="PackedScene" uid="uid://chyunnwrsr8cq" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.tscn" id="1_jud0w"]
@@ -9,6 +9,75 @@
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_n5qw2"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_a04ck"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="3_c1i8f"]
+[ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="6_0mdbs"]
+[ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="7_tyhak"]
+[ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="8_vvyed"]
+[ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="9_xsajw"]
+[ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="10_a04ck"]
+[ext_resource type="AudioStream" uid="uid://dnsq0ogn2jeqy" path="res://sounds/hl2/player/footsteps/gravel1.wav" id="10_eh5ps"]
+[ext_resource type="AudioStream" uid="uid://dq3nelmioi1vl" path="res://sounds/hl2/player/footsteps/gravel2.wav" id="11_2qxb0"]
+[ext_resource type="AudioStream" uid="uid://covvae6mj6fp4" path="res://sounds/hl2/player/footsteps/gravel3.wav" id="12_vqewh"]
+[ext_resource type="AudioStream" uid="uid://bbw8lofjwplcd" path="res://sounds/hl2/player/footsteps/gravel4.wav" id="13_e1hk0"]
+[ext_resource type="AudioStream" uid="uid://bxblu0hifdh4u" path="res://sounds/hl2/player/footsteps/dirt1.wav" id="14_60t27"]
+[ext_resource type="AudioStream" uid="uid://dieq0hhk3inw1" path="res://sounds/hl2/player/footsteps/dirt2.wav" id="15_ons4k"]
+[ext_resource type="AudioStream" uid="uid://m4lg17oy25uh" path="res://sounds/hl2/player/footsteps/dirt3.wav" id="16_sb7rt"]
+[ext_resource type="AudioStream" uid="uid://2s6kq8geons3" path="res://sounds/hl2/player/footsteps/dirt4.wav" id="17_rau8a"]
+[ext_resource type="AudioStream" uid="uid://kng46fh2h032" path="res://sounds/hl2/player/footsteps/mud1.wav" id="18_51guv"]
+[ext_resource type="AudioStream" uid="uid://dwhupyasucyfb" path="res://sounds/hl2/player/footsteps/mud2.wav" id="19_2nvyi"]
+[ext_resource type="AudioStream" uid="uid://b6n7utojgf2ws" path="res://sounds/hl2/player/footsteps/mud3.wav" id="20_f732d"]
+[ext_resource type="AudioStream" uid="uid://ckgpko78avrt1" path="res://sounds/hl2/player/footsteps/mud4.wav" id="21_7spm0"]
+[ext_resource type="AudioStream" uid="uid://dmusj0kfab4ym" path="res://sounds/hl2/player/footsteps/sand1.wav" id="22_1tfgx"]
+[ext_resource type="AudioStream" uid="uid://j2retdoqw78y" path="res://sounds/hl2/player/footsteps/sand2.wav" id="23_ibe7a"]
+[ext_resource type="AudioStream" uid="uid://hftmap0wrt3x" path="res://sounds/hl2/player/footsteps/sand3.wav" id="24_nfhyb"]
+[ext_resource type="AudioStream" uid="uid://c6q16mrbw1cpv" path="res://sounds/hl2/player/footsteps/sand4.wav" id="25_833c4"]
+[ext_resource type="AudioStream" uid="uid://cqs7k2tjkdjjx" path="res://sounds/hl2/player/footsteps/concrete1.wav" id="26_bluvb"]
+[ext_resource type="AudioStream" uid="uid://bdiboxh5k3r35" path="res://sounds/hl2/player/footsteps/concrete2.wav" id="27_geour"]
+[ext_resource type="AudioStream" uid="uid://bwer8p2x4sw3o" path="res://sounds/hl2/player/footsteps/concrete3.wav" id="28_k2f36"]
+[ext_resource type="AudioStream" uid="uid://ctk4fa7resa76" path="res://sounds/hl2/player/footsteps/concrete4.wav" id="29_vjufl"]
+[ext_resource type="AudioStream" uid="uid://bos1qocyqmii8" path="res://sounds/hl2/player/footsteps/tile1.wav" id="30_qq5yy"]
+[ext_resource type="AudioStream" uid="uid://yks5khomtnq8" path="res://sounds/hl2/player/footsteps/tile2.wav" id="31_pbw0h"]
+[ext_resource type="AudioStream" uid="uid://bcjcila2dj5f3" path="res://sounds/hl2/player/footsteps/tile3.wav" id="32_qgtdg"]
+[ext_resource type="AudioStream" uid="uid://ctf73fb8dp0b1" path="res://sounds/hl2/player/footsteps/tile4.wav" id="33_ldn41"]
+[ext_resource type="AudioStream" uid="uid://bkfwsejc2mjdv" path="res://sounds/hl2/player/footsteps/chainlink1.wav" id="34_1bbp2"]
+[ext_resource type="AudioStream" uid="uid://uugrkw4b3sjl" path="res://sounds/hl2/player/footsteps/chainlink2.wav" id="35_fe466"]
+[ext_resource type="AudioStream" uid="uid://bmn6kyp8aun32" path="res://sounds/hl2/player/footsteps/chainlink3.wav" id="36_e6cfe"]
+[ext_resource type="AudioStream" uid="uid://50jgod7m8wqd" path="res://sounds/hl2/player/footsteps/chainlink4.wav" id="37_yrx4v"]
+[ext_resource type="AudioStream" uid="uid://b88cmx1vla6li" path="res://sounds/hl2/player/footsteps/duct1.wav" id="38_gyngn"]
+[ext_resource type="AudioStream" uid="uid://c0hd6gj7h6536" path="res://sounds/hl2/player/footsteps/duct2.wav" id="39_25yq6"]
+[ext_resource type="AudioStream" uid="uid://bgrag7j0tc5cb" path="res://sounds/hl2/player/footsteps/duct3.wav" id="40_dkbr0"]
+[ext_resource type="AudioStream" uid="uid://cpsaufq4j2phi" path="res://sounds/hl2/player/footsteps/duct4.wav" id="41_4plev"]
+[ext_resource type="AudioStream" uid="uid://dj8iqcpisaql5" path="res://sounds/hl2/player/footsteps/metal1.wav" id="42_n467u"]
+[ext_resource type="AudioStream" uid="uid://c7tqtsj4iqqdk" path="res://sounds/hl2/player/footsteps/metal2.wav" id="43_rrved"]
+[ext_resource type="AudioStream" uid="uid://buwditvoljv7a" path="res://sounds/hl2/player/footsteps/metal3.wav" id="44_pg5sd"]
+[ext_resource type="AudioStream" uid="uid://b07kngqpjlxt" path="res://sounds/hl2/player/footsteps/metal4.wav" id="45_t6840"]
+[ext_resource type="AudioStream" uid="uid://ue08qlxmb6h2" path="res://sounds/hl2/player/footsteps/metalgrate1.wav" id="46_gq2uc"]
+[ext_resource type="AudioStream" uid="uid://bs3uvkty43ha6" path="res://sounds/hl2/player/footsteps/metalgrate2.wav" id="47_gypdy"]
+[ext_resource type="AudioStream" uid="uid://747b6ad7q3ne" path="res://sounds/hl2/player/footsteps/metalgrate3.wav" id="48_4hjjn"]
+[ext_resource type="AudioStream" uid="uid://dxg30xetr1762" path="res://sounds/hl2/player/footsteps/metalgrate4.wav" id="49_j2uvq"]
+[ext_resource type="AudioStream" uid="uid://wsiwrjrfh17v" path="res://sounds/hl2/player/footsteps/wood1.wav" id="50_eivb2"]
+[ext_resource type="AudioStream" uid="uid://dj4j8hjdpr48w" path="res://sounds/hl2/player/footsteps/wood2.wav" id="51_n01x2"]
+[ext_resource type="AudioStream" uid="uid://x43goxqclq3d" path="res://sounds/hl2/player/footsteps/wood3.wav" id="52_td2pr"]
+[ext_resource type="AudioStream" uid="uid://dfbtndtene1ar" path="res://sounds/hl2/player/footsteps/wood4.wav" id="53_f8e2w"]
+[ext_resource type="AudioStream" uid="uid://ccnbxrrpecjcy" path="res://sounds/hl2/player/footsteps/woodpanel1.wav" id="54_54hvp"]
+[ext_resource type="AudioStream" uid="uid://blcw0kklb4a8a" path="res://sounds/hl2/player/footsteps/woodpanel2.wav" id="55_52nih"]
+[ext_resource type="AudioStream" uid="uid://duoxhrycjjo41" path="res://sounds/hl2/player/footsteps/woodpanel3.wav" id="56_0knfh"]
+[ext_resource type="AudioStream" uid="uid://c55bum61d7v80" path="res://sounds/hl2/player/footsteps/woodpanel4.wav" id="57_yyfgf"]
+[ext_resource type="AudioStream" uid="uid://ermstv8itlvn" path="res://sounds/hl2/player/footsteps/ladder1.wav" id="58_xjcld"]
+[ext_resource type="AudioStream" uid="uid://cwvh0uimcsynj" path="res://sounds/hl2/player/footsteps/ladder2.wav" id="59_8bro7"]
+[ext_resource type="AudioStream" uid="uid://dd4kwjo5s72g7" path="res://sounds/hl2/player/footsteps/ladder3.wav" id="60_owm2l"]
+[ext_resource type="AudioStream" uid="uid://cv84usba8fnqi" path="res://sounds/hl2/player/footsteps/ladder4.wav" id="61_sbx5q"]
+[ext_resource type="AudioStream" uid="uid://c7bpo8hr5w1p" path="res://sounds/hl2/player/footsteps/wade1.wav" id="62_1icw6"]
+[ext_resource type="AudioStream" uid="uid://dm3uofkhd0y08" path="res://sounds/hl2/player/footsteps/wade2.wav" id="63_iwy3e"]
+[ext_resource type="AudioStream" uid="uid://bcggcmemie6j3" path="res://sounds/hl2/player/footsteps/wade3.wav" id="64_upbhq"]
+[ext_resource type="AudioStream" uid="uid://drshxt65nb3uv" path="res://sounds/hl2/player/footsteps/wade4.wav" id="65_3b0pt"]
+[ext_resource type="AudioStream" uid="uid://ckwhq2ujb8u6r" path="res://sounds/hl2/player/footsteps/wade5.wav" id="66_w0i16"]
+[ext_resource type="AudioStream" uid="uid://bi6wtfsofs31p" path="res://sounds/hl2/player/footsteps/wade6.wav" id="67_l3sms"]
+[ext_resource type="AudioStream" uid="uid://c5scqofir6ogc" path="res://sounds/hl2/player/footsteps/wade7.wav" id="68_b5c7e"]
+[ext_resource type="AudioStream" uid="uid://bq2wci3q0phs3" path="res://sounds/hl2/player/footsteps/wade8.wav" id="69_g35rf"]
+[ext_resource type="AudioStream" uid="uid://bt2700chp1du4" path="res://sounds/hl2/player/footsteps/slosh1.wav" id="70_rcg5u"]
+[ext_resource type="AudioStream" uid="uid://4ma5b6x7fokl" path="res://sounds/hl2/player/footsteps/slosh2.wav" id="71_7hdkl"]
+[ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="72_pqy00"]
+[ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="73_nqbpn"]
 
 [sub_resource type="Resource" id="Resource_ei143"]
 script = ExtResource("3_a04ck")
@@ -42,19 +111,43 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 radius = 0.319827
 height = 1.75965
 
-[node name="zombie_creature" type="CharacterBody3D"]
+[node name="zombie_creature" type="CharacterBody3D" node_paths=PackedStringArray("footsteps", "ai")]
 script = ExtResource("1_k8hqk")
+footsteps = NodePath("footsteps")
+ai = NodePath("EnemyAI")
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
 script = ExtResource("1_pb25s")
 properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143"), SubResource("Resource_pb25s")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
+[node name="footsteps" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("10_a04ck")
+player = NodePath("..")
+grass = Array[AudioStream]([ExtResource("6_0mdbs"), ExtResource("7_tyhak"), ExtResource("8_vvyed"), ExtResource("9_xsajw")])
+gravel = Array[AudioStream]([ExtResource("10_eh5ps"), ExtResource("11_2qxb0"), ExtResource("12_vqewh"), ExtResource("13_e1hk0")])
+dirt = Array[AudioStream]([ExtResource("14_60t27"), ExtResource("15_ons4k"), ExtResource("16_sb7rt"), ExtResource("17_rau8a")])
+mud = Array[AudioStream]([ExtResource("18_51guv"), ExtResource("19_2nvyi"), ExtResource("20_f732d"), ExtResource("21_7spm0")])
+sand = Array[AudioStream]([ExtResource("22_1tfgx"), ExtResource("23_ibe7a"), ExtResource("24_nfhyb"), ExtResource("25_833c4")])
+concrete = Array[AudioStream]([ExtResource("26_bluvb"), ExtResource("27_geour"), ExtResource("28_k2f36"), ExtResource("29_vjufl")])
+tile = Array[AudioStream]([ExtResource("30_qq5yy"), ExtResource("31_pbw0h"), ExtResource("32_qgtdg"), ExtResource("33_ldn41")])
+chainlink = Array[AudioStream]([ExtResource("34_1bbp2"), ExtResource("35_fe466"), ExtResource("36_e6cfe"), ExtResource("37_yrx4v")])
+duct = Array[AudioStream]([ExtResource("38_gyngn"), ExtResource("39_25yq6"), ExtResource("40_dkbr0"), ExtResource("41_4plev")])
+metal = Array[AudioStream]([ExtResource("42_n467u"), ExtResource("43_rrved"), ExtResource("44_pg5sd"), ExtResource("45_t6840")])
+metalgrate = Array[AudioStream]([ExtResource("46_gq2uc"), ExtResource("47_gypdy"), ExtResource("48_4hjjn"), ExtResource("49_j2uvq")])
+wood = Array[AudioStream]([ExtResource("50_eivb2"), ExtResource("51_n01x2"), ExtResource("52_td2pr"), ExtResource("53_f8e2w")])
+woodpanel = Array[AudioStream]([ExtResource("54_54hvp"), ExtResource("55_52nih"), ExtResource("56_0knfh"), ExtResource("57_yyfgf")])
+ladder = Array[AudioStream]([ExtResource("58_xjcld"), ExtResource("59_8bro7"), ExtResource("60_owm2l"), ExtResource("61_sbx5q")])
+wade = Array[AudioStream]([ExtResource("62_1icw6"), ExtResource("63_iwy3e"), ExtResource("64_upbhq"), ExtResource("65_3b0pt"), ExtResource("66_w0i16"), ExtResource("67_l3sms"), ExtResource("68_b5c7e"), ExtResource("69_g35rf")])
+slosh = Array[AudioStream]([ExtResource("70_rcg5u"), ExtResource("71_7hdkl"), ExtResource("72_pqy00"), ExtResource("73_nqbpn")])
+metadata/_custom_type_script = "uid://m4rd2xovd0yt"
+
 [node name="EnemyAI" type="Node" parent="." node_paths=PackedStringArray("enemy", "vision", "navigation_agent")]
 script = ExtResource("1_c1i8f")
 enemy = NodePath("..")
 vision = NodePath("../EnemyAI_Vision")
 navigation_agent = NodePath("../NavigationAgent3D")
+attack_range = 20.0
 metadata/_custom_type_script = "uid://ddyrchekq1gjg"
 
 [node name="EnemyAI_Vision" type="Node3D" parent="."]
