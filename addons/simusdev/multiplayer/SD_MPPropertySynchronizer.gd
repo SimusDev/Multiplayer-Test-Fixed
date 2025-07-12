@@ -99,21 +99,19 @@ func synchronize(mp_property: SD_MPPSSyncedBase, at_start: bool = false) -> void
 	
 	if mp_property is SD_MPPSSyncedProperty:
 		
-		
-		if mp_property.sync == mp_property.SYNC.TO_CLIENT and at_start == false:
-			if SD_Multiplayer.is_server():
+		if mp_property.sync == mp_property.SYNC.FROM_SERVER:
+			if at_start and SD_Multiplayer.is_not_server():
+				recieve_properties_from_peer(node, mp_property.properties, SD_Multiplayer.SERVER_ID, mp_property.callmode)
+				return
+			
+			elif SD_Multiplayer.is_server():
 				for peer in SD_Multiplayer.get_connected_peers():
 					if peer == SD_Multiplayer.get_unique_id():
 						continue
-						
+					
+					
 					send_properties_to_peer(node, mp_property.properties, peer, mp_property.callmode)
 				return
-		else:
-			recieve_properties_from_peer(node, mp_property.properties, SD_Multiplayer.SERVER_ID, mp_property.callmode)
-		
-		if mp_property.sync == mp_property.SYNC.FROM_SERVER:
-			recieve_properties_from_peer(node, mp_property.properties, SD_Multiplayer.SERVER_ID, mp_property.callmode)
-			return
 		
 		if is_multiplayer_authority():
 			for peer in SD_Multiplayer.get_connected_peers():
@@ -162,8 +160,7 @@ func _hook_property_node_property_change(mp_property: SD_MPPSSyncedProperty, del
 		if property_value != node_value:
 			synchronize(mp_property)
 			properties.set(property, node_value)
-
-
+			
 
 var _mp_properties_cooldown: Dictionary[SD_MPPSSyncedProperty, float] = {}
 

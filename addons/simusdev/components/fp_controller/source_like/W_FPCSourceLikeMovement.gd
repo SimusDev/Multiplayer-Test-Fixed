@@ -23,7 +23,7 @@ class_name W_FPCSourceLikeMovement
 @export var ground_decel: float = 10.0
 @export var ground_friction: float = 6.0
 
-var wish_direction: Vector3 = Vector3.ZERO
+var wish_direction: Vector3 = Vector3.ZERO : set = set_move_direction
 
 @export_group("Air Movement")
 @export var air_cap: float = 0.85
@@ -94,6 +94,16 @@ func set_move_speed(value: float) -> void:
 
 func get_move_direction() -> Vector3:
 	return wish_direction
+
+func set_move_direction(dir: Vector3) -> void:
+	if wish_direction == dir:
+		return
+	
+	wish_direction = dir
+	
+	if server_authorative:
+		if SD_Multiplayer.is_server():
+			SD_Multiplayer.call_func_except_self(set_move_direction, [dir], SD_Multiplayer.CALLMODE.UNRELIABLE)
 
 func get_velocity() -> Vector3:
 	return actor.velocity

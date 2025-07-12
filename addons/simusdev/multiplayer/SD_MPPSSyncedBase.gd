@@ -24,7 +24,6 @@ enum TICKRATE_MODE {
 enum SYNC {
 	AUTHORITY,
 	FROM_SERVER,
-	TO_CLIENT,
 }
 
 

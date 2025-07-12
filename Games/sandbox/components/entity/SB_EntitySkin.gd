@@ -48,6 +48,9 @@ func _clear_skin() -> void:
 
 func _change_upd_skin() -> void:
 	await get_tree().process_frame
+	if !m_current_skin:
+		return
+		
 	
 	var scene: PackedScene = m_current_skin.prefab
 	if scene:

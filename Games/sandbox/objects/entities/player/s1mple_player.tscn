@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=26 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
@@ -17,10 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="11_10rrw"]
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
-[ext_resource type="PackedScene" uid="uid://wk87tt30urh8" path="res://Games/sandbox/models/s1mple_player/s1mple_player_model.tscn" id="13_pq8we"]
 [ext_resource type="PackedScene" uid="uid://d1v4nixukw0j1" path="res://Games/sandbox/prefabs/nickname/nickname.tscn" id="14_gv642"]
 [ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
-[ext_resource type="Resource" uid="uid://b6008tmb0cj4" path="res://Games/sandbox/objects/skin/sas.tres" id="18_pq8we"]
+[ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/sandbox/models/player/source/animated_model.tscn" id="20_wy3vx"]
 
 [sub_resource type="Resource" id="Resource_30ur2"]
 script = ExtResource("4_10rrw")
@@ -60,7 +59,7 @@ node_path = NodePath("..")
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
-sync = 2
+sync = 1
 callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
@@ -153,10 +152,7 @@ metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 [node name="SB_EntitySkin" type="Node3D" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("17_64jhk")
 _source = NodePath("..")
-m_current_skin = ExtResource("18_pq8we")
 metadata/_custom_type_script = "uid://bbsduhwdk5jac"
-
-[node name="s1mple_player_model" parent="SB_EntitySkin" instance=ExtResource("13_pq8we")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01474, 0)
@@ -206,3 +202,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52249, 0)
 source = NodePath("..")
 health = NodePath("../SB_EntityHealth")
+
+[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("20_wy3vx")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.05751, 0)
+_movement = NodePath("../W_FPCSourceLikeMovement")

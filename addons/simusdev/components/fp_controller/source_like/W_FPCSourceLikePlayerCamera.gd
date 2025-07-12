@@ -18,9 +18,6 @@ func _process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 	
-	if not movement.is_on_floor():
-		return
-	
 	var move_dir: Vector3 = movement.get_move_direction()
 	if move_dir:
 		var velocity: Vector3 = abs(movement.get_velocity())
