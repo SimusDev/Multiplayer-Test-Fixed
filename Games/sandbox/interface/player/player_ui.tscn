@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvjgqoyulpo85"]
+[gd_scene load_steps=5 format=3 uid="uid://cvjgqoyulpo85"]
 
 [ext_resource type="Script" uid="uid://cosy2vid7js7w" path="res://Games/sandbox/interface/player/player_ui.gd" id="1_jkbj6"]
 [ext_resource type="PackedScene" uid="uid://dhtahobxcif2o" path="res://Games/sandbox/interface/player/debug.tscn" id="2_px2ai"]
+[ext_resource type="PackedScene" uid="uid://bpk25c1qfdshe" path="res://Games/sandbox/interface/inventory/inventory.tscn" id="4_o87ne"]
 [ext_resource type="PackedScene" uid="uid://dxe1diw458epe" path="res://Games/sandbox/interface/hotbar/hotbar.tscn" id="5_nacok"]
 
 [node name="PlayerUi" type="CanvasLayer"]
@@ -14,3 +15,5 @@ anchors_preset = -1
 anchor_top = 1.0
 offset_top = -109.0
 grow_vertical = 0
+
+[node name="Inventory" parent="." instance=ExtResource("4_o87ne")]

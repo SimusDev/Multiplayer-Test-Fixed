@@ -188,7 +188,7 @@ func _physics_process(delta: float) -> void:
 	actor.move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if not SD_Multiplayer.is_authority(self):
+	if not SD_Multiplayer.is_authority(self) or !input_enabled:
 		return
 	
 	if !auto_bhop and Input.is_action_just_pressed(key_jump):

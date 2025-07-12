@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://82la0v53craw"]
+[gd_scene load_steps=16 format=3 uid="uid://82la0v53craw"]
 
 [ext_resource type="Script" uid="uid://cn4koh1kawkv4" path="res://sourcelike_interface/popups/scripts/start_game.gd" id="2_gxx3g"]
 [ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="2_ri7yn"]
@@ -36,24 +36,30 @@ anti_aliasing = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_6vo6t"]
 font = ExtResource("7_00tsx")
-font_size = 26
+font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_k6wuw"]
 font = ExtResource("7_00tsx")
+font_size = 22
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bj8o"]
 font = ExtResource("7_00tsx")
-font_size = 26
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t560a"]
 font = ExtResource("7_00tsx")
-font_size = 26
+font_size = 19
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v575b"]
+font = ExtResource("7_00tsx")
+font_size = 21
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -175,11 +181,31 @@ anchor_top = 0.0833333
 text = "Start"
 label_settings = SubResource("LabelSettings_6vo6t")
 font = ExtResource("7_00tsx")
+font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="connect" parent="content/border/vBoxContainer" index="4" instance=ExtResource("3_61h68")]
+[node name="dedicated" parent="content/border/vBoxContainer" index="4" instance=ExtResource("3_61h68")]
+visible = false
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+label_text = "Dedicated"
+
+[node name="SD_Label" parent="content/border/vBoxContainer/dedicated" index="0"]
+anchors_preset = -1
+anchor_top = 0.0833333
+text = "Dedicated"
+label_settings = SubResource("LabelSettings_k6wuw")
+font = ExtResource("7_00tsx")
+font_size = 22
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="connect" parent="content/border/vBoxContainer" index="5" instance=ExtResource("3_61h68")]
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -188,7 +214,7 @@ label_text = "CONNECT"
 
 [node name="SD_Label" parent="content/border/vBoxContainer/connect" index="0"]
 text = "CONNECT"
-label_settings = SubResource("LabelSettings_k6wuw")
+label_settings = SubResource("LabelSettings_1bj8o")
 font = ExtResource("7_00tsx")
 font_size = 16
 outline_size = 4
@@ -204,8 +230,9 @@ label_text = "Host"
 anchors_preset = -1
 anchor_top = 0.12
 text = "Host"
-label_settings = SubResource("LabelSettings_1bj8o")
+label_settings = SubResource("LabelSettings_t560a")
 font = ExtResource("7_00tsx")
+font_size = 19
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
@@ -219,18 +246,21 @@ label_text = "Connect"
 anchors_preset = -1
 anchor_top = 0.12
 text = "Connect"
-label_settings = SubResource("LabelSettings_t560a")
+label_settings = SubResource("LabelSettings_v575b")
 font = ExtResource("7_00tsx")
+font_size = 21
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="content/border/vBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="content/border/vBoxContainer/dedicated" to="." method="_on_dedicated_pressed"]
 [connection signal="pressed" from="content/border/vBoxContainer/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="content/tab_container/host_btn" to="." method="_on_host_btn_pressed"]
 [connection signal="pressed" from="content/tab_container/connect_btn" to="." method="_on_connect_btn_pressed"]
 
 [editable path="content/border/vBoxContainer/host"]
+[editable path="content/border/vBoxContainer/dedicated"]
 [editable path="content/border/vBoxContainer/connect"]
 [editable path="content/tab_container/host_btn"]
 [editable path="content/tab_container/connect_btn"]

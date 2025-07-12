@@ -19,13 +19,9 @@ script = ExtResource("2_x0jnd")
 
 [node name="nickname" parent="." index="2" instance=ExtResource("5_wlmek")]
 
-[node name="title" parent="head" index="2"]
+[node name="title" parent="head" index="0"]
 text = "PLAY"
 label_settings = SubResource("LabelSettings_sxyqf")
-
-[node name="button_base" parent="head" index="3"]
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="vBoxContainer" type="VBoxContainer" parent="content" index="0"]
 layout_mode = 1
@@ -78,8 +74,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 label_text = "HOST"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [node name="connect" parent="content/vBoxContainer" index="4" instance=ExtResource("6_sxyqf")]
 custom_minimum_size = Vector2(300, 48)
@@ -87,8 +81,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 label_text = "CONNECT"
-audio_streams = Array[AudioStream]([])
-audio_bus = "Master"
 
 [connection signal="pressed" from="content/vBoxContainer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="content/vBoxContainer/connect" to="." method="_on_connect_pressed"]

@@ -15,9 +15,14 @@ func _item_added(item: SB_ItemStack) -> void:
 	update_icon(item)
 
 func _item_removed(item: SB_ItemStack) -> void:
-	update_icon(item)
+	update_icon(item, true)
 
-func update_icon(item: SB_ItemStack) -> void:
+func update_icon(item: SB_ItemStack, removed: bool = false) -> void:
+	
+	if removed:
+		_icon.texture = null
+		return
+	
 	if not item:
 		return
 	
