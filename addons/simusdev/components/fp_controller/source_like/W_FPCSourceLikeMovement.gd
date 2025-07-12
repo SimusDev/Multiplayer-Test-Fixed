@@ -8,7 +8,7 @@ class_name W_FPCSourceLikeMovement
 
 @export_group("Movement")
 @export var server_authorative: bool = false
-@export var reliable_input: bool = false
+@export var reliable_input: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.UNRELIABLE_ORDERED
 @export var crouch_disabled: bool = false
 @export var is_crouched: bool = false : set = set_crouched
 @export var is_sprinting: bool = false : set = set_sprinting
@@ -154,9 +154,7 @@ func _physics_process(delta: float) -> void:
 	if input_enabled and enabled:
 		
 		var direction: Vector3 = Vector3.ZERO
-		#print(_is_input_pressed(key_forward))
 		if _is_input_pressed(key_forward):
-			print(SD_Multiplayer.is_server())
 			direction.z = -1
 		if _is_input_pressed(key_backward):
 			direction.z = 1

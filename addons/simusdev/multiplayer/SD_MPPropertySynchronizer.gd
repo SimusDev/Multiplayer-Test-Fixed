@@ -71,7 +71,7 @@ func init_property(mp_property: SD_MPPSSyncedBase) -> void:
 				for property in mp_property.properties:
 					hook_properties.set(property, node.get(property))
 			if mp_property.sync_at_start:
-				synchronize(mp_property)
+				synchronize(mp_property, true)
 
 func create_property(node: Node, properties: PackedStringArray) -> SD_MPPSSyncedProperty:
 	var path: NodePath = get_path_to(node)
@@ -92,18 +92,27 @@ func synchronize_all() -> void:
 	
 	
 
-func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
+func synchronize(mp_property: SD_MPPSSyncedBase, at_start: bool = false) -> void:
 	var node: Node = get_node_or_null(mp_property.node_path)
 	if not node:
 		return
 	
 	if mp_property is SD_MPPSSyncedProperty:
+		
+		
+		if mp_property.sync == mp_property.SYNC.TO_CLIENT and at_start == false:
+			if SD_Multiplayer.is_server():
+				for peer in SD_Multiplayer.get_connected_peers():
+					if peer == SD_Multiplayer.get_unique_id():
+						continue
+						
+					send_properties_to_peer(node, mp_property.properties, peer, mp_property.callmode)
+				return
+		else:
+			recieve_properties_from_peer(node, mp_property.properties, SD_Multiplayer.SERVER_ID, mp_property.callmode)
+		
 		if mp_property.sync == mp_property.SYNC.FROM_SERVER:
-			for peer in SD_Multiplayer.get_connected_peers():
-				if peer == SD_Multiplayer.get_unique_id():
-					continue
-					
-				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
+			recieve_properties_from_peer(node, mp_property.properties, SD_Multiplayer.SERVER_ID, mp_property.callmode)
 			return
 		
 		if is_multiplayer_authority():
@@ -111,9 +120,9 @@ func synchronize(mp_property: SD_MPPSSyncedBase) -> void:
 				if peer == SD_Multiplayer.get_unique_id():
 					continue
 				
-				send_properties_to_peer(node, mp_property.properties, peer, mp_property.reliable)
+				send_properties_to_peer(node, mp_property.properties, peer, mp_property.callmode)
 		else:
-			recieve_properties_from_peer(node, mp_property.properties, node.get_multiplayer_authority(), mp_property.reliable)
+			recieve_properties_from_peer(node, mp_property.properties, node.get_multiplayer_authority(), mp_property.callmode)
 
 
 #region REFRESHING
@@ -215,7 +224,7 @@ func _interpolate(base: SD_MPPSSyncedBase, delta: float) -> void:
 
 #region SEND_AND_RECIEVE
 
-func send_properties_to_peer(node: Node, properties: Array, peer: int = SD_MultiplayerSingleton.HOST_ID, reliable: bool = false) -> void:
+func send_properties_to_peer(node: Node, properties: Array, peer: int = SD_MultiplayerSingleton.HOST_ID, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.UNRELIABLE) -> void:
 	if not SD_Multiplayer.is_active():
 		return
 	
@@ -226,13 +235,13 @@ func send_properties_to_peer(node: Node, properties: Array, peer: int = SD_Multi
 		synced[property] = node.get(property)
 		property_sent.emit(property, node.get(property))
 	
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_properties_from_peer_rpc_recieve, [node_path, synced, SD_Multiplayer.get_unique_id()], reliable)
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_properties_from_peer_rpc_recieve, [node_path, synced, SD_Multiplayer.get_unique_id()], callmode)
 	
 
-func recieve_properties_from_peer(node: Node, properties: Array, peer: int = SD_MultiplayerSingleton.HOST_ID, reliable: bool = false) -> void:
-	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_property_from_peer_rpc_sender, [get_path_to(node), properties, SD_Multiplayer.get_unique_id(), reliable], reliable)
+func recieve_properties_from_peer(node: Node, properties: Array, peer: int = SD_MultiplayerSingleton.HOST_ID, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.UNRELIABLE) -> void:
+	SD_Multiplayer.sync_call_function_on_peer(peer, self, _recieve_property_from_peer_rpc_sender, [get_path_to(node), properties, SD_Multiplayer.get_unique_id(), callmode], callmode)
 
-func _recieve_property_from_peer_rpc_sender(path: NodePath, properties: Array, to_peer: int, reliable: bool = false) -> void:
+func _recieve_property_from_peer_rpc_sender(path: NodePath, properties: Array, to_peer: int, callmode: SD_Multiplayer.CALLMODE) -> void:
 	var node: Node = get_node(path)
 	if !node:
 		return
@@ -241,7 +250,7 @@ func _recieve_property_from_peer_rpc_sender(path: NodePath, properties: Array, t
 	for property in properties:
 		synced[property] = node.get(property)
 		
-	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_properties_from_peer_rpc_recieve, [path, synced, SD_Multiplayer.get_unique_id()], reliable)
+	SD_Multiplayer.sync_call_function_on_peer(to_peer, self, _recieve_properties_from_peer_rpc_recieve, [path, synced, SD_Multiplayer.get_unique_id()], callmode)
 
 func _recieve_properties_from_peer_rpc_recieve(path: NodePath, synced: Dictionary, from_peer: int) -> void:
 	var node: Node = get_node_or_null(path)

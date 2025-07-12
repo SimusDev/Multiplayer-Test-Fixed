@@ -30,17 +30,17 @@ signal event_recieved(event: Variant, args: Variant)
 var _cached_nodes: Array[String] = []
 var _cached_resources: Array[String] = []
 
-func throw_event(event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	sync_call_function(self, _recieve_event, [event, args], reliable)
+func throw_event(event: Variant, args: Variant = null, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function(self, _recieve_event, [event, args], callmode)
 
-func throw_event_on_server(event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	sync_call_function_on_server(self, _recieve_event, [event, args], reliable)
+func throw_event_on_server(event: Variant, args: Variant = null, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_server(self, _recieve_event, [event, args], callmode)
 
-func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	sync_call_function_on_peer(player.get_peer_id(), self, _recieve_event, [event, args], reliable)
+func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_peer(player.get_peer_id(), self, _recieve_event, [event, args], callmode)
 
-func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	sync_call_function_on_peer(peer, self, _recieve_event, [event, args], reliable)
+func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_peer(peer, self, _recieve_event, [event, args], callmode)
 
 func bind_events(callable: Callable) -> void:
 	event_recieved.connect(callable)
@@ -769,7 +769,7 @@ func _request_and_sync_var_rpc(serialized: Variant, reliable: bool) -> void:
 func _request_and_sync_var_rpc_unreliable(serialized: Variant, reliable: bool) -> void:
 	_request_and_sync_var_local(serialized, reliable)
 
-func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+func sync_call_function(node: Node, callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
 	if not is_active():
 		node.callv(callable.get_method(), args)
 		return
@@ -777,17 +777,17 @@ func sync_call_function(node: Node, callable: Callable, args: Array = [], reliab
 	node.callv(callable.get_method(), args)
 	
 	for peer in get_connected_peers():
-		sync_call_function_on_peer(peer, node, callable, args, reliable)
+		sync_call_function_on_peer(peer, node, callable, args, callmode)
 
-func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
+func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
 	for peer in get_connected_peers():
-		sync_call_function_on_peer(peer, node, callable, args, reliable)
+		sync_call_function_on_peer(peer, node, callable, args, callmode)
 
 
-func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	sync_call_function_on_peer(HOST_ID, node, callable, args, reliable)
+func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_peer(HOST_ID, node, callable, args, callmode)
 
-func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array, reliable: bool = true) -> void:
+func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array, callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
 	if SD_Multiplayer.get_unique_id() == peer:
 		node.callv(callable.get_method(), args)
 		return
@@ -796,9 +796,6 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 		return
 	
 	var node_path: String = str(node.get_path())
-	var cache: int = 0
-	if !_cached_nodes.has(node_path):
-		pass
 	
 	var packet: Array = [
 		str(node.get_path()),
@@ -810,14 +807,15 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 	#	print(packet)
 	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
-	if reliable:
-		_sync_call_function_recieve_rpc.rpc_id(peer, serialized)
-	else:
-		_sync_call_function_recieve_rpc_unreliable.rpc_id(peer, serialized)
+	
+	match callmode:
+		SD_Multiplayer.CALLMODE.RELIABLE:
+			_sync_call_function_recieve_rpc.rpc_id(peer, serialized)
+		SD_Multiplayer.CALLMODE.UNRELIABLE:
+			_sync_call_function_recieve_rpc_unreliable.rpc_id(peer, serialized)
+		SD_Multiplayer.CALLMODE.UNRELIABLE_ORDERED:
+			_sync_call_function_recieve_rpc_unreliable_ordered.rpc_id(peer, serialized)
 
-
-func _recieve_cached_node_path(path: String) -> void:
-	_cached_nodes
 
 func _sync_call_function_local(serialized: Variant) -> void:
 	var deserialized: Array = SD_MPDataCompressor.deserialize_data(serialized)
@@ -837,18 +835,21 @@ func _sync_call_function_recieve_rpc(serialized: Variant) -> void:
 func _sync_call_function_recieve_rpc_unreliable(serialized: Variant) -> void:
 	_sync_call_function_local(serialized)
 
+@rpc("any_peer", "unreliable_ordered")
+func _sync_call_function_recieve_rpc_unreliable_ordered(serialized: Variant) -> void:
+	_sync_call_function_local(serialized)
 
-func call_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	sync_call_function(callable.get_object() as Node, callable, args, reliable)
+func call_func(callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function(callable.get_object() as Node, callable, args, callmode)
 
-func call_func_on(peer: int, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	sync_call_function_on_peer(peer, callable.get_object() as Node, callable, args, reliable)
+func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_peer(peer, callable.get_object() as Node, callable, args, callmode)
 
-func call_func_on_server(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	sync_call_function_on_server(callable.get_object() as Node, callable, args, reliable)
+func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_on_server(callable.get_object() as Node, callable, args, callmode)
 
-func call_func_except_self(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	sync_call_function_except_self(callable.get_object() as Node, callable, args, reliable)
+func call_func_except_self(callable: Callable, args: Array = [], callmode: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE) -> void:
+	sync_call_function_except_self(callable.get_object() as Node, callable, args, callmode)
 
 #endregion
 

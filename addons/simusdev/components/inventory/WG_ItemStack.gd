@@ -84,7 +84,7 @@ func set_quantity(size: int) -> void:
 	data_set_value("quantity", size)
 
 func request_drop() -> void:
-	SD_Multiplayer.sync_call_function_on_server(self, _drop_requested_by_client, [SD_Multiplayer.get_unique_id(), get_path()], false)
+	SD_Multiplayer.sync_call_function_on_server(self, _drop_requested_by_client, [SD_Multiplayer.get_unique_id(), get_path()], SD_Multiplayer.CALLMODE.UNRELIABLE)
 
 func _drop_requested_by_client(peer: int, path: String) -> void:
 	if is_instance_valid(get_node_or_null(path)):
@@ -95,7 +95,7 @@ func _drop_recieved_from_server() -> void:
 	dropped.emit()
 
 func request_pickup(source: Node) -> void:
-	SD_Multiplayer.sync_call_function_on_server(self, _pickup_requested_by_client, [SD_Multiplayer.get_unique_id(), get_path(), source], false)
+	SD_Multiplayer.sync_call_function_on_server(self, _pickup_requested_by_client, [SD_Multiplayer.get_unique_id(), get_path(), source], SD_Multiplayer.CALLMODE.UNRELIABLE)
 
 func _pickup_requested_by_client(peer: int, path: String, source: Node) -> void:
 	if is_instance_valid(get_node_or_null(path)):

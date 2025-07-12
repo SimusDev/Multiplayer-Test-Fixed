@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=27 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
@@ -29,11 +29,11 @@ sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 32.0
 node_path = NodePath("..")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 1
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_u0j1b"]
@@ -43,11 +43,25 @@ sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 32.0
 node_path = NodePath("..")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_xtx5c"]
+script = ExtResource("4_10rrw")
+properties = Array[String](["velocity"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 32.0
+node_path = NodePath("..")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 2
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
@@ -62,7 +76,7 @@ script = ExtResource("1_64jhk")
 
 [node name="SB_Synchronizer" type="Node" parent="."]
 script = ExtResource("2_u0j1b")
-properties = Array[ExtResource("3_xtx5c")]([SubResource("Resource_30ur2"), SubResource("Resource_u0j1b")])
+properties = Array[ExtResource("3_xtx5c")]([SubResource("Resource_30ur2"), SubResource("Resource_u0j1b"), SubResource("Resource_xtx5c")])
 metadata/_custom_type_script = "uid://b663u5rfjkr72"
 
 [node name="SB_EntityHealth" type="Node" parent="." node_paths=PackedStringArray("target")]

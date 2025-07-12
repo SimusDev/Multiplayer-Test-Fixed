@@ -6,6 +6,12 @@ static var _singleton: SD_MultiplayerSingleton
 
 const SERVER_ID: int = 1
 
+enum CALLMODE {
+	RELIABLE,
+	UNRELIABLE,
+	UNRELIABLE_ORDERED,
+}
+
 func _init(s: SD_MultiplayerSingleton) -> void:
 	_singleton = s
 
@@ -93,29 +99,29 @@ static func send_and_sync_var_to_server(node: Node, property: String, reliable: 
 static func send_and_sync_var_to_all_peers(node: Node, property: String, reliable: bool = true) -> void:
 	_singleton.send_and_sync_var_to_all_peers(node, property, reliable)
 
-static func sync_call_function(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.sync_call_function(node, callable, args, reliable)
+static func sync_call_function(node: Node, callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.sync_call_function(node, callable, args, callmode)
 
-static func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.sync_call_function_except_self(node, callable, args, reliable)
+static func sync_call_function_except_self(node: Node, callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.sync_call_function_except_self(node, callable, args, callmode)
 
-static func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.sync_call_function_on_peer(peer, node, callable, args, reliable)
+static func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.sync_call_function_on_peer(peer, node, callable, args, callmode)
 
-static func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.sync_call_function_on_server(node, callable, args, reliable)
+static func sync_call_function_on_server(node: Node, callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.sync_call_function_on_server(node, callable, args, callmode)
 
-static func call_func(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.call_func(callable, args, reliable)
+static func call_func(callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.call_func(callable, args, callmode)
 
-static func call_func_on(peer: int, callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.call_func_on(peer, callable, args, reliable)
+static func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.call_func_on(peer, callable, args, callmode)
 
-static func call_func_on_server(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.call_func_on_server(callable, args, reliable)
+static func call_func_on_server(callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.call_func_on_server(callable, args, callmode)
 
-static func call_func_except_self(callable: Callable, args: Array = [], reliable: bool = true) -> void:
-	_singleton.call_func_except_self(callable, args, reliable)
+static func call_func_except_self(callable: Callable, args: Array = [], callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.call_func_except_self(callable, args, callmode)
 
 static func request_response_from_peer(peer_id: int, result: Callable, timeout: float = 0.0,  reliable: bool = true) -> void:
 	_singleton.request_response_from_peer(peer_id, result, timeout, reliable)
@@ -153,17 +159,17 @@ static func kick(player: SD_MultiplayerPlayer) -> void:
 static func is_authority(node: Node) -> bool:
 	return _singleton.is_authority(node)
 
-static func throw_event(event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	_singleton.throw_event(event, args, reliable)
+static func throw_event(event: Variant, args: Variant = null, callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.throw_event(event, args, callmode)
 
-static func throw_event_on_server(event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	_singleton.throw_event_on_server(event, args, reliable)
+static func throw_event_on_server(event: Variant, args: Variant = null, callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.throw_event_on_server(event, args, callmode)
 
-static func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	_singleton.throw_event_on_player(player, event, args, reliable)
+static func throw_event_on_player(player: SD_MultiplayerPlayer, event: Variant, args: Variant = null, callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.throw_event_on_player(player, event, args, callmode)
 
-static func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, reliable: bool = true) -> void:
-	_singleton.throw_event_on_peer(peer, event, args, reliable)
+static func throw_event_on_peer(peer: int, event: Variant, args: Variant = null, callmode: CALLMODE = CALLMODE.RELIABLE) -> void:
+	_singleton.throw_event_on_peer(peer, event, args, callmode)
 
 static func bind_events(callable: Callable) -> void:
 	_singleton.bind_events(callable)
