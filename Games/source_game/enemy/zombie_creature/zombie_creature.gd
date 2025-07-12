@@ -22,9 +22,8 @@ func _process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y -= 10 * delta
 	
-	if !state_machine._current_state_name == "attack":
-		if velocity: state_machine.switch_by_name("move")
-		else: state_machine.switch_by_name("idle")
+	if velocity: state_machine.switch_by_name("move")
+	else: state_machine.switch_by_name("idle")
 
 	set_tree_blend()
 

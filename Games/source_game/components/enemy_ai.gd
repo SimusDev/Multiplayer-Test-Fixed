@@ -21,28 +21,24 @@ func _ready() -> void:
 	tick_timer.start()
 
 func pick_target() -> AI_Visible:
-	if !SD_Multiplayer.is_server():
-		return
-	
-	var picked_target:AI_Visible = null
-	
-	for visible_target:Node3D in vision.visible_targets:
-		if visible_target is AI_Visible:
-			if current_target == null: 
-				picked_target = visible_target
-				return picked_target
-			
-			var target_priority:float = float(visible_target.ai_priority)
-			target_priority /= enemy.global_position.distance_to(visible_target.global_position)
-			print(target_priority)
-			
-			if target_priority > float(current_target.ai_priority * 2):
-				picked_target = visible_target
-				return visible_target
-			
-			return visible_target
+	if vision.visible_targets.is_empty():
+		return null
 
-	return null
+	var best_target: AI_Visible = null
+	var best_score: float = -1.0
+
+	for target:AI_Visible in vision.visible_targets:
+		if target.ai_priority < 0:
+			continue
+			
+		var distance = enemy.global_position.distance_to(target.global_position)
+		var score = target.ai_priority / (distance + 0.1)
+		
+		if score > best_score || best_target == null:
+			best_score = score
+			best_target = target
+
+	return best_target
 
 func tick():
 	current_target = pick_target()
@@ -59,14 +55,11 @@ func chase_target():
 	
 	enemy.velocity.x = -(enemy.global_position - next_pos).normalized().x * move_speed
 	enemy.velocity.z = -(enemy.global_position - next_pos).normalized().z * move_speed
-	
-	navigation_agent.target_position
-	
-	var current_target_position = Vector3(current_target.global_position.x, 0.0, current_target.global_position.z)
-	
-	if enemy.global_position.distance_to(current_target_position) < attack_range:
-		enemy.state_machine.switch_by_name("attack")
 
+
+func stop_chase():
+	enemy.velocity.x = 0
+	enemy.velocity.z = 0
 
 func attack_current_target():
 	if !SD_Multiplayer.is_server():
@@ -78,7 +71,14 @@ func _physics_process(delta: float) -> void:
 	enemy.global_transform.basis = lerp(enemy.global_transform.basis, target_rotation, rotation_speed * delta)
 	enemy.rotation_degrees.x = clamp(enemy.rotation_degrees.x, 0, 0)
 	enemy.rotation_degrees.z = clamp(enemy.rotation_degrees.z, 0, 0)
-	
+
 	if current_target:
-		chase_target()
+		var current_target_position = Vector3(current_target.global_position.x, 0.0, current_target.global_position.z)
+		
+		if enemy.global_position.distance_to(current_target_position) > attack_range:
+			chase_target()
+		else:
+			stop_chase()
+			enemy.state_machine.switch_by_name("attack")
+	
 	enemy.move_and_slide()

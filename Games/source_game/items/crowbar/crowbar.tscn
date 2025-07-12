@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmepknoq0be13"]
+[gd_scene load_steps=13 format=3 uid="uid://dmepknoq0be13"]
 
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_k756q"]
 [ext_resource type="Resource" uid="uid://dea2xnmud65yj" path="res://Games/source_game/items/crowbar/crowbar.tres" id="2_k756q"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
+[ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="4_b6hyk"]
 
 [sub_resource type="Gradient" id="Gradient_enwn5"]
 interpolation_mode = 2
@@ -117,9 +118,18 @@ script = ExtResource("3_4tykw")
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
 [node name="model" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_k756q")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4tykw")
 }
+
+[node name="model2" parent="." instance=ExtResource("4_b6hyk")]
+transform = Transform3D(-0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, -0.819152, 0, 0, 0)
+
+[node name="Sketchfab_model" parent="model2" index="0"]
+transform = Transform3D(0.03, 0, 0, 0, -1.31134e-09, 0.03, 0, -0.03, -1.31134e-09, 0, 0, 0)
+
+[editable path="model2"]

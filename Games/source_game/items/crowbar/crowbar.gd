@@ -13,6 +13,7 @@ func _on_item_use():
 	if is_instance_valid(animation_player):
 		if animation_player.is_playing():return
 		animation_player.play("fire")
+		player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	else:
 		impact() 
 
