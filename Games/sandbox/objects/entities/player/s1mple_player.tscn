@@ -149,6 +149,78 @@ keys = {
 }
 metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 
+[node name="1" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="2" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="3" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="4" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="5" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="6" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="7" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="8" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="9" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="10" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="11" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="12" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="13" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="14" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="15" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="16" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="17" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
+[node name="18" type="Node" parent="EL_Inventory"]
+script = ExtResource("5_64jhk")
+metadata/_custom_type_script = "uid://co6ddscxxrcwc"
+
 [node name="SB_EntitySkin" type="Node3D" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("17_64jhk")
 _source = NodePath("..")

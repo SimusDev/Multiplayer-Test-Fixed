@@ -6,6 +6,7 @@ var _slot: WG_InventorySlot
 var _inventory: WG_Inventory
 
 signal moved_to(slot: W_InventorySlot)
+signal moved_from(slot: W_InventorySlot)
 
 signal quantity_changed(new: int)
 signal using_changed(id: int, status: bool)
@@ -53,7 +54,12 @@ func _move_to_local(slot: WG_InventorySlot) -> void:
 	if !slot:
 		return
 	
+	moved_from.emit(get_slot())
+	_inventory.item_moved_from.emit(get_slot(), self)
+	
 	reparent(slot)
+	if !is_inside_tree():
+		slot.add_child(slot)
 	moved_to.emit(slot)
 	_inventory.item_moved_to.emit(slot, self)
 
@@ -72,7 +78,7 @@ func _enter_tree() -> void:
 		synchronize_data()
 
 func _exit_tree() -> void:
-	_slot._remove_item_local(self)
+	_slot._remove_item_local(self, false)
 
 func get_quantity() -> int:
 	return data_get_value("quantity", 1)

@@ -32,6 +32,7 @@ func set_inventory(inv: SB_Inventory) -> void:
 	
 	
 	_inventory.slot_selected.connect(_selected)
+	_inventory.item_moved_from.connect(_item_moved_from)
 	_selected(_inventory.get_selected_slot())
 
 func _delete_root() -> void:
@@ -71,3 +72,7 @@ func _selected(slot: SB_InventorySlot) -> void:
 		await _root.tree_exited
 	
 	_create_root(item)
+
+func _item_moved_from(slot: SB_InventorySlot, item: SB_ItemStack) -> void:
+	if slot == _inventory.get_selected_slot():
+		_delete_root()

@@ -73,3 +73,6 @@ func _on_sd_node_input_on_input(event: InputEvent) -> void:
 			var picked: SB_InventorySlot = SD_Array.get_value_from_array(_slots, id - 1)
 			if picked:
 				picked.select()
+
+func _on_item_removed() -> void:
+	pass

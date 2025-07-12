@@ -18,6 +18,7 @@ signal slot_removed(slot: WG_InventorySlot)
 signal item_added(item: WG_ItemStack)
 signal item_removed(item: WG_ItemStack)
 signal item_moved_to(slot: WG_InventorySlot, item: WG_ItemStack)
+signal item_moved_from(slot: WG_InventorySlot, item: WG_ItemStack)
 
 signal initialized()
 

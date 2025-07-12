@@ -91,7 +91,7 @@ func remove_item(item: WG_ItemStack) -> void:
 	_remove_item_local_path(get_path_to(item))
 	SD_Multiplayer.sync_call_function_except_self(self, _remove_item_local_path, [str(get_path_to(item))])
 
-func _remove_item_local(item: WG_ItemStack) -> void:
+func _remove_item_local(item: WG_ItemStack, delete: bool = true) -> void:
 	if not item:
 		return
 	
@@ -99,7 +99,8 @@ func _remove_item_local(item: WG_ItemStack) -> void:
 		return
 	
 	item_removed.emit(item)
-	item.queue_free()
+	if delete:
+		item.queue_free()
 	
 	_items.erase(item)
 	

@@ -42,6 +42,9 @@ func _ready() -> void:
 	
 	await source.ready
 	
+	if _interface:
+		source.add_child(_interface.instantiate())
+	
 	if p_movement:
 		if p_movement.server_authorative and SD_Multiplayer.is_not_server():
 			get_source().set_process(false)
