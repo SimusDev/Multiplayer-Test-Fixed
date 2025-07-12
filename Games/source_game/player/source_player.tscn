@@ -176,13 +176,13 @@ noise = SubResource("FastNoiseLite_kou6u")
 
 [node name="source_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "canvas", "model", "interact_raycast", "footsteps_component")]
 script = ExtResource("1_4cdfe")
+health = NodePath("Health")
 take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
+movement = NodePath("SourceMovement")
+camera = NodePath("SourceCamera")
 max_safe_fall_speed = 15.0
 ragdoll_model = ExtResource("7_6qnpk")
 player_ui = ExtResource("2_inl2s")
-health = NodePath("Health")
-movement = NodePath("SourceMovement")
-camera = NodePath("SourceCamera")
 canvas = NodePath("canvas")
 model = NodePath("W_AnimatedModel3D")
 interact_raycast = NodePath("SourceCamera/interact_raycast")

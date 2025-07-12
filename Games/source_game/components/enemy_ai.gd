@@ -60,6 +60,8 @@ func chase_target():
 
 func _physics_process(delta: float) -> void:
 	enemy.global_transform.basis = lerp(enemy.global_transform.basis, target_rotation, rotation_speed * delta)
+	enemy.rotation_degrees.x = clamp(enemy.rotation_degrees.x, 0, 0)
+	enemy.rotation_degrees.z = clamp(enemy.rotation_degrees.z, 0, 0)
 	
 	if current_target:
 		chase_target()
