@@ -7,7 +7,7 @@ class_name EnemyAI extends Node
 @export var damage:float = 15.0
 @export var move_speed:float = 3.0
 @export var rotation_speed:float = 5.0
-@export var attack_range:float = 5.5
+@export var attack_range:float = 2.5
 @export var tick_rate:float = 32.0
 var tick_timer:Timer = Timer.new()
 

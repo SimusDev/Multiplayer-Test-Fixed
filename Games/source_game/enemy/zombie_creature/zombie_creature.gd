@@ -7,8 +7,16 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	state_machine.state_enter.connect(_on_state_machine_state_enter)
-	model.attack.connect( func(): ai.attack_current_target() )
-	model.footstep.connect( func(): footsteps._do_footstep() )
+	model.attack.connect(_on_attack)
+	model.footstep.connect(_on_footstep)
+
+func _on_footstep():
+	print("sex fpootsyeep")
+	footsteps._do_footstep()
+
+func _on_attack():
+	print("sex attaffck")
+	ai.attack_current_target()
 
 func _process(delta: float) -> void:
 	if !is_on_floor():
