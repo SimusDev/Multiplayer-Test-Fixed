@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=38 format=3 uid="uid://bhfcanbr60id8"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=39 format=3 uid="uid://bhfcanbr60id8"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pxhs"]
 animation = &"dr_kleiner/melee"
@@ -124,6 +124,8 @@ states/walk/position = Vector2(653, 142)
 transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_8dsdp"), "air", "ground", SubResource("AnimationNodeStateMachineTransition_j0405"), "ground", "air", SubResource("AnimationNodeStateMachineTransition_qp7g8"), "ground", "run", SubResource("AnimationNodeStateMachineTransition_vowwn"), "run", "ground", SubResource("AnimationNodeStateMachineTransition_n1a5q"), "ground", "walk", SubResource("AnimationNodeStateMachineTransition_3xpem"), "walk", "ground", SubResource("AnimationNodeStateMachineTransition_05u12"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_8eoaw"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_i0cdc")]
 graph_offset = Vector2(0, -18.1701)
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_7de2l"]
+
 [sub_resource type="Curve" id="Curve_7de2l"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -160,13 +162,15 @@ filter_enabled = true
 filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_Spine2"]
 
 [resource]
-graph_offset = Vector2(-107.734, 9.44228)
+graph_offset = Vector2(44.7998, 129.699)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_8pxhs")
-nodes/Animation/position = Vector2(620, 440)
+nodes/Animation/position = Vector2(560, 420)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_d2tvx")
 nodes/StateMachine/position = Vector2(-20, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_7de2l")
+nodes/TimeScale/position = Vector2(760, 400)
 nodes/attack/node = SubResource("AnimationNodeOneShot_vt3ma")
-nodes/attack/position = Vector2(820, 260)
+nodes/attack/position = Vector2(900, 220)
 nodes/item_right_hand_anim/node = SubResource("AnimationNodeAnimation_7de2l")
 nodes/item_right_hand_anim/position = Vector2(260, 400)
 nodes/item_right_hand_blend/node = SubResource("AnimationNodeBlend2_7de2l")
@@ -175,5 +179,5 @@ nodes/look_dir/node = SubResource("AnimationNodeBlendSpace1D_8pxhs")
 nodes/look_dir/position = Vector2(60, 340)
 nodes/look_dir_add/node = SubResource("AnimationNodeAdd2_7de2l")
 nodes/look_dir_add/position = Vector2(280, 140)
-nodes/output/position = Vector2(1060, 260)
-node_connections = [&"attack", 0, &"item_right_hand_blend", &"attack", 1, &"Animation", &"item_right_hand_blend", 0, &"look_dir_add", &"item_right_hand_blend", 1, &"item_right_hand_anim", &"look_dir_add", 0, &"StateMachine", &"look_dir_add", 1, &"look_dir", &"output", 0, &"attack"]
+nodes/output/position = Vector2(1320, 260)
+node_connections = [&"TimeScale", 0, &"Animation", &"attack", 0, &"item_right_hand_blend", &"attack", 1, &"TimeScale", &"item_right_hand_blend", 0, &"look_dir_add", &"item_right_hand_blend", 1, &"item_right_hand_anim", &"look_dir_add", 0, &"StateMachine", &"look_dir_add", 1, &"look_dir", &"output", 0, &"attack"]
