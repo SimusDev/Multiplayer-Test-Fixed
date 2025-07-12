@@ -6,6 +6,7 @@ class_name EnemyAI extends Node
 @export_category("Settings")
 @export var move_speed:float = 3.0
 @export var rotation_speed:float = 5.0
+@export var attack_range:float = 2.5
 @export var tick_rate:float = 32.0
 var tick_timer:Timer = Timer.new()
 
@@ -30,7 +31,7 @@ func pick_target() -> AI_Visible:
 				picked_target = visible_target
 				return picked_target
 			
-			var target_priority:float = float(visible_target.priority)
+			var target_priority:float = float(visible_target.ai_priority)
 			target_priority /= enemy.global_position.distance_to(visible_target.global_position)
 			print(target_priority)
 			
@@ -57,6 +58,13 @@ func chase_target():
 	
 	enemy.velocity.x = -(enemy.global_position - next_pos).normalized().x * move_speed
 	enemy.velocity.z = -(enemy.global_position - next_pos).normalized().z * move_speed
+	
+	navigation_agent.target_position
+	
+	var current_target_position = Vector3(current_target.global_position.x, 0.0, current_target.global_position.z)
+	
+	if enemy.global_position.distance_to(current_target_position) < attack_range:
+		enemy.state_machine.switch_by_name("attack")
 
 func _physics_process(delta: float) -> void:
 	enemy.global_transform.basis = lerp(enemy.global_transform.basis, target_rotation, rotation_speed * delta)

@@ -102,11 +102,11 @@ sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 32.0
 node_path = NodePath("..")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_4cdfe"]
@@ -116,11 +116,11 @@ sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 32.0
 node_path = NodePath("../SourceCamera")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_kim0n"]
@@ -130,11 +130,11 @@ sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 32.0
 node_path = NodePath("..")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_utg5q"]
@@ -144,11 +144,11 @@ sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 32.0
 node_path = NodePath("../SourceCamera/hands")
-reliable = false
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7edsi"]

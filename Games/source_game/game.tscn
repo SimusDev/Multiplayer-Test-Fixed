@@ -112,11 +112,11 @@ sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 32.0
 node_path = NodePath("../Sky3D")
-reliable = false
 tickrate = 1.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvgr3"]
