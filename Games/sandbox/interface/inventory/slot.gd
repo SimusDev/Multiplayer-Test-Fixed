@@ -18,7 +18,7 @@ func _item_removed(item: SB_ItemStack) -> void:
 	update_icon(item, true)
 
 func update_icon(item: SB_ItemStack, removed: bool = false) -> void:
-	
+	%quantity.hide()
 	if removed:
 		_icon.texture = null
 		return
@@ -31,8 +31,9 @@ func update_icon(item: SB_ItemStack, removed: bool = false) -> void:
 	
 	
 	_icon.texture = item.object.icon
-	
-	
+	if item.get_quantity() > 1:
+		%quantity.show()
+		%quantity.text = str(item.get_quantity())
 
 func _on_sd_ui_drag_and_drop_dropped(draggable: Control, at: Control) -> void:
 	if draggable is sb_ui_slot:
