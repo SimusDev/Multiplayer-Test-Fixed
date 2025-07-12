@@ -1,7 +1,7 @@
 extends Node
 class_name SD_MPSyncedPlayerData
 
-@export var reliable: bool = true
+@export var reliable: SD_Multiplayer.CALLMODE = SD_Multiplayer.CALLMODE.RELIABLE
 
 @export var data: Dictionary[String, Dictionary]
 
@@ -19,7 +19,8 @@ func _on_connected_to_server() -> void:
 	synchronize_all()
 
 func synchronize_all() -> void:
-	SD_Multiplayer.request_and_sync_var_from_server(self, "_data", _all_data_synced, reliable)
+	var reliable_sync : bool = reliable == SD_Multiplayer.CALLMODE.RELIABLE
+	SD_Multiplayer.request_and_sync_var_from_server(self, "_data", _all_data_synced, reliable_sync)
 
 func _all_data_synced() -> void:
 	_is_all_data_synced = true

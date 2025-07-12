@@ -33,6 +33,7 @@ func spawn_local(object: SB_WorldObject, instantiate: bool = true, settings: SB_
 	object.set_in(instance)
 	
 	obj_instance._source = instance
+	obj_instance._initialize()
 	
 	if instantiate:
 		obj_instance.instantiate()
@@ -45,3 +46,8 @@ func despawn_local(node: Node, settings: SB_LevelSpawnSettings = null) -> void:
 	if settings:
 		if settings.handle_spawner:
 			_level.get_spawner().server_update_remove(node, node.get_parent())
+
+func spawn_request(object: SB_WorldObject, instantiate: bool = true, settings: SB_LevelSpawnSettings = null) -> void:
+	SimusDev.console.write_info("[%s, %s, %s] spawn requested: %s" % [_level.name, name, object.id])
+	SD_Multiplayer.sync_call_function_on_server(self, spawn_local, [object, instantiate, settings])
+	
