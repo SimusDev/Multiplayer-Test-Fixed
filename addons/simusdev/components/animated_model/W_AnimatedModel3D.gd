@@ -16,6 +16,11 @@ class_name W_AnimatedModel3D
 @export var player: AnimationPlayer
 @export var skeleton: Skeleton3D
 
+signal event(code: String, value: Variant)
+
+func throw_event(code: String, value: Variant = null) -> void:
+	event.emit(code, value)
+
 func _setup_model(value: bool) -> void:
 	if not value:
 		return
