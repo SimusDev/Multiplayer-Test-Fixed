@@ -26,6 +26,14 @@ func _on_host_pressed() -> void:
 	
 	queue_free()
 
+func _on_dedicated_pressed() -> void:
+	save_cmds()
+	SD_Multiplayer.create_server(cmd_port.get_value_as_int(), true)
+	slike_main_menu.find_above(self).switcher.switch_by_name("lobby")
+	
+	queue_free()
+
+
 func _on_connect_pressed() -> void:
 	save_cmds()
 	slike_main_menu.find_above(self).switcher.switch_by_name("connecting")
@@ -35,17 +43,13 @@ func _on_connect_pressed() -> void:
 func _on_host_btn_pressed() -> void:
 	$content/border/vBoxContainer/connect.hide()
 	$content/border/vBoxContainer/host.show()
+	$content/border/vBoxContainer/dedicated.show()
 	
 	%le_ip.hide()
 
 func _on_connect_btn_pressed() -> void:
 	$content/border/vBoxContainer/connect.show()
 	$content/border/vBoxContainer/host.hide()
+	$content/border/vBoxContainer/dedicated.hide()
 	
 	%le_ip.show()
-
-
-
-
-
-#

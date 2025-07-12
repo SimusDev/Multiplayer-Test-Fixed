@@ -112,7 +112,7 @@ func _ready() -> void:
 		cmd.executed.connect(_on_command_executed.bind(cmd))
 	
 	if settings.dedicated_server:
-		create_server(settings.dedicated_server_port)
+		create_server(settings.dedicated_server_port, true)
 		if settings.dedicated_server_scene:
 			get_tree().change_scene_to_packed.call_deferred(settings.dedicated_server_scene)
 		

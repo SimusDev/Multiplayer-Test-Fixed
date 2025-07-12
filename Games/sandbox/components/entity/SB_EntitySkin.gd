@@ -37,9 +37,6 @@ func _set_preview(val: bool) -> void:
 
 
 func _clear_skin() -> void:
-	if not m_current_skin:
-		return
-	
 	if is_instance_valid(_node):
 		_node.queue_free()
 	
@@ -66,10 +63,11 @@ func _change_upd_skin() -> void:
 	
 
 func _update() -> void:
+	_clear_skin()
+	
 	if SD_Multiplayer.is_dedicated_server() or Engine.is_editor_hint():
 		return
 	
-	_clear_skin()
 	_change_upd_skin()
 
 func get_skin() -> SB_WorldEntitySkin:

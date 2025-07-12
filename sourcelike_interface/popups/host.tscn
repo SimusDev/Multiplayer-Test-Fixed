@@ -7,7 +7,7 @@ font_size = 18
 
 [node name="Popup" instance=ExtResource("1_bly6m")]
 
-[node name="title" parent="head" index="2"]
+[node name="title" parent="head" index="0"]
 text = "HOST"
 label_settings = SubResource("LabelSettings_bly6m")
 
