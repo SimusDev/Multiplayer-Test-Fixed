@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ckobsop16sv6w"
+path="res://.godot/imported/ZORO-PURE-IMAGINATION - Freddie Dredd.mp3-43355d8d8f4a09435625492bb7b7f755.mp3str"
+
+[deps]
+
+source_file="res://Games/source_game/game/audio/ZORO-PURE-IMAGINATION - Freddie Dredd.mp3"
+dest_files=["res://.godot/imported/ZORO-PURE-IMAGINATION - Freddie Dredd.mp3-43355d8d8f4a09435625492bb7b7f755.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

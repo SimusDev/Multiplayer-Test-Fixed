@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+signal switched
+
 @export_dir var data_folder:String
 @export_dir var user_data_folder:String
 
@@ -12,12 +14,14 @@ var assets_size:int = 0
 @export var loop_mode:bool = true
 
 func _ready() -> void:
+	switched.connect(_on_switched)
 	initialize()
-	play_track(0)
+	
+	play_track(1)
 
 func initialize() -> void:
 	set_assets(load_assets(data_folder))
-	assets.append(load_assets(user_data_folder))
+	#assets.append(load_assets(user_data_folder))
 
 func load_assets(from_path:String) -> Array[AudioStream]:
 	var result:Array[AudioStream] = []
@@ -34,7 +38,9 @@ func play_track(at_position:int) -> void:
 	audio_player.stream = get_current_stream()
 	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
 
+
 func play_track_stream(stream:AudioStream) -> void:
+	switched.emit()
 	if !SD_Multiplayer.is_server(): return
 	
 	SD_Multiplayer.sync_call_function(self, set_current_position, [assets.find(stream)])
@@ -71,6 +77,12 @@ func get_previous() -> AudioStream:
 		return assets[assets.size()-1]
 	return null
 
+func _on_switched():
+	var splitted:PackedStringArray = get_current_stream().resource_path.split("/")
+	var track_name = splitted[-1]
+	
+	$now_playing.text = "Now playing:\n" + track_name
+	$AnimationPlayer.play("switched")
 
 func _on_audio_stream_player_3d_finished() -> void:
 	if loop_mode: play_track(get_current_position())
