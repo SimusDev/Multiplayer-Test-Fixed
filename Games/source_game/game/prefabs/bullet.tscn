@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://j3bw53xn78ej"]
+
+[ext_resource type="PackedScene" uid="uid://da0tqvpik8x1f" path="res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn" id="2_re237"]
+[ext_resource type="PackedScene" uid="uid://cksf4rsym7tdd" path="res://Games/source_game/game/prefabs/bullet_9_mm.tscn" id="3_mt2gi"]
+[ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="5_gcnm4"]
+
+[node name="bullet_9mm" type="Node3D"]
+
+[node name="SourceFireWeapon" parent="." instance=ExtResource("5_gcnm4")]
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="bullet9mm_shell" parent="model" instance=ExtResource("2_re237")]
+transform = Transform3D(-1, 1.80001e-14, -1.50996e-07, 0, 1, 1.19209e-07, 1.50996e-07, 1.19209e-07, -1, -3.52559e-10, 0.0907602, -0.17331)
+
+[node name="bullet9mm" parent="model" instance=ExtResource("3_mt2gi")]
+transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, -3.38761e-09, 0.0908015, -0.19341)

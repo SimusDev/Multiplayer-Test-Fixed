@@ -9,15 +9,11 @@ var assets:Array[AudioStream]
 var assets_size:int = 0
 
 @export var audio_player:AudioStreamPlayer3D
+@export var loop_mode:bool = true
 
 func _ready() -> void:
 	initialize()
-
 	play_track(0)
-	
-	while true:
-		play_track_stream(get_next())
-		await get_tree().create_timer(5).timeout
 
 func initialize() -> void:
 	set_assets(load_assets(data_folder))
@@ -65,8 +61,8 @@ func get_current_position() -> int: return current_stream_position
 func get_next() -> AudioStream:
 	if assets.size() > (get_current_position() + 1):
 		return assets[get_current_position() + 1]
-	if assets.size() < (get_current_position() + 1):
-		return assets[0]
+	else:
+		return assets.front()
 	return null
 func get_previous() -> AudioStream:
 	if (get_current_position() - 1) > 0:
@@ -74,3 +70,9 @@ func get_previous() -> AudioStream:
 	else:
 		return assets[assets.size()-1]
 	return null
+
+
+func _on_audio_stream_player_3d_finished() -> void:
+	if loop_mode: play_track(get_current_position())
+	else:
+		play_next()

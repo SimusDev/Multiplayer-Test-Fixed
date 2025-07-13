@@ -71,9 +71,10 @@ size = Vector3(0.437571, 0.0167313, 0.0177536)
 [node name="radio" type="RigidBody3D" node_paths=PackedStringArray("audio_player") groups=["props"]]
 mass = 3.0
 script = ExtResource("1_po8lj")
-data_folder = "res://sounds/hl2/buttons"
+data_folder = "res://Games/source_game/game/audio"
 user_data_folder = "<null>"
 audio_player = NodePath("AudioStreamPlayer3D")
+loop_mode = false
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("4_xmmxb")
@@ -83,9 +84,11 @@ metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0317878, 0)
-attenuation_model = 1
-volume_db = -20.0
-max_distance = 30.0
+max_db = 0.0
+max_distance = 50.0
+emission_angle_enabled = true
+emission_angle_degrees = 90.0
+attenuation_filter_db = -12.0
 script = ExtResource("6_3pqce")
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
@@ -111,3 +114,5 @@ shape = SubResource("BoxShape3D_kap3d")
 [node name="collision4" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000240266, 0.191704, -0.0142326)
 shape = SubResource("BoxShape3D_jqjqx")
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

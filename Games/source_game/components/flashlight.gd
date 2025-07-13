@@ -1,7 +1,7 @@
 class_name SourceFlashlight extends SpotLight3D
 
 @export var sound:AudioStream = preload("res://sounds/hl2/items/flashlight1.wav")
-@export var input_key:String
+@export var input_key:String = "f"
 
 func _ready() -> void:
 	SD_Multiplayer.request_and_sync_var_from_server(self, "visible")

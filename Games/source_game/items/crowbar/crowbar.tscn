@@ -1,36 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmepknoq0be13"]
+[gd_scene load_steps=9 format=3 uid="uid://dmepknoq0be13"]
 
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_k756q"]
 [ext_resource type="Resource" uid="uid://dea2xnmud65yj" path="res://Games/source_game/items/crowbar/crowbar.tres" id="2_k756q"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
 [ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="4_b6hyk"]
-
-[sub_resource type="Gradient" id="Gradient_enwn5"]
-interpolation_mode = 2
-colors = PackedColorArray(0.255659, 0.255659, 0.255659, 1, 0.370364, 0.370364, 0.370364, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_b6hyk"]
-noise_type = 2
-frequency = 0.1071
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k756q"]
-seamless = true
-color_ramp = SubResource("Gradient_enwn5")
-noise = SubResource("FastNoiseLite_b6hyk")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enwn5"]
-albedo_texture = SubResource("NoiseTexture2D_k756q")
-metallic = 1.0
-metallic_specular = 0.57
-uv1_triplanar = true
-texture_filter = 4
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_k756q"]
-material = SubResource("StandardMaterial3D_enwn5")
-radius = 0.025
-height = 1.0
-radial_segments = 5
-rings = 1
 
 [sub_resource type="Animation" id="Animation_b6hyk"]
 length = 0.001
@@ -53,6 +26,30 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("model:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("model:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -82,7 +79,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath("model:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -94,7 +91,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath("model:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -104,36 +101,60 @@ tracks/2/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.387463, 0, -0.20944), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(-0.603884, 0.188496, 0.364774), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(0.387463, 0, 0.148353), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4tykw"]
+resource_name = "pick"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.64, 0.16), Vector3(0, -0.21, 0.16), Vector3(0, 0.03, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.97746, 0, 0), Vector3(-0.424115, 0, 0), Vector3(0.0698132, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tykw"]
 _data = {
 &"RESET": SubResource("Animation_b6hyk"),
-&"fire": SubResource("Animation_enwn5")
+&"fire": SubResource("Animation_enwn5"),
+&"pick": SubResource("Animation_4tykw")
 }
 
-[node name="crowbar" type="Node3D" node_paths=PackedStringArray("model")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="crowbar" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_k756q")
 resource = ExtResource("2_k756q")
 model = NodePath("model")
+animation_player = NodePath("animation_player")
 metadata/_custom_type_script = "uid://dj1vged070hd"
 
 [node name="sync" type="Node" parent="."]
 script = ExtResource("3_4tykw")
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="model" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_k756q")
-
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4tykw")
 }
 
-[node name="model2" parent="." instance=ExtResource("4_b6hyk")]
-transform = Transform3D(-0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, -0.819152, 0, 0, 0)
+[node name="model" parent="." instance=ExtResource("4_b6hyk")]
 
-[node name="Sketchfab_model" parent="model2" index="0"]
-transform = Transform3D(0.03, 0, 0, 0, -1.31134e-09, 0.03, 0, -0.03, -1.31134e-09, 0, 0, 0)
+[node name="Sketchfab_model" parent="model" index="0"]
+transform = Transform3D(-0.0245746, 0.0172073, 7.52155e-10, 0, -1.31134e-09, 0.03, 0.0172073, 0.0245746, 1.07419e-09, 0, 0, 0)
 
-[editable path="model2"]
+[editable path="model"]
