@@ -101,6 +101,9 @@ func _process(delta: float) -> void:
 				node.set(p, node_value)
 
 func _on_root_child_entered_tree(child: Node) -> void:
+	if child is SD_NetNodesTransformSynchronizer:
+		return
+	
 	var hook := SD_NetNodeSyncTransformHook.get_or_create(child, self)
 
 func _on_timer_timeout() -> void:
