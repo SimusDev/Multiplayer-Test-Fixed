@@ -1,61 +1,41 @@
 extends Node
 
-var effect
-var recording = false
+@export var input_player: AudioStreamPlayer
+@export var output_player: AudioStreamPlayer
+
+var recording_effect = AudioEffectCapture.new()
+var recording_bus_idx: int
 
 func _ready():
-	# Создаем аудиоэффект для записи
-	effect = AudioEffectCapture.new()
-	var idx = AudioServer.get_bus_index("Record")
-	AudioServer.add_bus_effect(idx, effect)
-	AudioServer.set_bus_effect_enabled(idx, 0, true)
+	# Setup recording bus
+	recording_bus_idx = AudioServer.get_bus_count()
+	AudioServer.add_bus(recording_bus_idx)
+	AudioServer.add_bus_effect(recording_bus_idx, recording_effect)
+	input_player.bus = "Record"
 
 func _input(event: InputEvent) -> void:
-	pass
-
-func start_recording():
-	var idx = AudioServer.get_bus_index("Record")
-	AudioServer.set_bus_mute(idx, false)
-	recording = true
+	if !is_multiplayer_authority(): return
 	
-func stop_recording():
-	var idx = AudioServer.get_bus_index("Record")
-	AudioServer.set_bus_mute(idx, true)
-	recording = false
+	if Input.is_action_just_pressed("voice"):
+		input_player.play()
+	if Input.is_action_just_released("voice"):
+		input_player.stop()
 
 func _process(delta):
-	if recording and effect.can_get_buffer(1024):
-		var stereo_buffer = effect.get_buffer(1024)
-		# Здесь можно обработать буфер перед отправкой
-		# Например, сжать аудио или применить эффекты
-		play_voice_data(stereo_buffer)
+	if not input_player.playing:
+		return
+		
+	# Get recorded data and send to peers
+	var frames = recording_effect.get_buffer(recording_effect.get_frames_available())
+	if frames.size() > 0:
+		rpc("_receive_voice_data", frames)
 
-#@rpc("any_peer", "unreliable")
-#func send_voice_data(buffer):
-	## Отправка данных всем, кроме отправителя
-	#var sender_id = multiplayer.get_remote_sender_id()
-	#for peer_id in peer.get_peers():
-		#if peer_id != sender_id:
-			#rpc_id(peer_id, "receive_voice_data", buffer)
-#
-#@rpc("authority", "unreliable")
-#func receive_voice_data(buffer):
-	## Воспроизведение полученных аудиоданных
-	#play_voice_data(buffer)
-
-func play_voice_data(buffer):
-	var stream_player = AudioStreamPlayer.new()
-	add_child(stream_player)
-	
+@rpc("any_peer", "unreliable_ordered")
+func _receive_voice_data(data: PackedVector2Array):
+	# Create stream from received data and play it
 	var stream = AudioStreamGenerator.new()
-	stream.mix_rate = 44100 # или другая частота, совпадающая с записью
-	
-	stream_player.stream = stream
-	stream_player.play()
-	
-	var playback = stream_player.get_stream_playback()
-	playback.push_buffer(buffer)
-	
-	# Автоматическое удаление после воспроизведения
-	await stream_player.finished
-	stream_player.queue_free()
+	stream.mix_rate = 44100
+	output_player.stream = stream
+	var playback = output_player.get_stream_playback()
+	playback.push_buffer(data)
+	output_player.play()
