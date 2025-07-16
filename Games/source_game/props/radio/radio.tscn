@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c7j7vgpjdwpva" path="res://Games/source_game/game/3dmodels/radio/radio_1.png" id="2_xmmxb"]
 [ext_resource type="Texture2D" uid="uid://bqjndc6280cgb" path="res://Games/source_game/game/3dmodels/radio/radio_2.jpg" id="3_po8lj"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="4_xmmxb"]
-[ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="6_3pqce"]
+[ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="6_r3y2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaott"]
 resource_name = "20_-_Default"
@@ -158,7 +158,7 @@ mass = 3.0
 script = ExtResource("1_po8lj")
 data_folder = "res://Games/source_game/game/audio"
 user_data_folder = "<null>"
-audio_player = NodePath("AudioStreamPlayer3D")
+audio_player = NodePath("SD_MPAudioStreamPlayer3D")
 loop_mode = false
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
@@ -166,16 +166,6 @@ script = ExtResource("4_xmmxb")
 surface = "metal_box"
 rigid_body = NodePath("..")
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0317878, 0)
-max_db = 0.0
-max_distance = 50.0
-emission_angle_enabled = true
-emission_angle_degrees = 90.0
-attenuation_filter_db = -12.0
-script = ExtResource("6_3pqce")
-metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
 [node name="root" type="Node3D" parent="."]
 transform = Transform3D(0.002, 0, 0, 0, -4.37114e-11, 0.002, 0, -0.001, -8.74228e-11, 0, -0.15, 0)
@@ -215,4 +205,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_kap3d")
 }
 
-[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
+[node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("6_r3y2h")
+metadata/_custom_type_script = "uid://dcdd6kovrah03"

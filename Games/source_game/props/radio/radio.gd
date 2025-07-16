@@ -32,10 +32,10 @@ func _on_source_prop_key_pressed(key:String):
 		
 		"bracketright":
 			SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
-			play_next()
+			SD_Multiplayer.sync_call_function(self, play_next)
 		"bracketleft":
 			SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
-			play_previous()
+			SD_Multiplayer.sync_call_function(self, play_previous
 		"p":
 			pause_unpause()
 			if audio_player.stream_paused:
@@ -71,20 +71,18 @@ func play_track(at_position:int) -> void:
 	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
 
 
-func play_track_stream(stream:AudioStream) -> void:
-	if !SD_Multiplayer.is_server(): return
-	
-	SD_Multiplayer.sync_call_function(self, set_current_position, [assets.find(stream)])
-	SD_Multiplayer.sync_call_function(self, set_current_stream, [stream])
-	audio_player.stream = get_current_stream()
-	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
-	switched.emit()
-
 func play_next():
-	play_track_stream(get_next())
+	if get_current_position() + 1 < assets.size():
+		play_track(get_current_position() + 1)
+	else:
+		play_track(0)
+
 func play_previous():
-	play_track_stream(get_previous())
-	
+	if get_current_position() - 1 < 1:
+		play_track(get_current_position() + 1)
+	else:
+		play_track(-1)
+
 func stop_playing(): audio_player.stop()
 func pause_unpause(): audio_player.stream_paused = !audio_player.stream_paused
 func pause(): audio_player.stream_paused = true
@@ -97,18 +95,6 @@ func set_assets(array:Array[AudioStream]) -> void: assets = array
 func get_current_stream() -> AudioStream: return current_stream
 func get_current_position() -> int: return current_stream_position
 
-func get_next() -> AudioStream:
-	if assets.size() > (get_current_position() + 1):
-		return assets[get_current_position() + 1]
-	else:
-		return assets.front()
-	return null
-func get_previous() -> AudioStream:
-	if (get_current_position() - 1) > 0:
-		return assets[get_current_position() - 1]
-	else:
-		return assets.back()
-	return null
 
 func switched_synced():
 	var splitted:PackedStringArray = get_current_stream().resource_path.split("/")
