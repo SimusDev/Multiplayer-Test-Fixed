@@ -6,6 +6,9 @@ class_name W_FPCSourceLikeCrouch
 @export var collision_normal: CollisionShape3D
 @export var collision_crouch: CollisionShape3D
 
+@export var crouch_shape: Shape3D
+@export var normal_shape: Shape3D
+
 @export var ceiling_detection: RayCast3D
 
 @export var crouch_camera_position: Node3D
@@ -42,8 +45,10 @@ func _ready() -> void:
 
 func _on_crouched_status_changed() -> void:
 	if movement:
-		collision_normal.disabled = movement.is_crouched
-		collision_crouch.disabled = not movement.is_crouched
+		if normal_shape and crouch_shape:
+			if movement.is_crouched: collision_normal.shape = crouch_shape
+			else:
+				collision_normal.shape = normal_shape
 	
 	if collision_normal and collision_crouch:
 		collision_normal.visible = enabled
@@ -51,5 +56,6 @@ func _on_crouched_status_changed() -> void:
 	
 	if movement:
 		if not movement.enabled:
-			collision_crouch.disabled = true
-			collision_crouch.disabled = true
+			#
+			#collision_crouch.disabled = true
+			pass

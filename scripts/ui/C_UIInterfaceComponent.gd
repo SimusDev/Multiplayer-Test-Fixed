@@ -26,6 +26,9 @@ func _ready() -> void:
 	if open_at_start:
 		open()
 
+func _exit_tree() -> void:
+	close()
+
 func _on_input_close_action_just_pressed(action: String, bind: SD_Keybind) -> void:
 	if action == "close_interface":
 		close()

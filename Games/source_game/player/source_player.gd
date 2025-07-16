@@ -26,6 +26,10 @@ static var instance:SourcePlayer
 @export var interact_raycast:SourceInteractRaycast
 @export var footsteps_component:SourceFootsteps
 
+var in_backrooms:bool = false : set = set_in_backrooms, get = is_in_backrooms
+
+func set_in_backrooms(value:bool): in_backrooms = value
+func is_in_backrooms() -> bool: return in_backrooms
 
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(_on_state_enter)

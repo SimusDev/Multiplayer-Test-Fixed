@@ -3,20 +3,13 @@ class_name SourceGame extends Node
 static var instance:SourceGame = null
 
 var sv_cheats:bool = false : set = set_sv_cheats
-
-@export var ambience:AudioStreamPlayer
-@export var sky_3d:Sky3D
 @export var mp_player_spawner:SD_MPPlayerSpawner
+@export var death_camera:PackedScene
 
-@export var death_camera:Node3D
+@onready var map = $gm_bigcity
 
 func _ready() -> void:
 	instance = self
-
-func _process(delta: float) -> void:
-	if sky_3d.current_time > 19.0 or sky_3d.current_time < 6.0: ambience.volume_db = lerp(ambience.volume_db, -20.0, delta)
-	else:
-		ambience.volume_db = lerp(ambience.volume_db, -80.0, delta)
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	var timer = Timer.new()
@@ -25,9 +18,11 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	timer.timeout.connect(timer.queue_free)
 	add_child(timer)
 	timer.start()
-	death_camera.global_position = _for.get_player_node().global_position
-	death_camera.make_current()
-
+	
+	var new_death_camera = death_camera.instantiate()
+	new_death_camera.global_position = _for.get_player_node().global_position
+	if is_multiplayer_authority():
+		new_death_camera.make_current()
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:
@@ -92,7 +87,9 @@ func find_player(nickname:String) -> SD_MultiplayerPlayer:
 	return picked_player
 
 func find_and_kill_player(nickname:String):
-	var player = find_player(nickname).get_node() as SourcePlayer
+	if !find_player(nickname): return
+	
+	var player = find_player(nickname).get_player_node() as SourcePlayer
 	if is_instance_valid(player):
 		player.health.kill()
 
@@ -102,11 +99,11 @@ func teleport_player(player:Node3D, position:Vector3):
 	SimusDev.console.write_info(str(player) + " position: " + str(position))
 
 func set_time(value:float):
-	sky_3d.current_time = value
+	map.sky_3d.current_time = value
 	SimusDev.console.write_info("current_time: " + str(value))
 
 func set_time_freeze(value:bool):
-	sky_3d.enable_game_time = !value
+	map.sky_3d.enable_game_time = !value
 	SimusDev.console.write_info("time.freeze: " + str(value))
 
 func set_sv_cheats(value:bool) -> void:

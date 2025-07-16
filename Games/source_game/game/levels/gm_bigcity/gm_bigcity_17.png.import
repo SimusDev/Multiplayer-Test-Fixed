@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bpo5lybvmyamv"
+path.s3tc="res://.godot/imported/gm_bigcity_17.png-d520c05128fba362e6b4348e1a41b4b3.s3tc.ctex"
+path.etc2="res://.godot/imported/gm_bigcity_17.png-d520c05128fba362e6b4348e1a41b4b3.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e9e4f493095b8bec64e5b6cbe573d3d2"
+}
+
+[deps]
+
+source_file="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity_17.png"
+dest_files=["res://.godot/imported/gm_bigcity_17.png-d520c05128fba362e6b4348e1a41b4b3.s3tc.ctex", "res://.godot/imported/gm_bigcity_17.png-d520c05128fba362e6b4348e1a41b4b3.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

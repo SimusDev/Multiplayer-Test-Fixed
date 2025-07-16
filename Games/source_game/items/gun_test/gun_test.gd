@@ -33,7 +33,7 @@ func spawn_projectile():
 	
 	var bullet_dir:Vector3 = -bullet_marker.global_transform.basis.z.normalized()
 	new_bullet.linear_velocity = bullet_dir * bullet_force
-
+#sleep
 func spawn_shell():
 	var new_bullet_shell:SourceBulletShell = SourceBulletShell.new()
 	new_bullet_shell.model = preload("res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn")

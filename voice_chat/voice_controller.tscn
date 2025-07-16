@@ -4,10 +4,8 @@
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_6qabe"]
 
-[node name="voice_controller" type="Node" node_paths=PackedStringArray("input_player", "output_player")]
+[node name="voice_controller" type="Node"]
 script = ExtResource("1_v54fw")
-input_player = NodePath("input")
-output_player = NodePath("output")
 
 [node name="input" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_6qabe")

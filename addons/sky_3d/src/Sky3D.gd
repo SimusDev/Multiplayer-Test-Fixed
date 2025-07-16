@@ -282,7 +282,7 @@ func set_sun_shadow_opacity(value: float) -> void:
 
 
 ## Ratio of ambient light to sky light. See Environment.ambient_light_sky_contribution.
-@export_range(0, 1, 0.005) var sky_contribution: float = 1.0: set = set_sky_contribution
+@export_range(0, 1, 0.005) var sky_contribution: float = 0.9: set = set_sky_contribution
 
 func set_sky_contribution(value: float) -> void:
 	if environment:
