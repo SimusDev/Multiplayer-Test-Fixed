@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_3t34p"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_i8cvj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_3t34p"]
+[sub_resource type="LabelSettings" id="LabelSettings_5sxsk"]
 font = ExtResource("4_0wb3c")
 font_size = 18
 outline_size = 4
@@ -71,7 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Spawner Menu"
-label_settings = SubResource("LabelSettings_3t34p")
+label_settings = SubResource("LabelSettings_5sxsk")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_3t34p")

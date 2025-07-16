@@ -20,8 +20,9 @@ func _on_source_button_pressed() -> void:
 func spawn_prop():
 	var new_prop = prop_res.prefab.instantiate()
 	var spawn_pos = SourcePlayer.instance.interact_raycast.drag_item_link_node.global_position
-	SourceGame.instance.add_child(new_prop)
+	SourceGame.instance.get_node("props").add_child(new_prop)
 	new_prop.global_position = spawn_pos
+	print(SD_Multiplayer.is_server())
 
 func _on_source_button_mouse_entered() -> void:
 	highlight.show()

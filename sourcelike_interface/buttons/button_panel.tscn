@@ -4,14 +4,14 @@
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_dgcio"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_hyuuk"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_hyuuk"]
+[sub_resource type="LabelSettings" id="LabelSettings_dgcio"]
 font = ExtResource("2_dgcio")
 font_size = 26
 
 [node name="button_panel" instance=ExtResource("1_7a2fe")]
 
 [node name="SD_Label" parent="." index="0"]
-label_settings = SubResource("LabelSettings_hyuuk")
+label_settings = SubResource("LabelSettings_dgcio")
 font = ExtResource("2_dgcio")
 font_size = 26
 
