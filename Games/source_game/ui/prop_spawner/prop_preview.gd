@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_source_button_pressed() -> void:
 	if SD_Multiplayer.is_server():
-		SD_Multiplayer.sync_call_function(self, spawn_prop)
+		SD_Multiplayer.sync_call_function_on_server(self, spawn_prop)
 		spawn.emit()
 
 func spawn_prop():
