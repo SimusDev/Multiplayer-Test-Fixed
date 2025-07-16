@@ -1,0 +1,2 @@
+class_name SD_NetVoiceChat
+extends Node

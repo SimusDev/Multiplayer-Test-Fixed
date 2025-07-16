@@ -12,6 +12,8 @@ var is_recording := false
 var broadcast_timer: float = 0.0
 
 func _ready():
+	SD_Network.register_function(receive_audio)
+	
 	setup_audio()
 
 func _process(delta):
@@ -78,7 +80,6 @@ func broadcast_audio():
 		SD_Network.call_func_except_self(receive_audio, [audio_data], SD_Network.CALLMODE.UNRELIABLE_ORDERED)
 
 func receive_audio(audio_data: PackedByteArray):
-	
 	var stereo_buffer = PackedVector2Array()
 	stereo_buffer.resize(audio_data.size() / 8)
 	stereo_buffer.set_from_byte_array(audio_data)
