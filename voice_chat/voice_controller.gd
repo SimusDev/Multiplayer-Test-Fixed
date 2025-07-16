@@ -13,7 +13,6 @@ var broadcast_timer: float = 0.0
 
 func _ready():
 	setup_audio()
-	set_multiplayer_authority(str(name).to_int())
 
 func _process(delta):
 	if not is_multiplayer_authority(): return
@@ -85,3 +84,4 @@ func receive_audio(audio_data: PackedByteArray):
 	stereo_buffer.set_from_byte_array(audio_data)
 	
 	recording_playback.push_buffer(stereo_buffer)
+	output.playing = true
