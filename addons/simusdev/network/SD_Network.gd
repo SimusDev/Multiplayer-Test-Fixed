@@ -86,3 +86,19 @@ static func call_func_except_self(callable: Callable, args: Array = [], callmode
 
 static func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
 	singleton.callables.call_func_on_server(callable, args, callmode, channel)
+
+static func is_node_cached(node: Node) -> bool:
+	return get_cached_nodes().has(str(node.get_path()))
+
+static func await_for_node_cache(node: Node, callable: Callable) -> void:
+	if is_node_cached(node):
+		callable.call()
+		return
+	
+	var path: String = str(node.get_path())
+	singleton.on_cached_node_recieve.connect(_on_cached_node_recieve.bind(path, callable))
+
+static func _on_cached_node_recieve(path: String, target: String, callable: Callable) -> void:
+	if path == target:
+		singleton.on_cached_node_recieve.disconnect(_on_cached_node_recieve)
+		callable.call()

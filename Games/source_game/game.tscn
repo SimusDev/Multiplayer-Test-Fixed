@@ -26,14 +26,14 @@
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="19_dvgr3"]
 [ext_resource type="PackedScene" uid="uid://dqoa3thrweoor" path="res://Games/source_game/props/toilet/toilet.tscn" id="19_rwrbd"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="20_i3jxi"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="21_jxt0a"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="23_lvrp7"]
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
 [ext_resource type="Texture2D" uid="uid://bfcwc1hkng0ey" path="res://Games/source_game/textures/poshalko.png" id="34_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cu85guppd25ah" path="res://Games/source_game/game/3dmodels/basketball_basket/basketball_basket.glb" id="36_jgx21"]
@@ -321,6 +321,7 @@ navigation_mesh = SubResource("NavigationMesh_ioj0b")
 
 [node name="transform" type="Node" parent="props" node_paths=PackedStringArray("_roots")]
 script = ExtResource("6_dep2b")
+channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 _roots = [NodePath("..")]
 metadata/_custom_type_script = "uid://b3gscceeely20"
 

@@ -35,6 +35,7 @@ func synchronize(property: SD_NetSyncedProperty, at_start: bool = false) -> void
 	if property.sync == property.SYNC.AUTHORITY:
 		if _synchronizer.get_multiplayer_authority() == SD_Network.get_unique_id():
 			_synchronizer.sp(property, apply_changes)
+			
 		else:
 			_synchronizer.rpf(_synchronizer.get_multiplayer_authority(), property, apply_changes)
 		return
@@ -90,6 +91,7 @@ const INTERPOLATING_VARTYPES = [
 ]
 
 func _interpolate(property: SD_NetSyncedProperty, delta: float) -> void:
+	
 	var node: Node = _synchronizer.get_node(property.node_path)
 	var synced: Dictionary[String, Variant] = _synchronizer.get_synced_data(node)
 	for p_name in synced:

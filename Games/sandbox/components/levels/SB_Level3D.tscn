@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bswhfkonnoa80"]
+[gd_scene load_steps=7 format=3 uid="uid://bswhfkonnoa80"]
 
 [ext_resource type="Script" uid="uid://w7ydag63i22q" path="res://Games/sandbox/components/levels/SB_Level3D.gd" id="1_lj6rm"]
+[ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="2_007gb"]
 [ext_resource type="PackedScene" uid="uid://bfsckyn582nca" path="res://Games/sandbox/prefabs/sd_mp_client_node_spawner.tscn" id="2_pjrny"]
 [ext_resource type="Resource" uid="uid://4voaroknyk47" path="res://Games/sandbox/objects/entities/player/object.tres" id="4_chiaj"]
 [ext_resource type="Script" uid="uid://6oxpegjg1ovh" path="res://Games/sandbox/components/player/SB_PlayerSpawnerDespawner.gd" id="5_007gb"]
 [ext_resource type="Script" uid="uid://dt30t8qnm1nkw" path="res://Games/sandbox/components/levels/SB_LevelSection3D.gd" id="5_e7ouf"]
 
-[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner")]
+[node name="EL_Level3D" type="Node3D" node_paths=PackedStringArray("_spawner", "_spawner_exclude_section")]
 script = ExtResource("1_lj6rm")
 _spawner = NodePath("ObjectsSpawner")
+_spawner_exclude_section = [NodePath("LevelScene")]
+_transform_sync_exclude = Array[String](["players"])
+
+[node name="SD_NetNodesTransformSynchronizer" type="Node" parent="."]
+script = ExtResource("2_007gb")
+channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
+metadata/_custom_type_script = "uid://b3gscceeely20"
 
 [node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
 auto_handle_spawn = false

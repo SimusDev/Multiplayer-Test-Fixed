@@ -2,7 +2,7 @@ extends SD_NetSync
 class_name SD_NetSyncedBase
 
 @export var node_path: NodePath
-@export var channel: String = "main"
+@export var channels: Array[String] = [SD_NetTrunkCallables.CHANNEL_DEFAULT]
 
 enum SYNC_MODE {
 	ALWAYS,
