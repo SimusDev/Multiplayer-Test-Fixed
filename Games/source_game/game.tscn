@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=64 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfqk60lpl5ljv" path="res://addons/sky_3d/assets/resources/SNoise.tres" id="4_spe63"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="5_dvi7y"]
 [ext_resource type="Texture2D" uid="uid://cecwdqjol0ckd" path="res://addons/sky_3d/assets/textures/noiseClouds.png" id="5_gfajl"]
+[ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="6_dep2b"]
 [ext_resource type="Texture2D" uid="uid://2r8ylu6rg5dp" path="res://addons/sky_3d/assets/thirdparty/textures/moon/MoonMap.png" id="6_h0jfs"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
 [ext_resource type="Texture2D" uid="uid://djpfuyxkryegn" path="res://addons/sky_3d/assets/textures/noise.jpg" id="7_152x2"]
@@ -25,7 +26,7 @@
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="19_dvgr3"]
 [ext_resource type="PackedScene" uid="uid://dqoa3thrweoor" path="res://Games/source_game/props/toilet/toilet.tscn" id="19_rwrbd"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="20_i3jxi"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="21_jxt0a"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
 [ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/props/radio/radio.tscn" id="23_dt7qg"]
@@ -33,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
 [ext_resource type="Script" uid="uid://d0oiki227an05" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer.gd" id="25_4wg63"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
 [ext_resource type="Texture2D" uid="uid://bfcwc1hkng0ey" path="res://Games/source_game/textures/poshalko.png" id="34_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cu85guppd25ah" path="res://Games/source_game/game/3dmodels/basketball_basket/basketball_basket.glb" id="36_jgx21"]
@@ -150,7 +151,7 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.0276449
+shader_parameter/_atm_moon_mie_intensity = 0.0276453
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("3_aahtd")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
@@ -318,6 +319,11 @@ navigation_mesh = SubResource("NavigationMesh_ioj0b")
 [node name="source_flatgrass" parent="NavigationRegion3D" instance=ExtResource("1_07hh0")]
 
 [node name="props" type="Node3D" parent="."]
+
+[node name="transform" type="Node" parent="props" node_paths=PackedStringArray("_roots")]
+script = ExtResource("6_dep2b")
+_roots = [NodePath("..")]
+metadata/_custom_type_script = "uid://b3gscceeely20"
 
 [node name="spawner" type="Node" parent="props" node_paths=PackedStringArray("_detect_roots")]
 script = ExtResource("6_s8025")

@@ -3,6 +3,8 @@ class_name SourceProp extends Node
 signal key_pressed(key:String)
 signal drag
 
+@export var sync_transform: bool = false
+
 @export var surface:String
 @export var rigid_body:RigidBody3D
 const synced_property_scene:PackedScene = preload("res://Games/source_game/game/prefabs/mp_property_transform.tscn")
@@ -23,7 +25,7 @@ func _ready() -> void:
 	
 	add_child(navigation_obstacle)
 	
-	if synced_property_scene:
+	if synced_property_scene and sync_transform:
 		var synced_property:SD_MPPropertySynchronizer = synced_property_scene.instantiate()
 		rigid_body.add_child.call_deferred(synced_property)
 

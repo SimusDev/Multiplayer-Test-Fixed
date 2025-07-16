@@ -35,7 +35,7 @@ func _on_source_prop_key_pressed(key:String):
 			SD_Multiplayer.sync_call_function(self, play_next)
 		"bracketleft":
 			SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
-			SD_Multiplayer.sync_call_function(self, play_previous
+			SD_Multiplayer.sync_call_function(self, play_previous)
 		"p":
 			pause_unpause()
 			if audio_player.stream_paused:
