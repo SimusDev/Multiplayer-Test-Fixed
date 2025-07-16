@@ -200,6 +200,11 @@ func _create_player(data: Dictionary) -> void:
 	if peer_id == -1:
 		return
 	
+	for p in _players:
+		if p.get_peer_id() == peer_id:
+			return
+	
+	
 	var player: SD_MultiplayerPlayer = SD_MultiplayerPlayer.new()
 	var username: String =  data.get("username", "")
 	player.initialize(self, peer_id, username)
@@ -303,7 +308,9 @@ func is_server() -> bool:
 	if not is_active():
 		return true
 	
-	return multiplayer.is_server()
+	if multiplayer:
+		return multiplayer.is_server()
+	return true
 
 func is_not_server() -> bool:
 	return not is_server()
