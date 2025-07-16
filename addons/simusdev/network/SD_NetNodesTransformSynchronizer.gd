@@ -118,7 +118,7 @@ func _on_timer_timeout() -> void:
 		if _channel_id > channels.size() - 1:
 			_channel_id = 0
 		
-		SD_Network.call_func_except_self(_recieve_data, [_queue], callmode, channels[_channel_id])
+		SD_Network.call_func(_recieve_data, [_queue], callmode, channels[_channel_id])
 		_changed = false
 		_queue.clear()
 

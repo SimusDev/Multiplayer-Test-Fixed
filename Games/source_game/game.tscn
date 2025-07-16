@@ -322,6 +322,7 @@ navigation_mesh = SubResource("NavigationMesh_ioj0b")
 
 [node name="transform" type="Node" parent="props" node_paths=PackedStringArray("_roots")]
 script = ExtResource("6_dep2b")
+channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 _roots = [NodePath("..")]
 metadata/_custom_type_script = "uid://b3gscceeely20"
 
