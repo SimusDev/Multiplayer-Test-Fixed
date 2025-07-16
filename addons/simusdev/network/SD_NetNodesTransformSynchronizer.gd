@@ -110,8 +110,9 @@ func _on_timer_timeout() -> void:
 	on_tick.emit()
 	
 	if _changed:
-		SD_Network.call_func_except_self(_recieve_data, [_data])
+		SD_Network.call_func_except_self(_recieve_data, [_queue])
 		_changed = false
+		_queue.clear()
 
 func _send_data_to_client(peer: int) -> void:
 	SD_Network.call_func_on(peer, _recieve_data, [_data])

@@ -29,7 +29,7 @@ func _on_tick() -> void:
 			var hook_val: Variant = _hook_data.get(p)
 			if hook_val != cur_val:
 				_hook_data.set(p, cur_val)
-				(_synchronizer.get_data().get_or_add(_source.name, {}) as Dictionary).set(p, cur_val)
+				(_synchronizer._queue.get_or_add(_source.name, {}) as Dictionary).set(p, cur_val)
 				_synchronizer._changed = true
 
 static func get_or_create(node: Node, synchronizer: SD_NetNodesTransformSynchronizer) -> SD_NetNodeSyncTransformHook:
