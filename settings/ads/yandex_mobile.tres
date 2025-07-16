@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="SD_SettingsAdsSDKYandexMobile" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/simusdev/monetization/settings/sdk/SD_SettingsAdsSDKYandexMobile.gd" id="1_gt3at"]
+[ext_resource type="Script" path="res://addons/simusdev/monetization/settings/sdk/SD_SettingsAdsSDKYandexMobile.gd" id="1"]
 
 [resource]
-script = ExtResource("1_gt3at")
+script = ExtResource("1")
 _data = Dictionary[String, Variant]({
 "api_key": "",
 "banner_id": "R-M-DEMO-320x50",

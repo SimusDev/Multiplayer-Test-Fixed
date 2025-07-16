@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://c3ye4j7ajwc25"]
+
+[ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="1_agjdf"]
+[ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="1_m2gia"]
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="1_oslun"]
+
+[resource]
+script = ExtResource("1_oslun")
+icon = ExtResource("1_agjdf")
+name = "doll"
+section = "object"
+prefab = ExtResource("1_m2gia")
+metadata/_custom_type_script = "uid://bljdyrjeubrdg"

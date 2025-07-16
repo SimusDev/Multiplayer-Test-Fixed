@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cksf4rsym7tdd"]
+[gd_scene load_steps=10 format=4 uid="uid://cksf4rsym7tdd"]
 
 [ext_resource type="Texture2D" uid="uid://cdc6ar844ordv" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_3.jpg" id="1_7lhb2"]
 [ext_resource type="Texture2D" uid="uid://dq1pmcbmb3map" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_4.png" id="2_k8jmf"]
 [ext_resource type="Texture2D" uid="uid://etx7c633pdb5" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_5.png" id="3_g0v5r"]
+[ext_resource type="Script" uid="uid://dv6vnxj3dxpcl" path="res://Games/source_game/game/prefabs/mesh_instance_3d.gd" id="4_k8jmf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lhb2"]
 resource_name = "bullet"
@@ -50,7 +51,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q2opq")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8jmf"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.878431, 0, 0.576471)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g0v5r"]
+material = SubResource("StandardMaterial3D_k8jmf")
+top_radius = 0.01
+bottom_radius = 0.01
+radial_segments = 16
+rings = 2
+
 [node name="bullet9mm" type="MeshInstance3D"]
 transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ajo5f")
 skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50996e-07, -1, -4.37114e-08)
+mesh = SubResource("CylinderMesh_g0v5r")
+script = ExtResource("4_k8jmf")

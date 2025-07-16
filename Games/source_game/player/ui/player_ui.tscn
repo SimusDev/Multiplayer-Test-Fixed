@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=7 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_ltpmo"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_1k71d"]
+[ext_resource type="PackedScene" uid="uid://dc5y124phqhmn" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.tscn" id="5_d3a31"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ltpmo"]
 font = ExtResource("4_1k71d")
@@ -53,3 +54,7 @@ anchor_bottom = 0.981944
 text = "35 hp"
 label_settings = SubResource("LabelSettings_ltpmo")
 metadata/_edit_use_anchors_ = true
+
+[node name="source_prop_spawner" parent="." instance=ExtResource("5_d3a31")]
+visible = false
+layout_mode = 1

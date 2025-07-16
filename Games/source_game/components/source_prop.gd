@@ -1,5 +1,6 @@
 class_name SourceProp extends Node
 
+signal key_pressed(key:String)
 signal drag
 
 @export var surface:String
@@ -21,7 +22,6 @@ func _ready() -> void:
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()
 	
 	add_child(navigation_obstacle)
-	#navigation_obstacle.
 	
 	if synced_property_scene:
 		var synced_property:SD_MPPropertySynchronizer = synced_property_scene.instantiate()
@@ -36,6 +36,9 @@ func _process(delta: float) -> void:
 func _on_drag_syncronized(value:bool, target:Node3D):
 	SD_Multiplayer.sync_call_function(self, _on_drag, [value, target])
 
+func _throw(player_position:Vector3, _strength):
+	var direction = (rigid_body.global_position - player_position).normalized()
+	rigid_body.apply_impulse(direction * _strength, rigid_body.global_position)
 
 func _on_drag(value:bool, target:Node3D):
 	is_drag = value

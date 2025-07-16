@@ -169,10 +169,11 @@ emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
 [node name="host" parent="content/border/vBoxContainer" index="3" instance=ExtResource("3_61h68")]
-custom_minimum_size = Vector2(75, 24)
+custom_minimum_size = Vector2(75, 7.33333)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+text = "Start"
 label_text = "Start"
 
 [node name="SD_Label" parent="content/border/vBoxContainer/host" index="0"]
@@ -180,7 +181,6 @@ anchors_preset = -1
 anchor_top = 0.0833333
 text = "Start"
 label_settings = SubResource("LabelSettings_6vo6t")
-font = ExtResource("7_00tsx")
 font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -199,7 +199,6 @@ anchors_preset = -1
 anchor_top = 0.0833333
 text = "Dedicated"
 label_settings = SubResource("LabelSettings_k6wuw")
-font = ExtResource("7_00tsx")
 font_size = 22
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -215,11 +214,9 @@ label_text = "CONNECT"
 [node name="SD_Label" parent="content/border/vBoxContainer/connect" index="0"]
 text = "CONNECT"
 label_settings = SubResource("LabelSettings_1bj8o")
-font = ExtResource("7_00tsx")
 font_size = 16
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
-autosize_rect = false
 
 [node name="host_btn" parent="content/tab_container" index="0" instance=ExtResource("3_61h68")]
 layout_mode = 2
@@ -231,7 +228,6 @@ anchors_preset = -1
 anchor_top = 0.12
 text = "Host"
 label_settings = SubResource("LabelSettings_t560a")
-font = ExtResource("7_00tsx")
 font_size = 19
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -247,7 +243,6 @@ anchors_preset = -1
 anchor_top = 0.12
 text = "Connect"
 label_settings = SubResource("LabelSettings_v575b")
-font = ExtResource("7_00tsx")
 font_size = 21
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)

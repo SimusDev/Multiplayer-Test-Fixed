@@ -13,11 +13,38 @@ var assets_size:int = 0
 @export var audio_player:AudioStreamPlayer3D
 @export var loop_mode:bool = true
 
+@onready var source_prop:SourceProp = $SourceProp
+
 func _ready() -> void:
 	switched.connect(_on_switched)
+	source_prop.key_pressed.connect(_on_source_prop_key_pressed)
 	initialize()
 	
 	play_track(1)
+
+func _on_source_prop_key_pressed(key:String):
+	if source_prop.is_drag:
+		return
+	
+	match key:
+		"minus": volume_decrease(.1)
+		"equal": volume_increase(.1)
+		
+		"bracketright":
+			SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
+			play_next()
+		"bracketleft":
+			SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
+			play_previous()
+		"p":
+			pause_unpause()
+			if audio_player.stream_paused:
+				SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-off.wav"))
+			else:
+				SoundPlayer.play_global_audio_3d(global_position, preload("res://addons/fancy_editor_sounds/keyboard_sounds/check-on.wav"))
+		
+		
+		_: return
 
 func initialize() -> void:
 	set_assets(load_assets(data_folder))
@@ -30,6 +57,11 @@ func load_assets(from_path:String) -> Array[AudioStream]:
 	
 	return result
 
+func volume_increase(value:float):
+	audio_player.volume_linear += value
+func volume_decrease(value:float):
+	audio_player.volume_linear -= value
+
 func play_track(at_position:int) -> void:
 	if !SD_Multiplayer.is_server(): return
 	
@@ -40,13 +72,13 @@ func play_track(at_position:int) -> void:
 
 
 func play_track_stream(stream:AudioStream) -> void:
-	switched.emit()
 	if !SD_Multiplayer.is_server(): return
 	
 	SD_Multiplayer.sync_call_function(self, set_current_position, [assets.find(stream)])
 	SD_Multiplayer.sync_call_function(self, set_current_stream, [stream])
 	audio_player.stream = get_current_stream()
 	SD_Multiplayer.sync_call_function(audio_player, audio_player.play)
+	switched.emit()
 
 func play_next():
 	play_track_stream(get_next())
@@ -54,6 +86,7 @@ func play_previous():
 	play_track_stream(get_previous())
 	
 func stop_playing(): audio_player.stop()
+func pause_unpause(): audio_player.stream_paused = !audio_player.stream_paused
 func pause(): audio_player.stream_paused = true
 func unpause(): audio_player.stream_paused = false
 
@@ -74,15 +107,21 @@ func get_previous() -> AudioStream:
 	if (get_current_position() - 1) > 0:
 		return assets[get_current_position() - 1]
 	else:
-		return assets[assets.size()-1]
+		return assets.back()
 	return null
 
-func _on_switched():
+func switched_synced():
 	var splitted:PackedStringArray = get_current_stream().resource_path.split("/")
 	var track_name = splitted[-1]
-	
 	$now_playing.text = "Now playing:\n" + track_name
+
+	if $AnimationPlayer.is_playing(): $AnimationPlayer.stop()
+
 	$AnimationPlayer.play("switched")
+
+func _on_switched():
+	if SD_Multiplayer.is_not_server(): return
+	SD_Multiplayer.sync_call_function(self, switched_synced)
 
 func _on_audio_stream_player_3d_finished() -> void:
 	if loop_mode: play_track(get_current_position())

@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://e4idhqmode5u"]
+[gd_scene load_steps=5 format=3 uid="uid://e4idhqmode5u"]
 
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="1_7a2fe"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_dgcio"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_hyuuk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hyuuk"]
+font = ExtResource("2_dgcio")
+font_size = 26
 
 [node name="button_panel" instance=ExtResource("1_7a2fe")]
 
 [node name="SD_Label" parent="." index="0"]
 label_settings = SubResource("LabelSettings_hyuuk")
+font = ExtResource("2_dgcio")
 font_size = 26
-autosize_rect = true
 
 [node name="panel_default" parent="." index="1" instance=ExtResource("2_hyuuk")]
 self_modulate = Color(0.934081, 0.93408, 0.93408, 0.960784)
