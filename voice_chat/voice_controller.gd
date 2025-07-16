@@ -15,7 +15,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if !is_multiplayer_authority(): return
-	
+
 	if Input.is_action_just_pressed("voice"):
 		input_player.play()
 	if Input.is_action_just_released("voice"):
@@ -24,8 +24,7 @@ func _input(event: InputEvent) -> void:
 func _process(delta):
 	if not input_player.playing:
 		return
-		
-	# Get recorded data and send to peers
+	
 	var frames = recording_effect.get_buffer(recording_effect.get_frames_available())
 	if frames.size() > 0:
 		rpc("_receive_voice_data", frames)
@@ -37,5 +36,7 @@ func _receive_voice_data(data: PackedVector2Array):
 	stream.mix_rate = 44100
 	output_player.stream = stream
 	var playback = output_player.get_stream_playback()
+	if !playback:
+		playback = AudioStreamPlayback.new()
 	playback.push_buffer(data)
 	output_player.play()
