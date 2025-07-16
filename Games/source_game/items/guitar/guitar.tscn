@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://bgj4wemxqf21y"]
+[gd_scene load_steps=13 format=4 uid="uid://bgj4wemxqf21y"]
 
 [ext_resource type="Script" uid="uid://qk0g30vskd45" path="res://Games/source_game/items/guitar/guitar.gd" id="1_kunen"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_rhgfj"]
+[ext_resource type="AudioStream" uid="uid://bl0vjc1e45cbk" path="res://Games/source_game/items/guitar/1.wav" id="4_wx0um"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="5_s5552"]
 [ext_resource type="Texture2D" uid="uid://djalhodfovfo2" path="res://Games/source_game/game/3dmodels/guitar/guitar_0.png" id="8_7x8lt"]
 
 [sub_resource type="Resource" id="Resource_rhgfj"]
@@ -129,6 +131,7 @@ _data = {
 script = ExtResource("1_kunen")
 resource = SubResource("Resource_rhgfj")
 model = NodePath("model")
+always_can_use = true
 animation_player = NodePath("AnimationPlayer")
 _fire = "use"
 metadata/_custom_type_script = "uid://dj1vged070hd"
@@ -144,3 +147,17 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_1otgx")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_wx0um")
+
+[node name="active" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_s5552")
+target = NodePath("../0")
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="0" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

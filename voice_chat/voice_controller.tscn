@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckcsa5uhxj6y7"]
+
+[ext_resource type="Script" uid="uid://c6230wifqent0" path="res://voice_chat/voice_controller.gd" id="1_v54fw"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_6qabe"]
+
+[node name="voice_controller" type="Node"]
+script = ExtResource("1_v54fw")
+
+[node name="input" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_6qabe")
+bus = &"record"
+
+[node name="output" type="AudioStreamPlayer" parent="."]

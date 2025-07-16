@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=63 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -29,7 +29,6 @@
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="21_jxt0a"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
-[ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/props/radio/radio.tscn" id="23_dt7qg"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="23_lvrp7"]
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
@@ -340,9 +339,6 @@ transform = Transform3D(0.715544, 0.00188579, -0.698565, -0.00263545, 0.999996, 
 
 [node name="toilet" parent="props" instance=ExtResource("19_rwrbd")]
 transform = Transform3D(-0.980419, 0, 0.196921, 0, 1, 0, -0.196921, 0, -0.980419, -3.5, 2.00896, 16.6)
-
-[node name="radio" parent="props" instance=ExtResource("23_dt7qg")]
-transform = Transform3D(-3.80151e-08, -0.493608, -0.869685, -2.15763e-08, 0.869685, -0.493608, 1, 0, -4.37114e-08, -2.17801, 1.12538, 11.8313)
 
 [node name="doll" parent="props" instance=ExtResource("24_7hhbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32044, 1.13057, 11.9336)

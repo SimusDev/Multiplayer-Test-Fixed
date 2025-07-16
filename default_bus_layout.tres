@@ -1,11 +1,24 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dkif0mnl8g155"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://dkif0mnl8g155"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
 room_size = 0.4
 spread = 0.0
 
+[sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
+resource_name = "Capture"
+
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/0/effect/1/enabled = true
 bus/1/name = &"game"
 bus/1/solo = false
 bus/1/mute = false
@@ -32,3 +45,11 @@ bus/4/volume_db = 0.0
 bus/4/send = &"Master"
 bus/4/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
 bus/4/effect/0/enabled = true
+bus/5/name = &"record"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Master"
+bus/5/effect/0/effect = SubResource("AudioEffectCapture_j3pel")
+bus/5/effect/0/enabled = true

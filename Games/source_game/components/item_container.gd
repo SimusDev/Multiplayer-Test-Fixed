@@ -3,7 +3,7 @@ class_name SourceItemContainer extends Node3D
 @export var model_item_container:Node3D
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
+	if event is InputEventKey and event.is_pressed() and SimusDev.ui.get_active_interfaces().is_empty():
 		match event.keycode:
 			KEY_1: pick_item(0)
 			KEY_2: pick_item(1)
