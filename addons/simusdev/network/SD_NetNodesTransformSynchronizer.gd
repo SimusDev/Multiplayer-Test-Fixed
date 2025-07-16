@@ -3,6 +3,8 @@ extends Node
 class_name SD_NetNodesTransformSynchronizer
 
 @export var properties: Array[String] = ["transform"]
+@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.UNRELIABLE
+@export var channels: Array[String] = [SD_NetTrunkCallables.CHANNEL_DEFAULT]
 @export var tickrate: float = SD_NetSync.DEFAULT_TICKRATE
 @export var tickrate_mode: SD_NetSyncedBase.TICKRATE_MODE
 @export var interpolate_speed: float = SD_NetSync.DEFAULT_TICKRATE
@@ -110,7 +112,7 @@ func _on_timer_timeout() -> void:
 	on_tick.emit()
 	
 	if _changed:
-		SD_Network.call_func_except_self(_recieve_data, [_queue])
+		SD_Network.call_func_except_self(_recieve_data, [_queue], callmode)
 		_changed = false
 		_queue.clear()
 
