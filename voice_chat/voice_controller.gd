@@ -76,11 +76,9 @@ func broadcast_audio():
 		
 		# Send to other players
 		var audio_data = echo_buffer.to_byte_array()
-		rpc("receive_audio", audio_data)
+		SD_Network.call_func_except_self(receive_audio, [audio_data], SD_Network.CALLMODE.UNRELIABLE_ORDERED)
 
-@rpc("any_peer", "unreliable_ordered")
 func receive_audio(audio_data: PackedByteArray):
-	if is_multiplayer_authority(): return
 	
 	var stereo_buffer = PackedVector2Array()
 	stereo_buffer.resize(audio_data.size() / 8)
