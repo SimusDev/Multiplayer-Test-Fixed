@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://dc5y124phqhmn"]
+
+[ext_resource type="Script" uid="uid://jd67dxpvw1rk" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.gd" id="1_3t34p"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="1_fn5aq"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_5sxsk"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_ompjo"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_0wb3c"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_3t34p"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_i8cvj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5sxsk"]
+font = ExtResource("4_0wb3c")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="source_prop_spawner" type="Control" node_paths=PackedStringArray("content_node", "tab_conteiner_node")]
+layout_mode = 3
+anchor_right = 0.71875
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3t34p")
+props_folder_path = "res://Games/source_game/props/"
+content_node = NodePath("content")
+tab_conteiner_node = NodePath("content/tab_container")
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+metadata/_edit_use_anchors_ = true
+
+[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_fn5aq")
+target = NodePath("..")
+input_action = "key.q"
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_5sxsk")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="." instance=ExtResource("3_ompjo")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("3_ompjo")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00543478
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spawner Menu"
+label_settings = SubResource("LabelSettings_5sxsk")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("5_3t34p")
+font = ExtResource("4_0wb3c")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+metadata/_edit_use_anchors_ = true
+
+[node name="button_base" parent="head" instance=ExtResource("6_i8cvj")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "X"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.178667
+anchor_right = 0.990234
+anchor_bottom = 0.989333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0616777
+anchor_right = 0.999966
+anchor_bottom = -0.00205592
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="head/button_base" to="." method="queue_free"]

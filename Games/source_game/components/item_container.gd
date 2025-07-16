@@ -1,5 +1,7 @@
 class_name SourceItemContainer extends Node3D
 
+@export var model_item_container:Node3D
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		match event.keycode:
@@ -14,10 +16,16 @@ func _input(event: InputEvent) -> void:
 			KEY_9: pick_item(8)
 			KEY_0: pick_item(9)
 
-func hide_all_items():
+func hide_all_items(exception:Node):
 	for child in get_children():
-		if child is SourceItem:
+		if child is SourceItem and child != exception:
 			child.set_current(false)
+
+func hide_all_model_items(exception:Node):
+	for child in model_item_container.get_children():
+		if child != exception:
+			child.queue_free()
+
 
 func pick_item(at_position:int):
 	var item = get_child(at_position)
@@ -25,10 +33,13 @@ func pick_item(at_position:int):
 		return
 	
 	if item is SourceItem:
-		if item.is_current():
-			item.set_current(false)
-			return
+		if is_multiplayer_authority():
+			hide_all_items(item)
+			item.set_current( not item.is_current())
 		
-		hide_all_items()
-		item.set_current(true)
 		
+		#hide_all_model_items(item)
+		#
+		#var new_item_model = item.model.duplicate()
+		#new_item_model.name = new_item_model.name.validate_node_name()
+		#model_item_container.add_child(new_item_model)

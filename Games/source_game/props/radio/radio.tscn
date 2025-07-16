@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://cdjjxovs1uyne"]
 
 [ext_resource type="Texture2D" uid="uid://b86fmrnoxj4n1" path="res://Games/source_game/game/3dmodels/radio/radio_0.jpg" id="1_a72kf"]
-[ext_resource type="Script" uid="uid://bigjtao74p5e6" path="res://Games/source_game/game/3dmodels/radio/radio.gd" id="1_po8lj"]
+[ext_resource type="Script" uid="uid://bigjtao74p5e6" path="res://Games/source_game/props/radio/radio.gd" id="1_po8lj"]
 [ext_resource type="Texture2D" uid="uid://c7j7vgpjdwpva" path="res://Games/source_game/game/3dmodels/radio/radio_1.png" id="2_xmmxb"]
 [ext_resource type="Texture2D" uid="uid://bqjndc6280cgb" path="res://Games/source_game/game/3dmodels/radio/radio_2.jpg" id="3_po8lj"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="4_xmmxb"]
@@ -68,6 +68,45 @@ size = Vector3(0.0127563, 0.0962563, 0.0178757)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqjqx"]
 size = Vector3(0.437571, 0.0167313, 0.0177536)
 
+[sub_resource type="Animation" id="Animation_cxf0g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("now_playing:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("now_playing:outline_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("now_playing:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_3pqce"]
 resource_name = "switched"
 length = 3.0
@@ -106,45 +145,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_cxf0g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("now_playing:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("now_playing:outline_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("now_playing:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kap3d"]

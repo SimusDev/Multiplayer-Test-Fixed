@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbradpyveofaw"]
+
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_je4um"]
+[ext_resource type="Texture2D" uid="uid://pgjrpk1yl3m" path="res://Games/source_game/textures/basketball.png" id="2_opcow"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_opcow"]
+bounce = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je4um"]
+albedo_texture = ExtResource("2_opcow")
+ao_enabled = true
+backlight_enabled = true
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 75.0
+uv2_triplanar_sharpness = 9.84915
+texture_filter = 0
+point_size = 25.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_opcow"]
+material = SubResource("StandardMaterial3D_je4um")
+radius = 0.3
+height = 0.6
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oh857"]
+radius = 0.3
+
+[node name="ball" type="RigidBody3D" groups=["props"]]
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_opcow")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_je4um")
+surface = "body"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_opcow")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_oh857")

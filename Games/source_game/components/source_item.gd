@@ -1,4 +1,3 @@
-@tool
 class_name SourceItem extends Node3D
 
 signal on_use
@@ -17,6 +16,15 @@ signal on_current_change
 
 var current:bool = false : set = set_current, get = is_current
 
+func _ready() -> void:
+	on_current_change.connect(_on_current_changed)
+
+func _on_current_changed():
+	animation_player.play("RESET")
+	if is_current(): animation_player.play(_pick) 
+	else: animation_player.play_backwards(_pick) 
+
+
 func set_current(value:bool):
 	current = value
 	on_current_change.emit()
@@ -31,5 +39,7 @@ func _process(delta: float) -> void:
 func use():
 	if not is_inside_tree():
 		return
-	
-	on_use.emit()
+	if is_instance_valid(animation_player):
+		if not animation_player.is_playing():
+			animation_player.play(_fire)
+			on_use.emit()

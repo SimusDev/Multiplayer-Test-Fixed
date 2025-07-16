@@ -64,6 +64,7 @@ func is_closed() -> bool:
 	return not target.visible
 
 func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
+	print('sex')
 	if action == input_action:
 		open()
 

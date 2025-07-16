@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=62 format=4 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_07hh0"]
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
@@ -15,18 +15,19 @@
 [ext_resource type="Texture2D" uid="uid://bm7dot7t7u1q4" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/StarField.jpg" id="8_dvi7y"]
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="9_lg245"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="10_ha5cx"]
+[ext_resource type="PackedScene" uid="uid://dbradpyveofaw" path="res://Games/source_game/props/ball/ball.tscn" id="10_m24lc"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="11_rwrbd"]
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
-[ext_resource type="PackedScene" uid="uid://dj1xqmdjysums" path="res://Games/source_game/game/3dmodels/barrier/barrier.tscn" id="18_ha5cx"]
+[ext_resource type="PackedScene" uid="uid://dj1xqmdjysums" path="res://Games/source_game/props/barrier/barrier.tscn" id="18_ha5cx"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="19_dvgr3"]
-[ext_resource type="PackedScene" uid="uid://dqoa3thrweoor" path="res://Games/source_game/game/3dmodels/toilet/toilet.tscn" id="19_rwrbd"]
+[ext_resource type="PackedScene" uid="uid://dqoa3thrweoor" path="res://Games/source_game/props/toilet/toilet.tscn" id="19_rwrbd"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="20_i3jxi"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="21_jxt0a"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="22_amg6d"]
-[ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/game/3dmodels/radio/radio.tscn" id="23_dt7qg"]
+[ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/props/radio/radio.tscn" id="23_dt7qg"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="23_lvrp7"]
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="24_7hhbe"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="24_wopy7"]
@@ -34,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 [ext_resource type="PackedScene" uid="uid://cw5oibpawydbh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature.tscn" id="31_ij05y"]
 [ext_resource type="Texture2D" uid="uid://bfcwc1hkng0ey" path="res://Games/source_game/textures/poshalko.png" id="34_ioj0b"]
+[ext_resource type="PackedScene" uid="uid://cu85guppd25ah" path="res://Games/source_game/game/3dmodels/basketball_basket/basketball_basket.glb" id="36_jgx21"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -129,7 +131,7 @@ shader_parameter/_atm_darkness = 0.5
 shader_parameter/_atm_sun_intensity = 18.0
 shader_parameter/_atm_day_tint = Color(0.807843, 0.909804, 1, 1)
 shader_parameter/_atm_horizon_light_tint = Color(0.980392, 0.635294, 0.462745, 1)
-shader_parameter/_atm_night_tint = Color(0, 0, 0, 0)
+shader_parameter/_atm_night_tint = Color(0.00665964, 0.00789867, 0.00991204, 0.0394933)
 shader_parameter/_atm_level_params = Vector3(1, 0, 0)
 shader_parameter/_atm_thickness = 0.7
 shader_parameter/_atm_beta_ray = Vector3(5.80454e-06, 1.35629e-05, 3.31126e-05)
@@ -147,14 +149,14 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.0
+shader_parameter/_atm_moon_mie_intensity = 0.0276453
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("3_aahtd")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
 shader_parameter/_stars_field_color = Color(1, 1, 1, 1)
 shader_parameter/_stars_field_texture = ExtResource("8_dvi7y")
 shader_parameter/_sky_alignment = Vector3(2.6555, -0.23935, 0.4505)
-shader_parameter/_sky_rotation = -11.9118
+shader_parameter/_sky_rotation = -10.0715
 shader_parameter/_sky_tilt = -1.29154
 shader_parameter/_stars_scintillation = 0.75
 shader_parameter/_stars_scintillation_speed = 0.01
@@ -189,8 +191,8 @@ shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1
 shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
 shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
 shader_parameter/_cumulus_clouds_mie_intensity = 1.0
-shader_parameter/_moon_matrix = Basis(0, -0.769321, 0.638862, -0.831481, -0.354921, -0.427398, 0.555552, -0.531202, -0.639676)
-shader_parameter/_deep_space_matrix = Basis(-0.793282, 0.608854, -2.98023e-08, 0.167823, 0.218659, -0.961261, -0.585268, -0.762552, -0.275638)
+shader_parameter/_moon_matrix = Basis(-1.49012e-08, -0.944518, 0.328459, -0.569691, 0.269947, 0.77626, -0.821859, -0.18712, -0.538084)
+shader_parameter/_deep_space_matrix = Basis(0.798054, 0.602586, 0, 0.166096, -0.219974, -0.961261, -0.579243, 0.767138, -0.275638)
 
 [sub_resource type="Sky" id="Sky_i3jxi"]
 sky_material = SubResource("ShaderMaterial_dvgr3")
@@ -199,7 +201,7 @@ sky_material = SubResource("ShaderMaterial_dvgr3")
 background_mode = 2
 sky = SubResource("Sky_i3jxi")
 ambient_light_source = 3
-ambient_light_color = Color(0.974156, 0.974156, 0.890111, 1)
+ambient_light_color = Color(0.65644, 0.512278, 0.410822, 1)
 ambient_light_sky_contribution = 0.9
 reflected_light_source = 2
 tonemap_mode = 3
@@ -323,10 +325,13 @@ transform = Transform3D(0.715544, 0.00188579, -0.698565, -0.00263545, 0.999996, 
 transform = Transform3D(-0.980419, 0, 0.196921, 0, 1, 0, -0.196921, 0, -0.980419, -3.5, 2.00896, 16.6)
 
 [node name="radio" parent="props" instance=ExtResource("23_dt7qg")]
-transform = Transform3D(-3.80151e-08, -0.493608, -0.869685, -2.15763e-08, 0.869685, -0.493608, 1, 0, -4.37114e-08, -2.20399, 1.12538, 11.8313)
+transform = Transform3D(-3.80151e-08, -0.493608, -0.869685, -2.15763e-08, 0.869685, -0.493608, 1, 0, -4.37114e-08, -2.17801, 1.12538, 11.8313)
 
 [node name="doll" parent="props" instance=ExtResource("24_7hhbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32044, 1.13057, 11.9336)
+
+[node name="ball" parent="props" instance=ExtResource("10_m24lc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54972, 1.1, 13.25)
 
 [node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("2_hjpvw")
@@ -359,7 +364,7 @@ script = ExtResource("9_lg245")
 fog_enabled = false
 enable_editor_time = false
 enable_game_time = false
-current_time = 14.51
+current_time = 7.5
 minutes_per_day = 10.0
 update_interval = 0.016
 sky_contribution = 0.9
@@ -368,13 +373,13 @@ night_ambient = false
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.808816, -0.588062, 0.704331, -0.417449, 0.574156, -0.709872, -0.41419, 0.569674, -0.588062, 0.574156, 0.569674)
-light_color = Color(1, 1, 0.913725, 1)
+transform = Transform3D(0, -0.546286, 0.837598, 0.878975, 0.399424, 0.260507, -0.476868, 0.736228, 0.480172, 0.837598, 0.260507, 0.480172)
+light_color = Color(0.99042, 0.771523, 0.616885, 1)
 shadow_enabled = true
 shadow_bias = 0.06
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
-transform = Transform3D(0, -0.831482, 0.555553, -0.769321, -0.354921, -0.531202, 0.638862, -0.427398, -0.639676, 0.555552, -0.531202, -0.639676)
+transform = Transform3D(0, -0.569691, -0.821859, -0.944518, 0.269947, -0.18712, 0.328459, 0.77626, -0.538084, -0.821859, -0.18712, -0.538084)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
@@ -388,11 +393,11 @@ light_energy = 0.0
 script = ExtResource("10_ha5cx")
 tonemap_level = 1.0
 sun_light_color = Color(1, 1, 0.913725, 1)
-sun_azimuth = -225.91
-sun_altitude = -54.9594
+sun_azimuth = -119.824
+sun_altitude = -74.8998
 moon_light_energy = 0.05
-moon_azimuth = -40.974
-moon_altitude = -122.087
+moon_azimuth = -303.213
+moon_altitude = -100.785
 fog_visible = false
 
 [node name="TimeOfDay" type="Node" parent="Sky3D"]
@@ -402,7 +407,7 @@ update_in_editor = false
 update_interval = 0.016
 dome_path = NodePath("../Skydome")
 total_cycle_in_minutes = 10.0
-total_hours = 14.51
+total_hours = 7.5
 day = 3
 
 [node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="."]
@@ -488,7 +493,7 @@ material = SubResource("StandardMaterial3D_fcmfk")
 [node name="Area3D" type="Area3D" parent="."]
 reverb_bus_enabled = true
 reverb_bus_name = &"reverb"
-reverb_bus_amount = 0.5
+reverb_bus_amount = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34074, 0.994089, -0.0760095)
@@ -500,10 +505,24 @@ shape = SubResource("BoxShape3D_ioj0b")
 debug_color = Color(0, 0.545098, 0.635294, 0.8)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.75612, 2.7, 12.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.75612, 1.83871, 12.5)
 pixel_size = 0.001
 shaded = true
 texture_filter = 0
 texture = ExtResource("34_ioj0b")
 
+[node name="basketball_basket" parent="." instance=ExtResource("36_jgx21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13029, 1.91494, 12.5473)
+
+[node name="Cube" parent="basketball_basket/Sketchfab_model/73617c9f3cc2497f90bc0cecf12aaeac_fbx/RootNode" index="0"]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, -202.454, 148.524, 60.0001)
+
+[node name="Cube_DefaultMaterial_0" parent="basketball_basket/Sketchfab_model/73617c9f3cc2497f90bc0cecf12aaeac_fbx/RootNode/Cube" index="0"]
+visible = false
+
+[node name="Cube_DefaultMaterial_02" parent="basketball_basket/Sketchfab_model/73617c9f3cc2497f90bc0cecf12aaeac_fbx/RootNode/Cube" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33347, -1.38796, -2.38419e-07)
+
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]
+
+[editable path="basketball_basket"]

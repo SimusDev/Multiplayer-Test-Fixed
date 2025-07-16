@@ -6,20 +6,12 @@ class_name SourceWeaponMelee extends SourceItem
 @export var strength:float = 25.0
 
 func _ready() -> void:
+	super()
 	on_use.connect(_on_item_use)
-	on_current_change.connect(_on_current_changed)
-
-func _on_current_changed():
-	if is_current(): animation_player.play(_pick)
-	else: animation_player.play_backwards(_pick)
 
 func _on_item_use():
-	if is_instance_valid(animation_player):
-		if animation_player.is_playing():return
-		animation_player.play(_fire)
-		player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	else:
-		impact() 
+	player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
 
 func impact():
 	if not is_instance_valid(SourcePlayer.instance): return
