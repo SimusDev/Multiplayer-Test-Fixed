@@ -29,8 +29,10 @@ func _on_node_removed(node: Node) -> void:
 
 @rpc("any_peer", "reliable", "call_local")
 func _cached_nodes_append(path: String) -> void:
-	singleton.get_cached_nodes().append(path)
+	if not singleton.get_cached_nodes().has(path):
+		singleton.get_cached_nodes().append(path)
 
 @rpc("any_peer", "reliable", "call_local")
 func _cached_nodes_remove(path: String) -> void:
-	singleton.get_cached_nodes().erase(path)
+	if singleton.get_cached_nodes().has(path):
+		singleton.get_cached_nodes().erase(path)
