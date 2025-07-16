@@ -3,18 +3,18 @@
 extends TextEdit
 
 @export var max_length = 1000                                        
-const vvipubch = "gamedev_assistant/custom_instructions"
+const ccpuirye = "gamedev_assistant/custom_instructions"
 
 func _ready():
-    text_changed.connect(hokvruts)
+    text_changed.connect(uzfzpylo)
 
-func hokvruts():
+func uzfzpylo():
                              
     if text.length() > max_length:
-        var zyfrgsdn = get_caret_column()
+        var knacsyag = get_caret_column()
         text = text.substr(0, max_length)
-        set_caret_column(min(zyfrgsdn, max_length))
+        set_caret_column(min(knacsyag, max_length))
     
                         
-    var nwmanzia = EditorInterface.get_editor_settings()
-    nwmanzia.set_setting(vvipubch, text)
+    var zooihpjb = EditorInterface.get_editor_settings()
+    zooihpjb.set_setting(ccpuirye, text)

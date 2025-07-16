@@ -2,90 +2,90 @@
 @tool                                                                                         
 extends TextEdit                                                                              
                                                                                                 
-signal duoyzqnp    
+signal ssobifaj    
 
-const vixkpkql = 50000                                                                    
+const svlkdtty = 50000                                                                    
                                                                                                 
-var zmzkiqjc : bool = false                                                              
-var huajgujo : Control                                                                          
+var dpizowaa : bool = false                                                              
+var cwcfnxve : Control                                                                          
                          
                                                                                     
 func _ready():                                                                                
                                                                                               
-    huajgujo = get_parent()       
+    cwcfnxve = get_parent()       
     
                        
     tooltip_text = "Type your message here (Enter to send, Shift+Enter for new line)\nTo include scripts you need to either paste the code here, use @OpenScripts,\n or select the code in the editor + right click for contextual menu \"Add to Chat\"\nThe file tree and open scene nodes are automatically included"
                                                                                                 
                                                                                               
-    connect("focus_entered", Callable(self, "nsctyuci"))                
-    connect("text_changed", Callable(self, "grdiuank")) 
-    connect("focus_exited", Callable(self, "quwpynyx"))            
+    connect("focus_entered", Callable(self, "tgefzjli"))                
+    connect("text_changed", Callable(self, "diahxume")) 
+    connect("focus_exited", Callable(self, "mhozbqdo"))            
     
-    var zganrstu = get_parent().get_parent()                                                    
-    if zganrstu.has_signal("pziaofdl"):  
-        zganrstu.connect("pziaofdl", Callable(self, "hsikedpx"))  
+    var vfhweybz = get_parent().get_parent()                                                    
+    if vfhweybz.has_signal("fkmoxfvn"):  
+        vfhweybz.connect("fkmoxfvn", Callable(self, "gnekarrz"))  
                 
                                                                                                 
-func _input(zcozrwrk):
+func _input(toiwyysz):
     if has_focus():
-        if zcozrwrk is InputEventKey and zcozrwrk.is_pressed():
-            if zcozrwrk.keycode == KEY_ENTER:
-                if zcozrwrk.shift_pressed:
+        if toiwyysz is InputEventKey and toiwyysz.is_pressed():
+            if toiwyysz.keycode == KEY_ENTER:
+                if toiwyysz.shift_pressed:
                     insert_text_at_caret("\n")
                                                                 
-                    duwrfvyl(1)
+                    ywiowisk(1)
                     get_viewport().set_input_as_handled()
                 else:                                                                         
                                                                              
-                    var fweqrtga = get_parent().get_node("SendPromptButton")  
-                    if fweqrtga and fweqrtga.disabled == false:  
-                        duoyzqnp.emit()                                                       
+                    var ifqaqvof = get_parent().get_node("SendPromptButton")  
+                    if ifqaqvof and ifqaqvof.disabled == false:  
+                        ssobifaj.emit()                                                       
                         get_viewport().set_input_as_handled()
-                        hsikedpx()    
+                        gnekarrz()    
 
-func duwrfvyl(qlochuss: int = 0):
-    var nvevacdh = get_theme_font("font")
-    var aelhjyac = get_theme_font_size("font_size")
-    var onrqgixp = nvevacdh.get_char_size('W'.unicode_at(0), aelhjyac).x * 0.6
-    var igwazhfb = int(size.x / onrqgixp)
-    var vpqzwqvz = nvevacdh.get_height(aelhjyac) + 10
-    var lbxftbzp = vpqzwqvz * 10        
-    var tdnqsjfj = vpqzwqvz*2
-    var lvxpvvnn = -tdnqsjfj*2
+func ywiowisk(oicvqmre: int = 0):
+    var gpfouope = get_theme_font("font")
+    var nwldqhwo = get_theme_font_size("font_size")
+    var twxndgvs = gpfouope.get_char_size('W'.unicode_at(0), nwldqhwo).x * 0.6
+    var zccbvcmp = int(size.x / twxndgvs)
+    var zryabdsd = gpfouope.get_height(nwldqhwo) + 10
+    var tlhkqwor = zryabdsd * 10        
+    var jvsuluuh = zryabdsd*2
+    var qbfuqtpt = -jvsuluuh*2
     
-    var llbhvcug = 0
+    var jfhibxlw = 0
     for i in get_line_count():
-        var lnxelngo = get_line(i)
-        var lfxzlyxn = lnxelngo.length()
-        var uesgseyt = ceili(float(lfxzlyxn) / float(igwazhfb))
-        llbhvcug += max(uesgseyt, 1)                         
+        var kfbsdikz = get_line(i)
+        var nbmeifhx = kfbsdikz.length()
+        var mrsmkybo = ceili(float(nbmeifhx) / float(zccbvcmp))
+        jfhibxlw += max(mrsmkybo, 1)                         
         
                                              
-    llbhvcug += qlochuss
+    jfhibxlw += oicvqmre
     
-    var zcvugzlu = llbhvcug * vpqzwqvz + tdnqsjfj
-    zcvugzlu = clamp(zcvugzlu, tdnqsjfj, lbxftbzp)
-    huajgujo.offset_top = -zcvugzlu
+    var jletjhjf = jfhibxlw * zryabdsd + jvsuluuh
+    jletjhjf = clamp(jletjhjf, jvsuluuh, tlhkqwor)
+    cwcfnxve.offset_top = -jletjhjf
 
 
-func eccsmjof():
-    duwrfvyl()                                                                        
+func owlxugsp():
+    ywiowisk()                                                                        
                                                                                                 
-func nsctyuci():                                                        
-    eccsmjof()                                                                     
+func tgefzjli():                                                        
+    owlxugsp()                                                                     
                                                                                                 
-func grdiuank():                                                         
-    eccsmjof()
+func diahxume():                                                         
+    owlxugsp()
     
                                                                                      
-    if text.length() > vixkpkql:                                               
-        text = text.substr(0, vixkpkql)                                        
-        set_caret_column(vixkpkql)                                                                                                        
+    if text.length() > svlkdtty:                                               
+        text = text.substr(0, svlkdtty)                                        
+        set_caret_column(svlkdtty)                                                                                                        
                                                                                                 
-func hsikedpx():                                                                    
-    eccsmjof()
+func gnekarrz():                                                                    
+    owlxugsp()
 
-func quwpynyx(): 
+func mhozbqdo(): 
     if text.length() == 0:                                                        
-        hsikedpx()
+        gnekarrz()

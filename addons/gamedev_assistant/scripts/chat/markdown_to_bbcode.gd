@@ -3,7 +3,7 @@
 class_name MarkdownToBBCode
 extends RefCounted
 
-const zanxboau = [
+const dcgudjuj = [
     "b", "i", "u", "s", "code", "char", "p", "center", "left", "right", "fill",
     "indent", "url", "hint", "img", "font", "font_size", "dropcap",
     "opentype_features", "lang", "color", "bgcolor", "fgcolor", "outline_size",
@@ -17,13 +17,13 @@ const zanxboau = [
                               
                                                                 
                                                                     
-static func szhcsvag(eehbixee: Array, kdelhfcf: String) -> String:
-    var fcpbdyhp = ""
-    for i in range(eehbixee.size()):
+static func abfqezgq(ovcfvdqd: Array, hgpjmtxa: String) -> String:
+    var pqyizich = ""
+    for i in range(ovcfvdqd.size()):
         if i > 0:
-            fcpbdyhp += kdelhfcf
-        fcpbdyhp += str(eehbixee[i])
-    return fcpbdyhp
+            pqyizich += hgpjmtxa
+        pqyizich += str(ovcfvdqd[i])
+    return pqyizich
 
 
                                                                     
@@ -33,61 +33,61 @@ static func szhcsvag(eehbixee: Array, kdelhfcf: String) -> String:
                                                               
                                                                          
                                                                     
-static func uzzbwgfu(dcexiwxs: String) -> String:
-    var egytqyme = dcexiwxs.split("\n")
-    var kuvzubpi = []
-    var ukcostjw = false
-    var ozldrafe = []
-    var hevttejz = []
+static func qnpuilvf(prlmnznr: String) -> String:
+    var whrgqdnf = prlmnznr.split("\n")
+    var izitqppk = []
+    var ytolgsxz = false
+    var zsysahvd = []
+    var lxblnigh = []
 
-    for line in egytqyme:
-        var mqpwhijh = line.strip_edges(true, false)                       
+    for line in whrgqdnf:
+        var tjixaetp = line.strip_edges(true, false)                       
 
-        if mqpwhijh.begins_with("```"):
-            if ukcostjw:
+        if tjixaetp.begins_with("```"):
+            if ytolgsxz:
                                 
-                var ncnlkhzp = szhcsvag(ozldrafe, "\n")
-                ncnlkhzp = mwqxpujh(ncnlkhzp)
+                var jzlwizml = abfqezgq(zsysahvd, "\n")
+                jzlwizml = ygcavxvl(jzlwizml)
 
                                                        
-                if hevttejz.size() > 0:
-                    var inlsynkp = szhcsvag(hevttejz, "\n")
-                    inlsynkp = mwqxpujh(inlsynkp)
-                    inlsynkp = goaqikeh(inlsynkp)
-                    kuvzubpi.append(inlsynkp)
-                    hevttejz.clear()
+                if lxblnigh.size() > 0:
+                    var mpuiaiad = abfqezgq(lxblnigh, "\n")
+                    mpuiaiad = ygcavxvl(mpuiaiad)
+                    mpuiaiad = qhmdrvae(mpuiaiad)
+                    izitqppk.append(mpuiaiad)
+                    lxblnigh.clear()
 
-                kuvzubpi.append("\n[table=1]\n[cell bg=#000000]\n[code]" + ncnlkhzp + "[/code]\n[/cell]\n[/table]\n")
-                ozldrafe.clear()
-                ukcostjw = false
+                izitqppk.append("\n[table=1]\n[cell bg=#000000]\n[code]" + jzlwizml + "[/code]\n[/cell]\n[/table]\n")
+                zsysahvd.clear()
+                ytolgsxz = false
             else:
                                   
-                if hevttejz.size() > 0:
-                    var boyqkuoh = szhcsvag(hevttejz, "\n")
-                    boyqkuoh = mwqxpujh(boyqkuoh)
-                    boyqkuoh = goaqikeh(boyqkuoh)
-                    kuvzubpi.append(boyqkuoh)
-                    hevttejz.clear()
-                ukcostjw = true
-        elif ukcostjw:
-            ozldrafe.append(line)
+                if lxblnigh.size() > 0:
+                    var aqtpirkh = abfqezgq(lxblnigh, "\n")
+                    aqtpirkh = ygcavxvl(aqtpirkh)
+                    aqtpirkh = qhmdrvae(aqtpirkh)
+                    izitqppk.append(aqtpirkh)
+                    lxblnigh.clear()
+                ytolgsxz = true
+        elif ytolgsxz:
+            zsysahvd.append(line)
         else:
-            hevttejz.append(line)
+            lxblnigh.append(line)
 
                                  
-    if ukcostjw and ozldrafe.size() > 0:
+    if ytolgsxz and zsysahvd.size() > 0:
                              
-        var lnpqiwja = szhcsvag(ozldrafe, "\n")
-        lnpqiwja = mwqxpujh(lnpqiwja)
-        var zepnzfxe = ekksfbws(lnpqiwja)
-        kuvzubpi.append("[p][/p][table=1]\n[cell bg=#000000]\n[code]" + zepnzfxe + "[/code]\n[/cell]\n[/table]")
-    elif hevttejz.size() > 0:
-        var vvyiefwu = szhcsvag(hevttejz, "\n")
-        vvyiefwu = mwqxpujh(vvyiefwu)
-        vvyiefwu = goaqikeh(vvyiefwu)
-        kuvzubpi.append(vvyiefwu)
+        var jebkvtfd = abfqezgq(zsysahvd, "\n")
+        jebkvtfd = ygcavxvl(jebkvtfd)
+        var kpsdjlaf = ztjeqoxt(jebkvtfd)
+        izitqppk.append("[p][/p][table=1]\n[cell bg=#000000]\n[code]" + kpsdjlaf + "[/code]\n[/cell]\n[/table]")
+    elif lxblnigh.size() > 0:
+        var fpbvxatt = abfqezgq(lxblnigh, "\n")
+        fpbvxatt = ygcavxvl(fpbvxatt)
+        fpbvxatt = qhmdrvae(fpbvxatt)
+        izitqppk.append(fpbvxatt)
 
-    return szhcsvag(kuvzubpi, "\n")
+    return abfqezgq(izitqppk, "\n")
 
 
                                                                     
@@ -97,74 +97,74 @@ static func uzzbwgfu(dcexiwxs: String) -> String:
                                                                                   
                                                                             
                                                                     
-static func xkrwhgvx(ctqelpee: String) -> Array:
-    var rdcvarqp = []
-    var ecrljhps = ctqelpee.split("\n")
+static func axxubega(mijvfbef: String) -> Array:
+    var zgddymly = []
+    var xbdsnhbh = mijvfbef.split("\n")
 
-    var graqrlws = false
-    var nkyknhfj = []
-    var shpjzgyd = []
+    var twqwpcpx = false
+    var gbzkleve = []
+    var jmtiupyg = []
 
-    for line in ecrljhps:
-        var mntgvbnu = line.strip_edges()
+    for line in xbdsnhbh:
+        var lrrfztgg = line.strip_edges()
 
-        if mntgvbnu.begins_with("```"):
-            if graqrlws:
+        if lrrfztgg.begins_with("```"):
+            if twqwpcpx:
                                     
-                var cjgyitrc = szhcsvag(shpjzgyd, "\n")
-                rdcvarqp.append({ "type": "code", "content": cjgyitrc })
-                shpjzgyd.clear()
-                graqrlws = false
+                var zbdetxft = abfqezgq(jmtiupyg, "\n")
+                zgddymly.append({ "type": "code", "content": zbdetxft })
+                jmtiupyg.clear()
+                twqwpcpx = false
             else:
                                     
-                if nkyknhfj.size() > 0:
-                    var vryaaatk = szhcsvag(nkyknhfj, "\n")
-                    rdcvarqp.append({ "type": "text", "content": vryaaatk })
-                    nkyknhfj.clear()
-                graqrlws = true
-        elif graqrlws:
-            shpjzgyd.append(line)
+                if gbzkleve.size() > 0:
+                    var fckzatpp = abfqezgq(gbzkleve, "\n")
+                    zgddymly.append({ "type": "text", "content": fckzatpp })
+                    gbzkleve.clear()
+                twqwpcpx = true
+        elif twqwpcpx:
+            jmtiupyg.append(line)
         else:
-            nkyknhfj.append(line)
+            gbzkleve.append(line)
 
                                       
-    if nkyknhfj.size() > 0:
-        var hvpazqnf = szhcsvag(nkyknhfj, "\n")
-        rdcvarqp.append({ "type": "text", "content": hvpazqnf })
-    elif graqrlws and shpjzgyd.size() > 0:
-        var mlwsirdl = szhcsvag(shpjzgyd, "\n")
-        rdcvarqp.append({ "type": "code", "content": mlwsirdl })
+    if gbzkleve.size() > 0:
+        var lixwdifj = abfqezgq(gbzkleve, "\n")
+        zgddymly.append({ "type": "text", "content": lixwdifj })
+    elif twqwpcpx and jmtiupyg.size() > 0:
+        var tgcamoel = abfqezgq(jmtiupyg, "\n")
+        zgddymly.append({ "type": "code", "content": tgcamoel })
 
-    return rdcvarqp
+    return zgddymly
 
 
                              
                            
                              
 
-static func ekksfbws(iixghlkd: String) -> String:
-    var inccdjxc = iixghlkd.split("\n")
-    var lpnypwfm = 0
+static func ztjeqoxt(whfxwxho: String) -> String:
+    var prxiutrz = whfxwxho.split("\n")
+    var sslavifh = 0
     
                            
-    for line in inccdjxc:
-        lpnypwfm = max(lpnypwfm, line.length())
+    for line in prxiutrz:
+        sslavifh = max(sslavifh, line.length())
     
                                     
-    for i in range(inccdjxc.size()):
-        var oehigyql = "  "
-        var dqchxzcm = "  "
-        inccdjxc[i] = oehigyql + inccdjxc[i] + dqchxzcm
+    for i in range(prxiutrz.size()):
+        var rnskipvh = "  "
+        var cinroxgz = "  "
+        prxiutrz[i] = rnskipvh + prxiutrz[i] + cinroxgz
     
-    return szhcsvag(inccdjxc, "\n") + "\n"
+    return abfqezgq(prxiutrz, "\n") + "\n"
 
 
-static func goaqikeh(jrkrhksa: String) -> String:
-    var hebppvye = jrkrhksa
-    var csdvyzol = hebppvye.split("\n")
-    var ehhgowit = []
+static func qhmdrvae(cikzfqfy: String) -> String:
+    var gvkwsqoz = cikzfqfy
+    var tukycjkh = gvkwsqoz.split("\n")
+    var mrgnzdoj = []
 
-    for line in csdvyzol:
+    for line in tukycjkh:
                         
         if line.begins_with("## "):
             line = "[font_size=22][b]" + line.substr(3) + "[/b][/font_size]"
@@ -174,96 +174,96 @@ static func goaqikeh(jrkrhksa: String) -> String:
             line = "[font_size=16][b]" + line.substr(4) + "[/b][/font_size]"
         
                
-        line = lehzahjw(line)
-        ehhgowit.append(line)
+        line = xpajylqv(line)
+        mrgnzdoj.append(line)
 
-    hebppvye = szhcsvag(ehhgowit, "\n")
+    gvkwsqoz = abfqezgq(mrgnzdoj, "\n")
 
                                
-    var dlwowcbg = hebppvye.split("***")
-    hebppvye = ""
-    for i in range(dlwowcbg.size()):
-        hebppvye += dlwowcbg[i]
-        if i < dlwowcbg.size() - 1:
+    var dhyvnalu = gvkwsqoz.split("***")
+    gvkwsqoz = ""
+    for i in range(dhyvnalu.size()):
+        gvkwsqoz += dhyvnalu[i]
+        if i < dhyvnalu.size() - 1:
             if i % 2 == 0:
-                hebppvye += "[b][i]"
+                gvkwsqoz += "[b][i]"
             else:
-                hebppvye += "[/i][/b]"
+                gvkwsqoz += "[/i][/b]"
 
                            
-    var doxgofcc = hebppvye.split("**")
-    var gscpfejn = ""
-    for i in range(doxgofcc.size()):
-        gscpfejn += doxgofcc[i]
-        if i < doxgofcc.size() - 1:
+    var uezzlizv = gvkwsqoz.split("**")
+    var yrqkjpjk = ""
+    for i in range(uezzlizv.size()):
+        yrqkjpjk += uezzlizv[i]
+        if i < uezzlizv.size() - 1:
             if i % 2 == 0:
-                gscpfejn += "[b]"
+                yrqkjpjk += "[b]"
             else:
-                gscpfejn += "[/b]"
-    hebppvye = gscpfejn
+                yrqkjpjk += "[/b]"
+    gvkwsqoz = yrqkjpjk
 
                            
-    var readruyc = RegEx.new()
-    readruyc.compile("(?<![\\s])(\\*)(?![\\s])([^\\*]+?)(?<![\\s])\\*(?![\\s])")
-    hebppvye = readruyc.sub(hebppvye, "[i]$2[/i]", true)
+    var pqkaifzc = RegEx.new()
+    pqkaifzc.compile("(?<![\\s])(\\*)(?![\\s])([^\\*]+?)(?<![\\s])\\*(?![\\s])")
+    gvkwsqoz = pqkaifzc.sub(gvkwsqoz, "[i]$2[/i]", true)
     
-    return hebppvye
+    return gvkwsqoz
 
-static func xhmwmmkc(sbfzeanf: String, aroiootn: String, dhrkczei: int) -> bool:
-    var plguyrco = dhrkczei + sbfzeanf.length()
-    while plguyrco < aroiootn.length():
-        var zeophgss = aroiootn[plguyrco]
-        if zeophgss == "(":
+static func vluvtsis(pukshnmc: String, yjblrtdj: String, mxkhbimd: int) -> bool:
+    var scponugj = mxkhbimd + pukshnmc.length()
+    while scponugj < yjblrtdj.length():
+        var fuoiczio = yjblrtdj[scponugj]
+        if fuoiczio == "(":
             return true
-        elif zeophgss == " " or zeophgss == "\t":
-            plguyrco += 1
+        elif fuoiczio == " " or fuoiczio == "\t":
+            scponugj += 1
         else:
             return false
     return false
 
 
-static func fwcnqjra(qopaolet: String, mzehnvrm: Color) -> String:
-    return "[mzehnvrm =#" + mzehnvrm.to_html(false) + "]" + qopaolet + "[/color]"
+static func oobpwsef(hjegbnss: String, dxwlnjev: Color) -> String:
+    return "[dxwlnjev =#" + dxwlnjev.to_html(false) + "]" + hjegbnss + "[/color]"
 
 
-static func mwqxpujh(cwsrntqh: String) -> String:
-    var htqmojgo = cwsrntqh
-    var ivaefpmb = RegEx.new()
-    ivaefpmb.compile("\\[(/?)(\\w+)((?:[= ])[^\\]]*)?\\]")
+static func ygcavxvl(uqddggtv: String) -> String:
+    var kvxyhfha = uqddggtv
+    var pslyzcqv = RegEx.new()
+    pslyzcqv.compile("\\[(/?)(\\w+)((?:[= ])[^\\]]*)?\\]")
 
-    var atoyfpot = ivaefpmb.search_all(htqmojgo)
-    atoyfpot.reverse()
-    for match in atoyfpot:
-        var ohfqoown = match.get_string()
-        var pkalpwgr = match.get_string(2).to_lower()
-        if pkalpwgr in zanxboau:
-            var nreworbp = match.get_start()
-            var ucerdbih = match.get_end()
-            var outsxthj = ""
-            for c in ohfqoown:
+    var ajhaqjww = pslyzcqv.search_all(kvxyhfha)
+    ajhaqjww.reverse()
+    for match in ajhaqjww:
+        var kxlpundb = match.get_string()
+        var lpbxyhiz = match.get_string(2).to_lower()
+        if lpbxyhiz in dcgudjuj:
+            var cidcqmty = match.get_start()
+            var uwvohekn = match.get_end()
+            var uqnuaupk = ""
+            for c in kxlpundb:
                 if c == "[":
-                    outsxthj += "[lb]"
+                    uqnuaupk += "[lb]"
                 elif c == "]":
-                    outsxthj += "[rb]"
+                    uqnuaupk += "[rb]"
                 else:
-                    outsxthj += c
-            htqmojgo = htqmojgo.substr(0, nreworbp) + outsxthj + htqmojgo.substr(ucerdbih)
+                    uqnuaupk += c
+            kvxyhfha = kvxyhfha.substr(0, cidcqmty) + uqnuaupk + kvxyhfha.substr(uwvohekn)
 
-    return htqmojgo
+    return kvxyhfha
 
 
-static func lehzahjw(vhkwsrga: String) -> String:
-    var jfrsojlb = RegEx.new()
+static func xpajylqv(dyxsxprb: String) -> String:
+    var myfagtit = RegEx.new()
                                       
-    jfrsojlb.compile("\\[(.+?)\\]\\((.+?)\\)")
-    var ldkrczhs = vhkwsrga
-    var wmkygqci = jfrsojlb.search_all(vhkwsrga)
-    wmkygqci.reverse()
-    for match in wmkygqci:
-        var shdxxilh = match.get_string()
-        var pwwngkfm = match.get_string(1)
-        var pxcaundr = match.get_string(2)
+    myfagtit.compile("\\[(.+?)\\]\\((.+?)\\)")
+    var jpnfisuo = dyxsxprb
+    var bbottcds = myfagtit.search_all(dyxsxprb)
+    bbottcds.reverse()
+    for match in bbottcds:
+        var vqtmbyjy = match.get_string()
+        var fydozgdi = match.get_string(1)
+        var icfzhflj = match.get_string(2)
                              
-        var zdlpqodg = "[url=%s]%s[/url]" % [pxcaundr, pwwngkfm]
-        ldkrczhs = ldkrczhs.substr(0, match.get_start()) + zdlpqodg + ldkrczhs.substr(match.get_end())
-    return ldkrczhs
+        var yltxqskh = "[url=%s]%s[/url]" % [icfzhflj, fydozgdi]
+        jpnfisuo = jpnfisuo.substr(0, match.get_start()) + yltxqskh + jpnfisuo.substr(match.get_end())
+    return jpnfisuo

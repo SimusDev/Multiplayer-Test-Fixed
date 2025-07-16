@@ -9,6 +9,5 @@ script = ExtResource("1_v54fw")
 
 [node name="input" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_6qabe")
-bus = &"record"
 
 [node name="output" type="AudioStreamPlayer" parent="."]

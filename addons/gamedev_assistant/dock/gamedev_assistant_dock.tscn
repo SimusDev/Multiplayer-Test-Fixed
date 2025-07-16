@@ -75,11 +75,18 @@ timeout = 30.0
 
 [node name="RatingAction" type="HTTPRequest" parent="APIManager"]
 
+[node name="EditScript" type="HTTPRequest" parent="APIManager"]
+timeout = 60.0
+
 [node name="ConversationManager" type="Node" parent="."]
 script = ExtResource("11_h0b4w")
 
 [node name="ActionManager" type="Node" parent="."]
 script = ExtResource("13_iy0wk")
+
+[node name="action_timer" type="Timer" parent="ActionManager"]
+wait_time = 0.2
+one_shot = true
 
 [node name="Header" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 35)
@@ -349,7 +356,7 @@ script = ExtResource("12_jm0fe")
 [node name="ReasoningToggle" type="CheckButton" parent="Screen_Chat/Bottom"]
 layout_mode = 2
 size_flags_vertical = 4
-tooltip_text = "Use a more powerful LLM. It might take minutes to get a response"
+tooltip_text = "A more powerful LLM for more complex problems. It might take minutes to get a response. This is a PREMIUM feature."
 text = "Reason"
 script = ExtResource("13_ad2kt")
 
@@ -405,11 +412,10 @@ text = "You are already in the latest version"
 fit_content = true
 
 [node name="TokenValidationError" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]
-visible = false
 modulate = Color(1, 0.499129, 0.460804, 1)
 layout_mode = 2
 bbcode_enabled = true
-text = "Current client version is not valid. Click \"Manage Account\" to download the latest version"
+text = "You are using a deprecated version of GameDev Assistant. Click \"Manage Account\" to download the latest version."
 fit_content = true
 
 [node name="TokenValidationProgress" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]

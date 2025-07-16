@@ -2,164 +2,164 @@
 @tool
 extends GDAScreenBase
 
-var hlixzvoo : Label
-var nxhjqypr : LineEdit
-var frrvjksj : CheckButton
-var twfoobgf : Button
-var kwsdeixg : RichTextLabel
-var ybyrkqvv : RichTextLabel
-var okaqvhgj : RichTextLabel
-var kttfvboz : Button
-var pnagguij : LineEdit
-var ejatvgrj : Button
-var ojvchimn : Button
-var nfroutrm : String
+var djqpptpu : Label
+var mzcgqiks : LineEdit
+var aqlljhlm : CheckButton
+var iclntpcn : Button
+var bkeqcklz : RichTextLabel
+var lpexhiio : RichTextLabel
+var yvviqyyg : RichTextLabel
+var vuinekfq : Button
+var pbuovorz : LineEdit
+var kmyyhhbh : Button
+var wkpiynue : Button
+var xcrtiyux : String
 
-const olbpwale : String = "gamedev_assistant/hide_token"
-const qybrthav : String = "gamedev_assistant/validated"
-const ykpqbqxd : String = "gamedev_assistant/custom_instructions"
+const zwchacig : String = "gamedev_assistant/hide_token"
+const dwkzmdgt : String = "gamedev_assistant/validated"
+const pvyrednj : String = "gamedev_assistant/custom_instructions"
 
-@onready var isldyfse = $".."
-@onready var rhqxsgze = $"../APIManager"
-@onready var zdeguswc = $"VBoxContainer/CustomInput"
+@onready var pftbgmwq = $".."
+@onready var usfnslbv = $"../APIManager"
+@onready var jdjuflmc = $"VBoxContainer/CustomInput"
 
-var icbztfwn : bool
+var kyoaoeqv : bool
 
 func _ready ():
-    rhqxsgze.gsjjvznk.connect(_on_validate_token_received)
-    rhqxsgze.twuqtije.connect(_on_check_updates_received)
-    rhqxsgze.sfbkqhmh.connect(xtfcceon)
+    usfnslbv.lkzzpfme.connect(_on_validate_token_received)
+    usfnslbv.hmqqywkp.connect(_on_check_updates_received)
+    usfnslbv.tbojgdpj.connect(gytaawzi)
     
-    pxobkehl()
+    hacqnxkl()
     
                                              
-    frrvjksj.toggled.connect(vmczujxc)
-    twfoobgf.pressed.connect(awwcywlx)
-    ejatvgrj.pressed.connect(xohkirhh)
-    ojvchimn.pressed.connect(jqpwpbfo)
-    nxhjqypr.text_changed.connect(hlvprcdt)
+    aqlljhlm.toggled.connect(fmpqkute)
+    iclntpcn.pressed.connect(wqstyhkx)
+    kmyyhhbh.pressed.connect(onfjmcbj)
+    wkpiynue.pressed.connect(owfulhzo)
+    mzcgqiks.text_changed.connect(pbyscfvd)
     
-    kwsdeixg.visible = false
-    ybyrkqvv.visible = false
-    okaqvhgj.visible = false
+    bkeqcklz.visible = false
+    lpexhiio.visible = false
+    yvviqyyg.visible = false
     
-    var jjagwexe = EditorInterface.get_editor_settings()       
+    var xjckspbb = EditorInterface.get_editor_settings()       
     
-    jjagwexe.set_setting("gamedev_assistant/version_identifier", "94KDH6BN1D")
+    xjckspbb.set_setting("gamedev_assistant/version_identifier", "UMD72JD9F")
     
-    icbztfwn = jjagwexe.has_setting("gamedev_assistant/development_mode") and jjagwexe.get_setting('gamedev_assistant/development_mode') == true    
-    if not icbztfwn:
-        jjagwexe.set_setting("gamedev_assistant/endpoint", "https://app.gamedevassistant.com")
-        nfroutrm = "gamedev_assistant/token"
+    kyoaoeqv = xjckspbb.has_setting("gamedev_assistant/development_mode") and xjckspbb.get_setting('gamedev_assistant/development_mode') == true    
+    if not kyoaoeqv:
+        xjckspbb.set_setting("gamedev_assistant/endpoint", "https://app.gamedevassistant.com")
+        xcrtiyux = "gamedev_assistant/token"
     else:
-        jjagwexe.set_setting("gamedev_assistant/endpoint", "http://localhost:3000")
-        nfroutrm = "gamedev_assistant/token_dev"
+        xjckspbb.set_setting("gamedev_assistant/endpoint", "http://localhost:3000")
+        xcrtiyux = "gamedev_assistant/token_dev"
         print("Development mode")
         
-    rhqxsgze.chutmtuw()
+    usfnslbv.isxxvspv()
     
                                                                          
                                                   
-func pxobkehl ():
-    hlixzvoo = $VBoxContainer/EnterTokenPrompt
-    nxhjqypr = $VBoxContainer/Token_Input
-    frrvjksj = $VBoxContainer/HideToken
-    twfoobgf = $VBoxContainer/ValidateButton
-    kwsdeixg = $VBoxContainer/TokenValidationSuccess
-    ybyrkqvv = $VBoxContainer/TokenValidationError
-    okaqvhgj = $VBoxContainer/TokenValidationProgress
-    ejatvgrj = $VBoxContainer/AccountButton
-    ojvchimn = $VBoxContainer/UpdatesButton
+func hacqnxkl ():
+    djqpptpu = $VBoxContainer/EnterTokenPrompt
+    mzcgqiks = $VBoxContainer/Token_Input
+    aqlljhlm = $VBoxContainer/HideToken
+    iclntpcn = $VBoxContainer/ValidateButton
+    bkeqcklz = $VBoxContainer/TokenValidationSuccess
+    lpexhiio = $VBoxContainer/TokenValidationError
+    yvviqyyg = $VBoxContainer/TokenValidationProgress
+    kmyyhhbh = $VBoxContainer/AccountButton
+    wkpiynue = $VBoxContainer/UpdatesButton
 
-func vmczujxc (irryglsd):
-    nxhjqypr.secret = irryglsd
+func fmpqkute (ntqdwdxi):
+    mzcgqiks.secret = ntqdwdxi
     
-    var orzgxeym = EditorInterface.get_editor_settings()
-    orzgxeym.set_setting(olbpwale, frrvjksj.button_pressed)
+    var tpguobat = EditorInterface.get_editor_settings()
+    tpguobat.set_setting(zwchacig, aqlljhlm.button_pressed)
 
-func hlvprcdt (vdypymyn):
-    if len(nxhjqypr.text) == 0:
-        hlixzvoo.visible = true
+func pbyscfvd (diymwykm):
+    if len(mzcgqiks.text) == 0:
+        djqpptpu.visible = true
     else:
-        hlixzvoo.visible = false
+        djqpptpu.visible = false
     
-    isldyfse.bytpyagv(false)
+    pftbgmwq.jrqichgu(false)
     
-    kwsdeixg.visible = false
-    ybyrkqvv.visible = false
-    okaqvhgj.visible = false
+    bkeqcklz.visible = false
+    lpexhiio.visible = false
+    yvviqyyg.visible = false
     
-    var txatrhbg = EditorInterface.get_editor_settings()
-    txatrhbg.set_setting(nfroutrm, nxhjqypr.text)
+    var ogvmegoy = EditorInterface.get_editor_settings()
+    ogvmegoy.set_setting(xcrtiyux, mzcgqiks.text)
 
-func awwcywlx ():
-    twfoobgf.disabled = true
-    kwsdeixg.visible = false
-    ybyrkqvv.visible = false
-    okaqvhgj.visible = true
-    rhqxsgze.jgknhlht()
+func wqstyhkx ():
+    iclntpcn.disabled = true
+    bkeqcklz.visible = false
+    lpexhiio.visible = false
+    yvviqyyg.visible = true
+    usfnslbv.phkuusbf()
 
                                                         
-func _on_validate_token_received (rqmmtrcq : bool, mrlvddhe : String):
-    okaqvhgj.visible = false
-    twfoobgf.disabled = false
+func _on_validate_token_received (nwztjrdr : bool, eabbwrbt : String):
+    yvviqyyg.visible = false
+    iclntpcn.disabled = false
     
-    if rqmmtrcq:
-        kwsdeixg.visible = true
-        kwsdeixg.text = "Token has been validated!"
+    if nwztjrdr:
+        bkeqcklz.visible = true
+        bkeqcklz.text = "Token has been validated!"
         
-        var qihhrbjx = EditorInterface.get_editor_settings()
-        qihhrbjx.set_setting(qybrthav, true)
+        var tqhtswrn = EditorInterface.get_editor_settings()
+        tqhtswrn.set_setting(dwkzmdgt, true)
         
-        isldyfse.bytpyagv(true)
+        pftbgmwq.jrqichgu(true)
     else:
-        ybyrkqvv.visible = true
-        ybyrkqvv.text = mrlvddhe
+        lpexhiio.visible = true
+        lpexhiio.text = eabbwrbt
 
                                                   
                                                   
 func _on_open ():
-    pxobkehl()
-    var ggolidlg = EditorInterface.get_editor_settings()
+    hacqnxkl()
+    var mwmnbqat = EditorInterface.get_editor_settings()
     
-    if ggolidlg.has_setting(nfroutrm):
-        nxhjqypr.text = ggolidlg.get_setting(nfroutrm)
+    if mwmnbqat.has_setting(xcrtiyux):
+        mzcgqiks.text = mwmnbqat.get_setting(xcrtiyux)
     
-    if ggolidlg.has_setting(olbpwale):
-        frrvjksj.button_pressed = ggolidlg.get_setting(olbpwale)
+    if mwmnbqat.has_setting(zwchacig):
+        aqlljhlm.button_pressed = mwmnbqat.get_setting(zwchacig)
     
-    nxhjqypr.secret = frrvjksj.button_pressed
+    mzcgqiks.secret = aqlljhlm.button_pressed
     
-    if len(nxhjqypr.text) == 0:
-        hlixzvoo.visible = true
+    if len(mzcgqiks.text) == 0:
+        djqpptpu.visible = true
     else:
-        hlixzvoo.visible = false
+        djqpptpu.visible = false
         
-    if ggolidlg.has_setting(ykpqbqxd):
-        zdeguswc.text = ggolidlg.get_setting(ykpqbqxd)
+    if mwmnbqat.has_setting(pvyrednj):
+        jdjuflmc.text = mwmnbqat.get_setting(pvyrednj)
 
-func xohkirhh():
+func onfjmcbj():
     OS.shell_open("https://app.gamedevassistant.com/profile")
     
-func jqpwpbfo():
-    kwsdeixg.visible = false
-    ybyrkqvv.visible = false
-    okaqvhgj.visible = true
+func owfulhzo():
+    bkeqcklz.visible = false
+    lpexhiio.visible = false
+    yvviqyyg.visible = true
     
-    rhqxsgze.jdlbsgeg()
+    usfnslbv.ezuczicd()
 
-func _on_check_updates_received(kgcrwvzd: bool, wycpclmu: String):
-    okaqvhgj.visible = false
+func _on_check_updates_received(yknkhole: bool, pkbzbcvg: String):
+    yvviqyyg.visible = false
     
-    if kgcrwvzd:
-        kwsdeixg.visible = true
-        kwsdeixg.text = "An update is available! Latest version: " + wycpclmu + ". Click 'Manage Account' to download it."
+    if yknkhole:
+        bkeqcklz.visible = true
+        bkeqcklz.text = "An update is available! Latest version: " + pkbzbcvg + ". Click 'Manage Account' to download it."
     else:
-        kwsdeixg.visible = true
-        kwsdeixg.text = "You are already in the latest version"
+        bkeqcklz.visible = true
+        bkeqcklz.text = "You are already in the latest version"
 
-func xtfcceon(zubsusia: String):
-    okaqvhgj.visible = false
-    ybyrkqvv.visible = true
-    ybyrkqvv.text = zubsusia
+func gytaawzi(ogfigwha: String):
+    yvviqyyg.visible = false
+    lpexhiio.visible = true
+    lpexhiio.text = ogfigwha
     

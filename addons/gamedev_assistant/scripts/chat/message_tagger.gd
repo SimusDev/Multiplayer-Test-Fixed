@@ -2,351 +2,351 @@
 @tool
 extends RefCounted
 
-const sqkdeeyo = "@OpenScripts"
-const rqvifwna = "@SceneTree"
-const atjjkryq = "@FileTree"
-const uqdzkanq = "@Output"
-const pyfabqhx = "@GitDiff"
-const kvfpbwrm = "@Docs"
-const xzkqonsx = "@ProjectSettings"
-const cwiwoncr = 10000
-const iiodzbxn = 5000
-const itvkijql = 50000
+const vqyiotvl = "@OpenScripts"
+const vstkbpbx = "@SceneTree"
+const jrjohrlg = "@FileTree"
+const rhjbwoeg = "@Output"
+const xfogqvxc = "@GitDiff"
+const eeucvjjx = "@Docs"
+const mwycohmf = "@ProjectSettings"
+const gjoismyv = 10000
+const vkatfvrc = 5000
+const euqdgscu = 75000
 
-var wlyaszjs = {}                                      
-var pgwvmofk = []                                     
+var dyatapzj = {}                                      
+var hiietcir = []                                     
 
                               
-func zjulxceo() -> void:
-    wlyaszjs.clear()
-    pgwvmofk.clear()
+func yhdpphxg() -> void:
+    dyatapzj.clear()
+    hiietcir.clear()
 
-func ogqmymeh(hikrvzzn: String, ntkdoazm: EditorInterface) -> String:
+func xfdwfunp(lfzfcqjx: String, ewckmjqc: EditorInterface) -> String:
                                                          
-    if not tpkyelyq(hikrvzzn):
-        return hikrvzzn
+    if not fdslyiud(lfzfcqjx):
+        return lfzfcqjx
         
                             
-    var diamjfic = hikrvzzn
+    var bserhabg = lfzfcqjx
     
-    if sqkdeeyo in hikrvzzn:
+    if vqyiotvl in lfzfcqjx:
                                       
-        diamjfic = yryqqkfe(diamjfic, ntkdoazm)
+        bserhabg = fgcyfmnw(bserhabg, ewckmjqc)
         
-    if rqvifwna in hikrvzzn:
+    if vstkbpbx in lfzfcqjx:
                                      
-        diamjfic = wxcnmyxj(diamjfic, ntkdoazm)
+        bserhabg = anynpniy(bserhabg, ewckmjqc)
 
-    if atjjkryq in hikrvzzn:
+    if jrjohrlg in lfzfcqjx:
                                      
-        diamjfic = tzjhcems(diamjfic, ntkdoazm)
+        bserhabg = oxlhfsoz(bserhabg, ewckmjqc)
 
-    if uqdzkanq in hikrvzzn:
+    if rhjbwoeg in lfzfcqjx:
                                         
-        diamjfic = ccqvfxcu(diamjfic, ntkdoazm)
+        bserhabg = xsdnmdlh(bserhabg, ewckmjqc)
     
-    if pyfabqhx in hikrvzzn:                                                             
-        diamjfic = wkhsyojv(diamjfic, ntkdoazm)      
+    if xfogqvxc in lfzfcqjx:                                                             
+        bserhabg = ardgltub(bserhabg, ewckmjqc)      
     
-    if xzkqonsx in diamjfic:
-        diamjfic = vofjbzjw(diamjfic)
+    if mwycohmf in bserhabg:
+        bserhabg = gxawvcpo(bserhabg)
     
-    return diamjfic
+    return bserhabg
 
-func tpkyelyq(dwewzcvh: String) -> bool:
+func fdslyiud(wofhfjda: String) -> bool:
                                   
-    return sqkdeeyo in dwewzcvh or rqvifwna in dwewzcvh or atjjkryq in dwewzcvh or uqdzkanq in dwewzcvh or xzkqonsx in dwewzcvh
+    return vqyiotvl in wofhfjda or vstkbpbx in wofhfjda or jrjohrlg in wofhfjda or rhjbwoeg in wofhfjda or mwycohmf in wofhfjda
 
-func yryqqkfe(dtbwlurl: String, iulybcrw: EditorInterface) -> String:
-    var vyumdhmg = dtbwlurl.replace(sqkdeeyo, sqkdeeyo.substr(1)).strip_edges()
+func fgcyfmnw(hwwfnmei: String, fkesdske: EditorInterface) -> String:
+    var ufrkberp = hwwfnmei.replace(vqyiotvl, vqyiotvl.substr(1)).strip_edges()
     
-    var ipppxzia = qunevnhm(iulybcrw)
-    pgwvmofk.clear()
+    var kkovvsew = xinwxcek(fkesdske)
+    hiietcir.clear()
     
                          
-    var qywvzuxv = "\n[gds_context]\nScripts for context:\n"
+    var ezeciwca = "\n[gds_context]\nScripts for context:\n"
     
-    for file_path in ipppxzia:
-        var zeybykkd = ipppxzia[file_path]
-        var gdsxyxpb = zeybykkd.md5_text()
-        
-        if wlyaszjs.has(file_path):
-            if wlyaszjs[file_path] == gdsxyxpb:
-                pgwvmofk.append(file_path)
+    for file_path in kkovvsew:
+        var uieepztm = kkovvsew[file_path]
+        var afegzmxu = uieepztm.md5_text()
+
+        if dyatapzj.has(file_path):
+            if dyatapzj[file_path] == afegzmxu:
+                hiietcir.append(file_path)
                 continue                        
                 
                                 
-        wlyaszjs[file_path] = gdsxyxpb
+        dyatapzj[file_path] = afegzmxu
         
-        qywvzuxv += "File: %s\nContent:\n```%s\n```\n" % [file_path, zeybykkd]
+        ezeciwca += "File: %s\nContent:\n```%s\n```\n" % [file_path, uieepztm]
     
                                
-    if pgwvmofk.size() > 0:
-        qywvzuxv += "The following scripts remain the same: %s\n" % [pgwvmofk]
+    if hiietcir.size() > 0:
+        ezeciwca += "The following scripts remain the same: %s\n" % [hiietcir]
     
                                 
-    if qywvzuxv.length() > itvkijql:
-        qywvzuxv = qywvzuxv.substr(0, itvkijql) + "..."
+    if ezeciwca.length() > euqdgscu:
+        ezeciwca = ezeciwca.substr(0, euqdgscu) + "..."
     
-    return vyumdhmg + qywvzuxv + "\n[/gds_context]"
+    return ufrkberp + ezeciwca + "\n[/gds_context]"
 
-func qunevnhm(jzustags: EditorInterface) -> Dictionary:
-    var aqhanyjk = jzustags.get_script_editor()
-    var tsmsbjnb: Array = aqhanyjk.get_open_scripts()
+func xinwxcek(cwhbcnbb: EditorInterface) -> Dictionary:
+    var rznallub = cwhbcnbb.get_script_editor()
+    var oasicjhn: Array = rznallub.get_open_scripts()
     
-    var fdzpgcwu: Dictionary = {}
+    var zbsccqzh: Dictionary = {}
     
-    for script in tsmsbjnb:
-        var wudmxqgg: String = script.get_source_code()
-        var vyzxgfkh: String = script.get_path()
+    for script in oasicjhn:
+        var xbzzsizq: String = script.get_source_code()
+        var fubttkbj: String = script.get_path()
                                             
-        fdzpgcwu[vyzxgfkh] = wudmxqgg
+        zbsccqzh[fubttkbj] = xbzzsizq
         
-    return fdzpgcwu
+    return zbsccqzh
 
-func wxcnmyxj(jhwfgzhg: String, sogichms: EditorInterface) -> String:
+func anynpniy(bizeqhyo: String, onqfbeum: EditorInterface) -> String:
                                                                                                                           
-    var erynpwjl = jhwfgzhg.replace(rqvifwna, rqvifwna.substr(1)).strip_edges()
+    var zfolzrag = bizeqhyo.replace(vstkbpbx, vstkbpbx.substr(1)).strip_edges()
     
                                
-    var kvczlnft = sogichms.get_edited_scene_root()
-    if not kvczlnft:
-        return erynpwjl + "\n[gds_context]Node tree: No scene is currently being edited.[/gds_context]"
+    var qwinqzbd = onqfbeum.get_edited_scene_root()
+    if not qwinqzbd:
+        return zfolzrag + "\n[gds_context]Node tree: No scene is currently being edited.[/gds_context]"
     
                                 
-    var macdrhxy = "\n[gds_context]Node tree:\n"
-    macdrhxy += rxkighrv(kvczlnft)
-    macdrhxy += "--\n"
+    var qeaccmeu = "\n[gds_context]Node tree:\n"
+    qeaccmeu += qzhlzttk(qwinqzbd)
+    qeaccmeu += "--\n"
 
-    if macdrhxy.length() > cwiwoncr:                                                            
-        macdrhxy = macdrhxy.substr(0, cwiwoncr) + "..."
+    if qeaccmeu.length() > gjoismyv:                                                            
+        qeaccmeu = qeaccmeu.substr(0, gjoismyv) + "..."
         
-    macdrhxy += "\n[/gds_context]"
+    qeaccmeu += "\n[/gds_context]"
         
-    return erynpwjl + macdrhxy
+    return zfolzrag + qeaccmeu
 
-func rxkighrv(qgccnjua: Node, dnugmptx: String = "") -> String:
-    var oqgunllo = dnugmptx + "- " + qgccnjua.name
-    oqgunllo += " (" + qgccnjua.get_class() + ")"
+func qzhlzttk(chjlcxow: Node, dwuviuzs: String = "") -> String:
+    var iejifdma = dwuviuzs + "- " + chjlcxow.name
+    iejifdma += " (" + chjlcxow.get_class() + ")"
     
                                                  
-    if qgccnjua is Node2D:
-        oqgunllo += " position " + str(qgccnjua.position)
-    elif qgccnjua is Control:                      
-        oqgunllo += " position " + str(qgccnjua.position)
-    elif qgccnjua is Node3D:
-        oqgunllo += " position " + str(qgccnjua.transform.origin)
+    if chjlcxow is Node2D:
+        iejifdma += " position " + str(chjlcxow.position)
+    elif chjlcxow is Control:                      
+        iejifdma += " position " + str(chjlcxow.position)
+    elif chjlcxow is Node3D:
+        iejifdma += " position " + str(chjlcxow.transform.origin)
     
     
                                                                               
-    if qgccnjua.owner and qgccnjua.owner != qgccnjua:
-        oqgunllo += " [owner: " + qgccnjua.owner.name + "]"
+    if chjlcxow.owner and chjlcxow.owner != chjlcxow:
+        iejifdma += " [owner: " + chjlcxow.owner.name + "]"
     
-    oqgunllo += "\n"
-    var clpiozji = dnugmptx + "  "
+    iejifdma += "\n"
+    var nqxanxlc = dwuviuzs + "  "
     
                                                   
-    if qgccnjua is CollisionObject2D or qgccnjua is CollisionObject3D:
-        var psiyrzhk = []
-        var biaxzcam = []
+    if chjlcxow is CollisionObject2D or chjlcxow is CollisionObject3D:
+        var lviaipim = []
+        var wpejezdy = []
         
                             
         for i in range(1, 33):                                
-            if qgccnjua.get_collision_layer_value(i):
-                psiyrzhk.append(str(i))
-            if qgccnjua.get_collision_mask_value(i):
-                biaxzcam.append(str(i))
+            if chjlcxow.get_collision_layer_value(i):
+                lviaipim.append(str(i))
+            if chjlcxow.get_collision_mask_value(i):
+                wpejezdy.append(str(i))
         
-        if psiyrzhk.size() > 0 or biaxzcam.size() > 0:
-            oqgunllo += clpiozji + "Collision: layer: " + ",".join(psiyrzhk)
-            oqgunllo += " mask: " + ",".join(biaxzcam) + "\n"
+        if lviaipim.size() > 0 or wpejezdy.size() > 0:
+            iejifdma += nqxanxlc + "Collision: layer: " + ",".join(lviaipim)
+            iejifdma += " mask: " + ",".join(wpejezdy) + "\n"
     
                             
-    var foegqxjt = []
-    for prop in qgccnjua.get_property_list():
-        var jkkdizso = prop["name"]
-        var mffbgtkh = qgccnjua.get(jkkdizso)
-        if mffbgtkh is Resource and mffbgtkh != null:
-            var eiyisnvv = mffbgtkh.get_class()
-            if mffbgtkh.resource_name != "":
-                eiyisnvv = mffbgtkh.resource_name
-            foegqxjt.append("%s (%s)" % [jkkdizso, eiyisnvv])
+    var ztnkdrtj = []
+    for prop in chjlcxow.get_property_list():
+        var tujnrqgk = prop["name"]
+        var njbarxwi = chjlcxow.get(tujnrqgk)
+        if njbarxwi is Resource and njbarxwi != null:
+            var jzwarnmu = njbarxwi.get_class()
+            if njbarxwi.resource_name != "":
+                jzwarnmu = njbarxwi.resource_name
+            ztnkdrtj.append("%s (%s)" % [tujnrqgk, jzwarnmu])
         
-    if not foegqxjt.is_empty():
-        oqgunllo += clpiozji + "Assigned subresources: " + ", ".join(foegqxjt) + "\n"
+    if not ztnkdrtj.is_empty():
+        iejifdma += nqxanxlc + "Assigned subresources: " + ", ".join(ztnkdrtj) + "\n"
     
                                        
-    if qgccnjua.get_script():
-        oqgunllo += clpiozji + "Script: " + qgccnjua.get_script().resource_path + "\n"
+    if chjlcxow.get_script():
+        iejifdma += nqxanxlc + "Script: " + chjlcxow.get_script().resource_path + "\n"
     
                             
-    if qgccnjua.unique_name_in_owner:
-        oqgunllo += clpiozji + "Unique name: %" + qgccnjua.name + "\n"
+    if chjlcxow.unique_name_in_owner:
+        iejifdma += nqxanxlc + "Unique name: %" + chjlcxow.name + "\n"
     
                 
-    var mikzxotl = qgccnjua.get_groups()
-    if not mikzxotl.is_empty():
+    var mvwactfz = chjlcxow.get_groups()
+    if not mvwactfz.is_empty():
                                                               
-        mikzxotl = mikzxotl.filter(func(group): return not group.begins_with("_"))
-        if not mikzxotl.is_empty():
-            oqgunllo += clpiozji + "Groups: " + ", ".join(mikzxotl) + "\n"
+        mvwactfz = mvwactfz.filter(func(group): return not group.begins_with("_"))
+        if not mvwactfz.is_empty():
+            iejifdma += nqxanxlc + "Groups: " + ", ".join(mvwactfz) + "\n"
     
                                            
-    if qgccnjua.scene_file_path:
-        oqgunllo += clpiozji + "Instanced from: " + qgccnjua.scene_file_path + "\n"
+    if chjlcxow.scene_file_path:
+        iejifdma += nqxanxlc + "Instanced from: " + chjlcxow.scene_file_path + "\n"
     
                       
-    for child in qgccnjua.get_children():
-        oqgunllo += rxkighrv(child, clpiozji)
-    return oqgunllo
+    for child in chjlcxow.get_children():
+        iejifdma += qzhlzttk(child, nqxanxlc)
+    return iejifdma
 
-func tzjhcems(fiyxolru: String, wnpzmamy: EditorInterface) -> String:
+func oxlhfsoz(cpnppiiq: String, zzpwvrhg: EditorInterface) -> String:
                                                                                                                           
-    var atsoulwv = fiyxolru.replace(atjjkryq, atjjkryq.substr(1)).strip_edges()
+    var vqatsalf = cpnppiiq.replace(jrjohrlg, jrjohrlg.substr(1)).strip_edges()
 
-    var lrgxbjtl = wnpzmamy.get_resource_filesystem()
-    var sgkgkqqr = "res://"
+    var evfmmnkp = zzpwvrhg.get_resource_filesystem()
+    var gpgbwsye = "res://"
     
                                 
-    var uggfmiiy = "\n[gds_context]\nFile Tree:\n"
-    uggfmiiy += hekhmvje(lrgxbjtl.get_filesystem_path(sgkgkqqr))
-    uggfmiiy += "--\n"
+    var ucgkojct = "\n[gds_context]\nFile Tree:\n"
+    ucgkojct += xshssmvw(evfmmnkp.get_filesystem_path(gpgbwsye))
+    ucgkojct += "--\n"
     
-    if uggfmiiy.length() > cwiwoncr:                                                            
-        uggfmiiy = uggfmiiy.substr(0, cwiwoncr) + "..."
+    if ucgkojct.length() > gjoismyv:                                                            
+        ucgkojct = ucgkojct.substr(0, gjoismyv) + "..."
             
-    uggfmiiy += "\n[/gds_context]"
+    ucgkojct += "\n[/gds_context]"
     
-    return atsoulwv + uggfmiiy
+    return vqatsalf + ucgkojct
 
-func hekhmvje(kzxfdpgr: EditorFileSystemDirectory, jaxgbopv: String = "") -> String:
-    var hlnxhqub = ""
+func xshssmvw(bjkexbnj: EditorFileSystemDirectory, hpcclgtd: String = "") -> String:
+    var adyexzef = ""
     
                                                           
-    var zkpclijk = kzxfdpgr.get_path()
-    if zkpclijk == "res://addons/gamedev_assistant/":
+    var ehvjcksr = bjkexbnj.get_path()
+    if ehvjcksr == "res://addons/gamedev_assistant/":
                                 
-        var skzhknpm = EditorInterface.get_editor_settings()
-        var yuvqkjys = skzhknpm.has_setting("gamedev_assistant/development_mode") and skzhknpm.get_setting("gamedev_assistant/development_mode") == true
-        if not yuvqkjys:
-            return jaxgbopv + "+ gamedev_assistant/\n"                                            
+        var qgnnfhkk = EditorInterface.get_editor_settings()
+        var bhatkqjb = qgnnfhkk.has_setting("gamedev_assistant/development_mode") and qgnnfhkk.get_setting("gamedev_assistant/development_mode") == true
+        if not bhatkqjb:
+            return hpcclgtd + "+ gamedev_assistant/\n"                                            
     
                                                    
-    if kzxfdpgr.get_path() != "res://":
-        hlnxhqub += jaxgbopv + "+ " + kzxfdpgr.get_name() + "/\n"
-        jaxgbopv += "  "
+    if bjkexbnj.get_path() != "res://":
+        adyexzef += hpcclgtd + "+ " + bjkexbnj.get_name() + "/\n"
+        hpcclgtd += "  "
     
                                       
-    for i in kzxfdpgr.get_subdir_count():
-        var jskgpozz = kzxfdpgr.get_subdir(i)
-        hlnxhqub += hekhmvje(jskgpozz, jaxgbopv)
+    for i in bjkexbnj.get_subdir_count():
+        var onsujyll = bjkexbnj.get_subdir(i)
+        adyexzef += xshssmvw(onsujyll, hpcclgtd)
     
-    for i in kzxfdpgr.get_file_count():
-        var aboyvpiu = kzxfdpgr.get_file(i)
-        hlnxhqub += jaxgbopv + "- " + aboyvpiu + "\n"
+    for i in bjkexbnj.get_file_count():
+        var psruwcni = bjkexbnj.get_file(i)
+        adyexzef += hpcclgtd + "- " + psruwcni + "\n"
     
-    return hlnxhqub
+    return adyexzef
 
-func ccqvfxcu(lyycrdap: String, ncrwosob: EditorInterface) -> String:
+func xsdnmdlh(yowjvejt: String, gwoenaey: EditorInterface) -> String:
                                                                                                                           
-    var qqrkqlwc = lyycrdap.replace(uqdzkanq, uqdzkanq.substr(1)).strip_edges()
+    var dwanjvcg = yowjvejt.replace(rhjbwoeg, rhjbwoeg.substr(1)).strip_edges()
 
                                                                                                        
-    var adyqblan: Node = ncrwosob.get_base_control()
-    var tablgake: RichTextLabel = qnergrja(adyqblan)
+    var pnzvxzcu: Node = gwoenaey.get_base_control()
+    var uznggyie: RichTextLabel = sdnxavqq(pnzvxzcu)
 
-    if tablgake:
-        var ifeiikrw = tablgake.get_parsed_text()
+    if uznggyie:
+        var rguksswe = uznggyie.get_parsed_text()
         
-        if ifeiikrw.length() > iiodzbxn:                     
+        if rguksswe.length() > vkatfvrc:                     
                                                                                             
-            ifeiikrw = ifeiikrw.substr(-iiodzbxn) + "..."
+            rguksswe = rguksswe.substr(-vkatfvrc) + "..."
         
-        if ifeiikrw.length() > 0:
-            return qqrkqlwc + "\n[gds_context]\nOutput Panel:\n" + ifeiikrw + "\n[/gds_context]"
+        if rguksswe.length() > 0:
+            return dwanjvcg + "\n[gds_context]\nOutput Panel:\n" + rguksswe + "\n[/gds_context]"
         else:
-            return qqrkqlwc + "\n[gds_context]No contents in the Output Panel.[/gds_context]"
+            return dwanjvcg + "\n[gds_context]No contents in the Output Panel.[/gds_context]"
     else:
         print("No RichTextLabel under @EditorLog was found.")
-        return qqrkqlwc + "\n--\nOutput Panel: Could not find the label.\n--\n"
+        return dwanjvcg + "\n--\nOutput Panel: Could not find the label.\n--\n"
 
 
-func qnergrja(ctmnhhcl: Node) -> RichTextLabel:
+func sdnxavqq(iwibzqdi: Node) -> RichTextLabel:
                                               
-    if ctmnhhcl is RichTextLabel:
-        var epxpkaiz: Node = ctmnhhcl.get_parent()
-        if epxpkaiz:
-            var huoypmdi: Node = epxpkaiz.get_parent()
+    if iwibzqdi is RichTextLabel:
+        var lkitlyty: Node = iwibzqdi.get_parent()
+        if lkitlyty:
+            var xwslxefi: Node = lkitlyty.get_parent()
                                                            
-            if huoypmdi and huoypmdi.name.begins_with("@EditorLog"):
-                return ctmnhhcl
+            if xwslxefi and xwslxefi.name.begins_with("@EditorLog"):
+                return iwibzqdi
 
                               
-    for child in ctmnhhcl.get_children():
-        var acmlipjc: RichTextLabel = qnergrja(child)
-        if acmlipjc:
-            return acmlipjc
+    for child in iwibzqdi.get_children():
+        var fydajjgp: RichTextLabel = sdnxavqq(child)
+        if fydajjgp:
+            return fydajjgp
 
     return null
 
-func wkhsyojv(zqysypei: String, lnmhtcpb: EditorInterface) -> String:         
+func ardgltub(tyyvgldq: String, fozozcuz: EditorInterface) -> String:         
                                                                                                                           
-    var zclddkjk = zqysypei.replace(pyfabqhx, pyfabqhx.substr(1)).strip_edges()
+    var qpxdxjuy = tyyvgldq.replace(xfogqvxc, xfogqvxc.substr(1)).strip_edges()
                                                                                                     
                                                                                                   
-    var yqnjzsqq = []                                                                              
-    var jupbhult = OS.execute("git", ["diff"], yqnjzsqq, true)                                    
+    var lzhjevej = []                                                                              
+    var okgrjuhv = OS.execute("git", ["diff"], lzhjevej, true)                                    
                                                                                                     
-    if jupbhult == 0:                                                                            
-        var yknykuor = "\n[gds_context]\nGit Diff:\n" + "\n".join(yqnjzsqq) + "\n"  
+    if okgrjuhv == 0:                                                                            
+        var alusmdan = "\n[gds_context]\nGit Diff:\n" + "\n".join(lzhjevej) + "\n"  
         
-        if yknykuor.length() > cwiwoncr:                                                            
-            yknykuor = yknykuor.substr(0, cwiwoncr) + "..."
+        if alusmdan.length() > gjoismyv:                                                            
+            alusmdan = alusmdan.substr(0, gjoismyv) + "..."
         
-        yknykuor += "[/gds_context]"
+        alusmdan += "[/gds_context]"
         
-        return zclddkjk + yknykuor                                                
+        return qpxdxjuy + alusmdan                                                
     else:                                                                                         
-        return zclddkjk + "\n--\nGit Diff: Failed to execute git diff command.\n--\n"
+        return qpxdxjuy + "\n--\nGit Diff: Failed to execute git diff command.\n--\n"
 
-func hcinkzbh(cgbgbzyz: String, yorqsryt: EditorInterface) -> String:
+func yvhzvqtr(kxiudhfv: String, ieonsiam: EditorInterface) -> String:
                                                                                                                           
-    var mxlukkva = cgbgbzyz.replace(kvfpbwrm, kvfpbwrm.substr(1)).strip_edges()
-    return mxlukkva
+    var qeptygzy = kxiudhfv.replace(eeucvjjx, eeucvjjx.substr(1)).strip_edges()
+    return qeptygzy
 
                                              
-func vofjbzjw(bxqkauvq: String) -> String:
-    var fratsycd = bxqkauvq.replace(xzkqonsx, xzkqonsx.substr(1)).strip_edges()
+func gxawvcpo(cavolqtv: String) -> String:
+    var guytibvc = cavolqtv.replace(mwycohmf, mwycohmf.substr(1)).strip_edges()
     
-    var sulpvmnv = []
-    var bhtyhpjc = ProjectSettings.get_property_list()
+    var typzoinu = []
+    var mcavsnsq = ProjectSettings.get_property_list()
     
-    for prop in bhtyhpjc:
-        var mqajndxa: String = prop["name"]
-        var suhtgjdt = ProjectSettings.get(mqajndxa)
+    for prop in mcavsnsq:
+        var qjtsahqu: String = prop["name"]
+        var ddbqrkql = ProjectSettings.get(qjtsahqu)
         
                                              
-        if mqajndxa.begins_with("input/"):
-            if suhtgjdt is Dictionary or suhtgjdt is Array:
-                sulpvmnv.append("%s = %s" % [mqajndxa, str(suhtgjdt)])
-            elif suhtgjdt == null or (suhtgjdt is String and suhtgjdt.is_empty()):
+        if qjtsahqu.begins_with("input/"):
+            if ddbqrkql is Dictionary or ddbqrkql is Array:
+                typzoinu.append("%s = %s" % [qjtsahqu, str(ddbqrkql)])
+            elif ddbqrkql == null or (ddbqrkql is String and ddbqrkql.is_empty()):
                 continue
             else:
-                sulpvmnv.append("%s = %s" % [mqajndxa, suhtgjdt])
+                typzoinu.append("%s = %s" % [qjtsahqu, ddbqrkql])
             continue
         
                                          
-        if suhtgjdt is Dictionary or suhtgjdt is Array:
+        if ddbqrkql is Dictionary or ddbqrkql is Array:
             continue
             
                                                       
-        if suhtgjdt == null or (suhtgjdt is String and suhtgjdt.is_empty()):
+        if ddbqrkql == null or (ddbqrkql is String and ddbqrkql.is_empty()):
             continue
             
-        sulpvmnv.append("%s = %s" % [mqajndxa, suhtgjdt])
+        typzoinu.append("%s = %s" % [qjtsahqu, ddbqrkql])
     
-    sulpvmnv.sort()
-    var ckwbxgml = "Unassigned project settings have been omitted from this list:\n" + "\n".join(sulpvmnv)
+    typzoinu.sort()
+    var svhidbmt = "Unassigned project settings have been omitted from this list:\n" + "\n".join(typzoinu)
     
-    fratsycd = fratsycd + "\n" + ckwbxgml
-    return fratsycd
+    guytibvc = guytibvc + "\n" + svhidbmt
+    return guytibvc

@@ -2,33 +2,33 @@
 @tool
 extends Node
 
-const dvgwgsek = preload("action_parser_utils.gd")
+const majasoht = preload("action_parser_utils.gd")
 
-static func execute(nfdeslxz: String, rjhgqnda: String, nlgkwnbu: String) -> bool:
-    var amzyxouq = nfdeslxz.get_base_dir()
-    if not DirAccess.dir_exists_absolute(amzyxouq):
-        DirAccess.make_dir_recursive_absolute(amzyxouq)
+static func execute(nfogvnsu: String, xvwtymlu: String, xhgpkzic: String) -> bool:
+    var vmwvrwky = nfogvnsu.get_base_dir()
+    if not DirAccess.dir_exists_absolute(vmwvrwky):
+        DirAccess.make_dir_recursive_absolute(vmwvrwky)
     
-    if !ClassDB.class_exists(nlgkwnbu): return false
+    if !ClassDB.class_exists(xhgpkzic): return false
     
-    var phofyari = PackedScene.new()
-    var yhtwaijf = ClassDB.instantiate(nlgkwnbu)
-    yhtwaijf.name = rjhgqnda
-    phofyari.pack(yhtwaijf)
+    var kgttdxoc = PackedScene.new()
+    var ytqwrbhh = ClassDB.instantiate(xhgpkzic)
+    ytqwrbhh.name = xvwtymlu
+    kgttdxoc.pack(ytqwrbhh)
     
-    var npflvetr = ResourceSaver.save(phofyari, nfdeslxz)
-    if npflvetr == OK and Engine.is_editor_hint():
+    var xdnjyxgl = ResourceSaver.save(kgttdxoc, nfogvnsu)
+    if xdnjyxgl == OK and Engine.is_editor_hint():
         EditorPlugin.new().get_editor_interface().get_resource_filesystem().scan()
-    return npflvetr == OK
+    return xdnjyxgl == OK
 
-static func parse_line(pahlgilg: String, xjqgvjfi: String) -> Dictionary:
-    if pahlgilg.begins_with("create_scene("):
-        var cqdsszov = dvgwgsek.yoxlteic(pahlgilg)
-        if cqdsszov.size() >= 3:
+static func parse_line(qvyaawyz: String, bkvvawae: String) -> Dictionary:
+    if qvyaawyz.begins_with("create_scene("):
+        var iggwuolm = majasoht.ijfolnxk(qvyaawyz)
+        if iggwuolm.size() >= 3:
             return {
                 "type": "create_scene",
-                "path": cqdsszov[0],
-                "root_name": cqdsszov[1],
-                "root_type": cqdsszov[2]
+                "path": iggwuolm[0],
+                "root_name": iggwuolm[1],
+                "root_type": iggwuolm[2]
             }
     return {}

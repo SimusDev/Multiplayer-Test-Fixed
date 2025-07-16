@@ -2,138 +2,138 @@
 @tool
 extends Control
 
-@onready var czvrmeki = $Screen_Conversations
-@onready var kgiubxbz = $Screen_Chat
-@onready var chrymfpa = $Screen_Settings
+@onready var wmxtpwoe = $Screen_Conversations
+@onready var plfiyzzq = $Screen_Chat
+@onready var lrlmdgwm = $Screen_Settings
 
-@onready var aviihypd = $Header/HBoxContainer/ConversationsButton
-@onready var piadpopr = $Header/ChatButton
-@onready var qijjbwrw = $Header/HBoxContainer/SettingsButton
-@onready var eqsybxmr = $Header/ScreenText
+@onready var damfetzs = $Header/HBoxContainer/ConversationsButton
+@onready var sluizpyo = $Header/ChatButton
+@onready var anddjebk = $Header/HBoxContainer/SettingsButton
+@onready var rxjhknlm = $Header/ScreenText
 
-@onready var jxwfrrbl = $ConversationManager
-@onready var bbstowdm = $APIManager
+@onready var vjeipgnn = $ConversationManager
+@onready var pegbxzmr = $APIManager
 
                                           
-var kjdeyuar : bool = false
+var rbepeloh : bool = false
 
                                                     
-var jqkegowu : bool = false
+var dmeckvgu : bool = false
 
 func _ready():
-    bytpyagv(false)
+    jrqichgu(false)
     
                                        
-    bbstowdm.twuqtije.connect(xfqxtfhe)
-    bbstowdm.sfbkqhmh.connect(xfqxtfhe)
+    pegbxzmr.hmqqywkp.connect(byqyxqwq)
+    pegbxzmr.tbojgdpj.connect(byqyxqwq)
     
                                    
-    piadpopr.pressed.connect(xhiydicj)
-    qijjbwrw.pressed.connect(aqbyotoi)
-    aviihypd.pressed.connect(unqilsui)
+    sluizpyo.pressed.connect(bibkqmtg)
+    anddjebk.pressed.connect(iohmbouj)
+    damfetzs.pressed.connect(albimnsg)
     
-    var lnsmkwcc = EditorInterface.get_editor_settings()
+    var jywftlac = EditorInterface.get_editor_settings()
     
                                         
-    var vefutlvf = lnsmkwcc.has_setting("gamedev_assistant/development_mode") and lnsmkwcc.get_setting('gamedev_assistant/development_mode') == true    
-    if vefutlvf:
-        qhdpwqkg()
+    var zexoshmv = jywftlac.has_setting("gamedev_assistant/development_mode") and jywftlac.get_setting('gamedev_assistant/development_mode') == true    
+    if zexoshmv:
+        xziwbbzr()
     
-    if lnsmkwcc.has_setting("gamedev_assistant/validated"):
-        if lnsmkwcc.get_setting("gamedev_assistant/validated") == true:
-            xhiydicj()
-            bytpyagv(true)
+    if jywftlac.has_setting("gamedev_assistant/validated"):
+        if jywftlac.get_setting("gamedev_assistant/validated") == true:
+            bibkqmtg()
+            jrqichgu(true)
                         
                                                              
-            bbstowdm.jdlbsgeg(true)
+            pegbxzmr.ezuczicd(true)
             return
                                           
-    elif !lnsmkwcc.has_setting("gamedev_assistant/onboarding_shown"):
-        qhdpwqkg()
-        lnsmkwcc.set_setting("gamedev_assistant/onboarding_shown", true)
+    elif !jywftlac.has_setting("gamedev_assistant/onboarding_shown"):
+        xziwbbzr()
+        jywftlac.set_setting("gamedev_assistant/onboarding_shown", true)
         
-    ggyfzpsq(chrymfpa, "Settings")
+    bbbkjcfj(lrlmdgwm, "Settings")
 
-func ggyfzpsq (jznzjzya, sfmqpara):
-    czvrmeki.visible = false
-    kgiubxbz.visible = false
-    chrymfpa.visible = false
+func bbbkjcfj (hrnhhjom, ftxkkway):
+    wmxtpwoe.visible = false
+    plfiyzzq.visible = false
+    lrlmdgwm.visible = false
     
                                                  
-    jznzjzya.visible = true
-    jznzjzya._on_open()
+    hrnhhjom.visible = true
+    hrnhhjom._on_open()
     
-    eqsybxmr.text = sfmqpara
+    rxjhknlm.text = ftxkkway
     
-    jqkegowu = jznzjzya == kgiubxbz
+    dmeckvgu = hrnhhjom == plfiyzzq
     
                        
-    bbstowdm.mtqlfuui.emit()
+    pegbxzmr.hnsdgzcf.emit()
     
                                                                 
                                                            
                                        
 
-func unqilsui():
-    ggyfzpsq(czvrmeki, "Conversations")
+func albimnsg():
+    bbbkjcfj(wmxtpwoe, "Conversations")
 
-func xhiydicj():
-    jxwfrrbl.hesusofv()
-    ggyfzpsq(kgiubxbz, "New Conversation")
-    kgiubxbz.osrlnken()
-    bbstowdm.mtqlfuui.emit()
+func bibkqmtg():
+    vjeipgnn.tydauhrq()
+    bbbkjcfj(plfiyzzq, "New Conversation")
+    plfiyzzq.hahtuttl()
+    pegbxzmr.hnsdgzcf.emit()
 
-func aqbyotoi():
-    if chrymfpa.visible:
+func iohmbouj():
+    if lrlmdgwm.visible:
         return
     
-    ggyfzpsq(chrymfpa, "Settings")
+    bbbkjcfj(lrlmdgwm, "Settings")
 
-func fzvzkjay (iiwqnqvr : Conversation):
-    jxwfrrbl.kwdxqevp(iiwqnqvr.id)
-    ggyfzpsq(kgiubxbz, "Chat")
+func bekfohhm (avwvssbd : Conversation):
+    vjeipgnn.bxehkmun(avwvssbd.id)
+    bbbkjcfj(plfiyzzq, "Chat")
 
-func bytpyagv (ioppanwu : bool):
-    kjdeyuar = ioppanwu
-    piadpopr.disabled = !ioppanwu
-    aviihypd.disabled = !ioppanwu
+func jrqichgu (nfmsxune : bool):
+    rbepeloh = nfmsxune
+    sluizpyo.disabled = !nfmsxune
+    damfetzs.disabled = !nfmsxune
     
                                                                
-func xfqxtfhe(nqfrmxqh, param2 = ""):
+func byqyxqwq(lnjdfdwd, param2 = ""):
                                                                                        
                                                             
     
-    var qjwcqlwr = AcceptDialog.new()
-    qjwcqlwr.get_ok_button().text = "Close"
+    var qhxzlosl = AcceptDialog.new()
+    qhxzlosl.get_ok_button().text = "Close"
     
                                                                                  
-    if nqfrmxqh is bool:
+    if lnjdfdwd is bool:
                                                              
-        var kxujdawg = nqfrmxqh
-        var uhcxtnhk = param2
+        var rcngqskg = lnjdfdwd
+        var sudqncoa = param2
         
                                                    
-        if kxujdawg:
-            qjwcqlwr.title = "GameDev Assistant Update"
-            qjwcqlwr.dialog_text = "An update is available! Latest version: " + uhcxtnhk + ". Go to https://app.gamedevassistant.com to download it."
-            add_child(qjwcqlwr)
-            qjwcqlwr.popup_centered()
+        if rcngqskg:
+            qhxzlosl.title = "GameDev Assistant Update"
+            qhxzlosl.dialog_text = "An update is available! Latest version: " + sudqncoa + ". Go to https://app.gamedevassistant.com to download it."
+            add_child(qhxzlosl)
+            qhxzlosl.popup_centered()
     else:
                                                            
-        var lrkhzlsb = nqfrmxqh
-        qjwcqlwr.title = "GameDev Assistant Update"
-        qjwcqlwr.dialog_text = lrkhzlsb
-        add_child(qjwcqlwr)
-        qjwcqlwr.popup_centered()
+        var xfasmuti = lnjdfdwd
+        qhxzlosl.title = "GameDev Assistant Update"
+        qhxzlosl.dialog_text = xfasmuti
+        add_child(qhxzlosl)
+        qhxzlosl.popup_centered()
 
-func qhdpwqkg():
-    var vktywbtv = AcceptDialog.new()
-    vktywbtv.title = "Welcome Aboard! 🚀"
-    vktywbtv.dialog_text = "Welcome to GameDev Assistant by Zenva!\n\n🌟 To get started:\n1. Find the Assistant tab (next to Inspector, Node, etc, use arrows < > to find it)\n2. Enter your token in Settings\n3. Start a chat with the + button\n4. Switch between Chat and Agent mode to find your perfect workflow\n\n\nHappy gamedev! 🎮"
-    vktywbtv.ok_button_text = "Close"
-    vktywbtv.dialog_hide_on_ok = true
-    add_child(vktywbtv)
-    vktywbtv.popup_centered()
+func xziwbbzr():
+    var wtngehdb = AcceptDialog.new()
+    wtngehdb.title = "Welcome Aboard! 🚀"
+    wtngehdb.dialog_text = "Welcome to GameDev Assistant by Zenva!\n\n🌟 To get started:\n1. Find the Assistant tab (next to Inspector, Node, etc, use arrows < > to find it)\n2. Enter your token in Settings\n3. Start a chat with the + button\n4. Switch between Chat and Agent mode to find your perfect workflow\n\n\nHappy gamedev! 🎮"
+    wtngehdb.ok_button_text = "Close"
+    wtngehdb.dialog_hide_on_ok = true
+    add_child(wtngehdb)
+    wtngehdb.popup_centered()
 
-func xycvtxxl():
-    return jxwfrrbl
+func gsfckmhq():
+    return vjeipgnn
