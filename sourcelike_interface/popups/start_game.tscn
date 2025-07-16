@@ -42,7 +42,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_k6wuw"]
 font = ExtResource("7_00tsx")
-font_size = 22
+font_size = 26
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -200,7 +200,6 @@ anchor_top = 0.0833333
 text = "Dedicated"
 label_settings = SubResource("LabelSettings_k6wuw")
 font = ExtResource("7_00tsx")
-font_size = 22
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true

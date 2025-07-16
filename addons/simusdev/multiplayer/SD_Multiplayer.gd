@@ -55,7 +55,7 @@ static func create_client(address: String, port: int) -> void:
 	_singleton.create_client(address, port)
 
 static func close_peer() -> void:
-	_singleton.close_peer()
+	SD_Network.singleton.terminate_connection()
 
 static func close_client() -> void:
 	_singleton.close_client()

@@ -39,3 +39,6 @@ func _on_quit_to_main_menu_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	menu.close()
+
+func _on_networktest_pressed() -> void:
+	get_tree().change_scene_to_file.call_deferred("res://addons/simusdev/network/tests/network_test.tscn")

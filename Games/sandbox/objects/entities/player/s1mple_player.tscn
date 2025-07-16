@@ -83,10 +83,9 @@ script = ExtResource("2_st6l1")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://bie6t8nqas4fi"
 
-[node name="hide_nodes_authority" type="Node" parent="." node_paths=PackedStringArray("nodes")]
+[node name="hide_nodes_authority" type="Node" parent="."]
 script = ExtResource("1_uxd2n")
 hide_at_start = true
-nodes = [null]
 
 [node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source", "p_movement", "p_health", "p_skin")]
 script = ExtResource("2_gv642")

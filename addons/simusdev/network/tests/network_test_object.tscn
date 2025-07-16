@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://e8exsojdh1vg"]
+
+[ext_resource type="Script" uid="uid://u5flc51x3dus" path="res://addons/simusdev/network/tests/network_test_object.gd" id="1_k65e1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_q5qq5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vr653"]
+
+[node name="network_test_object" type="RigidBody3D"]
+script = ExtResource("1_k65e1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_q5qq5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vr653")

@@ -79,20 +79,23 @@ func _ready() -> void:
 	cursor._ready()
 	popups._ready()
 	
-	multiplayerAPI = SD_MultiplayerSingleton.new()
-	multiplayerAPI.tree_entered.connect(
-		func():
-			multiplayerAPI.name = "Multiplayer"
-	)
-	add_child(multiplayerAPI)
-	
-	network = SD_NetworkSingleton.new()
-	add_child(network)
-	
 	_initialize_commands()
 	
+	if !_settings.network:
+		_settings.network = SD_NetworkSettings.new()
 	
+	if _settings.network.enabled:
+		var network_scene: PackedScene = load("res://addons/simusdev/network/singleton/SD_NetworkSingleton.tscn") as PackedScene
+		network = network_scene.instantiate()
+		add_child(network)
 	
+		multiplayerAPI = SD_MultiplayerSingleton.new()
+		multiplayerAPI.tree_entered.connect(
+			func():
+				multiplayerAPI.name = "Multiplayer"
+		)
+		add_child(multiplayerAPI)
+		
 
 func _initialize_commands() -> void:
 	console.on_command_executed.connect(_on_command_executed)
@@ -156,6 +159,14 @@ func quit(exit_code: int = 0) -> void:
 
 func _notification(what: int) -> void:
 	on_notification.emit(what)
+
+func get_info() -> Dictionary:
+	var result: Dictionary = {
+		"app_name": ProjectSettings.get_setting("application/config/name", "app"),
+		"application/config/version": ProjectSettings.get_setting("application/config/version", "1.0.0"),
+		
+	}
+	return result 
 
 func project_get_or_set_setting(setting: String, default_value: Variant = null) -> Variant:
 	var path: String = "_SimusDev/".path_join(setting)

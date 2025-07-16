@@ -15,6 +15,9 @@ static func erase_from_array(array: Array, value) -> void:
 		array.erase(value)
 
 static func get_value_from_array(array: Array, index: int, default = null):
+	if index < 0:
+		return default
+	
 	if index > array.size() - 1:
 		return default
 	return array[index] 

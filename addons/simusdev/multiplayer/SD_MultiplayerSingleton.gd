@@ -81,10 +81,7 @@ enum VARIABLE_TYPE {
 }
 
 func is_active() -> bool:
-	if not multiplayer:
-		return false
-	
-	return multiplayer.has_multiplayer_peer() and (_is_server_created or _is_connected_to_server)
+	return SD_Network.singleton.is_active()
 
 func _exit_tree() -> void:
 	_instance = null
@@ -98,9 +95,16 @@ func _ready() -> void:
 	if _instance == null:
 		_instance = self
 	
-	multiplayer.connected_to_server.connect(_on_connected_to_server)
-	multiplayer.connection_failed.connect(_on_connection_failed)
-	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	SD_Network.singleton.on_connected_to_server.connect(_on_connected_to_server)
+	SD_Network.singleton.on_connection_failed.connect(_on_connection_failed)
+	SD_Network.singleton.on_server_disconnected.connect(_on_server_disconnected)
+	
+	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
+	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
+	
+	#multiplayer.connected_to_server.connect(_on_connected_to_server)
+	#multiplayer.connection_failed.connect(_on_connection_failed)
+	#multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	
 	var commands: Array[SD_ConsoleCommand] = [
@@ -135,11 +139,10 @@ func _on_server_disconnected() -> void:
 	server_disconnected.emit()
 	close_client()
 	
-	console.write_from_object(self, "SERVER DISCONNECTED!", SD_ConsoleCategories.CATEGORY.WARNING)
+	#console.write_from_object(self, "SERVER DISCONNECTED!", SD_ConsoleCategories.CATEGORY.WARNING)
 
 func _on_connected_to_server() -> void:
 	_is_connected_to_server = true
-	set_multiplayer_authority(_peer.get_unique_id())
 	
 	var data: Dictionary = {
 		"username": get_username(),
@@ -150,7 +153,7 @@ func _on_connected_to_server() -> void:
 	_send_player_data_to_server_and_create_player.rpc_id(HOST_ID, data)
 	
 	connected_to_server.emit()
-	console.write_from_object(self, "CONNECTED TO SERVER!", SD_ConsoleCategories.CATEGORY.WARNING)
+	#console.write_from_object(self, "CONNECTED TO SERVER!", SD_ConsoleCategories.CATEGORY.WARNING)
 
 func update_connected_players() -> void:
 	if is_client():
@@ -204,18 +207,18 @@ func _create_player(data: Dictionary) -> void:
 	_players.append(player)
 	player_connected.emit(player)
 	
-	console.write_from_object(self, "(id: %s) %s connected!" % [peer_id, username], SD_ConsoleCategories.CATEGORY.SUCCESS)
+	#console.write_from_object(self, "(id: %s) %s connected!" % [peer_id, username], SD_ConsoleCategories.CATEGORY.SUCCESS)
 
 @rpc("any_peer", "call_local", "reliable")
 func _delete_player(peer_id: int) -> void:
 	var player: SD_MultiplayerPlayer = get_player_by_peer_id(peer_id)
-	var username: String = player.get_username()
 	if player:
+		var username: String = player.get_username()
 		_players.erase(player)
 		player_disconnected.emit(player)
 		player.deinitialize()
 		
-		console.write_from_object(self, "(id: %s) %s disconnected!" % [peer_id, username], SD_ConsoleCategories.CATEGORY.ERROR)
+		#console.write_from_object(self, "(id: %s) %s disconnected!" % [peer_id, username], SD_ConsoleCategories.CATEGORY.ERROR)
 
 func get_player_by_peer_id(id: int) -> SD_MultiplayerPlayer:
 	for player in _players:
@@ -241,6 +244,7 @@ func get_username() -> String:
 	return _username
 
 func set_username(new_name: String) -> void:
+	SD_Network.set_username(new_name)
 	_username = new_name.replacen(" ", "")
 	var player: SD_MultiplayerPlayer = get_authority_player()
 	if player:
@@ -270,47 +274,22 @@ func close_peer() -> void:
 
 
 func create_server(port: int, dedicated: bool = false) -> void:
-	if _is_server_created:
-		return
-	
 	set_dedicated_server(dedicated)
 	
-	var err = _peer.create_server(port, 4000)
-	if err == OK:
-		_peer.host.compress(ENetConnection.COMPRESS_FASTLZ)
-		multiplayer.multiplayer_peer = _peer
-		multiplayer.peer_connected.connect(_on_peer_connected)
-		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-		set_multiplayer_authority(_peer.get_unique_id())
-		
-		_is_server_created = true
-		server_created.emit(port)
-		
-		console.write_from_object(self, "SERVER created with port: %s" % [str(port)], SD_ConsoleCategories.CATEGORY.WARNING)
-		
+	if SD_Network.create_server(port):
 		if not is_dedicated_server():
-			console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
+			#console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
 			var data: Dictionary = {}
 			data["username"] = get_username()
 			data["peer_id"] = multiplayer.get_unique_id()
 			data["host"] = is_server()
 			
 			_create_player(data)
+		
 
 func create_client(address: String, port: int) -> void:
-	if _is_server_created or _is_connected_to_server:
-		return
+	SD_Network.create_client(address, port)
 	
-	var err = _peer.create_client(address, port)
-	if err == OK:
-		_peer.host.compress(ENetConnection.COMPRESS_FASTLZ)
-		multiplayer.multiplayer_peer = _peer
-		set_multiplayer_authority(_peer.get_unique_id())
-		client_created.emit(address, port)
-		
-		console.write_from_object(self, "CLIENT created with port: %s" % [str(port)], SD_ConsoleCategories.CATEGORY.WARNING)
-		console.write_from_object(self, "USERNAME: %s" % [str(get_username())], SD_ConsoleCategories.CATEGORY.WARNING)
-		
 
 func close_client() -> void:
 	close_peer()
@@ -337,6 +316,7 @@ func is_dedicated_server() -> bool:
 
 #const DEDICATED_SERVER_SCENEPATH: String = "res://addons/simusdev/multiplayer/scenes/dedicated_server.tscn"
 func set_dedicated_server(value: bool) -> void:
+	SD_Network.singleton._dedicated_server = value
 	_is_dedicated_server = value
 	
 	#if _is_dedicated_server:

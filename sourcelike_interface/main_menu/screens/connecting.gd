@@ -22,7 +22,7 @@ func _on_menu_switched(node: Node) -> void:
 	
 	var ip: String = ($last_ip.get_command() as SD_ConsoleCommand).get_value_as_string()
 	var port: int = ($last_port.get_command() as SD_ConsoleCommand).get_value_as_int()
-	mp_api.create_client(ip, port)
+	SD_Multiplayer.create_client(ip, port)
 	
 
 func _on_connected() -> void:

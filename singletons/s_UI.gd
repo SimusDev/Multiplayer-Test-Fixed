@@ -10,6 +10,9 @@ var _active_interfaces: Array[Node]
 @export var _active_input: SD_NodeInput
 @export var _input_close: SD_NodeInput
 
+func has_active_interface() -> bool:
+	return !_active_interfaces.is_empty()
+
 func get_active_input() -> SD_NodeInput:
 	return _active_input
 

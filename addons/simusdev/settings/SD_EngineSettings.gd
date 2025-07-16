@@ -64,7 +64,9 @@ class_name SD_EngineSettings
 
 @export var custom_cursor_node: PackedScene
 
+@export var network: SD_NetworkSettings = SD_NetworkSettings.new()
 @export var multiplayer: SD_MultiplayerSettings = SD_MultiplayerSettings.new()
+
 
 const BASE_PATH: String = "res://settings"
 const FILE_PATH: String = "res://settings/engine.tres"

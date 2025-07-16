@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://de25fv8uudtud"]
+
+[ext_resource type="Script" uid="uid://cltn8bdg6gbe4" path="res://addons/simusdev/network/singleton/SD_NetworkSingleton.gd" id="1_vwplp"]
+[ext_resource type="Script" uid="uid://cu84klb6vy2j1" path="res://addons/simusdev/network/singleton/SD_NetTrunkClient.gd" id="2_i41d2"]
+[ext_resource type="Script" uid="uid://c6qw4bth4bbg7" path="res://addons/simusdev/network/singleton/SD_NetTrunkCallables.gd" id="2_yx433"]
+[ext_resource type="Script" uid="uid://dex7k1wd0fmns" path="res://addons/simusdev/network/singleton/SD_NetTrunkCallablesScript.gd" id="3_wx4ld"]
+[ext_resource type="Script" uid="uid://b7ce2q5u0t6c1" path="res://addons/simusdev/network/singleton/SD_NetTrunkServer.gd" id="3_xouw4"]
+[ext_resource type="Script" uid="uid://bw4p2w1c3k710" path="res://addons/simusdev/network/singleton/SD_NetTrunkPlayers.gd" id="4_xouw4"]
+[ext_resource type="Script" uid="uid://b53chxdtmx840" path="res://addons/simusdev/network/singleton/SD_NetTrunkCache.gd" id="7_e2oa5"]
+[ext_resource type="Script" uid="uid://pfrh8umtg4j8" path="res://addons/simusdev/network/singleton/SD_NetTrunkHandShake.gd" id="8_oycid"]
+
+[node name="Network" type="Node" node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "info")]
+script = ExtResource("1_vwplp")
+client = NodePath("SD_NetTrunkClient")
+server = NodePath("SD_NetTrunkServer")
+callables = NodePath("SD_NetTrunkCallables")
+players = NodePath("SD_NetTrunkPlayers")
+cache = NodePath("SD_NetTrunkCache")
+info = NodePath("Not Active")
+metadata/_custom_type_script = "uid://cltn8bdg6gbe4"
+
+[node name="Not Active" type="Node" parent="."]
+
+[node name="SD_NetTrunkClient" type="Node" parent="."]
+script = ExtResource("2_i41d2")
+metadata/_custom_type_script = "uid://cu84klb6vy2j1"
+
+[node name="SD_NetTrunkServer" type="Node" parent="."]
+script = ExtResource("3_xouw4")
+metadata/_custom_type_script = "uid://b7ce2q5u0t6c1"
+
+[node name="SD_NetTrunkPlayers" type="Node" parent="."]
+script = ExtResource("4_xouw4")
+metadata/_custom_type_script = "uid://bw4p2w1c3k710"
+
+[node name="SD_NetTrunkCallables" type="Node" parent="." node_paths=PackedStringArray("_script")]
+script = ExtResource("2_yx433")
+_script = NodePath("script")
+source = "
+#//////////////////////////////////////////////////////////////////////////////////////////////////
+@rpc(\"any_peer\", \"call_remote\", \"reliable\", %s)
+func _recieve_call_from_rpc_reliable%s(from_peer: int, serialized: Variant) -> void:
+	get_parent()._recieve_call_from_local(from_peer, serialized)
+
+@rpc(\"any_peer\", \"call_remote\", \"unreliable\", %s)
+func _recieve_call_from_rpc_unreliable%s(from_peer: int, serialized: Variant) -> void:
+	get_parent()._recieve_call_from_local(from_peer, serialized)
+
+@rpc(\"any_peer\", \"call_remote\", \"unreliable_ordered\", %s)
+func _recieve_call_from_rpc_unreliable_ordered%s(from_peer: int, serialized: Variant) -> void:
+	get_parent()._recieve_call_from_local(from_peer, serialized)
+"
+metadata/_custom_type_script = "uid://c6qw4bth4bbg7"
+
+[node name="script" type="Node" parent="SD_NetTrunkCallables"]
+script = ExtResource("3_wx4ld")
+metadata/_custom_type_script = "uid://dex7k1wd0fmns"
+
+[node name="SD_NetTrunkCache" type="Node" parent="."]
+script = ExtResource("7_e2oa5")
+metadata/_custom_type_script = "uid://b53chxdtmx840"
+
+[node name="SD_NetTrunkHandShake" type="Node" parent="."]
+script = ExtResource("8_oycid")
+metadata/_custom_type_script = "uid://pfrh8umtg4j8"

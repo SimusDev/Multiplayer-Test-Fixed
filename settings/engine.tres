@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=5 format=3 uid="uid://d3ntfbgjij4eh"]
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=7 format=3 uid="uid://d3ntfbgjij4eh"]
 
 [ext_resource type="Script" uid="uid://b6d1d4yh6pph6" path="res://addons/simusdev/multiplayer/SD_MultiplayerSettings.gd" id="1_4f8ap"]
 [ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="1_xt5by"]
 [ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="1_xwjdh"]
+[ext_resource type="Script" uid="uid://bsn5pysgtogq7" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="2_lvuwi"]
 
 [sub_resource type="Resource" id="Resource_lvuwi"]
 script = ExtResource("1_4f8ap")
@@ -10,6 +11,23 @@ show_all_connected_players = true
 dedicated_server = false
 dedicated_server_port = 80
 metadata/_custom_type_script = "uid://b6d1d4yh6pph6"
+
+[sub_resource type="Resource" id="Resource_2wia1"]
+script = ExtResource("2_lvuwi")
+enabled = true
+channels = ["main"]
+root_path = "/root/"
+default_peer = true
+compression = 2
+serializer_compression = 1
+serializer_min_bytes_to_compress = 500
+show_all_connected_players = true
+dedicated_server = false
+dedicated_server_port = 80
+dedicated_server_max_clients = 32
+debug = true
+debug_callables = true
+metadata/_custom_type_script = "uid://bsn5pysgtogq7"
 
 [resource]
 script = ExtResource("1_xt5by")
@@ -56,4 +74,5 @@ localization_flags = Dictionary[String, Texture]({})
 localization_language_unique_name = Dictionary[String, String]({})
 popups_default_animations = Array[ExtResource("1_xwjdh")]([])
 tools = Array[PackedScene]([])
+network = SubResource("Resource_2wia1")
 multiplayer = SubResource("Resource_lvuwi")

@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn01q15jpp1tw"]
+
+[ext_resource type="Script" uid="uid://djm7ff6qvpq7r" path="res://addons/simusdev/network/tests/network_test.gd" id="1_2ferw"]
+[ext_resource type="PackedScene" uid="uid://e8exsojdh1vg" path="res://addons/simusdev/network/tests/network_test_object.tscn" id="2_oq0uh"]
+[ext_resource type="Script" uid="uid://c3h54qb3e1oma" path="res://addons/simusdev/network/SD_Network.gd" id="3_xfhmn"]
+[ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="4_vbt05"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2ferw"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_oq0uh"]
+sky_material = SubResource("ProceduralSkyMaterial_2ferw")
+
+[sub_resource type="Environment" id="Environment_xfhmn"]
+background_mode = 2
+sky = SubResource("Sky_oq0uh")
+tonemap_mode = 2
+
+[node name="NetworkTest" type="Node3D" node_paths=PackedStringArray("objects")]
+script = ExtResource("1_2ferw")
+object = ExtResource("2_oq0uh")
+spawn_pos = Vector3(0, 4.91123, 0)
+objects = NodePath("objects")
+resource_test_uid = ExtResource("3_xfhmn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xfhmn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(25, 1, 25)
+
+[node name="objects" type="Node3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="server" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "SERVER"
+
+[node name="client" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "CLIENT"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.00612926, -0.0148708, -0.999871, 0, 0.999889, -0.0148711, 0.999981, -9.11487e-05, -0.00612858, -16.191, 4.42243, 0.0544249)
+fov = 50.0
+
+[node name="SD_NetNodesTransformSynchronizer" type="Node" parent="." node_paths=PackedStringArray("_roots")]
+script = ExtResource("4_vbt05")
+_roots = [NodePath("../objects")]
+metadata/_custom_type_script = "uid://b3gscceeely20"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/client" to="." method="_on_client_pressed"]
