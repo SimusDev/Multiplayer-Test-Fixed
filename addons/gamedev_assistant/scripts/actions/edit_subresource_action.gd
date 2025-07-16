@@ -2,69 +2,69 @@
 @tool
 extends Node
 
-const nlxbbxbg = preload("action_parser_utils.gd")
+const asgiuzyf = preload("action_parser_utils.gd")
                                                                             
                                                    
-const cetulygl = preload("add_subresource_action.gd")
+const etyevslc = preload("add_subresource_action.gd")
 
-static func execute(iiuaaiev: String, pqcogclx: String, bhwlazra: String, fzxiuzcr: Dictionary) -> bool:
-    var opkvtqyf = EditorPlugin.new().get_editor_interface()
-    var meateftd = opkvtqyf.get_open_scenes()
+static func execute(yprbnavp: String, xsxzzxwq: String, thpogeww: String, clddnein: Dictionary) -> bool:
+    var szccehxs = EditorPlugin.new().get_editor_interface()
+    var mgtrszxe = szccehxs.get_open_scenes()
 
                                    
-    for scene in meateftd:
-        if scene == pqcogclx:
+    for scene in mgtrszxe:
+        if scene == xsxzzxwq:
                                                                     
-            opkvtqyf.reload_scene_from_path(pqcogclx)
-            return _edit_in_open_scene(iiuaaiev, opkvtqyf.get_edited_scene_root(), bhwlazra, fzxiuzcr)
+            szccehxs.reload_scene_from_path(xsxzzxwq)
+            return _edit_in_open_scene(yprbnavp, szccehxs.get_edited_scene_root(), thpogeww, clddnein)
 
                                            
                                                               
-    return _edit_in_closed_scene(iiuaaiev, pqcogclx, bhwlazra, fzxiuzcr)
+    return _edit_in_closed_scene(yprbnavp, xsxzzxwq, thpogeww, clddnein)
 
 
-static func _edit_in_open_scene(yqeevubi: String, bbimchxe: Node, cuecgvhs: String, mltiijqc: Dictionary) -> bool:
-    var qcqgzkuw = cetulygl.ehpfzfoh(yqeevubi, bbimchxe)               
-    if not qcqgzkuw:
+static func _edit_in_open_scene(adhpmxxw: String, rvueytkd: Node, yvpdqfko: String, gsuqncqs: Dictionary) -> bool:
+    var kgkpsctx = etyevslc.obzrbcdu(adhpmxxw, rvueytkd)               
+    if not kgkpsctx:
         return false
 
-    var gbsknflq = qcqgzkuw.get(cuecgvhs)
-    if not (gbsknflq is Resource):
-        push_error("Property '%s' on node '%s' is not a Resource or doesn't exist." % [cuecgvhs, yqeevubi])
+    var gejcqfkb = kgkpsctx.get(yvpdqfko)
+    if not (gejcqfkb is Resource):
+        push_error("Property '%s' on node '%s' is not a Resource or doesn't exist." % [yvpdqfko, adhpmxxw])
         return false
 
-    if not gtuidwor(gbsknflq, mltiijqc):
+    if not ddmrrril(gejcqfkb, gsuqncqs):
         return false
 
                          
-    EditorInterface.edit_resource(gbsknflq)                                 
+    EditorInterface.edit_resource(gejcqfkb)                                 
     return EditorInterface.save_scene() == OK
 
-static func _edit_in_closed_scene(xnrezoed: String, snemotvo: String, scoyttqa: String, fcgowxsn: Dictionary) -> bool:
-    var wmkefdrz = load(snemotvo)
-    if !(wmkefdrz is PackedScene):
-        push_error("Failed to load scene '%s' as PackedScene." % snemotvo)             
+static func _edit_in_closed_scene(hhqcxrcg: String, wcbpbzwn: String, ejlkioxz: String, puemldde: Dictionary) -> bool:
+    var bwcmefjz = load(wcbpbzwn)
+    if !(bwcmefjz is PackedScene):
+        push_error("Failed to load scene '%s' as PackedScene." % wcbpbzwn)             
         return false
 
-    var ntitydhh = wmkefdrz.instantiate()
-    if not ntitydhh:
-        push_error("Could not instantiate scene '%s'." % snemotvo)             
+    var nlwqqlhy = bwcmefjz.instantiate()
+    if not nlwqqlhy:
+        push_error("Could not instantiate scene '%s'." % wcbpbzwn)             
         return false
 
-    var rhasydac = cetulygl.ehpfzfoh(xnrezoed, ntitydhh)               
-    if not rhasydac:
+    var asvektkd = etyevslc.obzrbcdu(hhqcxrcg, nlwqqlhy)               
+    if not asvektkd:
         return false
 
-    var esmiqoux = rhasydac.get(scoyttqa)
-    if not (esmiqoux is Resource):
-        push_error("Property '%s' on node '%s' is not a Resource or doesn't exist." % [scoyttqa, xnrezoed])
+    var yoooxsxe = asvektkd.get(ejlkioxz)
+    if not (yoooxsxe is Resource):
+        push_error("Property '%s' on node '%s' is not a Resource or doesn't exist." % [ejlkioxz, hhqcxrcg])
                                                            
-        ntitydhh.free()
+        nlwqqlhy.free()
         return false
 
-    if not gtuidwor(esmiqoux, fcgowxsn):
+    if not ddmrrril(yoooxsxe, puemldde):
                                                    
-        ntitydhh.free()
+        nlwqqlhy.free()
         return false
 
                                 
@@ -72,31 +72,31 @@ static func _edit_in_closed_scene(xnrezoed: String, snemotvo: String, scoyttqa: 
                                                                         
                                                                                   
                                                                       
-    wmkefdrz.pack(ntitydhh)
-    var wbtblton = ResourceSaver.save(wmkefdrz, snemotvo)
+    bwcmefjz.pack(nlwqqlhy)
+    var mtjuwwtf = ResourceSaver.save(bwcmefjz, wcbpbzwn)
 
                                                                 
-    ntitydhh.free()
+    nlwqqlhy.free()
 
-    return wbtblton == OK
+    return mtjuwwtf == OK
 
 
                                                                              
          
                                                                              
-static func gtuidwor(uamjmwtw: Resource, knhyftgn: Dictionary) -> bool:
+static func ddmrrril(fhijwgku: Resource, qpldupot: Dictionary) -> bool:
                                   
-    for property_name in knhyftgn.keys():
-        var hhtvsgkb = knhyftgn[property_name]
+    for property_name in qpldupot.keys():
+        var xjfsfuob = qpldupot[property_name]
                                                           
-        var voewutiv = cetulygl._parse_value(hhtvsgkb)                         
-        if voewutiv == null and hhtvsgkb != null:
-            push_error("Failed to parse value '%s' for property '%s'." % [str(hhtvsgkb), property_name])             
+        var igypselm = etyevslc._parse_value(xjfsfuob)                         
+        if igypselm == null and xjfsfuob != null:
+            push_error("Failed to parse value '%s' for property '%s'." % [str(xjfsfuob), property_name])             
                                                                           
             return false
 
                                                                              
-        if not cetulygl.cgxxpngw(uamjmwtw, property_name, voewutiv):                                                     
+        if not etyevslc.yspztkay(fhijwgku, property_name, igypselm):                                                     
                                                                
             return false
 
@@ -109,59 +109,59 @@ static func gtuidwor(uamjmwtw: Resource, knhyftgn: Dictionary) -> bool:
                                                                 
                                                                                                                      
                                                                              
-static func parse_line(znouxbeb: String, qdugweue: String) -> Dictionary:
-    if znouxbeb.begins_with("edit_subresource("):
-        var vlcivudo = znouxbeb.replace("edit_subresource(", "")
-        if vlcivudo.ends_with(")"):
-            vlcivudo = vlcivudo.substr(0, vlcivudo.length() - 1)             
-        vlcivudo = vlcivudo.strip_edges()
+static func parse_line(osjfzwcy: String, nqmxpaou: String) -> Dictionary:
+    if osjfzwcy.begins_with("edit_subresource("):
+        var obspfbps = osjfzwcy.replace("edit_subresource(", "")
+        if obspfbps.ends_with(")"):
+            obspfbps = obspfbps.substr(0, obspfbps.length() - 1)             
+        obspfbps = obspfbps.strip_edges()
 
                                                                                                 
-        var fcljhops = []
-        var mqmsrwvu = 0
-        var qzaodjzc = 0
-        while qzaodjzc < 3:                             
-            var ssyndoye = vlcivudo.find('"',mqmsrwvu)
-            if ssyndoye == -1:
+        var usbrzpyu = []
+        var hkkyjvwe = 0
+        var kojfpuqg = 0
+        while kojfpuqg < 3:                             
+            var jhhzvfmh = obspfbps.find('"',hkkyjvwe)
+            if jhhzvfmh == -1:
                 break                         
-            var xespjfbo = vlcivudo.find('"', ssyndoye + 1)
-            if xespjfbo == -1:
+            var neorawna = obspfbps.find('"', jhhzvfmh + 1)
+            if neorawna == -1:
                 break                       
-            fcljhops.append(vlcivudo.substr(ssyndoye + 1, xespjfbo - (ssyndoye + 1)))             
-            mqmsrwvu = xespjfbo + 1
-            qzaodjzc += 1
+            usbrzpyu.append(obspfbps.substr(jhhzvfmh + 1, neorawna - (jhhzvfmh + 1)))             
+            hkkyjvwe = neorawna + 1
+            kojfpuqg += 1
                                                                          
-            var okdbcpko = vlcivudo.find(",", mqmsrwvu)
-            if okdbcpko != -1:
-                mqmsrwvu = okdbcpko + 1
+            var vvdhjvuf = obspfbps.find(",", hkkyjvwe)
+            if vvdhjvuf != -1:
+                hkkyjvwe = vvdhjvuf + 1
             else:
                                                                                                     
-                if qzaodjzc < 3: break                                               
+                if kojfpuqg < 3: break                                               
 
-        if fcljhops.size() < 3:
-            push_error("Edit Subresource: Failed to parse required string arguments (node_name, scene_path, subresource_property_name). Line: " + znouxbeb)
+        if usbrzpyu.size() < 3:
+            push_error("Edit Subresource: Failed to parse required string arguments (node_name, scene_path, subresource_property_name). Line: " + osjfzwcy)
             return {}
 
                                                                         
-        var ztyzwjuw = vlcivudo.find("{", mqmsrwvu)                                 
-        var nmqxnnjh = vlcivudo.rfind("}")
-        if ztyzwjuw == -1 or nmqxnnjh == -1 or nmqxnnjh < ztyzwjuw:
-            push_error("Edit Subresource: Failed to find or parse properties dictionary. Line: " + znouxbeb)
+        var ewnwsgsl = obspfbps.find("{", hkkyjvwe)                                 
+        var sozacaqe = obspfbps.rfind("}")
+        if ewnwsgsl == -1 or sozacaqe == -1 or sozacaqe < ewnwsgsl:
+            push_error("Edit Subresource: Failed to find or parse properties dictionary. Line: " + osjfzwcy)
             return {}
 
-        var mhauimwe = vlcivudo.substr(ztyzwjuw, nmqxnnjh - ztyzwjuw + 1)             
+        var anpwpcut = obspfbps.substr(ewnwsgsl, sozacaqe - ewnwsgsl + 1)             
                                                                            
-        var wkfrpsmb = nlxbbxbg.wljdwntt(mhauimwe)                                 
+        var ilgzsmte = asgiuzyf.wikfdcty(anpwpcut)                                 
 
                                                                            
                                                                                    
 
         return {
             "type": "edit_subresource",
-            "node_name": fcljhops[0],
-            "scene_path": fcljhops[1],
-            "subresource_property_name": fcljhops[2],
-            "properties": wkfrpsmb                                         
+            "node_name": usbrzpyu[0],
+            "scene_path": usbrzpyu[1],
+            "subresource_property_name": usbrzpyu[2],
+            "properties": ilgzsmte                                         
         }
 
     return {}

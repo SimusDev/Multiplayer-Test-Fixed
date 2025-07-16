@@ -1,36 +1,36 @@
 @tool
 extends GDAScreenBase
 
-@onready var uysqlgay : ConfirmationDialog = $DeleteConfirmation
-@onready var ynlpaaoe = $ScrollContainer/VBoxContainer
-@onready var bzvwubot = $"../ConversationManager"
+@onready var ibwfahmp : ConfirmationDialog = $DeleteConfirmation
+@onready var wlyzxhur = $ScrollContainer/VBoxContainer
+@onready var hcrnsnyn = $"../ConversationManager"
 
-@onready var wocwxvvn = $ScrollContainer/VBoxContainer/ErrorMessage
-@onready var visysfwt = $ScrollContainer/VBoxContainer/ProcessMessage
-@onready var ibioxdgj = $ScrollContainer/VBoxContainer/AllConversationsHeader
-@onready var krqnqzcf = $ScrollContainer/VBoxContainer/FavouritesHeader
+@onready var rseiiptb = $ScrollContainer/VBoxContainer/ErrorMessage
+@onready var bqhgmiga = $ScrollContainer/VBoxContainer/ProcessMessage
+@onready var uofuxwgb = $ScrollContainer/VBoxContainer/AllConversationsHeader
+@onready var bcqapmnr = $ScrollContainer/VBoxContainer/FavouritesHeader
 
-var kqtdbigc = preload("res://addons/gamedev_assistant/dock/scenes/ConversationSlot.tscn")
+var oaabggdz = preload("res://addons/gamedev_assistant/dock/scenes/ConversationSlot.tscn")
 
-var aoyuyuyg
-@onready var tlsngvja = $".."
+var xaqyttke
+@onready var hqwnhnlp = $".."
 
-@onready var nuthnjgg = $"../APIManager"
+@onready var rgjgswha = $"../APIManager"
 
-var hxxukvgx : bool = false
+var joazbong : bool = false
 
 func _ready ():
-    bzvwubot.eazkpywg.connect(rbkbcghf)
-    nuthnjgg.zurkrjmo.connect(jigzzwlc)
-    nuthnjgg.ohqtpiyu.connect(_on_delete_conversation_received)
-    nuthnjgg.iuitsarb.connect(jigzzwlc)
-    nuthnjgg.iqtmgbcv.connect(jigzzwlc)
-    nuthnjgg.fgvjnoap.connect(_on_toggle_favorite_received)
-    uysqlgay.confirmed.connect(vgbacqnd)
+    hcrnsnyn.unpumqat.connect(skudefuk)
+    rgjgswha.qbaskjzz.connect(wghjzywf)
+    rgjgswha.hfapgvfx.connect(_on_delete_conversation_received)
+    rgjgswha.zdjzwuvm.connect(wghjzywf)
+    rgjgswha.yryhzmex.connect(wghjzywf)
+    rgjgswha.klnapnvo.connect(_on_toggle_favorite_received)
+    ibwfahmp.confirmed.connect(zthsytdb)
     
 func _on_open ():
-    wacjbiev()
-    nuthnjgg.rehxusbr()
+    kyifptym()
+    rgjgswha.fnjkrlfw()
     
                                
     
@@ -38,84 +38,84 @@ func _on_open ():
                                          
                                      
 
-func wacjbiev ():
-    for node in ynlpaaoe.get_children():
+func kyifptym ():
+    for node in wlyzxhur.get_children():
         if node is RichTextLabel:
             continue
         
         node.queue_free()
     
-    wocwxvvn.visible = false
-    visysfwt.visible = false
+    rseiiptb.visible = false
+    bqhgmiga.visible = false
 
-func rbkbcghf ():
-    wacjbiev()
+func skudefuk ():
+    kyifptym()
     
-    var klivuopn = bzvwubot.uakjxwly()
+    var mjyilrld = hcrnsnyn.tgarxifp()
     
-    var nxqplbit : Array[Conversation] = []
-    var fwzqutgn : Array[Conversation] = []
+    var jngrakkp : Array[Conversation] = []
+    var tfmkolny : Array[Conversation] = []
     
-    for conv in klivuopn:
+    for conv in mjyilrld:
         if conv.favorited:
-            nxqplbit.append(conv)
+            jngrakkp.append(conv)
         else:
-            fwzqutgn.append(conv)
+            tfmkolny.append(conv)
     
-    var dgejglqe = 2
-    ynlpaaoe.move_child(krqnqzcf, 1)
+    var crdmyoze = 2
+    wlyzxhur.move_child(bcqapmnr, 1)
     
-    for fav in nxqplbit:
-        var qttsjrzv = rfpqusac(fav, tlsngvja)
-        ynlpaaoe.move_child(qttsjrzv, dgejglqe)
-        dgejglqe += 1
+    for fav in jngrakkp:
+        var rqpcmvbd = jyqsjccv(fav, hqwnhnlp)
+        wlyzxhur.move_child(rqpcmvbd, crdmyoze)
+        crdmyoze += 1
     
-    ynlpaaoe.move_child(ibioxdgj, dgejglqe)
-    dgejglqe += 1
+    wlyzxhur.move_child(uofuxwgb, crdmyoze)
+    crdmyoze += 1
     
-    for other in fwzqutgn:
-        var qttsjrzv = rfpqusac(other, tlsngvja)
-        ynlpaaoe.move_child(qttsjrzv, dgejglqe)
-        dgejglqe += 1
+    for other in tfmkolny:
+        var rqpcmvbd = jyqsjccv(other, hqwnhnlp)
+        wlyzxhur.move_child(rqpcmvbd, crdmyoze)
+        crdmyoze += 1
 
-func rfpqusac (bxfynuwe, xgourmuu) -> Control:
-    var nfrqipzb = kqtdbigc.instantiate()
-    ynlpaaoe.add_child(nfrqipzb)
-    nfrqipzb.ynuysgnr(bxfynuwe, xgourmuu)
-    return nfrqipzb
+func jyqsjccv (uqucdesd, szwkzwst) -> Control:
+    var ilrswbdz = oaabggdz.instantiate()
+    wlyzxhur.add_child(ilrswbdz)
+    ilrswbdz.gnerswgz(uqucdesd, szwkzwst)
+    return ilrswbdz
 
                                             
                                         
-func wttkcasu (ywzigxyg):
-    aoyuyuyg = ywzigxyg
-    uysqlgay.popup()
+func jpjigtpj (gkhxgmpi):
+    xaqyttke = gkhxgmpi
+    ibwfahmp.popup()
 
                                                         
-func vgbacqnd():
-    if aoyuyuyg == null or aoyuyuyg.get_conversation() == null:
+func zthsytdb():
+    if xaqyttke == null or xaqyttke.get_conversation() == null:
         return
     
-    var dgubwclw = aoyuyuyg.get_conversation()
-    nuthnjgg.spgkyzfi(dgubwclw.id)
+    var uixodert = xaqyttke.get_conversation()
+    rgjgswha.tzspyrxj(uixodert.id)
     
-    oqnlogsf("Deleting conversation...")
+    arbthbns("Deleting conversation...")
 
 func _on_toggle_favorite_received ():
-    nuthnjgg.rehxusbr()
+    rgjgswha.fnjkrlfw()
 
 func _on_delete_conversation_received ():
-    nuthnjgg.rehxusbr()
+    rgjgswha.fnjkrlfw()
 
-func oqnlogsf (tiywmhvp : String):
+func arbthbns (qhfhpfur : String):
     return
     
-    ynlpaaoe.move_child(visysfwt, 1)
-    wocwxvvn.visible = false
-    visysfwt.visible = true
-    visysfwt.text = tiywmhvp
+    wlyzxhur.move_child(bqhgmiga, 1)
+    rseiiptb.visible = false
+    bqhgmiga.visible = true
+    bqhgmiga.text = qhfhpfur
 
-func jigzzwlc (qxuxqoid : String):
-    ynlpaaoe.move_child(wocwxvvn, 0)
-    visysfwt.visible = false
-    wocwxvvn.visible = true
-    wocwxvvn.text = qxuxqoid
+func wghjzywf (lxjkxpxk : String):
+    wlyzxhur.move_child(rseiiptb, 0)
+    bqhgmiga.visible = false
+    rseiiptb.visible = true
+    rseiiptb.text = lxjkxpxk

@@ -2,105 +2,105 @@
 @tool  
 extends Node  
 
-const fjlojpgb = preload("res://addons/gamedev_assistant/scripts/actions/action_parser_utils.gd")  
+const lxosmemh = preload("res://addons/gamedev_assistant/scripts/actions/action_parser_utils.gd")  
 
-static func execute(adwhchga: String, bodrqyjh: String, eyexmdgn: String) -> bool:  
-    var elordtxz = EditorPlugin.new().get_editor_interface()  
-    var hbsmhngp = elordtxz.get_open_scenes()  
+static func execute(nhxyaudl: String, fflhnyad: String, zahluupd: String) -> bool:  
+    var osqkrvly = EditorPlugin.new().get_editor_interface()  
+    var rabwxuml = osqkrvly.get_open_scenes()  
 
                                      
-    for scene in hbsmhngp:  
-        if scene == bodrqyjh:  
+    for scene in rabwxuml:  
+        if scene == fflhnyad:  
                                                                            
-            elordtxz.reload_scene_from_path(bodrqyjh)  
-            return yzzsjmza(adwhchga, elordtxz.get_edited_scene_root(), eyexmdgn)  
+            osqkrvly.reload_scene_from_path(fflhnyad)  
+            return gqgapivu(nhxyaudl, osqkrvly.get_edited_scene_root(), zahluupd)  
 
                                                           
                                                                      
-    return zwgmyqex(adwhchga, bodrqyjh, eyexmdgn)  
+    return kzfqebgi(nhxyaudl, fflhnyad, zahluupd)  
 
-static func yzzsjmza(dsrkjgro: String, okyfxmkj: Node, asrdurei: String) -> bool:  
-    var hfignohm = okyfxmkj.find_child(dsrkjgro, true, true)  
+static func gqgapivu(iicsvnea: String, nqtdolyl: Node, nfwtbiqy: String) -> bool:  
+    var juinyvgv = nqtdolyl.find_child(iicsvnea, true, true)  
     
-    if not hfignohm and dsrkjgro == okyfxmkj.name:  
-        hfignohm = okyfxmkj  
+    if not juinyvgv and iicsvnea == nqtdolyl.name:  
+        juinyvgv = nqtdolyl  
 
-    if not hfignohm:  
-        push_error("Node '%s' not found in open scene root '%s'." % [dsrkjgro, okyfxmkj.name])  
+    if not juinyvgv:  
+        push_error("Node '%s' not found in open scene root '%s'." % [iicsvnea, nqtdolyl.name])  
         return false  
 
                          
-    var kcaytgwl = load(asrdurei)  
-    if not kcaytgwl:  
-        push_error("Failed to load script at path: %s" % asrdurei)  
+    var qjymdbye = load(nfwtbiqy)  
+    if not qjymdbye:  
+        push_error("Failed to load script at path: %s" % nfwtbiqy)  
         return false  
 
-    hfignohm.set_script(kcaytgwl)  
+    juinyvgv.set_script(qjymdbye)  
     
                                                          
     return EditorInterface.save_scene() == OK 
 
-static func zwgmyqex(igqasitu: String, uzqkuplf: String, esxlcttu: String) -> bool:  
-    var yzzlskdr = load(uzqkuplf)  
-    if !(yzzlskdr is PackedScene):  
-        push_error("Failed to load scene '%s' as PackedScene." % uzqkuplf)  
+static func kzfqebgi(yjhfbogm: String, dbtvudth: String, ztukriev: String) -> bool:  
+    var ooyxtctq = load(dbtvudth)  
+    if !(ooyxtctq is PackedScene):  
+        push_error("Failed to load scene '%s' as PackedScene." % dbtvudth)  
         return false  
 
-    var xhlumljj = yzzlskdr.instantiate()  
-    if not xhlumljj:  
-        push_error("Could not instantiate scene '%s'." % uzqkuplf)  
+    var ubdrhosu = ooyxtctq.instantiate()  
+    if not ubdrhosu:  
+        push_error("Could not instantiate scene '%s'." % dbtvudth)  
         return false  
 
-    var yebiigcl = xhlumljj.find_child(igqasitu, true, true)  
+    var vvryezav = ubdrhosu.find_child(yjhfbogm, true, true)  
     
-    if not yebiigcl and igqasitu == xhlumljj.name:  
-        yebiigcl = xhlumljj  
+    if not vvryezav and yjhfbogm == ubdrhosu.name:  
+        vvryezav = ubdrhosu  
 
-    if not yebiigcl:  
-        push_error("Node '%s' not found in scene instance root '%s'." % [igqasitu, xhlumljj.name])  
+    if not vvryezav:  
+        push_error("Node '%s' not found in scene instance root '%s'." % [yjhfbogm, ubdrhosu.name])  
         return false  
 
                          
-    var octmzzhp = load(esxlcttu)  
-    if not octmzzhp:  
-        push_error("Failed to load script at path: %s" % esxlcttu)  
+    var fcjxnnvl = load(ztukriev)  
+    if not fcjxnnvl:  
+        push_error("Failed to load script at path: %s" % ztukriev)  
         return false  
 
-    yebiigcl.set_script(octmzzhp)  
+    vvryezav.set_script(fcjxnnvl)  
 
                                   
-    yzzlskdr.pack(xhlumljj)  
-    return ResourceSaver.save(yzzlskdr, uzqkuplf) == OK  
+    ooyxtctq.pack(ubdrhosu)  
+    return ResourceSaver.save(ooyxtctq, dbtvudth) == OK  
 
                                                                                
                    
                                                                         
                                                                                
-static func parse_line(knbbcqra: String, cviwzuwi: String) -> Dictionary:  
+static func parse_line(dghjkvdr: String, qccgcruq: String) -> Dictionary:  
                                                            
-    if knbbcqra.begins_with("assign_script("):  
-        var busprifo = knbbcqra.replace("assign_script(", "").replace(")", "").strip_edges()  
-        var znxgwofb = []  
-        var ufueepmc = 0  
+    if dghjkvdr.begins_with("assign_script("):  
+        var xdowggaa = dghjkvdr.replace("assign_script(", "").replace(")", "").strip_edges()  
+        var jsaghseq = []  
+        var uiyidjrq = 0  
         while true:  
-            var scdbgkju = busprifo.find('"',ufueepmc)  
-            if scdbgkju == -1:  
+            var wnoyvmdo = xdowggaa.find('"',uiyidjrq)  
+            if wnoyvmdo == -1:  
                 break  
-            var doufamtx = busprifo.find('"', scdbgkju + 1)  
-            if doufamtx == -1:  
+            var ibfjohav = xdowggaa.find('"', wnoyvmdo + 1)  
+            if ibfjohav == -1:  
                 break  
-            znxgwofb.append(busprifo.substr(scdbgkju + 1, doufamtx - scdbgkju - 1))  
-            ufueepmc = doufamtx + 1  
+            jsaghseq.append(xdowggaa.substr(wnoyvmdo + 1, ibfjohav - wnoyvmdo - 1))  
+            uiyidjrq = ibfjohav + 1  
 
                                                                                   
-        if znxgwofb.size() != 3:  
+        if jsaghseq.size() != 3:  
             return {}  
 
         return {  
             "type": "assign_script",  
-            "node_name": znxgwofb[0],  
-            "scene_path": znxgwofb[1],  
-            "script_path": znxgwofb[2]  
+            "node_name": jsaghseq[0],  
+            "scene_path": jsaghseq[1],  
+            "script_path": jsaghseq[2]  
         }  
 
     return {}  

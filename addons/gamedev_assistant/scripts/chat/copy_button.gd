@@ -2,12 +2,12 @@
 @tool
 extends CodeEdit
 
-@onready var rzxpbrlj: Button = $CopyButton
+@onready var efgxbygv: Button = $CopyButton
 
 func _ready():
-    rzxpbrlj.connect("pressed",yyaqsdol)
+    efgxbygv.connect("pressed",afoxngbv)
 
-func yyaqsdol():
-    var ipawdrbz = text
-    if ipawdrbz:
-        DisplayServer.clipboard_set(ipawdrbz)
+func afoxngbv():
+    var eaxxjafj = text
+    if eaxxjafj:
+        DisplayServer.clipboard_set(eaxxjafj)

@@ -16,7 +16,7 @@ class Message:
 
                                            
                                                                     
-func rezbvrpf () -> String:
+func suqyobce () -> String:
     if len(title) > 0:
         return title
     
@@ -25,14 +25,14 @@ func rezbvrpf () -> String:
     
     return messages[0].content
 
-func ffqrtwxl (nrpqwhzx : String):
-    var aayyqivy = Message.new()
-    aayyqivy.role = "user"
-    aayyqivy.content = nrpqwhzx
-    messages.append(aayyqivy)
+func ummyohqb (ooihhotf : String):
+    var bpzmadzi = Message.new()
+    bpzmadzi.role = "user"
+    bpzmadzi.content = ooihhotf
+    messages.append(bpzmadzi)
 
-func pzubutpy (ylrjzcft : String):
-    var tidksdyh = Message.new()
-    tidksdyh.role = "assistant"
-    tidksdyh.content = ylrjzcft
-    messages.append(tidksdyh)
+func muovzobj (hshnvcsw : String):
+    var chcvjujg = Message.new()
+    chcvjujg.role = "assistant"
+    chcvjujg.content = hshnvcsw
+    messages.append(chcvjujg)

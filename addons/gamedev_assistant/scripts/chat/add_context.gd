@@ -3,9 +3,9 @@
 extends OptionButton
 
 func _ready():
-    iekgazug()
+    jsczvzlf()
     
-func iekgazug():   
+func jsczvzlf():   
     tooltip_text = "Add extra content to the chat. Your open scene nodes and file tree are automatically included"
     set_item_tooltip(0, "Add extra content to the chat. Your open scene nodes and file tree are automatically included")
     set_item_tooltip(1, "Include the contents of all scripts that are currently open in the Godot code editor. Clipped at 50k characters")

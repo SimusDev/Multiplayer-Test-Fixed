@@ -2,266 +2,266 @@
 @tool
 extends Node
 
-const qenbzsba = preload("action_parser_utils.gd")
+const uedkyhkq = preload("action_parser_utils.gd")
 
-static func execute(qxqgpidy: String, plldmbuc: String, ybluryrz: Dictionary) -> bool:
-    var bgwmbnaw = EditorPlugin.new().get_editor_interface()
-    var yicbptea = bgwmbnaw.get_open_scenes()
+static func execute(tmyzowem: String, sqmcanmy: String, couwjvbu: Dictionary) -> bool:
+    var hspnlepb = EditorPlugin.new().get_editor_interface()
+    var kfuiwrda = hspnlepb.get_open_scenes()
 
                                    
-    for scene in yicbptea:
-        if scene == plldmbuc:
+    for scene in kfuiwrda:
+        if scene == sqmcanmy:
                                                      
-            bgwmbnaw.reload_scene_from_path(plldmbuc)
+            hspnlepb.reload_scene_from_path(sqmcanmy)
                                                              
-            return gfhnsruu(qxqgpidy, bgwmbnaw.get_edited_scene_root(), ybluryrz)
+            return gymgmakx(tmyzowem, hspnlepb.get_edited_scene_root(), couwjvbu)
 
                                                         
                                                
-    return gjadjpuy(qxqgpidy, plldmbuc, ybluryrz)
+    return khbtdoja(tmyzowem, sqmcanmy, couwjvbu)
 
 
-static func gfhnsruu(euuuzlqq: String, sopkyeqj: Node, xqoohlvl: Dictionary) -> bool:
-    var bldkuxug = sopkyeqj.find_child(euuuzlqq, true, true)
+static func gymgmakx(iyrsdbzf: String, vlybfwfz: Node, hcrcjypk: Dictionary) -> bool:
+    var ctyrknyc = vlybfwfz.find_child(iyrsdbzf, true, true)
     
-    if not bldkuxug and euuuzlqq == sopkyeqj.name:
-        bldkuxug = sopkyeqj
+    if not ctyrknyc and iyrsdbzf == vlybfwfz.name:
+        ctyrknyc = vlybfwfz
 
-    if not bldkuxug:
-        push_error("Node '%s' not found in open scene root '%s'." % [euuuzlqq, sopkyeqj.name])
+    if not ctyrknyc:
+        push_error("Node '%s' not found in open scene root '%s'." % [iyrsdbzf, vlybfwfz.name])
         return false
 
                                                  
-    if not edkidcyn(bldkuxug, xqoohlvl, sopkyeqj):
+    if not htiyjkdn(ctyrknyc, hcrcjypk, vlybfwfz):
         return false
         
                                                     
     return EditorInterface.save_scene() == OK
 
 
-static func gjadjpuy(veeipgvj: String, elgsxwsf: String, mimcztrk: Dictionary) -> bool:
-    var hbgrypvs = load(elgsxwsf)
-    if !(hbgrypvs is PackedScene):
-        push_error("Failed to load scene '%s' as PackedScene." % elgsxwsf)
+static func khbtdoja(dyeocimg: String, rpuooepa: String, zertqukq: Dictionary) -> bool:
+    var rpvbeqtx = load(rpuooepa)
+    if !(rpvbeqtx is PackedScene):
+        push_error("Failed to load scene '%s' as PackedScene." % rpuooepa)
         return false
 
-    var unfpkhwo = hbgrypvs.instantiate()
-    if not unfpkhwo:
-        push_error("Could not instantiate scene '%s'." % elgsxwsf)
+    var gsgkfdsh = rpvbeqtx.instantiate()
+    if not gsgkfdsh:
+        push_error("Could not instantiate scene '%s'." % rpuooepa)
         return false
 
-    var uzlpqrov = unfpkhwo.find_child(veeipgvj, true, true)
+    var xtogsfgj = gsgkfdsh.find_child(dyeocimg, true, true)
     
-    if not uzlpqrov and veeipgvj == unfpkhwo.name:
-        uzlpqrov = unfpkhwo
+    if not xtogsfgj and dyeocimg == gsgkfdsh.name:
+        xtogsfgj = gsgkfdsh
 
-    if not uzlpqrov:
-        push_error("Node '%s' not found in scene instance root '%s'." % [veeipgvj, unfpkhwo.name])
+    if not xtogsfgj:
+        push_error("Node '%s' not found in scene instance root '%s'." % [dyeocimg, gsgkfdsh.name])
         return false
 
                                                         
-    if not edkidcyn(uzlpqrov, mimcztrk, unfpkhwo):
+    if not htiyjkdn(xtogsfgj, zertqukq, gsgkfdsh):
         return false
 
                                 
-    hbgrypvs.pack(unfpkhwo)
-    return ResourceSaver.save(hbgrypvs, elgsxwsf) == OK
+    rpvbeqtx.pack(gsgkfdsh)
+    return ResourceSaver.save(rpvbeqtx, rpuooepa) == OK
 
 
-static func edkidcyn(httimjcc: Node, xigcdskj: Dictionary, dlesdavs: Node = null) -> bool:
-    for property_name in xigcdskj.keys():
-        var dqaffsbz = xigcdskj[property_name]
-        var dhhetjpo = _parse_value(dqaffsbz)
-        if dhhetjpo == null and dqaffsbz != null:
-            push_error("Failed to parse value '%s' for property '%s'." % [str(dqaffsbz), property_name])
+static func htiyjkdn(lljwigou: Node, pglqawxv: Dictionary, apfvaoix: Node = null) -> bool:
+    for property_name in pglqawxv.keys():
+        var epoxvkls = pglqawxv[property_name]
+        var cuwgnuve = _parse_value(epoxvkls)
+        if cuwgnuve == null and epoxvkls != null:
+            push_error("Failed to parse value '%s' for property '%s'." % [str(epoxvkls), property_name])
             return false
             
                                      
                                                                                                            
                                                              
-        var pstdcvzc = _try_set_property(httimjcc, property_name, dhhetjpo, dlesdavs)
-        if not pstdcvzc:
+        var kkwljoqn = _try_set_property(lljwigou, property_name, cuwgnuve, apfvaoix)
+        if not kkwljoqn:
             return false
 
     return true
 
 
-static func _parse_value(zzfqelsh) -> Variant:
+static func _parse_value(neqjqlma) -> Variant:
                                                                                             
-    if zzfqelsh is String:
-        var hyhcycre = zzfqelsh.strip_edges()
+    if neqjqlma is String:
+        var losohdbo = neqjqlma.strip_edges()
         
                                                         
-        if hyhcycre.length() >= 2 and hyhcycre.begins_with('"') and hyhcycre.ends_with('"'):
-            hyhcycre = hyhcycre.substr(1, hyhcycre.length() - 2)
-        elif hyhcycre.length() >= 2 and hyhcycre.begins_with("'") and hyhcycre.ends_with("'"):
-            hyhcycre = hyhcycre.substr(1, hyhcycre.length() - 2)
+        if losohdbo.length() >= 2 and losohdbo.begins_with('"') and losohdbo.ends_with('"'):
+            losohdbo = losohdbo.substr(1, losohdbo.length() - 2)
+        elif losohdbo.length() >= 2 and losohdbo.begins_with("'") and losohdbo.ends_with("'"):
+            losohdbo = losohdbo.substr(1, losohdbo.length() - 2)
         
-        if hyhcycre.begins_with("(") and hyhcycre.ends_with(")"):
-            var fjjtrekh = hyhcycre.substr(1, hyhcycre.length() - 2)
-            var jhoemqyi = fjjtrekh.split(",", false)
+        if losohdbo.begins_with("(") and losohdbo.ends_with(")"):
+            var cfemysdo = losohdbo.substr(1, losohdbo.length() - 2)
+            var vaynjghc = cfemysdo.split(",", false)
                                                   
-            if jhoemqyi.size() == 2:
-                var cvsbxpxk = float(jhoemqyi[0].strip_edges())
-                var oltkujrj = float(jhoemqyi[1].strip_edges())
-                return Vector2(cvsbxpxk, oltkujrj)
+            if vaynjghc.size() == 2:
+                var vddqfzid = float(vaynjghc[0].strip_edges())
+                var iedvfzbz = float(vaynjghc[1].strip_edges())
+                return Vector2(vddqfzid, iedvfzbz)
                                                   
-            if jhoemqyi.size() == 3:
-                var gbtfdszm = float(jhoemqyi[0].strip_edges())
-                var ugcjrwxz = float(jhoemqyi[1].strip_edges())
-                var ndctfzxc = float(jhoemqyi[2].strip_edges())
-                return Vector3(gbtfdszm, ugcjrwxz, ndctfzxc)
+            if vaynjghc.size() == 3:
+                var aloshcla = float(vaynjghc[0].strip_edges())
+                var zzieeevt = float(vaynjghc[1].strip_edges())
+                var ptowuvql = float(vaynjghc[2].strip_edges())
+                return Vector3(aloshcla, zzieeevt, ptowuvql)
                                                   
-            if jhoemqyi.size() == 4:
-                var kjteswva = float(jhoemqyi[0].strip_edges())
-                var tudoybds = float(jhoemqyi[1].strip_edges())
-                var rkgoludv = float(jhoemqyi[2].strip_edges())
-                var graiqlll = float(jhoemqyi[3].strip_edges())
-                return Vector4(kjteswva, tudoybds, rkgoludv, graiqlll)
+            if vaynjghc.size() == 4:
+                var otmdzeft = float(vaynjghc[0].strip_edges())
+                var qvcwhlct = float(vaynjghc[1].strip_edges())
+                var jxyfvtdn = float(vaynjghc[2].strip_edges())
+                var eilqqriy = float(vaynjghc[3].strip_edges())
+                return Vector4(otmdzeft, qvcwhlct, jxyfvtdn, eilqqriy)
                                
-        if hyhcycre.to_lower() == "true":
+        if losohdbo.to_lower() == "true":
             return true
-        if hyhcycre.to_lower() == "false":
+        if losohdbo.to_lower() == "false":
             return false
                                 
-        if hyhcycre.is_valid_float():
-            return float(hyhcycre)
+        if losohdbo.is_valid_float():
+            return float(losohdbo)
                                                 
-        return hyhcycre
+        return losohdbo
 
                                                              
-    return zzfqelsh
+    return neqjqlma
 
-static func eaddiaot(csjhepza: String, vxqzzswy: String) -> String:
-    var ihyfnhrt = ""
-    var dzgutzsa = csjhepza.length()
-    var tslgcgga = vxqzzswy.length()
-    var zazbxffb = min(dzgutzsa, tslgcgga)
+static func vjwbpzcv(sngmlqpl: String, mmeufcwl: String) -> String:
+    var nmkhafov = ""
+    var ebdxddmu = sngmlqpl.length()
+    var wqswdseu = mmeufcwl.length()
+    var mtgrpfuh = min(ebdxddmu, wqswdseu)
 
-    for i in range(zazbxffb):
-        if csjhepza[i] != vxqzzswy[i]:
-            ihyfnhrt += "Difference at index: " + str(i) + ", String1: " + csjhepza[i] + ", String2: " + vxqzzswy[i]
+    for i in range(mtgrpfuh):
+        if sngmlqpl[i] != mmeufcwl[i]:
+            nmkhafov += "Difference at index: " + str(i) + ", String1: " + sngmlqpl[i] + ", String2: " + mmeufcwl[i]
             break
 
-    return ihyfnhrt
+    return nmkhafov
 
 
-static func _try_set_property(zlbfmpto: Node, llidmrmc: String, qcselwsr: Variant, wjqtprxh: Node = null) -> bool:  
+static func _try_set_property(lgvhdsds: Node, wsdlhbdf: String, mlphidpi: Variant, htejyqeg: Node = null) -> bool:  
                                       
-    if llidmrmc == "parent":
-        if not qcselwsr is String:
+    if wsdlhbdf == "parent":
+        if not mlphidpi is String:
             push_error("Parent value must be a string (name of the new parent)")
             return false
 
-        if wjqtprxh == null:
+        if htejyqeg == null:
             push_error("Cannot re-parent without a valid scene root.")
             return false
 
-        var wokjkbiv = qcselwsr.strip_edges()
-        var ejkecsnr: Node
+        var mkwklfia = mlphidpi.strip_edges()
+        var akpgrhai: Node
 
                                                  
                                                                           
-        if wokjkbiv == "" or wokjkbiv == wjqtprxh.name:
-            ejkecsnr = wjqtprxh
+        if mkwklfia == "" or mkwklfia == htejyqeg.name:
+            akpgrhai = htejyqeg
         else:
-            ejkecsnr = wjqtprxh.find_child(wokjkbiv, true, true)
-            if not ejkecsnr:
-                push_error("Failed to find parent node with name: %s" % wokjkbiv)
+            akpgrhai = htejyqeg.find_child(mkwklfia, true, true)
+            if not akpgrhai:
+                push_error("Failed to find parent node with name: %s" % mkwklfia)
                 return false
         
                    
-        if zlbfmpto.get_parent():
-            zlbfmpto.get_parent().remove_child(zlbfmpto)
-        ejkecsnr.add_child(zlbfmpto)
+        if lgvhdsds.get_parent():
+            lgvhdsds.get_parent().remove_child(lgvhdsds)
+        akpgrhai.add_child(lgvhdsds)
 
                                                                           
-        zlbfmpto.set_owner(wjqtprxh)
+        lgvhdsds.set_owner(htejyqeg)
 
         return true
 
                                       
-    var jrhrazxk = zlbfmpto.get_property_list()
-    for prop in jrhrazxk:
-        if prop.name == llidmrmc:
+    var rwgxnhrj = lgvhdsds.get_property_list()
+    for prop in rwgxnhrj:
+        if prop.name == wsdlhbdf:
                         
             if prop.type == TYPE_COLOR:
-                match typeof(qcselwsr):
+                match typeof(mlphidpi):
                     TYPE_VECTOR2:
                                                             
-                        qcselwsr = Color(qcselwsr.x, qcselwsr.y, 0, 1.0)
+                        mlphidpi = Color(mlphidpi.x, mlphidpi.y, 0, 1.0)
                     TYPE_VECTOR3:
                                                                 
-                        qcselwsr = Color(qcselwsr.x, qcselwsr.y, qcselwsr.z, 1.0)
+                        mlphidpi = Color(mlphidpi.x, mlphidpi.y, mlphidpi.z, 1.0)
                     TYPE_VECTOR4:
-                        qcselwsr = Color(qcselwsr.x, qcselwsr.y, qcselwsr.z, qcselwsr.w)
+                        mlphidpi = Color(mlphidpi.x, mlphidpi.y, mlphidpi.z, mlphidpi.w)
                     TYPE_ARRAY:
                                                                                                   
-                        if qcselwsr.size() == 3:
-                            qcselwsr = Color(qcselwsr[0], qcselwsr[1], qcselwsr[2], 1.0)
-                        elif qcselwsr.size() == 4:
-                            qcselwsr = Color(qcselwsr[0], qcselwsr[1], qcselwsr[2], qcselwsr[3])
+                        if mlphidpi.size() == 3:
+                            mlphidpi = Color(mlphidpi[0], mlphidpi[1], mlphidpi[2], 1.0)
+                        elif mlphidpi.size() == 4:
+                            mlphidpi = Color(mlphidpi[0], mlphidpi[1], mlphidpi[2], mlphidpi[3])
 
                                                                        
             elif prop.type == TYPE_OBJECT and prop.hint == PROPERTY_HINT_RESOURCE_TYPE:
-                var zfyapjrp = prop.hint_string
+                var irkgnmsq = prop.hint_string
                 
                                            
-                if zfyapjrp == "Texture2D" or zfyapjrp.contains("Texture2D"):
-                    var trgtbljk = load(qcselwsr)
+                if irkgnmsq == "Texture2D" or irkgnmsq.contains("Texture2D"):
+                    var sguxxzra = load(mlphidpi)
 
                                                                                         
-                    if "_" in llidmrmc:
-                        var zlitjjin = llidmrmc.split("_")
-                        if zlitjjin.size() > 1:
-                            var sxgnxnww = zlitjjin[1]
-                            var medpstwl = "set_texture_" + sxgnxnww
-                            if zlbfmpto.has_method(medpstwl):
-                                zlbfmpto.call(medpstwl, trgtbljk)
+                    if "_" in wsdlhbdf:
+                        var nvkalydo = wsdlhbdf.split("_")
+                        if nvkalydo.size() > 1:
+                            var qsruqipt = nvkalydo[1]
+                            var addkoeuh = "set_texture_" + qsruqipt
+                            if lgvhdsds.has_method(addkoeuh):
+                                lgvhdsds.call(addkoeuh, sguxxzra)
                                 return true
 
                                                                            
-                    if zlbfmpto.has_method("set_texture"):
-                        zlbfmpto.set_texture(trgtbljk)
+                    if lgvhdsds.has_method("set_texture"):
+                        lgvhdsds.set_texture(sguxxzra)
                         return true
                         
                                              
-                elif zfyapjrp == "Mesh" or zfyapjrp.contains("Mesh"):
-                    var medfciqe = load(qcselwsr)
-                    if not medfciqe:
-                        push_error("Failed to load mesh at path: %s" % qcselwsr)
+                elif irkgnmsq == "Mesh" or irkgnmsq.contains("Mesh"):
+                    var glzhrpcg = load(mlphidpi)
+                    if not glzhrpcg:
+                        push_error("Failed to load mesh at path: %s" % mlphidpi)
                         return false
                     
-                    if "_" in llidmrmc:
-                        var zlitjjin = llidmrmc.split("_")
-                        if zlitjjin.size() > 1:
-                            var sxgnxnww = zlitjjin[1]
-                            var medpstwl = "set_mesh_" + sxgnxnww
-                            if zlbfmpto.has_method(medpstwl):
-                                zlbfmpto.call(medpstwl, medfciqe)
+                    if "_" in wsdlhbdf:
+                        var nvkalydo = wsdlhbdf.split("_")
+                        if nvkalydo.size() > 1:
+                            var qsruqipt = nvkalydo[1]
+                            var addkoeuh = "set_mesh_" + qsruqipt
+                            if lgvhdsds.has_method(addkoeuh):
+                                lgvhdsds.call(addkoeuh, glzhrpcg)
                                 return true
                     
-                    zlbfmpto.set(llidmrmc, medfciqe)
+                    lgvhdsds.set(wsdlhbdf, glzhrpcg)
                     return true
                 
                                                 
-                elif zfyapjrp == "AudioStream" or zfyapjrp.contains("AudioStream"):
-                    var saaeksmz = load(qcselwsr)
-                    if not saaeksmz:
-                        push_error("Failed to load audio stream at path: %s" % qcselwsr)
+                elif irkgnmsq == "AudioStream" or irkgnmsq.contains("AudioStream"):
+                    var qqsrafma = load(mlphidpi)
+                    if not qqsrafma:
+                        push_error("Failed to load audio stream at path: %s" % mlphidpi)
                         return false
-                    zlbfmpto.set(llidmrmc, saaeksmz)
+                    lgvhdsds.set(wsdlhbdf, qqsrafma)
                     return true
 
 
 
                                                                  
-    if not zlbfmpto.has_method("get") or zlbfmpto.get(llidmrmc) == null:
-        push_error("Property '%s' doesn't exist on node '%s'." % [llidmrmc, zlbfmpto.name])
+    if not lgvhdsds.has_method("get") or lgvhdsds.get(wsdlhbdf) == null:
+        push_error("Property '%s' doesn't exist on node '%s'." % [wsdlhbdf, lgvhdsds.name])
         return false
 
                                     
-    zlbfmpto.set(llidmrmc, qcselwsr)
+    lgvhdsds.set(wsdlhbdf, mlphidpi)
 
                                                                
                                                           
@@ -272,23 +272,23 @@ static func _try_set_property(zlbfmpto: Node, llidmrmc: String, qcselwsr: Varian
                  
                                                                       
                                                                              
-static func parse_line(ieimsnbi: String, zerzbtnd: String) -> Dictionary:
+static func parse_line(skrzuchc: String, luoqktkh: String) -> Dictionary:
                                                      
-    if ieimsnbi.begins_with("edit_node("):
-        var hzfspcqr = qenbzsba.edbvztjh(ieimsnbi)
+    if skrzuchc.begins_with("edit_node("):
+        var qepymjfa = uedkyhkq.uohklyyu(skrzuchc)
                                                             
-        if hzfspcqr.size() == 0:
+        if qepymjfa.size() == 0:
             return {}
-        if not hzfspcqr.has("node_name") \
-            or not hzfspcqr.has("scene_path") \
-            or not hzfspcqr.has("modifications"):
+        if not qepymjfa.has("node_name") \
+            or not qepymjfa.has("scene_path") \
+            or not qepymjfa.has("modifications"):
             return {}
 
         return {
             "type": "edit_node",
-            "node_name": hzfspcqr.node_name,
-            "scene_path": hzfspcqr.scene_path,
-            "modifications": hzfspcqr.modifications
+            "node_name": qepymjfa.node_name,
+            "scene_path": qepymjfa.scene_path,
+            "modifications": qepymjfa.modifications
         }
 
     return {}

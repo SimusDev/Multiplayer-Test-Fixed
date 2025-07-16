@@ -1,62 +1,62 @@
 extends EditorContextMenuPlugin
 
-var khxrvsvu: Control
+var bjablydh: Control
 
-func _init(qpqyxygu: Control):                                                
-    khxrvsvu = qpqyxygu
+func _init(spcjrymm: Control):                                                
+    bjablydh = spcjrymm
 
                                                                               
-func mdwiduwi(hhqnhfxd: PackedStringArray):
-    add_context_menu_item("Add to Chat",qtyycdfs)
-    add_context_menu_item("Explain Code",ugqcssao)
+func ggvqasuc(ashitowk: PackedStringArray):
+    add_context_menu_item("Add to Chat",kctonnsh)
+    add_context_menu_item("Explain Code",gunrioog)
 
-func ugqcssao(ridsnjxp: Node):
-    if not (ridsnjxp is CodeEdit):
+func gunrioog(hlhnrsim: Node):
+    if not (hlhnrsim is CodeEdit):
         return
-    if ridsnjxp.has_selection():
-        var psymnuls = ridsnjxp.get_selected_text()
-        if psymnuls:         
+    if hlhnrsim.has_selection():
+        var gpjuthto = hlhnrsim.get_selected_text()
+        if gpjuthto:         
                                                       
-            var oleldjyx = Engine.get_singleton("EditorInterface")
-            var ivwcxgvm = oleldjyx.get_script_editor().get_current_script()
-            if ivwcxgvm:
-                psymnuls = "Explain this code from %s:\n\n%s" % [ivwcxgvm.resource_path, psymnuls]
+            var ijvdoxwx = Engine.get_singleton("EditorInterface")
+            var vljuuoax = ijvdoxwx.get_script_editor().get_current_script()
+            if vljuuoax:
+                gpjuthto = "Explain this code from %s:\n\n%s" % [vljuuoax.resource_path, gpjuthto]
             
                                                                                     
-            if khxrvsvu:  
-                if not khxrvsvu.is_open_chat:
+            if bjablydh:  
+                if not bjablydh.is_open_chat:
                     print("Please open the chat to use this command")
                     return
                                                                     
-                var smrshicr : TextEdit = khxrvsvu.get_node("Screen_Chat/Footer/PromptInput")         
-                if smrshicr:                                               
-                    smrshicr.insert_text_at_caret("\n" +psymnuls)          
+                var kroiyhdf : TextEdit = bjablydh.get_node("Screen_Chat/Footer/PromptInput")         
+                if kroiyhdf:                                               
+                    kroiyhdf.insert_text_at_caret("\n" +gpjuthto)          
                 else:                                                               
                     print("PromptInput node not found in the dock.")                
             else:                                                                   
                 print("Dock reference is null.")          
 
-func qtyycdfs(xbdogyoy: Node):
-    if not (xbdogyoy is CodeEdit):
+func kctonnsh(vzyhheco: Node):
+    if not (vzyhheco is CodeEdit):
         return
-    if xbdogyoy.has_selection():
-        var sgsgltlm = xbdogyoy.get_selected_text()
-        if sgsgltlm:
+    if vzyhheco.has_selection():
+        var oszlcxqh = vzyhheco.get_selected_text()
+        if oszlcxqh:
                                                       
-            var lcbdosmm = Engine.get_singleton("EditorInterface")
-            var maslhjic = lcbdosmm.get_script_editor().get_current_script()
-            if maslhjic:
-                sgsgltlm = "Snippet from %s:\n%s" % [maslhjic.resource_path, sgsgltlm]
+            var ljjxjqnh = Engine.get_singleton("EditorInterface")
+            var ebwdovvz = ljjxjqnh.get_script_editor().get_current_script()
+            if ebwdovvz:
+                oszlcxqh = "Snippet from %s:\n%s" % [ebwdovvz.resource_path, oszlcxqh]
             
                                                                                     
-            if khxrvsvu:          
-                if not khxrvsvu.is_open_chat:
+            if bjablydh:          
+                if not bjablydh.is_open_chat:
                     print("Please open the chat to use this command")
                     return
                                                                       
-                var luxyluxk : TextEdit = khxrvsvu.get_node("Screen_Chat/Footer/PromptInput")         
-                if luxyluxk:                                               
-                    luxyluxk.insert_text_at_caret("\n" +sgsgltlm)             
+                var vfiqmkmb : TextEdit = bjablydh.get_node("Screen_Chat/Footer/PromptInput")         
+                if vfiqmkmb:                                               
+                    vfiqmkmb.insert_text_at_caret("\n" +oszlcxqh)             
                 else:                                                               
                     print("PromptInput node not found in the dock.")                
             else:                                                                   

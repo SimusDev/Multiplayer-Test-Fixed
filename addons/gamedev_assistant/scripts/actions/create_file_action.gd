@@ -2,28 +2,28 @@
 @tool
 extends Node
 
-const weinyyfz = preload("action_parser_utils.gd")
+const aaxywrfu = preload("action_parser_utils.gd")
 
-static func execute(rlejkbjt: String, jspmdmtq: String) -> bool:
-    var gpsghtlo = rlejkbjt.get_base_dir()
-    if not DirAccess.dir_exists_absolute(gpsghtlo):
-        DirAccess.make_dir_recursive_absolute(gpsghtlo)
+static func execute(gujagdqc: String, ayhzpkin: String) -> bool:
+    var vmebaarw = gujagdqc.get_base_dir()
+    if not DirAccess.dir_exists_absolute(vmebaarw):
+        DirAccess.make_dir_recursive_absolute(vmebaarw)
     
-    var yeoluhqt = FileAccess.open(rlejkbjt, FileAccess.WRITE)
-    if yeoluhqt:
-        yeoluhqt.store_string(jspmdmtq)
-        yeoluhqt.close()
+    var prnrcqgi = FileAccess.open(gujagdqc, FileAccess.WRITE)
+    if prnrcqgi:
+        prnrcqgi.store_string(ayhzpkin)
+        prnrcqgi.close()
         if Engine.is_editor_hint():
             EditorPlugin.new().get_editor_interface().get_resource_filesystem().scan()
         return true
     return false
 
-static func parse_line(poylotsb: String, dtxduacu: String) -> Dictionary:
-    if poylotsb.begins_with("create_file("):
-        var ylnukkrj = weinyyfz.arsaclkr(poylotsb)
+static func parse_line(wmffbiku: String, dhatqfcr: String) -> Dictionary:
+    if wmffbiku.begins_with("create_file("):
+        var iqpcyvew = aaxywrfu.huqphypz(wmffbiku)
         return {
             "type": "create_file",
-            "path": ylnukkrj,
-            "content": weinyyfz.fgakxepz(ylnukkrj, dtxduacu)
+            "path": iqpcyvew,
+            "content": aaxywrfu.dxujsmkd(iqpcyvew, dhatqfcr)
         }
     return {}

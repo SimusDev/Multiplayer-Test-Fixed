@@ -1,445 +1,506 @@
-                                                            
+                                                                  
 @tool
 extends Node
 
-signal lzbrzabb(action_type: String, path: String, success: bool, button: Button)
+signal bunseryn(action_type: String, path: String, success: bool, button: Button)
+signal epsfsspq(action_type: String, disable: bool)
 
                                      
-const jsausqjm = preload("res://addons/gamedev_assistant/scripts/actions/action_parser_utils.gd")
-const tfvyemyi = preload("res://addons/gamedev_assistant/scripts/actions/create_file_action.gd")
-const ybhpddbc = preload("res://addons/gamedev_assistant/scripts/actions/create_scene_action.gd")
-const xnxrnnqp = preload("res://addons/gamedev_assistant/scripts/actions/create_node_action.gd")
-const tzvowgsw = preload("res://addons/gamedev_assistant/scripts/actions/edit_node_action.gd")
-const xwgpedbi = preload("res://addons/gamedev_assistant/scripts/actions/add_subresource_action.gd")
-const rffoqxtp = preload("res://addons/gamedev_assistant/scripts/actions/edit_subresource_action.gd")
-const njirixqw = preload("res://addons/gamedev_assistant/scripts/actions/assign_script_action.gd")
-const nlnxgrqv = preload("res://addons/gamedev_assistant/scripts/actions/add_existing_scene_action.gd")
-const wofeomje = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ActionButton.tscn")
-const nnzguzyb = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ApplyAllButton.tscn")
-const rcsiugnp = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ActionsContainer.tscn")
-const isbdevyz = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_Spacing.tscn")
+const xklkiixj = preload("res://addons/gamedev_assistant/scripts/actions/action_parser_utils.gd")
+const crqrzlhy = preload("res://addons/gamedev_assistant/scripts/actions/create_file_action.gd")
+const epvtbnam = preload("res://addons/gamedev_assistant/scripts/actions/create_scene_action.gd")
+const ffgwtoog = preload("res://addons/gamedev_assistant/scripts/actions/create_node_action.gd")
+const igyfitkh = preload("res://addons/gamedev_assistant/scripts/actions/edit_node_action.gd")
+const sbskvyrv = preload("res://addons/gamedev_assistant/scripts/actions/add_subresource_action.gd")
+const qwqovoqq = preload("res://addons/gamedev_assistant/scripts/actions/edit_subresource_action.gd")
+const rrsatyif = preload("res://addons/gamedev_assistant/scripts/actions/assign_script_action.gd")
+const zwykvrog = preload("res://addons/gamedev_assistant/scripts/actions/add_existing_scene_action.gd")
+const evmyyicq = preload("res://addons/gamedev_assistant/scripts/actions/edit_script_action.gd")
 
-var zfmnjayi: Control
-var hbpotyub : VBoxContainer
-var rglevqne: Array = []
-var yfmmpwgm : Button
-var kcjilohr : bool
+const rurzkfsx = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ActionButton.tscn")
+const znqibkld = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ApplyAllButton.tscn")
+const fstohmbt = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_ActionsContainer.tscn")
+const uzpuzkha = preload("res://addons/gamedev_assistant/dock/scenes/chat/Chat_Spacing.tscn")
+
+var fmgzbmvo: Control
+var fdexgahs : VBoxContainer
+var czoguxzg: Array = []
+var cbgeomvp : Button
+var kyjvryzw : bool
+var ephqnmmo : bool
+
+                             
+var oeqhahsh: Timer
 
 func _ready():
     
-    var vcggcnjp = EditorInterface.get_editor_settings()       
-    kcjilohr = vcggcnjp.has_setting("gamedev_assistant/development_mode") and vcggcnjp.get_setting('gamedev_assistant/development_mode') == true    
+    var uyjciizs = EditorInterface.get_editor_settings()       
+    ephqnmmo = uyjciizs.has_setting("gamedev_assistant/development_mode") and uyjciizs.get_setting('gamedev_assistant/development_mode') == true    
 
                                                            
-    lzbrzabb.connect(xdzjpxhk)
+    bunseryn.connect(mdychrjp)
+    epsfsspq.connect(psftrsqx)
 
+                                    
+    oeqhahsh = Timer.new()
+    oeqhahsh.wait_time = 0.2
+    oeqhahsh.one_shot = true
+    add_child(oeqhahsh)
 
                             
-func qbjvmbra(fwjusspj: String, viajiugi: int) -> Array:
-    var sflrxrag = []
+func myydjctb(rudfrcxf: String, gmhphmru: int) -> Array:
+    var rbcbbdmx = []
 
-    var rjbssfay = "[gds_actions]"
-    var vnfdmwcp = "[/gds_actions]"
+    var dvxlswua = "[gds_actions]"
+    var nfeuyxvk = "[/gds_actions]"
 
-    var lsbuhlys = fwjusspj.find(rjbssfay)
-    var xlyrksiq = fwjusspj.find(vnfdmwcp)
+    var sloxqnpw = rudfrcxf.find(dvxlswua)
+    var yzhsdgly = rudfrcxf.find(nfeuyxvk)
 
-    if lsbuhlys == -1 or xlyrksiq == -1:
-        return sflrxrag                                       
+    if sloxqnpw == -1 or yzhsdgly == -1:
+        return rbcbbdmx                                       
 
                                                                 
-    var dscvlxqe = lsbuhlys + rjbssfay.length()
-    var fgnorzib = xlyrksiq - dscvlxqe
-    var nckobufm = fwjusspj.substr(dscvlxqe, fgnorzib).strip_edges()
+    var zgiqcjyr = sloxqnpw + dvxlswua.length()
+    var zbxrtnsj = yzhsdgly - zgiqcjyr
+    var dtiivfqk = rudfrcxf.substr(zgiqcjyr, zbxrtnsj).strip_edges()
     
-    if kcjilohr:
-        print(nckobufm)
+    if ephqnmmo:
+        print(dtiivfqk)
 
                                         
-    var yadqzkwp = nckobufm.split("\n")
-    for line in yadqzkwp:
+    var yckxshsj = dtiivfqk.split("\n")
+    for line in yckxshsj:
         line = line.strip_edges()
         if line == "":
             continue
 
-        var ziahplhh = ggrugmaa(line, fwjusspj)
-        if ziahplhh:
-            ziahplhh["message_id"] = viajiugi
-            sflrxrag.append(ziahplhh)
+        var bvqysbsf = gnprgksx(line, rudfrcxf)
+        if bvqysbsf:
+            bvqysbsf["message_id"] = gmhphmru
+            rbcbbdmx.append(bvqysbsf)
 
-    return sflrxrag
+    return rbcbbdmx
 
 
                     
-func zqgwshfx(tfggxdyc: String, pfocwggg: String, izpvqvey: Button) -> bool:
-    var xrumwbke = tfvyemyi.execute(tfggxdyc, pfocwggg)
-    lzbrzabb.emit("create_file", tfggxdyc, xrumwbke, izpvqvey)
-    return xrumwbke
+func wtkejpih(ralkpspt: String, eslttjir: String, rcyxziuj: Button) -> bool:
+    var dajuhtmn = crqrzlhy.execute(ralkpspt, eslttjir)
+    bunseryn.emit("create_file", ralkpspt, dajuhtmn, rcyxziuj)
+    return dajuhtmn
 
 
                      
-func zzklgmky(vcvuqdeu: String, lmxcmclc: String, bostsqob: String, ujcvnker: Button) -> bool:
-    var pvmqjfhy = ybhpddbc.execute(vcvuqdeu, lmxcmclc, bostsqob)
-    lzbrzabb.emit("create_scene", vcvuqdeu, pvmqjfhy, ujcvnker)
-    return pvmqjfhy
+func uqdmfwah(pswhwqgn: String, znqrmjgu: String, ksgjnwez: String, xgofckhe: Button) -> bool:
+    var fzcnshgb = epvtbnam.execute(pswhwqgn, znqrmjgu, ksgjnwez)
+    bunseryn.emit("create_scene", pswhwqgn, fzcnshgb, xgofckhe)
+    return fzcnshgb
 
 
                     
-func bmbfisaf(reelnizu: String, kaacucgp: String, fjcnmlnv: String, wajpeqfa: String, hblrcyiu: Dictionary, xljslqhl: Button) -> bool:
-    var pjxrgpgh = xnxrnnqp.execute(reelnizu, kaacucgp, fjcnmlnv, wajpeqfa, hblrcyiu)
-    lzbrzabb.emit("create_node", fjcnmlnv, pjxrgpgh, xljslqhl)
-    return pjxrgpgh
+func jdmryjdq(aimjbvbx: String, upwishwz: String, svvervgf: String, xpwxucjp: String, iastuarj: Dictionary, sryklmxh: Button) -> bool:
+    var amxqfsay = ffgwtoog.execute(aimjbvbx, upwishwz, svvervgf, xpwxucjp, iastuarj)
+    bunseryn.emit("create_node", svvervgf, amxqfsay, sryklmxh)
+    return amxqfsay
     
                   
-func ynzmeflq(iafstjvy: String, bmfubvzw: String, kuehpetr: Dictionary, npooagjf: Button) -> bool:
-    var nqbygdxl = tzvowgsw.execute(iafstjvy, bmfubvzw, kuehpetr)
-    lzbrzabb.emit("edit_node", bmfubvzw, nqbygdxl, npooagjf)
-    return nqbygdxl
+func jkxgjoza(rgnnrlwh: String, mdaurpzr: String, zgmfqmbc: Dictionary, khevzeei: Button) -> bool:
+    var ouywfhzv = igyfitkh.execute(rgnnrlwh, mdaurpzr, zgmfqmbc)
+    bunseryn.emit("edit_node", mdaurpzr, ouywfhzv, khevzeei)
+    return ouywfhzv
     
-func odvjoefr(mmslwztc: String, ztjqbljc: String, mehckjce: String, fjugjqga: Dictionary, kgfjkato: Button) -> bool:
-    var eewkgtxe = xwgpedbi.execute(mmslwztc, ztjqbljc, mehckjce, fjugjqga)
-    lzbrzabb.emit("add_subresource", ztjqbljc, eewkgtxe, kgfjkato)
-    return eewkgtxe
+func gczultmy(otkezipm: String, kijfuqqz: String, kgkdjyom: String, hsuatyku: Dictionary, hxgngved: Button) -> bool:
+    var qwouylrh = sbskvyrv.execute(otkezipm, kijfuqqz, kgkdjyom, hsuatyku)
+    bunseryn.emit("add_subresource", kijfuqqz, qwouylrh, hxgngved)
+    return qwouylrh
 
                          
-func ffmjtnga(frdpgwqw: String, vaohdckc: String, xmwbprpi: String, fibsruom: Dictionary, gukwyamc: Button) -> bool:
-    var fwywhxkp = rffoqxtp.execute(frdpgwqw, vaohdckc, xmwbprpi, fibsruom)
+func vzmeiefy(qsebqjzk: String, bytsafdf: String, zuizzwwo: String, kbsryaad: Dictionary, pfdfjokc: Button) -> bool:
+    var rtxzfzdm = qwqovoqq.execute(qsebqjzk, bytsafdf, zuizzwwo, kbsryaad)
                                                                               
-    lzbrzabb.emit("edit_subresource", vaohdckc, fwywhxkp, gukwyamc)
-    return fwywhxkp
+    bunseryn.emit("edit_subresource", bytsafdf, rtxzfzdm, pfdfjokc)
+    return rtxzfzdm
 
-func nofdtzsy(vgwivirl: String, sdldvdea: String, wgbrvomv: String, tykzkboj: Button) -> bool:  
-      var iqbdfzfc = njirixqw.execute(vgwivirl, sdldvdea, wgbrvomv)  
-      lzbrzabb.emit("assign_script", sdldvdea, iqbdfzfc, tykzkboj)  
-      return iqbdfzfc  
+func iaagcvye(rprqaxky: String, mjplhnyg: String, bwcufssx: String, hqoujibr: Button) -> bool:  
+      var uzsuzjjp = rrsatyif.execute(rprqaxky, mjplhnyg, bwcufssx)  
+      bunseryn.emit("assign_script", mjplhnyg, uzsuzjjp, hqoujibr)  
+      return uzsuzjjp  
 
                                  
-func mczzzfds(unxehtlx: Array, jpxptxrq: Control) -> void:
+func qycsmath(knafuyur: Array, bdiwfzvp: Control) -> void:
     
-    zfmnjayi = jpxptxrq    
-    qqrpuwbw()
+    fmgzbmvo = bdiwfzvp    
+    ykwmhucf()
     
-    hbpotyub = rcsiugnp.instantiate()
-    var jceauhqn = isbdevyz.instantiate()
-    hbpotyub.add_child(jceauhqn)
-    zfmnjayi.add_child(hbpotyub)
+    fdexgahs = fstohmbt.instantiate()
+    var dmaioiwz = uzpuzkha.instantiate()
+    fdexgahs.add_child(dmaioiwz)
+    fmgzbmvo.add_child(fdexgahs)
     
                                                         
-    if unxehtlx.size() > 1:
-        yfmmpwgm = nnzguzyb.instantiate()
-        yfmmpwgm.text = "Apply All"
-        yfmmpwgm.disabled = false
-        yfmmpwgm.pressed.connect(knkdspep.bind(rglevqne))
-        yfmmpwgm.tooltip_text = "Apply the actions listed below from top to bottom"
-        hbpotyub.add_child(yfmmpwgm)
+    if knafuyur.size() > 1:
+        cbgeomvp = znqibkld.instantiate()
+        cbgeomvp.text = "Apply All"
+        cbgeomvp.disabled = false
+        cbgeomvp.pressed.connect(yptzarxw.bind(czoguxzg))
+        cbgeomvp.tooltip_text = "Apply the actions listed below from top to bottom"
+        fdexgahs.add_child(cbgeomvp)
 
-    for action in unxehtlx:
-        var zxmwypsz = wofeomje.instantiate()
+    for action in knafuyur:
+        var uttbujbu = rurzkfsx.instantiate()
 
-        var kkmlajot = ""
-        var pxssdsjo = []
+        var zdbinpms = ""
+        var dmwnmyzz = []
         
         match action.type:
             "create_file":
-                kkmlajot = "Create {path}".format({"path": action.path})
-                pxssdsjo.append("Create file")
+                zdbinpms = "Create {path}".format({"path": action.path})
+                dmwnmyzz.append("Create file")
             "create_scene":
-                kkmlajot = "Create {path}".format({
+                zdbinpms = "Create {path}".format({
                     "path": action.path,
                 })
-                pxssdsjo.append("Create scene")
+                dmwnmyzz.append("Create scene")
             "create_node":
-                var nlqcvyls = action.scene_path.get_file()
-                var nhjgmiyt = action.parent_path if action.parent_path != "" else "root"
-                kkmlajot = "Create {type} \"{node_name}\"".format({
+                var czggcjgf = action.scene_path.get_file()
+                var csstndft = action.parent_path if action.parent_path != "" else "root"
+                zdbinpms = "Create {type} \"{node_name}\"".format({
                     "type": action.node_type,
                     "node_name": action.name
                 })
-                pxssdsjo.append("Create node")
-                pxssdsjo.append("Scene: %s" % nlqcvyls)                
+                dmwnmyzz.append("Create node")
+                dmwnmyzz.append("Scene: %s" % czggcjgf)                
             "edit_node":
-                var nlqcvyls = action.scene_path.get_file()
-                kkmlajot = "Edit %s" % [action.node_name]
+                var czggcjgf = action.scene_path.get_file()
+                zdbinpms = "Edit %s" % [action.node_name]
                 
-                pxssdsjo.append("Edit node")
-                pxssdsjo.append("Scene: %s" % nlqcvyls)
+                dmwnmyzz.append("Edit node")
+                dmwnmyzz.append("Scene: %s" % czggcjgf)
             "add_subresource":
-                var nlqcvyls = action.scene_path.get_file()
-                kkmlajot = "Add %s to %s" % [
+                var czggcjgf = action.scene_path.get_file()
+                zdbinpms = "Add %s to %s" % [
                     action.subresource_type,
                     action.node_name
                 ]                
-                pxssdsjo.append("Add subresource")
-                pxssdsjo.append("Scene: %s" % nlqcvyls)
+                dmwnmyzz.append("Add subresource")
+                dmwnmyzz.append("Scene: %s" % czggcjgf)
             "edit_subresource":
-                var nlqcvyls = action.scene_path.get_file()
-                kkmlajot = "Edit %s on %s" % [
+                var czggcjgf = action.scene_path.get_file()
+                zdbinpms = "Edit %s on %s" % [
                     action.subresource_property_name,                                       
                     action.node_name                                                
                 ]
-                pxssdsjo.append("Edit subresource")
-                pxssdsjo.append("Scene: %s" % nlqcvyls)
-                pxssdsjo.append("Property: %s" % action.subresource_property_name)                
+                dmwnmyzz.append("Edit subresource")
+                dmwnmyzz.append("Scene: %s" % czggcjgf)
+                dmwnmyzz.append("Property: %s" % action.subresource_property_name)                
             "assign_script":  
-                var nlqcvyls = action.scene_path.get_file()  
-                var jncewicr = action.script_path.get_file()
-                kkmlajot = "Attach %s to %s" % [  
-                    jncewicr,  
+                var czggcjgf = action.scene_path.get_file()  
+                var oradnzhs = action.script_path.get_file()
+                zdbinpms = "Attach %s to %s" % [  
+                    oradnzhs,  
                     action.node_name  
                 ]
-                pxssdsjo.append("Attach script")
-                pxssdsjo.append("File: %s" % jncewicr)
-                pxssdsjo.append("Scene: %s" % nlqcvyls)                
+                dmwnmyzz.append("Attach script")
+                dmwnmyzz.append("File: %s" % oradnzhs)
+                dmwnmyzz.append("Scene: %s" % czggcjgf)                
             "add_existing_scene":
-                var jpdhfeel = action.existing_scene_path.get_file()
-                var juekhtvx = action.target_scene_path.get_file()
-                kkmlajot = "Add %s to %s" % [jpdhfeel, juekhtvx]
+                var usgxvqoz = action.existing_scene_path.get_file()
+                var zshukgln = action.target_scene_path.get_file()
+                zdbinpms = "Add %s to %s" % [usgxvqoz, zshukgln]
                 
-                pxssdsjo.append("Add existing scene")
-                pxssdsjo.append("Source: %s" % jpdhfeel)
-                pxssdsjo.append("Target: %s" % juekhtvx)           
+                dmwnmyzz.append("Add existing scene")
+                dmwnmyzz.append("Source: %s" % usgxvqoz)
+                dmwnmyzz.append("Target: %s" % zshukgln)  
+            "edit_script":
+                zdbinpms = "Edit {path}".format({"path": action.path})
+                dmwnmyzz.append("Edit script")
+                dmwnmyzz.append("Path: %s" % action.path)
                                 
                               
         if action.has("path"):
-            pxssdsjo.append("Path: %s" % action.path)
+            dmwnmyzz.append("Path: %s" % action.path)
         
         if action.has("scene_name"):
-            pxssdsjo.append("Scene: %s" % action.scene_name)
+            dmwnmyzz.append("Scene: %s" % action.scene_name)
         
         if action.has("node_type"):
-            pxssdsjo.append("Node type: %s" % action.node_type)
+            dmwnmyzz.append("Node type: %s" % action.node_type)
         
         if action.has("root_type"):
-            pxssdsjo.append("Root type: %s" % action.root_type)
+            dmwnmyzz.append("Root type: %s" % action.root_type)
             
         if action.has("subresource_type"):
-            pxssdsjo.append("Subresource type: %s" % action.subresource_type)
+            dmwnmyzz.append("Subresource type: %s" % action.subresource_type)
         
         if action.has("name"):
-            pxssdsjo.append("Name: %s" % action.name)
+            dmwnmyzz.append("Name: %s" % action.name)
         
         if action.has("node_name"):
-            pxssdsjo.append("Node name: %s" % action.node_name)
+            dmwnmyzz.append("Node name: %s" % action.node_name)
        
         if action.has("parent_path"):      
-            pxssdsjo.append("Parent: %s" % (action.parent_path if action.parent_path else "root"))
+            dmwnmyzz.append("Parent: %s" % (action.parent_path if action.parent_path else "root"))
             
         if action.has("modifications") or action.has("properties"):
-            var cjsnmqcp = action.get("modifications", action.get("properties", {}))
-            if cjsnmqcp.size() > 0:
-                pxssdsjo.append("\nProperties to apply:")
-                for key in cjsnmqcp:
-                    pxssdsjo.append("• %s = %s" % [key, str(cjsnmqcp[key])])
+            var aqruxlnf = action.get("modifications", action.get("properties", {}))
+            if aqruxlnf.size() > 0:
+                dmwnmyzz.append("\nProperties to apply:")
+                for key in aqruxlnf:
+                    dmwnmyzz.append("• %s = %s" % [key, str(aqruxlnf[key])])
                 
-        zxmwypsz.tooltip_text = "\n".join(pxssdsjo)
+        uttbujbu.tooltip_text = "\n".join(dmwnmyzz)
 
-        zxmwypsz.text = kkmlajot
-        zxmwypsz.set_meta("action", action)
-        zxmwypsz.pressed.connect(ypeyrrsa.bind(zxmwypsz))
+        uttbujbu.text = zdbinpms
+        uttbujbu.set_meta("action", action)
+        uttbujbu.pressed.connect(getarcfz.bind(uttbujbu))
 
-        hbpotyub.add_child(zxmwypsz)
-        rglevqne.append(zxmwypsz)
+        fdexgahs.add_child(uttbujbu)
+        czoguxzg.append(uttbujbu)
 
 
                           
-func qqrpuwbw() -> void:
-    if zfmnjayi == null:
+func ykwmhucf() -> void:
+    if fmgzbmvo == null:
         return
         
                                                                      
-    if is_instance_valid(hbpotyub) and hbpotyub.is_inside_tree():
+    if is_instance_valid(fdexgahs) and fdexgahs.is_inside_tree():
                                                                      
-        if zfmnjayi.has_node(hbpotyub.get_path()):
+        if fmgzbmvo.has_node(fdexgahs.get_path()):
                                                                   
-            zfmnjayi.remove_child(hbpotyub)
+            fmgzbmvo.remove_child(fdexgahs)
     
                                     
-    rglevqne.clear()
-
+    czoguxzg.clear()
 
                                                   
-func ypeyrrsa(kmmtnrrz: Button) -> void:
-    var oocnfhqz = kmmtnrrz.get_meta("action") if kmmtnrrz.has_meta("action") else {}
+func getarcfz(jmqgjkes: Button) -> void:
+        kyjvryzw = false
+        edazokwu(jmqgjkes)
 
-    match oocnfhqz.type:
+                                                  
+func edazokwu(skrrpcxb: Button) -> void:
+    var vhzngxbi = skrrpcxb.get_meta("action") if skrrpcxb.has_meta("action") else {}
+    
+    skrrpcxb.disabled = true
+
+    match vhzngxbi.type:
         "create_file":
-            zqgwshfx(oocnfhqz.path, oocnfhqz.content, kmmtnrrz)
+            wtkejpih(vhzngxbi.path, vhzngxbi.content, skrrpcxb)
         "create_scene":
-            zzklgmky(oocnfhqz.path, oocnfhqz.root_name, oocnfhqz.root_type, kmmtnrrz)
+            uqdmfwah(vhzngxbi.path, vhzngxbi.root_name, vhzngxbi.root_type, skrrpcxb)
         "create_node":
-            var damrbyuw = oocnfhqz.modifications if oocnfhqz.has("modifications") else {}
-            bmbfisaf(oocnfhqz.name, oocnfhqz.node_type, oocnfhqz.scene_path, oocnfhqz.parent_path, damrbyuw, kmmtnrrz)
+            var txortzdc = vhzngxbi.modifications if vhzngxbi.has("modifications") else {}
+            jdmryjdq(vhzngxbi.name, vhzngxbi.node_type, vhzngxbi.scene_path, vhzngxbi.parent_path, txortzdc, skrrpcxb)
         "edit_node":
-            ynzmeflq(oocnfhqz.node_name, oocnfhqz.scene_path, oocnfhqz.modifications, kmmtnrrz)
+            jkxgjoza(vhzngxbi.node_name, vhzngxbi.scene_path, vhzngxbi.modifications, skrrpcxb)
         "add_subresource":
-            odvjoefr(
-                oocnfhqz.node_name,
-                oocnfhqz.scene_path,
-                oocnfhqz.subresource_type,
-                oocnfhqz.properties,
-                kmmtnrrz
+            gczultmy(
+                vhzngxbi.node_name,
+                vhzngxbi.scene_path,
+                vhzngxbi.subresource_type,
+                vhzngxbi.properties,
+                skrrpcxb
             )
         "edit_subresource":
-             ffmjtnga(
-                oocnfhqz.node_name,
-                oocnfhqz.scene_path,
-                oocnfhqz.subresource_property_name,
-                oocnfhqz.properties,                                                    
-                kmmtnrrz
+             vzmeiefy(
+                vhzngxbi.node_name,
+                vhzngxbi.scene_path,
+                vhzngxbi.subresource_property_name,
+                vhzngxbi.properties,                                                    
+                skrrpcxb
              )
         "assign_script":  
-              nofdtzsy(oocnfhqz.node_name, oocnfhqz.scene_path, oocnfhqz.script_path, kmmtnrrz)  
+              iaagcvye(vhzngxbi.node_name, vhzngxbi.scene_path, vhzngxbi.script_path, skrrpcxb)  
         "add_existing_scene":
-            dgzaessl(
-                oocnfhqz.node_name,
-                oocnfhqz.existing_scene_path,
-                oocnfhqz.target_scene_path,
-                oocnfhqz.parent_path,
-                oocnfhqz.modifications,
-                kmmtnrrz
+            ktxwombg(
+                vhzngxbi.node_name,
+                vhzngxbi.existing_scene_path,
+                vhzngxbi.target_scene_path,
+                vhzngxbi.parent_path,
+                vhzngxbi.modifications,
+                skrrpcxb
             )
+        "edit_script":
+            scujckjt(vhzngxbi.path, vhzngxbi.message_id, skrrpcxb)
         _:
-            push_warning("Unrecognized action type: %s" % oocnfhqz.type)
+            push_warning("Unrecognized action type: %s" % vhzngxbi.type)
 
 
                                              
-func xdzjpxhk(mwdbkdbc: String, bxbhtvik: String, lnkgwskt: bool, gbxwkvvb: Button) -> void:
-    if not is_instance_valid(gbxwkvvb):
+func mdychrjp(wvzeybwz: String, iocproxq: String, kircbbcd: bool, vbpyxnkk: Button) -> void:
+    if not is_instance_valid(vbpyxnkk):
         return
 
                                                                          
-    var hpcwalrt = gbxwkvvb.text
-    var kaizomeu = gbxwkvvb.tooltip_text
-
-    gbxwkvvb.disabled = true
+    var alzvgflx = vbpyxnkk.text
+    var chiqoasn = vbpyxnkk.tooltip_text
+    
                                                          
-    if is_instance_valid(yfmmpwgm):
-        yfmmpwgm.disabled = true
+    if is_instance_valid(cbgeomvp):
+        cbgeomvp.disabled = true
 
-    var gcrldwlg = gbxwkvvb.get_meta("action")
-    var xlijdstg = gcrldwlg.get("message_id", -1)
+    var sivnyyav = vbpyxnkk.get_meta("action")
+    var omctclnz = sivnyyav.get("message_id", -1)
 
-    if xlijdstg != -1:
-        $"../APIManager".uzwyvavv(xlijdstg, lnkgwskt, mwdbkdbc)
+    if omctclnz != -1:
+        $"../APIManager".mbqadahd(omctclnz, kircbbcd, wvzeybwz)
 
                                                                              
-    if mwdbkdbc == gcrldwlg.type:
-        var livcnspc = "✓ " if lnkgwskt else "✗ "
-        var jttarqur = "\n\nACTION COMPLETED" if lnkgwskt else "\n\nACTION FAILED"                              
-        var jgpwuakw = ""                               
+    if wvzeybwz == sivnyyav.type:
+        var jbtyfoms = "✓ " if kircbbcd else "✗ "
+        var zkwjuaep = "\n\nACTION COMPLETED" if kircbbcd else "\n\nACTION FAILED:\nCheck Output panel for error message.\nClick to retry."
+        var tlucvsfj = ""                               
 
                                                                    
-                                                                                  
-        match mwdbkdbc:
+        match wvzeybwz:
             "create_file":
-                jgpwuakw = ("Created file {path}" if lnkgwskt else "Failed: file creation {path}").format({"path": gcrldwlg.path})
+                tlucvsfj = ("Created file {path}" if kircbbcd else "Failed: file creation {path}").format({"path": sivnyyav.path})
             "create_scene":
-                jgpwuakw = ("Created scene {path}, root: {root_type}" if lnkgwskt else "Failed: scene creation {path}, root: {root_type}").format({
-                    "path": gcrldwlg.path,
-                    "root_type": gcrldwlg.root_type
+                tlucvsfj = ("Created scene {path}, root: {root_type}" if kircbbcd else "Failed: scene creation {path}, root: {root_type}").format({
+                    "path": sivnyyav.path,
+                    "root_type": sivnyyav.root_type
                 })
             "create_node":
-                var vuuynfyk = gcrldwlg.scene_path.get_file()
-                var fqbbismh = gcrldwlg.parent_path if gcrldwlg.parent_path != "" else "root"
-                var masaasij = ""
-                if gcrldwlg.has("modifications") and gcrldwlg.modifications.size() > 0:
-                    masaasij = " with %s props" % gcrldwlg.modifications.size()
-                jgpwuakw = ("Created node {name}, type {type}, parent {parent} in scene {scene}{props}" if lnkgwskt
+                var mattswfe = sivnyyav.scene_path.get_file()
+                var pjccggve = sivnyyav.parent_path if sivnyyav.parent_path != "" else "root"
+                var ldeklrnf = ""
+                if sivnyyav.has("modifications") and sivnyyav.modifications.size() > 0:
+                    ldeklrnf = " with %s props" % sivnyyav.modifications.size()
+                tlucvsfj = ("Created node {name}, type {type}, parent {parent} in scene {scene}{props}" if kircbbcd
                                 else "Failed: creating node {name}, type {type}, parent {parent} in scene {scene}{props}"
                                 ).format({
-                                    "name": gcrldwlg.name,
-                                    "type": gcrldwlg.node_type,
-                                    "scene": vuuynfyk,
-                                    "parent": fqbbismh,
-                                    "props": masaasij
+                                    "name": sivnyyav.name,
+                                    "type": sivnyyav.node_type,
+                                    "scene": mattswfe,
+                                    "parent": pjccggve,
+                                    "props": ldeklrnf
                                 })
             "edit_node":
-                jgpwuakw = ("Edited node \"%s\" in scene %s" if lnkgwskt
+                tlucvsfj = ("Edited node \"%s\" in scene %s" if kircbbcd
                                 else "Failed: editing node \"%s\", scene: %s"
-                                ) % [gcrldwlg.node_name, gcrldwlg.scene_path.get_file()]
+                                ) % [sivnyyav.node_name, sivnyyav.scene_path.get_file()]
 
             "add_subresource":
-                var vuuynfyk = gcrldwlg.scene_path.get_file()
-                var ahsullzm = str(gcrldwlg.properties.size())
-                jgpwuakw = ("Added subresource %s to node %s in scene %s (%s properties)" if lnkgwskt
+                var mattswfe = sivnyyav.scene_path.get_file()
+                var awnapgmp = str(sivnyyav.properties.size())
+                tlucvsfj = ("Added subresource %s to node %s in scene %s (%s properties)" if kircbbcd
                                 else "Failed: adding subresource %s to node %s, scene: %s (%s properties)"
-                                ) % [gcrldwlg.subresource_type, gcrldwlg.node_name, vuuynfyk, ahsullzm]
+                                ) % [sivnyyav.subresource_type, sivnyyav.node_name, mattswfe, awnapgmp]
                                 
             "edit_subresource":
-                 var vuuynfyk = gcrldwlg.scene_path.get_file()
-                 var ahsullzm = str(gcrldwlg.properties.size())
-                 jgpwuakw = ("Edited subresource property '%s' on node '%s' in scene %s (%s properties changed)" if lnkgwskt
+                 var mattswfe = sivnyyav.scene_path.get_file()
+                 var awnapgmp = str(sivnyyav.properties.size())
+                 tlucvsfj = ("Edited subresource property '%s' on node '%s' in scene %s (%s properties changed)" if kircbbcd
                                  else "Failed: editing subresource property '%s' on node '%s', scene: %s (%s properties attempted)"
-                                 ) % [gcrldwlg.subresource_property_name, gcrldwlg.node_name, vuuynfyk, ahsullzm]
+                                 ) % [sivnyyav.subresource_property_name, sivnyyav.node_name, mattswfe, awnapgmp]
 
             "assign_script":
-                jgpwuakw = ("Assigned script to node \"%s\" in scene %s" if lnkgwskt
+                tlucvsfj = ("Assigned script to node \"%s\" in scene %s" if kircbbcd
                                 else "Failed: assigning script to node \"%s\", scene: %s"
-                                ) % [gcrldwlg.node_name, gcrldwlg.scene_path.get_file()]
+                                ) % [sivnyyav.node_name, sivnyyav.scene_path.get_file()]
 
             "add_existing_scene":
-                var iogahjro = gcrldwlg.target_scene_path.get_file()
-                var vuuynfyk = gcrldwlg.existing_scene_path.get_file()
-                var ahsullzm = str(gcrldwlg.modifications.size())
-                jgpwuakw = ("Added %s to %s" if lnkgwskt
+                var knogifog = sivnyyav.target_scene_path.get_file()
+                var mattswfe = sivnyyav.existing_scene_path.get_file()
+                var awnapgmp = str(sivnyyav.modifications.size())
+                tlucvsfj = ("Added %s to %s" if kircbbcd
                               else "Failed: adding %s to %s"
-                              ) % [vuuynfyk, iogahjro]
-                if gcrldwlg.modifications.size() > 0:
-                    jgpwuakw += " (%s props)" % ahsullzm
-                                                       
+                              ) % [mattswfe, knogifog]
+                if sivnyyav.modifications.size() > 0:
+                    tlucvsfj += " (%s props)" % awnapgmp
+            "edit_script":
+                tlucvsfj = ("Edited script %s" if kircbbcd
+                                else "Failed: editing script %s"
+                                ) % [iocproxq]
 
                                                          
-        gbxwkvvb.text = livcnspc + hpcwalrt
+        vbpyxnkk.text = jbtyfoms + alzvgflx
 
                                                              
-        gbxwkvvb.tooltip_text = kaizomeu + jttarqur
+        vbpyxnkk.tooltip_text = chiqoasn + zkwjuaep
 
                                                
                                                              
-        print('[GameDev Assistant] ' + livcnspc + jgpwuakw) 
+        print('[GameDev Assistant] ' + jbtyfoms + tlucvsfj) 
 
-        if not lnkgwskt:
-            gbxwkvvb.self_modulate = Color(1, 0, 0)                               
+        if not kircbbcd:
+            vbpyxnkk.self_modulate = Color(1, 0, 0)                               
+            
+                                  
+        vbpyxnkk.set_meta("completed", true)
+        
+                               
+        if wvzeybwz == "edit_script":
+            psftrsqx(wvzeybwz, false)
+            
+                                          
+        if kircbbcd:
+            vbpyxnkk.disabled = true
         
                               
-func ggrugmaa(axhypjhp: String, rmtmyntf: String) -> Dictionary:
-    var hccesnyp = [tfvyemyi, ybhpddbc, xnxrnnqp, tzvowgsw, xwgpedbi, rffoqxtp, njirixqw, nlnxgrqv]
-    for parser in hccesnyp:
-        var hseyemtf = parser.parse_line(axhypjhp, rmtmyntf)
-        if not hseyemtf.is_empty():
-            return hseyemtf
+func gnprgksx(nhxohfhk: String, gdpnkmqk: String) -> Dictionary:
+    var utywifwk = [crqrzlhy, epvtbnam, ffgwtoog, igyfitkh, sbskvyrv, qwqovoqq, rrsatyif, zwykvrog, evmyyicq]
+    for parser in utywifwk:
+        var jsrqitjd = parser.parse_line(nhxohfhk, gdpnkmqk)
+        if not jsrqitjd.is_empty():
+            return jsrqitjd
     return {}
     
-func knkdspep(gptnwtuc: Array) -> void:
-    yfmmpwgm.disabled = true
-    var kzyfejgs = 0
-    rovvjyyx(kzyfejgs, gptnwtuc)                    
+func yptzarxw(nttlpahd: Array) -> void:
+    kyjvryzw = true
+    cbgeomvp.disabled = true
+    var jhakpygh = 0
+    
+                                       
+    for button in czoguxzg:
+        button.disabled = true
+    
+    nduvopxl(jhakpygh, nttlpahd)                    
 
-func rovvjyyx(thvosebb: int, klgleyxs: Array):
-    if thvosebb >= klgleyxs.size():
+func nduvopxl(jnsdaycx: int, czgvfuzw: Array):
+    if jnsdaycx >= czgvfuzw.size():
         return                        
 
-    var kjfbvxds = klgleyxs[thvosebb]
-    if not is_instance_valid(kjfbvxds):
-        thvosebb += 1
-        rovvjyyx(thvosebb, klgleyxs)                       
+    var nbnjgukw = czgvfuzw[jnsdaycx]
+    if not is_instance_valid(nbnjgukw):
+        jnsdaycx += 1
+        nduvopxl(jnsdaycx, czgvfuzw)                       
         return
 
                                                                           
-    var cyozvglh = func(_type, _path, _success, btn):
-        if btn == kjfbvxds:
-            thvosebb += 1                        
-            await get_tree().create_timer(0.2).timeout
-            rovvjyyx(thvosebb, klgleyxs)
+    var tmoifkpr = func(_type, _path, _success, btn):
+        if btn == nbnjgukw:
+            jnsdaycx += 1                        
+            oeqhahsh.start()
+            await oeqhahsh.timeout
+            nduvopxl(jnsdaycx, czgvfuzw)
 
                                       
-    lzbrzabb.connect(cyozvglh, CONNECT_ONE_SHOT)
+    bunseryn.connect(tmoifkpr, CONNECT_ONE_SHOT)
     await get_tree().process_frame                                           
     
                             
-    ypeyrrsa(kjfbvxds)
+    edazokwu(nbnjgukw)
 
-func dgzaessl(qnvonfcn: String, uprrqdsw: String, ojmtypmh: String, olzqijua: String, uelrocxr: Dictionary, ccyuysgg: Button) -> bool:
-    var vbjwrtjb = nlnxgrqv.execute(qnvonfcn, uprrqdsw, ojmtypmh, olzqijua, uelrocxr)
-    lzbrzabb.emit("add_existing_scene", ojmtypmh, vbjwrtjb, ccyuysgg)
-    return vbjwrtjb
+func ktxwombg(snlbxkje: String, eeqidfwf: String, dsisgihh: String, oywsnuyl: String, qjvvdjhv: Dictionary, vaplimfp: Button) -> bool:
+    var mvtlhfwh = zwykvrog.execute(snlbxkje, eeqidfwf, dsisgihh, oywsnuyl, qjvvdjhv)
+    bunseryn.emit("add_existing_scene", dsisgihh, mvtlhfwh, vaplimfp)
+    return mvtlhfwh
+    
+func scujckjt(edaetwjh: String, olzbxooz: int, eubceqkd: Button) -> bool:
+    var fnaysgyv = $"../APIManager"
+    var vzfuduxw = evmyyicq.execute(edaetwjh, olzbxooz, eubceqkd, fnaysgyv)
+    return vzfuduxw
+    
+func psftrsqx(sfteqadi: String, hzswzokj: bool) -> void:
+
+    if kyjvryzw:
+        return
+    
+    for button in czoguxzg:
+        var knafjzpo = button.get_meta("action") if button.has_meta("action") else {}
+        if knafjzpo.get("type", "") == sfteqadi:
+                                                
+            if not button.get_meta("completed", false):
+                button.disabled = hzswzokj
