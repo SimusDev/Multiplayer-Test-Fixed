@@ -73,6 +73,9 @@ func _update_channel(property: SD_NetSyncedProperty) -> void:
 	var c_name: String = _channel_data.get_or_add(p_id, SD_NetTrunkCallables.CHANNEL_DEFAULT)
 	
 	var id: int = property.channels.find(c_name)
+	if id < 0:
+		id = 0
+	
 	if id > property.channels.size() - 1:
 		id = 0
 	

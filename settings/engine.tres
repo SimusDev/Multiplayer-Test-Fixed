@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_2wia1"]
 script = ExtResource("2_lvuwi")
 enabled = true
-channels = ["main"]
+channels = ["main", "transform1", "transform2", "transform3", "transform4", "transform5", "transform6"]
 root_path = "/root/"
 default_peer = true
 compression = 2

@@ -85,6 +85,13 @@ func _recieve_player_from_client_and_send_anwser(parsed: Variant, show_all_conne
 
 @rpc("call_remote", "any_peer", "reliable")
 func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Array], info: Dictionary) -> void:
+	singleton.on_handshake_begin.emit()
+	
+	if info != SimusDev.get_info():
+		singleton.terminate_connection()
+		singleton.on_handshake_error.emit(SD_NetError.create("the information doesn't match!"))
+		return
+	
 	for peer_id in players:
 		var net := SD_NetPlayerResource.new()
 		net.data = players[peer_id]
@@ -93,10 +100,7 @@ func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionar
 	
 	singleton.cache_set(cache)
 	
-	if info != SimusDev.get_info():
-		singleton.terminate_connection()
-		singleton.on_handshake_error.emit(SD_NetError.create("the information doesn't match!"))
-		return
+	singleton.on_cache_from_server_recieve.emit()
 	
 	singleton.on_connected_to_server.emit()
 	

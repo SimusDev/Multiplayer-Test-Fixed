@@ -3,6 +3,8 @@ class_name SD_NetTrunkCache
 
 func _initialized() -> void:
 	singleton.on_server_disconnected.connect(_on_server_disconnected)
+	
+	return #caching disabled :( a lot of bugs
 	get_tree().node_added.connect(_on_node_added)
 	get_tree().node_removed.connect(_on_node_removed)
 
