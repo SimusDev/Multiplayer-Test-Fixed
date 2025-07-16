@@ -13,6 +13,8 @@ func _ready() -> void:
 var tab:int = 0
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if event is InputEventKey and event.is_pressed():
 		if event.as_text().to_lower().is_valid_int():
 			tab = int(event.as_text().to_lower())
