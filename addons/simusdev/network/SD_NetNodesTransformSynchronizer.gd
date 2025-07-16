@@ -24,6 +24,8 @@ var _initialized: bool = false
 
 var _queue: Dictionary = {}
 
+var _channel_id: int = 0
+
 func get_data() -> Dictionary:
 	return _data
 
@@ -112,7 +114,11 @@ func _on_timer_timeout() -> void:
 	on_tick.emit()
 	
 	if _changed:
-		SD_Network.call_func_except_self(_recieve_data, [_queue], callmode)
+		_channel_id += 1
+		if _channel_id > channels.size() - 1:
+			_channel_id = 0
+		
+		SD_Network.call_func_except_self(_recieve_data, [_queue], callmode, channels[_channel_id])
 		_changed = false
 		_queue.clear()
 
