@@ -44,12 +44,12 @@ func _ready() -> void:
 	#print(resource_test_uid.get_id_for_path(resource_test_uid.resource_path))
 
 func _on_server_pressed() -> void:
-	SD_Network.create_server(port)
-	$CanvasLayer.hide()
+	if SD_Network.create_server(port):
+		$CanvasLayer.hide()
 
 func _on_client_pressed() -> void:
-	SD_Network.create_client(ip, port)
-	$CanvasLayer.hide()
+	if SD_Network.create_client(ip, port):
+		$CanvasLayer.hide()
 
 func _input(event: InputEvent) -> void:
 	if $CanvasLayer.visible:
