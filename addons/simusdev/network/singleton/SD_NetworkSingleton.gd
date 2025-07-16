@@ -30,6 +30,9 @@ signal on_server_disconnected()
 signal on_player_connected(player: SD_NetworkPlayer)
 signal on_player_disconnected(player: SD_NetworkPlayer)
 
+signal on_cached_node_recieve(path: String)
+signal on_cached_node_reject(path: String)
+
 var _s_network: SD_Network
 var _s_network_serializer: SD_NetworkSerializer
 var _s_network_deserializer: SD_NetworkDeserializer

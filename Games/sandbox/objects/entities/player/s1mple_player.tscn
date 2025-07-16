@@ -1,15 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=27 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="2_gv642"]
 [ext_resource type="Script" uid="uid://bie6t8nqas4fi" path="res://Games/sandbox/components/entity/SB_EntityHealth.gd" id="2_st6l1"]
-[ext_resource type="Script" uid="uid://b663u5rfjkr72" path="res://Games/sandbox/components/sync/SB_Synchronizer.gd" id="2_u0j1b"]
+[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="2_wy3vx"]
 [ext_resource type="PackedScene" uid="uid://cvjgqoyulpo85" path="res://Games/sandbox/interface/player/player_ui.tscn" id="3_n84i3"]
-[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_xtx5c"]
-[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_10rrw"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_u0j1b"]
 [ext_resource type="Script" uid="uid://nq1n3w0kvtbw" path="res://Games/sandbox/components/entity/SB_EntityInventoryItemUsage.gd" id="4_n84i3"]
 [ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="4_st6l1"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_xtx5c"]
 [ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="5_64jhk"]
 [ext_resource type="Script" uid="uid://ca018ytdj1cv3" path="res://Games/sandbox/components/inventory/SB_ItemStack.gd" id="6_pq8we"]
 [ext_resource type="Resource" uid="uid://cokbg8gf0bwd2" path="res://Games/sandbox/objects/item/test.tres" id="7_h05vk"]
@@ -21,47 +21,52 @@
 [ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/sandbox/models/player/source/animated_model.tscn" id="20_wy3vx"]
 
-[sub_resource type="Resource" id="Resource_30ur2"]
-script = ExtResource("4_10rrw")
-properties = Array[String](["position"])
-sync_at_start = true
+[sub_resource type="Resource" id="Resource_10rrw"]
+script = ExtResource("3_u0j1b")
+properties = Array[String](["velocity"])
 interpolation_enabled = false
 interpolation_speed = 32.0
 node_path = NodePath("..")
+channels = Array[String](["main"])
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 1
 callmode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
-[sub_resource type="Resource" id="Resource_u0j1b"]
-script = ExtResource("4_10rrw")
-properties = Array[String](["rotation"])
-sync_at_start = true
-interpolation_enabled = false
+[sub_resource type="Resource" id="Resource_ip4yb"]
+script = ExtResource("3_u0j1b")
+properties = Array[String](["position"])
+interpolation_enabled = true
 interpolation_speed = 32.0
 node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 1
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_wy3vx"]
+script = ExtResource("3_u0j1b")
+properties = Array[String](["rotation"])
+interpolation_enabled = true
+interpolation_speed = 32.0
+node_path = NodePath("..")
+channels = Array[String](["main"])
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
 callmode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
-[sub_resource type="Resource" id="Resource_xtx5c"]
-script = ExtResource("4_10rrw")
-properties = Array[String](["velocity"])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 32.0
-node_path = NodePath("..")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
-sync = 1
-callmode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+[sub_resource type="Resource" id="Resource_r4xri"]
+script = ExtResource("4_xtx5c")
+_list = Array[ExtResource("3_u0j1b")]([SubResource("Resource_10rrw"), SubResource("Resource_ip4yb"), SubResource("Resource_wy3vx")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
 size = Vector3(1, 1.99615, 1)
@@ -73,10 +78,10 @@ size = Vector3(1, 1.14554, 1)
 collision_layer = 0
 script = ExtResource("1_64jhk")
 
-[node name="SB_Synchronizer" type="Node" parent="."]
-script = ExtResource("2_u0j1b")
-properties = Array[ExtResource("3_xtx5c")]([SubResource("Resource_30ur2"), SubResource("Resource_u0j1b"), SubResource("Resource_xtx5c")])
-metadata/_custom_type_script = "uid://b663u5rfjkr72"
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("2_wy3vx")
+_data = SubResource("Resource_r4xri")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
 [node name="SB_EntityHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_st6l1")

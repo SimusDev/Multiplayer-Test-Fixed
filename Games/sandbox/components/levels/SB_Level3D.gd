@@ -15,6 +15,8 @@ var _sections: Dictionary[String, SB_LevelSection3D] = {}
 @export var _spawner: SD_MPClientNodeSpawner
 @export var _spawner_exclude_section: Array[SB_LevelSection3D] = []
 
+@export var _transform_sync_exclude: Array[String] = []
+
 func get_spawner() -> SD_MPClientNodeSpawner:
 	return _spawner
 
@@ -54,7 +56,9 @@ func _parse_sections() -> void:
 			
 			if not _spawner_exclude_section.has(i):
 				_spawner.add_detect_root(i)
-				
+			
+			if not _transform_sync_exclude.has(i.name):
+				$SD_NetNodesTransformSynchronizer.add_root(i)
 
 static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
 	var scene: PackedScene = load(PREFAB_PATH)
