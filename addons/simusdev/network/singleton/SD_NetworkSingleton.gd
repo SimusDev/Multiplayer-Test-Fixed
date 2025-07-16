@@ -21,6 +21,7 @@ const SERVER_ID: int = 1
 
 signal on_connected_to_server()
 signal on_connection_failed()
+signal on_handshake_begin()
 signal on_handshake_success(success: SD_NetSuccess)
 signal on_handshake_error(success: SD_NetError)
 signal on_peer_connected(peer: int)
@@ -30,6 +31,7 @@ signal on_server_disconnected()
 signal on_player_connected(player: SD_NetworkPlayer)
 signal on_player_disconnected(player: SD_NetworkPlayer)
 
+signal on_cache_from_server_recieve()
 signal on_cached_node_recieve(path: String)
 signal on_cached_node_reject(path: String)
 
@@ -146,8 +148,6 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	
-	
 	if OS.has_feature("dedicated_server"):
 		settings.dedicated_server = true
 	
@@ -182,6 +182,7 @@ func terminate_connection() -> void:
 	if _peer:
 		if _peer is MultiplayerPeer:
 			_peer.close()
+			_on_server_disconnected()
 
 
 func debug_print(text, category: int = 0) -> void:

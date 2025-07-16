@@ -17,4 +17,4 @@ func _ready() -> void:
 	set_process(is_instance_valid(player))
 
 func _process(delta: float) -> void:
-	_position.text = str(source.global_position)
+	_position.text = str(source.position)
