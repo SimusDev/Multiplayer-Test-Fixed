@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://3ykpcs8eyeo1"]
+
+[ext_resource type="Script" uid="uid://pf622qfdiljm" path="res://addons/simusdev/components/animated_model/W_AnimatedModel3D.gd" id="1_pwf7m"]
+[ext_resource type="PackedScene" uid="uid://ycs4v0001qtw" path="res://Games/sandbox/objects/skin/sas/skin.tscn" id="2_aggjl"]
+[ext_resource type="AnimationLibrary" uid="uid://7sh7ijlgfhks" path="res://Games/sandbox/animations/source/human/human.tres" id="3_cv0fu"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://nojl42pyse8c" path="res://Games/sandbox/animations/source/human/human_tree.tres" id="4_3qm48"]
+
+[node name="Animated" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
+script = ExtResource("1_pwf7m")
+model_scene = ExtResource("2_aggjl")
+library = ExtResource("3_cv0fu")
+blend_tree = ExtResource("4_3qm48")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/Skeleton3D")
+metadata/_custom_type_script = "uid://pf622qfdiljm"
+
+[node name="model3d" parent="." instance=ExtResource("2_aggjl")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"human": ExtResource("3_cv0fu")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("4_3qm48")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,14 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://scuy4tbjdt0e"]
+[gd_scene load_steps=5 format=3 uid="uid://scuy4tbjdt0e"]
 
 [ext_resource type="Script" uid="uid://c86b7q2mpdehh" path="res://Games/sandbox/models/player/source/animated_model.gd" id="1_qcu43"]
 [ext_resource type="PackedScene" uid="uid://dj4rmps0ab5u8" path="res://Games/sandbox/models/player/source/model.tscn" id="2_qcu43"]
 [ext_resource type="AnimationLibrary" uid="uid://6luwsgfb4bi0" path="res://Games/sandbox/animations/player/library.tres" id="3_wnolm"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bev6yf7wxq854" path="res://Games/sandbox/animations/player/blend_tree.tres" id="4_2263x"]
-[ext_resource type="Script" uid="uid://btncpbh6rmjwh" path="res://Games/sandbox/components/entity/SB_EntitySimpleFootSteps.gd" id="5_awcgb"]
-[ext_resource type="AudioStream" uid="uid://dnsq0ogn2jeqy" path="res://sounds/hl2/player/footsteps/gravel1.wav" id="6_6fx4a"]
-[ext_resource type="AudioStream" uid="uid://dq3nelmioi1vl" path="res://sounds/hl2/player/footsteps/gravel2.wav" id="7_jerbr"]
-[ext_resource type="AudioStream" uid="uid://covvae6mj6fp4" path="res://sounds/hl2/player/footsteps/gravel3.wav" id="8_cddtc"]
-[ext_resource type="AudioStream" uid="uid://bbw8lofjwplcd" path="res://sounds/hl2/player/footsteps/gravel4.wav" id="9_ugesn"]
 
 [node name="AnimatedModel" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
 script = ExtResource("1_qcu43")
@@ -42,9 +37,3 @@ parameters/jumpBlendTree/TimeScale/scale = 3.0
 parameters/movement_sm/crouch/blend_position = Vector2(0.0210773, 0.775076)
 parameters/movement_sm/movement/blend_position = Vector2(-0.927369, -0.29148)
 parameters/movement_tscale/scale = 1.0
-
-[node name="SB_EntitySimpleFootSteps" type="Node3D" parent="." node_paths=PackedStringArray("animated_model")]
-script = ExtResource("5_awcgb")
-streams = Array[AudioStream]([ExtResource("6_6fx4a"), ExtResource("7_jerbr"), ExtResource("8_cddtc"), ExtResource("9_ugesn")])
-animated_model = NodePath("..")
-metadata/_custom_type_script = "uid://btncpbh6rmjwh"

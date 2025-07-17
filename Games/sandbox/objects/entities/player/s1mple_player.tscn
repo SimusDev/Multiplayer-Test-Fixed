@@ -18,8 +18,9 @@
 [ext_resource type="Script" uid="uid://cg7guu20kh5el" path="res://Games/sandbox/components/entity/SB_EntityViewModel.gd" id="12_30ur2"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="13_ip4yb"]
 [ext_resource type="PackedScene" uid="uid://d1v4nixukw0j1" path="res://Games/sandbox/prefabs/nickname/nickname.tscn" id="14_gv642"]
+[ext_resource type="Resource" uid="uid://b6008tmb0cj4" path="res://Games/sandbox/objects/skin/sas/sas.tres" id="15_u0j1b"]
 [ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
-[ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/sandbox/models/player/source/animated_model.tscn" id="20_wy3vx"]
+[ext_resource type="PackedScene" uid="uid://ycs4v0001qtw" path="res://Games/sandbox/objects/skin/sas/skin.tscn" id="20_wy3vx"]
 
 [sub_resource type="Resource" id="Resource_10rrw"]
 script = ExtResource("3_u0j1b")
@@ -69,10 +70,7 @@ _list = Array[ExtResource("3_u0j1b")]([SubResource("Resource_10rrw"), SubResourc
 metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2tsh"]
-size = Vector3(1, 1.99615, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_p1dqb"]
-size = Vector3(1, 1.14554, 1)
+size = Vector3(1, 1.99615, 0.623474)
 
 [node name="s1mple" type="CharacterBody3D"]
 collision_layer = 0
@@ -228,15 +226,14 @@ metadata/_custom_type_script = "uid://co6ddscxxrcwc"
 [node name="SB_EntitySkin" type="Node3D" parent="." node_paths=PackedStringArray("_source")]
 script = ExtResource("17_64jhk")
 _source = NodePath("..")
+m_current_skin = ExtResource("15_u0j1b")
 metadata/_custom_type_script = "uid://bbsduhwdk5jac"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01474, 0)
-shape = SubResource("BoxShape3D_j2tsh")
+[node name="skin" parent="SB_EntitySkin" instance=ExtResource("20_wy3vx")]
 
-[node name="CollisionShape3D_CR" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
-shape = SubResource("BoxShape3D_p1dqb")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00284, 0.0240784)
+shape = SubResource("BoxShape3D_j2tsh")
 
 [node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_xtx5c")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
@@ -246,7 +243,7 @@ ceiling_detection = NodePath("../ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_position")
 
 [node name="W_FPCSourceLikePlayerCamera" parent="." node_paths=PackedStringArray("movement", "body") instance=ExtResource("11_10rrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86401, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77914, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 
@@ -274,10 +271,6 @@ target_position = Vector3(0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
 
 [node name="Nickname" parent="." node_paths=PackedStringArray("source", "health") instance=ExtResource("14_gv642")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52249, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13999, 0)
 source = NodePath("..")
 health = NodePath("../SB_EntityHealth")
-
-[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("20_wy3vx")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.05751, 0)
-_movement = NodePath("../W_FPCSourceLikeMovement")

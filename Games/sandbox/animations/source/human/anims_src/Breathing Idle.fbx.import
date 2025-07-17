@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://mf5bp81l1nmf"
-path="res://.godot/imported/Untitled.fbx-dd4ee899dfcc13c3897b9412ee72cac5.scn"
+uid="uid://cjkdn8ss1mjgo"
+path="res://.godot/imported/Breathing Idle.fbx-d8f5f24a39b742ff8acfb4cd04936fca.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/skins/sas/Untitled.fbx"
-dest_files=["res://.godot/imported/Untitled.fbx-dd4ee899dfcc13c3897b9412ee72cac5.scn"]
+source_file="res://Games/sandbox/animations/source/human/anims_src/Breathing Idle.fbx"
+dest_files=["res://.godot/imported/Breathing Idle.fbx-d8f5f24a39b742ff8acfb4cd04936fca.scn"]
 
 [params]
 

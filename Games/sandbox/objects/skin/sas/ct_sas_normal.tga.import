@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccy5k8gwg1g4g"
-uid="uid://c3u4g32w8it37"
-path="res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"
+uid="uid://dilokiewxjmi0"
+path="res://.godot/imported/ct_sas_normal.tga-c6baaae924013366910b872a2aa1519a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sourcelike_interface/textures/MullolPalper.jpg"
-dest_files=["res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"]
+source_file="res://Games/sandbox/objects/skin/sas/ct_sas_normal.tga"
+dest_files=["res://.godot/imported/ct_sas_normal.tga-c6baaae924013366910b872a2aa1519a.ctex"]
 
 [params]
 

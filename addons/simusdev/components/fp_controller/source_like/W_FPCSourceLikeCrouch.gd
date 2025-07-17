@@ -46,7 +46,8 @@ func _ready() -> void:
 func _on_crouched_status_changed() -> void:
 	if movement:
 		if normal_shape and crouch_shape:
-			if movement.is_crouched: collision_normal.shape = crouch_shape
+			if movement.is_crouched:
+				collision_normal.shape = crouch_shape
 			else:
 				collision_normal.shape = normal_shape
-		collision_normal.disabled = not is_authority()
+		collision_normal.disabled = not is_authority() and !movement.server_authorative

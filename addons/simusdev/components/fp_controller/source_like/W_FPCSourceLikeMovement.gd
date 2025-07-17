@@ -70,10 +70,6 @@ func set_sprinting(value: bool) -> void:
 
 func _enabled_status_changed() -> void:
 	input_enabled = enabled
-	set_process(enabled)
-	set_physics_process(enabled)
-	set_process_input(enabled)
-	set_process_unhandled_input(enabled)
 
 func get_current_state() -> SD_State:
 	return state_machine.get_current_state()
@@ -183,6 +179,10 @@ func _physics_process(delta: float) -> void:
 		is_crouched = _is_input_pressed(key_crouch)
 	else:
 		wish_direction = Vector3.ZERO
+	
+	
+	if not is_authority() and !server_authorative:
+		return
 	
 	if actor.is_on_floor():
 		_handle_ground_physics(delta)
