@@ -1,0 +1,1 @@
+class_name NabludatorWeaponContainer extends Node

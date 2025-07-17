@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://rnvhbcb71536"]
+[gd_scene load_steps=6 format=3 uid="uid://rnvhbcb71536"]
+
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="1_nw2ob"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="2_4t1sq"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="3_vtbgk"]
+[ext_resource type="PackedScene" uid="uid://brx804s758rty" path="res://Games/NABLUDATOR/maps/test/test_level.tscn" id="4_4t1sq"]
+
+[sub_resource type="Resource" id="Resource_0uv8i"]
+script = ExtResource("2_4t1sq")
+update_at_start = true
+code = "map.switch"
+value = ""
+private = false
+binds = Array[ExtResource("3_vtbgk")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="Game" type="Node"]
+
+[node name="ConsoleCommands" type="Node" parent="."]
+script = ExtResource("1_nw2ob")
+commands = Array[ExtResource("2_4t1sq")]([SubResource("Resource_0uv8i")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[node name="TestLevel" parent="." instance=ExtResource("4_4t1sq")]

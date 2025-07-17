@@ -1,0 +1,1 @@
+class_name Nabludator extends CharacterBody3D

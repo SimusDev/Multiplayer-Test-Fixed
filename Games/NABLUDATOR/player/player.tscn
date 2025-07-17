@@ -1,0 +1,167 @@
+[gd_scene load_steps=21 format=3 uid="uid://dslt18avjf8jd"]
+
+[ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="2_3exd0"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_gum4i"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="3_muiaj"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_y3fon"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_fe7ft"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="5_muiaj"]
+[ext_resource type="Script" uid="uid://jcmu78gr5cld" path="res://Games/NABLUDATOR/components/hitbox.gd" id="6_qoi8o"]
+
+[sub_resource type="Resource" id="Resource_6rsck"]
+script = ExtResource("4_fe7ft")
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 32.0
+node_path = NodePath("..")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="Resource" id="Resource_y3fon"]
+script = ExtResource("4_fe7ft")
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = true
+interpolation_speed = 32.0
+node_path = NodePath("../W_FPCSourceLikeCamera")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gum4i"]
+radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qoi8o"]
+
+[sub_resource type="Curve" id="Curve_muiaj"]
+_data = [Vector2(0, 0.75), 0.0, 0.2, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.885), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_qoi8o"]
+section_length = 0.4
+curve = SubResource("Curve_muiaj")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ic57w"]
+radius = 0.2
+height = 0.4
+radial_segments = 8
+rings = 4
+
+[sub_resource type="TorusMesh" id="TorusMesh_ic57w"]
+inner_radius = 0.356
+outer_radius = 0.167
+rings = 8
+ring_segments = 4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_muiaj"]
+height = 0.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qoi8o"]
+height = 0.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_paors"]
+height = 0.6
+radius = 0.445
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_3exd0")
+
+[node name="sync" type="Node" parent="."]
+script = ExtResource("2_gum4i")
+properties = Array[ExtResource("3_y3fon")]([SubResource("Resource_6rsck"), SubResource("Resource_y3fon")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="W_FPCSourceLikeCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("1_ic57w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+body = NodePath("..")
+
+[node name="fire_raycast" type="RayCast3D" parent="W_FPCSourceLikeCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -1000)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("2_3exd0")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("3_muiaj")]
+camera = NodePath("../W_FPCSourceLikeCamera")
+movement = NodePath("../W_FPCSourceLikeMovement")
+collision_normal = NodePath("../collision_normal")
+crouch_shape = SubResource("CapsuleShape3D_gum4i")
+normal_shape = SubResource("CapsuleShape3D_qoi8o")
+ceiling_detection = NodePath("ceiling_detection")
+crouch_camera_position = NodePath("../W_FPCSourceLikeCamera")
+
+[node name="ceiling_detection" type="RayCast3D" parent="W_FPCSourceLikeCrouch"]
+target_position = Vector3(0, 1.1, 0)
+
+[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true")]
+script = ExtResource("5_muiaj")
+hide_at_start = true
+authority_true = [NodePath("../mesh")]
+metadata/_custom_type_script = "uid://cw3mdxfqpbunh"
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("TubeTrailMesh_qoi8o")
+
+[node name="eye_left" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.5, -0.4)
+mesh = SubResource("SphereMesh_ic57w")
+
+[node name="eye_right" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, -0.4)
+mesh = SubResource("SphereMesh_ic57w")
+
+[node name="mouth" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.896811, 0.442414, 0, -0.442414, 0.896811, 0, 0.163049, -0.234724)
+mesh = SubResource("TorusMesh_ic57w")
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qoi8o")
+
+[node name="hitbox" type="Node3D" parent="." node_paths=PackedStringArray("player", "head", "chest", "legs")]
+script = ExtResource("6_qoi8o")
+player = NodePath("..")
+head = NodePath("head")
+chest = NodePath("chest")
+legs = NodePath("legs")
+
+[node name="head" type="Area3D" parent="hitbox"]
+
+[node name="collision" type="CollisionShape3D" parent="hitbox/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CylinderShape3D_muiaj")
+debug_color = Color(1, 0.25098, 0.117647, 0.419608)
+
+[node name="chest" type="Area3D" parent="hitbox"]
+
+[node name="collision" type="CollisionShape3D" parent="hitbox/chest"]
+shape = SubResource("CylinderShape3D_qoi8o")
+debug_color = Color(1, 0.25098, 0.117647, 0.419608)
+
+[node name="legs" type="Area3D" parent="hitbox"]
+
+[node name="collision" type="CollisionShape3D" parent="hitbox/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+shape = SubResource("CylinderShape3D_paors")
+debug_color = Color(1, 0.25098, 0.117647, 0.419608)
+
+[editable path="W_FPCSourceLikeCamera"]
