@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION: String = "4.11"
+const VERSION: String = "4.12"
 
 signal on_notification(what: int)
 
@@ -162,6 +162,7 @@ func _notification(what: int) -> void:
 
 func get_info() -> Dictionary:
 	var result: Dictionary = {
+		"engine_version": VERSION,
 		"app_name": ProjectSettings.get_setting("application/config/name", "app"),
 		"application/config/version": ProjectSettings.get_setting("application/config/version", "1.0.0"),
 		

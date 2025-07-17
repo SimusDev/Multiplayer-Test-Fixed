@@ -31,5 +31,4 @@ target = NodePath("../multiplayer_ui")
 open_at_start = true
 input_action = "open_multiplayer_ui"
 close_on_escape = false
-close_when_last_interface = false
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"

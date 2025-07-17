@@ -38,4 +38,9 @@ metadata/_custom_type_script = "uid://dm1owovrrxpce"
 unique_name_in_owner = true
 visible = false
 
+[node name="SD_UIInterfaceMenu" parent="CanvasLayer/main_menu" index="0"]
+input_action = "main_menu"
+
 [connection signal="on_executed" from="CanvasLayer/mm_cmd" to="." method="_on_mm_cmd_on_executed"]
+
+[editable path="CanvasLayer/main_menu"]

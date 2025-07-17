@@ -34,10 +34,8 @@ func _on_input_close_action_just_pressed(action: String, bind: SD_Keybind) -> vo
 		close()
 
 func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
-	print("not Sex" + " : " + action)
 	if action == input_action:
 		open()
-		print("Sex" + " : " + action)
 
 func _on_interface_opened_(node: Node) -> void:
 	interface_opened.emit(node)

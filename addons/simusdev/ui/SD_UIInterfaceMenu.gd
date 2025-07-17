@@ -14,7 +14,7 @@ signal interface_closed(node: Node)
 @export var center_at_start: bool = false
 @export var input_action: String = ""
 @export var close_on_escape: bool = true
-@export var close_when_last_interface: bool = true
+@export var when_last_interface: bool = true
 
 @onready var _ui: SD_TrunkUI = SimusDev.ui
 
@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if _ui.has_active_interface():
-		if close_when_last_interface and _ui.get_last_interface() != target:
+		if when_last_interface and _ui.get_last_interface() != target:
 			return
 	
 	if _ui.is_interface_active(target):
