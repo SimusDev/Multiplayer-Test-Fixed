@@ -68,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 	set_model_blend()
 
 func _on_health_died() -> void:
-	SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
+	#SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
 	var new_ragdoll_model = ragdoll_model.instantiate()
 	new_ragdoll_model.global_position = global_position
 	SourceGame.instance.add_child(new_ragdoll_model)
