@@ -3,9 +3,6 @@ extends Node3D
 @export var room:PackedScene
 
 func _process(_delta: float) -> void:
-	if !is_multiplayer_authority():
-		return
-	
 	_process_trigger()
 
 func _process_trigger():

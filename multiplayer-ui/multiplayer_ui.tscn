@@ -18,7 +18,6 @@ script = ExtResource("5_baha1")
 target = NodePath("../Control")
 input_action = "open_multiplayer_ui"
 close_on_escape = false
-close_when_last_interface = false
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
 [node name="Control" type="Control" parent="."]
@@ -40,13 +39,6 @@ grow_vertical = 2
 script = ExtResource("1_0sb7m")
 block_rect = NodePath("../block")
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("5_baha1")
-target = NodePath("../multiplayer_ui")
-open_at_start = true
-input_action = "open_multiplayer_ui"
-close_on_escape = false
-metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 [node name="ui_spawner" parent="Control/multiplayer_ui" instance=ExtResource("4_ouvlo")]
 layout_mode = 1
 anchor_left = 0.214844
