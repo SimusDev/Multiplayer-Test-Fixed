@@ -34,11 +34,11 @@ script = ExtResource("4_fe7ft")
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
-interpolation_speed = 32.0
+interpolation_speed = 64.0
 node_path = NodePath("../W_FPCSourceLikeCamera")
-tickrate = 32.0
+tickrate = 64.0
 tickrate_mode = 0
-sync_mode = 1
+sync_mode = 0
 sync = 0
 callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
@@ -291,7 +291,7 @@ collide_with_bodies = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="right" type="Node3D" parent="W_FPCSourceLikeCamera/hands"]
-transform = Transform3D(-8.64233e-11, 0.000301556, -0.00197714, 0.002, 3.82137e-18, -8.74228e-11, -1.31814e-11, -0.00197714, -0.000301556, 0.745206, 0, -0.638803)
+transform = Transform3D(-1.45709e-12, -3.33344e-05, -0.00199972, 0.002, -8.74228e-11, -1.24877e-18, -8.74106e-11, -0.00199972, 3.33344e-05, 0.5, 0, -0.639)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="W_FPCSourceLikeCamera/hands/right"]
 transform = Transform3D(10, 0, 0, 0, 10, -2.22045e-15, 0, 2.22045e-15, 10, 0, 0, 0)
@@ -510,7 +510,7 @@ mesh = SubResource("ArrayMesh_vqebl")
 skin = SubResource("Skin_6g14l")
 
 [node name="right2" type="Node3D" parent="W_FPCSourceLikeCamera/hands"]
-transform = Transform3D(-1.20158e-11, 0.000274889, 0.00198102, 0.002, 8.74228e-11, 0, 8.65931e-11, -0.00198102, 0.000274889, -0.741405, 0, -0.638803)
+transform = Transform3D(-1.20158e-11, 0.000274889, 0.00198102, 0.002, 8.74228e-11, 0, 8.65931e-11, -0.00198102, 0.000274889, -0.5, 0, -0.639)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="W_FPCSourceLikeCamera/hands/right2"]
 transform = Transform3D(10, 0, 0, 0, 10, -2.22045e-15, 0, 2.22045e-15, 10, 0, 0, 0)
@@ -761,12 +761,10 @@ mesh = SubResource("TubeTrailMesh_qoi8o")
 
 [node name="eye_left" type="MeshInstance3D" parent="mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.5, -0.4)
-visible = false
 mesh = SubResource("SphereMesh_ic57w")
 
 [node name="eye_right" type="MeshInstance3D" parent="mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, -0.4)
-visible = false
 mesh = SubResource("SphereMesh_ic57w")
 
 [node name="mouth" type="MeshInstance3D" parent="mesh"]
