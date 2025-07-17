@@ -49,3 +49,4 @@ func _on_crouched_status_changed() -> void:
 			if movement.is_crouched: collision_normal.shape = crouch_shape
 			else:
 				collision_normal.shape = normal_shape
+		collision_normal.disabled = not is_authority()
