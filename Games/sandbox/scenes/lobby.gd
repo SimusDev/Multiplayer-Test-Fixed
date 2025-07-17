@@ -7,6 +7,10 @@ var _players: Dictionary[SD_MultiplayerPlayer, Control] = {}
 func _ready() -> void:
 	$Button.visible = SD_Multiplayer.is_server()
 	
+	if SD_Multiplayer.is_dedicated_server():
+		SB_SceneHolder.change_scene_with_base_path("game")
+		return
+	
 	if SD_Multiplayer.is_not_server():
 		return
 	

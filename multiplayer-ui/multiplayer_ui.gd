@@ -16,3 +16,5 @@ func _ready() -> void:
 
 func _update(player:SD_MultiplayerPlayer=null):
 	block_rect.visible = SD_Multiplayer.get_connected_players().is_empty()
+func _enter_tree() -> void:
+	instance = self

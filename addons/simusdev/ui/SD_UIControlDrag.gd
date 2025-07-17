@@ -46,6 +46,8 @@ func _ready():
 				apply_drag(_input, _drag)
 	
 	update_zoom()
+	
+	_update_canvas_position()
 #/////////////////////////////////////////////////////////////////
 
 func apply_drag(control_input: Control, control_to_drag: Control) -> void:
@@ -96,6 +98,13 @@ func get_current_zoom_strength() -> float:
 
 #/////////////////////////////////////////////////////////////////
 
+func _update_canvas_position() -> void:
+	if !TARGET_DRAG:
+		return
+	
+	var index: int = TARGET_DRAG.get_parent().get_child_count() - 1
+	TARGET_DRAG.get_parent().move_child.call_deferred(TARGET_DRAG, index)
+
 func _create_zoom_input_event(action: String, button: int) -> void:
 	if InputMap.has_action(action):
 		return
@@ -131,6 +140,7 @@ func _on_target_input(event: InputEvent):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if clicked:
 				drag_start.emit()
+				_update_canvas_position()
 			else:
 				drag_end.emit()
 	

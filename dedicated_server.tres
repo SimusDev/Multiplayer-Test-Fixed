@@ -1,13 +1,11 @@
 [gd_resource type="Resource" script_class="R_DedicatedServer" load_steps=3 format=3 uid="uid://38a1ca7sgp7d"]
 
 [ext_resource type="Script" uid="uid://dtf4pn3kud42d" path="res://scripts/r_dedicated_server.gd" id="1_f0smc"]
-
-[sub_resource type="Resource" id="Resource_f0smc"]
-metadata/__load_path__ = "res://maps/experiment_life.tres"
+[ext_resource type="Resource" uid="uid://i18xhw7h2743" path="res://maps/source_game.tres" id="1_uu0di"]
 
 [resource]
 script = ExtResource("1_f0smc")
 enabled = false
-game_map = SubResource("Resource_f0smc")
+game_map = ExtResource("1_uu0di")
 port = 7856
 metadata/_custom_type_script = "uid://dtf4pn3kud42d"
