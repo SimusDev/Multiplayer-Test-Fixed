@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl6xc8puenssw"]
+[gd_scene load_steps=9 format=3 uid="uid://cl6xc8puenssw"]
 
 [ext_resource type="Script" uid="uid://dtgjlxfd422ht" path="res://multiplayer-ui/connected_peers.gd" id="1_s7a17"]
-[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_sthnf"]
 [ext_resource type="PackedScene" uid="uid://ctqdmiy7mojda" path="res://multiplayer-ui/prefabs/connected_peer/connected_peer.tscn" id="2_2mo6c"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_s7a17"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_dv2rc"]
@@ -26,12 +25,6 @@ peers_container = NodePath("content/VBoxContainer")
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 metadata/_edit_use_anchors_ = true
-
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("1_sthnf")
-target = NodePath("..")
-open_at_start = true
-metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_s7a17")

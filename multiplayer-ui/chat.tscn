@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpsde5gbubpbo" path="res://multiplayer-ui/chat.gd" id="1_n1akp"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_uxs2v"]
+
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_2d84l"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_yv3rc"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_5phwp"]
@@ -11,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="8_q8jaf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n1akp"]
+[sub_resource type="LabelSettings" id="LabelSettings_vyras"]
 font = ExtResource("4_5phwp")
 font_size = 18
 outline_size = 4
@@ -27,12 +29,6 @@ message_container = NodePath("content/TextScrollContainer/text")
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 metadata/_edit_use_anchors_ = true
-
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("1_uxs2v")
-target = NodePath("..")
-open_at_start = true
-metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_2d84l")
@@ -71,6 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "CHAT"
 label_settings = SubResource("LabelSettings_n1akp")
+label_settings = SubResource("LabelSettings_vyras")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_6jjk0")
