@@ -166,6 +166,23 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	_call_func_on_queue(peer, singleton.get_unique_id(), packet, channel_id, callmode)
 	
 
+
+func _call_func_on_queue(peer: int, from_peer: int, packet: Dictionary, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
+	match callmode:
+		SD_Network.CALLMODE.RELIABLE:
+			var function: Callable = Callable(_script, "_recieve_call_from_rpc_reliable%s" % str(channel_id))
+			function.rpc_id(peer, singleton.get_unique_id(), packet)
+			
+		SD_Network.CALLMODE.UNRELIABLE:
+			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable%s" % str(channel_id))
+			function.rpc_id(peer, singleton.get_unique_id(), packet)
+			
+		SD_Network.CALLMODE.UNRELIABLE_ORDERED:
+			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable_ordered%s" % str(channel_id))
+			function.rpc_id(peer, singleton.get_unique_id(), packet)
+			
+
+
 func _process(delta: float) -> void:
 	for data in _queue:
 		var node_path: String = data.node_path
@@ -184,22 +201,6 @@ func _process(delta: float) -> void:
 			_call_func_on_queue(peer, singleton.get_unique_id(), packet, channel_id, callmode)
 			_queue.erase(data)
 			debug_print("trying calling method (%s) from queue on peer %s on node: %s" % [method, str(peer), node_path], SD_ConsoleCategories.CATEGORY.WARNING)
-
-
-func _call_func_on_queue(peer: int, from_peer: int, packet: Dictionary, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
-	match callmode:
-		SD_Network.CALLMODE.RELIABLE:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_reliable%s" % str(channel_id))
-			function.rpc_id(peer, singleton.get_unique_id(), packet)
-			
-		SD_Network.CALLMODE.UNRELIABLE:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable%s" % str(channel_id))
-			function.rpc_id(peer, singleton.get_unique_id(), packet)
-			
-		SD_Network.CALLMODE.UNRELIABLE_ORDERED:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable_ordered%s" % str(channel_id))
-			function.rpc_id(peer, singleton.get_unique_id(), packet)
-			
 
 
 func call_func(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:

@@ -63,15 +63,12 @@ func is_opened() -> bool:
 func is_closed() -> bool:
 	return not target.visible
 
-func _on_action_just_pressed(action: String, bind: SD_Keybind) -> void:
-	print('sex')
-	if action == input_action:
-		open()
-
 func _unhandled_input(event: InputEvent) -> void:
 	if _ui.is_interface_active(self):
 		if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
 			close()
+		elif Input.is_action_just_pressed(input_action):
+			open()
 
 func _on_interface_opened_(node: Node) -> void:
 	interface_opened.emit(node)

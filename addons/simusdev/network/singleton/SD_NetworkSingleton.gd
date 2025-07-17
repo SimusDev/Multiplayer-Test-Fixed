@@ -12,7 +12,9 @@ signal initialized()
 @export var callables: SD_NetTrunkCallables
 @export var players: SD_NetTrunkPlayers
 @export var cache: SD_NetTrunkCache
+@export var synchronization: SD_NetTrunkSynchronization
 @export var info: Node
+
 
 var _dedicated_server: bool = false
 var _peer: PacketPeer
@@ -177,12 +179,13 @@ func _on_server_disconnected() -> void:
 	on_server_disconnected.emit()
 	
 	_active = false
+	debug_print("Server Disconnected!")
 
 func terminate_connection() -> void:
 	if _peer:
 		if _peer is MultiplayerPeer:
 			_peer.close()
-			_on_server_disconnected()
+			#_on_server_disconnected()
 
 
 func debug_print(text, category: int = 0) -> void:

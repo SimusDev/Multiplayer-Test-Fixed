@@ -91,6 +91,9 @@ static func is_node_cached(node: Node) -> bool:
 	return get_cached_nodes().has(str(node.get_path()))
 
 static func await_for_node_cache(node: Node, callable: Callable) -> void:
+	callable.call()
+	return
+	
 	if is_node_cached(node):
 		callable.call()
 		return
