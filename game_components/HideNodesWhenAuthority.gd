@@ -1,4 +1,4 @@
-extends Node
+class_name HideNodesWhenAuthority extends Node
 
 @export var hide_at_start: bool = false
 @export var authority_true: Array[Node]

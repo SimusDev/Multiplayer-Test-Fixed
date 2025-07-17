@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://hbilltuk72kq"]
+[gd_scene load_steps=7 format=3 uid="uid://hbilltuk72kq"]
 
 [ext_resource type="Script" uid="uid://dlkfywpbt8odw" path="res://sourcelike_interface/main_menu/screens/loading.gd" id="1_l488u"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_11p7j"]
+[ext_resource type="Texture2D" uid="uid://lm2djf5tj34l" path="res://sourcelike_interface/textures/FunnyMan2.jpg" id="2_xurmo"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_xurmo"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="4_s3rwh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_l488u"]
+[sub_resource type="LabelSettings" id="LabelSettings_11p7j"]
 
 [node name="loading" type="Control" node_paths=PackedStringArray("message", "bar")]
 layout_mode = 3
@@ -17,6 +18,16 @@ grow_vertical = 2
 script = ExtResource("1_l488u")
 message = NodePath("panel_default/Label")
 bar = NodePath("panel_default/ProgressBar")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xurmo")
+expand_mode = 1
 
 [node name="panel_default" parent="." instance=ExtResource("2_11p7j")]
 self_modulate = Color(0.126, 0.126, 0.126, 1)
@@ -38,7 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_l488u")
+label_settings = SubResource("LabelSettings_11p7j")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
