@@ -23,6 +23,7 @@ func _ready() -> void:
 	
 	if SD_Network.is_server():
 		switch(start_map)
+	
 
 func load_map(map: R_NabludatorMap) -> void:
 	if map in _maps:
@@ -44,6 +45,9 @@ func _s_switch(map: R_NabludatorMap) -> void:
 		
 		
 		$scene.add_child(level)
+		
+		var map_name: String = map.resource_path.get_file().get_basename()
+		chat_interface.s_send_message("map switched to %s" % map_name)
 
 func _switch(cmd: SD_ConsoleCommand) -> void:
 	var founded: R_NabludatorMap = _maps.get(cmd.get_value_as_string())

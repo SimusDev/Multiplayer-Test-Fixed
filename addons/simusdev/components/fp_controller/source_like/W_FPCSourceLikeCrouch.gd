@@ -26,6 +26,9 @@ func _physics_process(delta: float) -> void:
 		movement.crouch_disabled = movement.actor.is_on_ceiling()
 	
 func _process(delta: float) -> void:
+	if not is_authority():
+		return
+	
 	if movement.is_crouched:
 		camera.position = lerp(camera.position, crouch_camera_position.position, interpolate_speed * delta)
 	else:

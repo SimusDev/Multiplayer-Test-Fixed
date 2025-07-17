@@ -48,6 +48,9 @@ func send_message_from_player(player: SD_MultiplayerPlayer, msg: String, color: 
 func send_message(msg: String, color: Color = Color.WHITE) -> void:
 	SD_Multiplayer.call_func(_synced_send, [msg, color])
 
+static func s_send_message(msg: String, color: Color = Color.WHITE) -> void:
+	instance.send_message("[SERVER] " + msg, color)
+
 func _synced_send(msg: String, color: Color) -> void:
 	history.text += msg
 	history.text += "\n"
