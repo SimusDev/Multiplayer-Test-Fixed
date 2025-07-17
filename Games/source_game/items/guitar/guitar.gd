@@ -28,5 +28,6 @@ func _on_current_change():
 		$active.close()
 
 func _play():
+	if is_multiplayer_authority(): SD_Multiplayer.send_and_sync_var_to_all_peers(self, "tab")
 	audio_player.pitch_scale = 0.5 + (float(tab) * 0.1)
 	audio_player.play()

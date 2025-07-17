@@ -50,6 +50,14 @@ project/assembly_name="Multiplayer-Test"
 
 enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Games/": "green",
+"res://game_components/": "orange",
+"res://sourcelike_interface/": "gray"
+}
+
 [global_group]
 
 props=""

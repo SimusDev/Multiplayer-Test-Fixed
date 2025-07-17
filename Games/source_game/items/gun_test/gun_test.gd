@@ -39,6 +39,7 @@ func spawn_shell():
 	new_bullet_shell.model = preload("res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn")
 	SourceGame.instance.add_child(new_bullet_shell)
 	new_bullet_shell.global_position = shell_marker.global_position
+	new_bullet_shell.global_rotation_degrees = shell_marker.global_rotation_degrees
 	
 	var bullet_shell_dir:Vector3 = shell_marker.global_transform.basis.x.normalized()
 	new_bullet_shell.linear_velocity = bullet_shell_dir * shell_force
