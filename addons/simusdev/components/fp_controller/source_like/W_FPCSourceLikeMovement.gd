@@ -72,6 +72,8 @@ func _enabled_status_changed() -> void:
 	input_enabled = enabled
 	set_process(enabled)
 	set_physics_process(enabled)
+	set_process_input(enabled)
+	set_process_unhandled_input(enabled)
 
 func get_current_state() -> SD_State:
 	return state_machine.get_current_state()

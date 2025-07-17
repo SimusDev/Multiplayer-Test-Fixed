@@ -14,7 +14,6 @@ const synced_property_scene:PackedScene = preload("res://Games/source_game/game/
 var is_drag:bool = false
 var drag_target:Node3D = null
 
-
 func _ready() -> void:
 	if !is_instance_valid(rigid_body):
 		rigid_body = get_parent() as RigidBody3D
