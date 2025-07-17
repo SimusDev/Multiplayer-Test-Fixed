@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=2 format=3 uid="uid://c2ow81xpgu50e"]
+[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=3 format=3 uid="uid://c2ow81xpgu50e"]
 
 [ext_resource type="Script" uid="uid://bh40mgnmf018k" path="res://Games/NABLUDATOR/components/r_weapon.gd" id="1_wkojl"]
+[ext_resource type="Resource" uid="uid://t5he2qk5a8pe" path="res://Games/NABLUDATOR/viewmodel/ak_47.tres" id="2_vsm2t"]
 
 [resource]
 script = ExtResource("1_wkojl")
@@ -11,4 +12,5 @@ base_damage = 30.0
 head_damage_multiplier = 2.0
 chest_damage_multiplier = 1.0
 legs_damage_multiplier = 0.5
+viewmodel = ExtResource("2_vsm2t")
 metadata/_custom_type_script = "uid://bh40mgnmf018k"

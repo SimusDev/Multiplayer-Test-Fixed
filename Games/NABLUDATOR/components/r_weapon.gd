@@ -11,4 +11,5 @@ class_name R_NabludatorWeapon extends Resource
 @export var chest_damage_multiplier:float = 1.0
 @export var legs_damage_multiplier:float = 0.5
 @export_category("Visual Settings")
+@export var viewmodel: R_NabludatorViewModel
 @export var model:PackedScene

@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfg3at13vo658"]
+
+[ext_resource type="Script" uid="uid://dsbab3nagipkg" path="res://Games/NABLUDATOR/components/map_holder.gd" id="1_dovhp"]
+[ext_resource type="Script" uid="uid://cvxvq43oimjlh" path="res://Games/NABLUDATOR/components/r_map.gd" id="2_qk7kd"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_07gje"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_iwohm"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_3gaca"]
+[ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_3gaca"]
+
+[sub_resource type="Resource" id="Resource_iwohm"]
+script = ExtResource("2_qk7kd")
+path = "test/test_level.tscn"
+metadata/_custom_type_script = "uid://cvxvq43oimjlh"
+
+[sub_resource type="Resource" id="Resource_plslb"]
+script = ExtResource("5_3gaca")
+hook_execute = true
+hook_update = false
+global_node_path = ""
+local_node_path = NodePath("..")
+method = "_switch"
+property = ""
+arguments = []
+add_command_source_to_arguments = true
+metadata/_custom_type_script = "uid://mtgs568pxn5x"
+
+[sub_resource type="Resource" id="Resource_dwjka"]
+script = ExtResource("4_iwohm")
+update_at_start = true
+code = "map"
+value = ""
+private = false
+binds = Array[ExtResource("5_3gaca")]([SubResource("Resource_plslb")])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="NabludatorMapHolder" type="Node"]
+script = ExtResource("1_dovhp")
+start_map = SubResource("Resource_iwohm")
+metadata/_custom_type_script = "uid://dsbab3nagipkg"
+
+[node name="commands" type="Node" parent="."]
+script = ExtResource("3_07gje")
+commands = Array[ExtResource("4_iwohm")]([SubResource("Resource_dwjka")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[node name="spawner" type="Node" parent="." node_paths=PackedStringArray("_detect_roots")]
+script = ExtResource("6_3gaca")
+_detect_roots = [NodePath("../scene")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
+
+[node name="scene" type="Node" parent="."]
+
+[connection signal="on_executed" from="commands" to="." method="_on_commands_on_executed"]
