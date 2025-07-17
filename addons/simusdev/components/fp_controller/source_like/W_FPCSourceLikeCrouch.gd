@@ -31,8 +31,6 @@ func _process(delta: float) -> void:
 	else:
 		camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
 
-	print("disabled" if collision_normal.disabled else "enabled")
-
 func _ready() -> void:
 	super()
 	

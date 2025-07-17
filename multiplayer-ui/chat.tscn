@@ -1,13 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy6oimrlfnkit"]
+[gd_scene load_steps=14 format=3 uid="uid://dy6oimrlfnkit"]
 
 [ext_resource type="Script" uid="uid://cpsde5gbubpbo" path="res://multiplayer-ui/chat.gd" id="1_n1akp"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_2d84l"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_1j1kj"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_yv3rc"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_5phwp"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_m64fj"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_6jjk0"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_ikogb"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_o7upr"]
 [ext_resource type="PackedScene" uid="uid://boda6co3yw14b" path="res://multiplayer-ui/prefabs/message/message.tscn" id="7_40u6r"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="8_q8jaf"]
+
+[sub_resource type="Resource" id="Resource_dw3rg"]
+script = ExtResource("4_m64fj")
+update_at_start = true
+code = "chat.say"
+value = ""
+private = false
+binds = Array[ExtResource("5_ikogb")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="LabelSettings" id="LabelSettings_q8jaf"]
 font = ExtResource("4_5phwp")
@@ -27,10 +41,16 @@ metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 metadata/_edit_use_anchors_ = true
 
+[node name="ConsoleCommands" type="Node" parent="."]
+script = ExtResource("3_1j1kj")
+commands = Array[ExtResource("4_m64fj")]([SubResource("Resource_dw3rg")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_2d84l")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
+zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [node name="bg" parent="." instance=ExtResource("3_yv3rc")]
@@ -140,5 +160,6 @@ theme = ExtResource("8_q8jaf")
 placeholder_text = "Send message:"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="on_executed" from="ConsoleCommands" to="." method="_on_console_command_executed"]
 [connection signal="pressed" from="head/button_base" to="." method="queue_free"]
 [connection signal="text_submitted" from="content/LineEdit" to="." method="_on_line_edit_text_submitted"]
