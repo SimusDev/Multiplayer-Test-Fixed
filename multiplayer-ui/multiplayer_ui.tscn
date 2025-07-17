@@ -28,5 +28,6 @@ anchor_right = 1.0
 [node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_tcnkf")
 target = NodePath("../multiplayer_ui")
+open_at_start = true
 input_action = "open_multiplayer_ui"
 metadata/_custom_type_script = "uid://bo71k1b4qy1g0"

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy6oimrlfnkit"]
+[gd_scene load_steps=11 format=3 uid="uid://dy6oimrlfnkit"]
 
+[ext_resource type="Script" uid="uid://cpsde5gbubpbo" path="res://multiplayer-ui/chat.gd" id="1_n1akp"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_uxs2v"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_2d84l"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_yv3rc"]
@@ -7,18 +8,22 @@
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_6jjk0"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_o7upr"]
 [ext_resource type="PackedScene" uid="uid://boda6co3yw14b" path="res://multiplayer-ui/prefabs/message/message.tscn" id="7_40u6r"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="8_q8jaf"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_qdalr"]
+[sub_resource type="LabelSettings" id="LabelSettings_n1akp"]
 font = ExtResource("4_5phwp")
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="chat" type="Control"]
+[node name="chat" type="Control" node_paths=PackedStringArray("message_container")]
 layout_mode = 3
 anchor_right = 0.4
 anchor_bottom = 0.520834
 mouse_filter = 2
+script = ExtResource("1_n1akp")
+message_prefab = ExtResource("7_40u6r")
+message_container = NodePath("content/TextScrollContainer/text")
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 metadata/_edit_use_anchors_ = true
@@ -65,7 +70,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "CHAT"
-label_settings = SubResource("LabelSettings_qdalr")
+label_settings = SubResource("LabelSettings_n1akp")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_6jjk0")
@@ -124,7 +129,7 @@ layout_mode = 2
 anchor_left = 0.00996016
 anchor_top = 0.0110701
 anchor_right = 0.988048
-anchor_bottom = 0.99631
+anchor_bottom = 0.793357
 metadata/_edit_use_anchors_ = true
 
 [node name="text" type="VBoxContainer" parent="content/TextScrollContainer"]
@@ -138,4 +143,15 @@ layout_mode = 2
 [node name="message2" parent="content/TextScrollContainer/text" instance=ExtResource("7_40u6r")]
 layout_mode = 2
 
+[node name="LineEdit" type="LineEdit" parent="content"]
+layout_mode = 0
+anchor_left = 0.00996016
+anchor_top = 0.885607
+anchor_right = 0.988048
+anchor_bottom = 0.977857
+theme = ExtResource("8_q8jaf")
+placeholder_text = "Send message:"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="head/button_base" to="." method="queue_free"]
+[connection signal="text_submitted" from="content/LineEdit" to="." method="_on_line_edit_text_submitted"]

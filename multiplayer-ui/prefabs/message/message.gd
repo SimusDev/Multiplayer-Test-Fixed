@@ -1,4 +1,4 @@
-extends Label
+class_name SourceChatMessage extends Label
 
 var sender_name:String = "pidoras"
 var message_text:String = "vsem privet ya huesos"

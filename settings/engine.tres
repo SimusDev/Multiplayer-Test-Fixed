@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=5 format=3 uid="uid://3wl8oxwmp5ux"]
 
 [ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="2"]
-[ext_resource type="Script" uid="uid://bsn5pysgtogq7" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="2_lvuwi"]
+[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="2_lvuwi"]
 [ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="3"]
 
 [sub_resource type="Resource" id="Resource_2wia1"]
