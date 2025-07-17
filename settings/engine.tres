@@ -7,8 +7,9 @@
 [sub_resource type="Resource" id="Resource_2wia1"]
 script = ExtResource("2_lvuwi")
 enabled = true
-channels = ["main", "transform1", "transform2", "transform3", "transform4", "transform5", "transform6"]
-root_path = "/root/"
+channels = ["main"]
+sync_tickrate = 64.0
+sync_process = 1
 default_peer = true
 compression = 2
 serializer_compression = 1

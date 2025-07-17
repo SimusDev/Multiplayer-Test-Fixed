@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbk6wp052aljf" path="res://multiplayer-ui/multiplayer_ui.gd" id="1_0sb7m"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_baha1"]
-[ext_resource type="PackedScene" path="res://multiplayer-ui/ui_spawner.tscn" id="4_ouvlo"]
+[ext_resource type="PackedScene" uid="uid://ccnaptwlurtfd" path="res://multiplayer-ui/ui_spawner.tscn" id="4_ouvlo"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="5_baha1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouvlo"]
