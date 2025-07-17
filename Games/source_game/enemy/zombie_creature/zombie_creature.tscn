@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cw5oibpawydbh"]
+[gd_scene load_steps=83 format=3 uid="uid://cw5oibpawydbh"]
 
 [ext_resource type="Script" uid="uid://ddyrchekq1gjg" path="res://Games/source_game/components/enemy_ai.gd" id="1_c1i8f"]
 [ext_resource type="PackedScene" uid="uid://chyunnwrsr8cq" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.tscn" id="1_jud0w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_n5qw2"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_a04ck"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="3_c1i8f"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="5_tyhak"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="6_0mdbs"]
 [ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="7_tyhak"]
 [ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="8_vvyed"]
@@ -120,6 +121,11 @@ ai = NodePath("EnemyAI")
 script = ExtResource("1_pb25s")
 properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143"), SubResource("Resource_pb25s")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_tyhak")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
 [node name="footsteps" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_a04ck")

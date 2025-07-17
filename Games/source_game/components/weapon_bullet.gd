@@ -3,7 +3,7 @@ class_name SourceWeaponBullet extends RigidBody3D
 @export var bullet_resource:R_SourceBullet
 @export var bullet_model:PackedScene
 
-@export var life_time:float = 10.0 #seconds
+@export var life_time:float = 60.0 #seconds
 
 func _ready() -> void:
 	self.set_collision_layer_value(1, false)
@@ -26,13 +26,11 @@ func _ready() -> void:
 	queue_free()
 
 func _on_body_entered(body):
+	print("Sex")
 	if !SD_Multiplayer.is_server(): return
 	
 	if body is SourcePlayer:
-		synced_apply_damage_to_player(body)
-
-func synced_apply_damage_to_player(player:SourcePlayer):
-	player.health.apply_damage(bullet_resource.damage)
+		body.health.apply_damage(bullet_resource.damage)
 
 func _process(delta: float) -> void:
 	pass
