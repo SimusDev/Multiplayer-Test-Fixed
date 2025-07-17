@@ -13,6 +13,8 @@ signal interface_closed(node: Node)
 @export var open_at_start: bool = false
 @export var center_at_start: bool = false
 @export var input_action: String = ""
+@export var close_on_escape: bool = true
+@export var close_when_last_interface: bool = true
 
 @onready var _ui: SD_TrunkUI = SimusDev.ui
 
@@ -67,9 +69,18 @@ func _input(event: InputEvent) -> void:
 	if input_action.is_empty():
 		return
 	
-	if _ui.is_interface_active(self):
-		if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
-			close()
+	if _ui.has_active_interface():
+		if close_when_last_interface and _ui.get_last_interface() != target:
+			return
+	
+	if _ui.is_interface_active(target):
+		if close_on_escape:
+			if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
+				close()
+		else:
+			if Input.is_action_just_pressed(input_action):
+				close()
+		
 	else:
 		if Input.is_action_just_pressed(input_action):
 			open()

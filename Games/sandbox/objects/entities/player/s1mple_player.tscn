@@ -238,11 +238,10 @@ shape = SubResource("BoxShape3D_j2tsh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.410568, 0)
 shape = SubResource("BoxShape3D_p1dqb")
 
-[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_xtx5c")]
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_xtx5c")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../CollisionShape3D")
-collision_crouch = NodePath("../CollisionShape3D")
 ceiling_detection = NodePath("../ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_position")
 

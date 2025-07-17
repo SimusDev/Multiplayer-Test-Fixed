@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bbk6wp052aljf" path="res://multiplayer-ui/multiplayer_ui.gd" id="1_0sb7m"]
 [ext_resource type="PackedScene" uid="uid://dy6oimrlfnkit" path="res://multiplayer-ui/chat.tscn" id="2_tcnkf"]
 [ext_resource type="PackedScene" uid="uid://cl6xc8puenssw" path="res://multiplayer-ui/connected_peers.tscn" id="3_baha1"]
-[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="4_tcnkf"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="5_baha1"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -25,8 +25,10 @@ layout_mode = 1
 anchor_left = 0.6
 anchor_right = 1.0
 
-[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("4_tcnkf")
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_baha1")
 target = NodePath("../multiplayer_ui")
 input_action = "open_multiplayer_ui"
-metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+close_on_escape = false
+close_when_last_interface = false
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
