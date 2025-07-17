@@ -28,11 +28,11 @@ func add_freecam(_for:SD_MultiplayerPlayer):
 	SourceGame.instance.add_child(new_death_camera)
 	new_death_camera.global_position = _for.get_player_node().global_position
 	new_death_camera.make_current()
-
+	
 #D.R.Y
 
 func request_spawn(prop_res:R_SourceProp):
-	SD_Multiplayer.call_func_on_server(spawn_on_server, [prop_res])
+	SD_Multiplayer.call_func_on_server(spawn_on_server, [prop_res, SD_Multiplayer.get_unique_id()])
 
 func spawn_on_server(prop_res:R_SourceProp, peer_id:int):
 	var new_prop = prop_res.prefab.instantiate()
