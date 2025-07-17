@@ -51,6 +51,7 @@ func _ready() -> void:
 		SourcePlayerUI.instance.update(health.health)
 
 func _on_state_enter(state:SD_State):
+	print(state.name)
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
 
 func set_model_blend():
