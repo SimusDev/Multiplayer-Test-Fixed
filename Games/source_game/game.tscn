@@ -139,9 +139,4 @@ room = ExtResource("11_8dbco")
 [node name="zombie_creature" parent="." instance=ExtResource("13_spe63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8577, -2.3717, -0.56897)
-use_collision = true
-size = Vector3(13.5081, 1, 13.1663)
-
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

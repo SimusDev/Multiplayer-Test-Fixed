@@ -1,5 +1,7 @@
 class_name SourceGame extends Node
 
+signal prop_spawned
+
 static var instance:SourceGame = null
 
 var sv_cheats:bool = false : set = set_sv_cheats
@@ -26,6 +28,19 @@ func add_freecam(_for:SD_MultiplayerPlayer):
 	SourceGame.instance.add_child(new_death_camera)
 	new_death_camera.global_position = _for.get_player_node().global_position
 	new_death_camera.make_current()
+
+#D.R.Y
+
+func request_spawn(prop_res:R_SourceProp):
+	SD_Multiplayer.call_func_on_server(spawn_on_server, [prop_res])
+
+func spawn_on_server(prop_res:R_SourceProp):
+	var new_prop = prop_res.prefab.instantiate()
+	var spawn_pos = SourcePlayer.instance.interact_raycast.drag_item_link_node.global_position
+	SourceGame.instance.get_node("props").add_child(new_prop)
+	new_prop.global_position = spawn_pos
+	
+	prop_spawned.emit(new_prop)
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:

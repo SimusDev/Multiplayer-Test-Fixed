@@ -25,13 +25,14 @@ func looking():
 	
 	for visible_target in visible_targets:
 		visible_targets.erase(visible_target)
-	
+		
 	for raycast:RayCast3D in raycasts:
 		if not visible_objects.has(raycast.get_collider()):
 			visible_objects.append(raycast.get_collider())
 			for visible_object in visible_objects:
-				if visible_object is AI_Visible:
-					add_target(visible_object)
+				if is_instance_valid(visible_object):
+					if visible_object is AI_Visible:
+						add_target(visible_object)
 
 	debug_label.text = str(visible_objects)
 
