@@ -67,7 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _ui.is_interface_active(self):
 		if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
 			close()
-		elif Input.is_action_just_pressed(input_action):
+	else:
+		if Input.is_action_just_pressed(input_action):
 			open()
 
 func _on_interface_opened_(node: Node) -> void:
