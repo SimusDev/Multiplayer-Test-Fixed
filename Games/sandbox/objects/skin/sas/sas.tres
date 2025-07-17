@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SB_WorldEntitySkin" load_steps=3 format=3 uid="uid://b6008tmb0cj4"]
+
+[ext_resource type="Script" uid="uid://nh42unrs41w8" path="res://Games/sandbox/components/world/SB_WorldEntitySkin.gd" id="1_4y3uh"]
+[ext_resource type="PackedScene" uid="uid://3ykpcs8eyeo1" path="res://Games/sandbox/objects/skin/sas/animated.tscn" id="1_w5bey"]
+
+[resource]
+script = ExtResource("1_4y3uh")
+id = ""
+name = ""
+description = ""
+prefab = ExtResource("1_w5bey")
+metadata/_custom_type_script = "uid://nh42unrs41w8"
