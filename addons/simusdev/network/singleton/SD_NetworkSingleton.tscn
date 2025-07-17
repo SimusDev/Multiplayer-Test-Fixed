@@ -66,6 +66,9 @@ metadata/_custom_type_script = "uid://b53chxdtmx840"
 script = ExtResource("8_oycid")
 metadata/_custom_type_script = "uid://pfrh8umtg4j8"
 
-[node name="SD_NetTrunkSynchronization" type="Node" parent="."]
+[node name="SD_NetTrunkSynchronization" type="Node" parent="." node_paths=PackedStringArray("_timer")]
 script = ExtResource("9_gb48q")
+_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://oxklms8j40rm"
+
+[node name="Timer" type="Timer" parent="SD_NetTrunkSynchronization"]

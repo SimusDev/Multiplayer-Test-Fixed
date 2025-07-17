@@ -141,7 +141,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("cant call func(%s) on channel %s, because id is greater than max channels: %s" % [method, channel, max_channels], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
-	var node_path: String = str(node.get_path())
+	var node_path: String = str(node.get_path()).replacen(singleton.settings.root_path, "")
 	
 	var _cached_id: int = 0
 	
@@ -218,7 +218,8 @@ func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Netw
 
 func _recieve_call_from_local(from_peer: int, packet: Dictionary) -> void:
 	#var cached_id: int = packet.get("cp", -1) as int
-	var node_path: String = packet.get("p", "") as String
+	var root_path: String = singleton.settings.root_path
+	var node_path: String = root_path + packet.get("p", "") as String
 	var method: String = packet.get("m", "") as String
 	var args: Array = SD_NetworkDeserializer.parse(packet.get("a"))
 	

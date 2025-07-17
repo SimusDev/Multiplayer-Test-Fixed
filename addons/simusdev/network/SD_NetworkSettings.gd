@@ -5,6 +5,7 @@ class_name SD_NetworkSettings
 @export var channels: PackedStringArray = [
 	"main",
 ]
+@export var root_path: String = "/root/"
 @export var sync_tickrate: float = 64.0
 @export var sync_process: Timer.TimerProcessCallback = Timer.TimerProcessCallback.TIMER_PROCESS_IDLE
 @export var default_peer: bool = true

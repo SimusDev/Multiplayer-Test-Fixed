@@ -12,13 +12,15 @@ var _preview: bool = false : set = _set_preview
 var _node: Node
 
 func _ready() -> void:
+	SD_Network.register_function(set_skin)
+	
 	if !_source:
 		_source = get_parent()
 	
 	_update()
 
 func set_skin(skin: SB_WorldEntitySkin) -> void:
-	SD_Multiplayer.call_func(_set_skin, [skin])
+	SD_Network.call_func(_set_skin, [skin])
 
 func _set_skin(skin: SB_WorldEntitySkin) -> void:
 	m_current_skin = skin
@@ -63,11 +65,10 @@ func _change_upd_skin() -> void:
 	
 
 func _update() -> void:
-	_clear_skin()
-	
 	if SD_Multiplayer.is_dedicated_server() or Engine.is_editor_hint():
 		return
 	
+	_clear_skin()
 	_change_upd_skin()
 
 func get_skin() -> SB_WorldEntitySkin:
