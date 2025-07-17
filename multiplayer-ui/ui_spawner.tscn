@@ -1,0 +1,140 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccnaptwlurtfd"]
+
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_k0fcb"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_urp07"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_0bs0x"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_k0fcb"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="5_fsq1x"]
+[ext_resource type="PackedScene" uid="uid://b8wi81p033ny7" path="res://multiplayer-ui/prefabs/ui_spawn_button/ui_spawn_button.tscn" id="7_urp07"]
+[ext_resource type="PackedScene" uid="uid://dy6oimrlfnkit" path="res://multiplayer-ui/chat.tscn" id="8_fsq1x"]
+[ext_resource type="PackedScene" uid="uid://cl6xc8puenssw" path="res://multiplayer-ui/connected_peers.tscn" id="9_wgjw3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsq1x"]
+font = ExtResource("4_k0fcb")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ui_spawner" type="Control"]
+layout_mode = 3
+anchor_right = 0.4
+anchor_bottom = 0.520833
+mouse_filter = 2
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+metadata/_edit_use_anchors_ = true
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_k0fcb")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="." instance=ExtResource("3_urp07")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("3_urp07")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.176
+grow_horizontal = 2
+grow_vertical = 2
+text = "UI Spawner"
+label_settings = SubResource("LabelSettings_fsq1x")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_0bs0x")
+font = ExtResource("4_k0fcb")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="button_base" parent="head" instance=ExtResource("5_fsq1x")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "X"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.109333
+anchor_right = 0.990234
+anchor_bottom = 0.989333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+visible = false
+layout_mode = 0
+anchor_top = -0.0855264
+anchor_right = 1.0
+anchor_bottom = -0.00328948
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00996016
+anchor_top = 0.0151515
+anchor_right = 0.99004
+anchor_bottom = 0.984848
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UiSpawnButton" parent="content/GridContainer" instance=ExtResource("7_urp07")]
+layout_mode = 2
+ui_name = "Chat"
+ui_prefab = ExtResource("8_fsq1x")
+
+[node name="UiSpawnButton2" parent="content/GridContainer" instance=ExtResource("7_urp07")]
+layout_mode = 2
+ui_name = "Connected peers"
+ui_prefab = ExtResource("9_wgjw3")
+
+[connection signal="pressed" from="head/button_base" to="." method="queue_free"]

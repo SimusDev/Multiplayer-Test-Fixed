@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8wi81p033ny7"]
+
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="1_jur8y"]
+[ext_resource type="Script" uid="uid://b5jvfjkw4bvgp" path="res://multiplayer-ui/prefabs/ui_spawn_button/ui_spawn_button.gd" id="2_573l5"]
+[ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="2_ew8mp"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="3_e84rj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_573l5"]
+font = ExtResource("3_e84rj")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UiSpawnButton" type="Control"]
+custom_minimum_size = Vector2(495, 20)
+layout_mode = 3
+anchor_right = 0.386719
+anchor_bottom = 0.0277778
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jur8y")
+script = ExtResource("2_573l5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="button_panel" parent="." instance=ExtResource("2_ew8mp")]
+layout_mode = 0
+anchor_left = 0.79798
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+label_text = "spawn"
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_Label" parent="button_panel" index="0"]
+offset_bottom = -1.0
+text = "spawn"
+label_settings = SubResource("LabelSettings_573l5")
+font_size = 18
+
+[node name="name" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.010101
+anchor_top = 0.15
+anchor_right = 0.777778
+anchor_bottom = 0.95
+text = "Aw"
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="button_panel" to="." method="_on_button_panel_pressed"]
+
+[editable path="button_panel"]
