@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bxifgbhjb7o3n"
+path.s3tc="res://.godot/imported/hand_0.jpg-06120648d8bc6797a655a94490584679.s3tc.ctex"
+path.etc2="res://.godot/imported/hand_0.jpg-06120648d8bc6797a655a94490584679.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f48973b00b2045c5fe562bcebeb48b09"
+}
+
+[deps]
+
+source_file="res://Games/NABLUDATOR/player/hands/hand_0.jpg"
+dest_files=["res://.godot/imported/hand_0.jpg-06120648d8bc6797a655a94490584679.s3tc.ctex", "res://.godot/imported/hand_0.jpg-06120648d8bc6797a655a94490584679.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
