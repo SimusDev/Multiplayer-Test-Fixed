@@ -63,7 +63,10 @@ func is_opened() -> bool:
 func is_closed() -> bool:
 	return not target.visible
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if input_action.is_empty():
+		return
+	
 	if _ui.is_interface_active(self):
 		if Input.is_action_just_pressed(_ui.ACTION_CLOSE_MENU):
 			close()
