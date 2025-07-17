@@ -42,10 +42,10 @@ func pick_item(at_position:int):
 		if is_multiplayer_authority():
 			hide_all_items(item)
 			item.set_current( not item.is_current())
+			SD_Multiplayer.call_func(hide_all_model_items, [item])
 	
 			sync_add_model_item(item.model)
 	
-		#hide_all_model_items(item)
 		
 
 func sync_add_model_item(model:Node):

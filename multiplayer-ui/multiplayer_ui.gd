@@ -1,4 +1,4 @@
-class_name ZV_MultiplayerChat extends Node
+class_name MultiplayerUI extends Control
 
 var instance
 var player_color:Color = Color(1, 1, 1, 1)

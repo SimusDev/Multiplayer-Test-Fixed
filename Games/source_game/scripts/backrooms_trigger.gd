@@ -9,6 +9,8 @@ func _process(_delta: float) -> void:
 	_process_trigger()
 
 func _process_trigger():
+	if not is_instance_valid(SourcePlayer.instance): return
+	
 	if not SourcePlayer.instance.is_in_backrooms():
 		if SourcePlayer.instance.global_position.y <= self.global_position.y:
 			SourcePlayer.instance.set_in_backrooms(true)
@@ -31,3 +33,5 @@ func add_room():
 	var spawn_position:Vector3 = spawn_point.global_position
 	
 	SourcePlayer.instance.global_position = spawn_position
+
+#игра говна

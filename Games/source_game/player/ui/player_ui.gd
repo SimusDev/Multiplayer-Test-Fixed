@@ -6,6 +6,8 @@ static var instance:SourcePlayerUI = null : set = set_instance, get = get_instan
 @onready var crosshair = get_node("crosshair")
 @onready var health = get_node("health")
 
+@onready var vhs_rect = get_node("vhs")
+
 static func get_instance() -> SourcePlayerUI: return instance
 static func set_instance(value) -> void: instance = value
 
@@ -14,3 +16,7 @@ func _ready() -> void:
 
 static func update(_health:float):
 	instance.health.text = str(roundf(_health)) + " :hp"
+
+func _process(_delta: float) -> void:
+	if is_multiplayer_authority():
+		vhs_rect.visible = SourcePlayer.instance.is_in_backrooms()

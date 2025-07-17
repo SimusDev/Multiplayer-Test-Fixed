@@ -4,7 +4,7 @@ class_name W_FPCSourceLikeCrouch
 @export var camera: W_FPCSourceLikeCamera
 @export var movement: W_FPCSourceLikeMovement
 @export var collision_normal: CollisionShape3D
-@export var collision_crouch: CollisionShape3D
+#@export var collision_crouch: CollisionShape3D
 
 @export var crouch_shape: Shape3D
 @export var normal_shape: Shape3D
@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
 	else:
 		camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
 
+	print("disabled" if collision_normal.disabled else "enabled")
+
 func _ready() -> void:
 	super()
 	
@@ -49,13 +51,3 @@ func _on_crouched_status_changed() -> void:
 			if movement.is_crouched: collision_normal.shape = crouch_shape
 			else:
 				collision_normal.shape = normal_shape
-	
-	if collision_normal and collision_crouch:
-		collision_normal.visible = enabled
-		collision_crouch.visible = enabled
-	
-	if movement:
-		if not movement.enabled:
-			#
-			#collision_crouch.disabled = true
-			pass

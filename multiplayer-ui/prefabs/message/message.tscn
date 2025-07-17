@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://boda6co3yw14b"]
 
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_e86fy"]
-[ext_resource type="Script" uid="uid://bceekl5jcuftm" path="res://Games/multiplayer-chat/prefabs/message/message.gd" id="2_cljl2"]
+[ext_resource type="Script" uid="uid://bceekl5jcuftm" path="res://multiplayer-ui/prefabs/message/message.gd" id="2_cljl2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3bkyf"]
 font = ExtResource("1_e86fy")
