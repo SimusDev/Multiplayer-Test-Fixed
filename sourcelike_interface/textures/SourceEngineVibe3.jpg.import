@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccy5k8gwg1g4g"
-uid="uid://c3u4g32w8it37"
-path="res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"
+uid="uid://r5n3pyn0mye2"
+path="res://.godot/imported/SourceEngineVibe3.jpg-4181d33b331605dd2a1af7c4252b6627.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sourcelike_interface/textures/MullolPalper.jpg"
-dest_files=["res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"]
+source_file="res://sourcelike_interface/textures/SourceEngineVibe3.jpg"
+dest_files=["res://.godot/imported/SourceEngineVibe3.jpg-4181d33b331605dd2a1af7c4252b6627.ctex"]
 
 [params]
 

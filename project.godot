@@ -54,6 +54,7 @@ enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fa
 
 folder_colors={
 "res://Games/": "green",
+"res://Games/NABLUDATOR/": "yellow",
 "res://Games/source_game/": "gray",
 "res://game_components/": "orange",
 "res://sourcelike_interface/": "gray"
@@ -65,6 +66,7 @@ props=""
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom_font="uid://dci3prk14bp6"
 
 [importer_defaults]

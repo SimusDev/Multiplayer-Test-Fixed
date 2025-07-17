@@ -5,10 +5,6 @@ var player_color:Color = Color(1, 1, 1, 1)
 
 @export var block_rect:Control
 
-func _init() -> void:
-	if is_multiplayer_authority():
-		instance = self
-
 func _ready() -> void:
 	SD_Multiplayer.get_singleton().player_connected.connect(_update)
 	SD_Multiplayer.get_singleton().player_disconnected.connect(_update)

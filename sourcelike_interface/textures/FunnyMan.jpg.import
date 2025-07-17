@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccy5k8gwg1g4g"
-uid="uid://c3u4g32w8it37"
-path="res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"
+uid="uid://dxjbwvdvloh7e"
+path="res://.godot/imported/FunnyMan.jpg-7ee269b8776bc2575a31b801bf32477e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sourcelike_interface/textures/MullolPalper.jpg"
-dest_files=["res://.godot/imported/MullolPalper.jpg-e52b868cd31ad3680e6b859c6e1abab4.ctex"]
+source_file="res://sourcelike_interface/textures/FunnyMan.jpg"
+dest_files=["res://.godot/imported/FunnyMan.jpg-7ee269b8776bc2575a31b801bf32477e.ctex"]
 
 [params]
 

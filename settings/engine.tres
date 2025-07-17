@@ -8,6 +8,7 @@
 script = ExtResource("2_lvuwi")
 enabled = true
 channels = ["main"]
+root_path = "/root/"
 sync_tickrate = 64.0
 sync_process = 1
 default_peer = true
@@ -24,7 +25,7 @@ metadata/_custom_type_script = "uid://bsn5pysgtogq7"
 
 [resource]
 script = ExtResource("3")
-developer = ""
+developer = "simusdev and zxcvlxd"
 game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
