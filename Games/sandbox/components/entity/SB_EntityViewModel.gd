@@ -39,6 +39,7 @@ func set_inventory(inv: SB_Inventory) -> void:
 func _delete_root() -> void:
 	if is_instance_valid(_root):
 		_root.queue_free()
+		_root = null
 	
 
 func _create_root(item: SB_ItemStack) -> void:

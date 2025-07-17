@@ -12,20 +12,19 @@ func get_local() -> SD_NetworkPlayer:
 	return _local
 
 func _destory_players() -> void:
-	for id in _connected:
-		_destroy_player(id)
-	
 	_connected.clear()
+	for i in get_children():
+		i.queue_free()
+	
 
 func _destroy_player(peer: int) -> void:
 	if _connected.has(peer):
 		var player: SD_NetworkPlayer = _connected[peer]
 		var p_name: String = player.get_username()
-		if is_instance_valid(player):
-			on_disconnected.emit(player)
-			singleton.on_player_disconnected.emit(player)
-			player.queue_free()
-		
+		on_disconnected.emit(player)
+		singleton.on_player_disconnected.emit(player)
+		player.queue_free()
+	
 		_connected.erase(peer)
 		
 		singleton.debug_print("peer(%s) disconnected %s" % [str(player.get_unique_id()), p_name], SD_ConsoleCategories.CATEGORY.ERROR)
