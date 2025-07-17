@@ -19,10 +19,13 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	add_child(timer)
 	timer.start()
 	
+	SD_Multiplayer.call_func_on(_for.get_peer_id(), add_freecam)
+
+func add_freecam(_for:SD_MultiplayerPlayer):
 	var new_death_camera = death_camera.instantiate()
+	SourceGame.instance.add_child(new_death_camera)
 	new_death_camera.global_position = _for.get_player_node().global_position
-	if is_multiplayer_authority():
-		new_death_camera.make_current()
+	new_death_camera.make_current()
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:

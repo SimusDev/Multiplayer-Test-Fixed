@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=9 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_ltpmo"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_1k71d"]
 [ext_resource type="PackedScene" uid="uid://dc5y124phqhmn" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.tscn" id="5_d3a31"]
+[ext_resource type="Shader" uid="uid://cq7dsvms68sw6" path="res://Games/source_game/player/ui/player_ui.gdshader" id="6_m14t5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ltpmo"]
 font = ExtResource("4_1k71d")
@@ -12,6 +13,13 @@ font_size = 56
 font_color = Color(0.913725, 0, 0, 1)
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_henmv"]
+shader = ExtResource("6_m14t5")
+shader_parameter/wiggle = 0.05
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 1.0
+shader_parameter/blur_samples = 15
 
 [node name="player_ui" type="Control"]
 layout_mode = 3
@@ -58,3 +66,14 @@ metadata/_edit_use_anchors_ = true
 [node name="source_prop_spawner" parent="." instance=ExtResource("5_d3a31")]
 visible = false
 layout_mode = 1
+
+[node name="vhs" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_henmv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

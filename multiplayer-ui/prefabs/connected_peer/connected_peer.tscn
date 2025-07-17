@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctqdmiy7mojda"]
+
+[ext_resource type="Script" uid="uid://smnbdi5kiav1" path="res://multiplayer-ui/prefabs/connected_peer/connected_peer.gd" id="1_8fwsr"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="1_glw6h"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_8fwsr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjc0d"]
+font = ExtResource("2_8fwsr")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="connected_peer" type="Control"]
+custom_minimum_size = Vector2(265, 25)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1015.0
+offset_bottom = -695.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fwsr")
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_glw6h")
+
+[node name="name" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.0112782
+anchor_top = 0.16
+anchor_right = 0.984962
+anchor_bottom = 0.88
+text = "zxcvlxd"
+label_settings = SubResource("LabelSettings_fjc0d")
+metadata/_edit_use_anchors_ = true

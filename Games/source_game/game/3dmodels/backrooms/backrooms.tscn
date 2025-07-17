@@ -9,12 +9,6 @@
 [sub_resource type="GDScript" id="GDScript_jfr02"]
 resource_name = "backrooms"
 script/source = "extends Node3D
-
-
-func _on_is_in_backrooms_area_body_exited(body: Node3D) -> void:
-	if body is SourcePlayer:
-		body.set_in_backrooms(false)
-		self.queue_free()
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qimf"]
@@ -477,7 +471,7 @@ data = PackedVector3Array(-6.841, 0.0225, 9.5791, -5.9293, 0.0225, 8.6671, -6.84
 size = Vector3(31.9, 0.5, 29.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr02"]
-size = Vector3(36.6602, 10.6367, 37.3894)
+size = Vector3(58.7437, 20.5649, 56.7843)
 
 [node name="backrooms" type="Node3D"]
 script = SubResource("GDScript_jfr02")
@@ -627,9 +621,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7, 0.541055, -11.8331)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5123, 1.00196, 17.7019)
 
 [node name="is_in_backrooms_area" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+reverb_bus_enabled = true
+reverb_bus_name = &"reverb"
+reverb_bus_amount = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="is_in_backrooms_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097044, 1.4082, 1.06012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348669, 2.67065, -0.0059824)
 shape = SubResource("BoxShape3D_jfr02")
 
 [connection signal="body_exited" from="is_in_backrooms_area" to="." method="_on_is_in_backrooms_area_body_exited"]

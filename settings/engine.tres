@@ -34,7 +34,7 @@ monetization = Dictionary[String, Variant]({
 game = Dictionary[String, Variant]({
 "minimize_feature": false,
 "minimize_feature_on_release": true,
-"mute_audio_when_minimized": true,
+"mute_audio_when_minimized": false,
 "pause_when_minimized": false
 })
 console = Dictionary[String, Variant]({

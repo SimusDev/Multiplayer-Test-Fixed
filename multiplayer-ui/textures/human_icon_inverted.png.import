@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceyb2dpho6o75"
-path="res://.godot/imported/human_icon_normal.png-d5a2d8e55245d796522ccbc0c4029cc4.ctex"
+uid="uid://d21wnwwoakh1y"
+path="res://.godot/imported/human_icon_inverted.png-77d648d941f2340d808ec3c92c812b1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/multiplayer-chat/textures/human_icon_normal.png"
-dest_files=["res://.godot/imported/human_icon_normal.png-d5a2d8e55245d796522ccbc0c4029cc4.ctex"]
+source_file="res://multiplayer-ui/textures/human_icon_inverted.png"
+dest_files=["res://.godot/imported/human_icon_inverted.png-77d648d941f2340d808ec3c92c812b1d.ctex"]
 
 [params]
 
