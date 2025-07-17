@@ -7,6 +7,7 @@ class_name SourceWeaponBullet extends RigidBody3D
 
 func _ready() -> void:
 	self.set_collision_layer_value(1, false)
+	body_entered.connect(_on_body_entered)
 	if bullet_model:
 		var bullet_instance = bullet_model.instantiate()
 		add_child(bullet_instance)
@@ -23,6 +24,15 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(life_time).timeout
 	queue_free()
+
+func _on_body_entered(body):
+	if !SD_Multiplayer.is_server(): return
+	
+	if body is SourcePlayer:
+		synced_apply_damage_to_player(body)
+
+func synced_apply_damage_to_player(player:SourcePlayer):
+	player.health.apply_damage(bullet_resource.damage)
 
 func _process(delta: float) -> void:
 	pass
