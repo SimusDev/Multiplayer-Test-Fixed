@@ -12,5 +12,4 @@ func _update():
 	name_label.text = ui_name
 
 func _on_button_panel_pressed() -> void:
-	var new_ui = ui_prefab.instantiate()
-	MultiplayerUI.instance.add_child(new_ui)
+	slike_popups.open(ui_prefab, MultiplayerUI.instance)

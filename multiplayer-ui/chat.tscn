@@ -50,6 +50,7 @@ metadata/_custom_type_script = "uid://38osx81mny15"
 script = ExtResource("2_2d84l")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
+zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [node name="bg" parent="." instance=ExtResource("3_yv3rc")]

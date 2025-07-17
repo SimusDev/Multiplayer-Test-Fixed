@@ -30,6 +30,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("2_s7a17")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
+zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [node name="bg" parent="." instance=ExtResource("3_dv2rc")]
