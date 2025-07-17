@@ -9,6 +9,16 @@ func _ready() -> void:
 	
 	SD_Multiplayer.request_and_sync_var_from_server(self, "health")
 	SD_Multiplayer.request_and_sync_var_from_server(self, "max_health")
+	
+	
+
+func _enter_tree() -> void:
+	target.set_meta("C_HealthComponent", self)
+
+static func find_in(node: Node) -> C_HealthComponent:
+	if node.has_meta("C_HealthComponent"):
+		return node.get_meta("C_HealthComponent") as C_HealthComponent
+	return null
 
 func _on_server_health_changed() -> void:
 	SD_Multiplayer.sync_call_function_except_self(self, _synchronize_health, [health])
