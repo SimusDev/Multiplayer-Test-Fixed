@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_NabludatorViewModel" load_steps=3 format=3 uid="uid://coeoigofgbj2e"]
+
+[ext_resource type="Script" uid="uid://cxjygcr0uhwa5" path="res://Games/NABLUDATOR/components/r_viewmodel.gd" id="2_l8xts"]
+[ext_resource type="Resource" uid="uid://b4hvshm5ecqiw" path="res://Games/NABLUDATOR/viewmodel/settings/default.tres" id="3_w62xx"]
+
+[resource]
+script = ExtResource("2_l8xts")
+settings = ExtResource("3_w62xx")
+metadata/_custom_type_script = "uid://cxjygcr0uhwa5"
