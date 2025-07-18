@@ -3,7 +3,7 @@ class_name C_NabludatorEntityViewModel
 
 @export var root: Node3D
 @export var items: Array[R_NabludatorItem] = []
-@export var attachment: BoneAttachment3D
+@export var attachment: Node3D
 
 @export var selected: int = -1
 
