@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=2 format=3 uid="uid://dtue2551dev8n"]
+[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=3 format=3 uid="uid://dtue2551dev8n"]
 
 [ext_resource type="Script" uid="uid://bh40mgnmf018k" path="res://Games/NABLUDATOR/components/r_weapon.gd" id="1_53nwt"]
+[ext_resource type="Resource" uid="uid://coeoigofgbj2e" path="res://Games/NABLUDATOR/viewmodel/pistol_test.tres" id="2_53nwt"]
 
 [resource]
 script = ExtResource("1_53nwt")
@@ -11,4 +12,5 @@ chest_damage_multiplier = 1.0
 legs_damage_multiplier = 0.5
 name = "pistol_test"
 code = "pistol_test"
+viewmodel = ExtResource("2_53nwt")
 metadata/_custom_type_script = "uid://bh40mgnmf018k"
