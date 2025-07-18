@@ -1,12 +1,12 @@
-[gd_scene load_steps=53 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=54 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="2_3exd0"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_gum4i"]
+[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="2_lo1q8"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="3_muiaj"]
-[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_y3fon"]
-[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_fe7ft"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_sgj1c"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_hlr15"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="5_muiaj"]
 [ext_resource type="Script" uid="uid://jcmu78gr5cld" path="res://Games/NABLUDATOR/components/hitbox.gd" id="6_qoi8o"]
 [ext_resource type="Texture2D" uid="uid://dx5awebwl5113" path="res://Games/source_game/player/hands/fp_arms_0.png" id="6_t3em3"]
@@ -21,35 +21,41 @@
 [ext_resource type="Resource" uid="uid://c2ow81xpgu50e" path="res://Games/NABLUDATOR/weapons/ak_47.tres" id="17_t3em3"]
 [ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="17_tb2mf"]
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
-[ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="21_lo1q8"]
 
-[sub_resource type="Resource" id="Resource_6rsck"]
-script = ExtResource("4_fe7ft")
-properties = Array[String](["transform"])
-sync_at_start = true
+[sub_resource type="Resource" id="Resource_vh1f0"]
+script = ExtResource("3_sgj1c")
+properties = PackedStringArray("position", "rotation")
 interpolation_enabled = true
 interpolation_speed = 32.0
+float_snap = 0.1
 node_path = NodePath("..")
+channels = Array[String](["main"])
 tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
 callmode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
-[sub_resource type="Resource" id="Resource_y3fon"]
-script = ExtResource("4_fe7ft")
-properties = Array[String](["transform"])
-sync_at_start = true
+[sub_resource type="Resource" id="Resource_lxqqc"]
+script = ExtResource("3_sgj1c")
+properties = PackedStringArray("rotation")
 interpolation_enabled = true
-interpolation_speed = 64.0
+interpolation_speed = 32.0
+float_snap = 0.1
 node_path = NodePath("../W_FPCSourceLikeCamera")
-tickrate = 64.0
+channels = Array[String](["main"])
+tickrate = 32.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
 callmode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_imvau"]
+script = ExtResource("4_hlr15")
+_list = Array[ExtResource("3_sgj1c")]([SubResource("Resource_vh1f0"), SubResource("Resource_lxqqc")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="GDScript" id="GDScript_t3em3"]
 resource_name = "arms"
@@ -273,6 +279,45 @@ bind/59/name = &"handcontrol.R_end_058"
 bind/59/bone = -1
 bind/59/pose = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_sgj1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.15734)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("arms:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("containers/weapon_container:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.65382, -1.14754, -0.161568)]
+}
+
 [sub_resource type="Animation" id="Animation_t3em3"]
 resource_name = "breath"
 length = 3.0
@@ -331,50 +376,38 @@ tracks/1/keys = {
 "values": [Vector3(0.49082, -0.0838554, 3.12571)]
 }
 
-[sub_resource type="Animation" id="Animation_sgj1c"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgj1c"]
+_data = {
+&"RESET": SubResource("Animation_sgj1c"),
+&"breath": SubResource("Animation_t3em3"),
+&"idle": SubResource("Animation_lo1q8")
+}
+
+[sub_resource type="Animation" id="Animation_lxqqc"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("arms:position")
+tracks/0/path = NodePath("containers/weapon_container:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -0.15734)]
+"values": [Vector3(0.65382, -1.14754, -0.161568)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("arms:rotation")
+tracks/1/path = NodePath("containers/weapon_container:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 3.14159, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("containers/weapon_container:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.65382, -1.14754, -0.161568)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgj1c"]
-_data = {
-&"RESET": SubResource("Animation_sgj1c"),
-&"breath": SubResource("Animation_t3em3"),
-&"idle": SubResource("Animation_lo1q8")
+"values": [Vector3(0.571489, 0.2835, -2.98276)]
 }
 
 [sub_resource type="Animation" id="Animation_hlr15"]
@@ -406,33 +439,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.27859, 2.18589, -0.93261)]
-}
-
-[sub_resource type="Animation" id="Animation_lxqqc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("containers/weapon_container:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.65382, -1.14754, -0.161568)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("containers/weapon_container:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.571489, 0.2835, -2.98276)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_imvau"]
@@ -517,15 +523,14 @@ height = 0.8
 height = 0.6
 radius = 0.445
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "hands")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_3exd0")
 camera = NodePath("W_FPCSourceLikeCamera")
-hands = NodePath("")
 
-[node name="sync" type="Node" parent="."]
-script = ExtResource("2_gum4i")
-properties = Array[ExtResource("3_y3fon")]([SubResource("Resource_6rsck"), SubResource("Resource_y3fon")])
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("2_lo1q8")
+_data = SubResource("Resource_imvau")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
 [node name="W_FPCSourceLikeCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("1_ic57w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -538,7 +543,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="arms" type="Node3D" parent="W_FPCSourceLikeCamera"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.15734)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, -0.15734)
 script = SubResource("GDScript_t3em3")
 
 [node name="root" type="Node3D" parent="W_FPCSourceLikeCamera/arms"]
@@ -982,10 +987,9 @@ tip_bone = &"hand.L_04"
 target_node = NodePath("../../../../containers/item_container")
 
 [node name="containers" type="Node3D" parent="W_FPCSourceLikeCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="weapon_container" type="Node3D" parent="W_FPCSourceLikeCamera/containers"]
-transform = Transform3D(-0.971927, 0.00246262, 0.235269, -0.133034, -0.830507, -0.540883, 0.194062, -0.556998, 0.807519, 0.65382, -1.14754, -0.161568)
+transform = Transform3D(-0.971927, 0.00246143, 0.235269, -0.133033, -0.830507, -0.540883, 0.194062, -0.556998, 0.807519, 0.65382, -1.14754, -0.161568)
 
 [node name="aps_pistol" parent="W_FPCSourceLikeCamera/containers/weapon_container" instance=ExtResource("9_lo1q8")]
 transform = Transform3D(2.4361e-08, 1.46339e-08, -0.28, 0.278719, 0.0267541, 2.56478e-08, 0.0267541, -0.278719, -1.22392e-08, 0.039462, 0.355489, -0.072127)
@@ -1003,146 +1007,6 @@ autoplay = "breath"
 libraries = {
 &"": SubResource("AnimationLibrary_imvau")
 }
-bones/11/name = "DIR_Jnt_Flng01_Anelar_08"
-bones/11/parent = 10
-bones/11/rest = Transform3D(0.948175, 0.31775, -4.68229e-17, -0.31775, 0.948175, 2.206e-16, 1.14492e-16, -1.94289e-16, 1, 0, 0, 0)
-bones/11/enabled = true
-bones/11/position = Vector3(0, 0, 0)
-bones/11/rotation = Quaternion(-1.05093e-16, -4.08615e-17, -0.160974, 0.986959)
-bones/11/scale = Vector3(1, 1, 1)
-bones/12/name = "DIR_Jnt_Flng02_Anelar_09"
-bones/12/parent = 11
-bones/12/rest = Transform3D(0.86286, 0.505442, 0, -0.505442, 0.86286, 0, 0, 0, 1, 5.43419, -0.0564811, -0.0111124)
-bones/12/enabled = true
-bones/12/position = Vector3(5.43419, -0.0564811, -0.0111124)
-bones/12/rotation = Quaternion(0, 0, -0.261858, 0.965106)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/name = "DIR_Jnt_Flng03_Anelar_010"
-bones/13/parent = 12
-bones/13/rest = Transform3D(0.86286, 0.505442, 1.75361e-17, -0.505442, 0.86286, 2.99365e-17, 0, -3.46945e-17, 1, 4.01119, -0.0488806, -0.00582633)
-bones/13/enabled = true
-bones/13/position = Vector3(4.01119, -0.0488806, -0.00582633)
-bones/13/rotation = Quaternion(-1.67419e-17, 4.54252e-18, -0.261858, 0.965106)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/name = "DIR_Jnt_Flng04_Anelar_011"
-bones/14/parent = 13
-bones/14/rest = Transform3D(0.86286, 0.505442, 3.56231e-17, -0.505442, 0.86286, -4.90132e-17, -5.55112e-17, 2.42861e-17, 1, 2.38401, 0, -2.77556e-15)
-bones/14/enabled = true
-bones/14/position = Vector3(2.38401, 0, -2.77556e-15)
-bones/14/rotation = Quaternion(1.89874e-17, 2.36073e-17, -0.261858, 0.965106)
-bones/14/scale = Vector3(1, 1, 1)
-bones/15/name = "DIR_Jnt_MtCarp_Meio_012"
-bones/15/parent = 2
-bones/15/rest = Transform3D(0.991841, -0.12209, 0.0366699, 0.114594, 0.979932, 0.163102, -0.055847, -0.157569, 0.985928, 1.90877, 2.47535, -0.248664)
-bones/15/enabled = true
-bones/15/position = Vector3(1.90877, 2.47535, -0.248664)
-bones/15/rotation = Quaternion(-0.080595, 0.0232525, 0.0594862, 0.994699)
-bones/15/scale = Vector3(1, 1, 1)
-bones/16/name = "DIR_Jnt_Flng01_Meio_013"
-bones/16/parent = 15
-bones/16/rest = Transform3D(0.940486, 0.339833, 1.23333e-16, -0.339833, 0.940486, 2.80067e-16, -2.08167e-17, -3.05311e-16, 1, 8.92932, -1.77636e-15, -6.66134e-16)
-bones/16/enabled = true
-bones/16/position = Vector3(8.92932, -1.77636e-15, -6.66134e-16)
-bones/16/rotation = Quaternion(-1.48572e-16, 3.65858e-17, -0.172502, 0.985009)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/name = "DIR_Jnt_Flng02_Meio_014"
-bones/17/parent = 16
-bones/17/rest = Transform3D(0.940486, 0.339833, -2.61037e-17, -0.339833, 0.940486, 9.43225e-18, 2.77556e-17, 0, 1, 5.43419, -0.0564811, -0.0111124)
-bones/17/enabled = true
-bones/17/position = Vector3(5.43419, -0.0564811, -0.0111124)
-bones/17/rotation = Quaternion(-2.39395e-18, -1.36697e-17, -0.172502, 0.985009)
-bones/17/scale = Vector3(1, 1, 1)
-bones/18/name = "DIR_Jnt_Flng03_Meio_015"
-bones/18/parent = 17
-bones/18/rest = Transform3D(0.940486, 0.339833, 2.61037e-17, -0.339833, 0.940486, -9.43225e-18, -2.77556e-17, 0, 1, 3.76053, 0.0443139, 0.00905099)
-bones/18/enabled = true
-bones/18/position = Vector3(3.76053, 0.0443139, 0.00905099)
-bones/18/rotation = Quaternion(2.39395e-18, 1.36697e-17, -0.172502, 0.985009)
-bones/18/scale = Vector3(1, 1, 1)
-bones/19/name = "DIR_Jnt_Flng04_Meio_016"
-bones/19/parent = 18
-bones/19/rest = Transform3D(0.940486, 0.339833, 0, -0.339833, 0.940486, 0, 0, 0, 1, 2.79167, 3.55271e-15, -3.88578e-15)
-bones/19/enabled = true
-bones/19/position = Vector3(2.79167, 3.55271e-15, -3.88578e-15)
-bones/19/rotation = Quaternion(0, 0, -0.172502, 0.985009)
-bones/19/scale = Vector3(1, 1, 1)
-bones/20/name = "DIR_Jnt_MtCarp_Ind_017"
-bones/20/parent = 2
-bones/20/rest = Transform3D(0.970209, -0.125717, 0.207096, 0.0591187, 0.951837, 0.30085, -0.234944, -0.279645, 0.930914, 1.43587, 1.96428, -1.7756)
-bones/20/enabled = true
-bones/20/position = Vector3(1.43587, 1.96428, -1.7756)
-bones/20/rotation = Quaternion(-0.147867, 0.112599, 0.0470825, 0.981448)
-bones/20/scale = Vector3(1, 1, 1)
-bones/21/name = "DIR_Jnt_Flng01_Ind_018"
-bones/21/parent = 20
-bones/21/rest = Transform3D(0.961471, 0.274907, -6.73063e-16, -0.274907, 0.961471, -7.89062e-16, 4.30211e-16, 9.4369e-16, 1, 9.35616, 2.22045e-15, -1.22125e-15)
-bones/21/enabled = true
-bones/21/position = Vector3(9.35616, 2.22045e-15, -1.22125e-15)
-bones/21/rotation = Quaternion(4.37422e-16, -2.78514e-16, -0.138797, 0.990321)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/name = "DIR_Jnt_Flng02_Ind_019"
-bones/22/parent = 21
-bones/22/rest = Transform3D(0.961471, 0.274907, -3.81119e-17, -0.274907, 0.961471, 6.86328e-17, 5.55112e-17, -5.55112e-17, 1, 5.1181, -5.32907e-15, -2.22045e-16)
-bones/22/enabled = true
-bones/22/position = Vector3(5.1181, -5.32907e-15, -2.22045e-16)
-bones/22/rotation = Quaternion(-3.13393e-17, -2.36345e-17, -0.138797, 0.990321)
-bones/22/scale = Vector3(1, 1, 1)
-bones/23/name = "DIR_Jnt_Flng03_Ind_020"
-bones/23/parent = 22
-bones/23/rest = Transform3D(0.961471, 0.274907, -3.43164e-17, -0.274907, 0.961471, -1.9056e-17, 2.77556e-17, 2.77556e-17, 1, 3.92858, 7.10543e-15, 1.38778e-15)
-bones/23/enabled = true
-bones/23/position = Vector3(3.92858, 7.10543e-15, 1.38778e-15)
-bones/23/rotation = Quaternion(1.18173e-17, -1.56697e-17, -0.138797, 0.990321)
-bones/23/scale = Vector3(1, 1, 1)
-bones/24/name = "DIR_Jnt_Flng04_Ind_021"
-bones/24/parent = 23
-bones/24/rest = Transform3D(0.961471, 0.274907, 4.19466e-17, -0.274907, 0.961471, 4.57421e-17, -2.77556e-17, -5.55112e-17, 1, 2.45774, 1.77636e-15, 6.07847e-15)
-bones/24/enabled = true
-bones/24/position = Vector3(2.45774, 1.77636e-15, 6.07847e-15)
-bones/24/rotation = Quaternion(-2.55607e-17, 1.75959e-17, -0.138797, 0.990321)
-bones/24/scale = Vector3(1, 1, 1)
-bones/25/name = "DIR_Jnt_MtCarp_Dedao_022"
-bones/25/parent = 2
-bones/25/rest = Transform3D(0.599369, -0.800471, -0.00155166, -0.189508, -0.143781, 0.971295, -0.777717, -0.58187, -0.237874, 1.6319, 0.131647, -2.45411)
-bones/25/enabled = true
-bones/25/position = Vector3(1.6319, 0.131647, -2.45411)
-bones/25/rotation = Quaternion(-0.703744, 0.351683, 0.276829, 0.55175)
-bones/25/scale = Vector3(1, 1, 1)
-bones/26/name = "DIR_Jnt_Flng01_Dedao_023"
-bones/26/parent = 25
-bones/26/rest = Transform3D(0.930019, 0.275346, 0.243411, -0.266374, 0.961345, -0.0697172, -0.253198, -3.72529e-09, 0.967414, 4.53909, -0.309857, -0.0806791)
-bones/26/enabled = true
-bones/26/position = Vector3(4.53909, -0.309857, -0.0806791)
-bones/26/rotation = Quaternion(0.0177454, 0.126404, -0.137886, 0.982189)
-bones/26/scale = Vector3(1, 1, 1)
-bones/27/name = "DIR_Jnt_Flng02_Dedao_024"
-bones/27/parent = 26
-bones/27/rest = Transform3D(0.930019, 0.275346, 0.243411, -0.266374, 0.961345, -0.0697172, -0.253198, -3.72529e-09, 0.967414, 4.38623, 2.16493e-15, 4.44089e-16)
-bones/27/enabled = true
-bones/27/position = Vector3(4.38623, 2.16493e-15, 4.44089e-16)
-bones/27/rotation = Quaternion(0.0177454, 0.126404, -0.137886, 0.982189)
-bones/27/scale = Vector3(1, 1, 1)
-bones/28/name = "DIR_Jnt_Flng03_Dedao_025"
-bones/28/parent = 27
-bones/28/rest = Transform3D(0.930019, 0.275346, 0.243411, -0.266374, 0.961345, -0.0697172, -0.253198, -3.72529e-09, 0.967414, 3.0009, -5.32907e-15, -1.77636e-15)
-bones/28/enabled = true
-bones/28/position = Vector3(3.0009, -5.32907e-15, -1.77636e-15)
-bones/28/rotation = Quaternion(0.0177454, 0.126404, -0.137886, 0.982189)
-bones/28/scale = Vector3(1, 1, 1)
-
-[node name="mesh" type="MeshInstance3D" parent="W_FPCSourceLikeCamera/hands/left/Skeleton3D"]
-mesh = SubResource("ArrayMesh_kbk78")
-skin = SubResource("Skin_6g14l")
-
-[node name="weapons_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499095, -2.37381e-09, -0.693299)
-bone_name = "DIR_Jnt_Carpal_01"
-bone_idx = 2
-transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499815, -4.86431e-10, -0.650127)
-bone_name = "DIR_Jnt_Root1_00"
-bone_idx = 1
-use_external_skeleton = true
-external_skeleton = NodePath("../W_FPCSourceLikeCamera/hands/right/Skeleton3D")
 autoplay = "idle"
 
 [node name="W_FPCSourceLikeMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("2_3exd0")]
@@ -1223,9 +1087,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_paors")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("root", "attachment")]
+[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("attachment")]
 script = ExtResource("15_d8xs0")
-root = NodePath("..")
 items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
 attachment = NodePath("../W_FPCSourceLikeCamera/containers/weapon_container")
 
@@ -1237,12 +1100,6 @@ viewmodel = NodePath("../C_NabludatorEntityViewModel")
 script = ExtResource("17_tb2mf")
 multiplayer_authorative = true
 metadata/_custom_type_script = "uid://d2voalokbx57v"
-
-[node name="C_NabludatorItemUsage" type="Node" parent="." node_paths=PackedStringArray("source", "viewmodel")]
-script = ExtResource("21_lo1q8")
-source = NodePath("..")
-viewmodel = NodePath("../C_NabludatorEntityViewModel")
-metadata/_custom_type_script = "uid://c624hlftg8wkp"
 
 [connection signal="on_input" from="C_NabludatorPlayerInput/SD_NodeInput" to="C_NabludatorPlayerInput" method="_on_sd_node_input_on_input"]
 

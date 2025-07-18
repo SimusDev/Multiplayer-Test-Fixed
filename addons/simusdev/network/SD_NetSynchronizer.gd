@@ -44,16 +44,14 @@ func set_data(new: SD_NetSyncProperties) -> void:
 		
 
 func _ready() -> void:
-	SD_Network.register_function(spti)
-	SD_Network.register_function(rp)
-	
 	SD_Network.await_for_node_cache(self, _cached)
+	
+	SD_Network.singleton.variables.register_recieve_var_callback(_var_recieved)
 	
 	
 
 func _cached() -> void:
 	_is_cached = true
-	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_data(_data)
 
 func _process(delta: float) -> void:
@@ -82,59 +80,55 @@ func _update_channel(property: SD_NetSyncedProperty) -> void:
 	_channel_data.set(p_id, property.channels.get(id))
 	
 
-func rpf(peer: int, property: SD_NetSyncedProperty, apply_changes: bool = false) -> void:
+func recieve_property_from(peer: int, property: SD_NetSyncedProperty) -> void:
 	_update_channel(property)
-	SD_Network.call_func_on(peer, spti, [SD_Network.get_unique_id(), _data.get_list().find(property), apply_changes, _channel_name], property.callmode, _channel_name)
+	SD_Network.var_sync_from(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name, {"snap": property.float_snap})
 
 #send property to
-func spt(peer: int, property: SD_NetSyncedProperty, apply_changes: bool = false) -> void:
+func send_property_to(peer: int, property: SD_NetSyncedProperty) -> void:
 	_update_channel(property)
-	spti(peer, _data.get_list().find(property), apply_changes, _channel_name)
+	SD_Network.var_send_to(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name, {"snap": property.float_snap})
 
 #send property
-func sp(property: SD_NetSyncedProperty, apply_changes: bool = false) -> void:
+func send_property(property: SD_NetSyncedProperty) -> void:
 	for peer in SD_Network.get_peers():
-		spti(peer, _data.get_list().find(property), apply_changes)
+		send_property_to(peer, property)
 
-#send property to by id
-func spti(peer: int, property_id: int, apply_changes: bool = false, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
-	var property: SD_NetSyncedProperty = SD_Array.get_value_from_array(_data.get_list(), property_id)
-	if !property:
-		return
+func _var_recieved(from_peer: int, node: Node, properties: Dictionary) -> void:
+	var sync_properties: Array[SD_NetSyncedProperty] = []
 	
-	var node: Node = get_node_or_null(property.node_path)
-	if !node:
-		return
+	var r_properties: PackedStringArray = PackedStringArray(properties.keys()).duplicate()
 	
-	var send_data: Dictionary = {}
+	#print(properties)
 	
-	var p_id: int = 0
-	for p_name in property.properties:
-		send_data[p_id] = node.get(p_name)
-		p_id += 1
-	
-	SD_Network.call_func_on(peer, rp, [property_id, send_data, apply_changes], property.callmode, channel)
-
-#recieve properties
-func rp(property_id: int, data: Dictionary, apply_changes: bool = false) -> void:
-	var property: SD_NetSyncedProperty = SD_Array.get_value_from_array(_data.get_list(), property_id)
-	if !property:
-		return
-	
-	var node: Node = get_node_or_null(property.node_path)
-	if !node:
-		return
-	
-	var put_into_synced: bool = not (property.sync == property.SYNC.AUTHORITY and get_multiplayer_authority() == SD_Network.get_unique_id())
-	
-	var synced: Dictionary[String, Variant] = get_synced_data(node)
-	
-	for p_id in data:
-		var p_name: String = property.properties.get(p_id)
-		var value: Variant = data[p_id]
+	for sp in _data.get_list():
+		var sp_properties: PackedStringArray = sp.properties.duplicate()
 		
-		if put_into_synced:
-			synced[p_name] = value
+		sp_properties.sort()
+		r_properties.sort()
 		
-		if apply_changes:
-			node.set(p_name, value)
+		if get_path_to(node) == sp.node_path:
+			if sp_properties == r_properties:
+				sync_properties.append(sp)
+			
+			
+			
+	
+	for sync_property in sync_properties:
+		var sync_node: Node = get_node_or_null(sync_property.node_path)
+		var put_into_synced: bool = not (sync_property.sync == sync_property.SYNC.AUTHORITY and get_multiplayer_authority() == SD_Network.get_unique_id())
+		
+		var synced: Dictionary[String, Variant] = get_synced_data(sync_node)
+		
+		for p_name: String in properties:
+			var p_value: Variant = properties[p_name]
+			
+			if put_into_synced:
+				synced[p_name] = p_value
+			
+			if not sync_property.interpolation_enabled and put_into_synced:
+				sync_node.set(p_name, p_value)
+	
+	
+	
+	

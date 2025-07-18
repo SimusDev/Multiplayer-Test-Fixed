@@ -11,6 +11,10 @@ func get_list() -> Array[SD_NetSyncedProperty]:
 
 func _ready() -> void:
 	for p in _list:
+		
+		for property in p.properties:
+			SD_Network.register_variable(_synchronizer.get_node_or_null(p.node_path), property, {"apply_changes": false})
+		
 		synchronize(p, true)
 
 func _process(delta: float) -> void:
@@ -27,20 +31,18 @@ func _physics_process(delta: float) -> void:
 
 func synchronize(property: SD_NetSyncedProperty, at_start: bool = false) -> void:
 	if at_start and not SD_Network.is_server():
-		_synchronizer.rpf(SD_Network.SERVER_ID, property, true)
+		_synchronizer.recieve_property_from(SD_Network.SERVER_ID, property)
 		return
-	
-	var apply_changes: bool = not property.interpolation_enabled
 	
 	if property.sync == property.SYNC.AUTHORITY:
 		if _synchronizer.get_multiplayer_authority() == SD_Network.get_unique_id():
-			_synchronizer.sp(property, apply_changes)
+			_synchronizer.send_property(property)
 			
 		else:
-			_synchronizer.rpf(_synchronizer.get_multiplayer_authority(), property, apply_changes)
+			_synchronizer.recieve_property_from(_synchronizer.get_multiplayer_authority(), property)
 		return
 	
-	_synchronizer.sp(property, apply_changes)
+	_synchronizer.send_property(property)
 	
 
 func _hook_on_change(property: SD_NetSyncedProperty, delta: float) -> void:
@@ -68,12 +70,13 @@ func _update(property: SD_NetSyncedProperty, delta: float) -> void:
 	if from_server and (not SD_Network.is_server()):
 		return
 	
-	if property.sync_mode == property.SYNC_MODE.ON_CHANGE:
-		_hook_on_change(property, delta)
-		return
-	
 	if tick >= property.get_tickrate_in_seconds():
-		synchronize(property)
+		
+		if property.sync_mode == property.SYNC_MODE.ON_CHANGE:
+			_hook_on_change(property, delta)
+		else:
+			synchronize(property)
+			
 		_synchronizer.get_tickrate_data().set(property_id, 0.0)
 	else:
 		_synchronizer.get_tickrate_data().set(property_id, tick + delta)
@@ -90,12 +93,33 @@ const INTERPOLATING_VARTYPES = [
 	TYPE_TRANSFORM3D,
 ]
 
-func _interpolate(property: SD_NetSyncedProperty, delta: float) -> void:
+var INTERPOLATING_PROPERTY_METHODS: Dictionary[String, Callable] = {
+	"rotation" : _interpolate_rotation
+}
+
+func _interpolate_rotation(rotation: Variant, to: Variant, delta: float) -> Variant:
+	rotation.x = lerp_angle(rotation.x, to.x, delta)
+	rotation.y = lerp_angle(rotation.y, to.y, delta)
 	
+	if rotation is Vector3:
+		rotation.z = lerp_angle(rotation.z, to.z, delta)
+	
+	return rotation
+
+func _interpolate(property: SD_NetSyncedProperty, delta: float) -> void:
 	var node: Node = _synchronizer.get_node(property.node_path)
 	var synced: Dictionary[String, Variant] = _synchronizer.get_synced_data(node)
+	
 	for p_name in synced:
 		var synced_value: Variant = synced[p_name]
 		if INTERPOLATING_VARTYPES.has(typeof(synced_value)):
-			node.set(p_name, synced_value)
+			var node_value: Variant = node.get(p_name)
+			
+			if p_name in INTERPOLATING_PROPERTY_METHODS:
+				var callable: Callable = INTERPOLATING_PROPERTY_METHODS[p_name]
+				node_value = callable.call(node_value, synced_value, property.interpolation_speed * delta) 
+			else:
+				node_value = lerp(node_value, synced_value, property.interpolation_speed * delta)
+			
+			node.set(p_name, node_value)
 	

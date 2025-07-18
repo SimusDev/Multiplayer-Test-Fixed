@@ -49,7 +49,7 @@ func _ready() -> void:
 	for mp_property in properties:
 		init_property(mp_property)
 	
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	#process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	set_multiplayer_authority(get_parent().get_multiplayer_authority())
 	
