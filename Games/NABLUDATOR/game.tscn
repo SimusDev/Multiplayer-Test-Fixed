@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://rnvhbcb71536"]
+[gd_scene load_steps=7 format=3 uid="uid://rnvhbcb71536"]
 
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="1_nw2ob"]
-[ext_resource type="Script" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
 [ext_resource type="Script" uid="uid://cwelaylkqcpm0" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
 [ext_resource type="Script" uid="uid://cbtxulkswky36" path="res://Games/NABLUDATOR/singleton/events.gd" id="4_4t1sq"]
 [ext_resource type="PackedScene" uid="uid://cfg3at13vo658" path="res://Games/NABLUDATOR/components/map_holder.tscn" id="4_vtbgk"]
 [ext_resource type="Script" uid="uid://cy5sqp3kcwjam" path="res://Games/NABLUDATOR/singleton/weapons.gd" id="5_vtbgk"]
+[ext_resource type="Script" uid="uid://c848gdfet5ays" path="res://Games/NABLUDATOR/singleton/battle.gd" id="6_0uv8i"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_vtbgk")
@@ -23,3 +23,8 @@ metadata/_custom_type_script = "uid://cbtxulkswky36"
 [node name="S_NabludatorWeapons" type="Node" parent="."]
 script = ExtResource("5_vtbgk")
 metadata/_custom_type_script = "uid://cy5sqp3kcwjam"
+
+[node name="S_NabludatorBattle" type="Node" parent="." node_paths=PackedStringArray("events")]
+script = ExtResource("6_0uv8i")
+events = NodePath("../NabludatorEvents")
+metadata/_custom_type_script = "uid://c848gdfet5ays"

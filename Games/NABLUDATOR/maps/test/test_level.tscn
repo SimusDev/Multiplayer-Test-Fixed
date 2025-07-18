@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://brx804s758rty"]
+[gd_scene load_steps=29 format=4 uid="uid://brx804s758rty"]
 
 [ext_resource type="Texture2D" uid="uid://3m3pib8o0boe" path="res://Games/source_game/game/levels/source_flatgrass/3d/gm_flatgrass_8.png" id="1_08fac"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_72jdg"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="12_daquc"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="13_nfj04"]
 [ext_resource type="Texture2D" uid="uid://r58t6fdc7cye" path="res://Games/sandbox/levels/sandbox/materialsconcreteconcretefloor005a.png" id="14_n1bmc"]
+[ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="18_m7ni3"]
+[ext_resource type="PackedScene" uid="uid://b4mo6wtkk6a51" path="res://Games/NABLUDATOR/entity/enemy.tscn" id="19_nqior"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnv8v"]
 albedo_color = Color(0.81626, 0.81626, 0.81626, 1)
@@ -295,3 +297,33 @@ transform = Transform3D(0.537329, 0, 0.843373, 0, 1, 0, -0.843373, 0, 0.537329, 
 use_collision = true
 size = Vector3(1, 3.7998, 5.47839)
 material = SubResource("StandardMaterial3D_vag4y")
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="spawner" type="Node" parent="props" node_paths=PackedStringArray("_detect_roots")]
+script = ExtResource("18_m7ni3")
+_detect_roots = [NodePath("..")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
+
+[node name="Enemy" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -8.07482)
+
+[node name="Enemy2" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -5.73544)
+
+[node name="Enemy3" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -3.14996)
+
+[node name="Enemy4" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 0.789735)
+
+[node name="Enemy5" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 5.97812)
+
+[node name="Enemy6" parent="props" instance=ExtResource("19_nqior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 11.2283)

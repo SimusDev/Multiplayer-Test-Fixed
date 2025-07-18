@@ -2,6 +2,7 @@ extends Node
 class_name NabludatorEvents
 
 signal event_shoot(actions: C_NabludatorItemActionsWeapon, shooter: Node3D)
+signal event_died(health: C_NabludatorHealth)
 
 static var i: NabludatorEvents
 
