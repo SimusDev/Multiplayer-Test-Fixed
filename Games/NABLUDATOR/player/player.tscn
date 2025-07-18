@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=45 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
@@ -14,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://c232r14sq3p66" path="res://Games/NABLUDATOR/player/hands/hand_2.png" id="8_wvtht"]
 [ext_resource type="Texture2D" uid="uid://cw70y0w7thrho" path="res://Games/NABLUDATOR/player/textures/eye.png" id="9_y3fon"]
 [ext_resource type="Texture2D" uid="uid://bsu7i8m8s0g5t" path="res://Games/NABLUDATOR/player/textures/mouth.png" id="10_fe7ft"]
+[ext_resource type="Script" uid="uid://cb1ckg1d8f7xm" path="res://Games/NABLUDATOR/components/c_entity_viewmodel.gd" id="15_d8xs0"]
+[ext_resource type="Script" uid="uid://ckrg2nnejqec" path="res://Games/NABLUDATOR/components/r_item.gd" id="16_idjam"]
+[ext_resource type="Script" uid="uid://4yu0vsw6weki" path="res://Games/NABLUDATOR/components/c_player_input.gd" id="16_wvtht"]
+[ext_resource type="Resource" uid="uid://c2ow81xpgu50e" path="res://Games/NABLUDATOR/weapons/ak_47.tres" id="17_t3em3"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="17_tb2mf"]
+[ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
 
 [sub_resource type="Resource" id="Resource_6rsck"]
 script = ExtResource("4_fe7ft")
@@ -822,5 +828,23 @@ debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_paors")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
+
+[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("attachment")]
+script = ExtResource("15_d8xs0")
+items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
+attachment = NodePath("../weapons_attachment")
+metadata/_custom_type_script = "uid://cb1ckg1d8f7xm"
+
+[node name="C_NabludatorPlayerInput" type="Node" parent="." node_paths=PackedStringArray("viewmodel")]
+script = ExtResource("16_wvtht")
+viewmodel = NodePath("../C_NabludatorEntityViewModel")
+metadata/_custom_type_script = "uid://4yu0vsw6weki"
+
+[node name="SD_NodeInput" type="Node2D" parent="C_NabludatorPlayerInput"]
+script = ExtResource("17_tb2mf")
+multiplayer_authorative = true
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="on_input" from="C_NabludatorPlayerInput/SD_NodeInput" to="C_NabludatorPlayerInput" method="_on_sd_node_input_on_input"]
 
 [editable path="W_FPCSourceLikeCamera"]

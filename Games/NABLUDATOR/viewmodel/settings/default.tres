@@ -4,8 +4,7 @@
 
 [resource]
 script = ExtResource("1_futec")
-bone_override = &""
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
+scale = Vector3(25, 25, 25)
 metadata/_custom_type_script = "uid://y0ssfc32a1yv"
