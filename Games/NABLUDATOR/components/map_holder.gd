@@ -26,9 +26,6 @@ func _ready() -> void:
 	
 
 func load_map(map: R_NabludatorMap) -> void:
-	if map in _maps:
-		return
-	
 	var map_name: String = map.resource_path.get_file().get_basename()
 	_maps[map_name] = map
 

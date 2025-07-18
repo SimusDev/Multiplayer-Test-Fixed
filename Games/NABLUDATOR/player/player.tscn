@@ -743,6 +743,9 @@ skin = SubResource("Skin_6g14l")
 transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499095, -2.37381e-09, -0.693299)
 bone_name = "DIR_Jnt_Carpal_01"
 bone_idx = 2
+transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499815, -4.86431e-10, -0.650127)
+bone_name = "DIR_Jnt_Root1_00"
+bone_idx = 1
 use_external_skeleton = true
 external_skeleton = NodePath("../W_FPCSourceLikeCamera/hands/right/Skeleton3D")
 

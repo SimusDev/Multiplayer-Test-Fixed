@@ -20,6 +20,9 @@ func _ready() -> void:
 		await viewmodel.ready
 
 func _on_sd_node_input_on_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label().to_lower()
 		if key in hotbar_slots:
