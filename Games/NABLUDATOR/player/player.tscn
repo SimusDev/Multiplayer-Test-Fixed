@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=46 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
@@ -738,7 +738,7 @@ mesh = SubResource("ArrayMesh_kbk78")
 skin = SubResource("Skin_6g14l")
 
 [node name="weapons_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.0166672, 0.999861, -4.37053e-08, 0, -4.37114e-08, -1, -0.999861, -0.0166672, 7.28548e-10, 0.499815, -4.86431e-10, -0.650127)
+transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499815, -4.86431e-10, -0.650127)
 bone_name = "DIR_Jnt_Root1_00"
 bone_idx = 1
 use_external_skeleton = true
