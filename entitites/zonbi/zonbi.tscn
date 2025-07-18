@@ -1,11 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://4wdkon3b8vlh"]
+[gd_scene load_steps=21 format=3 uid="uid://4wdkon3b8vlh"]
 
 [ext_resource type="Texture2D" uid="uid://c7jhkstf4j04r" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="1_brff1"]
 [ext_resource type="Script" uid="uid://c0fwg0gq6odcx" path="res://entitites/zonbi/zonbi.gd" id="1_y3n5t"]
-[ext_resource type="Script" uid="uid://cvishs4j8htsj" path="res://addons/simusdev/multiplayer/SD_MultiplayerSynchronizer.gd" id="2_6losv"]
 [ext_resource type="Script" uid="uid://cakitr0kr0hf8" path="res://addons/simusdev/components/characterbody/W_ComponentCharacterBody3D.gd" id="2_ry52o"]
-[ext_resource type="Texture2D" uid="uid://bs27b38iwrjuf" path="res://icon.svg" id="2_y3n5t"]
+[ext_resource type="Texture2D" uid="uid://dudxia41mq2tg" path="res://icon.svg" id="2_y3n5t"]
 [ext_resource type="Script" uid="uid://cmb5et352niyr" path="res://scripts/components/timer_server/C_TimerServer.gd" id="4_ipl43"]
+[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="6_lnvbd"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="7_0yfkf"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="8_5kuuj"]
+[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="9_5kuuj"]
+[ext_resource type="PackedScene" uid="uid://d23bp7jnv2am1" path="res://Games/NABLUDATOR/components/c_hitbox.tscn" id="10_8bbak"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry52o"]
 albedo_texture = ExtResource("1_brff1")
@@ -31,18 +35,30 @@ albedo_texture = ExtResource("1_brff1")
 [sub_resource type="BoxShape3D" id="BoxShape3D_brff1"]
 size = Vector3(1, 1.58411, 1)
 
+[sub_resource type="Resource" id="Resource_8bbak"]
+script = ExtResource("7_0yfkf")
+properties = PackedStringArray("transform")
+interpolation_enabled = true
+interpolation_speed = 32.0
+float_snap = 0.1
+node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 1
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_mkp7e"]
+script = ExtResource("8_5kuuj")
+_list = Array[ExtResource("7_0yfkf")]([SubResource("Resource_8bbak")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
+
 [node name="Zonbi" type="CharacterBody3D" node_paths=PackedStringArray("character_component")]
 collision_layer = 0
 script = ExtResource("1_y3n5t")
 character_component = NodePath("W_ComponentCharacterBody3D")
-
-[node name="SD_MultiplayerSynchronizer" type="Node" parent="." node_paths=PackedStringArray("sync_node")]
-script = ExtResource("2_6losv")
-update_mode = 1
-interpolation = true
-sync_node = NodePath("..")
-properties_to_sync = PackedStringArray("transform")
-metadata/_custom_type_script = "uid://cvishs4j8htsj"
 
 [node name="W_ComponentCharacterBody3D" type="Node" parent="." node_paths=PackedStringArray("body")]
 script = ExtResource("2_ry52o")
@@ -92,6 +108,25 @@ mesh = SubResource("CylinderMesh_lnvbd")
 material = SubResource("StandardMaterial3D_5kuuj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00050807, -0.177771, -0.00361788)
+shape = SubResource("BoxShape3D_brff1")
+
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("6_lnvbd")
+_data = SubResource("Resource_mkp7e")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
+
+[node name="C_NabludatorHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("9_5kuuj")
+target = NodePath("..")
+destroy_target_on_death = true
+metadata/_custom_type_script = "uid://cr5ugf5fc22sf"
+
+[node name="c_hitbox" parent="." node_paths=PackedStringArray("root", "health") instance=ExtResource("10_8bbak")]
+root = NodePath("..")
+health = NodePath("../C_NabludatorHealth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="c_hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00050807, -0.177771, -0.00361788)
 shape = SubResource("BoxShape3D_brff1")
 

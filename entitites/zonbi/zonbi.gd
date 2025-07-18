@@ -9,7 +9,7 @@ enum STATES {
 
 var _current_state: STATES = STATES.IDLE
 
-var target: WorldPlayer
+var target: Nabludator
 
 func _ready() -> void:
 	character_component.enabled = multiplayer.is_server()
@@ -47,18 +47,12 @@ func _state_entered(state: STATES) -> void:
 func _state_exited(state: STATES) -> void:
 	pass
 
-func pick_closest_player() -> WorldPlayer:
-	var players: Array[WorldPlayer] = WorldPlayer.get_player_list()
-	for player in players:
-		if player.global_position.distance_to(global_position) <= 12.0:
-			return player
-	return null
-
+func pick_closest_player() -> Nabludator:
+	return Nabludator.get_player_list().pick_random()
 
 func _on_tick_timeout() -> void:
-	var picked: WorldPlayer = pick_closest_player()
+	var picked: Nabludator = pick_closest_player()
 	if picked:
-		target = picked
 		change_state(STATES.CHASE)
 	else:
 		change_state(STATES.IDLE)

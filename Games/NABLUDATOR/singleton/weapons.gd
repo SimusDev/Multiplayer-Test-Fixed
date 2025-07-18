@@ -18,5 +18,3 @@ func _on_event_shoot(actions: C_NabludatorItemActionsWeapon, shooter: Node3D) ->
 	if object is C_NabludatorHitbox:
 		object.apply_damage(actions.weapon.base_damage, shooter)
 		
-		if health:
-			health.apply_damage(actions.weapon.base_damage * actions.weapon.chest_damage_multiplier)
