@@ -18,5 +18,5 @@ static func update(_health:float):
 	instance.health.text = str(roundf(_health)) + " :hp"
 
 func _process(_delta: float) -> void:
-	if is_multiplayer_authority():
+	if is_instance_valid(SourcePlayer.instance):
 		vhs_rect.visible = SourcePlayer.instance.is_in_backrooms()
