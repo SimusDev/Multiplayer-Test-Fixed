@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
-[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
+[ext_resource type="Script" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -1064,9 +1064,8 @@ shape = SubResource("CapsuleShape3D_qoi8o")
 
 [node name="hitboxes" type="Node3D" parent="."]
 
-[node name="head" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+[node name="head" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
-health = NodePath("")
 damage_multiplier = 3.0
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/head"]
@@ -1074,17 +1073,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CylinderShape3D_muiaj")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="chest" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+[node name="chest" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
-health = NodePath("")
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/chest"]
 shape = SubResource("CylinderShape3D_qoi8o")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="legs" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+[node name="legs" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
-health = NodePath("")
 damage_multiplier = 0.5
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/legs"]
@@ -1110,7 +1107,6 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 [node name="C_NabludatorEyesRayCastReference" type="Node" parent="." node_paths=PackedStringArray("root", "raycast")]
 script = ExtResource("22_sgj1c")
 root = NodePath("..")
-raycast = NodePath("../W_FPCSourceLikeCamera/fire_raycast")
 raycast = NodePath("../W_FPCSourceLikeCamera/c_damage_raycast")
 metadata/_custom_type_script = "uid://ctxfpyl7chtw8"
 
