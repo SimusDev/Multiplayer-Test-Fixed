@@ -12,6 +12,9 @@ var item_instance: Node
 var actions: C_NabludatorItemActions
 
 func _ready() -> void:
+	if !root:
+		root = get_parent()
+	
 	SD_Network.register_function(_select_)
 	
 	if !attachment.is_node_ready():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=58 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_sgj1c"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_hlr15"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="5_muiaj"]
-[ext_resource type="Script" uid="uid://jcmu78gr5cld" path="res://Games/NABLUDATOR/components/hitbox.gd" id="6_qoi8o"]
+[ext_resource type="PackedScene" uid="uid://bv6bdyu857uoj" path="res://Games/NABLUDATOR/components/c_damage_raycast.tscn" id="6_lxqqc"]
 [ext_resource type="Texture2D" uid="uid://dx5awebwl5113" path="res://Games/source_game/player/hands/fp_arms_0.png" id="6_t3em3"]
 [ext_resource type="Texture2D" uid="uid://dfegttm5hkn32" path="res://Games/source_game/player/hands/fp_arms_1.png" id="7_lo1q8"]
 [ext_resource type="Texture2D" uid="uid://dc3d1wgga1sqy" path="res://Games/source_game/player/hands/fp_arms_2.png" id="8_sgj1c"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cw70y0w7thrho" path="res://Games/NABLUDATOR/player/textures/eye.png" id="9_y3fon"]
 [ext_resource type="Texture2D" uid="uid://bsu7i8m8s0g5t" path="res://Games/NABLUDATOR/player/textures/mouth.png" id="10_fe7ft"]
 [ext_resource type="Script" uid="uid://cb1ckg1d8f7xm" path="res://Games/NABLUDATOR/components/c_entity_viewmodel.gd" id="15_d8xs0"]
+[ext_resource type="PackedScene" uid="uid://d23bp7jnv2am1" path="res://Games/NABLUDATOR/components/c_hitbox.tscn" id="15_lxqqc"]
 [ext_resource type="Script" uid="uid://ckrg2nnejqec" path="res://Games/NABLUDATOR/components/r_item.gd" id="16_idjam"]
 [ext_resource type="Script" uid="uid://4yu0vsw6weki" path="res://Games/NABLUDATOR/components/c_player_input.gd" id="16_wvtht"]
 [ext_resource type="Resource" uid="uid://c2ow81xpgu50e" path="res://Games/NABLUDATOR/weapons/ak_47.tres" id="17_t3em3"]
@@ -23,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
-[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="24_vh1f0"]
+[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -539,9 +540,9 @@ metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 body = NodePath("..")
 
-[node name="fire_raycast" type="RayCast3D" parent="W_FPCSourceLikeCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-target_position = Vector3(0, 0, -1000)
+[node name="c_damage_raycast" parent="W_FPCSourceLikeCamera" instance=ExtResource("6_lxqqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65128)
+target_position = Vector3(0, -1, -1000)
 
 [node name="arms" type="Node3D" parent="W_FPCSourceLikeCamera"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, -0.15734)
@@ -1061,29 +1062,32 @@ skeleton = NodePath("../..")
 [node name="collision_normal" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qoi8o")
 
-[node name="hitbox" type="Node3D" parent="." node_paths=PackedStringArray("player", "head", "chest", "legs")]
-script = ExtResource("6_qoi8o")
-player = NodePath("..")
-head = NodePath("head")
-chest = NodePath("chest")
-legs = NodePath("legs")
+[node name="hitboxes" type="Node3D" parent="."]
 
-[node name="head" type="Area3D" parent="hitbox"]
+[node name="head" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+root = NodePath("../..")
+health = NodePath("")
+damage_multiplier = 3.0
 
-[node name="collision" type="CollisionShape3D" parent="hitbox/head"]
+[node name="collision" type="CollisionShape3D" parent="hitboxes/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CylinderShape3D_muiaj")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="chest" type="Area3D" parent="hitbox"]
+[node name="chest" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+root = NodePath("../..")
+health = NodePath("")
 
-[node name="collision" type="CollisionShape3D" parent="hitbox/chest"]
+[node name="collision" type="CollisionShape3D" parent="hitboxes/chest"]
 shape = SubResource("CylinderShape3D_qoi8o")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="legs" type="Area3D" parent="hitbox"]
+[node name="legs" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
+root = NodePath("../..")
+health = NodePath("")
+damage_multiplier = 0.5
 
-[node name="collision" type="CollisionShape3D" parent="hitbox/legs"]
+[node name="collision" type="CollisionShape3D" parent="hitboxes/legs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_paors")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
@@ -1107,17 +1111,18 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 script = ExtResource("22_sgj1c")
 root = NodePath("..")
 raycast = NodePath("../W_FPCSourceLikeCamera/fire_raycast")
+raycast = NodePath("../W_FPCSourceLikeCamera/c_damage_raycast")
+metadata/_custom_type_script = "uid://ctxfpyl7chtw8"
 
 [node name="C_NabludatorItemUsage" type="Node" parent="." node_paths=PackedStringArray("source", "viewmodel")]
 script = ExtResource("23_hlr15")
 source = NodePath("..")
 viewmodel = NodePath("../C_NabludatorEntityViewModel")
 
-[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("24_vh1f0")
+[node name="C_NabludatorHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("25_lxqqc")
 target = NodePath("..")
-destroy_target_on_death = true
-metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+metadata/_custom_type_script = "uid://cr5ugf5fc22sf"
 
 [connection signal="on_input" from="C_NabludatorPlayerInput/SD_NodeInput" to="C_NabludatorPlayerInput" method="_on_sd_node_input_on_input"]
 

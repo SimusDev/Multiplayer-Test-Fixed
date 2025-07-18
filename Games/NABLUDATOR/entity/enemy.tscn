@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4mo6wtkk6a51"]
+
+[ext_resource type="Script" uid="uid://j6iavn7j06g2" path="res://Games/NABLUDATOR/entity/enemy.gd" id="1_nbykc"]
+[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="2_nbykc"]
+[ext_resource type="PackedScene" uid="uid://d23bp7jnv2am1" path="res://Games/NABLUDATOR/components/c_hitbox.tscn" id="2_p8c11"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t0iht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nbykc"]
+
+[node name="Enemy" type="RigidBody3D"]
+script = ExtResource("1_nbykc")
+
+[node name="C_NabludatorHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_nbykc")
+target = NodePath("..")
+destroy_target_on_death = true
+metadata/_custom_type_script = "uid://cr5ugf5fc22sf"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_t0iht")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nbykc")
+
+[node name="c_hitbox" parent="." node_paths=PackedStringArray("root", "health") instance=ExtResource("2_p8c11")]
+root = NodePath("..")
+health = NodePath("../C_NabludatorHealth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="c_hitbox"]
+shape = SubResource("BoxShape3D_nbykc")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.814545, 0)
+billboard = 1
+text = "100"
+font_size = 64

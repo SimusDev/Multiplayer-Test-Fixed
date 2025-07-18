@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6bdyu857uoj"]
+
+[ext_resource type="Script" uid="uid://bqn2b1gnickeb" path="res://Games/NABLUDATOR/components/c_damage_raycast.gd" id="1_dvqri"]
+
+[node name="c_damage_raycast" type="RayCast3D"]
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("1_dvqri")
+metadata/_custom_type_script = "uid://bqn2b1gnickeb"

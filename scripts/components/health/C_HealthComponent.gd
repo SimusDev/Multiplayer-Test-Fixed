@@ -1,6 +1,8 @@
 extends W_ComponentHealth
 class_name C_HealthComponent
 
+var damage_source: Object
+
 func _ready() -> void:
 	if SD_Multiplayer.is_server():
 		health_changed.connect(_on_server_health_changed)
