@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dracbndneglv7"]
-
-[ext_resource type="Texture2D" uid="uid://di4d3cps5jo3g" path="res://addons/simusdev/icons/Save.png" id="1_2xsof"]
-
-[node name="SEx" type="Node2D"]
-
-[node name="SexZombie" type="SexZombie" parent="."]
-position = Vector2(550, 208)
-texture = ExtResource("1_2xsof")

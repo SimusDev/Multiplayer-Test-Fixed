@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
-[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
+[ext_resource type="Script" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
