@@ -794,7 +794,6 @@ func sync_call_function_on_peer(peer: int, node: Node, callable: Callable, args:
 	#	print(packet)
 	
 	var serialized: Variant = SD_MPDataCompressor.serialize_data(packet)
-	
 	match callmode:
 		SD_Multiplayer.CALLMODE.RELIABLE:
 			_sync_call_function_recieve_rpc.rpc_id(peer, serialized)

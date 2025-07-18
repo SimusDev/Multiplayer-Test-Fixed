@@ -27,7 +27,7 @@ static func __compress(data: Variant, mode: int = _compression, _bytes: PackedBy
 	var compressed: PackedByteArray = bytes.compress(mode)
 	return compressed
 
-static func __serialize_data(data: Variant, mode: int = _compression) -> Variant:
+static func try_compress(data: Variant, mode: int = _compression) -> Variant:
 	var str_data: String = var_to_str(data)
 	var bytes: PackedByteArray = var_to_bytes(str_data)
 	if bytes.size() < _min_bytes_to_compress:
@@ -55,9 +55,9 @@ static func _parse_dictionary(dict: Dictionary) -> Dictionary:
 static func _parse_object(object: Object) -> String:
 	return var_to_str(object)
 
-static func _parse_node_reference(node: Node) -> int:
+static func _parse_node_reference(node: Node) -> String:
 	var path: String = str(node.get_path())
-	return _singleton.get_cached_nodes().find(path) as int
+	return path
 
 static func _parse_resource(resource: Resource) -> Variant:
 	var dict: Dictionary = {}
@@ -73,7 +73,7 @@ static func parse(variant: Variant) -> Variant:
 	var type: int = typeof(variant)
 	if !TYPES.has(type):
 		
-		return __serialize_data(variant)
+		return variant
 	
 	var packet: Dictionary = {}
 	
@@ -81,23 +81,23 @@ static func parse(variant: Variant) -> Variant:
 		TYPE_ARRAY:
 			var parsed: Array = _parse_array(variant)
 			packet["a"] = parsed
-			return __serialize_data(packet)
+			return packet
 			
 		TYPE_DICTIONARY:
 			var parsed: Dictionary = _parse_dictionary(variant)
 			packet["d"] = parsed
-			return __serialize_data(packet)
+			return packet
 	
 	if variant is Node:
 		packet["cn"] = _parse_node_reference(variant)
-		return __serialize_data(packet)
+		return packet
 	
 	if variant is Resource:
 		packet["r"] = _parse_resource(variant)
-		return __serialize_data(packet)
+		return packet
 	
 	if variant is Object:
 		packet["o"] = _parse_object(variant)
-		return __serialize_data(packet)
+		return packet
 	
-	return __serialize_data(packet)
+	return packet

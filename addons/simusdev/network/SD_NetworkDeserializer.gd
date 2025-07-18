@@ -46,8 +46,7 @@ static func _parse_dictionary(dict: Dictionary) -> Dictionary:
 	
 	return parsed
 
-static func _parse_node_reference(cached_id: int) -> Variant:
-	var path: String = SD_Array.get_value_from_array(_singleton.get_cached_nodes(), cached_id, "")
+static func _parse_node_reference(path: String) -> Variant:
 	return SimusDev.get_node_or_null(path)
 
 static var _CALLABLES = {
@@ -59,16 +58,14 @@ static var _CALLABLES = {
 }
 
 static func parse(serialized: Variant) -> Variant:
-	var deserialized: Variant = __deserialize_data(serialized)
-	
-	if deserialized is Dictionary:
-		for p: String in deserialized:
+	if serialized is Dictionary:
+		for p: String in serialized:
 			if _CALLABLES.has(p):
 				var callable: Callable = _CALLABLES.get(p) as Callable
-				var result: Variant = callable.call(deserialized[p])
+				var result: Variant = callable.call(serialized[p])
 				return result
 	
-	return deserialized
+	return serialized
 	
 	#if deserialized is Dictionary:
 		#var packet: Dictionary = deserialized

@@ -8,7 +8,7 @@ var item: R_NabludatorItem
 func _ready() -> void:
 	SD_Network.register_function(_set_use_s)
 	SD_Network.register_variable(self, "_usings")
-	SD_Network.var_sync_from_server(self, "_usings")
+	SD_Network.var_sync_from_server(self, ["_usings"])
 
 func set_use(value: bool, id: String) -> void:
 	SD_Network.call_func(_set_use_s, [value, id])
