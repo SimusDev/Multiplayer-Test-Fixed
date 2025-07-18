@@ -39,15 +39,16 @@ func _interface_opened_or_closed(interface: Node, status: bool) -> void:
 	_update_input_status()
 
 func _update_input_status() -> void:
-	_status = enabled
-	
-	if disable_input_when_invisible_in_tree and !is_visible_in_tree():
-		_status = false
-	
-	if depends_on_interface:
-		_status = not ui.has_active_interface()
-	
-	
+	if is_authorative():
+		_status = enabled
+		
+		if disable_input_when_invisible_in_tree and !is_visible_in_tree():
+			_status = false
+		
+		if depends_on_interface:
+			_status = not ui.has_active_interface()
+		
+		
 
 func update_input_status() -> void:
 	_update_input_status()
