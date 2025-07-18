@@ -429,7 +429,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.65382, -0.432347, -0.812533)]
+"values": [Vector3(0.654, -0.432, -0.588)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1088,8 +1088,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_paors")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("attachment")]
+[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("root", "attachment")]
 script = ExtResource("15_d8xs0")
+root = NodePath("..")
 items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
 attachment = NodePath("../W_FPCSourceLikeCamera/containers/weapon_container")
 
@@ -1106,13 +1107,11 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 script = ExtResource("22_sgj1c")
 root = NodePath("..")
 raycast = NodePath("../W_FPCSourceLikeCamera/fire_raycast")
-metadata/_custom_type_script = "uid://ctxfpyl7chtw8"
 
 [node name="C_NabludatorItemUsage" type="Node" parent="." node_paths=PackedStringArray("source", "viewmodel")]
 script = ExtResource("23_hlr15")
 source = NodePath("..")
 viewmodel = NodePath("../C_NabludatorEntityViewModel")
-metadata/_custom_type_script = "uid://c624hlftg8wkp"
 
 [node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("24_vh1f0")

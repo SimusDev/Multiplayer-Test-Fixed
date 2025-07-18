@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="1_nw2ob"]
 [ext_resource type="Script" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
-[ext_resource type="Script" uid="uid://cwelaylkqcpm0" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
 [ext_resource type="Script" uid="uid://cbtxulkswky36" path="res://Games/NABLUDATOR/singleton/events.gd" id="4_4t1sq"]
 [ext_resource type="PackedScene" uid="uid://cfg3at13vo658" path="res://Games/NABLUDATOR/components/map_holder.tscn" id="4_vtbgk"]
 [ext_resource type="Script" uid="uid://cy5sqp3kcwjam" path="res://Games/NABLUDATOR/singleton/weapons.gd" id="5_vtbgk"]
@@ -22,4 +21,3 @@ metadata/_custom_type_script = "uid://cbtxulkswky36"
 
 [node name="S_NabludatorWeapons" type="Node" parent="."]
 script = ExtResource("5_vtbgk")
-metadata/_custom_type_script = "uid://cy5sqp3kcwjam"

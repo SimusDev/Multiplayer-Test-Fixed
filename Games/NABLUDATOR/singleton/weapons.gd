@@ -23,7 +23,3 @@ func _on_event_shoot(actions: C_NabludatorItemActionsWeapon, shooter: Node3D) ->
 		
 		if health:
 			health.apply_damage(actions.weapon.base_damage * actions.weapon.chest_damage_multiplier)
-		
-		
-	
-	
