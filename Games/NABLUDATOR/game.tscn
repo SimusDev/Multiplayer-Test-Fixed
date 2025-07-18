@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="1_nw2ob"]
 [ext_resource type="Script" uid="uid://cwelaylkqcpm0" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
 [ext_resource type="Script" uid="uid://cbtxulkswky36" path="res://Games/NABLUDATOR/singleton/events.gd" id="4_4t1sq"]
+[ext_resource type="Script" path="res://Games/NABLUDATOR/game.gd" id="1_vtbgk"]
 [ext_resource type="PackedScene" uid="uid://cfg3at13vo658" path="res://Games/NABLUDATOR/components/map_holder.tscn" id="4_vtbgk"]
 
 [node name="Game" type="Node"]

@@ -110,7 +110,6 @@ reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0
 ssil_enabled = true
-sdfgi_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e8vls"]
 

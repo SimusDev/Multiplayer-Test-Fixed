@@ -276,8 +276,10 @@ height = 0.8
 height = 0.6
 radius = 0.445
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "hands")]
 script = ExtResource("1_3exd0")
+camera = NodePath("W_FPCSourceLikeCamera")
+hands = NodePath("W_FPCSourceLikeCamera/hands")
 
 [node name="sync" type="Node" parent="."]
 script = ExtResource("2_gum4i")
@@ -736,6 +738,9 @@ mesh = SubResource("ArrayMesh_kbk78")
 skin = SubResource("Skin_6g14l")
 
 [node name="weapons_attachment" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499095, -2.37381e-09, -0.693299)
+bone_name = "DIR_Jnt_Carpal_01"
+bone_idx = 2
 transform = Transform3D(-0.000333344, 0.0199972, 1.45709e-11, -8.74228e-10, 1.24877e-17, -0.02, -0.0199972, -0.000333344, 8.74106e-10, 0.499815, -4.86431e-10, -0.650127)
 bone_name = "DIR_Jnt_Root1_00"
 bone_idx = 1
@@ -825,12 +830,10 @@ script = ExtResource("15_d8xs0")
 root = NodePath("..")
 items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
 attachment = NodePath("../weapons_attachment")
-metadata/_custom_type_script = "uid://cb1ckg1d8f7xm"
 
 [node name="C_NabludatorPlayerInput" type="Node" parent="." node_paths=PackedStringArray("viewmodel")]
 script = ExtResource("16_wvtht")
 viewmodel = NodePath("../C_NabludatorEntityViewModel")
-metadata/_custom_type_script = "uid://4yu0vsw6weki"
 
 [node name="SD_NodeInput" type="Node2D" parent="C_NabludatorPlayerInput"]
 script = ExtResource("17_tb2mf")
