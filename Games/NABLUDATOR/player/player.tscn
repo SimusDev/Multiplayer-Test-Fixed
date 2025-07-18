@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=57 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
@@ -21,6 +21,9 @@
 [ext_resource type="Resource" uid="uid://c2ow81xpgu50e" path="res://Games/NABLUDATOR/weapons/ak_47.tres" id="17_t3em3"]
 [ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="17_tb2mf"]
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
+[ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
+[ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
+[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="24_vh1f0"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -30,7 +33,7 @@ interpolation_speed = 32.0
 float_snap = 0.1
 node_path = NodePath("..")
 channels = Array[String](["main"])
-tickrate = 32.0
+tickrate = 64.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
@@ -45,7 +48,7 @@ interpolation_speed = 32.0
 float_snap = 0.1
 node_path = NodePath("../W_FPCSourceLikeCamera")
 channels = Array[String](["main"])
-tickrate = 32.0
+tickrate = 64.0
 tickrate_mode = 0
 sync_mode = 1
 sync = 0
@@ -539,8 +542,6 @@ body = NodePath("..")
 [node name="fire_raycast" type="RayCast3D" parent="W_FPCSourceLikeCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 target_position = Vector3(0, 0, -1000)
-collide_with_areas = true
-collide_with_bodies = false
 
 [node name="arms" type="Node3D" parent="W_FPCSourceLikeCamera"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, -0.15734)
@@ -1087,8 +1088,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CylinderShape3D_paors")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("attachment")]
+[node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("root", "attachment")]
 script = ExtResource("15_d8xs0")
+root = NodePath("..")
 items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
 attachment = NodePath("../W_FPCSourceLikeCamera/containers/weapon_container")
 
@@ -1100,6 +1102,24 @@ viewmodel = NodePath("../C_NabludatorEntityViewModel")
 script = ExtResource("17_tb2mf")
 multiplayer_authorative = true
 metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[node name="C_NabludatorEyesRayCastReference" type="Node" parent="." node_paths=PackedStringArray("root", "raycast")]
+script = ExtResource("22_sgj1c")
+root = NodePath("..")
+raycast = NodePath("../W_FPCSourceLikeCamera/fire_raycast")
+metadata/_custom_type_script = "uid://ctxfpyl7chtw8"
+
+[node name="C_NabludatorItemUsage" type="Node" parent="." node_paths=PackedStringArray("source", "viewmodel")]
+script = ExtResource("23_hlr15")
+source = NodePath("..")
+viewmodel = NodePath("../C_NabludatorEntityViewModel")
+metadata/_custom_type_script = "uid://c624hlftg8wkp"
+
+[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("24_vh1f0")
+target = NodePath("..")
+destroy_target_on_death = true
+metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
 [connection signal="on_input" from="C_NabludatorPlayerInput/SD_NodeInput" to="C_NabludatorPlayerInput" method="_on_sd_node_input_on_input"]
 
