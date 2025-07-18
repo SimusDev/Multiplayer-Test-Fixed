@@ -9,7 +9,7 @@ func create(address: String, port: int) -> bool:
 			var err: Error = peer.create_client(address, port)
 			if err == OK:
 				singleton._active = true
-				singleton.info.name = "Client"
+				singleton.info.name = "Status Client"
 				peer.host.compress(singleton.settings.compression)
 				multiplayer.multiplayer_peer = peer
 				singleton.debug_print("client created. %s:%s" % [address, str(port)], SD_ConsoleCategories.CATEGORY.SUCCESS)

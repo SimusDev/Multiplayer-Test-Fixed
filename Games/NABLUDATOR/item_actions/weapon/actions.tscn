@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkrpmrhvuep3f"]
+
+[ext_resource type="Script" uid="uid://duujdjd52luy4" path="res://Games/NABLUDATOR/item_actions/weapon/actions.gd" id="1_8s2qs"]
+
+[node name="Actions" type="Node"]
+script = ExtResource("1_8s2qs")
+metadata/_custom_type_script = "uid://b4hhx0x0a8kq2"

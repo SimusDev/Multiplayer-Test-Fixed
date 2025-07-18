@@ -105,3 +105,24 @@ static func _on_cached_node_recieve(path: String, target: String, callable: Call
 	if path == target:
 		singleton.on_cached_node_recieve.disconnect(_on_cached_node_recieve)
 		callable.call()
+
+static func register_variable(node: Node, property: String, options: Dictionary = {}) -> void:
+	singleton.variables.register_variable(node, property, options)
+
+static func register_all_variables(node: Node) -> void:
+	singleton.variables.register_all_variables(node)
+
+static func get_registered_variables(object: Object) -> Dictionary[String, Dictionary]:
+	return singleton.variables.get_registered_variables(object)
+
+static func is_variable_registered(node: Node, property: String) -> bool:
+	return singleton.variables.is_variable_registered(node, property)
+
+static func var_sync_from(peer: int, node: Node, property: String, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	singleton.variables.var_sync_from(peer, node, property, callmode, channel)
+
+static func var_send_to(peer: int, node: Node, property: String, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	singleton.variables.var_send_to(peer, node, property, callmode, channel)
+
+static func var_sync_from_server(node: Node, property: String, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	singleton.variables.var_sync_from_server(node, property, callmode, channel)

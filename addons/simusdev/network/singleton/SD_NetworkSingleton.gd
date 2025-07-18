@@ -13,8 +13,8 @@ signal initialized()
 @export var players: SD_NetTrunkPlayers
 @export var cache: SD_NetTrunkCache
 @export var synchronization: SD_NetTrunkSynchronization
+@export var variables: SD_NetTrunkVariables
 @export var info: Node
-
 
 var _dedicated_server: bool = false
 var _peer: PacketPeer
@@ -174,7 +174,7 @@ func _on_peer_disconnected(peer: int) -> void:
 	on_peer_disconnected.emit(peer)
 
 func _on_server_disconnected() -> void:
-	info.name = "Not Active"
+	info.name = "Status Not Active"
 	players._on_server_disconnected()
 	on_server_disconnected.emit()
 	

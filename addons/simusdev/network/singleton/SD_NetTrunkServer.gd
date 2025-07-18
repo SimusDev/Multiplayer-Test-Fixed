@@ -9,7 +9,7 @@ func create(port: int, max_clients: int = 32) -> bool:
 			var err: Error = peer.create_server(port, max_clients)
 			if err == OK:
 				singleton._active = true
-				singleton.info.name = "Server"
+				singleton.info.name = "Status Server"
 				peer.host.compress(singleton.settings.compression)
 				multiplayer.multiplayer_peer = peer
 				

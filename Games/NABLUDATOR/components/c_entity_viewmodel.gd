@@ -1,12 +1,15 @@
 extends Node
 class_name C_NabludatorEntityViewModel
 
+@export var root: Node3D
 @export var items: Array[R_NabludatorItem] = []
 @export var attachment: BoneAttachment3D
 
 @export var selected: int = -1
 
 var item_instance: Node
+
+var actions: C_NabludatorItemActions
 
 func _ready() -> void:
 	SD_Network.register_function(_select_)
@@ -38,13 +41,12 @@ func _select_(id: int) -> void:
 
 func update() -> void:
 	for i in attachment.get_children():
-		i.queue_free()
-	
-	item_instance = null
-	
-	await get_tree().process_frame
+		i.queue_free.call_deferred()
+		await i.tree_exited
 	
 	var item: R_NabludatorItem = get_selected_item()
+	_update_actions(item)
+	
 	if item:
 		var view: R_NabludatorViewModel = item.viewmodel
 		if !view:
@@ -54,13 +56,38 @@ func update() -> void:
 		if !prefab:
 			return
 		
+		var container: Node3D = Node3D.new()
+		container.name = "container"
+		
 		item_instance = prefab.instantiate()
 		item_instance.name = item.code.validate_node_name()
+		
+		container.add_child(item_instance)
 		
 		if view.settings:
 			item_instance.position = view.settings.position
 			item_instance.scale = view.settings.scale
 			item_instance.rotation = view.settings.rotation
 		
-		attachment.add_child(item_instance)
+		attachment.add_child(container)
+
+func _update_actions(item: R_NabludatorItem) -> void:
+	if !item:
+		return
+	
+	if is_instance_valid(actions):
+		actions.name = "0"
+		actions.queue_free()
+	
+	if item.actions:
 		
+		var p: PackedScene = item.actions.get_prefab()
+		if p:
+			actions = p.instantiate()
+		else:
+			actions = C_NabludatorItemActions.new()
+		
+		actions.entity_viewmodel = self
+		actions.item = item
+		actions.name = "actions"
+		add_child(actions)
