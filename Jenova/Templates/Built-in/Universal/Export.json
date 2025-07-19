@@ -1,0 +1,8 @@
+{
+  "Category": "Global",
+  "Backend": "Universal",
+  "Name": "Export",
+  "Description": "Export C++ Functions",
+  "Author": "Hamid.Memar",
+  "Version": 1.0
+}
