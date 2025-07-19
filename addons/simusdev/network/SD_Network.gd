@@ -15,11 +15,18 @@ const SERVER_ID: int = 1
 func _init(net: SD_NetworkSingleton) -> void:
 	singleton = net
 
+static func is_authority(node: Node) -> bool:
+	return node.get_multiplayer_authority() == get_unique_id()
+
 static func terminate_connection() -> void:
 	singleton.terminate_connection()
 
 static func register_function(callable: Callable, options: Dictionary = {}) -> void:
 	singleton.callables.register_function(callable, options)
+
+static func register_functions(callables: Array[Callable]) -> void:
+	for callable in callables:
+		register_function(callable)
 
 static func register_all_functions(node: Node) -> void:
 	singleton.callables.register_all_functions(node)
@@ -109,6 +116,10 @@ static func _on_cached_node_recieve(path: String, target: String, callable: Call
 static func register_variable(node: Node, property: String, options: Dictionary = {}) -> void:
 	singleton.variables.register_variable(node, property, options)
 
+static func register_variables(node: Node, properties: PackedStringArray) -> void:
+	for property in properties:
+		register_variable(node, property)
+
 static func register_all_variables(node: Node) -> void:
 	singleton.variables.register_all_variables(node)
 
@@ -118,11 +129,11 @@ static func get_registered_variables(object: Object) -> Dictionary[String, Dicti
 static func is_variable_registered(node: Node, property: String) -> bool:
 	return singleton.variables.is_variable_registered(node, property)
 
-static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	singleton.variables.var_sync_from(peer, node, properties, callmode, channel, options)
+static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from(peer, node, properties, callmode, channel, options)
 
 static func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
 	singleton.variables.var_send_to(peer, node, properties, callmode, channel, options)
 
-static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)
+static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)

@@ -1092,7 +1092,7 @@ debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 [node name="C_NabludatorEntityViewModel" type="Node" parent="." node_paths=PackedStringArray("root", "attachment")]
 script = ExtResource("15_d8xs0")
 root = NodePath("..")
-items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
+initial_items = Array[ExtResource("16_idjam")]([ExtResource("17_t3em3"), ExtResource("18_t3em3")])
 attachment = NodePath("../W_FPCSourceLikeCamera/containers/weapon_container")
 
 [node name="C_NabludatorPlayerInput" type="Node" parent="." node_paths=PackedStringArray("viewmodel")]

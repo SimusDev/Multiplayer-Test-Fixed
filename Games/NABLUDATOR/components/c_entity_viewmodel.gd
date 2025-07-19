@@ -2,7 +2,8 @@ extends Node
 class_name C_NabludatorEntityViewModel
 
 @export var root: Node3D
-@export var items: Array[R_NabludatorItem] = []
+@export var initial_items: Array[R_NabludatorItem] = []
+var items: Array[R_NabludatorItem] = []
 @export var attachment: Node3D
 
 @export var selected: int = -1
@@ -15,22 +16,50 @@ func _ready() -> void:
 	if !root:
 		root = get_parent()
 	
-	SD_Network.register_function(_select_)
+	SD_Network.register_functions([
+		_select_
+	])
+	
+	SD_Network.register_variables(self, [
+		"selected",
+	])
 	
 	if !attachment.is_node_ready():
 		await attachment.ready
 	
 	
+	
+	for i in initial_items:
+		var duplicated: R_NabludatorItem = i.duplicate()
+		
+		var data: C_NabludatorItemData = C_NabludatorItemData.new()
+		data.name = i.code.validate_node_name()
+		add_child(data)
+		
+		duplicated.data = data
+		items.append(duplicated)
+	
+	
 	if items.is_empty():
 		return
 	
+	var select_id: int = selected
+	if select_id < 0:
+		select_id = 0
+	
 	if SD_Network.is_server():
-		select(0) 
+		select(select_id)
 	else:
-		SD_Multiplayer.request_and_sync_var_from_server(self, "selected", _selected_synced)
+		SD_Network.var_sync_from_server(self, [
+			"selected",
+			]
+			).synced.connect(_on_synced_var)
 
-func _selected_synced() -> void:
-	update()
+func _on_synced_var(property: String, value: Variant) -> void:
+	match property:
+		"selected":
+			SimusDev.console.write_info("synced item: %s" % [str(value)])
+			select(value)
 
 func get_selected_item() -> R_NabludatorItem:
 	return SD_Array.get_value_from_array(items, selected)
@@ -55,7 +84,7 @@ func update() -> void:
 		if !view:
 			return
 		
-		var prefab: PackedScene = view.prefab 
+		var prefab: PackedScene = view.prefab
 		if !prefab:
 			return
 		
@@ -64,6 +93,7 @@ func update() -> void:
 		
 		item_instance = prefab.instantiate()
 		item_instance.name = item.code.validate_node_name()
+		item_instance.set_meta("C_NabludatorItemActions", actions)
 		
 		container.add_child(item_instance)
 		

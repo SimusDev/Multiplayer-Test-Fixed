@@ -27,7 +27,7 @@ func _destroy_player(peer: int) -> void:
 	
 		_connected.erase(peer)
 		
-		singleton.debug_print("peer(%s) disconnected %s" % [str(player.get_unique_id()), p_name], SD_ConsoleCategories.CATEGORY.ERROR)
+		singleton.debug_print("%s (%s) disconnected" % [p_name, str(player.get_unique_id())], SD_ConsoleCategories.CATEGORY.ERROR)
 
 func get_connected() -> Dictionary[int, SD_NetworkPlayer]:
 	return _connected
@@ -58,7 +58,7 @@ func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	
 	singleton.on_player_connected.emit(player)
 	
-	singleton.debug_print("peer(%s) connected %s" % [str(player.get_unique_id()), player.get_username()], SD_ConsoleCategories.CATEGORY.WARNING)
+	singleton.debug_print("%s (%s) connected" % [player.get_username(), str(player.get_unique_id())], SD_ConsoleCategories.CATEGORY.WARNING)
 	
 	return player
 

@@ -11,6 +11,11 @@ var weapon: R_NabludatorWeapon
 
 var _cooldown: float = 0.0
 
+signal on_local_shoot()
+
+static func find_in(node: Node) -> C_NabludatorItemActionsWeapon:
+	return super(node) as C_NabludatorItemActionsWeapon
+
 func _ready() -> void:
 	super()
 	
@@ -45,11 +50,13 @@ func _physics_process(delta: float) -> void:
 
 func server_shoot() -> void:
 	_cooldown = weapon.cooldown
+	
 	SD_Network.call_func(local_shoot)
 
 func local_shoot() -> void:
 	NabludatorEvents.i.event_shoot.emit(self, entity_viewmodel.root)
 	_on_local_shoot()
+	on_local_shoot.emit()
 	_on_client_shoot()
 
 func _on_local_shoot() -> void:

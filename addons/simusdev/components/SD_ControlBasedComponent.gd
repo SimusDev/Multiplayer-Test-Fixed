@@ -1,6 +1,6 @@
 @icon("res://addons/simusdev/icons/Resource.svg")
-extends Node2D
-class_name SD_Node2DBasedComponent
+extends Control
+class_name SD_ControlBasedComponent
 
 @export var multiplayer_authorative: bool = false
 @export var _active: bool = true : set = set_active, get = is_active

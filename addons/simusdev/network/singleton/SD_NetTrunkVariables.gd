@@ -19,7 +19,6 @@ func _snap_vector2(v: Vector2, step: float) -> Vector2:
 func _snap_vector3(v: Vector3, step: float) -> Vector3:
 	return snapped(v, Vector3(step, step, step))
 
-
 func _initialized() -> void:
 	SD_Network.register_function(_recieve_var)
 	SD_Network.register_function(var_send_to)
@@ -66,20 +65,30 @@ func get_registered_variables(object: Object) -> Dictionary[String, Dictionary]:
 	object.set_meta("_net_vars", funcs)
 	return funcs
 
+func get_var_queue(object: Object) -> SD_NetSyncedVars:
+	return SD_NetSyncedVars.get_in(object)
+
 func is_variable_registered(node: Node, property: String) -> bool:
 	return get_registered_variables(node).has(property)
 
-func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
+func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
 	if peer == SD_Network.get_unique_id():
 		return
 	
-	for property in properties:
-		if !is_variable_registered(node, property):
-			singleton.debug_print("cant sync var from peer %s, %s, %s, use SD_Network.register_variable() to register the var." % [str(peer), str(node), property], SD_ConsoleCategories.CATEGORY.ERROR)
-			
 	
+	var queue: SD_NetSyncedVars = get_var_queue(node)
+	
+	for property in properties:
+		if is_variable_registered(node, property):
+			queue.append(property)
+		else:
+			singleton.debug_print("cant sync var from peer %s, %s, %s, use SD_Network.register_variable() to register the var." % [str(peer), str(node), property], SD_ConsoleCategories.CATEGORY.ERROR)
+	
+
 	
 	SD_Network.call_func_on(peer, var_send_to, [SD_Network.get_unique_id(), node, properties, callmode, channel, options], callmode, channel)
+	
+	return queue
 
 func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
 	if !node:
@@ -105,8 +114,8 @@ func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode:
 	
 	SD_Network.call_func_on(peer, _recieve_var, [SD_Network.get_unique_id(), node, parsed], callmode, channel)
 
-func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	var_sync_from(SD_Network.SERVER_ID, node, properties, callmode, channel)
+func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
+	return var_sync_from(SD_Network.SERVER_ID, node, properties, callmode, channel)
 
 func _recieve_var(from: int, node: Node, properties: Dictionary) -> void:
 	if !node:
@@ -114,14 +123,17 @@ func _recieve_var(from: int, node: Node, properties: Dictionary) -> void:
 	
 	var recieved_callback_properties: Dictionary = {}
 	
+	var queue: SD_NetSyncedVars = get_var_queue(node)
+	
 	for property in properties:
 		if is_variable_registered(node, property):
 			var options: Dictionary = get_registered_variables(node).get(property, {}) as Dictionary
 			var value: Variant = properties[property]
 			
-			
 			if options.get("apply_changes", true) == true:
 				node.set(property, value)
+			
+			queue.synced.emit(property, value)
 			
 			recieved_callback_properties[property] = value
 		else:
@@ -135,3 +147,5 @@ func _recieve_var(from: int, node: Node, properties: Dictionary) -> void:
 		var callbacks: Array[String] = _recieve_callbacks[path]
 		for method in callbacks:
 			cb_node.callv(method, [from, node, recieved_callback_properties])
+	
+	
