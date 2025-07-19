@@ -9,3 +9,8 @@
 /.saves
 project.godot
 /rust/target
+.vs/
+.vscode/
+Jenova/
+/vc*.pdb
+
