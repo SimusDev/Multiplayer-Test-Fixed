@@ -115,9 +115,9 @@ void fragment() {
 
 		float fres = schlickfresnel(AirIOR, IOR, VIEW, NORMAL);
 		ALBEDO = surfacecolour * fres;
-		
+
 		// REFRACTION
-		
+
 		float lineardepth = linear_depth(texture(DEPTH_TEXTURE, SCREEN_UV).r, INV_PROJECTION_MATRIX);
 		float selfdepth = -VERTEX.z;
 		float depth_diff = lineardepth - selfdepth;
@@ -132,9 +132,9 @@ void fragment() {
 		if (newdepth < selfdepth) {
 			EMISSION = newvolcolour * texture(screen, SCREEN_UV).rgb;
 		}
-		
+
 		// SSR
-		
+
 		vec3 reflected = -reflect(VIEW, NORMAL);
 		vec3 pos = VERTEX;
 		int curstep = 0;
@@ -162,9 +162,9 @@ void fragment() {
 			METALLIC *= 1.0 - edge_fade(uv, ssr_screen_fade);
 			EMISSION += texture(screen, uv).xyz * schlickfresnel(1.0, 1.33, VIEW, NORMAL) * edge_fade(uv, ssr_screen_fade);
 		}
-		
+
 		// EDGE EFFECT
-		
+
 		float distfromedge = depth_diff * dot(normalize(NORMAL), normalize(-VERTEX)) / VIEW.z;
 		if (distfromedge < edge_size) {
 			distfromedge /= edge_size;
@@ -183,7 +183,7 @@ void fragment() {
 		}
 
 	} else {
-		
+
 		// SNELLS WINDOW
 		float window = snells_window(wnorm, wview, IOR);
 
@@ -208,9 +208,9 @@ void fragment() {
 			ALBEDO = surfacecolour;
 			ROUGHNESS = 0.0;
 			METALLIC = 1.0;
-			
+
 			// SSR
-			
+
 			vec3 reflected = -reflect(VIEW, NORMAL);
 			vec3 pos = VERTEX;
 			int curstep = 0;

@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://dtue2551dev8n" path="res://Games/NABLUDATOR/weapons/pistol_test.tres" id="18_t3em3"]
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
-[ext_resource type="Script" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
+[ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -65,8 +65,12 @@ metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 resource_name = "arms"
 script/source = "extends Node3D
 
+@onready var right_hand_ik = $root/Skeleton3D/right_hand
+@onready var left_hand_ik = $root/Skeleton3D/left_hand
+
 func _ready() -> void:
-	$root/Skeleton3D/SkeletonIK3D.start()
+	right_hand_ik.start()
+	left_hand_ik.start()
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5h5w"]
@@ -335,9 +339,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector3(0, 0, -0.15734), Vector3(0, 0.01, -0.157)]
+"values": [Vector3(0, 0, -0.15734), Vector3(0, 0.015, -0.157)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -978,12 +982,12 @@ bones/59/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_5qxu2")
 skin = SubResource("Skin_1o5m4")
 
-[node name="SkeletonIK3D" type="SkeletonIK3D" parent="W_FPCSourceLikeCamera/arms/root/Skeleton3D"]
+[node name="left_hand" type="SkeletonIK3D" parent="W_FPCSourceLikeCamera/arms/root/Skeleton3D"]
 root_bone = &"arm.R_021"
 tip_bone = &"hand.R_024"
 target_node = NodePath("../../../../containers/weapon_container")
 
-[node name="SkeletonIK3D2" type="SkeletonIK3D" parent="W_FPCSourceLikeCamera/arms/root/Skeleton3D"]
+[node name="right_hand" type="SkeletonIK3D" parent="W_FPCSourceLikeCamera/arms/root/Skeleton3D"]
 root_bone = &"arm.L_01"
 tip_bone = &"hand.L_04"
 target_node = NodePath("../../../../containers/item_container")
@@ -994,7 +998,7 @@ target_node = NodePath("../../../../containers/item_container")
 transform = Transform3D(-0.971927, 0.00246143, 0.235269, -0.133033, -0.830507, -0.540883, 0.194062, -0.556998, 0.807519, 0.65382, -1.14754, -0.161568)
 
 [node name="aps_pistol" parent="W_FPCSourceLikeCamera/containers/weapon_container" instance=ExtResource("9_lo1q8")]
-transform = Transform3D(2.4361e-08, 1.46339e-08, -0.28, 0.278719, 0.0267541, 2.56478e-08, 0.0267541, -0.278719, -1.22392e-08, 0.039462, 0.355489, -0.072127)
+transform = Transform3D(0.0423754, -0.00424412, -0.276742, 0.276307, 0.0169178, 0.0420492, 0.0160836, -0.279456, 0.00674846, 0.0967354, 0.400749, -0.0915298)
 
 [node name="item_container" type="Node3D" parent="W_FPCSourceLikeCamera/containers"]
 transform = Transform3D(-0.976281, -0.116754, -0.18233, 0.190974, -0.861134, -0.471143, -0.102003, -0.494788, 0.863006, -0.611514, -1.09384, -0.159647)

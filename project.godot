@@ -58,6 +58,7 @@ folder_colors={
 "res://Games/source_game/": "gray",
 "res://addons/": "red",
 "res://game_components/": "orange",
+"res://rust/": "orange",
 "res://sourcelike_interface/": "gray"
 }
 

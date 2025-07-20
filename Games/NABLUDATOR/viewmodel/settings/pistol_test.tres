@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_uuoba")
-position = Vector3(0.039462, 0.355489, -0.072127)
-rotation = Vector3(-9.15994e-08, -1.5708, 1.4751)
+position = Vector3(0.0967354, 0.400749, -0.0915298)
+rotation = Vector3(-0.150746, -1.54642, 1.50964)
 scale = Vector3(0.28, 0.28, 0.28)
 metadata/_custom_type_script = "uid://y0ssfc32a1yv"

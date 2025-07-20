@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cbtxulkswky36" path="res://Games/NABLUDATOR/singleton/events.gd" id="4_4t1sq"]
 [ext_resource type="PackedScene" uid="uid://cfg3at13vo658" path="res://Games/NABLUDATOR/components/map_holder.tscn" id="4_vtbgk"]
 [ext_resource type="Script" uid="uid://cy5sqp3kcwjam" path="res://Games/NABLUDATOR/singleton/weapons.gd" id="5_vtbgk"]
-[ext_resource type="Script" uid="uid://c848gdfet5ays" path="res://Games/NABLUDATOR/singleton/battle.gd" id="6_0uv8i"]
+[ext_resource type="Script" path="res://Games/NABLUDATOR/singleton/battle.gd" id="6_0uv8i"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_vtbgk")
