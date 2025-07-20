@@ -34,3 +34,6 @@ func get_unique_id() -> int:
 
 func get_peer_id() -> int:
 	return _peer
+
+static func get_by_peer_id(id: int) -> SD_NetworkPlayer:
+	return SD_Network.get_players().get(id)

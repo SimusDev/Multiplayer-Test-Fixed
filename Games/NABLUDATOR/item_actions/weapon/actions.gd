@@ -19,19 +19,15 @@ static func find_in(node: Node) -> C_NabludatorItemActionsWeapon:
 func _ready() -> void:
 	super()
 	
-	SD_Network.register_function(local_shoot)
+	weapon = item as R_NabludatorWeapon
 	
-	if item is R_NabludatorWeapon:
-		weapon = item
-	else:
-		set_process(false)
-		set_physics_process(false)
+	SD_Network.register_function(local_shoot)
 	
 	if not SD_Network.is_server():
 		set_process(false)
 		set_physics_process(false)
 		return
-
+	
 
 
 func _using_changed(value: bool, id: String) -> void:

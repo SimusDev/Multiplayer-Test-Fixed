@@ -6,7 +6,7 @@ class_name C_NabludatorEntityViewModel
 var items: Array[R_NabludatorItem] = []
 @export var attachment: Node3D
 
-@export var selected: int = -1
+var selected: int = -1
 
 var item_instance: Node
 
