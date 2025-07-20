@@ -73,6 +73,9 @@ func _input(event: InputEvent) -> void:
 	if _ui.has_active_interface():
 		if when_last_interface and _ui.get_last_interface() != target:
 			return
+		
+		if not when_last_interface:
+			return
 	
 	if input_just_press == false:
 		
