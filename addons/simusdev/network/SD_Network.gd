@@ -15,11 +15,18 @@ const SERVER_ID: int = 1
 func _init(net: SD_NetworkSingleton) -> void:
 	singleton = net
 
+static func is_authority(node: Node) -> bool:
+	return node.get_multiplayer_authority() == get_unique_id()
+
 static func terminate_connection() -> void:
 	singleton.terminate_connection()
 
 static func register_function(callable: Callable, options: Dictionary = {}) -> void:
 	singleton.callables.register_function(callable, options)
+
+static func register_functions(callables: Array[Callable]) -> void:
+	for callable in callables:
+		register_function(callable)
 
 static func register_all_functions(node: Node) -> void:
 	singleton.callables.register_all_functions(node)
@@ -29,9 +36,6 @@ static func get_unique_id() -> int:
 
 static func get_multiplayer_authority() -> int:
 	return get_unique_id()
-
-static func get_cached_nodes() -> Array[String]:
-	return singleton.get_cached_nodes()
 
 static func get_cached_resources() -> Array[String]:
 	return singleton.get_cached_resources()
@@ -87,27 +91,12 @@ static func call_func_except_self(callable: Callable, args: Array = [], callmode
 static func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
 	singleton.callables.call_func_on_server(callable, args, callmode, channel)
 
-static func is_node_cached(node: Node) -> bool:
-	return get_cached_nodes().has(str(node.get_path()))
-
-static func await_for_node_cache(node: Node, callable: Callable) -> void:
-	callable.call()
-	return
-	
-	if is_node_cached(node):
-		callable.call()
-		return
-	
-	var path: String = str(node.get_path())
-	singleton.on_cached_node_recieve.connect(_on_cached_node_recieve.bind(path, callable))
-
-static func _on_cached_node_recieve(path: String, target: String, callable: Callable) -> void:
-	if path == target:
-		singleton.on_cached_node_recieve.disconnect(_on_cached_node_recieve)
-		callable.call()
-
 static func register_variable(node: Node, property: String, options: Dictionary = {}) -> void:
 	singleton.variables.register_variable(node, property, options)
+
+static func register_variables(node: Node, properties: PackedStringArray) -> void:
+	for property in properties:
+		register_variable(node, property)
 
 static func register_all_variables(node: Node) -> void:
 	singleton.variables.register_all_variables(node)
@@ -118,11 +107,11 @@ static func get_registered_variables(object: Object) -> Dictionary[String, Dicti
 static func is_variable_registered(node: Node, property: String) -> bool:
 	return singleton.variables.is_variable_registered(node, property)
 
-static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	singleton.variables.var_sync_from(peer, node, properties, callmode, channel, options)
+static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from(peer, node, properties, callmode, channel, options)
 
 static func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
 	singleton.variables.var_send_to(peer, node, properties, callmode, channel, options)
 
-static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)
+static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)

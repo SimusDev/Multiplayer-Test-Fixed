@@ -17,3 +17,4 @@ func _on_event_shoot(actions: C_NabludatorItemActionsWeapon, shooter: Node3D) ->
 	var object: Object = raycast.get_collider()
 	if object is C_NabludatorHitbox:
 		object.apply_damage(actions.weapon.base_damage, shooter)
+		

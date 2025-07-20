@@ -1,3 +1,4 @@
+@static_unload
 extends SD_Object
 class_name SD_ResourceLoader
 
@@ -44,6 +45,9 @@ static func load(path: String, resource_section := get_db().SECTION_RESOURCE) ->
 static func clear_section(section: String) -> void:
 	get_db().clear_section(section)
 
+static func clear_main_section() -> void:
+	get_db().clear_section(get_db().SECTION_RESOURCE)
+
 static func load_runtime(path: String) -> Object:
 	var loaded_resource: Object = null
 	
@@ -61,7 +65,6 @@ static func load_runtime(path: String) -> Object:
 		return loaded_resource
 	
 	var file_extension_code: String = SD_FileExtensions.get_extension_code_from_path(real_path)
-	
 	
 	if file_extension_code.is_empty():
 		return loaded_resource

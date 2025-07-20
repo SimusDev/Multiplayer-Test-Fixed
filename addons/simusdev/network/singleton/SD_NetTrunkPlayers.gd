@@ -27,7 +27,7 @@ func _destroy_player(peer: int) -> void:
 	
 		_connected.erase(peer)
 		
-		singleton.debug_print("peer(%s) disconnected %s" % [str(player.get_unique_id()), p_name], SD_ConsoleCategories.CATEGORY.ERROR)
+		singleton.debug_print("%s (%s) disconnected" % [p_name, str(player.get_unique_id())], SD_ConsoleCategories.CATEGORY.ERROR)
 
 func get_connected() -> Dictionary[int, SD_NetworkPlayer]:
 	return _connected
@@ -36,7 +36,7 @@ func _on_connected_to_server() -> void:
 	var net_player := SD_NetPlayerResource.new()
 	net_player.peer_id = singleton.get_unique_id()
 	net_player.data.set("_username", singleton.username)
-	_recieve_player_from_client_and_send_anwser.rpc_id(singleton.SERVER_ID, SD_NetworkSerializer.parse(net_player), singleton.settings.show_all_connected_players)
+	_recieve_player_from_client_and_send_anwser.rpc_id(singleton.SERVER_ID, SD_NetworkSerializer.parse(net_player), singleton.get_game_info())
 
 @rpc("call_remote", "any_peer", "reliable")
 func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
@@ -50,6 +50,7 @@ func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	player._peer = resource.peer_id
 	player.name = str(resource.peer_id)
 	player._data = resource.data
+	player._server_data = resource.server_data
 	
 	_connected[resource.peer_id] = player
 	player.set_multiplayer_authority(resource.peer_id)
@@ -58,52 +59,95 @@ func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	
 	singleton.on_player_connected.emit(player)
 	
-	singleton.debug_print("peer(%s) connected %s" % [str(player.get_unique_id()), player.get_username()], SD_ConsoleCategories.CATEGORY.WARNING)
+	singleton.debug_print("%s (%s) connected" % [player.get_username(), str(player.get_unique_id())], SD_ConsoleCategories.CATEGORY.WARNING)
 	
 	return player
 
 @rpc("call_remote", "any_peer", "reliable")
-func _recieve_player_from_client_and_send_anwser(parsed: Variant, show_all_connected_players: bool = true) -> void:
+func _recieve_player_from_client_and_send_anwser(parsed: Variant, game_info: Dictionary) -> void:
 	if singleton.is_server():
-		var resource: Variant = SD_NetworkDeserializer.parse(parsed) 
-		resource.data["_username"] = (resource.data["_username"] as String).replacen(" ", "")
+		
+		singleton.debug_print("peer(%s) trying to connect..." % multiplayer.get_remote_sender_id(), SD_ConsoleCategories.CATEGORY.INFO)
+		singleton.debug_print("info:\n%s" % str(game_info), SD_ConsoleCategories.CATEGORY.WARNING)
+		
+		if game_info != singleton.get_game_info():
+			_terminate_client_connection.rpc_id(multiplayer.get_remote_sender_id(), SD_NetConnectionErrors.ERRORS.GAME_INFO_DOESNT_MATCH, "gameinfo doesnt match!")
+			singleton.debug_print("disconnecting peer %s, gameinfo doesnt match!" % multiplayer.get_remote_sender_id(), SD_ConsoleCategories.CATEGORY.WARNING)
+			return
+		
+		var resource: SD_NetPlayerResource = SD_NetworkDeserializer.parse(parsed) as SD_NetPlayerResource
+		var player_name: String = (resource.data["_username"] as String).replacen(" ", "")
+		resource.data["_username"] = player_name
+		
+		if singleton.settings.player_unique_names:
+			for peer in get_connected():
+				var player: SD_NetworkPlayer = get_connected()[peer]
+				if player.get_username() == player_name:
+					_terminate_client_connection.rpc_id(multiplayer.get_remote_sender_id(), SD_NetConnectionErrors.ERRORS.PLAYER_WITH_THIS_NAME_ALREADY_CONNECTED, "player with this name already connected!")
+					return
+			
 		
 		var player: SD_NetworkPlayer = _recieve_player(resource)
 		
 		var send: Dictionary[int, Dictionary] = {}
 		
-		send[resource.peer_id] = player._data
+		var joined_player_data: Dictionary = {}
+		joined_player_data.peer_id = resource.peer_id
+		joined_player_data.data = player._data
+		joined_player_data.server_data = player._server_data
 		
-		if show_all_connected_players:
+		if singleton.settings.show_all_connected_players:
 			for peer_id in _connected:
+				
+				if (peer_id != resource.peer_id) and (peer_id != SD_Network.SERVER_ID):
+					_receive_player_from_server.rpc_id(peer_id, joined_player_data)
+				
 				var p: SD_NetworkPlayer = _connected[peer_id]
-				send[peer_id] = p._data
+				
+				var data: Dictionary = {}
+				data.peer_id = peer_id
+				data.data = p._data
+				data.server_data = p._server_data
+				send[peer_id] = data
+				
+				
+			
+			
+		else:
+			send[joined_player_data.peer_id] = joined_player_data
+
 		
-		_receive_players_from_server_and_connect.rpc_id(resource.peer_id, send, singleton.cache_get(), SimusDev.get_info())
-		
+		_receive_players_from_server_and_connect.rpc_id(resource.peer_id, send, singleton.cache_get())
 
 @rpc("call_remote", "any_peer", "reliable")
-func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Array], info: Dictionary) -> void:
+func _receive_player_from_server(data: Dictionary) -> void:
+	var net := SD_NetPlayerResource.new()
+	net.peer_id = data.peer_id
+	net.data = data.data
+	net.server_data = data.server_data
+	_recieve_player(net)
+
+@rpc("call_remote", "any_peer", "reliable")
+func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Array]) -> void:
 	singleton.on_handshake_begin.emit()
 	
-	if info != SimusDev.get_info():
-		singleton.terminate_connection()
-		singleton.on_handshake_error.emit(SD_NetError.create("the information doesn't match!"))
-		return
+	singleton.cache_set(cache)
+	singleton.on_cache_from_server_recieve.emit()
 	
 	for peer_id in players:
-		var net := SD_NetPlayerResource.new()
-		net.data = players[peer_id]
-		net.peer_id = peer_id
-		_recieve_player(net)
-	
-	singleton.cache_set(cache)
-	
-	singleton.on_cache_from_server_recieve.emit()
+		var data: Dictionary = players[peer_id]
+		_receive_player_from_server(data)
 	
 	singleton.on_connected_to_server.emit()
 	
 	singleton.on_handshake_success.emit(SD_NetSuccess.create("connected to server!"))
+
+@rpc("reliable", "any_peer")
+func _terminate_client_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, message: String = "") -> void:
+	if SD_Network.is_server():
+		return
+	
+	singleton.terminate_connection(error, message)
 
 func _on_server_disconnected() -> void:
 	_destory_players()

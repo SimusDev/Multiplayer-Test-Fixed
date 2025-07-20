@@ -13,6 +13,7 @@ signal interface_closed(node: Node)
 @export var open_at_start: bool = false
 @export var center_at_start: bool = false
 @export var input_action: String = ""
+@export var input_just_press: bool = true
 @export var close_on_escape: bool = true
 @export var when_last_interface: bool = true
 
@@ -72,6 +73,18 @@ func _input(event: InputEvent) -> void:
 	if _ui.has_active_interface():
 		if when_last_interface and _ui.get_last_interface() != target:
 			return
+		
+		if not when_last_interface:
+			return
+	
+	if input_just_press == false:
+		
+		if Input.is_action_just_pressed(input_action):
+			open()
+		elif Input.is_action_just_released(input_action):
+			close()
+		
+		return
 	
 	if _ui.is_interface_active(target):
 		if close_on_escape:

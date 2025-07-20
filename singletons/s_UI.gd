@@ -10,6 +10,11 @@ var _active_interfaces: Array[Node]
 @export var _active_input: SD_NodeInput
 @export var _input_close: SD_NodeInput
 
+@export var canvas: CanvasLayer
+
+func _on_server_disconnected() -> void:
+	slike_popups.open_base_path("connection_terminated", canvas)
+
 func has_active_interface() -> bool:
 	return !_active_interfaces.is_empty()
 
@@ -27,6 +32,7 @@ func _update_UI() -> void:
 	_input_close.update_input_status()
 
 func _ready() -> void:
+	SD_Network.singleton.on_server_disconnected.connect(_on_server_disconnected)
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	_update_UI()
 

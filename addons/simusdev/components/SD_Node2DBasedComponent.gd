@@ -2,11 +2,17 @@
 extends Node2D
 class_name SD_Node2DBasedComponent
 
+@export var multiplayer_authorative: bool = false
 @export var _active: bool = true : set = set_active, get = is_active
 @export var _disable_priority: int : set = set_disable_priority, get = get_disable_priority
 
 signal active_status_changed()
 signal disable_priority_changed()
+
+func is_authority() -> bool:
+	if multiplayer_authorative:
+		return SD_Network.is_authority(self)
+	return true
 
 func set_active(value: bool) -> void:
 	if _active == value:
@@ -55,11 +61,12 @@ func subtract_disable_priority() -> void:
 	_disable_priority -= 1
 
 func _update_active_status() -> void:
-	set_process(is_active())
-	set_physics_process(is_active())
-	set_process_input(is_active())
-	set_process_unhandled_input(is_active())
-	set_process_unhandled_key_input(is_active())
+	var active: bool = is_active() and is_authority()
+	set_process(active)
+	set_physics_process(active)
+	set_process_input(active)
+	set_process_unhandled_input(active)
+	set_process_unhandled_key_input(active)
 
 func _on_enabled() -> void:
 	pass

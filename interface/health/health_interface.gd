@@ -1,10 +1,8 @@
 extends ingame_interface
 
-@export var progressbar: ProgressBar
+@onready var progressbar: ProgressBar = $Panel/ProgressBar
 
-func _playable_player_init() -> void:
-	var health: C_HealthComponent = _player.health_component
-	
+func init(health: C_HealthComponent) -> void:
 	health.health_changed.connect(_update_health.bind(health))
 	_update_health(health)
 

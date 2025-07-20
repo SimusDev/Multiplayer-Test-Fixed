@@ -5,6 +5,9 @@ var _usings: Array = []
 var entity_viewmodel: C_NabludatorEntityViewModel
 var item: R_NabludatorItem
 
+static func find_in(node: Node) -> C_NabludatorItemActions:
+	return node.get_meta("C_NabludatorItemActions")
+
 func _ready() -> void:
 	SD_Network.register_function(_set_use_s)
 	SD_Network.register_variable(self, "_usings")

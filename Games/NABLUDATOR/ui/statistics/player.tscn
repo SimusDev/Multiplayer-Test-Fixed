@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqab8u4x4rcb6"]
+
+[ext_resource type="Script" uid="uid://eafsha3puscg" path="res://Games/NABLUDATOR/ui/statistics/player.gd" id="1_yxoa5"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_mbldj"]
+[ext_resource type="Script" path="res://addons/simusdev/localization/SD_RichTextLabelSimple.gd" id="3_c0813"]
+
+[node name="Player" type="Control"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -524.0
+offset_bottom = -662.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yxoa5")
+
+[node name="panel_default" parent="." instance=ExtResource("2_mbldj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=yellow]simusdev[/color]
+kills:
+deaths:"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_c0813")

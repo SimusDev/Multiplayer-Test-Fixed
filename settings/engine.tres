@@ -16,6 +16,7 @@ compression = 2
 serializer_compression = 1
 serializer_min_bytes_to_compress = 500
 show_all_connected_players = true
+player_unique_names = true
 dedicated_server = false
 dedicated_server_port = 80
 dedicated_server_max_clients = 32

@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="R_NabludatorViewModel" load_steps=4 format=3 uid="uid://coeoigofgbj2e"]
+[gd_resource type="Resource" script_class="R_NabludatorViewModel" load_steps=3 format=3 uid="uid://coeoigofgbj2e"]
 
-[ext_resource type="PackedScene" uid="uid://c5v7ws1wakxxg" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol.tscn" id="1_22sdr"]
 [ext_resource type="Script" uid="uid://cxjygcr0uhwa5" path="res://Games/NABLUDATOR/components/r_viewmodel.gd" id="2_l8xts"]
 [ext_resource type="Resource" uid="uid://bywwm5e2m3h3w" path="res://Games/NABLUDATOR/viewmodel/settings/pistol_test.tres" id="3_22sdr"]
 
 [resource]
 script = ExtResource("2_l8xts")
-prefab = ExtResource("1_22sdr")
 settings = ExtResource("3_22sdr")
 metadata/_custom_type_script = "uid://cxjygcr0uhwa5"

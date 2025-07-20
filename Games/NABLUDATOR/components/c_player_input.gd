@@ -28,4 +28,3 @@ func _on_sd_node_input_on_input(event: InputEvent) -> void:
 		if key in hotbar_slots:
 			var id: int = int(key) - 1
 			viewmodel.select(id)
-			

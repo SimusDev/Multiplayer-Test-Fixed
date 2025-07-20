@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2t6h06n65spn" path="res://interface/health/health_interface.gd" id="1_frbfy"]
 [ext_resource type="Texture2D" uid="uid://box6vb54v3d48" path="res://textures/icons/heart.png" id="2_j7vq5"]
 
-[node name="health_interface" type="Control" node_paths=PackedStringArray("progressbar")]
+[node name="health_interface" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_frbfy")
-progressbar = NodePath("Panel/ProgressBar")
 metadata/_custom_type_script = "uid://dnrhf3cyyqskh"
 
 [node name="Panel" type="Panel" parent="."]

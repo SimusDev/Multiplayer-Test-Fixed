@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION: String = "4.12"
+var VERSION: String = "4.12"
 
 signal on_notification(what: int)
 
@@ -48,7 +48,8 @@ var _autoload_classes = [
 	SD_ConsoleMessage.new(),
 	SD_Settings.new(),
 	SD_BooleansStorage.new(),
-	SD_Variables.new()
+	SD_Variables.new(),
+	SD_Components.new()
 ]
 
 var _settings: SD_EngineSettings

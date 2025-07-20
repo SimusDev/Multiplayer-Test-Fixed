@@ -47,24 +47,25 @@ var _cache: Dictionary[String, Array] = {}
 
 var _active: bool = false
 
-func get_cached_nodes() -> Array[String]:
-	return _cache.get_or_add("n", [] as Array[String]) as Array[String]
+var _static: Array = [
+	SD_NetworkObject,
+]
 
 func get_cached_resources() -> Array[String]:
 	return _cache.get_or_add("r", [] as Array[String]) as Array[String]
-
-func get_cached_node_id(node: Node) -> int:
-	var path: String = str(node.get_path())
-	return get_cached_nodes().find(path)
-
-func get_cached_node_path(id: int) -> String:
-	return SD_Array.get_value_from_array(get_cached_nodes(), id, "")
 
 func cache_set(new: Dictionary[String, Array]) -> void:
 	_cache = new
 
 func cache_get() -> Dictionary[String, Array]:
 	return _cache
+
+func get_game_info() -> Dictionary:
+	var info: Dictionary = {
+		"engine": SimusDev.get_info(),
+	}
+	
+	return info
 
 func set_username(new_name: String) -> void:
 	username = new_name
@@ -181,11 +182,13 @@ func _on_server_disconnected() -> void:
 	_active = false
 	debug_print("Server Disconnected!")
 
-func terminate_connection() -> void:
+func terminate_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, message: String = "") -> void:
 	if _peer:
 		if _peer is MultiplayerPeer:
-			_peer.close()
-			#_on_server_disconnected()
+			if (_peer.get_connection_status() == _peer.CONNECTION_CONNECTED) or (_peer.get_connection_status() == _peer.CONNECTION_CONNECTING):
+				SD_NetConnectionErrors.set_error(error, message)
+				_peer.close()
+			
 
 
 func debug_print(text, category: int = 0) -> void:

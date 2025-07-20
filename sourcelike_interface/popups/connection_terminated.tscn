@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://u5kmildg3kjm"]
+
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="1_fw416"]
+[ext_resource type="Script" uid="uid://3w3kqc5wtbm1" path="res://sourcelike_interface/popups/scripts/connection_terminated.gd" id="2_qyiup"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_f0tgh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4jm72"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqhbc"]
+font_size = 32
+
+[node name="connection_terminated" instance=ExtResource("1_fw416")]
+script = ExtResource("2_qyiup")
+
+[node name="title" parent="head" index="0"]
+text = "CONNECTION TERMINATED."
+label_settings = SubResource("LabelSettings_4jm72")
+
+[node name="message" type="Label" parent="content" index="2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAMEINFO DOESNT MATCH"
+label_settings = SubResource("LabelSettings_pqhbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("3_f0tgh")
+font_size = 32
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
