@@ -1,16 +1,25 @@
-[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=4 format=3 uid="uid://dtue2551dev8n"]
+[gd_resource type="Resource" script_class="R_NabludatorWeapon" load_steps=7 format=3 uid="uid://dtue2551dev8n"]
 
 [ext_resource type="Script" uid="uid://bh40mgnmf018k" path="res://Games/NABLUDATOR/components/r_weapon.gd" id="1_53nwt"]
+[ext_resource type="AnimationLibrary" uid="uid://tvlghp3yikgb" path="res://Games/NABLUDATOR/weapon_animations/aps_pistol.res" id="1_557xq"]
 [ext_resource type="Resource" uid="uid://iwpr1l02v10o" path="res://Games/NABLUDATOR/item_actions/weapon/actions.tres" id="1_qtf04"]
 [ext_resource type="Resource" uid="uid://coeoigofgbj2e" path="res://Games/NABLUDATOR/viewmodel/pistol_test.tres" id="2_53nwt"]
+[ext_resource type="AudioStream" uid="uid://bl0vjc1e45cbk" path="res://Games/source_game/items/guitar/1.wav" id="3_8otga"]
+[ext_resource type="AudioStream" uid="uid://bndpxel3qj32r" path="res://Games/source_game/items/AA2308KM/sound/fire.wav" id="5_75g52"]
 
 [resource]
 script = ExtResource("1_53nwt")
-cooldown = 0.1
+cooldown = 0.15
 magazine_ammo = 30
-base_damage = 30.0
+base_damage = 10.0
+_reload = "reload"
 name = "pistol_test"
 code = "pistol_test"
 viewmodel = ExtResource("2_53nwt")
 actions = ExtResource("1_qtf04")
+_animation_library = ExtResource("1_557xq")
+_use = "fire"
+_pick = "pick"
+pick_sound = ExtResource("3_8otga")
+use_sound = ExtResource("5_75g52")
 metadata/_custom_type_script = "uid://bh40mgnmf018k"

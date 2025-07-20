@@ -6,6 +6,8 @@ class_name C_NabludatorEntityViewModel
 var items: Array[R_NabludatorItem] = []
 @export var attachment: Node3D
 
+@export var animation_player:AnimationPlayer
+
 var selected: int = -1
 
 var item_instance: Node
@@ -80,6 +82,7 @@ func update() -> void:
 	_update_actions(item)
 	
 	if item:
+		
 		var view: R_NabludatorViewModel = item.viewmodel
 		if !view:
 			return
@@ -97,12 +100,17 @@ func update() -> void:
 		
 		container.add_child(item_instance)
 		
+		
 		if view.settings:
 			item_instance.position = view.settings.position
 			item_instance.scale = view.settings.scale
 			item_instance.rotation = view.settings.rotation
 		
 		attachment.add_child(container)
+		
+		animation_player.remove_animation_library("")
+		animation_player.add_animation_library("", item._animation_library)
+		animation_player.play(item._pick)
 
 func _update_actions(item: R_NabludatorItem) -> void:
 	if !item:

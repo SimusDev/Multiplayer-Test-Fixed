@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://brx804s758rty"]
+[gd_scene load_steps=29 format=4 uid="uid://brx804s758rty"]
 
 [ext_resource type="Texture2D" uid="uid://3m3pib8o0boe" path="res://Games/source_game/game/levels/source_flatgrass/3d/gm_flatgrass_8.png" id="1_08fac"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_72jdg"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://r58t6fdc7cye" path="res://Games/sandbox/levels/sandbox/materialsconcreteconcretefloor005a.png" id="14_n1bmc"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="18_m7ni3"]
 [ext_resource type="PackedScene" uid="uid://b4mo6wtkk6a51" path="res://Games/NABLUDATOR/entity/enemy.tscn" id="19_nqior"]
-[ext_resource type="PackedScene" uid="uid://4wdkon3b8vlh" path="res://entitites/zonbi/zonbi.tscn" id="20_nqior"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnv8v"]
 albedo_color = Color(0.81626, 0.81626, 0.81626, 1)
@@ -328,24 +327,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 5.97812)
 
 [node name="Enemy6" parent="props" instance=ExtResource("19_nqior")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 11.2283)
-
-[node name="Zonbi" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02497, 1.73947, 0)
-
-[node name="Zonbi2" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02497, 1.73947, 10.0295)
-
-[node name="Zonbi3" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18653, 1.73947, 10.0295)
-
-[node name="Zonbi4" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18653, 1.73947, 13.153)
-
-[node name="Zonbi5" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18653, 1.73947, 17.153)
-
-[node name="Zonbi6" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18653, 1.73947, 22.1823)
-
-[node name="Zonbi7" parent="." instance=ExtResource("20_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18653, 1.73947, 28.664)

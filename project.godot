@@ -344,7 +344,6 @@ global_illumination/sdfgi/probe_ray_count=3
 global_illumination/sdfgi/frames_to_update_lights=1
 anti_aliasing/quality/use_taa=true
 occlusion_culling/use_occlusion_culling=true
-2d/snap/snap_2d_transforms_to_pixel=true
 lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=3
 lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=4
 lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=5

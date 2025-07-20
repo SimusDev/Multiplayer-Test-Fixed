@@ -5,3 +5,6 @@ class_name R_NabludatorWeapon extends R_NabludatorItem
 @export var magazine_ammo:int = 30
 @export_category("Damage Settings")
 @export var base_damage:float = 30.0
+
+@export_group("Animations Names")
+@export var _reload:String = "reload"
