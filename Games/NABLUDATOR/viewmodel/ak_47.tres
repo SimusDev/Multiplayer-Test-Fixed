@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="R_NabludatorViewModel" load_steps=4 format=3 uid="uid://t5he2qk5a8pe"]
+[gd_resource type="Resource" script_class="R_NabludatorViewModel" load_steps=3 format=3 uid="uid://t5he2qk5a8pe"]
 
-[ext_resource type="PackedScene" uid="uid://ycs4v0001qtw" path="res://Games/sandbox/objects/skin/sas/skin.tscn" id="1_0oa2u"]
 [ext_resource type="Script" uid="uid://cxjygcr0uhwa5" path="res://Games/NABLUDATOR/components/r_viewmodel.gd" id="1_k1y34"]
 [ext_resource type="Resource" uid="uid://b4hvshm5ecqiw" path="res://Games/NABLUDATOR/viewmodel/settings/default.tres" id="2_0oa2u"]
 
 [resource]
 script = ExtResource("1_k1y34")
-prefab = ExtResource("1_0oa2u")
 settings = ExtResource("2_0oa2u")
 metadata/_custom_type_script = "uid://cxjygcr0uhwa5"

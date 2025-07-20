@@ -19,7 +19,7 @@ JENOVA_SCRIPT_BEGIN
 // Called When Node Enters Scene Tree
 void OnAwake(Caller* instance)
 {
-
+	
 }
 
 // Called When Node Exits Scene Tree
@@ -31,7 +31,7 @@ void OnDestroy(Caller* instance)
 // Called When Node and All It's Children Entered Scene Tree
 void OnReady(Caller* instance)
 {
-
+	Output("ZOMMMMMMMBIIIIIIIIIIIIIIIIII!");
 }
 
 // Called On Every Frame

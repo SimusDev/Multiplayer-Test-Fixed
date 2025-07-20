@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=59 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
 [ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="26_imvau"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -530,6 +531,11 @@ radius = 0.445
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_3exd0")
 camera = NodePath("W_FPCSourceLikeCamera")
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("26_imvau")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"
 
 [node name="SD_NetSynchronizer" type="Node" parent="."]
 script = ExtResource("2_lo1q8")
@@ -1064,8 +1070,9 @@ shape = SubResource("CapsuleShape3D_qoi8o")
 
 [node name="hitboxes" type="Node3D" parent="."]
 
-[node name="head" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
+[node name="head" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
+health = NodePath("../../C_NabludatorHealth")
 damage_multiplier = 3.0
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/head"]
@@ -1073,15 +1080,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CylinderShape3D_muiaj")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="chest" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
+[node name="chest" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
+health = NodePath("../../C_NabludatorHealth")
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/chest"]
 shape = SubResource("CylinderShape3D_qoi8o")
 debug_color = Color(1, 0.25098, 0.117647, 0.419608)
 
-[node name="legs" parent="hitboxes" node_paths=PackedStringArray("root") instance=ExtResource("15_lxqqc")]
+[node name="legs" parent="hitboxes" node_paths=PackedStringArray("root", "health") instance=ExtResource("15_lxqqc")]
 root = NodePath("../..")
+health = NodePath("../../C_NabludatorHealth")
 damage_multiplier = 0.5
 
 [node name="collision" type="CollisionShape3D" parent="hitboxes/legs"]

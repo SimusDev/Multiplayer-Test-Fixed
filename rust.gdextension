@@ -12,4 +12,3 @@ macos.debug =            "rust/target/debug/rust.dylib"
 macos.release =          "rust/target/release/rust.dylib"
 macos.debug.arm64 =      "rust/target/debug/rust.dylib"
 macos.release.arm64 =    "rust/target/release/rust.dylib"
-

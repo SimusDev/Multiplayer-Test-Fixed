@@ -9,7 +9,7 @@ func _initialized() -> void:
 	get_tree().node_removed.connect(_on_node_removed)
 
 func _on_server_disconnected() -> void:
-	singleton.get_cached_nodes().clear()
+	pass
 
 func _on_node_added(node: Node) -> void:
 	if !is_inside_tree():

@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="2_3sjbs"]
 [ext_resource type="PackedScene" uid="uid://0yohyr726hvm" path="res://multiplayer-ui/multiplayer_ui.tscn" id="3_3xeib"]
 
-[node name="s_UI" type="Node" node_paths=PackedStringArray("_active_input", "_input_close")]
+[node name="s_UI" type="Node" node_paths=PackedStringArray("_active_input", "_input_close", "canvas")]
 script = ExtResource("1_7b1hs")
 _active_input = NodePath("active_input")
 _input_close = NodePath("input_close")
+canvas = NodePath("canvas")
 
 [node name="input_close" type="Node2D" parent="."]
 script = ExtResource("2_3sjbs")
@@ -22,5 +23,8 @@ metadata/_custom_type_script = "uid://d2voalokbx57v"
 
 [node name="multiplayer_ui" parent="." instance=ExtResource("3_3xeib")]
 layer = 10
+
+[node name="canvas" type="CanvasLayer" parent="."]
+layer = 11
 
 [connection signal="on_action_just_pressed" from="input_close" to="." method="_on_sd_node_input_on_action_just_pressed"]
