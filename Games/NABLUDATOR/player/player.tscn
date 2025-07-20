@@ -1,8 +1,9 @@
-[gd_scene load_steps=59 format=4 uid="uid://dslt18avjf8jd"]
+[gd_scene load_steps=60 format=4 uid="uid://dslt18avjf8jd"]
 
 [ext_resource type="Script" uid="uid://bcwmx55qal66j" path="res://Games/NABLUDATOR/player/player.gd" id="1_3exd0"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_ic57w"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="2_3exd0"]
+[ext_resource type="PackedScene" uid="uid://dngtlua441ikk" path="res://Games/NABLUDATOR/ui/player/player_ui.tscn" id="2_jityw"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="2_lo1q8"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="3_muiaj"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_sgj1c"]
@@ -531,6 +532,7 @@ radius = 0.445
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_3exd0")
 camera = NodePath("W_FPCSourceLikeCamera")
+ui_scene = ExtResource("2_jityw")
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("26_imvau")

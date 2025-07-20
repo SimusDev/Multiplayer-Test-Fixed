@@ -125,7 +125,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("failed to call function on object: %s, %s!, object must inherit Node!" % [str(node), method])
 		return
 	
-	if not is_function_registered(callable):
+	if (not is_function_registered(callable)) and not SD_Network.is_server():
 		debug_print("failed to call unregistered function: %s, %s!, use SD_Network.register_function() for func registration" % [str(node), method], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
@@ -234,6 +234,10 @@ func _recieve_call_from_local(from_peer: int, packet: Dictionary) -> void:
 	
 	if node:
 		var callable: Callable = Callable(node, method)
+		if from_peer == SD_Network.SERVER_ID:
+			callable.callv(args)
+			return
+		
 		if not is_function_registered(callable):
 			debug_print("failed to call unregistered function from peer %s: %s, %s!, maybe trying to cheat -_- ???" % [str(from_peer), str(node), method], SD_ConsoleCategories.CATEGORY.WARNING)
 			return

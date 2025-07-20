@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngtlua441ikk"]
+
+[ext_resource type="Script" uid="uid://mb0kw53n5d26" path="res://Games/NABLUDATOR/ui/player/player_ui.gd" id="1_7yiwm"]
+[ext_resource type="PackedScene" uid="uid://d1kk0gwac7610" path="res://interface/health/health_interface.tscn" id="2_5a6ma"]
+
+[node name="PlayerUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7yiwm")
+
+[node name="health_interface" parent="." instance=ExtResource("2_5a6ma")]
+layout_mode = 1

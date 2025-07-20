@@ -13,9 +13,6 @@ var _active_interfaces: Array[Node]
 @export var canvas: CanvasLayer
 
 func _on_server_disconnected() -> void:
-	if SD_Network.is_server():
-		return
-	
 	slike_popups.open_base_path("connection_terminated", canvas)
 
 func has_active_interface() -> bool:
