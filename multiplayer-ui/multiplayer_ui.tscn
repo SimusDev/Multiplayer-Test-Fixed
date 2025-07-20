@@ -17,6 +17,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("5_baha1")
 target = NodePath("../Control")
 input_action = "open_multiplayer_ui"
+input_just_press = false
 close_on_escape = false
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
