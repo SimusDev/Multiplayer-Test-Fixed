@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cml44wk6fjghm"
+path="res://.godot/imported/music box.wav-55c904977084c2bb904c7ecd00ae447a.sample"
+
+[deps]
+
+source_file="res://Games/fnaf/sounds/fnaf1/music box.wav"
+dest_files=["res://.godot/imported/music box.wav-55c904977084c2bb904c7ecd00ae447a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

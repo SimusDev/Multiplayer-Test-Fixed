@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci8a4l0frb3q4"]
+
+[ext_resource type="Script" uid="uid://3wtqrmnbc6xr" path="res://Games/fnaf/components/world/time/FW_TimeComponent.gd" id="1_h28tx"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_dns0h"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_ggmuh"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_817pu"]
+
+[sub_resource type="Resource" id="Resource_enqde"]
+script = ExtResource("4_817pu")
+tickrate = 2.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["_time"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 0
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[node name="FW_TimeComponent" type="Node"]
+script = ExtResource("1_h28tx")
+_code = "time"
+metadata/_custom_type_script = "uid://cv4n2a6u5b0s2"
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="."]
+script = ExtResource("2_dns0h")
+properties = Array[ExtResource("3_ggmuh")]([SubResource("Resource_enqde")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"

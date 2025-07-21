@@ -1,0 +1,11 @@
+Model Information:
+* title:	Table Fan 3d model (low poly)
+* source:	https://sketchfab.com/3d-models/table-fan-3d-model-low-poly-4ff777c3efd04280bcb5a4b5f75fd5ab
+* author:	IndieDever YT (https://sketchfab.com/nitin0illigel)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Table Fan 3d model (low poly)" (https://sketchfab.com/3d-models/table-fan-3d-model-low-poly-4ff777c3efd04280bcb5a4b5f75fd5ab) by IndieDever YT (https://sketchfab.com/nitin0illigel) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

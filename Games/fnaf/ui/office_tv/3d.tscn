@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://crgwlusij06a7"]
+
+[ext_resource type="PackedScene" uid="uid://oud6mryi7mkg" path="res://Games/fnaf/ui/office_tv/office_tv.tscn" id="1_cpuxa"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cpuxa"]
+viewport_path = NodePath("SubViewport")
+
+[node name="officetv_3d" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.005
+texture = SubResource("ViewportTexture_cpuxa")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1280, 720)
+
+[node name="OfficeTv" parent="SubViewport" instance=ExtResource("1_cpuxa")]

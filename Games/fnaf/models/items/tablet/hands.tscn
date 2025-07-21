@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsejr1eenfljm"]
+
+[ext_resource type="PackedScene" uid="uid://bnwgs61hieyai" path="res://Games/fnaf/models/items/tablet/tablet.tscn" id="1_olq0v"]
+
+[node name="tablet" instance=ExtResource("1_olq0v")]
+
+[node name="root" parent="." index="0"]
+transform = Transform3D(0.25, 0, 0, 0, 0.125, 0.216506, 0, -0.216506, 0.125, -0.247, 0, -0.134)
+
+[node name="Label3D" type="Label3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.505145, 0.863034, 0, -0.863034, 0.505145, -0.247, 0.0165109, -0.12615)
+text = "PISOS"

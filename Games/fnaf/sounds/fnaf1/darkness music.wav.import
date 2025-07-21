@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b738s3wvbqhqg"
+path="res://.godot/imported/darkness music.wav-5d0b49848869a84d2457630f73afa239.sample"
+
+[deps]
+
+source_file="res://Games/fnaf/sounds/fnaf1/darkness music.wav"
+dest_files=["res://.godot/imported/darkness music.wav-5d0b49848869a84d2457630f73afa239.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

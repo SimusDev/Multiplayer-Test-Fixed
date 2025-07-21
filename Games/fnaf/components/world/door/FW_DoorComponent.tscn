@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmc3agchtji3"]
+
+[ext_resource type="Script" uid="uid://bklmxwohw4g7s" path="res://Games/fnaf/components/world/door/FW_DoorComponent.gd" id="1_xnv23"]
+
+[node name="FW_DoorComponent" type="Node"]
+script = ExtResource("1_xnv23")
+metadata/_custom_type_script = "uid://cv4n2a6u5b0s2"

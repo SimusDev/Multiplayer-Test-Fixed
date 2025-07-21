@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6sshs816asxx"]
+
+[ext_resource type="PackedScene" uid="uid://b2ahhh8tehamd" path="res://Games/fnaf/models/map/office_table_props/Untitled.glb" id="1_ugi85"]
+
+[node name="table_props" instance=ExtResource("1_ugi85")]
+
+[node name="Desk Props_ARM" parent="." index="0"]
+transform = Transform3D(2.8, 0, 0, 0, 2.8, 0, 0, 0, 2.8, 0, 0, 0)
+
+[node name="blank_001" parent="Desk Props_ARM/Skeleton3D" index="1"]
+visible = false
+
+[node name="Mr_Cupcake" parent="Desk Props_ARM/Skeleton3D" index="15"]
+transform = Transform3D(0.395513, 0, 0.91846, 0, 1, 0, -0.91846, 0, 0.395513, -0.220938, 0.0439037, -0.291526)

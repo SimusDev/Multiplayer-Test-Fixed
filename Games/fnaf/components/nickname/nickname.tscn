@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dql1f4fiss1qs"]
+
+[ext_resource type="Script" uid="uid://b3vw6foj8dts1" path="res://Games/fnaf/components/nickname/nickname.gd" id="1_fqrav"]
+
+[node name="Nickname" type="Node3D"]
+script = ExtResource("1_fqrav")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+outline_modulate = Color(0.31311, 0.00123195, 0.624116, 1)
+text = "NICKNAME"
+font_size = 64
+outline_size = 16

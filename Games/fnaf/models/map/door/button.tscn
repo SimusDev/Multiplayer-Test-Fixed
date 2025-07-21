@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkxngrs5fhn1s"]
+
+[ext_resource type="Script" uid="uid://b1lufp5g8oin4" path="res://Games/fnaf/models/map/door/button.gd" id="1_tpbbs"]
+[ext_resource type="Script" uid="uid://dar7l6igeudpk" path="res://addons/simusdev/components/interactables/W_Interactable.gd" id="2_4651n"]
+[ext_resource type="Texture2D" uid="uid://daw5biif1hib5" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="2_aqq01"]
+[ext_resource type="AudioStream" uid="uid://bgi4tnn6uu73b" path="res://Games/fnaf/sounds/fnaf1/switch.mp3" id="4_aqq01"]
+[ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="5_7dkn7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_56x3a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dkn7"]
+albedo_texture = ExtResource("2_aqq01")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_56x3a"]
+size = Vector3(0.0929565, 0.388916, 0.503479)
+
+[node name="button" type="Node3D" node_paths=PackedStringArray("light", "mesh")]
+script = ExtResource("1_tpbbs")
+light = NodePath("OmniLight3D")
+mesh = NodePath("mesh")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0724567, 0, 0, 0, 0.370249, 0, 0, 0, 0.454457, 0, 0, 0)
+mesh = SubResource("BoxMesh_56x3a")
+surface_material_override/0 = SubResource("StandardMaterial3D_7dkn7")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0027771, 0.00671387, -0.00161743)
+shape = SubResource("BoxShape3D_56x3a")
+
+[node name="W_InteractableArea3D" type="Node" parent="." node_paths=PackedStringArray("area")]
+script = ExtResource("2_4651n")
+area = NodePath("../Area3D")
+metadata/_custom_type_script = "uid://dar7l6igeudpk"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104437, -0.00422072, -0.0123881)
+visible = false
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 1.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_aqq01")
+unit_size = 0.5
+bus = &"game"
+script = ExtResource("5_7dkn7")
+metadata/_custom_type_script = "uid://m4rd2xovd0yt"
+
+[connection signal="interacted" from="W_InteractableArea3D" to="." method="_on_w_interactable_area_3d_interacted"]

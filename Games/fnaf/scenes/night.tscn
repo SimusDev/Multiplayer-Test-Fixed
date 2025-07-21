@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://5g71ge2bjfr2"]
+
+[ext_resource type="Script" uid="uid://ioy7e56gk2on" path="res://Games/fnaf/scenes/night.gd" id="1_s5imo"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_04k87"]
+[ext_resource type="AudioStream" uid="uid://dc1p0lqaiaatq" path="res://Games/fnaf/sounds/fnaf1/blip3.wav" id="3_04k87"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e00jq"]
+font_size = 72
+
+[node name="Night" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s5imo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SD_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NIGHT 1"
+label_settings = SubResource("LabelSettings_e00jq")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_04k87")
+font_size = 72
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_04k87")
+autoplay = true
+bus = &"interface"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

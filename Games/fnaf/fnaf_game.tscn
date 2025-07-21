@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnw8e7bnrwhc"]
+
+[ext_resource type="Script" uid="uid://dk7ycl5a3o3x8" path="res://Games/fnaf/fnaf_game.gd" id="1_yl7va"]
+[ext_resource type="Script" uid="uid://3dlauy2er1ge" path="res://addons/simusdev/multiplayer/SD_MPSyncedData.gd" id="2_4abl0"]
+[ext_resource type="Script" uid="uid://vcejwbarc2p7" path="res://Games/fnaf/components/scenechanger/FNAF_SceneChanger.gd" id="3_jr8jp"]
+
+[node name="fnaf_game" type="Node" node_paths=PackedStringArray("data", "scene_changer")]
+script = ExtResource("1_yl7va")
+data = NodePath("SD_MPSyncedData")
+scene_changer = NodePath("FNAF_SceneChanger")
+
+[node name="SD_MPSyncedData" type="Node" parent="."]
+script = ExtResource("2_4abl0")
+metadata/_custom_type_script = "uid://3dlauy2er1ge"
+
+[node name="FNAF_SceneChanger" type="Node" parent="."]
+script = ExtResource("3_jr8jp")
+start_scene = "game"
+metadata/_custom_type_script = "uid://vcejwbarc2p7"
