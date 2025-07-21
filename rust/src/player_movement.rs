@@ -44,7 +44,7 @@ impl INode for PlayerMovement {
             player: None,
             enabled: bool::from(true),
             move_speed: f32::from(5.0),
-            jump_force: f32::from(8.0),
+            jump_force: f32::from(40.0),
             key_left: StringName::from("key_left"),
             key_right: StringName::from("key_right"),
             key_backward: StringName::from("key_backward"),

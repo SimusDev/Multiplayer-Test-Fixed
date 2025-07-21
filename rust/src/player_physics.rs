@@ -8,8 +8,9 @@ pub struct PlayerPhysics {
     base: Base<Node>,
     
     #[export]
+    enabled: bool,
+    #[export]
     player: Option<Gd<CharacterBody3D>>,
-
     #[export]
     gravity: f64,
 }
@@ -20,6 +21,7 @@ impl INode for PlayerPhysics {
         Self {
             base,
 
+            enabled: bool::from(true),
             player: None,
             gravity: f64::from(9.8),
         }
@@ -27,6 +29,9 @@ impl INode for PlayerPhysics {
 
 
     fn physics_process(&mut self, delta: f64,) {
+        self.set_enabled(self.base().is_multiplayer_authority());
+
+        if !self.enabled {return}
         if let Some(player) = &self.player {
             let mut player: Gd<CharacterBody3D> = player.clone(); 
             let mut velocity: Vector3 = player.get_velocity();

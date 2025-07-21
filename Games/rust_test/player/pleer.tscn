@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
 [node name="PlayerMovement" type="PlayerMovement" parent="." node_paths=PackedStringArray("player")]
 player = NodePath("..")
+jump_force = 20.0
 key_left = &"move_left"
 key_right = &"move_right"
 key_backward = &"move_backward"
