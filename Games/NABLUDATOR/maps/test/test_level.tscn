@@ -4,8 +4,8 @@
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_72jdg"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_fag32"]
 [ext_resource type="Texture2D" uid="uid://c1vwcdcdvb74a" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/Milkyway.jpg" id="2_4wyo1"]
-[ext_resource type="PackedScene" uid="uid://dslt18avjf8jd" path="res://Games/NABLUDATOR/player/player.tscn" id="2_08fac"]
 [ext_resource type="Texture2D" uid="uid://cfqk60lpl5ljv" path="res://addons/sky_3d/assets/resources/SNoise.tres" id="3_fag32"]
+[ext_resource type="PackedScene" uid="uid://ct3sn4lpqifob" path="res://Games/rust_test/player/pleer.tscn" id="3_m7ni3"]
 [ext_resource type="Texture2D" uid="uid://cecwdqjol0ckd" path="res://addons/sky_3d/assets/textures/noiseClouds.png" id="4_08fac"]
 [ext_resource type="Texture2D" uid="uid://2r8ylu6rg5dp" path="res://addons/sky_3d/assets/thirdparty/textures/moon/MoonMap.png" id="5_72ng1"]
 [ext_resource type="Texture2D" uid="uid://djpfuyxkryegn" path="res://addons/sky_3d/assets/textures/noise.jpg" id="6_m7ni3"]
@@ -178,7 +178,7 @@ material = SubResource("StandardMaterial3D_rnv8v")
 
 [node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
 script = ExtResource("1_fag32")
-player_scene = ExtResource("2_08fac")
+player_scene = ExtResource("3_m7ni3")
 parent = NodePath("..")
 spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3"), NodePath("../spawn_points/4")]
 metadata/_custom_type_script = "uid://crxce7oinuqn4"

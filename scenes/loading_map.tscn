@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxjbwvdvloh7e" path="res://sourcelike_interface/textures/FunnyMan.jpg" id="2_3y8xe"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_3y8xe"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_r6t4r"]
+[sub_resource type="LabelSettings" id="LabelSettings_3y8xe"]
 font_size = 32
 
 [node name="LoadingMap" type="CanvasLayer"]
@@ -34,7 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LOADING..."
-label_settings = SubResource("LabelSettings_r6t4r")
+label_settings = SubResource("LabelSettings_3y8xe")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
