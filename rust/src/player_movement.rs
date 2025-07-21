@@ -89,7 +89,7 @@ impl INode for PlayerMovement {
                 let direction = player.get_global_transform().basis * direction.normalized();
     
                 velocity.x = direction.x * self.move_speed;
-                velocity.z = direction.y * self.move_speed;
+                velocity.z = direction.z * self.move_speed;
                 
             }
             else {

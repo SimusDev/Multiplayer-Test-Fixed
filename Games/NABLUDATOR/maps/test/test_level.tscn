@@ -311,16 +311,16 @@ APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
 [node name="Enemy" parent="props" instance=ExtResource("19_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -8.07482)
+transform = Transform3D(0.976908, -0.21267, 0.0205528, 0.213661, 0.972377, -0.0939719, 0, 0.0961932, 0.995363, 0, 9.78215, -7.99772)
 
 [node name="Enemy2" parent="props" instance=ExtResource("19_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -5.73544)
+transform = Transform3D(0.995255, 0.097305, 0, -0.0925441, 0.946559, 0.308967, 0.030064, -0.307501, 0.951073, 0, 9.85211, -5.73544)
 
 [node name="Enemy3" parent="props" instance=ExtResource("19_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, -3.14996)
+transform = Transform3D(0.997452, 0.0713408, 0, -0.0712697, 0.996458, 0.0446307, 0.00318399, -0.044517, 0.999004, 0, 9.85211, -3.14996)
 
 [node name="Enemy4" parent="props" instance=ExtResource("19_nqior")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 0.789735)
+transform = Transform3D(0.68683, -0.138527, 0.713495, 0.197709, 0.980261, 0, -0.699411, 0.141064, 0.70066, 0, 9.85211, 0.789735)
 
 [node name="Enemy5" parent="props" instance=ExtResource("19_nqior")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85211, 5.97812)
