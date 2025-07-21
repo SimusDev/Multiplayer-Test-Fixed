@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="6_dep2b"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
-[ext_resource type="PackedScene" uid="uid://b3g8gtngmas8l" path="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity.tscn" id="9_bhbod"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
+[ext_resource type="PackedScene" uid="uid://bb5qbwsp2yoa2" path="res://Games/source_game/game/levels/fnaf/fnaf_map.tscn" id="12_tn3t5"]
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
@@ -119,15 +119,13 @@ metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 transform = Transform3D(-0.997288, 0, -0.0736039, 0, 1, 0, 0.0736039, 0, -0.997288, -169.8, 0.426518, -158.679)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53703, 0, -1.80009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
 
 [node name="2" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1028, 0, 0.665287)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
 
 [node name="3" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34597, 0, -1.12388)
-
-[node name="gm_bigcity" parent="." instance=ExtResource("9_bhbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
 
 [node name="backrooms_trigger" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
@@ -135,5 +133,8 @@ script = ExtResource("10_vakk2")
 room = ExtResource("11_8dbco")
 
 [node name="backrooms" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("12_tn3t5")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]
