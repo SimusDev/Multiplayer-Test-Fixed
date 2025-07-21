@@ -71,10 +71,11 @@ func _enabled_status_changed() -> void:
 	set_physics_process(enabled)
 	set_process_input(enabled)
 	set_process_unhandled_input(enabled)
-	set_mouse_captured(enabled)
+	
+	if is_authority():
+		set_mouse_captured(enabled)
 
 func _ready() -> void:
-	
 	
 	if not is_authority():
 		add_disable_priority()

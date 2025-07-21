@@ -33,5 +33,8 @@ func _create_function(cmd: SD_ConsoleCommand) -> Dictionary[String, Variant]:
 func _on_sd_node_console_commands_on_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():
 		"cheats.call_func":
-			var func_d := _create_function(cmd)
-			
+			var data := _create_function(cmd)
+			SD_Multiplayer.call_func(data.callable, data.args)
+		"cheats.call_func_on_server":
+			var data := _create_function(cmd)
+			SD_Multiplayer.call_func_on_server(data.callable, data.args)
