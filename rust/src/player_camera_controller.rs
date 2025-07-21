@@ -30,6 +30,15 @@ impl INode for PlayerCameraController {
         }
     
     // RUST
+    
+        fn ready(&mut self,) {
+            if !&self.base_mut().is_multiplayer_authority() {return}
+            
+            if let Some(camera) = &self.camera {
+                let mut camera = camera.clone();
+                camera.make_current();
+            }
+        }
 
     fn input(&mut self, event: Gd<InputEvent>) {
         if let Some(player) = &self.player {
