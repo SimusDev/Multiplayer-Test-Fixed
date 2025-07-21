@@ -24,9 +24,10 @@
 
 [sub_resource type="Resource" id="Resource_10rrw"]
 script = ExtResource("3_u0j1b")
-properties = Array[String](["velocity"])
+properties = PackedStringArray()
 interpolation_enabled = false
 interpolation_speed = 32.0
+float_snap = 0.0
 node_path = NodePath("..")
 channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 tickrate = 32.0
@@ -38,9 +39,10 @@ metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_ip4yb"]
 script = ExtResource("3_u0j1b")
-properties = Array[String](["position"])
+properties = PackedStringArray()
 interpolation_enabled = true
 interpolation_speed = 32.0
+float_snap = 0.0
 node_path = NodePath("..")
 channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 tickrate = 32.0
@@ -52,9 +54,10 @@ metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_wy3vx"]
 script = ExtResource("3_u0j1b")
-properties = Array[String](["rotation"])
+properties = PackedStringArray()
 interpolation_enabled = true
 interpolation_speed = 32.0
+float_snap = 0.0
 node_path = NodePath("..")
 channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 tickrate = 32.0
