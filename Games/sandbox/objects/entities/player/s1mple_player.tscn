@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=28 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://b6008tmb0cj4" path="res://Games/sandbox/objects/skin/sas/sas.tres" id="15_u0j1b"]
 [ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
 [ext_resource type="PackedScene" uid="uid://ycs4v0001qtw" path="res://Games/sandbox/objects/skin/sas/skin.tscn" id="20_wy3vx"]
+[ext_resource type="Script" uid="uid://c5vxuwggm6n5w" path="res://addons/simusdev/components/fp_controller/source/W_FPCSource.gd" id="22_xtx5c"]
 
 [sub_resource type="Resource" id="Resource_10rrw"]
 script = ExtResource("3_u0j1b")
@@ -277,3 +278,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258512, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13999, 0)
 source = NodePath("..")
 health = NodePath("../SB_EntityHealth")
+
+[node name="W_FPCSource" type="Node3D" parent="."]
+script = ExtResource("22_xtx5c")
+metadata/_custom_type_script = "uid://c5vxuwggm6n5w"

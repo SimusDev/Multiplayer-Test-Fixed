@@ -33,6 +33,7 @@ func set_health(points: float) -> void:
 	if points > 0:
 		_died = false
 	
+	_last_health = health
 	health = points
 	health = clamp(health, 0.0, max_health)
 	__on_health_changed_()
@@ -56,11 +57,9 @@ func apply_damage(points: float) -> void:
 	if god_mode:
 		return
 	
-	_last_health = health
 	health -= points
 
 func heal(points: float) -> void:
-	_last_health = health
 	health += points
 
 func get_max_health() -> float:
