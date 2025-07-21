@@ -74,11 +74,13 @@ func _enabled_status_changed() -> void:
 	set_mouse_captured(enabled)
 
 func _ready() -> void:
-	super()
+	
 	
 	if not is_authority():
 		add_disable_priority()
 		return
+	
+	_enabled_status_changed()
 	
 	#console.visibility_changed.connect(_on_console_visibility_changed)
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)

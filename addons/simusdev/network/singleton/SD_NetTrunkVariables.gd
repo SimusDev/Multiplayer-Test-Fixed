@@ -105,10 +105,10 @@ func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode:
 		
 		if options.has("snap"):
 			var snap: float = options.get("snap", 0.0) as float
-			
-			var type: int = typeof(p_value)
-			if type in SNAP_VARIABLE_TYPES:
-				p_value = SNAP_VARIABLE_TYPES[type].call(p_value, snap)
+			if snap > 0.0:
+				var type: int = typeof(p_value)
+				if type in SNAP_VARIABLE_TYPES:
+					p_value = SNAP_VARIABLE_TYPES[type].call(p_value, snap)
 			
 		parsed[p_name] = p_value
 	

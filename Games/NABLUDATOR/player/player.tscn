@@ -26,8 +26,8 @@
 [ext_resource type="Script" uid="uid://ctxfpyl7chtw8" path="res://Games/NABLUDATOR/components/c_eyes_raycast_reference.gd" id="22_sgj1c"]
 [ext_resource type="Script" uid="uid://c624hlftg8wkp" path="res://Games/NABLUDATOR/components/c_item_usage.gd" id="23_hlr15"]
 [ext_resource type="Script" uid="uid://cr5ugf5fc22sf" path="res://Games/NABLUDATOR/components/c_health.gd" id="25_lxqqc"]
-[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="26_imvau"]
-[ext_resource type="Script" uid="uid://cqrruu5ybm8js" path="res://Games/NABLUDATOR/components/c_item_animator.gd" id="29_8mnx2"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="26_imvau"]
+[ext_resource type="Script" path="res://Games/NABLUDATOR/components/c_item_animator.gd" id="29_8mnx2"]
 
 [sub_resource type="Resource" id="Resource_vh1f0"]
 script = ExtResource("3_sgj1c")
@@ -1003,7 +1003,7 @@ target_node = NodePath("../../../../containers/item_container")
 [node name="containers" type="Node3D" parent="W_FPCSourceLikeCamera"]
 
 [node name="weapon_container" type="Node3D" parent="W_FPCSourceLikeCamera/containers"]
-transform = Transform3D(-0.971926, 0.00246143, 0.235269, -0.133033, -0.830507, -0.540883, 0.194062, -0.556998, 0.807519, 0.65382, -1.14754, -0.161568)
+transform = Transform3D(-0.971926, 0.00246143, 0.235269, -0.133032, -0.830507, -0.540883, 0.194062, -0.556998, 0.807519, 0.65382, -1.14754, -0.161568)
 
 [node name="aps_pistol" parent="W_FPCSourceLikeCamera/containers/weapon_container" instance=ExtResource("9_lo1q8")]
 transform = Transform3D(0.0423754, -0.00424412, -0.276742, 0.276307, 0.0169178, 0.0420492, 0.0160836, -0.279456, 0.00674846, 0.0967354, 0.400749, -0.0915298)
