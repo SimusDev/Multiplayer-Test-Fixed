@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct3sn4lpqifob"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ceoy4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ceoy4"]
+
+[node name="Pleer" type="CharacterBody3D"]
+
+[node name="PlayerMovement" type="PlayerMovement" parent="." node_paths=PackedStringArray("player")]
+player = NodePath("..")
+key_left = &"move_left"
+key_right = &"move_right"
+key_backward = &"move_backward"
+key_forward = &"move_forward"
+key_jump = &"jump"
+key_crouch = &"crouch"
+
+[node name="PlayerPhysics" type="PlayerPhysics" parent="." node_paths=PackedStringArray("player")]
+player = NodePath("..")
+
+[node name="PlayerCameraController" type="PlayerCameraController" parent="." node_paths=PackedStringArray("camera", "player")]
+camera = NodePath("../Camera3D")
+player = NodePath("..")
+sensivity = 0.4
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ceoy4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ceoy4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

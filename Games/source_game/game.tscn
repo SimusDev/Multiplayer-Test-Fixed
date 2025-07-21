@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -116,7 +116,7 @@ APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
 [node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(-0.158727, 0, 0.987323, 0, 1, 0, -0.987323, 0, -0.158727, 1.3, 0.426518, 10.2385)
+transform = Transform3D(-0.997288, 0, -0.0736039, 0, 1, 0, 0.0736039, 0, -0.997288, -169.8, 0.426518, -158.679)
 
 [node name="1" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53703, 0, -1.80009)
