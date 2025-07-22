@@ -175,6 +175,7 @@ offset_bottom = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="waiting_host" type="Panel" parent="placeholder"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.374219
@@ -201,8 +202,9 @@ metadata/_edit_use_anchors_ = true
 [node name="SourceLevelHandler" type="Node" parent="." node_paths=PackedStringArray("root_node", "props_node")]
 script = ExtResource("8_aahtd")
 root_node = NodePath("../map_holder")
-levels_folder_path = "res://Games/source_game/level_resources/"
 props_node = NodePath("../props")
+levels_folder_path = "res://Games/source_game/level_resources/"
+level_at_start = "gm_flatgrass"
 metadata/_custom_type_script = "uid://3dgpp5kj8o23"
 
 [node name="props" type="Node3D" parent="."]

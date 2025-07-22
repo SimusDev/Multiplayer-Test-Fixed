@@ -7,11 +7,19 @@ signal _load_level
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
 
 @export var root_node:Node
-@export var levels_folder_path:String
 @export var props_node:Node
+var current_level:Node
+@export_category("Settings")
+@export var levels_folder_path:String
+@export var level_at_start:String = "" ## Set a value if you want to set the level on start, a variable with a default value does nothing
 
 func _ready() -> void:
 	cmd_change_level.executed.connect(_on_cmd_change_level_executed)
+	
+	if level_at_start == "":
+		return
+	if SD_Network.is_server():
+		load_level(level_at_start)
 
 func _on_cmd_change_level_executed():
 	if SD_Multiplayer.is_not_server():
@@ -46,7 +54,8 @@ func load_level(level_name:StringName) -> bool:
 	free_all_props()
 	
 	var new_level_scene = level_res.level_scene.instantiate()
+	current_level = new_level_scene
 	root_node.add_child(new_level_scene)
-	_load_level.emit()
+	_load_level.emit(new_level_scene)
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
 	return true

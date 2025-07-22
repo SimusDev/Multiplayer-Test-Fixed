@@ -13,24 +13,31 @@ var sv_cheats:bool = false : set = set_sv_cheats
 func _ready() -> void:
 	SD_Network.register_function($placeholder.show)
 	SD_Network.register_function($placeholder.hide)
+
 	instance = self
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
-	var timer = Timer.new()
-	timer.wait_time = sec
-	timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))
-	timer.timeout.connect(timer.queue_free)
-	add_child(timer)
-	timer.start()
+	if SD_Network.is_server():
+		var timer = Timer.new()
+		timer.wait_time = sec
+		timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))
+		timer.timeout.connect(timer.queue_free)
+		add_child(timer)
+		timer.start()
 	
-	SD_Multiplayer.call_func_on(_for.get_peer_id(), add_freecam)
+		#add_freecam(_for)
+#
+#func add_freecam(_for:SD_MultiplayerPlayer):
+	#print("SEX SEX SEX BAGI BAGI BAGI ||| %S"  % [_for])
+	#var player_node = _for.get_player_node()
+	#if not is_instance_valid(player_node): return
+	#
+	#if SD_MultiplayerPlayer.find_in_node(self) == _for:
+		#var new_death_camera = death_camera.instantiate()
+		#SourceGame.instance.add_child(new_death_camera)
+		#new_death_camera.global_position = player_node.global_position
+		#new_death_camera.make_current()
 
-func add_freecam(_for:SD_MultiplayerPlayer):
-	var new_death_camera = death_camera.instantiate()
-	SourceGame.instance.add_child(new_death_camera)
-	new_death_camera.global_position = _for.get_player_node().global_position
-	new_death_camera.make_current()
-	
 #D.R.Y
 
 func request_spawn(prop_res:R_SourceProp):
@@ -136,5 +143,6 @@ func set_sv_cheats(value:bool) -> void:
 
 func _on_source_level_handler__free_current_level() -> void:
 	SD_Network.call_func($placeholder.show)
-func _on_source_level_handler__load_level() -> void:
+func _on_source_level_handler__load_level(level:Node) -> void:
 	SD_Network.call_func($placeholder.hide)
+	mp_player_spawner = level.get_node("player_spawner")

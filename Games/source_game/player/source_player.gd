@@ -5,6 +5,7 @@ static var instance:SourcePlayer
 @export_group("Health")
 @export var health:C_HealthComponent
 @export var take_damage_assets:Array[AudioStream]
+@export var death_assets:Array[AudioStream]
 
 @export_group("Controls")
 @export var movement:W_FPCSourceLikeMovement
@@ -25,6 +26,7 @@ static var instance:SourcePlayer
 @export var model:W_AnimatedModel3D
 @export var interact_raycast:SourceInteractRaycast
 @export var footsteps_component:SourceFootsteps
+@export var death_camera:PackedScene
 
 var in_backrooms:bool = false : set = set_in_backrooms, get = is_in_backrooms
 
@@ -41,6 +43,8 @@ func _ready() -> void:
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )
 
+	SD_Network.register_function(SourceGame.instance.start_respawn_timer)
+
 	if is_multiplayer_authority():
 		instance = self
 		
@@ -51,7 +55,6 @@ func _ready() -> void:
 		SourcePlayerUI.instance.update(health.health)
 
 func _on_state_enter(state:SD_State):
-	print(state.name)
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
 
 func set_model_blend():
@@ -68,20 +71,22 @@ func _physics_process(_delta: float) -> void:
 	set_model_blend()
 
 func _on_health_died() -> void:
-	#SoundPlayer.play_global_audio_3d(self.global_position, preload("res://Games/c-shark/audio/death/death1.wav"))
-	var new_ragdoll_model = ragdoll_model.instantiate()
-	new_ragdoll_model.global_position = global_position
-	SourceGame.instance.add_child(new_ragdoll_model)
-	new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
+	SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
 	
-	if SD_Multiplayer.is_server():
-		SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
-		
-		if is_multiplayer_authority():
-			SourcePlayer.instance = null
-		
-		queue_free()
-
+	if is_multiplayer_authority():
+		var new_death_camera = death_camera.instantiate()
+		new_death_camera.set_multiplayer_authority(get_multiplayer_authority())
+		SourceGame.instance.add_child(new_death_camera)
+		new_death_camera.global_position = self.global_position
+		new_death_camera.make_current()
+		SourcePlayer.instance = null
+		SD_Multiplayer.call_func(self.queue_free)
+	
+	SoundPlayer.play_global_audio_3d(self.global_position, death_assets.pick_random())
+	var new_ragdoll_model = ragdoll_model.instantiate()
+	SourceGame.instance.add_child(new_ragdoll_model)
+	new_ragdoll_model.global_position = global_position
+	new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
 
 func _on_health_health_changed() -> void:
 	if health.health > health._last_health:
