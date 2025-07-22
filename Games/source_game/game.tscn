@@ -204,7 +204,7 @@ script = ExtResource("8_aahtd")
 root_node = NodePath("../map_holder")
 props_node = NodePath("../props")
 levels_folder_path = "res://Games/source_game/level_resources/"
-level_at_start = "gm_flatgrass"
+level_at_start = "kz"
 metadata/_custom_type_script = "uid://3dgpp5kj8o23"
 
 [node name="props" type="Node3D" parent="."]

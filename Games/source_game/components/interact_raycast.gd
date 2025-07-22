@@ -15,13 +15,17 @@ func _exit_tree() -> void:
 		drag_prop(current_object)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and current_object:
+	if not is_multiplayer_authority() and not SimusDev.ui.has_active_interface():
+		return
+	
+	if event is InputEventKey and current_object and event.is_released():
 		var source_prop_component = current_object.get_node("SourceProp") as SourceProp
 		source_prop_component.key_pressed.emit(event.as_text().to_lower())
 	
 	if is_drag_item:
 		if Input.is_action_pressed("rotate_item"):
-			player.camera.enabled = false
+			if player.camera.enabled: player.camera.enabled = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			if event is InputEventMouseMotion:
 				var sens:float = 1.0 * 0.25
 				
@@ -31,7 +35,7 @@ func _input(event: InputEvent) -> void:
 				drag_item_link_node.rotation_degrees.x += rot_x * sens
 				drag_item_link_node.rotation_degrees.y += rot_y * sens
 		else:
-			player.camera.enabled = true
+			if not player.camera.enabled: player.camera.enabled = true
 
 
 func set_collider(_collider:Variant):

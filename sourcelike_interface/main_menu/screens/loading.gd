@@ -70,6 +70,7 @@ func _on_loader_loading_finished(scene: PackedScene, map: R_GameMap) -> void:
 	Maps.set_current_map_scene(scene)
 	Maps.set_current_map(map)
 	Maps.load_gameworld()
+	Maps.map_loading_finished.emit()
 
 
 func update_progressbar() -> void:
