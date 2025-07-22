@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://jeykusytslxy"]
+
+[ext_resource type="PackedScene" uid="uid://do6vi3f0fa7pb" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.tscn" id="1_n262y"]
+[ext_resource type="Script" uid="uid://dfp4ypn40rblh" path="res://Games/source_game/components/r_level.gd" id="1_q2c0p"]
+
+[resource]
+script = ExtResource("1_q2c0p")
+map_name = &"gm_flatgrass"
+level_scene = ExtResource("1_n262y")
+metadata/_custom_type_script = "uid://dfp4ypn40rblh"

@@ -11,6 +11,7 @@ var _current_map_scene: PackedScene
 var server_ready: bool = false
 
 signal server_ready_recieved(status: bool, map: R_GameMap)
+signal map_loading_finished
 
 func _ready() -> void:
 	if dedicated_server:

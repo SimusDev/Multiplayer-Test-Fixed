@@ -1,4 +1,4 @@
-[gd_scene load_steps=533 format=4 uid="uid://b3g8gtngmas8l"]
+[gd_scene load_steps=535 format=4 uid="uid://b3g8gtngmas8l"]
 
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_pf18o"]
 [ext_resource type="Texture2D" uid="uid://cjcgfpjmqkfrf" path="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity_0.png" id="1_tjas5"]
@@ -115,6 +115,8 @@
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="109_7hbrq"]
 [ext_resource type="ArrayOccluder3D" uid="uid://vgrr0pb0csgb" path="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity.occ" id="113_3sbuj"]
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="115_p7001"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="116_b5t8c"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="117_7hbrq"]
 
 [sub_resource type="Resource" id="Resource_lg245"]
 script = ExtResource("3_ughkn")
@@ -4398,7 +4400,7 @@ background_mode = 2
 sky = SubResource("Sky_y3ap3")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.95
+ambient_light_sky_contribution = 0.9
 ambient_light_energy = 2.0
 reflected_light_source = 2
 tonemap_mode = 3
@@ -5360,6 +5362,8 @@ script = ExtResource("107_bn7em")
 fog_enabled = false
 enable_editor_time = false
 current_time = 10.0
+minutes_per_day = 60.0
+update_interval = 0.05
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
@@ -5382,7 +5386,9 @@ fog_visible = false
 [node name="TimeOfDay" type="Node" parent="Sky3D"]
 script = ExtResource("109_7hbrq")
 update_in_editor = false
+update_interval = 0.05
 dome_path = NodePath("../Skydome")
+total_cycle_in_minutes = 60.0
 total_hours = 10.0
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
@@ -5391,3 +5397,22 @@ occluder = ExtResource("113_3sbuj")
 [node name="ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("115_p7001")
 autoplay = true
+
+[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("116_b5t8c")
+player_scene = ExtResource("117_7hbrq")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, 1, -130)
+
+[node name="1" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0346376, 0, 0)
+
+[node name="2" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
+
+[node name="3" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36843, 0, 0.170113)

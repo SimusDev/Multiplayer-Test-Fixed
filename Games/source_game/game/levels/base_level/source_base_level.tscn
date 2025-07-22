@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://wjpo1d0fdtji"]
+
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_4yp1p"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_q28k2"]
+
+[node name="source_base_level" type="Node3D"]
+
+[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("1_4yp1p")
+player_scene = ExtResource("2_q28k2")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770691, 0.831896, 5.07006)
+
+[node name="1" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0346376, 0, 0)
+
+[node name="2" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
+
+[node name="3" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75025, 0, 0.170113)

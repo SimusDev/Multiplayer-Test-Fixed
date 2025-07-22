@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://cd3il3xi2w5wr"]
+
+[ext_resource type="PackedScene" uid="uid://biexdapt3c1te" path="res://Games/source_game/game/levels/kz/source_kz.tscn" id="1_ehqbt"]
+[ext_resource type="Script" uid="uid://dfp4ypn40rblh" path="res://Games/source_game/components/r_level.gd" id="1_pl2um"]
+
+[resource]
+script = ExtResource("1_pl2um")
+map_name = &"kz"
+level_scene = ExtResource("1_ehqbt")
+metadata/_custom_type_script = "uid://dfp4ypn40rblh"

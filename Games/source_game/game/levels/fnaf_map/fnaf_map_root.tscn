@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhpdpoj67oway"]
+
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_lwcjj"]
+[ext_resource type="PackedScene" uid="uid://bsuaqxh8uhd37" path="res://Games/fnaf/maps/fnaf1_u/base.tscn" id="1_ya4wd"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_bnarr"]
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_te7lc"]
+interior = true
+
+[sub_resource type="Environment" id="Environment_jgx21"]
+ambient_light_source = 3
+ambient_light_color = Color(0.235156, 0.278907, 0.35, 1)
+ambient_light_sky_contribution = 0.7
+ambient_light_energy = 0.125
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 0.6
+tonemap_white = 6.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_s8025"]
+
+[node name="MapRoot" type="Node3D"]
+
+[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("1_lwcjj")
+player_scene = ExtResource("2_bnarr")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="Untitled" parent="." instance=ExtResource("1_ya4wd")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Lights" type="Node3D" parent="."]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, 0, 0)
+
+[node name="main_hall_lamp2" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, 14.8441, 9.12911, 11.8347)
+light_color = Color(1, 1, 0.815686, 1)
+light_energy = 1.491
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 90.0
+spot_attenuation = 0.75
+spot_angle = 75.0
+
+[node name="main_hall_lamp3" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0211867, 0.999776, 0, -0.999776, 0.0211867, -14.4689, 9.12911, 11.8347)
+light_color = Color(1, 1, 0.815686, 1)
+light_energy = 1.491
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 90.0
+spot_attenuation = 0.75
+spot_angle = 75.0
+
+[node name="right_hallway" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0501223, 0.998743, 0, -0.998743, 0.0501223, 2.39244, 8.11315, 37.6019)
+light_color = Color(1, 0.745098, 0.705882, 1)
+light_energy = 0.45
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="office" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.0869471, 0.996213, 0, -0.996213, -0.0869471, -4.03082, 7.75767, 60.9067)
+light_color = Color(1, 0.883932, 0.797056, 1)
+light_energy = 0.347
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="left_hallway" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.0501223, 0.998743, 0, -0.998743, 0.0501223, -11.1886, 8.62223, 37.6019)
+light_color = Color(1, 0.746939, 0.705624, 1)
+light_energy = 0.45
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 31.748
+spot_attenuation = 0.41
+spot_angle = 85.6046
+
+[node name="scene_lamp" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.9819, -9.63997)
+light_color = Color(1, 0.827386, 0.802204, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 16.437
+spot_attenuation = 0.45
+spot_angle = 77.72
+spot_angle_attenuation = 1.93187
+
+[node name="restroom" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.888207, 0.253889, -0.382922, 0, 0.833446, 0.552601, 0.459444, -0.490824, 0.740273, 23.8102, 7.80616, 0.986603)
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 37.557
+
+[node name="pirate_cove" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(-0.0853345, -0.212179, 0.973498, 0, 0.977062, 0.212956, -0.996352, 0.0181725, -0.083377, -16.8704, 9.16374, 17.7677)
+light_color = Color(1, 0.764706, 0.764706, 1)
+light_energy = 0.477
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 4.882
+omni_attenuation = 0.483
+
+[node name="backstage" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.589761, 0.206232, -0.780801, 0, 0.966843, 0.255371, 0.807578, -0.150608, 0.570207, -23.7118, 8.76868, 3.21956)
+light_energy = 0.927
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 13.704
+
+[node name="VoxelGI" type="VoxelGI" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97256, 8.00885, -8.59481)
+size = Vector3(137.247, 36.0177, 147.165)
+data = SubResource("VoxelGIData_te7lc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(0.47347, -0.322818, 0.819521, 0, 0.930418, 0.366501, -0.88081, -0.173527, 0.440525, -49.6906, -1.57448, 9.93007)
+light_energy = 0.564
+distance_fade_enabled = true
+omni_range = 4.222
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jgx21")
+camera_attributes = SubResource("CameraAttributesPractical_s8025")
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 36)
+
+[node name="1" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26817, 0, 0)
+
+[node name="2" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65029, 0, -0.0420418)
+
+[node name="3" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85077, 0, 0.170113)

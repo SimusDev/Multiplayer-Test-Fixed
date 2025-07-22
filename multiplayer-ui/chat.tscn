@@ -23,7 +23,7 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[sub_resource type="LabelSettings" id="LabelSettings_q8jaf"]
+[sub_resource type="LabelSettings" id="LabelSettings_1j1kj"]
 font = ExtResource("4_5phwp")
 font_size = 18
 outline_size = 4
@@ -83,7 +83,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "CHAT"
-label_settings = SubResource("LabelSettings_q8jaf")
+label_settings = SubResource("LabelSettings_1j1kj")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_6jjk0")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://ds44e3cdpbhg8"]
+
+[ext_resource type="PackedScene" uid="uid://b3g8gtngmas8l" path="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity.tscn" id="1_8u8y4"]
+[ext_resource type="Script" uid="uid://dfp4ypn40rblh" path="res://Games/source_game/components/r_level.gd" id="1_v1sem"]
+
+[resource]
+script = ExtResource("1_v1sem")
+map_name = &"gm_bigcity"
+level_scene = ExtResource("1_8u8y4")
+metadata/_custom_type_script = "uid://dfp4ypn40rblh"

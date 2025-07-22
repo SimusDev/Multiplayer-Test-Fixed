@@ -8,27 +8,36 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
 
-@onready var map = $gm_bigcity
+#@onready var map = $gm_bigcity
 
 func _ready() -> void:
+	SD_Network.register_function($placeholder.show)
+	SD_Network.register_function($placeholder.hide)
+
 	instance = self
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
-	var timer = Timer.new()
-	timer.wait_time = sec
-	timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))
-	timer.timeout.connect(timer.queue_free)
-	add_child(timer)
-	timer.start()
+	if SD_Network.is_server():
+		var timer = Timer.new()
+		timer.wait_time = sec
+		timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))
+		timer.timeout.connect(timer.queue_free)
+		add_child(timer)
+		timer.start()
 	
-	SD_Multiplayer.call_func_on(_for.get_peer_id(), add_freecam)
+		#add_freecam(_for)
+#
+#func add_freecam(_for:SD_MultiplayerPlayer):
+	#print("SEX SEX SEX BAGI BAGI BAGI ||| %S"  % [_for])
+	#var player_node = _for.get_player_node()
+	#if not is_instance_valid(player_node): return
+	#
+	#if SD_MultiplayerPlayer.find_in_node(self) == _for:
+		#var new_death_camera = death_camera.instantiate()
+		#SourceGame.instance.add_child(new_death_camera)
+		#new_death_camera.global_position = player_node.global_position
+		#new_death_camera.make_current()
 
-func add_freecam(_for:SD_MultiplayerPlayer):
-	var new_death_camera = death_camera.instantiate()
-	SourceGame.instance.add_child(new_death_camera)
-	new_death_camera.global_position = _for.get_player_node().global_position
-	new_death_camera.make_current()
-	
 #D.R.Y
 
 func request_spawn(prop_res:R_SourceProp):
@@ -50,20 +59,20 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 		return
 	
 	match command.get_code():
+			
+		#"time.set":
+			#if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				#SimusDev.console.write_error("command expected 1 arguments")
+				#return
+			#var value = command.get_value_as_float()
+			#SD_Multiplayer.sync_call_function(SourceGame.instance, set_time, [value])
 		
-		"time.set":
-			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
-				SimusDev.console.write_error("command expected 1 arguments")
-				return
-			var value = command.get_value_as_float()
-			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time, [value])
-		
-		"time.freeze":
-			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
-				SimusDev.console.write_error("command expected 1 arguments")
-				return
-			var value = command.get_value_as_bool()
-			SD_Multiplayer.sync_call_function(SourceGame.instance, set_time_freeze, [value])
+		#"time.freeze":
+			#if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+				#SimusDev.console.write_error("command expected 1 arguments")
+				#return
+			#var value = command.get_value_as_bool()
+			#SD_Multiplayer.sync_call_function(SourceGame.instance, set_time_freeze, [value])
 		
 		"player.teleport":
 			if command.get_arguments().size() < 4 or command.get_arguments().size() > 4:
@@ -119,32 +128,21 @@ func teleport_player(player:Node3D, position:Vector3):
 	player.global_position = position
 	SimusDev.console.write_info(str(player) + " position: " + str(position))
 
-func set_time(value:float):
-	map.sky_3d.current_time = value
-	SimusDev.console.write_info("current_time: " + str(value))
-
-func set_time_freeze(value:bool):
-	map.sky_3d.enable_game_time = !value
-	SimusDev.console.write_info("time.freeze: " + str(value))
-
+#func set_time(value:float):
+	#map.sky_3d.current_time = value
+	#SimusDev.console.write_info("current_time: " + str(value))
+#
+#func set_time_freeze(value:bool):
+	#map.sky_3d.enable_game_time = !value
+	#SimusDev.console.write_info("time.freeze: " + str(value))
+#
 func set_sv_cheats(value:bool) -> void:
 	sv_cheats = value
 	SimusDev.console.write_info("sv_cheats: " + str(value))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
+func _on_source_level_handler__free_current_level() -> void:
+	SD_Network.call_func($placeholder.show)
+func _on_source_level_handler__load_level(level:Node) -> void:
+	SD_Network.call_func($placeholder.hide)
+	mp_player_spawner = level.get_node("player_spawner")

@@ -156,8 +156,7 @@ _data = {
 [node name="radio" type="RigidBody3D" node_paths=PackedStringArray("audio_player") groups=["props"]]
 mass = 3.0
 script = ExtResource("1_po8lj")
-data_folder = "res://Games/source_game/game/audio"
-user_data_folder = "<null>"
+data_folder = "res://Games/source_game/game/audio/"
 audio_player = NodePath("SD_MPAudioStreamPlayer3D")
 loop_mode = false
 
@@ -206,5 +205,12 @@ libraries = {
 }
 
 [node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+volume_db = -20.0
+max_distance = 50.0
+bus = &"radio"
+emission_angle_enabled = true
+emission_angle_degrees = 90.0
+emission_angle_filter_attenuation_db = -7.5
 script = ExtResource("6_r3y2h")
 metadata/_custom_type_script = "uid://dcdd6kovrah03"

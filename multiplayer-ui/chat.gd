@@ -1,7 +1,13 @@
-extends Control
+class_name slike_chat extends Control
+
+static var instance:slike_chat
 
 @export var message_prefab:PackedScene
 @export var message_container:VBoxContainer
+
+func _enter_tree() -> void:
+	if is_multiplayer_authority():
+		instance = self
 
 func _send_message(text:String, sender_name:String="[Server]"):
 	var new_message = message_prefab.instantiate() as SourceChatMessage
