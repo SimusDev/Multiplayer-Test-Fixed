@@ -10,6 +10,8 @@ func _ready() -> void:
 	SD_Multiplayer.get_singleton().player_disconnected.connect(_update)
 	SD_Multiplayer.get_singleton().server_disconnected.connect(_update)
 	_update()
+	
+	
 
 func _update(player:SD_MultiplayerPlayer=null):
 	block_rect.visible = SD_Multiplayer.get_connected_players().is_empty()

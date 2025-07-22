@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dy6oimrlfnkit" path="res://multiplayer-ui/chat.tscn" id="8_fsq1x"]
 [ext_resource type="PackedScene" uid="uid://cl6xc8puenssw" path="res://multiplayer-ui/connected_peers.tscn" id="9_wgjw3"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_fsq1x"]
+[sub_resource type="LabelSettings" id="LabelSettings_0bs0x"]
 font = ExtResource("4_k0fcb")
 font_size = 18
 outline_size = 4
@@ -62,7 +62,7 @@ offset_left = 0.176
 grow_horizontal = 2
 grow_vertical = 2
 text = "UI Spawner"
-label_settings = SubResource("LabelSettings_fsq1x")
+label_settings = SubResource("LabelSettings_0bs0x")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("4_0bs0x")
@@ -132,6 +132,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 ui_name = "Chat"
 ui_prefab = ExtResource("8_fsq1x")
+spawn_at_start = true
 
 [node name="UiSpawnButton2" parent="content/GridContainer" instance=ExtResource("7_urp07")]
 layout_mode = 2

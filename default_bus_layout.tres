@@ -8,7 +8,7 @@ resource_name = "Limiter"
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
-room_size = 0.4
+room_size = 0.6
 spread = 0.0
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]

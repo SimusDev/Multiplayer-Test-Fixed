@@ -1,7 +1,114 @@
-[gd_scene load_steps=3 format=3 uid="uid://do6vi3f0fa7pb"]
+[gd_scene load_steps=22 format=3 uid="uid://do6vi3f0fa7pb"]
 
 [ext_resource type="PackedScene" uid="uid://d1i37xrlih3dt" path="res://Games/source_game/game/levels/source_flatgrass/3d/source_flatgrass.tscn" id="1_itvjo"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="3_8rbfd"]
 [ext_resource type="PackedScene" uid="uid://cvwj1m3quvfcm" path="res://Games/source_game/game/3dmodels/tree/tree.tscn" id="3_cchrm"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="4_itvjo"]
+[ext_resource type="ArrayOccluder3D" uid="uid://da4qaq0pxuyxl" path="res://Games/source_game/game/levels/source_flatgrass/source_flatgrass.occ" id="5_pga6s"]
+[ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="6_k3dr4"]
+[ext_resource type="Texture2D" uid="uid://c1vwcdcdvb74a" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/Milkyway.jpg" id="7_0aorm"]
+[ext_resource type="Texture2D" uid="uid://cfqk60lpl5ljv" path="res://addons/sky_3d/assets/resources/SNoise.tres" id="8_vic3u"]
+[ext_resource type="Texture2D" uid="uid://cecwdqjol0ckd" path="res://addons/sky_3d/assets/textures/noiseClouds.png" id="9_kf2x2"]
+[ext_resource type="Texture2D" uid="uid://2r8ylu6rg5dp" path="res://addons/sky_3d/assets/thirdparty/textures/moon/MoonMap.png" id="10_mlmka"]
+[ext_resource type="Texture2D" uid="uid://djpfuyxkryegn" path="res://addons/sky_3d/assets/textures/noise.jpg" id="11_oo37n"]
+[ext_resource type="Texture2D" uid="uid://bm7dot7t7u1q4" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/StarField.jpg" id="12_b0ast"]
+[ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="13_26f3k"]
+[ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="14_o7d4r"]
+[ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="15_igejk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxghk"]
+size = Vector3(29.2465, 7.81531, 17.1227)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cchrm"]
+size = Vector3(15.1793, 7.81531, 17.1227)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3c20t"]
+shader = ExtResource("6_k3dr4")
+shader_parameter/_sky_visible = true
+shader_parameter/_color_correction_params = Vector2(0, 1)
+shader_parameter/_ground_color = Color(0.3, 0.3, 0.3, 1)
+shader_parameter/_horizon_level = 0.0
+shader_parameter/_atm_darkness = 0.5
+shader_parameter/_atm_sun_intensity = 18.0
+shader_parameter/_atm_day_tint = Color(0.807843, 0.909804, 1, 1)
+shader_parameter/_atm_horizon_light_tint = Color(0.980392, 0.635294, 0.462745, 1)
+shader_parameter/_atm_night_tint = Color(0.0171882, 0.0203861, 0.0255825, 0.10193)
+shader_parameter/_atm_level_params = Vector3(1, 0, 0)
+shader_parameter/_atm_thickness = 0.7
+shader_parameter/_atm_beta_ray = Vector3(5.80454e-06, 1.35629e-05, 3.31126e-05)
+shader_parameter/_atm_beta_mie = Vector3(3.038e-08, 3.038e-08, 3.038e-08)
+shader_parameter/_sun_disk_color = Color(0.996094, 0.541334, 0.140076, 1)
+shader_parameter/_sun_disk_intensity = 30.0
+shader_parameter/_sun_disk_size = 0.02
+shader_parameter/_atm_sun_mie_tint = Color(1, 1, 1, 1)
+shader_parameter/_atm_sun_mie_intensity = 1.0
+shader_parameter/_atm_sun_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
+shader_parameter/_moon_color = Color(1, 1, 1, 1)
+shader_parameter/_moon_texture = ExtResource("10_mlmka")
+shader_parameter/_moon_texture_alignment = Vector3(7, 1.4, 4.8)
+shader_parameter/_moon_texture_flip_u = false
+shader_parameter/_moon_texture_flip_v = false
+shader_parameter/_moon_size = 0.07
+shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
+shader_parameter/_atm_moon_mie_intensity = 0.0713505
+shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
+shader_parameter/_background_texture = ExtResource("7_0aorm")
+shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
+shader_parameter/_stars_field_color = Color(1, 1, 1, 1)
+shader_parameter/_stars_field_texture = ExtResource("12_b0ast")
+shader_parameter/_sky_alignment = Vector3(2.6555, -0.23935, 0.4505)
+shader_parameter/_sky_rotation = -9.95774
+shader_parameter/_sky_tilt = -1.29154
+shader_parameter/_stars_scintillation = 0.75
+shader_parameter/_stars_scintillation_speed = 0.01
+shader_parameter/_noise_tex = ExtResource("11_oo37n")
+shader_parameter/_clouds_visible = true
+shader_parameter/_clouds_coverage = 0.5
+shader_parameter/_clouds_thickness = 1.7
+shader_parameter/_clouds_absorption = 2.0
+shader_parameter/_clouds_sky_tint_fade = 0.5
+shader_parameter/_clouds_intensity = 10.0
+shader_parameter/_clouds_size = 2.0
+shader_parameter/_clouds_uv = Vector2(0.16, 0.11)
+shader_parameter/_clouds_speed = 0.07
+shader_parameter/_clouds_direction = Vector2(0.25, 0.25)
+shader_parameter/_clouds_day_color = Color(0.823529, 0.87451, 1, 1)
+shader_parameter/_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
+shader_parameter/_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
+shader_parameter/_clouds_texture = ExtResource("8_vic3u")
+shader_parameter/_cumulus_clouds_visible = true
+shader_parameter/_cumulus_clouds_coverage = 0.55
+shader_parameter/_cumulus_clouds_thickness = 0.0243
+shader_parameter/_cumulus_clouds_absorption = 2.0
+shader_parameter/_cumulus_clouds_noise_freq = 2.7
+shader_parameter/_cumulus_clouds_sky_tint_fade = 0.0
+shader_parameter/_cumulus_clouds_intensity = 0.6
+shader_parameter/_cumulus_clouds_size = 0.5
+shader_parameter/_cumulus_clouds_speed = 0.05
+shader_parameter/_cumulus_clouds_direction = Vector3(0.25, 0.1, 0.25)
+shader_parameter/_cumulus_clouds_texture = ExtResource("9_kf2x2")
+shader_parameter/_cumulus_clouds_day_color = Color(0.823529, 0.87451, 1, 1)
+shader_parameter/_cumulus_clouds_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
+shader_parameter/_cumulus_clouds_night_color = Color(0.090196, 0.094118, 0.129412, 1)
+shader_parameter/_cumulus_clouds_partial_mie_phase = Vector3(0.957564, 1.04244, 0.412)
+shader_parameter/_cumulus_clouds_mie_intensity = 1.0
+shader_parameter/_moon_matrix = Basis(0, -0.997858, -0.0654232, -0.455816, -0.0582315, 0.888167, -0.890074, 0.0298209, -0.454839)
+shader_parameter/_deep_space_matrix = Basis(0.861304, 0.50809, 0, 0.140049, -0.237408, -0.961261, -0.488407, 0.827938, -0.275638)
+
+[sub_resource type="Sky" id="Sky_x34mh"]
+sky_material = SubResource("ShaderMaterial_3c20t")
+
+[sub_resource type="Environment" id="Environment_62kkd"]
+background_mode = 2
+sky = SubResource("Sky_x34mh")
+ambient_light_source = 3
+ambient_light_color = Color(0.597755, 0.433994, 0.35338, 1)
+ambient_light_sky_contribution = 0.9
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_white = 6.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7y2v5"]
 
 [node name="source_flatgrass" type="Node3D"]
 
@@ -1378,3 +1485,79 @@ transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -32, 0, -4)
 
 [node name="tree77" parent="trees" instance=ExtResource("3_cchrm")]
 transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, -33, 0, 1)
+
+[node name="reverb" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376781, 0)
+reverb_bus_enabled = true
+reverb_bus_name = &"reverb"
+reverb_bus_amount = 1.0
+reverb_bus_uniformity = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="reverb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120455, 3.40765, 0.0268745)
+shape = SubResource("BoxShape3D_hxghk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="reverb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734294, 3.40765, 6.01766)
+shape = SubResource("BoxShape3D_cchrm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="reverb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734294, 3.40765, -6.06544)
+shape = SubResource("BoxShape3D_cchrm")
+
+[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("3_8rbfd")
+player_scene = ExtResource("4_itvjo")
+parent = NodePath("..")
+spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="spawn_points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770691, 0.831896, 5.07006)
+
+[node name="1" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0346376, 0, 0)
+
+[node name="2" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
+
+[node name="3" type="Marker3D" parent="spawn_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36843, 0, 0.170113)
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("5_pga6s")
+
+[node name="Sky3D" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_62kkd")
+camera_attributes = SubResource("CameraAttributesPractical_7y2v5")
+script = ExtResource("13_26f3k")
+fog_enabled = false
+enable_editor_time = false
+current_time = 7.19767
+minutes_per_day = 60.0
+metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
+
+[node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
+transform = Transform3D(0, -0.50539, 0.862891, 0.920002, 0.338179, 0.19807, -0.391914, 0.793861, 0.46496, 0.862891, 0.19807, 0.46496)
+light_color = Color(0.987923, 0.711958, 0.573674, 1)
+shadow_enabled = true
+
+[node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
+transform = Transform3D(0, -0.455816, -0.890074, -0.997858, -0.0582315, 0.0298209, -0.0654232, 0.888167, -0.454839, -0.890074, 0.0298209, -0.454839)
+light_color = Color(0.572549, 0.776471, 0.956863, 1)
+light_energy = 0.0
+
+[node name="Skydome" type="Node" parent="Sky3D"]
+script = ExtResource("14_o7d4r")
+sun_azimuth = -118.317
+sun_altitude = -78.5759
+moon_azimuth = -297.067
+moon_altitude = -88.2911
+fog_visible = false
+
+[node name="TimeOfDay" type="Node" parent="Sky3D"]
+script = ExtResource("15_igejk")
+update_in_editor = false
+dome_path = NodePath("../Skydome")
+total_cycle_in_minutes = 60.0
+total_hours = 7.19767

@@ -1,13 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
+[ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/textures/SourceEngineVibe2.jpg" id="3_8dbco"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="6_dep2b"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="6_tn3t5"]
+[ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
-[ext_resource type="PackedScene" uid="uid://bb5qbwsp2yoa2" path="res://Games/source_game/game/levels/fnaf/fnaf_map.tscn" id="12_tn3t5"]
-[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
@@ -79,9 +79,37 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="source_game" type="Node" node_paths=PackedStringArray("mp_player_spawner")]
+[sub_resource type="GDScript" id="GDScript_8dbco"]
+resource_name = "cmd_list"
+script/source = "extends ColorRect
+
+@onready var game_commands = $\"../game_commands\"
+@onready var commands_vbox = $commands_list/VBoxContainer
+
+@export var other_commands:Array[String]
+
+func _ready() -> void:
+	$waiting_host.visible = not SD_Network.is_server()
+	
+	for command:SD_NodeCommandObject in game_commands.commands:
+		add_label(command.code)
+	for command_name:String in other_commands:
+		add_label(command_name)
+
+func add_label(label_text:String):
+	var new_label = Label.new()
+	commands_vbox.add_child(new_label)
+	new_label.text = label_text
+	new_label.set(\"theme_override_font_sizes/font_size\", 21)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_tn3t5"]
+font_size = 26
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="source_game" type="Node"]
 script = ExtResource("1_lvrp7")
-mp_player_spawner = NodePath("player_spawner")
 death_camera = ExtResource("28_ioj0b")
 
 [node name="game_commands" type="Node" parent="."]
@@ -89,12 +117,93 @@ script = ExtResource("18_wirdf")
 commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
-[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("2_hjpvw")
-player_scene = ExtResource("13_aahtd")
-parent = NodePath("..")
-spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
+[node name="placeholder" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_tn3t5")
+color = Color(0, 0, 0, 1)
+script = SubResource("GDScript_8dbco")
+other_commands = Array[String](["level.change"])
+
+[node name="bg" type="TextureRect" parent="placeholder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8dbco")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="commands_list" type="Panel" parent="placeholder"]
+layout_mode = 0
+anchor_right = 0.374219
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="placeholder/commands_list"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0480167
+anchor_top = 0.0875
+anchor_right = 1.0
+anchor_bottom = 0.954167
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="placeholder/commands_list"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0527778
+anchor_right = 0.244259
+anchor_bottom = 0.075
+text = "Game commands: "
+metadata/_edit_use_anchors_ = true
+
+[node name="rect" type="ColorRect" parent="placeholder/commands_list"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0777778
+anchor_right = 1.0
+anchor_bottom = 0.0791667
+offset_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="waiting_host" type="Panel" parent="placeholder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.374219
+anchor_top = 0.933333
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="placeholder/waiting_host"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00499376
+anchor_top = 0.229167
+anchor_right = 0.993758
+anchor_bottom = 0.770833
+grow_horizontal = 2
+grow_vertical = 2
+text = "Waiting host"
+label_settings = SubResource("LabelSettings_tn3t5")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SourceLevelHandler" type="Node" parent="." node_paths=PackedStringArray("root_node", "props_node")]
+script = ExtResource("8_aahtd")
+root_node = NodePath("../map_holder")
+levels_folder_path = "res://Games/source_game/level_resources/"
+props_node = NodePath("../props")
+metadata/_custom_type_script = "uid://3dgpp5kj8o23"
 
 [node name="props" type="Node3D" parent="."]
 
@@ -115,18 +224,6 @@ APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 })
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
-[node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(-0.997288, 0, -0.0736039, 0, 1, 0, 0.0736039, 0, -0.997288, -169.8, 0.426518, -158.679)
-
-[node name="1" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
-
-[node name="2" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
-
-[node name="3" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.274, 0.907871, -172.986)
-
 [node name="backrooms_trigger" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 script = ExtResource("10_vakk2")
@@ -134,7 +231,18 @@ room = ExtResource("11_8dbco")
 
 [node name="backrooms" type="Node3D" parent="."]
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("12_tn3t5")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+[node name="map_holder" type="Node3D" parent="."]
+
+[node name="SD_MPClientNodeSpawner" type="Node" parent="map_holder" node_paths=PackedStringArray("_detect_roots")]
+script = ExtResource("6_s8025")
+_detect_roots = [NodePath("..")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]
+[connection signal="_free_current_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__free_current_level"]
+[connection signal="_load_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__load_level"]
