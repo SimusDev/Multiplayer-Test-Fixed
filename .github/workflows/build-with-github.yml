@@ -21,11 +21,8 @@ jobs:
           path: 'godot-cpp'
           submodules: true
       - name: create docker image
-        run: docker build -t tree3dbuilder:latest .
       - name: build binaries
         run: |
-          docker run --rm -v "$(pwd):/source" tree3dbuilder:latest scons target=template_debug arch=${{ matrix.target_arch }}
-          docker run --rm -v "$(pwd):/source" tree3dbuilder:latest scons target=template_release arch=${{ matrix.target_arch }}
       - name: archive built binaries
         uses: actions/upload-artifact@v4
         with:
@@ -49,18 +46,10 @@ jobs:
           path: 'godot-cpp'
           submodules: true
       - name: create docker image
-        run: docker build -t tree3dbuilder:latest .
       - name: build binaries
         run: |
-          docker run --rm -v "$(pwd):/source" tree3dbuilder:latest scons target=template_debug arch=${{ matrix.target_arch }} platform=windows
-          docker run --rm -v "$(pwd):/source" tree3dbuilder:latest scons target=template_release arch=${{ matrix.target_arch }} platform=windows
       - name: archive built binaries
         uses: actions/upload-artifact@v4
-        with:
-          name: ${{ format('binaries-windows-godot{0}-{1}', matrix.godot_cpp_branch, matrix.target_arch) }}
-          if-no-files-found: error
-          path: |
-            addons/*
 
   Build-MacOS:
     runs-on: macos-latest
@@ -88,15 +77,9 @@ jobs:
           scons -c
           scons target=template_debug arch=arm64
           scons target=template_release arch=arm64
-          lipo -create addons/Tree3D/libTree3D.macos.template_release.arm64 addons/Tree3D/libTree3D.macos.template_release.x86_64 -output addons/Tree3D/libTree3D.macos.template_release.universal
-          lipo -create addons/Tree3D/libTree3D.macos.template_debug.arm64 addons/Tree3D/libTree3D.macos.template_debug.x86_64 -output addons/Tree3D/libTree3D.macos.template_debug.universal
       - name: archive built binaries
         uses: actions/upload-artifact@v4
-        with:
-          name: ${{ format('binaries-macos-godot{0}-universal', matrix.godot_cpp_branch) }}
-          if-no-files-found: error
-          path: |
-            addons/*
+
 
   Bundle-All-In-One-ZIP:
     needs: [Build-Linux, Build-Windows, Build-MacOS]
@@ -114,13 +97,6 @@ jobs:
           merge-multiple: true
       - name: create gdExtension ZIP
         uses: actions/upload-artifact@v4
-        with:
-          name: ${{ format('Tree3D-addon-godot{0}', matrix.godot_cpp_branch) }}
-          if-no-files-found: error
-          path: |
-            addons/*
-      - name: create demo ZIP
-        if: false  # Отключено, так как demo/ больше не используется
         run: echo "Demo project packaging disabled"
 
   Create-Github-Draft-Release:
@@ -130,10 +106,6 @@ jobs:
     steps:
       - name: Download All-In-One ZIP
         uses: dawidd6/action-download-artifact@v6
-        with:
-          skip_unpack: true
-          name: Tree3D-addon-godot*
-          name_is_regexp: true
       - name: create draft release
         uses: softprops/action-gh-release@v2
         with:
