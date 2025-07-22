@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=20 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="6_dep2b"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
@@ -10,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="13_aahtd"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -83,6 +84,12 @@ metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 script = ExtResource("1_lvrp7")
 mp_player_spawner = NodePath("player_spawner")
 death_camera = ExtResource("28_ioj0b")
+
+[node name="C_SourceObjectHandler" type="Node" parent="."]
+script = ExtResource("3_aahtd")
+base_dir = "res://Games/source_game"
+object_dirs = PackedStringArray("objects")
+metadata/_custom_type_script = "uid://dhnvcwkrkbnk5"
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")

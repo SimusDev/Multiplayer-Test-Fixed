@@ -6,8 +6,8 @@ class_name SD_NetworkSettings
 	"main",
 ]
 @export var root_path: String = "/root/"
-@export var sync_tickrate: float = 64.0
-@export var sync_process: Timer.TimerProcessCallback = Timer.TimerProcessCallback.TIMER_PROCESS_IDLE
+@export var global_tickrate: float = 64.0
+@export var global_process: Timer.TimerProcessCallback = Timer.TimerProcessCallback.TIMER_PROCESS_IDLE
 @export var default_peer: bool = true
 @export var compression: ENetConnection.CompressionMode = ENetConnection.COMPRESS_FASTLZ
 @export var serializer_compression: FileAccess.CompressionMode = FileAccess.COMPRESSION_DEFLATE

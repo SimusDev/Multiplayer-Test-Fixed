@@ -18,11 +18,8 @@ func _exit_tree() -> void:
 	
 	SD_Array.erase_from_array(_interactable_areas, area)
 
-
-
 func interact(interactor: W_Interactor3D) -> void:
-	SD_Multiplayer.sync_call_function(self, _interact_synced, [interactor])
-
+	SD_Network.call_func(_interact_synced, [interactor])
 
 func _interact_synced(interactor: W_Interactor3D) -> void:
 	if interactor:
@@ -30,6 +27,7 @@ func _interact_synced(interactor: W_Interactor3D) -> void:
 		interactor.interacted.emit(self)
 
 func _ready() -> void:
+	SD_Network.register_function(_interact_synced)
 	area.set_meta("W_InteractableArea3D", self)
 
 func _on_enabled() -> void:
