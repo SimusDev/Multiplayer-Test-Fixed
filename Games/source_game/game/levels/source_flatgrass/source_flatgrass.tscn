@@ -1522,7 +1522,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0346376, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
 
 [node name="3" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36843, 0, 0.170113)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75025, 0, 0.170113)
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("5_pga6s")
