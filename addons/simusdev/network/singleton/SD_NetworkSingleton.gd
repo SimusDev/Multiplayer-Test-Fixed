@@ -37,6 +37,8 @@ signal on_cache_from_server_recieve()
 signal on_cached_node_recieve(path: String)
 signal on_cached_node_reject(path: String)
 
+signal on_active_status_changed(status: bool)
+
 var _s_network: SD_Network
 var _s_network_serializer: SD_NetworkSerializer
 var _s_network_deserializer: SD_NetworkDeserializer
@@ -50,6 +52,13 @@ var _active: bool = false
 var _static: Array = [
 	SD_NetworkObject,
 ]
+
+func set_active(value: bool) -> void:
+	if _active == value:
+		return
+	
+	_active = value
+	on_active_status_changed.emit(_active)
 
 func get_cached_resources() -> Array[String]:
 	return _cache.get_or_add("r", [] as Array[String]) as Array[String]
@@ -179,7 +188,7 @@ func _on_server_disconnected() -> void:
 	players._on_server_disconnected()
 	on_server_disconnected.emit()
 	
-	_active = false
+	set_active(false)
 	debug_print("Server Disconnected!")
 
 func terminate_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, message: String = "") -> void:

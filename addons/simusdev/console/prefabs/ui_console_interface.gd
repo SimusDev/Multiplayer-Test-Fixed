@@ -12,6 +12,8 @@ signal toolbutton_pressed(button: Button)
 func _ready() -> void:
 	_tips.initialize(_base)
 	
+	size = SimusDev.get_settings().console.get("size", size)
+	
 	var upd_commands: Array[SD_ConsoleCommand] = [
 		_base.create_command("ui.console.zoom", 1.0),
 		_base.create_command("ui.console.position", Vector2(0, 0)),

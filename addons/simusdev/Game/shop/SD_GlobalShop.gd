@@ -2,6 +2,8 @@
 extends Node
 class_name SD_GlobalShop
 
+@export var debug: bool = true
+
 @onready var console := SimusDev.console
 
 var _fullcode: String
@@ -11,16 +13,22 @@ signal initialized()
 
 var EVENT_PURCHASED := SD_ShopEventPurchased.new(self)
 var EVENT_FAILED_TO_PURCHASE := SD_ShopEventFailedToPurchase.new(self)
+var EVENT_SELL := SD_ShopEventSell.new(self)
+var EVENT_FAILED_TO_SELL := SD_ShopEventFailedToSell.new(self)
 
 var _ACTIVE_EVENT_LIST: Array[SD_ShopEvent] = [
 	EVENT_PURCHASED,
 	EVENT_FAILED_TO_PURCHASE,
+	EVENT_SELL,
+	EVENT_FAILED_TO_SELL,
 ]
 
 signal on_event(event: SD_ShopEvent)
 
 signal item_purchased(item: SD_ShopNodeItem, event: SD_ShopEventPurchased)
 signal item_failed_purchase(item: SD_ShopNodeItem, event: SD_ShopEventFailedToPurchase)
+signal item_sold(item: SD_ShopNodeItem, event: SD_ShopEventFailedToPurchase)
+signal item_failed_to_sold(item: SD_ShopNodeItem, event: SD_ShopEventFailedToPurchase)
 
 func _ready() -> void:
 	for e in _ACTIVE_EVENT_LIST:
@@ -29,7 +37,9 @@ func _ready() -> void:
 	_initialize_full_code()
 	
 	initialized.emit()
-	console.write_from_object(self, "shop initialized!", SD_ConsoleCategories.CATEGORY.SUCCESS)
+	
+	if debug:
+		console.write_from_object(self, "shop initialized!", SD_ConsoleCategories.CATEGORY.SUCCESS)
 
 func _on_shop_event(e: SD_ShopEvent) -> void:
 	on_event.emit(e)
