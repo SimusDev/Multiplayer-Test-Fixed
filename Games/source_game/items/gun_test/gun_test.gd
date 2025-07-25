@@ -6,6 +6,7 @@ class_name SourceFireWeapon extends SourceItem
 @export var audioplayers:Array[AudioStreamPlayer3D]
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
+@export var bullet_resource:R_SourceBullet
 @export var bullet_force:float = 105.0
 @export var shell_force:float = 1.0
 @export_subgroup("Spread")
@@ -53,6 +54,7 @@ func play_fire_sound():
 func spawn_projectile():
 	var new_bullet:SourceWeaponBullet = SourceWeaponBullet.new()
 	new_bullet.bullet_model = preload("res://Games/source_game/game/prefabs/bullet_9_mm.tscn")
+	new_bullet.bullet_resource = bullet_resource
 	SourceGame.instance.add_child(new_bullet)
 	reset_spread_timer.start(0)
 	
