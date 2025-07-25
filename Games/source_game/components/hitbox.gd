@@ -23,4 +23,4 @@ func _ready() -> void:
 		return
 
 func apply_damage(points: float) -> void:
-	health.apply_damage(points)
+	health.apply_damage(points * damage_multiplier)
