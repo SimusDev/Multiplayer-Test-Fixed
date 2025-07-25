@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhhn7xwpuwbya"]
+
+[ext_resource type="Script" uid="uid://caa5qosgjljuv" path="res://Games/svogram/game.gd" id="1_aiv27"]
+[ext_resource type="PackedScene" uid="uid://b1753t5ojomh2" path="res://Games/svogram/ui/user_list.tscn" id="2_dq7l1"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_aiv27")
+
+[node name="UserList" parent="." instance=ExtResource("2_dq7l1")]

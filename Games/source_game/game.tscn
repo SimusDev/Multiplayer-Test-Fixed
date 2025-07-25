@@ -1,16 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://u3r0rjbc5tny"]
-
-[ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
-[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
-[gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=22 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/textures/SourceEngineVibe2.jpg" id="3_8dbco"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="6_dep2b"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="6_tn3t5"]
-[ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
+[ext_resource type="Script" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
@@ -216,7 +212,6 @@ root_node = NodePath("../map_holder")
 props_node = NodePath("../props")
 levels_folder_path = "res://Games/source_game/level_resources/"
 level_at_start = "kz"
-metadata/_custom_type_script = "uid://3dgpp5kj8o23"
 
 [node name="props" type="Node3D" parent="."]
 
