@@ -3,6 +3,7 @@ extends Area3D
 class_name SourceHurtbox
 
 @export var damage: float = 10.0
+@export var oneshot: bool = true
 
 signal damaged(hitbox: SourceHitbox)
 
@@ -27,3 +28,5 @@ func _on_area_entered(area: Area3D) -> void:
 	if area is SourceHitbox:
 		area.apply_damage(damage)
 		damaged.emit(area)
+		if oneshot:
+			area_entered.disconnect(_on_area_entered)
