@@ -3,8 +3,9 @@ class_name SourceFireWeapon extends SourceItem
 
 @export_group("Settings")
 @export_subgroup("Audio")
-@export var shot_sound:AudioStream = preload("res://Games/source_game/items/gun_test/sound/pistol_shot.wav")
-@export var audioplayer:AudioStreamPlayer3D
+
+@export var audioplayers:Array[AudioStreamPlayer3D]
+
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
 @export var bullet_force:float = 105.0
@@ -38,12 +39,24 @@ func _ready() -> void:
 
 
 func fire():
-	animation_player.play(_fire)
 	spawn_projectile()
 	spawn_shell()
-	audioplayer.stream = shot_sound
-	audioplayer.pitch_scale = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
-	audioplayer.play()
+	animation_player.play(_fire)
+	play_fire_sound()
+
+func play_fire_sound():
+	var current_camera = get_tree().root.get_camera_3d()
+	if is_instance_valid(current_camera):
+		
+		pass
+		
+	
+	print(self.global_position.distance_to(current_camera.global_position))
+	
+	for audioplayer in audioplayers:
+		audioplayer.pitch_scale = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
+		audioplayer.play()
+
 
 func spawn_projectile():
 	var new_bullet:SourceWeaponBullet = SourceWeaponBullet.new()
