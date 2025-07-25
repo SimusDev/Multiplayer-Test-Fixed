@@ -1,17 +1,26 @@
+@tool
 class_name SourceHitbox extends Area3D
- 
+
 @export var health:C_HealthComponent
 
-func _init() -> void:
-	body_entered.connect(_on_body_entered)
+@export var damage_multiplier: float = 1.0
+
+const HITBOX_LAYER: int = 2
 
 func _ready() -> void:
-	pass
+	monitoring = false
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	
+	set_collision_layer_value(HITBOX_LAYER, true)
+	set_collision_mask_value(HITBOX_LAYER, true)
+	
+	if Engine.is_editor_hint():
+		return
+	
+	if not SD_Network.is_server():
+		queue_free()
+		return
 
-func _on_body_entered(body):
-	#if body is RigidBody3D:
-		#pass 
-	#
-	#if res is R_SourceBullet:
-		#health.apply_damage(res.damage)
-	pass
+func apply_damage(points: float) -> void:
+	health.apply_damage(points)
