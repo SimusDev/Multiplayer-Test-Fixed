@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://5hggub5g64d2"]
+[gd_scene load_steps=20 format=4 uid="uid://5hggub5g64d2"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_e7di0"]
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
+[ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_dnby3"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
 [ext_resource type="Texture2D" uid="uid://u5bct4tcrpgd" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_baseColor.png" id="3_4we86"]
 [ext_resource type="AudioStream" uid="uid://dioa2opbycskx" path="res://Games/source_game/items/ak_47/sound/fire_5_meters.wav" id="3_dnby3"]
@@ -9,6 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://81eycmfqk5po" path="res://Games/source_game/items/ak_47/sound/fire_100_meters.wav" id="4_dnby3"]
 [ext_resource type="Texture2D" uid="uid://drtrd3cigmf5u" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_metallicRoughness.png" id="4_shxlq"]
 [ext_resource type="Texture2D" uid="uid://lncq6aja5h6m" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_normal.png" id="5_dnby3"]
+
+[sub_resource type="Resource" id="Resource_qx83c"]
+script = ExtResource("2_dnby3")
+damage = 81.0
+mass = 9.5
+bleed_value = 1.0
+metadata/_custom_type_script = "uid://4iri4kw12vgx"
 
 [sub_resource type="Resource" id="Resource_36t2h"]
 script = ExtResource("2_ttngd")
@@ -357,6 +365,7 @@ _data = {
 [node name="SourceFireWeapon" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_e7di0")
 audioplayers = [NodePath("audio_0"), NodePath("audio_5"), NodePath("audio_25"), NodePath("audio_50"), NodePath("audio_100")]
+bullet_resource = SubResource("Resource_qx83c")
 bullet_force = 205.0
 shell_force = 1.5
 max_spread_counter = 20.0
