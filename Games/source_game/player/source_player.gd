@@ -36,8 +36,9 @@ func is_in_backrooms() -> bool: return in_backrooms
 func _ready() -> void:
 	movement.state_machine.state_enter.connect(_on_state_enter)
 	model.on_footstep.connect(func(): $footsteps._do_footstep())
-	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1)
-	model.set_tree_parameter("parameters/melee_attack_blend/blend_amount", 1)
+	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1.0)
+	model.set_tree_parameter("parameters/melee_attack_blend/blend_amount", 1.0)
+	model.set_tree_parameter("parameters/look_dir_add/add_amount", 1.0)
 
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )
@@ -64,6 +65,7 @@ func set_model_blend():
 	model.set_tree_parameter("parameters/StateMachine/run/blend_position", blend_position)
 	model.set_tree_parameter("parameters/StateMachine/crouched_walk/blend_position", blend_position)
 	model.set_tree_parameter("parameters/StateMachine/crouched_run/blend_position", blend_position)
+	model.set_tree_parameter("parameters/look_dir/blend_position", camera.rotation_degrees.x / 90)
 
 func _physics_process(_delta: float) -> void:
 	set_model_blend()

@@ -28,11 +28,13 @@ func impact():
 				var direction = (collider.global_position - player.global_position).normalized()
 				collider.apply_impulse(direction * strength, player_interact_raycast.get_collision_point() - collider.global_position)
 				
-				var sound_array:Array = SourceSurfaces.sounds[
-						collider.get_node("SourceProp").surface
-						]["impact"]["hard"]
-				
-				SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), sound_array.pick_random()])
+				var source_prop = collider.get_node("SourceProp")
+				if is_instance_valid(source_prop):
+					var sound_array:Array = SourceSurfaces.sounds[
+							collider.get_node("SourceProp").surface
+							]["impact"]["hard"]
+					
+					SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), sound_array.pick_random()])
 
 
 
