@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_5phwp"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_m64fj"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_6jjk0"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_ikogb"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_ikogb"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_o7upr"]
 [ext_resource type="PackedScene" uid="uid://boda6co3yw14b" path="res://multiplayer-ui/prefabs/message/message.tscn" id="7_40u6r"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="8_q8jaf"]
@@ -23,7 +23,7 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[sub_resource type="LabelSettings" id="LabelSettings_1j1kj"]
+[sub_resource type="LabelSettings" id="LabelSettings_m64fj"]
 font = ExtResource("4_5phwp")
 font_size = 18
 outline_size = 4
@@ -49,6 +49,13 @@ metadata/_custom_type_script = "uid://38osx81mny15"
 [node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_2d84l")
 TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="SE_UIControlDrag2" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_2d84l")
+TARGET_INPUT = NodePath("../content")
 TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
@@ -83,7 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "CHAT"
-label_settings = SubResource("LabelSettings_1j1kj")
+label_settings = SubResource("LabelSettings_m64fj")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_6jjk0")

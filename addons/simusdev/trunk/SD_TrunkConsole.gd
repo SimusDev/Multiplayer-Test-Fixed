@@ -38,6 +38,27 @@ func _ready() -> void:
 	var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
 	canvas.add_child(_console_node)
 	canvas.add_child(_debug_node)
+	
+	var exec_commands: Array[SD_ConsoleCommand] = [
+		create_command("cmd.list"),
+	]
+	
+	for cmd in exec_commands:
+		cmd.executed.connect(_on_cmd_executed.bind(cmd))
+
+func _on_cmd_executed(cmd: SD_ConsoleCommand) -> void:
+	match cmd.get_code():
+		"cmd.list":
+			print_command_list()
+
+func print_command_list() -> void:
+	var list: String = ""
+	for cmd in get_commands_list():
+		var cmd_info: String = "%s = %s (def. %s)" % [cmd.get_code(), cmd.get_value_as_string(), _settings.get_default_setting_value(cmd.get_code())]
+		list += cmd_info
+		list += "\n"
+	
+	write_info(list)
 
 func initialize_engine_settings() -> void:
 	var storage: SD_ConsoleNodeCommandObjectStorage = SimusDev.get_settings().commands

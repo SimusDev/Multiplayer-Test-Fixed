@@ -24,6 +24,7 @@ class_name SD_EngineSettings
 	"disable_on_release": true,
 	"gd_print": true,
 	"hide_private_commands": true,
+	"size": Vector2(768, 512),
 }
 
 @export var audio: Dictionary[String, Variant] = {

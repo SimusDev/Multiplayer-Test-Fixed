@@ -126,6 +126,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		subtract_zoom(get_current_zoom_strength())
 
 var clicked := false
+
 func _on_target_input(event: InputEvent):
 	if !is_instance_valid(_target): return
 	if !is_instance_valid(_target_drag): return
@@ -134,15 +135,14 @@ func _on_target_input(event: InputEvent):
 	
 	if !drag_enabled: return
 	
-	clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if clicked:
-				drag_start.emit()
-				_update_canvas_position()
-			else:
-				drag_end.emit()
+		clicked = event.pressed
+		
+		if clicked:
+			drag_start.emit()
+			_update_canvas_position()
+		else:
+			drag_end.emit()
 	
 	if event is InputEventMouseMotion:
 		if clicked:

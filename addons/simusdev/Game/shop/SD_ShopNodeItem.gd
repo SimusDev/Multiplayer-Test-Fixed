@@ -2,9 +2,9 @@
 extends SD_ShopNode
 class_name SD_ShopNodeItem
 
-@export var consumable: bool = false
 @export var cost: int = 0
 @export var for_currency: SD_ShopNodeCurrency
+@export var sell_multiplier: float = 0.5
 
 @export var _status: int = 0
 
@@ -28,8 +28,7 @@ func buy_item_for(currency: SD_ShopNodeCurrency) -> bool:
 	
 	if currency.get_value() >= cost and (not is_purchased()):
 		
-		if not consumable:
-			set_status(1)
+		set_status(get_status() + 1)
 		
 		currency.subtract_value(cost)
 		
@@ -48,8 +47,33 @@ func buy_item_for(currency: SD_ShopNodeCurrency) -> bool:
 	get_shop().item_failed_purchase.emit(self, get_shop().EVENT_FAILED_TO_PURCHASE)
 	return false
 
+func sell_item_for(currency: SD_ShopNodeCurrency, cost: int) -> bool:
+	if is_purchased():
+		
+		currency.add_value(cost)
+		set_status(get_status() - 1)
+		
+		get_shop().EVENT_SELL.set_item(self).publish()
+		get_shop().item_sold.emit(self, get_shop().EVENT_SELL)
+		
+		return true
+	
+	get_shop().EVENT_FAILED_TO_SELL.set_item(self).publish()
+	get_shop().item_failed_to_sold.emit(self, get_shop().EVENT_FAILED_TO_SELL)
+	
+	return false
+
 func try_buy_item() -> bool:
 	return buy_item_for(for_currency)
+
+func get_sell_price() -> int:
+	return cost * sell_multiplier
+
+func try_sell_item() -> bool:
+	return sell_item_for(for_currency, get_sell_price())
+
+func get_quantity() -> int:
+	return get_status()
 
 func _on_command_data_updated(command: SD_ConsoleCommand, key: String) -> void:
 	match key:

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://oq8ec58ru2yx"]
+
+[ext_resource type="Script" uid="uid://bmmmbahb5hx0d" path="res://Games/svogram/ui/user.gd" id="1_cqyny"]
+[ext_resource type="Texture2D" uid="uid://du78apenfbkv3" path="res://Games/svogram/icon.jpg" id="2_lud8u"]
+
+[node name="User" type="Control"]
+custom_minimum_size = Vector2(512, 51)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 51.0
+script = ExtResource("1_cqyny")
+
+[node name="icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(51, 51)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0996094
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lud8u")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.191998
+grow_horizontal = 2
+grow_vertical = 2
+text = "USER"
+horizontal_alignment = 1
+vertical_alignment = 1
