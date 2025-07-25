@@ -49,5 +49,6 @@ func load_level(level_name:StringName) -> bool:
 	current_level = new_level_scene
 	root_node.add_child(new_level_scene)
 	_load_level.emit(new_level_scene)
+	props_node = current_level.get_node("props")
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
 	return true
