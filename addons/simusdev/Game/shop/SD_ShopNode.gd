@@ -45,7 +45,7 @@ func try_initialize(shop: SD_GlobalShop) -> bool:
 	
 	var founded_shop: SD_GlobalShop = shop
 	if founded_shop == null:
-		console.write_from_object(self, "cant find shop! place this node under shop node!", SD_ConsoleCategories.CATEGORY.ERROR)
+		if founded_shop.debug: console.write_from_object(self, "cant find shop! place this node under shop node!", SD_ConsoleCategories.CATEGORY.ERROR)
 		return false
 	
 	if founded_shop != null:
@@ -55,7 +55,7 @@ func try_initialize(shop: SD_GlobalShop) -> bool:
 			_shop.add_shop_node(self)
 			_on_initialized_()
 			initialized.emit()
-			console.write_from_object(self, "node initialized!", SD_ConsoleCategories.CATEGORY.SUCCESS)
+			if founded_shop.debug: console.write_from_object(self, "node initialized!", SD_ConsoleCategories.CATEGORY.SUCCESS)
 			return true
 	return false
 

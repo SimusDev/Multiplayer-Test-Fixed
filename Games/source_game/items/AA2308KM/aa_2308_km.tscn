@@ -1,11 +1,11 @@
 [gd_scene load_steps=34 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
-[ext_resource type="AudioStream" uid="uid://bndpxel3qj32r" path="res://Games/source_game/items/AA2308KM/sound/fire.wav" id="2_hpbao"]
 [ext_resource type="Texture2D" uid="uid://eaneprmwbxyv" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_0.jpg" id="3_j3diw"]
 [ext_resource type="Resource" uid="uid://cju5tmvtq4ltf" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tres" id="3_nqkmu"]
 [ext_resource type="Texture2D" uid="uid://drnbgvwkh28aa" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_1.png" id="4_nqkmu"]
 [ext_resource type="Texture2D" uid="uid://bno7kaua7m6xu" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_2.jpg" id="5_tgxpf"]
+[ext_resource type="AudioStream" uid="uid://8vje25lejdqr" path="res://Games/source_game/items/AA2308KM/sound/fire2.wav" id="7_tgxpf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngojl"]
 resource_name = "material"
@@ -439,7 +439,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_k2044"]
 resource_name = "fire"
-length = 0.2
+length = 0.15
 step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -448,7 +448,7 @@ tracks/0/path = NodePath("model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.005, 0.0333333, 0.2),
+"times": PackedFloat32Array(0.02, 0.0333333, 0.13),
 "transitions": PackedFloat32Array(1, 0.1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0.135), Vector3(0, 0, 0)]
@@ -460,7 +460,7 @@ tracks/1/path = NodePath("model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"times": PackedFloat32Array(0, 0.055, 0.15),
 "transitions": PackedFloat32Array(1, 0.1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.436332, 0, 0), Vector3(0, 0, 0)]
@@ -472,7 +472,7 @@ tracks/2/path = NodePath("model/Sketchfab_model/Collada visual scene group/anima
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.13, 0.14),
+"times": PackedFloat32Array(0, 0.005, 0.125, 0.14),
 "transitions": PackedFloat32Array(1, 0.105112, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.332599, 0, 2.51105e-08), Vector3(-0.332599, 0, 2.51105e-08), Vector3(0, 0, 0)]
@@ -513,10 +513,10 @@ _data = {
 &"pick": SubResource("Animation_j3diw")
 }
 
-[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("audioplayer", "shell_marker", "bullet_marker", "model", "animation_player")]
+[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_k2044")
-shot_sound = ExtResource("2_hpbao")
-audioplayer = NodePath("audio")
+audioplayers = [NodePath("audio")]
+audio_pitch_randomness = Vector2(0.98, 1.1)
 shell_marker = NodePath("shell_marker")
 bullet_marker = NodePath("bullet_marker")
 resource = ExtResource("3_nqkmu")
@@ -602,10 +602,13 @@ mesh = SubResource("ArrayMesh_wrfrq")
 skeleton = NodePath("")
 
 [node name="audio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_hpbao")
-attenuation_model = 1
+stream = ExtResource("7_tgxpf")
+volume_db = 80.0
 unit_size = 25.0
+max_db = 6.0
 max_distance = 200.0
+max_polyphony = 5
+bus = &"game"
 doppler_tracking = 2
 
 [node name="animation_player" type="AnimationPlayer" parent="."]

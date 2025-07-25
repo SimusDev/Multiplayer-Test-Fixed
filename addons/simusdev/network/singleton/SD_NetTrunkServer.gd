@@ -8,7 +8,7 @@ func create(port: int, max_clients: int = 32) -> bool:
 		if peer.get_connection_status() == peer.CONNECTION_DISCONNECTED:
 			var err: Error = peer.create_server(port, max_clients)
 			if err == OK:
-				singleton._active = true
+				
 				singleton.info.name = "Status Server"
 				peer.host.compress(singleton.settings.compression)
 				multiplayer.multiplayer_peer = peer
@@ -26,6 +26,7 @@ func create(port: int, max_clients: int = 32) -> bool:
 				
 				singleton.on_connected_to_server.emit()
 				
+				singleton.set_active(true)
 				return true
 				
 		

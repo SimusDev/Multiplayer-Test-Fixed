@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=3 format=3 uid="uid://bb023g4v4x06g"]
+
+[ext_resource type="Texture2D" uid="uid://du78apenfbkv3" path="res://Games/svogram/icon.jpg" id="1_6ffw5"]
+[ext_resource type="Script" uid="uid://dr6n65i48b73y" path="res://scripts/resources/R_GameMap.gd" id="2_hs4r7"]
+
+[resource]
+script = ExtResource("2_hs4r7")
+visible = true
+is_favorite = false
+scene_path = "uid://bhhn7xwpuwbya"
+code = "svogram"
+name = "SVOGRAM"
+icon = ExtResource("1_6ffw5")
+description = "In SVOGRAM, a description picture is a visual element that appears when someone opens a chat with a bot, specifically under the \"What can this bot do?\" section. It helps users quickly understand the bot's purpose and functionality before engaging with it."
+metadata/_custom_type_script = "uid://dr6n65i48b73y"

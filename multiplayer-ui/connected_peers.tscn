@@ -33,6 +33,13 @@ TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
+[node name="SE_UIControlDrag2" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_s7a17")
+TARGET_INPUT = NodePath("../bg")
+TARGET_DRAG = NodePath("..")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
 [node name="bg" parent="." instance=ExtResource("3_dv2rc")]
 layout_mode = 1
 anchors_preset = 15
@@ -95,6 +102,7 @@ anchor_right = 0.990234
 anchor_bottom = 0.989333
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="border" type="ReferenceRect" parent="content"]

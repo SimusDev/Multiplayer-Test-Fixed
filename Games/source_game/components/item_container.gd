@@ -50,7 +50,6 @@ func pick_item(at_position:int):
 
 func sync_add_model_item(model:Node):
 	SD_Multiplayer.call_func(add_model_item, [model])
-	print(is_multiplayer_authority())
 func add_model_item(model:Node):
 	var new_item_model = model.duplicate()
 	new_item_model.name = new_item_model.name.validate_node_name()

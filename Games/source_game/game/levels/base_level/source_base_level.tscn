@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://wjpo1d0fdtji"]
+[gd_scene load_steps=5 format=3 uid="uid://wjpo1d0fdtji"]
 
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_4yp1p"]
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_q28k2"]
+[ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="3_7hp3h"]
+[ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="4_y25mi"]
 
 [node name="source_base_level" type="Node3D"]
 
@@ -23,3 +25,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
 
 [node name="3" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75025, 0, 0.170113)
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="transform" type="Node" parent="props" node_paths=PackedStringArray("_roots")]
+script = ExtResource("3_7hp3h")
+channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
+interpolate_speed = 64.0
+_roots = [NodePath("..")]
+metadata/_custom_type_script = "uid://b3gscceeely20"
+
+[node name="spawner" type="Node" parent="props" node_paths=PackedStringArray("_detect_roots")]
+script = ExtResource("4_y25mi")
+_detect_roots = [NodePath("..")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"

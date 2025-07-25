@@ -5,16 +5,31 @@ signal prop_spawned
 static var instance:SourceGame = null
 
 var sv_cheats:bool = false : set = set_sv_cheats
+@export var level_handler:SourceLevelHandler
+
 @export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
 
-#@onready var map = $gm_bigcity
+@onready var placeholder = $placeholder
 
 func _ready() -> void:
 	SD_Network.register_function($placeholder.show)
 	SD_Network.register_function($placeholder.hide)
+	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
 	instance = self
+	check_level()
+
+func check_level():
+	if SD_Network.is_server():
+		if level_handler.current_level == null:
+			SD_Network.call_func($placeholder.show)
+		else:
+			mp_player_spawner = level_handler.current_level.get_node("player_spawner")
+			SD_Network.call_func($placeholder.hide)
+
+func _on_peer_connected(_peer_id:int):
+	check_level()
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	if SD_Network.is_server():
@@ -24,32 +39,18 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 		timer.timeout.connect(timer.queue_free)
 		add_child(timer)
 		timer.start()
-	
-		#add_freecam(_for)
-#
-#func add_freecam(_for:SD_MultiplayerPlayer):
-	#print("SEX SEX SEX BAGI BAGI BAGI ||| %S"  % [_for])
-	#var player_node = _for.get_player_node()
-	#if not is_instance_valid(player_node): return
-	#
-	#if SD_MultiplayerPlayer.find_in_node(self) == _for:
-		#var new_death_camera = death_camera.instantiate()
-		#SourceGame.instance.add_child(new_death_camera)
-		#new_death_camera.global_position = player_node.global_position
-		#new_death_camera.make_current()
-
-#D.R.Y
 
 func request_spawn(prop_res:R_SourceProp):
-	SD_Multiplayer.call_func_on_server(spawn_on_server, [prop_res, SD_Multiplayer.get_unique_id()])
+	SD_Network.call_func_on_server(spawn_on_server, [prop_res, SD_Multiplayer.get_unique_id()])
 
 func spawn_on_server(prop_res:R_SourceProp, peer_id:int):
+	if not is_instance_valid(SourceGame.instance):
+		return
+	
 	var new_prop = prop_res.prefab.instantiate()
-	
 	var player:SourcePlayer = SD_Multiplayer.get_player_by_peer_id(peer_id).get_player_node() as SourcePlayer
-	
 	var spawn_pos = player.interact_raycast.drag_item_link_node.global_position
-	SourceGame.instance.get_node("props").add_child(new_prop)
+	SourceGame.instance.level_handler.props_node.add_child(new_prop)
 	new_prop.global_position = spawn_pos
 	
 	prop_spawned.emit(new_prop)
@@ -143,6 +144,8 @@ func set_sv_cheats(value:bool) -> void:
 
 func _on_source_level_handler__free_current_level() -> void:
 	SD_Network.call_func($placeholder.show)
+	SD_Network.call_func( func(): SD_Network.var_sync_from_server(self, ["mp_player_spawner"]) )
 func _on_source_level_handler__load_level(level:Node) -> void:
 	SD_Network.call_func($placeholder.hide)
 	mp_player_spawner = level.get_node("player_spawner")
+	SD_Network.call_func( func(): SD_Network.var_sync_from_server(self, ["mp_player_spawner"]) )

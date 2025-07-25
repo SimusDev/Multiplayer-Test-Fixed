@@ -18,8 +18,11 @@ func impact():
 	
 	if SD_Multiplayer.is_server():
 		var collider = player_interact_raycast.get_collider()
-		if collider:
+		if is_instance_valid(collider):
 			SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), SourceSurfaces.sounds["flesh"]["impact"]["bullet"].pick_random()])
+			
+			if collider is SourceHitbox:
+				pass
 			
 			if collider is SourcePlayer:
 				collider.health.apply_damage(damage)
@@ -28,11 +31,13 @@ func impact():
 				var direction = (collider.global_position - player.global_position).normalized()
 				collider.apply_impulse(direction * strength, player_interact_raycast.get_collision_point() - collider.global_position)
 				
-				var sound_array:Array = SourceSurfaces.sounds[
-						collider.get_node("SourceProp").surface
-						]["impact"]["hard"]
-				
-				SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), sound_array.pick_random()])
+				var source_prop = collider.get_node("SourceProp")
+				if is_instance_valid(source_prop):
+					var sound_array:Array = SourceSurfaces.sounds[
+							collider.get_node("SourceProp").surface
+							]["impact"]["hard"]
+					
+					SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), sound_array.pick_random()])
 
 
 
