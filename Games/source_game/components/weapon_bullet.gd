@@ -10,9 +10,9 @@ func _init() -> void:
 
 func _ready() -> void:
 	self.set_collision_layer_value(1, false)
-	self.set_collision_layer_value(5, true)
 	
-	self.set_collision_mask_value(5, true)
+	self.set_collision_layer_value(2, true)
+	self.set_collision_mask_value(2, true)
 	
 	if bullet_model:
 		var bullet_instance = bullet_model.instantiate()

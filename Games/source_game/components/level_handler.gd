@@ -1,13 +1,12 @@
 class_name SourceLevelHandler extends Node
 
 signal _free_current_level
-signal _free_all_props
 signal _load_level
 
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
 
 @export var root_node:Node
-@export var props_node:Node
+var props_node:Node
 var current_level:Node=null
 @export_category("Settings")
 @export var levels_folder_path:String
@@ -36,13 +35,6 @@ func free_current_level():
 	current_level = null
 	_free_current_level.emit()
 
-func free_all_props():
-	for child in props_node.get_children():
-		if child is SD_NetNodesTransformSynchronizer or child is SD_MPClientNodeSpawner:
-			continue
-		
-		child.queue_free()
-	_free_all_props.emit()
 
 func load_level(level_name:StringName) -> bool:
 	var path:String = levels_folder_path + level_name + ".tres"
@@ -52,7 +44,6 @@ func load_level(level_name:StringName) -> bool:
 		return false
 	
 	free_current_level()
-	free_all_props()
 	
 	var new_level_scene = level_res.level_scene.instantiate()
 	current_level = new_level_scene

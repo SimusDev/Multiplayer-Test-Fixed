@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=25 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="3_gr3v1"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="15_uyxp6"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="16_eejt7"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="17_v4o5a"]
+[ext_resource type="PackedScene" uid="uid://b4ypo6jnmm7fw" path="res://Games/source_game/game/3dmodels/dummy_target/dummy_target.tscn" id="17_y1g7y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
 albedo_texture = ExtResource("3_gr3v1")
@@ -305,3 +306,12 @@ update_interval = 0.04
 dome_path = NodePath("../Skydome")
 total_cycle_in_minutes = 60.0
 total_hours = 16.14
+
+[node name="dummy_target" parent="props" index="2" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(0.106611, 0, -0.994301, 0, 1, 0, 0.994301, 0, 0.106611, 16.3719, 0, -20.6)
+
+[node name="dummy_target2" parent="props" index="3" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(-0.0370449, 0, -0.999314, 0, 1, 0, 0.999314, 0, -0.0370449, 16.3719, 0, -19.5358)
+
+[node name="dummy_target3" parent="props" index="4" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(0.0352657, 0, -0.999378, 0, 1, 0, 0.999378, 0, 0.0352657, 16.3719, 0, -18.2822)

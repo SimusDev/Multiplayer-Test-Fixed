@@ -18,8 +18,11 @@ func impact():
 	
 	if SD_Multiplayer.is_server():
 		var collider = player_interact_raycast.get_collider()
-		if collider:
+		if is_instance_valid(collider):
 			SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player_interact_raycast.get_collision_point(), SourceSurfaces.sounds["flesh"]["impact"]["bullet"].pick_random()])
+			
+			if collider is SourceHitbox:
+				pass
 			
 			if collider is SourcePlayer:
 				collider.health.apply_damage(damage)

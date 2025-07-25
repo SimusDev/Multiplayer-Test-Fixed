@@ -299,7 +299,7 @@ tracks/0/path = NodePath("root:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"times": PackedFloat32Array(0, 0.0333333, 0.05),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.1), Vector3(0, 0, 0)]
@@ -311,10 +311,10 @@ tracks/1/path = NodePath("root:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.0833),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0166667, 0.0833),
+"transitions": PackedFloat32Array(0, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0872665, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.0349066, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_36t2h"]
@@ -364,7 +364,7 @@ reset_time = 0.25
 shell_marker = NodePath("shell_marker")
 bullet_marker = NodePath("bullet_marker")
 resource = SubResource("Resource_36t2h")
-model = NodePath("root/root2/Object_18")
+model = NodePath("root")
 animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://cfshg230xd28k"
 
@@ -389,10 +389,8 @@ libraries = {
 stream = ExtResource("2_4we86")
 attenuation_model = 2
 volume_db = 80.0
-unit_size = 15.0
 max_db = 6.0
 max_distance = 15.0
-max_polyphony = 5
 bus = &"game"
 
 [node name="audio_5" type="AudioStreamPlayer3D" parent="."]
@@ -402,7 +400,6 @@ volume_db = 80.0
 unit_size = 50.0
 max_db = 6.0
 max_distance = 25.0
-max_polyphony = 5
 bus = &"game"
 
 [node name="audio_25" type="AudioStreamPlayer3D" parent="."]
@@ -412,7 +409,6 @@ volume_db = 80.0
 unit_size = 50.0
 max_db = 6.0
 max_distance = 50.0
-max_polyphony = 5
 bus = &"game"
 
 [node name="audio_50" type="AudioStreamPlayer3D" parent="."]
@@ -422,7 +418,6 @@ volume_db = 60.0
 unit_size = 25.0
 max_db = 6.0
 max_distance = 100.0
-max_polyphony = 5
 bus = &"game"
 
 [node name="audio_100" type="AudioStreamPlayer3D" parent="."]
@@ -432,7 +427,6 @@ volume_db = 40.0
 unit_size = 25.0
 max_db = 6.0
 max_distance = 250.0
-max_polyphony = 5
 bus = &"game"
 
 [node name="shell_marker" type="Marker3D" parent="."]

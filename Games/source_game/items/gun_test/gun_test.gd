@@ -3,9 +3,7 @@ class_name SourceFireWeapon extends SourceItem
 
 @export_group("Settings")
 @export_subgroup("Audio")
-
 @export var audioplayers:Array[AudioStreamPlayer3D]
-
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
 @export var bullet_force:float = 105.0
@@ -15,15 +13,16 @@ var spread_random:Vector2 = Vector2.ZERO
 var spread_multiplier:float = 1.0
 @export var max_spread_counter:float = 10.0
 @export var reset_time:float = 0.2
-
+@export var normal_spread_multiplier:float = 1.0
+@export var crouch_spread_multiplier:float = 0.5
+@export var run_spread_multiplier:float = 2.5
+@export var floating_spread_multiplier:float = 3.5
 @export_group("References")
 @export var shell_marker:Node3D
 @export var bullet_marker:Node3D
 var reset_spread_timer:Timer = Timer.new()
 
 var spread_counter:float = 0.0
-
-
 
 func _ready() -> void:
 	super()
@@ -45,16 +44,9 @@ func fire():
 	play_fire_sound()
 
 func play_fire_sound():
-	var current_camera = get_tree().root.get_camera_3d()
-	if is_instance_valid(current_camera):
-		
-		pass
-		
-	
-	print(self.global_position.distance_to(current_camera.global_position))
-	
+	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
 	for audioplayer in audioplayers:
-		audioplayer.pitch_scale = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
+		audioplayer.pitch_scale = rand_pitch
 		audioplayer.play()
 
 
