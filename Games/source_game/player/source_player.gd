@@ -51,7 +51,7 @@ func _ready() -> void:
 		var new_player_ui = player_ui.instantiate()
 		canvas.add_child(new_player_ui)
 		
-	if SourcePlayerUI.instance:
+	if is_instance_valid(SourcePlayerUI.instance):
 		SourcePlayerUI.instance.update(health.health)
 
 func _on_state_enter(state:SD_State):

@@ -513,8 +513,9 @@ _data = {
 &"pick": SubResource("Animation_j3diw")
 }
 
-[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("shell_marker", "bullet_marker", "model", "animation_player")]
+[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_k2044")
+audioplayers = [NodePath("audio")]
 audio_pitch_randomness = Vector2(0.98, 1.1)
 shell_marker = NodePath("shell_marker")
 bullet_marker = NodePath("bullet_marker")

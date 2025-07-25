@@ -3,7 +3,7 @@ class_name SourceWeaponBullet extends RigidBody3D
 @export var bullet_resource:R_SourceBullet
 @export var bullet_model:PackedScene
 
-@export var life_time:float = 60.0 #seconds
+@export var life_time:float = 15.0 #seconds
 
 func _init() -> void:
 	body_entered.connect(_on_body_entered)
