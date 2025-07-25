@@ -5,9 +5,15 @@ class_name SourceWeaponBullet extends RigidBody3D
 
 @export var life_time:float = 60.0 #seconds
 
+func _init() -> void:
+	body_entered.connect(_on_body_entered)
+
 func _ready() -> void:
 	self.set_collision_layer_value(1, false)
-	body_entered.connect(_on_body_entered)
+	self.set_collision_layer_value(5, true)
+	
+	self.set_collision_mask_value(5, true)
+	
 	if bullet_model:
 		var bullet_instance = bullet_model.instantiate()
 		add_child(bullet_instance)
@@ -26,11 +32,13 @@ func _ready() -> void:
 	queue_free()
 
 func _on_body_entered(body):
-	print("Sex")
-	if !SD_Multiplayer.is_server(): return
+	print("HLAOO")
+	if not SD_Network.is_server():
+		return
 	
-	if body is SourcePlayer:
-		body.health.apply_damage(bullet_resource.damage)
-
-func _process(delta: float) -> void:
-	pass
+	print("decal")
+	
+	var new_decal:Node = preload("res://Games/source_game/game/prefabs/bullethole.tscn").instantiate()
+	SourceGame.instance.get_node("decals").add_child(new_decal)
+	
+	new_decal.global_position = self.global_position

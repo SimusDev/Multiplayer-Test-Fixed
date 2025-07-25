@@ -43,7 +43,7 @@ func play_next_track():
 	switched.emit()
 
 func play_previous_track():
-	if (current_stream_position - 1) < assets.size() + 1:
+	if (current_stream_position - 1) < 0:
 		play_track(-1)
 	else:
 		play_track(current_stream_position - 1)

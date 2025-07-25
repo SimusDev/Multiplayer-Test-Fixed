@@ -8,7 +8,7 @@ signal _load_level
 
 @export var root_node:Node
 @export var props_node:Node
-var current_level:Node
+var current_level:Node=null
 @export_category("Settings")
 @export var levels_folder_path:String
 @export var level_at_start:String = "" ## Set a value if you want to set the level on start, a variable with a default value does nothing
@@ -33,6 +33,7 @@ func free_current_level():
 			continue
 		
 		child.queue_free()
+	current_level = null
 	_free_current_level.emit()
 
 func free_all_props():
