@@ -17,7 +17,7 @@ func _ready() -> void:
 	var hurtbox = SourceHurtbox.new()
 	hurtbox.damage = bullet_resource.damage
 	add_child(hurtbox)
-	
+
 	if bullet_model:
 		var bullet_instance = bullet_model.instantiate()
 		add_child(bullet_instance)
