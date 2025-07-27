@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://5hggub5g64d2"]
+[gd_scene load_steps=21 format=4 uid="uid://5hggub5g64d2"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_e7di0"]
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://81eycmfqk5po" path="res://Games/source_game/items/ak_47/sound/fire_100_meters.wav" id="4_dnby3"]
 [ext_resource type="Texture2D" uid="uid://drtrd3cigmf5u" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_metallicRoughness.png" id="4_shxlq"]
 [ext_resource type="Texture2D" uid="uid://lncq6aja5h6m" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_normal.png" id="5_dnby3"]
+[ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="11_qx83c"]
 
 [sub_resource type="Resource" id="Resource_qx83c"]
 script = ExtResource("2_dnby3")
@@ -33,6 +34,7 @@ metallic_texture_channel = 2
 roughness_texture = ExtResource("4_shxlq")
 roughness_texture_channel = 1
 normal_enabled = true
+normal_scale = 1.5
 normal_texture = ExtResource("5_dnby3")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cycff"]
@@ -296,6 +298,33 @@ bind/78/name = &"mag2_end_077"
 bind/78/bone = -1
 bind/78/pose = Transform3D(306.223, 0, 0, 0, 306.223, 0, 0, 0, 306.223, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_shxlq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qx83c"]
 resource_name = "fire"
 length = 0.0833
@@ -328,33 +357,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_36t2h"]
 resource_name = "pick"
 
-[sub_resource type="Animation" id="Animation_shxlq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g6ym"]
 _data = {
 &"RESET": SubResource("Animation_shxlq"),
@@ -362,9 +364,10 @@ _data = {
 &"pick": SubResource("Animation_36t2h")
 }
 
-[node name="SourceFireWeapon" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
+[node name="ak_47" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_e7di0")
 audioplayers = [NodePath("audio_0"), NodePath("audio_5"), NodePath("audio_25"), NodePath("audio_50"), NodePath("audio_100")]
+audio_pitch_randomness = Vector2(0.98, 1.02)
 bullet_resource = SubResource("Resource_qx83c")
 bullet_force = 205.0
 shell_force = 1.5
@@ -388,6 +391,12 @@ transform = Transform3D(3200, 0, 0, 0, -0.00038147, 3200, 0, -3200, -0.00038147,
 mesh = SubResource("ArrayMesh_cycff")
 skin = SubResource("Skin_ebajt")
 skeleton = NodePath("")
+
+[node name="left_hand_pos" type="Marker3D" parent="root"]
+transform = Transform3D(-11.1103, 70.7955, 69.7464, -99.2836, -11.0115, -4.63831, 4.39637, -69.7621, 71.5118, -3.48138, -3.15396, -19.4263)
+
+[node name="right_hand_pos" type="Marker3D" parent="root"]
+transform = Transform3D(-91.0381, 32.4305, 25.6968, -23.6137, 10.2764, -96.627, -33.9773, -94.0354, -1.69737, 2.80821, -9.4851, 24.6349)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -442,4 +451,13 @@ bus = &"game"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137975, 0.0735873, -0.0272615)
 
 [node name="bullet_marker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.109278, 0.0500779, -0.667047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00590598, 0.0404263, -0.934864)
+
+[node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("11_qx83c")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
+
+[node name="Skeleton3D" parent="arms/root" index="0"]
+modifier_callback_mode_process = 0
+
+[editable path="arms"]
