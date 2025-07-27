@@ -8,7 +8,8 @@ signal on_current_change
 @export var always_can_use:bool = false
 
 @export_group("Node References")
-@export var animation_player:AnimationPlayer  
+@export var animation_player:AnimationPlayer
+@export var pick_sound:AudioStream
 
 @export_group("Animations Names")
 @export var _fire:String = "fire"
@@ -17,15 +18,17 @@ signal on_current_change
 
 var current:bool = false : set = set_current, get = is_current
 
-
 func _ready() -> void:
 	on_current_change.connect(_on_current_changed)
 
 func _on_current_changed():
 	animation_player.play("RESET")
-	if is_current(): animation_player.play(_pick) 
-	else: animation_player.play_backwards(_pick) 
-
+	if is_current():
+		animation_player.play(_pick) 
+		SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
+	
+	await get_tree().process_frame
+	self.visible = current
 
 func set_current(value:bool):
 	current = value
@@ -33,7 +36,6 @@ func set_current(value:bool):
 func is_current(): return current
 
 func _process(_delta: float) -> void:
-	self.visible = current
 	if is_multiplayer_authority() and current:
 		if Input.is_action_pressed("fire"):
 			if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:

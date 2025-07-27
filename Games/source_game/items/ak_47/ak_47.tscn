@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://5hggub5g64d2"]
+[gd_scene load_steps=25 format=4 uid="uid://5hggub5g64d2"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_e7di0"]
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
+[ext_resource type="PackedScene" uid="uid://uy7lwlaavufp" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_36t2h"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_dnby3"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
 [ext_resource type="Texture2D" uid="uid://u5bct4tcrpgd" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_baseColor.png" id="3_4we86"]
@@ -9,12 +10,15 @@
 [ext_resource type="AudioStream" uid="uid://l6j2a7bfqbgx" path="res://Games/source_game/items/ak_47/sound/fire_25_meters.wav" id="3_shxlq"]
 [ext_resource type="AudioStream" uid="uid://81eycmfqk5po" path="res://Games/source_game/items/ak_47/sound/fire_100_meters.wav" id="4_dnby3"]
 [ext_resource type="Texture2D" uid="uid://drtrd3cigmf5u" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_metallicRoughness.png" id="4_shxlq"]
+[ext_resource type="AudioStream" uid="uid://bcsph62daao1n" path="res://Games/source_game/items/ak_47/sound/pick.mp3" id="5_cbssm"]
 [ext_resource type="Texture2D" uid="uid://lncq6aja5h6m" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_normal.png" id="5_dnby3"]
+[ext_resource type="AudioStream" uid="uid://dlsjv2vg1c1w5" path="res://Games/source_game/items/ak_47/sound/bolt_on.mp3" id="8_brxap"]
+[ext_resource type="AudioStream" uid="uid://bgggoceupj88n" path="res://Games/source_game/items/ak_47/sound/bolt_off.mp3" id="9_cbssm"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="11_qx83c"]
 
 [sub_resource type="Resource" id="Resource_qx83c"]
 script = ExtResource("2_dnby3")
-damage = 81.0
+damage = 55.0
 mass = 9.5
 bleed_value = 1.0
 metadata/_custom_type_script = "uid://4iri4kw12vgx"
@@ -324,11 +328,47 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root/right_hand_pos:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.80821, -9.4851, 24.6349)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root/right_hand_pos:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0981486, 1.45763, -1.24268)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("root/left_hand_pos:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.48138, -3.15396, -19.4263)]
+}
 
 [sub_resource type="Animation" id="Animation_qx83c"]
 resource_name = "fire"
-length = 0.0833
-step = 0.0167
+length = 0.0775
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -348,7 +388,7 @@ tracks/1/path = NodePath("root:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.0833),
+"times": PackedFloat32Array(0, 0.0166667, 0.0775),
 "transitions": PackedFloat32Array(0, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.0349066, 0, 0), Vector3(0, 0, 0)]
@@ -356,6 +396,96 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_36t2h"]
 resource_name = "pick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 1),
+"transitions": PackedFloat32Array(0.176777, 2, 1),
+"update": 0,
+"values": [Vector3(0.160051, -0.154729, 0), Vector3(0.091, -0.002, -0.142), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.881548, 0, 0), Vector3(1.09083, -0.0959931, 0), Vector3(1.09083, -0.0959931, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root/right_hand_pos:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.466667, 0.6, 0.7, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(8.02638, -5.30813, 17.6697), Vector3(8.02638, 1.60169, -1.42733), Vector3(7.769, 4.331, 10.614), Vector3(7.76892, 1.02625, 3.06338), Vector3(7.76892, 1.02625, 3.06338), Vector3(-1.13237, -8.42029, 25.0623)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root/right_hand_pos:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.466667, 0.6, 0.733333, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0981486, 1.45763, -1.24268), Vector3(-0.0981486, 1.45763, -1.24268), Vector3(-0.0981486, 1.45763, -1.24268), Vector3(-0.0981486, 1.45763, -1.24268), Vector3(-0.0981486, 1.45763, -1.24268), Vector3(1.41095, 0.786906, -2.0313)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("root/bolt_action_sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_brxap")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/4/use_blend = true
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("root/bolt_action_sound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_cbssm")
+}],
+"times": PackedFloat32Array(0.6)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("root/left_hand_pos:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.48138, -3.15396, -19.4263)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g6ym"]
 _data = {
@@ -367,7 +497,8 @@ _data = {
 [node name="ak_47" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_e7di0")
 audioplayers = [NodePath("audio_0"), NodePath("audio_5"), NodePath("audio_25"), NodePath("audio_50"), NodePath("audio_100")]
-audio_pitch_randomness = Vector2(0.98, 1.02)
+audio_pitch_randomness = Vector2(0.975, 1.025)
+projectile = ExtResource("2_36t2h")
 bullet_resource = SubResource("Resource_qx83c")
 bullet_force = 205.0
 shell_force = 1.5
@@ -378,16 +509,17 @@ bullet_marker = NodePath("bullet_marker")
 resource = SubResource("Resource_36t2h")
 model = NodePath("root")
 animation_player = NodePath("AnimationPlayer")
+pick_sound = ExtResource("5_cbssm")
 metadata/_custom_type_script = "uid://cfshg230xd28k"
 
 [node name="root" type="Node3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 
 [node name="root2" type="Node3D" parent="root"]
-transform = Transform3D(-0.003, 2.62268e-10, -1.14641e-17, 0, -1.31134e-10, -0.003, -2.62268e-10, -0.003, 1.31134e-10, -10, 10, 40)
+transform = Transform3D(-0.003, 4.52987e-10, -1.98007e-17, 0, -1.31134e-10, -0.003, -4.52987e-10, -0.003, 1.31134e-10, -10, 10, 40)
 
 [node name="Object_18" type="MeshInstance3D" parent="root/root2"]
-transform = Transform3D(3200, 0, 0, 0, -0.00038147, 3200, 0, -3200, -0.00038147, 0, 0, 0)
+transform = Transform3D(3200, 0, 0, 0, -0.000139876, 3200, 0, -3200, -0.000139876, 0, 0, 0)
 mesh = SubResource("ArrayMesh_cycff")
 skin = SubResource("Skin_ebajt")
 skeleton = NodePath("")
@@ -396,7 +528,10 @@ skeleton = NodePath("")
 transform = Transform3D(-11.1103, 70.7955, 69.7464, -99.2836, -11.0115, -4.63831, 4.39637, -69.7621, 71.5118, -3.48138, -3.15396, -19.4263)
 
 [node name="right_hand_pos" type="Marker3D" parent="root"]
-transform = Transform3D(-91.0381, 32.4305, 25.6968, -23.6137, 10.2764, -96.627, -33.9773, -94.0354, -1.69737, 2.80821, -9.4851, 24.6349)
+transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
+
+[node name="bolt_action_sound" type="AudioStreamPlayer3D" parent="root"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -405,47 +540,50 @@ libraries = {
 
 [node name="audio_0" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_4we86")
-attenuation_model = 2
 volume_db = 80.0
+unit_size = 50.0
 max_db = 6.0
 max_distance = 15.0
 bus = &"game"
+attenuation_filter_db = 0.0
 
 [node name="audio_5" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_dnby3")
-attenuation_model = 2
 volume_db = 80.0
 unit_size = 50.0
 max_db = 6.0
 max_distance = 25.0
 bus = &"game"
+attenuation_filter_db = 0.0
 
 [node name="audio_25" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_shxlq")
-attenuation_model = 2
 volume_db = 80.0
 unit_size = 50.0
 max_db = 6.0
 max_distance = 50.0
 bus = &"game"
+attenuation_filter_db = 0.0
 
 [node name="audio_50" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_shxlq")
-attenuation_model = 2
 volume_db = 60.0
 unit_size = 25.0
 max_db = 6.0
 max_distance = 100.0
 bus = &"game"
+attenuation_filter_db = 0.0
 
 [node name="audio_100" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_dnby3")
-attenuation_model = 2
 volume_db = 40.0
 unit_size = 25.0
 max_db = 6.0
 max_distance = 250.0
 bus = &"game"
+attenuation_filter_db = 0.0
+
+[node name="pick_sound" type="AudioStreamPlayer3D" parent="."]
 
 [node name="shell_marker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137975, 0.0735873, -0.0272615)
@@ -454,10 +592,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137975, 0.0735873, -0.02726
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00590598, 0.0404263, -0.934864)
 
 [node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("11_qx83c")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0121143, -0.306208, 0.268411)
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="arms/root" index="0"]
-modifier_callback_mode_process = 0
+transform = Transform3D(1, 0, 0, 0, 1, 1.62921e-07, 0, -1.62921e-07, 1, -1.86265e-09, 0.0162061, -0.0231372)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.997765, 0.00870074, 0.0662512, -0.00697889, 0.999633, -0.026177, -0.0664546, 0.0256561, 0.99746, -0.264, 0.272, 0.182)
 
 [editable path="arms"]

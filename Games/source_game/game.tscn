@@ -1,11 +1,5 @@
 [gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
 
-
-
-[ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_hjpvw"]
-[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
-
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/textures/SourceEngineVibe2.jpg" id="3_8dbco"]
 [ext_resource type="Script" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]

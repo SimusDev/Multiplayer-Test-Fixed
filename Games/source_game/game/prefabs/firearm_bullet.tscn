@@ -1,20 +1,24 @@
-[gd_scene load_steps=10 format=4 uid="uid://cksf4rsym7tdd"]
+[gd_scene load_steps=14 format=4 uid="uid://uy7lwlaavufp"]
 
-[ext_resource type="Texture2D" uid="uid://cdc6ar844ordv" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_3.jpg" id="1_7lhb2"]
-[ext_resource type="Texture2D" uid="uid://dq1pmcbmb3map" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_4.png" id="2_k8jmf"]
-[ext_resource type="Texture2D" uid="uid://etx7c633pdb5" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_5.png" id="3_g0v5r"]
-[ext_resource type="Script" uid="uid://dv6vnxj3dxpcl" path="res://Games/source_game/game/prefabs/mesh_instance_3d.gd" id="4_k8jmf"]
+[ext_resource type="Script" uid="uid://n5glk1jbjxsm" path="res://Games/source_game/game/prefabs/firearm_bullet.gd" id="1_fe7gp"]
+[ext_resource type="Texture2D" uid="uid://cdc6ar844ordv" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_3.jpg" id="2_g8u0m"]
+[ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_i6lau"]
+[ext_resource type="Texture2D" uid="uid://dq1pmcbmb3map" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_4.png" id="3_i6lau"]
+[ext_resource type="AudioStream" uid="uid://c4eknx0p4sewd" path="res://sounds/ricochet.mp3" id="3_tiyib"]
+[ext_resource type="AudioStream" uid="uid://c8eqv2kpxs2hv" path="res://sounds/ricochet2.mp3" id="4_j7c8p"]
+[ext_resource type="Texture2D" uid="uid://etx7c633pdb5" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_5.png" id="4_tiyib"]
+[ext_resource type="Script" uid="uid://dv6vnxj3dxpcl" path="res://Games/source_game/game/prefabs/mesh_instance_3d.gd" id="5_j7c8p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lhb2"]
 resource_name = "bullet"
-albedo_texture = ExtResource("1_7lhb2")
+albedo_texture = ExtResource("2_g8u0m")
 metallic = 1.0
-metallic_texture = ExtResource("2_k8jmf")
-roughness_texture = ExtResource("2_k8jmf")
+metallic_texture = ExtResource("3_i6lau")
+roughness_texture = ExtResource("3_i6lau")
 roughness_texture_channel = 1
 normal_enabled = true
 normal_scale = 16.0
-normal_texture = ExtResource("3_g0v5r")
+normal_texture = ExtResource("4_tiyib")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_q2opq"]
 _surfaces = [{
@@ -62,12 +66,22 @@ bottom_radius = 0.01
 radial_segments = 16
 rings = 2
 
-[node name="bullet9mm" type="MeshInstance3D"]
+[node name="firearm_bullet" type="Node3D"]
+script = ExtResource("1_fe7gp")
+decal_bullet_hole = ExtResource("2_i6lau")
+ricochet_assets = Array[AudioStream]([ExtResource("3_tiyib"), ExtResource("4_j7c8p")])
+
+[node name="bullet9mm" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ajo5f")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bullet9mm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50996e-07, -1, -4.37114e-08)
 mesh = SubResource("CylinderMesh_g0v5r")
-script = ExtResource("4_k8jmf")
+script = ExtResource("5_j7c8p")
+
+[node name="fly_by_detect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fly_by_detect"]
+disabled = true
