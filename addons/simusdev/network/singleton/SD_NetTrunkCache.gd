@@ -87,6 +87,8 @@ func _on_cached_node_tree_exited(node: Node, path: NodePath) -> void:
 	try_uncache_node(node)
 
 func _process(delta: float) -> void:
+	return
+	
 	if !SD_Network.is_server():
 		return
 	

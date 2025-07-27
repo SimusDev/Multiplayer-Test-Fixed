@@ -144,7 +144,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var path: NodePath = node.get_path()
 	var node_path: String = str(node.get_path()).replacen(singleton.settings.root_path, "")
 	
-	var _cached_id: int = singleton.cache.get_cached_nodes().find(path)
+	#var _cached_id: int = singleton.cache.get_cached_nodes().find(path)
 	
 	var packet: Dictionary = {
 		"n": node_path,
