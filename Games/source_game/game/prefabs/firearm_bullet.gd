@@ -56,7 +56,8 @@ func _physics_process(delta: float) -> void:
 		new_pos = result.position
 		if result.collider.has_method("apply_damage"):
 			result.collider.apply_damage(bullet_resource.damage)
-			if is_multiplayer_authority(): SoundPlayer.play_global_audio(hitmarker_sound, "game")
+			if is_multiplayer_authority():
+				SoundPlayer.play_global_audio(hitmarker_sound, "game")
 			can_bounce = false
 		spawn_bullethole(result, decal_bullet_hole, 5)
 		if result.collider.is_in_group("penetrable"):

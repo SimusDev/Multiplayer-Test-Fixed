@@ -60,11 +60,12 @@ func spawn_projectile():
 	new_bullet.top_level = true
 	reset_spread_timer.start(0)
 	
-	if SourcePlayer.instance.movement.is_crouched: spread_multiplier = 0.5
-	elif SourcePlayer.instance.movement.is_sprinting: spread_multiplier = 2.0
-	elif not SourcePlayer.instance.is_on_floor(): spread_multiplier = 4.0
-	else:
-		spread_multiplier = 1.0
+	if is_instance_valid(SourcePlayer.instance):
+		if SourcePlayer.instance.movement.is_crouched: spread_multiplier = 0.5
+		elif SourcePlayer.instance.movement.is_sprinting: spread_multiplier = 2.0
+		elif not SourcePlayer.instance.is_on_floor(): spread_multiplier = 4.0
+		else:
+			spread_multiplier = 1.0
 	
 	spread_counter += 0.01
 	spread_random.x = randf_range(-1.0, 1.0) * spread_multiplier
