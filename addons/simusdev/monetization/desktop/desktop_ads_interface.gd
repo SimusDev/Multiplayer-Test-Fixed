@@ -14,10 +14,34 @@ static var _instance: desktop_ads_interface
 var _current_ad: Node = null
 var _current_cooldown: float = 0.0
 
+signal start_event(event: String)
+signal finish_event(event: String)
+
 func _ready() -> void:
 	_instance = self
 	_fade.hide()
 	update_cooldown_label()
+	
+	start_event.connect(_on_start_event)
+	finish_event.connect(_on_finish_event)
+
+func _on_start_event(event: String) -> void:
+	match event:
+		"interstitial":
+			SD_Monetization.get_instance().on_interstitial_loaded.emit()
+			SD_Monetization.get_instance().on_interstitial_opened.emit()
+		"rewarded":
+			SD_Monetization.get_instance().on_reward_loaded.emit()
+			SD_Monetization.get_instance().on_reward_opened.emit()
+
+func _on_finish_event(event: String) -> void:
+	match event:
+		"interstitial":
+			SD_Monetization.get_instance().on_interstitial_closed.emit()
+		"rewarded":
+			SD_Monetization.get_instance().on_reward_rewarded.emit()
+			SD_Monetization.get_instance().on_reward_closed.emit()
+			
 
 func _process(delta: float) -> void:
 	if _current_cooldown > 0.0:
@@ -34,7 +58,7 @@ func update_cooldown_label() -> void:
 	_label_cooldown.text = str(round(_current_cooldown))
 	_label_cooldown.visible = _current_cooldown > 0
 
-func open_ad(scene: PackedScene, cooldown: float = 5) -> Node:
+func open_ad(scene: PackedScene, cooldown: float = 0.5) -> Node:
 	var sdk: SD_AdsSDK = SD_Monetization.instance().get_sdk_by_code("desktop")
 	if sdk.get_settings().get_value("enabled") == false:
 		return

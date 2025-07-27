@@ -90,7 +90,8 @@ func get_nickname() -> String:
 
 func is_server() -> bool:
 	if is_active():
-		return multiplayer.is_server()
+		if multiplayer:
+			return multiplayer.is_server()
 	return true
 
 func is_client() -> bool:
@@ -197,6 +198,7 @@ func terminate_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, me
 			if (_peer.get_connection_status() == _peer.CONNECTION_CONNECTED) or (_peer.get_connection_status() == _peer.CONNECTION_CONNECTING):
 				SD_NetConnectionErrors.set_error(error, message)
 				_peer.close()
+				set_active(false)
 			
 
 

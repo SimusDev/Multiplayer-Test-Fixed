@@ -9,6 +9,7 @@ func _ready() -> void:
 	console = SimusDev.console
 	
 	await singleton.initialized
+	singleton.cache.try_cache_node(self)
 	_initialized()
 
 func _initialized() -> void:
