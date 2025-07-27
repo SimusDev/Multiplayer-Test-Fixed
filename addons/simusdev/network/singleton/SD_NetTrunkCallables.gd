@@ -141,24 +141,25 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("cant call func(%s) on channel %s, because id is greater than max channels: %s" % [method, channel, max_channels], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
+	var path: NodePath = node.get_path()
 	var node_path: String = str(node.get_path()).replacen(singleton.settings.root_path, "")
 	
-	var _cached_id: int = 0
+	var _cached_id: int = singleton.cache.get_cached_nodes().find(path)
 	
 	var packet: Dictionary = {
-		"p": node_path,
+		"n": node_path,
 		"m": method,
 		"a": SD_NetworkSerializer.parse(args),
 	}
 	
-	
+	#print(node_path)
 	
 	#if _cached_id < 0:
 		#var queue_dict: Dictionary = {}
 		#queue_dict.packet = packet
 		#queue_dict.callmode = callmode
 		#queue_dict.channel_id = channel_id
-		#queue_dict.node_path = node_path
+		#queue_dict.node_path = node.get_path()
 		#queue_dict.peer = peer
 		#queue_dict.method = method
 		#_queue.append(queue_dict)
@@ -187,14 +188,14 @@ func _call_func_on_queue(peer: int, from_peer: int, packet: Dictionary, channel_
 
 func _process(delta: float) -> void:
 	for data in _queue:
-		var node_path: String = data.node_path
+		var node_path: NodePath = data.node_path
 		var node: Node = get_node_or_null(node_path)
 		if node == null:
 			_queue.erase(data)
 			debug_print("queue node not found %s, cancelling the remote calling." % [node_path], SD_ConsoleCategories.CATEGORY.ERROR)
 			continue
 		
-		if true: #if SD_Network.is_node_cached(node):
+		if singleton.cache.get_cached_nodes().has(node_path):
 			var packet: Dictionary = data.packet
 			var callmode: int = data.callmode
 			var channel_id: int = data.channel_id
@@ -219,13 +220,13 @@ func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Netw
 	call_func_on(singleton.SERVER_ID, callable, args, callmode, channel)
 
 func _recieve_call_from_local(from_peer: int, packet: Dictionary) -> void:
-	#var cached_id: int = packet.get("cp", -1) as int
+	#var cached_id: int = packet.get("n", -1) as int
 	var root_path: String = singleton.settings.root_path
-	var node_path: String = root_path + packet.get("p", "") as String
+	var node_path: String = root_path + packet.get("n", "") as String
 	var method: String = packet.get("m", "") as String
 	var args: Array = SD_NetworkDeserializer.parse(packet.get("a"))
 	
-	#var cached_path: String = SD_Array.get_value_from_array(get_cached_nodes(), cached_id, "") as String
+	#var cached_path: String = str(SD_Array.get_value_from_array(singleton.cache.get_cached_nodes(), cached_id, ""))
 	#if cached_path.is_empty():
 		#debug_print("cant find cached node: %s" % str(cached_id), SD_ConsoleCategories.CATEGORY.ERROR)
 		#return

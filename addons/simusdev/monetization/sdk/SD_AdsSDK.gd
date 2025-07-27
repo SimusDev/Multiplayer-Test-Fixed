@@ -21,6 +21,9 @@ var monetization: SD_TrunkMonetization
 var _INTERSTITIAL_COOLDOWN: float = 0
 var _current_interstitial_cooldown: float = 0
 
+var _interstitial_loaded: bool = false
+var _rewarded_loaded: bool = false
+
 static func console() -> SD_TrunkConsole:
 	return SimusDev.console
 

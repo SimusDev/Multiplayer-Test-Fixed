@@ -13,7 +13,6 @@ states/human_idle/position = Vector2(324.444, 100.099)
 transitions = ["Start", "human_idle", SubResource("AnimationNodeStateMachineTransition_8ma5h")]
 
 [resource]
-graph_offset = Vector2(-588.743, -34.6198)
 nodes/movement/node = SubResource("AnimationNodeStateMachine_77gnd")
 nodes/movement/position = Vector2(-555.556, 111.111)
 node_connections = [&"output", 0, &"movement"]

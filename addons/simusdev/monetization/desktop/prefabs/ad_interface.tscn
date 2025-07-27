@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyxpiljtqpdc6"]
+[gd_scene load_steps=11 format=3 uid="uid://cyxpiljtqpdc6"]
 
 [ext_resource type="PackedScene" uid="uid://ci1u75bsgnidc" path="res://addons/simusdev/monetization/desktop/prefabs/panel.tscn" id="1_gug6b"]
 [ext_resource type="Script" uid="uid://d278s3crmt015" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface.gd" id="1_luqkx"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_luqkx"]
 [ext_resource type="PackedScene" uid="uid://ciiimna4xqhpc" path="res://addons/simusdev/ui/label.tscn" id="3_wop0o"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="5_6n2in"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6n2in"]
 font = ExtResource("2_luqkx")
@@ -11,6 +12,21 @@ font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5vga"]
 bg_color = Color(0.378748, 0.19467, 0.188962, 1)
+
+[sub_resource type="Animation" id="Animation_6n2in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("panel/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_wop0o"]
 resource_name = "idle"
@@ -28,21 +44,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_6n2in"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("panel/Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aqko6"]
 _data = {
 &"RESET": SubResource("Animation_6n2in"),
@@ -50,6 +51,7 @@ _data = {
 }
 
 [node name="ad_interface" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,5 +113,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_aqko6")
 }
 autoplay = "idle"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+process_mode = 3
+script = ExtResource("5_6n2in")
+TARGET_INPUT = NodePath("..")
+TARGET_DRAG = NodePath("../panel")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

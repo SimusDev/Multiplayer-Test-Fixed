@@ -36,32 +36,51 @@ func _on_initialized() -> void:
 	SimusDev.add_child(_core)
 	
 	_core.init()
+	
+	_interstitial_loaded = _core.is_interstitial_loaded()
+	_rewarded_loaded = _core.is_rewarded_video_loaded()
 
 func _on_rewarded(currency, amount) -> void:
 	on_reward_rewarded.emit()
 
 func _on_rewarded_video_closed() -> void:
+	_rewarded_loaded = false
 	on_reward_closed.emit()
 
 func _on_rewarded_video_failed_to_load(error_code) -> void:
 	on_reward_error.emit()
 
 func _on_rewarded_video_loaded() -> void:
+	_rewarded_loaded = true
 	on_reward_loaded.emit()
+	
+	if _waiting_for_rewarded_video:
+		show_reward()
+		_waiting_for_rewarded_video = false
 
 func _on_interstitial_loaded() -> void:
+	_interstitial_loaded = true
 	on_interstitial_loaded.emit()
+	
+
 
 func _on_interstitial_failed_to_load(error_code) -> void:
 	on_interstitial_error.emit()
 
 func _on_interstitial_closed() -> void:
+	_interstitial_loaded = false
 	on_interstitial_closed.emit()
-
-
 
 func _show_interstitial_placeholder_() -> void:
 	_core.show_interstitial()
 
 func _show_reward_placeholder_() -> void:
 	_core.show_rewarded_video()
+
+var _waiting_for_rewarded_video: bool = false
+func _load_and_show_reward_placeholder_() -> void:
+	if _rewarded_loaded:
+		show_reward()
+	else:
+		_waiting_for_rewarded_video = true
+		load_reward()

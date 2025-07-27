@@ -15,6 +15,7 @@ default_peer = true
 compression = 2
 serializer_compression = 1
 serializer_min_bytes_to_compress = 500
+cache_all_nodes_in_scene_tree = true
 show_all_connected_players = true
 player_unique_names = true
 dedicated_server = false
@@ -22,6 +23,7 @@ dedicated_server_port = 80
 dedicated_server_max_clients = 32
 debug = true
 debug_callables = true
+debug_cache = true
 metadata/_custom_type_script = "uid://bsn5pysgtogq7"
 
 [resource]
@@ -31,7 +33,7 @@ game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
 "create_singleton": true,
-"enabled": true,
+"enabled": false,
 "pause_when_ad_show": true
 })
 game = Dictionary[String, Variant]({
