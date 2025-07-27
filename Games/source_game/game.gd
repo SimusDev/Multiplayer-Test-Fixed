@@ -15,6 +15,8 @@ var sv_cheats:bool = false : set = set_sv_cheats
 func _ready() -> void:
 	SD_Network.register_function($placeholder.show)
 	SD_Network.register_function($placeholder.hide)
+	SD_Network.register_function(spawn_on_server)
+	#SD_Network.register_function(request_spawn)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
 	instance = self

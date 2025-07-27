@@ -85,11 +85,12 @@ func spawn_bullethole(result:Dictionary, hole:PackedScene, hole_life_time:float 
 	new_bullet_hole.global_transform.origin = result.position
 	new_bullet_hole.look_at(result.position + result.normal, Vector3(1, 1, 0))
 	
-	await get_tree().create_timer(hole_life_time).timeout
-	if is_instance_valid(new_bullet_hole):
-		new_bullet_hole.queue_free()
+	get_tree().create_timer(hole_life_time).timeout.connect( free_bullet.bind(new_bullet_hole) )
 
-
+func free_bullet(_bullet):
+	print("SEse")
+	if is_instance_valid(_bullet):
+		_bullet.queue_free()
 
 
 
