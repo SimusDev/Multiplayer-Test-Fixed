@@ -23,7 +23,10 @@ static func __deserialize_data(data: Variant, mode: int = _compression) -> Varia
 		var decompressed: String = str(bytes_to_var(bytes))
 		var object: Variant = str_to_var(decompressed)
 		return object
-	return str_to_var(data)
+	
+	if data is String:
+		return str_to_var(data)
+	return data
 
 static func _parse_object(object_str: String) -> Variant:
 	return str_to_var(object_str)
