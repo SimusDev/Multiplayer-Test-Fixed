@@ -152,13 +152,25 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	
 	var _cached_id: int = singleton.cache.get_cached_nodes_by_path().get(path, -1)
 	
+	var serialized_args: Variant = SD_NetworkSerializer.parse(args)
+	
 	var packet: Dictionary = {
 		"n": _cached_id,
 		"m": method,
-		"a": SD_NetworkSerializer.parse(args),
+		"a": serialized_args,
 	}
 	
-	#print(packet)
+	#print(type_string(typeof(serialized_args)))
+	
+	#print(var_to_bytes(serialized_args).size())
+	
+	#print(var_to_bytes(packet).size())
+	
+	#print(var_to_bytes(_cached_id).size())
+	#print(var_to_bytes(method).size())
+	#print(var_to_bytes(SD_NetworkSerializer.parse(args)).size())
+	
+	#print(var_to_bytes(packet).size())
 	
 	if _cached_id < 0:
 		var queue_dict: Dictionary = {}

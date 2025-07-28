@@ -21,6 +21,7 @@ class_name SD_NetworkSettings
 @export var dedicated_server_scene: PackedScene
 @export var debug: bool = true
 @export var debug_callables: bool = true
+@export var debug_vars: bool = true
 @export var debug_cache: bool = true
 @export var cache: SD_NetworkCacheSettings = SD_NetworkCacheSettings.new()
 

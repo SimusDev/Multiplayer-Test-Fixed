@@ -49,6 +49,9 @@ func get_cached_path_by_id(id: int) -> NodePath:
 func get_cached_id_by_path(path: NodePath) -> int:
 	return get_cached_nodes_by_path().get(path, -1)
 
+func get_cached_id_by_node(node: Node) -> int:
+	return get_cached_id_by_path(node.get_path())
+
 func try_cache_node(node: Node) -> void:
 	
 	if not is_instance_valid(node):
