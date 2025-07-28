@@ -47,7 +47,7 @@ func get_selected_slot() -> WG_InventorySlot:
 	return _selected_slot
 
 func set_selected_slot(slot: WG_InventorySlot) -> void:
-	SD_Multiplayer.sync_call_function(self, _set_selected_slot_local, [slot])
+	SD_Network.call_func(_set_selected_slot_local, [slot])
 
 func _set_selected_slot_local(slot: WG_InventorySlot) -> void:
 	if not slot:
@@ -88,6 +88,11 @@ func try_add_item_to_free_slot(item: WG_ItemStack) -> void:
 		slot.add_item(item)
 
 func _ready() -> void:
+	SD_Network.register_functions(
+		[
+			_set_selected_slot_local,
+		]
+	)
 	_serializer = SD_MPNodeInstanceSerializer.new()
 	add_child(_serializer)
 	_serializer.name = "serializer"
