@@ -11,6 +11,8 @@ func _initialized() -> void:
 	
 
 func _on_active_status_changed(status: bool) -> void:
+	return
+	
 	if status:
 		if SD_Network.is_server():
 			_cache_all_resources()
