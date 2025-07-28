@@ -12,7 +12,6 @@ class_name SD_NetworkSettings
 @export var compression: ENetConnection.CompressionMode = ENetConnection.COMPRESS_FASTLZ
 @export var serializer_compression: FileAccess.CompressionMode = FileAccess.COMPRESSION_DEFLATE
 @export var serializer_min_bytes_to_compress: int = 500
-@export var cache_all_nodes_in_scene_tree: bool = true
 @export var show_all_connected_players: bool = true
 @export var player_unique_names: bool = false
 @export var dedicated_server: bool = false

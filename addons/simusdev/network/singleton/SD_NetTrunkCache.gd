@@ -4,10 +4,6 @@ class_name SD_NetTrunkCache
 var _local_changes: Array[Dictionary] = []
 
 func _initialized() -> void:
-	if singleton.settings.cache_all_nodes_in_scene_tree:
-		get_tree().node_added.connect(_on_scene_tree_node_added)
-		get_tree().node_removed.connect(_on_scene_tree_node_removed)
-	
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
 	
 

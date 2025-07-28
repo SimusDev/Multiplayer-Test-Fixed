@@ -201,8 +201,33 @@ func terminate_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, me
 				set_active(false)
 			
 
-
 func debug_print(text, category: int = 0) -> void:
 	if settings.debug:
 		var t: String = "[Network] %s" % str(text)
 		console.write(t, category)
+
+func register_object(node: Node) -> void:
+	if is_object_registered(node):
+		return
+	
+	if not node.is_inside_tree():
+		await node.tree_entered
+	
+	node.set_meta("_networked", true)
+	node.tree_exiting.connect(_on_net_object_tree_exiting.bind(node))
+	cache.try_cache_node(node)
+
+func _on_net_object_tree_exiting(node: Node) -> void:
+	if is_object_registered(node):
+		if node.is_queued_for_deletion():
+			unregister_object(node)
+			cache.try_uncache_node(node.get_path())
+
+func is_object_registered(node: Node) -> bool:
+	if is_instance_valid(node):
+		return node.has_meta("_networked")
+	return false
+
+func unregister_object(node: Node) -> void:
+	if is_object_registered(node):
+		node.remove_meta("_networked")

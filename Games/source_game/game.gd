@@ -13,6 +13,8 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @onready var placeholder = $placeholder
 
 func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_object($placeholder)
 	SD_Network.register_function($placeholder.show)
 	SD_Network.register_function($placeholder.hide)
 	SD_Network.register_function(spawn_on_server)

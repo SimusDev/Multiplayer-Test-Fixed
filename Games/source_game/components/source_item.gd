@@ -20,6 +20,13 @@ var player:SourcePlayer
 var current:bool = false : set = set_current, get = is_current
 
 func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_functions(
+		[
+			use,
+		]
+	)
+	
 	player = (get_parent() as SourceItemContainer).player
 	on_current_change.connect(_on_current_changed)
 
@@ -44,7 +51,7 @@ func _process(_delta: float) -> void:
 	if is_multiplayer_authority() and current:
 		if Input.is_action_pressed("fire"):
 			if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
-				SD_Multiplayer.sync_call_function(self, use)
+				SD_Network.call_func(use)
 #ZV EZ
 func use():
 	if not is_inside_tree():

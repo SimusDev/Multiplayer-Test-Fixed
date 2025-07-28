@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dk4nnihi62s17"]
+[gd_scene load_steps=27 format=3 uid="uid://dk4nnihi62s17"]
 
 [ext_resource type="Script" uid="uid://b667324ck7ueh" path="res://Games/sandbox/objects/entities/player/s_1_mple_player.gd" id="1_64jhk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="1_uxd2n"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cd76fpyex3nx8" path="res://Games/sandbox/components/player/SB_PlayerAnimator.gd" id="16_wy3vx"]
 [ext_resource type="Script" uid="uid://bbsduhwdk5jac" path="res://Games/sandbox/components/entity/SB_EntitySkin.gd" id="17_64jhk"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="18_wy3vx"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="21_u0j1b"]
 
 [sub_resource type="Resource" id="Resource_10rrw"]
 script = ExtResource("3_u0j1b")
@@ -77,6 +78,11 @@ size = Vector3(1, 1.99615, 0.623474)
 [node name="s1mple" type="CharacterBody3D"]
 collision_layer = 0
 script = ExtResource("1_64jhk")
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("21_u0j1b")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"
 
 [node name="SD_NetSynchronizer" type="Node" parent="."]
 script = ExtResource("2_wy3vx")

@@ -40,6 +40,8 @@ func initialize() -> void:
 	if _initialized:
 		return
 	
+	SD_Network.register_object(self)
+	
 	SD_Network.register_function(_recieve_data)
 	SD_Network.register_function(_send_data_to_client)
 	
