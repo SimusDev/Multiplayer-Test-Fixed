@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://dp4g8b6hojp73"]
+[gd_scene load_steps=11 format=4 uid="uid://dp4g8b6hojp73"]
 
 [ext_resource type="Texture2D" uid="uid://d0vh5chljv7ef" path="res://Games/source_game/game/axe/textures/Material__16_baseColor.jpeg" id="1_otb7f"]
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_wo4ef"]
 [ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_ady2o"]
 [ext_resource type="Texture2D" uid="uid://b5kfgvy4txxr5" path="res://Games/source_game/game/axe/textures/Material__16_metallicRoughness.png" id="2_hgh6j"]
 [ext_resource type="Texture2D" uid="uid://cggutdt353g27" path="res://Games/source_game/game/axe/textures/Material__16_normal.jpeg" id="3_wo4ef"]
+[ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="6_ady2o"]
 
 [sub_resource type="Resource" id="Resource_1mg5u"]
 script = ExtResource("2_ady2o")
@@ -64,14 +65,47 @@ shadow_mesh = SubResource("ArrayMesh_3qhv4")
 script = ExtResource("1_wo4ef")
 damage = 18.0
 resource = SubResource("Resource_1mg5u")
-model = NodePath("root")
+model = NodePath("root/root2")
 metadata/_custom_type_script = "uid://bigqs2v4dchuh"
 
 [node name="root" type="Node3D" parent="."]
 
 [node name="root2" type="Node3D" parent="root"]
-transform = Transform3D(-1.09278e-08, -0.25, 1.09278e-08, -0.25, 1.09278e-08, 1.09278e-08, -1.09278e-08, -1.09278e-08, -0.25, 0, 0, 0)
 
-[node name="mesh" type="MeshInstance3D" parent="root/root2"]
+[node name="root3" type="Node3D" parent="root/root2"]
+transform = Transform3D(-1.88745e-08, -0.25, 3.7749e-08, -0.25, 1.88745e-08, 1.09278e-08, -1.09278e-08, -3.7749e-08, -0.25, 0, 0, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="root/root2/root3"]
+transform = Transform3D(1, -5.0519e-16, 0, -5.0519e-16, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1mg5u")
 skeleton = NodePath("")
+
+[node name="right_hand" type="Marker3D" parent="root"]
+transform = Transform3D(-0.976666, 0.182299, 0.113533, -0.0880415, 0.142317, -0.985898, -0.195886, -0.972889, -0.122946, 0.0163206, -0.0495454, 0.129684)
+
+[node name="left_hand" type="Marker3D" parent="root"]
+transform = Transform3D(-0.93047, -0.227986, 0.286788, 0.0960462, -0.907206, -0.409576, 0.353553, -0.353553, 0.866025, -0.4, -0.4, 0.4)
+
+[node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("6_ady2o")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.2, 0, 0.4)
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
+
+[node name="Skeleton3D" parent="arms/root" index="0"]
+bones/31/position = Vector3(0.003, 0.064, 0.02)
+bones/31/rotation = Quaternion(0.115, 0.072, -0.065, 0.989)
+bones/32/rotation = Quaternion(0.057, -0.012, -1.111, 0.991)
+bones/36/rotation = Quaternion(0.022, -0.079, -1.083, 0.98)
+bones/40/position = Vector3(0.005, 0.122, -0.01)
+bones/40/rotation = Quaternion(-0.015, 0.07, -1.287, 0.96)
+bones/44/position = Vector3(0.01, 0.116, -0.036)
+bones/44/rotation = Quaternion(0.009, 0.035, -0.98, 0.964)
+bones/45/rotation = Quaternion(0.026, -0.021, -0.81, 0.968)
+bones/48/rotation = Quaternion(-0.388, -0.551, 0.177, 0.682)
+
+[node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1"]
+target_node = NodePath("../../../../root/left_hand")
+
+[node name="right_hand_ik" parent="arms/root/Skeleton3D" index="2"]
+target_node = NodePath("../../../../root/right_hand")
+
+[editable path="arms"]
