@@ -128,7 +128,7 @@ func _receive_player_from_server(data: Dictionary) -> void:
 	_recieve_player(net)
 
 @rpc("call_remote", "any_peer", "reliable")
-func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Array]) -> void:
+func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Variant]) -> void:
 	singleton.on_handshake_begin.emit()
 	
 	singleton.cache_set(cache)

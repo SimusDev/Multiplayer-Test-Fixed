@@ -13,15 +13,16 @@ _spawner = NodePath("ObjectsSpawner")
 _spawner_exclude_section = [NodePath("LevelScene")]
 _transform_sync_exclude = Array[String](["players"])
 
-[node name="SD_NetNodesTransformSynchronizer" type="Node" parent="."]
+[node name="tsync" type="Node" parent="."]
 script = ExtResource("2_007gb")
-channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
+channels = Array[String](["transform1", "transform2", "transform3", "transform4"])
 metadata/_custom_type_script = "uid://b3gscceeely20"
 
 [node name="ObjectsSpawner" parent="." instance=ExtResource("2_pjrny")]
 auto_handle_spawn = false
+auto_handle_logic = false
 
-[node name="SB_PlayerSpawnerDespawner" type="Node" parent="." node_paths=PackedStringArray("_level")]
+[node name="PlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("_level")]
 script = ExtResource("5_007gb")
 _object = ExtResource("4_chiaj")
 _level = NodePath("..")
@@ -34,3 +35,6 @@ metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
 [node name="default" type="Node3D" parent="."]
 script = ExtResource("5_e7ouf")
 metadata/_custom_type_script = "uid://dt30t8qnm1nkw"
+
+[connection signal="despawn_begin" from="ObjectsSpawner" to="." method="_on_objects_spawner_despawn_begin"]
+[connection signal="spawn_begin" from="ObjectsSpawner" to="." method="_on_objects_spawner_spawn_begin"]

@@ -1,0 +1,341 @@
+[gd_scene load_steps=13 format=3 uid="uid://bsuh1ghgmmxm6"]
+
+[ext_resource type="Script" uid="uid://b2x52kmaatynr" path="res://Games/sandbox/components/entity/SB_EntitySkeletonHitboxes.gd" id="1_xnvv6"]
+[ext_resource type="Script" uid="uid://b11i4gtb41hvh" path="res://Games/sandbox/components/entity/SD_EntityHitbox.gd" id="2_f67su"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2plx8"]
+size = Vector3(0.387183, 0.122461, 0.232812)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_to03o"]
+size = Vector3(0.394165, 0.285217, 0.328705)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qm48"]
+size = Vector3(0.394165, 0.346283, 0.328705)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_durtj"]
+size = Vector3(0.3, 0.277075, 0.248196)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xquv1"]
+size = Vector3(0.143829, 0.25, 0.130798)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52ro3"]
+size = Vector3(0.143829, 0.438599, 0.130798)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1r8g"]
+size = Vector3(0.113965, 0.201331, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srlkt"]
+size = Vector3(0.174292, 0.384653, 0.233652)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scpai"]
+size = Vector3(0.174292, 0.359835, 0.226504)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljd6f"]
+size = Vector3(0.130103, 0.242389, 0.1)
+
+[node name="human_hitboxes" type="Node3D"]
+script = ExtResource("1_xnvv6")
+setup_finish = true
+metadata/_custom_type_script = "uid://b2x52kmaatynr"
+
+[node name="mixamorig_Hips" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-2.5, 0, 2.18557e-07, 0, 2.5, 0, -2.18557e-07, 0, -2.5, -7.00106e-08, 1.03186, -0.0173282)
+bone_name = "mixamorig_Hips"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_Hips"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 1.25
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_Hips/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00318602, -0.0387695, 0.0164062)
+shape = SubResource("BoxShape3D_2plx8")
+
+[node name="mixamorig_Spine" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-2.5, -2.84611e-08, 2.16696e-07, 0, 2.47871, 0.325557, -2.18557e-07, 0.325557, -2.47871, -7.13103e-08, 1.14505, -0.00246215)
+bone_name = "mixamorig_Spine"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_Spine"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_Spine/Hitbox"]
+transform = Transform3D(1, 8.25098e-09, 3.25975e-09, -8.25099e-09, 1, 5.36442e-07, -3.25974e-09, -5.36442e-07, 1, 0.00860604, 0.0122384, 0.0213165)
+shape = SubResource("BoxShape3D_to03o")
+
+[node name="mixamorig_Spine1" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-2.5, -2.84612e-08, 2.16696e-07, 0, 2.47871, 0.325558, -2.18557e-07, 0.325558, -2.47871, -7.28265e-08, 1.2771, 0.0148815)
+bone_name = "mixamorig_Spine1"
+bone_idx = 2
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_Spine1"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_Spine1/Hitbox"]
+transform = Transform3D(1, 8.25098e-09, 3.25975e-09, -8.25096e-09, 1, 5.36442e-07, -3.25974e-09, -5.36442e-07, 1, 0.00860604, 0.175188, 0.0213163)
+shape = SubResource("BoxShape3D_3qm48")
+
+[node name="mixamorig_Head" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-2.5, -2.27973e-14, 2.18557e-07, 0, 2.5, 2.6077e-07, -2.18557e-07, 2.6077e-07, -2.5, -7.09428e-08, 1.69974, -0.00666547)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_Head"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 2.5
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_Head/Hitbox"]
+transform = Transform3D(0.999996, 1.04192e-06, -2.5332e-07, 7.61356e-08, 1.00001, -5.21541e-08, 4.91738e-07, 5.58794e-08, 1, -8.56817e-08, 0.0858992, 0.00872655)
+shape = SubResource("BoxShape3D_durtj")
+
+[node name="mixamorig_LeftArm" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.0394664, -1.44419, 2.04028, 0.0784093, -2.04025, -1.44265, 2.49846, 0.0412164, 0.077504, -0.208563, 1.54066, 0.0553531)
+bone_name = "mixamorig_LeftArm"
+bone_idx = 8
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftArm"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.5
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftArm/Hitbox"]
+transform = Transform3D(1, -4.09782e-08, -8.06525e-07, 1.11759e-08, 1, -2.819e-07, 1.86265e-09, 8.31555e-07, 1, -0.00923155, 1.90735e-06, -0.00399709)
+shape = SubResource("BoxShape3D_xquv1")
+
+[node name="mixamorig_LeftForeArm" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.0535597, -1.64378, 1.88285, 0.0584928, -1.88359, -1.64276, 2.49874, 0.0088589, 0.0788139, -0.365593, 1.31882, 0.0598346)
+bone_name = "mixamorig_LeftForeArm"
+bone_idx = 9
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftForeArm"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.4
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftForeArm/Hitbox"]
+transform = Transform3D(1, 1.19209e-07, 6.33299e-07, 1.16415e-09, 1, -1.35187e-08, 0, -1.30967e-08, 1, 0, 0.0684204, -3.57628e-07)
+shape = SubResource("BoxShape3D_52ro3")
+
+[node name="mixamorig_LeftHand" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.0535597, -1.64378, 1.88285, 0.0584928, -1.88359, -1.64276, 2.49874, 0.0088589, 0.0788139, -0.558082, 1.09825, 0.060872)
+bone_name = "mixamorig_LeftHand"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftHand"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.3
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftHand/Hitbox"]
+transform = Transform3D(1, 1.5134e-07, 8.04663e-07, 1.16415e-09, 1, -1.29148e-08, 0, -1.20781e-08, 1, -0.00698245, 0.0810975, -3.57628e-07)
+shape = SubResource("BoxShape3D_x1r8g")
+
+[node name="mixamorig_RightArm" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0193169, 1.44437, -2.04045, -0.00220105, -2.0405, -1.44442, -2.49992, 0.0129572, -0.0144951, 0.208563, 1.54066, 0.0586505)
+bone_name = "mixamorig_RightArm"
+bone_idx = 12
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightArm"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.5
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightArm/Hitbox"]
+transform = Transform3D(1, -4.09782e-08, -8.06525e-07, 1.02445e-08, 1, -2.73725e-07, 5.12227e-09, 7.95406e-07, 1, 0.0033739, -6.35386e-05, -0.00392401)
+shape = SubResource("BoxShape3D_xquv1")
+
+[node name="mixamorig_RightForeArm" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0159684, 1.64378, -1.88354, 0.0025294, -1.88359, -1.6438, -2.49995, 0.00859386, -0.0136946, 0.365591, 1.31882, 0.0600592)
+bone_name = "mixamorig_RightForeArm"
+bone_idx = 13
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightForeArm"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.4
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightForeArm/Hitbox"]
+transform = Transform3D(1, 1.19209e-07, 6.33299e-07, 1.16415e-09, 1, -1.35187e-08, 0, -1.30967e-08, 1, 0, 0.0684204, -3.57628e-07)
+shape = SubResource("BoxShape3D_52ro3")
+
+[node name="mixamorig_RightHand" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0159684, 1.64378, -1.88354, 0.0025294, -1.88359, -1.6438, -2.49995, 0.00859386, -0.0136946, 0.558079, 1.09825, 0.0610656)
+bone_name = "mixamorig_RightHand"
+bone_idx = 14
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightHand"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.3
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightHand/Hitbox"]
+transform = Transform3D(1, 1.5134e-07, 8.04663e-07, 1.16415e-09, 1, -1.29148e-08, 0, -1.20781e-08, 1, -0.00698245, 0.0810975, -3.57628e-07)
+shape = SubResource("BoxShape3D_x1r8g")
+
+[node name="mixamorig_LeftUpLeg" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49997, 0.0126541, 2.18845e-07, 0.0126523, -2.49962, -0.0414673, -0.000209673, 0.0414667, -2.49966, -0.109973, 0.96902, -0.0135518)
+bone_name = "mixamorig_LeftUpLeg"
+bone_idx = 15
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftUpLeg"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.8
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftUpLeg/Hitbox"]
+transform = Transform3D(1, -1.82354e-10, 3.31784e-09, -1.82695e-10, 1, -8.69855e-07, 0, 0, 1, 0.00511457, 0.224656, -0.00489652)
+shape = SubResource("BoxShape3D_srlkt")
+
+[node name="mixamorig_LeftLeg" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49961, 0.0439661, 0.00410013, 0.0441508, -2.48462, -0.273342, -0.000732208, 0.273372, -2.48501, -0.107692, 0.518345, -0.00607545)
+bone_name = "mixamorig_LeftLeg"
+bone_idx = 16
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftLeg"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.6
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftLeg/Hitbox"]
+transform = Transform3D(1, 6.66616e-07, 2.82598e-08, -2.59217e-07, 1, -8.9407e-07, 7.88714e-09, -4.17233e-07, 1, 0.00511453, 0.157503, -0.00847051)
+shape = SubResource("BoxShape3D_scpai")
+
+[node name="mixamorig_LeftFoot" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49914, -0.0201194, -0.0622673, 0.0383928, -1.47559, 2.01771, -0.0529905, -2.01797, -1.47478, -0.100738, 0.125407, 0.0371578)
+bone_name = "mixamorig_LeftFoot"
+bone_idx = 17
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_LeftFoot"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.4
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_LeftFoot/Hitbox"]
+transform = Transform3D(1, -1.86265e-09, -1.83471e-07, -6.51926e-08, 1, -2.98023e-08, 7.07805e-08, -2.98023e-08, 1, 0.00108634, 0.0711944, -7.45058e-09)
+shape = SubResource("BoxShape3D_ljd6f")
+
+[node name="mixamorig_RightUpLeg" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49997, -0.0126497, 2.20271e-07, -0.0126436, -2.49876, -0.0776462, 0.000393101, 0.0776452, -2.49879, 0.109973, 0.96902, -0.0231842)
+bone_name = "mixamorig_RightUpLeg"
+bone_idx = 20
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightUpLeg"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.8
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightUpLeg/Hitbox"]
+transform = Transform3D(1, -1.82354e-10, 3.31784e-09, -1.82695e-10, 1, -8.69855e-07, 0, 0, 1, 0.00511457, 0.224656, -0.00489652)
+shape = SubResource("BoxShape3D_srlkt")
+
+[node name="mixamorig_RightLeg" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49961, -0.0438975, -0.00404597, -0.0440623, -2.48073, -0.306633, 0.00136939, 0.306657, -2.48112, 0.107691, 0.518346, -0.00918017)
+bone_name = "mixamorig_RightLeg"
+bone_idx = 21
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightLeg"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.6
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightLeg/Hitbox"]
+transform = Transform3D(1, 6.66616e-07, 2.82598e-08, -2.59217e-07, 1, -8.9407e-07, 7.88714e-09, -4.17233e-07, 1, 0.00511453, 0.157503, -0.00847051)
+shape = SubResource("BoxShape3D_scpai")
+
+[node name="mixamorig_RightFoot" type="BoneAttachment3D" parent="."]
+transform = Transform3D(2.49918, 0.0198621, 0.0608077, -0.037849, -1.4567, 2.0314, 0.0515706, -2.03166, -1.45592, 0.100738, 0.125408, 0.0393931)
+bone_name = "mixamorig_RightFoot"
+bone_idx = 22
+use_external_skeleton = true
+external_skeleton = NodePath("../../model3d/Skeleton3D")
+
+[node name="Hitbox" type="Area3D" parent="mixamorig_RightFoot"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_f67su")
+damage_multiplier = 0.4
+
+[node name="Collision" type="CollisionShape3D" parent="mixamorig_RightFoot/Hitbox"]
+transform = Transform3D(1, -1.86265e-09, -1.83471e-07, -6.51926e-08, 1, -2.98023e-08, 7.07805e-08, -2.98023e-08, 1, 0.00108634, 0.0711944, -7.45058e-09)
+shape = SubResource("BoxShape3D_ljd6f")

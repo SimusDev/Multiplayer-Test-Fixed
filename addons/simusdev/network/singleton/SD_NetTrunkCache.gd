@@ -4,12 +4,34 @@ class_name SD_NetTrunkCache
 var _local_changes: Array[Dictionary] = []
 
 func _initialized() -> void:
-	#return #cache disabled, many bugs :(((
-	
-	return
-	
 	if singleton.settings.cache_all_nodes_in_scene_tree:
 		get_tree().node_added.connect(_on_scene_tree_node_added)
+	
+	singleton.on_active_status_changed.connect(_on_active_status_changed)
+	
+
+func _on_active_status_changed(status: bool) -> void:
+	if status:
+		if SD_Network.is_server():
+			_cache_all_resources()
+	else:
+		SD_Network.get_cached_resources().clear()
+
+func _cache_all_resources() -> void:
+	var settings: SD_NetworkCacheSettings = singleton.settings.cache
+	if !settings:
+		settings = SD_NetworkCacheSettings.new()
+	
+	var resources: PackedStringArray = SD_Network.get_cached_resources()
+	
+	for path in settings.cache_resources:
+		debug_print("caching resources...: %s" % [path])
+		var files: Array = SD_FileSystem.get_all_files_with_all_extenions_from_directory(path)
+		var files_str: PackedStringArray = PackedStringArray(files)
+		resources.append_array(files_str)
+	
+	var str_size: String = String.humanize_size(var_to_bytes(resources).size())
+	debug_print("resources were cached, size: %s" % str_size)
 
 func get_cached_nodes_by_id() -> Dictionary[int, NodePath]:
 	return SD_Network.cache_get().get_or_add("cn_id", {} as Dictionary[int, NodePath]) as Dictionary[int, NodePath]
@@ -18,13 +40,12 @@ func get_cached_nodes_by_path() -> Dictionary[NodePath, int]:
 	return SD_Network.cache_get().get_or_add("cn_path", {} as Dictionary[NodePath, int]) as Dictionary[NodePath, int]
 
 func get_cached_path_by_id(id: int) -> NodePath:
-	return get_cached_nodes_by_id().get(id)
+	return get_cached_nodes_by_id().get(id, NodePath())
 
 func get_cached_id_by_path(path: NodePath) -> int:
-	return get_cached_nodes_by_path().get(path)
+	return get_cached_nodes_by_path().get(path, -1)
 
 func try_cache_node(node: Node) -> void:
-	return
 	
 	if not is_instance_valid(node):
 		return
@@ -34,11 +55,13 @@ func try_cache_node(node: Node) -> void:
 	
 	var cache_by_path: Dictionary[NodePath, int] = get_cached_nodes_by_path()
 	var cache_by_id: Dictionary[int, NodePath] = get_cached_nodes_by_id()
-	var path: NodePath = node.get_path()
-	if cache_by_path.has(path):
-		return
 	
 	var net_id: int = node.get_instance_id()
+	
+	if cache_by_id.has(net_id):
+		return
+	
+	var path: NodePath = node.get_path()
 	
 	cache_by_path[path] = net_id
 	cache_by_id[net_id] = path
@@ -52,22 +75,18 @@ func try_cache_node(node: Node) -> void:
 	
 	_local_changes.append(local_change)
 	
-	debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
+	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-func try_uncache_node(node: Node) -> void:
-	if not is_instance_valid(node):
-		return
-	
+func try_uncache_node(path: NodePath) -> void:
 	if not SD_Network.is_server():
 		return
 	
 	var cache_by_path: Dictionary[NodePath, int] = get_cached_nodes_by_path()
 	var cache_by_id: Dictionary[int, NodePath] = get_cached_nodes_by_id()
-	var net_id: int = cache_by_path.get(node.get_path())
+	var net_id: int = cache_by_path.get(path, -1)
 	if net_id < 0:
 		return
 	
-	var path: NodePath = cache_by_id.get(net_id) as NodePath
 	cache_by_id.erase(net_id)
 	cache_by_path.erase(path)
 	
@@ -78,17 +97,15 @@ func try_uncache_node(node: Node) -> void:
 	
 	_local_changes.append(local_change)
 	
-	debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
+	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 func _on_scene_tree_node_added(node: Node) -> void:
 	try_cache_node(node)
 
 func _on_cached_node_tree_exited(node: Node, path: NodePath) -> void:
-	try_uncache_node(node)
+	try_uncache_node(path)
 
 func _process(delta: float) -> void:
-	return
-	
 	if !SD_Network.is_server():
 		return
 	

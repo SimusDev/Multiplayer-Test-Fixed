@@ -75,7 +75,6 @@ func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmod
 	if peer == SD_Network.get_unique_id():
 		return
 	
-	
 	var queue: SD_NetSyncedVars = get_var_queue(node)
 	
 	for property in properties:
@@ -83,8 +82,6 @@ func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmod
 			queue.append(property)
 		else:
 			singleton.debug_print("cant sync var from peer %s, %s, %s, use SD_Network.register_variable() to register the var." % [str(peer), str(node), property], SD_ConsoleCategories.CATEGORY.ERROR)
-	
-
 	
 	SD_Network.call_func_on(peer, var_send_to, [SD_Network.get_unique_id(), node, properties, callmode, channel, options], callmode, channel)
 	

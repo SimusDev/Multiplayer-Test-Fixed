@@ -1,4 +1,3 @@
-
 extends Node3D
 class_name SB_EntitySkin
 
@@ -10,6 +9,14 @@ var _preview: bool = false : set = _set_preview
 
 @export_group("References")
 var _node: Node
+
+signal updated()
+
+func get_source() -> Node3D:
+	return _source
+
+func get_skin_node() -> Node:
+	return _node
 
 func _ready() -> void:
 	SD_Network.register_function(set_skin)
@@ -62,6 +69,8 @@ func _change_upd_skin() -> void:
 		
 		add_child(_node)
 		_node.owner = self
+		
+		updated.emit()
 	
 
 func _update() -> void:

@@ -3,6 +3,23 @@ class_name SB_LevelSection3D
 
 var _level: SB_Level3D
 
+func _ready() -> void:
+	child_entered_tree.connect(_on_child_entered_tree)
+
+func _on_child_entered_tree(child: Node) -> void:
+	if SD_Network.is_server():
+		return
+	
+	if !child.is_node_ready():
+		await child.ready
+	
+	if SD_Network.is_server():
+		return
+	
+	var obj: SB_WorldObject = SB_WorldObject.find_in(child)
+	
+	
+
 static func find_above(node: Node) -> SB_LevelSection3D:
 	if node is SB_LevelSection3D:
 		return node

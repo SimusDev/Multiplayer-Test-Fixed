@@ -8,8 +8,6 @@ signal on_updated(command: SD_ConsoleCommand)
 
 var _cmd: SD_ConsoleCommand
 
-
-
 func _ready() -> void:
 	super()
 	
