@@ -10,10 +10,9 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
 
-@onready var placeholder = $placeholder
-
 func _ready() -> void:
 	SD_Network.register_function(spawn_on_server)
+	SD_Network.register_object(self)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
 	level_handler._load_level.connect(check_level)
@@ -29,7 +28,7 @@ func _on_peer_connected(_peer_id:int):
 	check_level()
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
-	if SD_Network.is_server():
+	if SD_Network.is_server() and is_instance_valid(mp_player_spawner):
 		var timer = Timer.new()
 		timer.wait_time = sec
 		timer.timeout.connect(mp_player_spawner.server_spawn.bind(_for))

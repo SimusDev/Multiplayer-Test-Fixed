@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmepknoq0be13"]
+[gd_scene load_steps=11 format=3 uid="uid://dmepknoq0be13"]
 
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_k756q"]
 [ext_resource type="Resource" uid="uid://dea2xnmud65yj" path="res://Games/source_game/items/crowbar/crowbar.tres" id="2_k756q"]
+[ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_qn1h8"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
 [ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="4_b6hyk"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="5_4tykw"]
@@ -139,6 +140,7 @@ _data = {
 
 [node name="crowbar" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_k756q")
+bullethole = ExtResource("2_qn1h8")
 resource = ExtResource("2_k756q")
 model = NodePath("model")
 animation_player = NodePath("animation_player")

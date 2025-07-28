@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://dp4g8b6hojp73"]
+[gd_scene load_steps=16 format=4 uid="uid://dp4g8b6hojp73"]
 
 [ext_resource type="Texture2D" uid="uid://d0vh5chljv7ef" path="res://Games/source_game/game/axe/textures/Material__16_baseColor.jpeg" id="1_otb7f"]
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_wo4ef"]
+[ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_1mg5u"]
 [ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_ady2o"]
 [ext_resource type="Texture2D" uid="uid://b5kfgvy4txxr5" path="res://Games/source_game/game/axe/textures/Material__16_metallicRoughness.png" id="2_hgh6j"]
 [ext_resource type="Texture2D" uid="uid://cggutdt353g27" path="res://Games/source_game/game/axe/textures/Material__16_normal.jpeg" id="3_wo4ef"]
@@ -142,6 +143,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.387463, 0, -0.20944), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(-0.603884, 0.188496, 0.364774), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(0.0994838, 0, 0.148353), Vector3(0, 0, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"impact"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1adkp"]
 _data = {
@@ -153,6 +168,7 @@ _data = {
 [node name="axe" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_wo4ef")
 damage = 18.0
+bullethole = ExtResource("2_1mg5u")
 resource = SubResource("Resource_1mg5u")
 model = NodePath("root/root2")
 animation_player = NodePath("AnimationPlayer")
