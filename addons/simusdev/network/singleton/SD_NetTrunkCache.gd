@@ -6,6 +6,7 @@ var _local_changes: Array[Dictionary] = []
 func _initialized() -> void:
 	if singleton.settings.cache_all_nodes_in_scene_tree:
 		get_tree().node_added.connect(_on_scene_tree_node_added)
+		get_tree().node_removed.connect(_on_scene_tree_node_removed)
 	
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
 	
@@ -73,7 +74,7 @@ func try_cache_node(node: Node) -> void:
 	cache_by_path[path] = net_id
 	cache_by_id[net_id] = path
 	
-	node.tree_exited.connect(_on_cached_node_tree_exited.bind(node, path))
+	#node.tree_exited.connect(_on_cached_node_tree_exited.bind(node, path))
 	
 	var local_change: Dictionary[String, Variant] = {}
 	local_change.net_id = net_id
@@ -109,31 +110,36 @@ func try_uncache_node(path: NodePath) -> void:
 func _on_scene_tree_node_added(node: Node) -> void:
 	try_cache_node(node)
 
-func _on_cached_node_tree_exited(node: Node, path: NodePath) -> void:
-	try_uncache_node(path)
+func _on_scene_tree_node_removed(node: Node) -> void:
+	try_uncache_node(node.get_path())
 
 func _process(delta: float) -> void:
-	if !SD_Network.is_server():
+	
+	if !SD_Network.is_server() or !SD_Network.singleton.is_active():
 		return
 	
-	for change in _local_changes:
-		if change.status:
-			_client_cache.rpc(change.net_id, change.path)
-		else:
-			_client_uncache.rpc(change.net_id, change.path)
-		
-		_local_changes.erase(change)
+	if not _local_changes.is_empty():
+		_client_recieve_changes.rpc(_local_changes)
+		_local_changes.clear()
 
 @rpc("any_peer", "reliable", "call_local")
+func _client_recieve_changes(changes: Array[Dictionary]) -> void:
+	if SD_Network.is_server():
+		return
+	
+	for change in changes:
+		if change.status:
+			_client_cache(change.net_id, change.path)
+		else:
+			_client_uncache(change.net_id, change.path) 
+
 func _client_cache(net_id: int, path: NodePath) -> void:
 	if SD_Network.is_server():
 		return
 	
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
-	
 
-@rpc("any_peer", "reliable", "call_local")
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	if SD_Network.is_server():
 		return

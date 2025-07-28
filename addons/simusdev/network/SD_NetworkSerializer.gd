@@ -85,11 +85,13 @@ static func parse(variant: Variant) -> Variant:
 	match type:
 		TYPE_ARRAY:
 			var parsed: Array = _parse_array(variant)
-			return parsed
+			packet["a"] = parsed
+			return packet
 			
 		TYPE_DICTIONARY:
 			var parsed: Dictionary = _parse_dictionary(variant)
-			return parsed
+			packet["d"] = parsed
+			return packet
 	
 	if variant is Node:
 		packet["cn"] = _parse_node_reference(variant)
