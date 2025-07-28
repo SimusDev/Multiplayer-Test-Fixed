@@ -22,7 +22,10 @@ func _ready() -> void:
 	#$play.visible = SimusDev.multiplayerAPI.is_server()
 
 func _on_play_pressed() -> void:
-	Maps.server_change_map_to(resource)
+	R_GameMap.selected = resource
+	slike_menu_switcher.find_above(self).switch_by_name("loading")
+	
+
 func _on_favorite_pressed() -> void:
 	set_favorite(!resource.is_favorite)
 
