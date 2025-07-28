@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://uy7lwlaavufp"]
+[gd_scene load_steps=14 format=4 uid="uid://vhdvo7kim26k"]
 
 [ext_resource type="Script" uid="uid://n5glk1jbjxsm" path="res://Games/source_game/game/prefabs/firearm_bullet.gd" id="1_fe7gp"]
 [ext_resource type="Texture2D" uid="uid://cdc6ar844ordv" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_3.jpg" id="2_g8u0m"]
@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c4eknx0p4sewd" path="res://sounds/ricochet.mp3" id="3_tiyib"]
 [ext_resource type="AudioStream" uid="uid://c8eqv2kpxs2hv" path="res://sounds/ricochet2.mp3" id="4_j7c8p"]
 [ext_resource type="Texture2D" uid="uid://etx7c633pdb5" path="res://Games/source_game/game/3dmodels/bullet_9mm/9mm_bullet_5.png" id="4_tiyib"]
-[ext_resource type="Script" uid="uid://dv6vnxj3dxpcl" path="res://Games/source_game/game/prefabs/mesh_instance_3d.gd" id="5_j7c8p"]
+[ext_resource type="Script" path="res://Games/source_game/game/prefabs/mesh_instance_3d.gd" id="5_j7c8p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lhb2"]
 resource_name = "bullet"

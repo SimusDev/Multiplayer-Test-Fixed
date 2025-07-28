@@ -318,7 +318,7 @@ func spawn(data: Dictionary) -> void:
 		str(data["path"]),
 		
 		)
-		if parent and auto_handle_logic:
+		if parent:
 			node.tree_entered.connect(
 				func():
 					if is_instance_valid(node):
@@ -335,7 +335,8 @@ func spawn(data: Dictionary) -> void:
 						spawned.emit(node)
 			)
 			
-			parent.add_child.call_deferred(node)
+			if auto_handle_logic:
+				parent.add_child.call_deferred(node)
 
 func despawn(path: NodePath) -> void:
 	if SD_Multiplayer.is_server():
@@ -347,9 +348,11 @@ func despawn(path: NodePath) -> void:
 	
 	
 	despawn_begin.emit(node, str(path))
-	if node and auto_handle_logic:
+	if node:
 		node.tree_exited.connect(
 			func():
 				despawned.emit(node)
 		)
-		node.queue_free.call_deferred()
+		
+		if auto_handle_logic:
+			node.queue_free.call_deferred()

@@ -49,3 +49,12 @@ static func find_all(node: Node, component: Script) -> Array[Node]:
 		if i.get_script() == component:
 			SD_Array.append_to_array_no_repeat(result, i)
 	return result
+
+static func node_find_above_by_script(from: Node, script: Script) -> Node:
+	if from.get_script() == script:
+		return from
+	
+	if from == SimusDev.get_tree().root:
+		return null
+	
+	return node_find_above_by_script(from.get_parent(), script)

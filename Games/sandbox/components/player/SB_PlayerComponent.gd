@@ -46,13 +46,13 @@ func _ready() -> void:
 	
 	await source.ready
 	
-	if _interface:
+	if _interface and SD_Network.is_authority(self):
 		source.add_child(_interface.instantiate())
 	
-	if p_movement:
-		if p_movement.server_authorative and SD_Multiplayer.is_not_server():
-			get_source().set_process(false)
-			get_source().set_physics_process(false)
+	#if p_movement:
+		#if p_movement.server_authorative and SD_Multiplayer.is_not_server():
+			#get_source().set_process(false)
+			#get_source().set_physics_process(false)
 
 func _enter_tree() -> void:
 	if !source:

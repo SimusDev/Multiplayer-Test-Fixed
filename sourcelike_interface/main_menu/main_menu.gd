@@ -6,6 +6,7 @@ class_name slike_main_menu
 @export var switcher: slike_menu_switcher
 
 func _ready() -> void:
+	
 	if ingame:
 		$bg.hide()
 		$SD_UIInterfaceMenu.close()

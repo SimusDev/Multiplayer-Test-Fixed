@@ -32,6 +32,10 @@ static func find_above(node: Node) -> SB_Level3D:
 func _ready() -> void:
 	_parse_sections()
 	_spawner.request_spawn_all_nodes()
+	
+	SD_Network.register_functions([
+		_recieve_object_sync,
+	])
 
 func get_section(section_name: String) -> SB_LevelSection3D:
 	var section: SB_LevelSection3D = _sections.get(section_name, null)
@@ -58,7 +62,7 @@ func _parse_sections() -> void:
 				_spawner.add_detect_root(i)
 			
 			if not _transform_sync_exclude.has(i.name):
-				$SD_NetNodesTransformSynchronizer.add_root(i)
+				$tsync.add_root(i)
 
 static func instantiate(parent: Node, resource: SB_LevelResource) -> SB_Level3D:
 	var scene: PackedScene = load(PREFAB_PATH)
@@ -119,3 +123,26 @@ func _despawn_request_server(object: Object) -> void:
 	if object is Node:
 		object.queue_free()
 		SimusDev.console.write_info("despawed: %s" % [str(object)])
+
+
+var _obj_sync_queue: Dictionary[String, Node] = {}
+func _on_objects_spawner_spawn_begin(node: Node, parent: Node, wish_transform: Variant, wish_name: String, path: String) -> void:
+	_obj_sync_queue[path] = node
+	SD_Network.call_func_on_server(_recieve_object_sync, [path.get_basename()])
+
+func _recieve_object_sync(node_path: String) -> void:
+	var node: Node = _spawner.get_node_or_null(node_path)
+	
+	var data: Dictionary = {}
+	
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _client_recieve_obj, [node_path, data])
+
+func _client_recieve_obj(node_path: String, data: Dictionary) -> void:
+	var node: Node = _obj_sync_queue.get(node_path) as Node
+	
+	var root_path: String = node_path.get_basename().get_base_dir()
+	_spawner.get_node_or_null(root_path).add_child(node)
+
+func _on_objects_spawner_despawn_begin(node: Node, path: String) -> void:
+	if is_instance_valid(node):
+		node.queue_free()

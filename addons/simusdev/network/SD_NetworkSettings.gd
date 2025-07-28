@@ -22,6 +22,7 @@ class_name SD_NetworkSettings
 @export var debug: bool = true
 @export var debug_callables: bool = true
 @export var debug_cache: bool = true
+@export var cache: SD_NetworkCacheSettings = SD_NetworkCacheSettings.new()
 
 func get_channels() -> PackedStringArray:
 	if channels.is_empty():

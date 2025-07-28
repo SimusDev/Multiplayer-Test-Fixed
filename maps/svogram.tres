@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_hs4r7")
-visible = true
+visible = false
 is_favorite = false
 scene_path = "uid://bhhn7xwpuwbya"
 code = "svogram"

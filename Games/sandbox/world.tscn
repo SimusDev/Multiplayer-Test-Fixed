@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bcpps2qunehgm" path="res://Games/sandbox/world.gd" id="1_h8o2a"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="2_6gyhh"]
 [ext_resource type="Script" uid="uid://r58jyodtveb0" path="res://Games/sandbox/components/scene/SB_SceneHolder.gd" id="2_twrrb"]
-[ext_resource type="PackedScene" uid="uid://c2g73c2oha4jm" path="res://Games/sandbox/scenes/lobby.tscn" id="4_6gyhh"]
+[ext_resource type="PackedScene" uid="uid://bdcf45f1jrm0y" path="res://Games/sandbox/scenes/game.tscn" id="4_6gyhh"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_h8o2a")

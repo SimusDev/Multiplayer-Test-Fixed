@@ -45,7 +45,7 @@ var _s_network_deserializer: SD_NetworkDeserializer
 
 var username: String = "player"
 
-var _cache: Dictionary[String, Array] = {}
+var _cache: Dictionary[String, Variant] = {}
 
 var _active: bool = false
 
@@ -60,13 +60,13 @@ func set_active(value: bool) -> void:
 	_active = value
 	on_active_status_changed.emit(_active)
 
-func get_cached_resources() -> Array[String]:
-	return _cache.get_or_add("r", [] as Array[String]) as Array[String]
+func get_cached_resources() -> PackedStringArray:
+	return _cache.get_or_add("r", PackedStringArray()) as PackedStringArray
 
-func cache_set(new: Dictionary[String, Array]) -> void:
+func cache_set(new: Dictionary[String, Variant]) -> void:
 	_cache = new
 
-func cache_get() -> Dictionary[String, Array]:
+func cache_get() -> Dictionary[String, Variant]:
 	return _cache
 
 func get_game_info() -> Dictionary:
