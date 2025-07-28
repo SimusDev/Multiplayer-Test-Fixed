@@ -1,7 +1,7 @@
 class_name FirearmBullet extends Node3D
 
 @export_group("Settings")
-@export var can_bounce:bool = true
+@export var can_bounce:bool = false
 @export var bullet_speed:float = 245.0
 @export var drag_force:float = 0.5
 @export var gravity:float = 9.8

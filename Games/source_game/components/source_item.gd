@@ -21,16 +21,15 @@ var current:bool = false : set = set_current, get = is_current
 
 func _ready() -> void:
 	player = (get_parent() as SourceItemContainer).player
+	on_current_change.connect(_on_current_changed)
 
 func _on_current_changed():
 	animation_player.play("RESET")
 	if is_current():
 		animation_player.play(_pick) 
 		SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
-	
-	await get_tree().process_frame
-	self.visible = current
-	
+
+	self.visible = is_current()
 	#какие то баги бл* рука дергается !!""!№!;!;
 
 

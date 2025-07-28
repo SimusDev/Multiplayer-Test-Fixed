@@ -484,7 +484,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-3.48138, -3.15396, -19.4263)]
+"values": [Vector3(-4.36118, -3.15396, -15.41)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g6ym"]
@@ -525,7 +525,7 @@ skin = SubResource("Skin_ebajt")
 skeleton = NodePath("")
 
 [node name="left_hand_pos" type="Marker3D" parent="root"]
-transform = Transform3D(-11.1103, 70.7955, 69.7464, -99.2836, -11.0115, -4.63831, 4.39637, -69.7621, 71.5118, -3.48138, -3.15396, -19.4263)
+transform = Transform3D(-11.8364, 79.6843, 59.2479, -98.8951, -4.09718, -14.2466, -8.9248, -60.2796, 79.2889, -3.48138, -3.15396, -19.4263)
 
 [node name="right_hand_pos" type="Marker3D" parent="root"]
 transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
@@ -597,6 +597,15 @@ hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/
 
 [node name="Skeleton3D" parent="arms/root" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.62921e-07, 0, -1.62921e-07, 1, -1.86265e-09, 0.0162061, -0.0231372)
+bones/2/position = Vector3(0.132, 0.074, -0.002)
+bones/6/rotation = Quaternion(0.115, -0.062, 0.515, 0.749)
+bones/15/position = Vector3(-0.03, 0.122, -0.01)
+bones/15/rotation = Quaternion(-0.015, -0.02, 0.277, 0.28)
+bones/19/position = Vector3(-0.015, 0.116, -0.041)
+bones/19/rotation = Quaternion(-0.101, 0.01, 0.245, 0.294)
+bones/23/rotation = Quaternion(-0.388, 0.666, -0.192, 0.597)
+bones/24/rotation = Quaternion(-0.01, 0.032, 0.023, 2.507)
+bones/25/rotation = Quaternion(0.008, 0, 0.264, 2.409)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.997765, 0.00870074, 0.0662512, -0.00697889, 0.999633, -0.026177, -0.0664546, 0.0256561, 0.99746, -0.264, 0.272, 0.182)
