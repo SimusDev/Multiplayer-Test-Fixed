@@ -372,6 +372,7 @@ collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
 health = NodePath("../Health")
+damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886506, 0)
