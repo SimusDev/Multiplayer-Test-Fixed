@@ -98,7 +98,10 @@ func _process(delta: float) -> void:
 			
 			
 			var synced: Dictionary = _data[node_name]
-			for p: String in synced:
+			for p in synced:
+				if p == null:
+					continue
+				
 				var value: Variant = synced[p]
 				var node_value: Variant = node.get(p)
 				node_value = lerp(node_value, value, interpolate_speed * delta)
