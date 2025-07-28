@@ -56,15 +56,13 @@ func _physics_process(delta: float) -> void:
 		new_pos = result.position
 		if result.collider.has_method("apply_damage"):
 			result.collider.apply_damage(bullet_resource.damage)
-			if is_multiplayer_authority():
-				SoundPlayer.play_global_audio(hitmarker_sound, "game")
 			can_bounce = false
 		spawn_bullethole(result, decal_bullet_hole, 5)
 		if result.collider.is_in_group("penetrable"):
 			pass
 		else:
 			if can_bounce and bounces_left > 0:
-				if bullet_fly_direction.angle_to(result.normal) >= deg_to_rad(50.0) || total_distance < 4:
+				if bullet_fly_direction.angle_to(result.normal) >= deg_to_rad(50.0):
 					get_node("fly_by_detect").monitoring = true
 					bullet_fly_direction = bullet_fly_direction.bounce(result.normal)
 					bounces_left -= 1
@@ -88,7 +86,6 @@ func spawn_bullethole(result:Dictionary, hole:PackedScene, hole_life_time:float 
 	get_tree().create_timer(hole_life_time).timeout.connect( free_bullet.bind(new_bullet_hole) )
 
 func free_bullet(_bullet):
-	print("SEse")
 	if is_instance_valid(_bullet):
 		_bullet.queue_free()
 

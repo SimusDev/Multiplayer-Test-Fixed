@@ -13,24 +13,17 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @onready var placeholder = $placeholder
 
 func _ready() -> void:
-	SD_Network.register_object(self)
-	SD_Network.register_object($placeholder)
-	SD_Network.register_function($placeholder.show)
-	SD_Network.register_function($placeholder.hide)
 	SD_Network.register_function(spawn_on_server)
-	#SD_Network.register_function(request_spawn)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
+
+	level_handler._load_level.connect(check_level)
 
 	instance = self
 	check_level()
 
 func check_level():
 	if SD_Network.is_server():
-		if level_handler.current_level == null:
-			SD_Network.call_func($placeholder.show)
-		else:
-			mp_player_spawner = level_handler.current_level.get_node("player_spawner")
-			SD_Network.call_func($placeholder.hide)
+		mp_player_spawner = level_handler.current_level.get_node("player_spawner")
 
 func _on_peer_connected(_peer_id:int):
 	check_level()
@@ -144,12 +137,3 @@ func teleport_player(player:Node3D, position:Vector3):
 func set_sv_cheats(value:bool) -> void:
 	sv_cheats = value
 	SimusDev.console.write_info("sv_cheats: " + str(value))
-
-
-func _on_source_level_handler__free_current_level() -> void:
-	SD_Network.call_func($placeholder.show)
-	SD_Network.call_func( func(): SD_Network.var_sync_from_server(self, ["mp_player_spawner"]) )
-func _on_source_level_handler__load_level(level:Node) -> void:
-	SD_Network.call_func($placeholder.hide)
-	mp_player_spawner = level.get_node("player_spawner")
-	SD_Network.call_func( func(): SD_Network.var_sync_from_server(self, ["mp_player_spawner"]) )

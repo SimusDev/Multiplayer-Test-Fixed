@@ -21,10 +21,7 @@ func impact():
 			SD_Multiplayer.sync_call_function(SoundPlayer, SoundPlayer.play_global_audio_3d, [player.interact_raycast.get_collision_point(), SourceSurfaces.sounds["flesh"]["impact"]["bullet"].pick_random()])
 			
 			if collider is SourceHitbox:
-				pass
-			
-			if collider is SourcePlayer:
-				collider.health.apply_damage(damage)
+				collider.apply_damage(damage)
 			
 			if collider is RigidBody3D:
 				var direction = (collider.global_position - player.global_position).normalized()
