@@ -28,7 +28,6 @@ func hide_all_items(exception:Node=null):
 	for child in get_children():
 		if child != exception:
 			if child is SourceItem:
-				child.animation_player.play("RESET")
 				child.set_current(false)
 
 func hide_all_model_items(exception:Node=null):

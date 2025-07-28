@@ -24,6 +24,8 @@ func _ready() -> void:
 	on_current_change.connect(_on_current_changed)
 
 func _on_current_changed():
+	if not is_instance_valid(animation_player): return
+	
 	animation_player.play("RESET")
 	if is_current():
 		animation_player.play(_pick) 
