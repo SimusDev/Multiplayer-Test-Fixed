@@ -25,10 +25,14 @@ func _cache_all_resources() -> void:
 	var resources: PackedStringArray = SD_Network.get_cached_resources()
 	
 	for path in settings.cache_resources:
-		debug_print("caching resources...: %s" % [path])
-		var files: Array = SD_FileSystem.get_all_files_with_all_extenions_from_directory(path)
-		var files_str: PackedStringArray = PackedStringArray(files)
-		resources.append_array(files_str)
+		cache_folder(path)
+
+func cache_folder(path: String) -> void:
+	debug_print("caching resources...: %s" % [path])
+	var resources: PackedStringArray = SD_Network.get_cached_resources()
+	var files: Array = SD_FileSystem.get_all_files_with_all_extenions_from_directory(path)
+	var files_str: PackedStringArray = PackedStringArray(files)
+	resources.append_array(files_str)
 	
 	var str_size: String = String.humanize_size(var_to_bytes(resources).size())
 	debug_print("resources were cached, size: %s" % str_size)
