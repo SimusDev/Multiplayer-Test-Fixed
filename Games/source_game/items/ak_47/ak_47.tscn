@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_e7di0"]
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
-[ext_resource type="PackedScene" uid="uid://uy7lwlaavufp" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_36t2h"]
+[ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_36t2h"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_dnby3"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
 [ext_resource type="Texture2D" uid="uid://u5bct4tcrpgd" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_baseColor.png" id="3_4we86"]

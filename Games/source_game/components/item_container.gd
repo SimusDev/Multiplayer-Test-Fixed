@@ -1,5 +1,6 @@
 class_name SourceItemContainer extends Node3D
 
+@export var player:SourcePlayer
 @export var model_item_container:Node3D
 @export var player_ui:CanvasLayer
 
@@ -7,6 +8,7 @@ class_name SourceItemContainer extends Node3D
 
 func _ready() -> void:
 	SD_Network.register_function(add_model_item)
+	SD_Network.register_function(hide_all_model_items)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and SimusDev.ui.get_active_interfaces().is_empty():
@@ -44,14 +46,14 @@ func pick_item(at_position:int):
 		if is_multiplayer_authority():
 			hide_all_items(item)
 			item.set_current( not item.is_current())
-			SD_Multiplayer.call_func(hide_all_model_items, [item])
+			SD_Network.call_func(hide_all_model_items, [item])
 	
 			sync_add_model_item(item.model)
 	
 		
 
 func sync_add_model_item(model:Node):
-	SD_Multiplayer.call_func(add_model_item, [model])
+	SD_Network.call_func(add_model_item, [model])
 func add_model_item(model:Node):
 	var new_item_model = model.duplicate()
 	new_item_model.name = new_item_model.name.validate_node_name()
