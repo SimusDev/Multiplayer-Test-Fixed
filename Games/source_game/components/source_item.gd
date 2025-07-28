@@ -16,10 +16,11 @@ signal on_current_change
 @export var _reload:String = "reload"
 @export var _pick:String = "pick"
 
+var player:SourcePlayer
 var current:bool = false : set = set_current, get = is_current
 
 func _ready() -> void:
-	on_current_change.connect(_on_current_changed)
+	player = (get_parent() as SourceItemContainer).player
 
 func _on_current_changed():
 	animation_player.play("RESET")
@@ -29,6 +30,9 @@ func _on_current_changed():
 	
 	await get_tree().process_frame
 	self.visible = current
+	
+	#какие то баги бл* рука дергается !!""!№!;!;
+
 
 func set_current(value:bool):
 	current = value
