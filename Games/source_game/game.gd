@@ -10,6 +10,8 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
 
+var _surfaces := SourceSurfaces.new()
+
 func _ready() -> void:
 	SD_Network.register_function(spawn_on_server)
 	SD_Network.register_object(self)
