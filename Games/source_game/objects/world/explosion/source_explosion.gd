@@ -10,8 +10,6 @@ class_name SourceExplosion
 
 var _exploded: bool = false
 
-var _waiting_for_explode: bool = true
-
 func set_damage(points: float) -> SourceExplosion:
 	damage = points
 	return self
@@ -44,17 +42,8 @@ func _ready() -> void:
 	if explode_at_start:
 		explode()
 
-func _process(delta: float) -> void:
-	if _waiting_for_explode:
-		if not _area.get_overlapping_hitboxes().is_empty():
-			explode()
-
 func explode() -> void:
 	if not SD_Network.is_server() or _exploded:
-		return
-	
-	if _area.get_overlapping_hitboxes().is_empty() and not _waiting_for_explode:
-		_waiting_for_explode = true
 		return
 	
 	_area.scale = Vector3(size, size, size)
