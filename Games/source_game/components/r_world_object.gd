@@ -15,6 +15,11 @@ static var _reference_list: Array[R_SourceWorldObject] = []
 
 var id: String = ""
 
+static var _prefab_references: Dictionary[PackedScene, R_SourceWorldObject] = {}
+
+static func get_prefab_references() -> Dictionary[PackedScene, R_SourceWorldObject]:
+	return _prefab_references
+
 static func get_by_id(by_id: String) -> R_SourceWorldObject:
 	return _references.get(by_id, null)
 
@@ -35,6 +40,7 @@ func register() -> void:
 	
 	_references[id] = self
 	_reference_list.append(self)
+	_prefab_references[prefab] = self
 	SimusDev.console.write_info("object registered: %s" % id)
 
 static func find_in(node: Node) -> R_SourceWorldObject:
@@ -65,6 +71,7 @@ func create() -> C_SourceWorldObjectReference:
 	
 	var instance: Node = prefab.instantiate()
 	instance.name = name.validate_node_name()
+	set_in(instance)
 	
 	ref.source = instance
 	ref.object = self

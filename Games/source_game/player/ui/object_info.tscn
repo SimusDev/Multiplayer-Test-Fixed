@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqm6pmfcnkn31"]
+[gd_scene load_steps=5 format=3 uid="uid://dqm6pmfcnkn31"]
 
 [ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="1_7g0xh"]
 [ext_resource type="Script" uid="uid://gg2lki7i4bgo" path="res://Games/source_game/player/ui/object_info.gd" id="1_drq7g"]
+[ext_resource type="Texture2D" uid="uid://dgdlpp6ar5yl7" path="res://Games/source_game/props/radio/icon.png" id="2_t581v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7g0xh"]
 font_color = Color(0.913725, 0, 0, 1)
@@ -17,6 +18,18 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_drq7g")
 metadata/_edit_use_anchors_ = true
+
+[node name="icon" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t581v")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="border" type="TextureRect" parent="."]
 layout_mode = 1

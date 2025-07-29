@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
@@ -90,6 +90,17 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
+[sub_resource type="Resource" id="Resource_tn3t5"]
+script = ExtResource("19_dt7qg")
+update_at_start = true
+code = "level.clear"
+value = ""
+private = false
+binds = Array[ExtResource("20_ij05y")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
 [node name="source_game" type="Node" node_paths=PackedStringArray("level_handler")]
 script = ExtResource("1_lvrp7")
 level_handler = NodePath("SourceLevelHandler")
@@ -100,8 +111,9 @@ _singleton_pack = ExtResource("3_tn3t5")
 script = ExtResource("3_8dbco")
 metadata/_custom_type_script = "uid://mhjfnoeev371"
 
-[node name="SourceLevelHandler" type="Node" parent="." node_paths=PackedStringArray("root_node")]
+[node name="SourceLevelHandler" type="Node" parent="." node_paths=PackedStringArray("game", "root_node")]
 script = ExtResource("8_aahtd")
+game = NodePath("..")
 root_node = NodePath("../map_holder")
 levels_folder_path = "res://Games/source_game/level_resources/"
 level_at_start = "kz"
@@ -114,7 +126,7 @@ metadata/_custom_type_script = "uid://dhnvcwkrkbnk5"
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
-commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b"), SubResource("Resource_8dbco")])
+commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [node name="decals" type="Node3D" parent="."]

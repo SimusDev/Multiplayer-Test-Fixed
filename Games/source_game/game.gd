@@ -16,23 +16,20 @@ var _surfaces := SourceSurfaces.new()
 
 func _ready() -> void:
 	SD_Network.register_function(spawn_on_server)
+	SD_Network.register_function(clear_objects)
 	SD_Network.register_object(self)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
-	level_handler._load_level.connect(check_level)
+	level_handler._load_level.connect(level_handler.check_level)
 
 	var s_pack = _singleton_pack.instantiate()
 	add_child(s_pack)
 
 	instance = self
-	check_level()
-
-func check_level():
-	if SD_Network.is_server():
-		mp_player_spawner = level_handler.current_level.get_node("player_spawner")
+	
 
 func _on_peer_connected(_peer_id:int):
-	check_level()
+	level_handler.check_level()
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	if SD_Network.is_server() and is_instance_valid(mp_player_spawner):
@@ -62,7 +59,7 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 func instantiate_object_on_server(node: Node) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
-
+	
 	SourceLevelSection3D.get_by_name("props").add_child(node)
 	
 	return node
@@ -136,7 +133,16 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 				request_spawn(obj)
 			else:
 				SimusDev.console.write_error("cant find object by this id.")
-	
+		"level.clear":
+			SD_Network.call_func_on_server(clear_objects)
+
+func clear_objects() -> void:
+	if sv_cheats:
+		SourceLevelSection3D.clear_nodes()
+		SimusDev.console.write_info("level cleared.")
+	else:
+		SimusDev.console.write_error("sv_cheats == false! blin.")
+
 func find_player(nickname:String) -> SD_MultiplayerPlayer:
 	var picked_player:SD_MultiplayerPlayer = null
 	for p:SD_MultiplayerPlayer in SD_Multiplayer.get_connected_players():

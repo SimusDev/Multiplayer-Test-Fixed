@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://0inf6n0plcyd"]
+[gd_scene load_steps=4 format=3 uid="uid://0inf6n0plcyd"]
 
 [ext_resource type="Script" uid="uid://cidx4eor8ag63" path="res://Games/source_game/singletons/scripts/SRC_S_Explosions.gd" id="1_82fki"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_6130q"]
+[ext_resource type="Script" uid="uid://do50ygiketeqm" path="res://Games/source_game/singletons/scripts/SRC_S_GameSaver.gd" id="2_y437i"]
 
 [node name="SingletonPack" type="Node"]
 
 [node name="SRC_S_Explosions" type="Node" parent="."]
 script = ExtResource("1_82fki")
 metadata/_custom_type_script = "uid://cidx4eor8ag63"
+
+[node name="SRC_S_GameSaver" type="Node" parent="."]
+script = ExtResource("2_y437i")
+metadata/_custom_type_script = "uid://do50ygiketeqm"
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_6130q")
