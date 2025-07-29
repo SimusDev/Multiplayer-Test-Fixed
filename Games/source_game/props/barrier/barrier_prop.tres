@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("1_pedhu")
+custom_section = ""
+custom_id = ""
 icon = ExtResource("1_ajabt")
 name = "barrier"
-section = "object"
+description = ""
 prefab = ExtResource("1_0ys2e")
 metadata/_custom_type_script = "uid://bljdyrjeubrdg"

@@ -15,9 +15,12 @@ var is_drag:bool = false
 var drag_target:Node3D = null
 
 func _ready() -> void:
+	
 	if !is_instance_valid(rigid_body):
 		rigid_body = get_parent() as RigidBody3D
 	drag.connect(_on_drag_syncronized)
+	
+	SD_Network.register_object(rigid_body)
 	
 	rigid_body.freeze = SD_Multiplayer.is_not_server()
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()

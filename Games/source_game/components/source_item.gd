@@ -54,9 +54,17 @@ func _process(_delta: float) -> void:
 				SD_Network.call_func(use)
 #ZV EZ
 func use():
-	if not is_inside_tree():
-		return
-	if is_instance_valid(animation_player):
-		if not animation_player.is_playing():
-			animation_player.play(_fire)
-			on_use.emit()
+	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
+	event.item = self
+	event.container = get_parent()
+	event.source = player
+	event.player = player
+	
+	var event_status: bool = event.publish()
+	if event_status:
+		if not is_inside_tree():
+			return
+		if is_instance_valid(animation_player):
+			if not animation_player.is_playing():
+				animation_player.play(_fire)
+				on_use.emit()

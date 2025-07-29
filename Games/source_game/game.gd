@@ -36,20 +36,27 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 		add_child(timer)
 		timer.start()
 
-func request_spawn(prop_res:R_SourceProp):
+func request_spawn(prop_res:R_SourceWorldObject):
 	SD_Network.call_func_on_server(spawn_on_server, [prop_res, SD_Multiplayer.get_unique_id()])
 
-func spawn_on_server(prop_res:R_SourceProp, peer_id:int):
+func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 	if not is_instance_valid(SourceGame.instance):
 		return
 	
 	var new_prop = prop_res.prefab.instantiate()
 	var player:SourcePlayer = SD_Multiplayer.get_player_by_peer_id(peer_id).get_player_node() as SourcePlayer
 	var spawn_pos = player.interact_raycast.drag_item_link_node.global_position
-	SourceGame.instance.level_handler.props_node.add_child(new_prop)
+	instantiate_object_on_server(new_prop)
 	new_prop.global_position = spawn_pos
 	
 	prop_spawned.emit(new_prop)
+
+func instantiate_object_on_server(node: Node) -> Node:
+	if node.is_inside_tree():
+		node.get_parent().remove_child(node)
+
+	SourceGame.instance.level_handler.props_node.add_child(node)
+	return node
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:

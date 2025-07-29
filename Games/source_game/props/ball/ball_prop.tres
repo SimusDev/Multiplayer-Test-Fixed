@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("3_q0f8n")
+custom_section = ""
+custom_id = ""
 icon = ExtResource("1_7te5e")
 name = "ball"
-section = "object"
+description = ""
 prefab = ExtResource("2_4uunp")
 metadata/_custom_type_script = "uid://bljdyrjeubrdg"

@@ -15,8 +15,9 @@ func _on_item_use():
 func impact():
 	if not is_instance_valid(SourcePlayer.instance): return
 	
+	var collider = player.interact_raycast.get_collider()
+	
 	if SD_Network.is_server():
-		var collider = player.interact_raycast.get_collider()
 		if is_instance_valid(collider):
 			SD_Network.call_func(SoundPlayer.play_global_audio_3d, [player.interact_raycast.get_collision_point(), SourceSurfaces.sounds["flesh"]["impact"]["bullet"].pick_random()])
 			
@@ -35,7 +36,15 @@ func impact():
 					
 					SD_Network.call_func(SoundPlayer.play_global_audio_3d, [player.interact_raycast.get_collision_point(), sound_array.pick_random()])
 			spawn_bullethole(collider, player.interact_raycast.get_collision_point(), player.interact_raycast.get_collision_normal(), bullethole)
-
+	
+	var event := SourceEvents.get_by_script(S_EventWeaponMeleeImpact) as S_EventWeaponMeleeImpact
+	event.source = player
+	event.player = player
+	event.weapon = self
+	event.collider = collider
+	event.publish()
+	
+	
 func spawn_bullethole(collider:Node3D, point:Vector3, normal:Vector3, hole:PackedScene, hole_life_time:float = 60.0):
 	print("sex")
 

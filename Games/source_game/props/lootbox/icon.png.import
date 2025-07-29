@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cufwljtfxnc75"
-path.s3tc="res://.godot/imported/icon.png-df6d80adf5590286d188a1abdecc1b28.s3tc.ctex"
-path.etc2="res://.godot/imported/icon.png-df6d80adf5590286d188a1abdecc1b28.etc2.ctex"
+uid="uid://q8k6mcshd4ho"
+path.s3tc="res://.godot/imported/icon.png-fd68b7f372d516d976df868158f44e80.s3tc.ctex"
+path.etc2="res://.godot/imported/icon.png-fd68b7f372d516d976df868158f44e80.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Games/source_game/props/dummy_target/icon.png"
-dest_files=["res://.godot/imported/icon.png-df6d80adf5590286d188a1abdecc1b28.s3tc.ctex", "res://.godot/imported/icon.png-df6d80adf5590286d188a1abdecc1b28.etc2.ctex"]
+source_file="res://Games/source_game/props/lootbox/icon.png"
+dest_files=["res://.godot/imported/icon.png-fd68b7f372d516d976df868158f44e80.s3tc.ctex", "res://.godot/imported/icon.png-fd68b7f372d516d976df868158f44e80.etc2.ctex"]
 
 [params]
 

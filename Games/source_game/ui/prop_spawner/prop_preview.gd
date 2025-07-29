@@ -2,7 +2,7 @@ extends Control
  #sigma-l hihihihi
 
 @onready var highlight = $highlight
-@export var prop_res:R_SourceProp
+@export var prop_res:R_SourceWorldObject
 
 @onready var icon = $icon
 @onready var name_label = $name

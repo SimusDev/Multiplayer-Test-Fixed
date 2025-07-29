@@ -37,13 +37,13 @@ func register() -> void:
 	_reference_list.append(self)
 	SimusDev.console.write_info("object registered: %s" % id)
 
-static func find_in(node: Node) -> SB_WorldObject:
-	if node.has_meta("SB_WorldObject"):
-		return node.get_meta("SB_WorldObject")
+static func find_in(node: Node) -> R_SourceWorldObject:
+	if node.has_meta("R_SourceWorldObject"):
+		return node.get_meta("R_SourceWorldObject")
 	return null
 
 func set_in(node: Node) -> void:
-	node.set_meta("SB_WorldObject", self)
+	node.set_meta("R_SourceWorldObject", self)
 
 func get_prefab() -> PackedScene:
 	return prefab
@@ -56,7 +56,7 @@ func get_section() -> String:
 func _get_section() -> String:
 	return "object"
 
-func create(parent: Node) -> C_SourceWorldObjectReference:
+func create() -> C_SourceWorldObjectReference:
 	if !prefab:
 		SimusDev.console.write_error("cant create world object, prefab is null! %s" % [resource_path])
 		return null
@@ -67,7 +67,6 @@ func create(parent: Node) -> C_SourceWorldObjectReference:
 	instance.name = name.validate_node_name()
 	
 	ref.source = instance
-	ref.parent = parent
 	ref.object = self
 	
 	return ref
