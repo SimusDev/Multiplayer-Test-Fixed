@@ -134,7 +134,9 @@ tonemap_white = 6.0
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ldxn4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1g7y"]
+transparency = 1
 shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.266667)
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
 

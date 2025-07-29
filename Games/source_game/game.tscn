@@ -1,10 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=17 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
-[ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/textures/SourceEngineVibe2.jpg" id="3_8dbco"]
 [ext_resource type="Script" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
-[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="6_tn3t5"]
 [ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
@@ -79,35 +77,6 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[sub_resource type="GDScript" id="GDScript_8dbco"]
-resource_name = "cmd_list"
-script/source = "extends ColorRect
-
-@onready var game_commands = $\"../game_commands\"
-@onready var commands_vbox = $commands_list/VBoxContainer
-
-@export var other_commands:Array[String]
-
-func _ready() -> void:
-	$waiting_host.visible = not SD_Network.is_server()
-	
-	for command:SD_NodeCommandObject in game_commands.commands:
-		add_label(command.code)
-	for command_name:String in other_commands:
-		add_label(command_name)
-
-func add_label(label_text:String):
-	var new_label = Label.new()
-	commands_vbox.add_child(new_label)
-	new_label.text = label_text
-	new_label.set(\"theme_override_font_sizes/font_size\", 21)
-"
-
-[sub_resource type="LabelSettings" id="LabelSettings_tn3t5"]
-font_size = 26
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
 [node name="source_game" type="Node" node_paths=PackedStringArray("level_handler")]
 script = ExtResource("1_lvrp7")
 level_handler = NodePath("SourceLevelHandler")
@@ -128,88 +97,6 @@ level_at_start = "kz"
 script = ExtResource("18_wirdf")
 commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b")])
 metadata/_custom_type_script = "uid://38osx81mny15"
-
-[node name="placeholder" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_tn3t5")
-color = Color(0, 0, 0, 1)
-script = SubResource("GDScript_8dbco")
-other_commands = Array[String](["level.change"])
-
-[node name="bg" type="TextureRect" parent="placeholder"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_8dbco")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="commands_list" type="Panel" parent="placeholder"]
-layout_mode = 0
-anchor_right = 0.374219
-anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="placeholder/commands_list"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0480167
-anchor_top = 0.0875
-anchor_right = 1.0
-anchor_bottom = 0.954167
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="label" type="Label" parent="placeholder/commands_list"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.0527778
-anchor_right = 0.244259
-anchor_bottom = 0.075
-text = "Game commands: "
-metadata/_edit_use_anchors_ = true
-
-[node name="rect" type="ColorRect" parent="placeholder/commands_list"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.0777778
-anchor_right = 1.0
-anchor_bottom = 0.0791667
-offset_bottom = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="waiting_host" type="Panel" parent="placeholder"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.374219
-anchor_top = 0.933333
-anchor_right = 1.0
-anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="placeholder/waiting_host"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00499376
-anchor_top = 0.229167
-anchor_right = 0.993758
-anchor_bottom = 0.833333
-grow_horizontal = 2
-grow_vertical = 2
-text = "Waiting host"
-label_settings = SubResource("LabelSettings_tn3t5")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="decals" type="Node3D" parent="."]
 

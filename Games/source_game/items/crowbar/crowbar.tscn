@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmepknoq0be13"]
+[gd_scene load_steps=11 format=3 uid="uid://dmepknoq0be13"]
 
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/items/crowbar/crowbar.gd" id="1_k756q"]
 [ext_resource type="Resource" uid="uid://dea2xnmud65yj" path="res://Games/source_game/items/crowbar/crowbar.tres" id="2_k756q"]
+[ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_qn1h8"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
 [ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="4_b6hyk"]
+[ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="5_4tykw"]
 
 [sub_resource type="Animation" id="Animation_b6hyk"]
 length = 0.001
@@ -138,6 +140,7 @@ _data = {
 
 [node name="crowbar" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_k756q")
+bullethole = ExtResource("2_qn1h8")
 resource = ExtResource("2_k756q")
 model = NodePath("model")
 animation_player = NodePath("animation_player")
@@ -157,4 +160,33 @@ libraries = {
 [node name="Sketchfab_model" parent="model" index="0"]
 transform = Transform3D(-0.0245746, 0.0172073, 7.52155e-10, 0, -1.31134e-09, 0.03, 0.0172073, 0.0245746, 1.07419e-09, 0, 0, 0)
 
+[node name="left_hand" type="Marker3D" parent="model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255082, -0.787723, 0.547769)
+
+[node name="right_hand" type="Marker3D" parent="model"]
+transform = Transform3D(-0.999766, -0.00335422, -0.0213611, 0.0192302, 0.313776, -0.949302, 0.0098868, -0.949491, -0.313638, 0.0285779, -0.0318516, 0.0645551)
+
+[node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("5_4tykw")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.2, -0.160337, 0.4)
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
+
+[node name="Skeleton3D" parent="arms/root" index="0"]
+bones/31/position = Vector3(0.003, 0.064, 0.02)
+bones/31/rotation = Quaternion(0.115, 0.072, -0.065, 0.989)
+bones/32/rotation = Quaternion(0.057, -0.012, -1.111, 0.991)
+bones/36/rotation = Quaternion(0.022, -0.079, -1.083, 0.98)
+bones/40/position = Vector3(0.005, 0.122, -0.01)
+bones/40/rotation = Quaternion(-0.015, 0.07, -1.287, 0.96)
+bones/44/position = Vector3(0.01, 0.116, -0.036)
+bones/44/rotation = Quaternion(0.009, 0.035, -0.98, 0.964)
+bones/45/rotation = Quaternion(0.026, -0.021, -0.81, 0.968)
+bones/48/rotation = Quaternion(-0.388, -0.551, 0.177, 0.682)
+
+[node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1"]
+target_node = NodePath("../../../../model/left_hand")
+
+[node name="right_hand_ik" parent="arms/root/Skeleton3D" index="2"]
+target_node = NodePath("../../../../model/right_hand")
+
 [editable path="model"]
+[editable path="arms"]
