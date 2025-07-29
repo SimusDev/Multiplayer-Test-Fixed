@@ -10,6 +10,8 @@ var sv_cheats:bool = false : set = set_sv_cheats
 @export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
 
+@export var _singleton_pack: PackedScene
+
 var _surfaces := SourceSurfaces.new()
 
 func _ready() -> void:
@@ -18,6 +20,9 @@ func _ready() -> void:
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
 	level_handler._load_level.connect(check_level)
+
+	var s_pack = _singleton_pack.instantiate()
+	add_child(s_pack)
 
 	instance = self
 	check_level()
@@ -57,8 +62,18 @@ func instantiate_object_on_server(node: Node) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 
-	SourceGame.instance.level_handler.props_node.add_child(node)
+	SourceLevelSection3D.get_by_name("props").add_child(node)
+	
 	return node
+
+func instantiate_object_local(node: Node) -> Node:
+	if node.is_inside_tree():
+		node.get_parent().remove_child(node)
+	
+	SourceLevelSection3D.get_by_name("local_props").add_child(node)
+	
+	return node
+
 
 func _on_console_executed(command: SD_ConsoleCommand) -> void:
 	if SD_Multiplayer.is_not_server() and sv_cheats == false:

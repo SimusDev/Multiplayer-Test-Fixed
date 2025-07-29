@@ -7,6 +7,7 @@ signal _load_level
 
 @export var root_node:Node
 var props_node:Node
+var local_props_node: Node
 var current_level:Node=null
 @export_category("Settings")
 @export var levels_folder_path:String
@@ -50,5 +51,6 @@ func load_level(level_name:StringName) -> bool:
 	root_node.add_child(new_level_scene)
 	_load_level.emit(new_level_scene)
 	props_node = current_level.get_node("props")
+	local_props_node = current_level.get_node("local_props")
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
 	return true

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://8rr5gjgytmft"]
+
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_a0u4k"]
+[ext_resource type="Script" uid="uid://cvommv50uy7xu" path="res://Games/source_game/props/tnt/tnt.gd" id="1_jcgqb"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_t6jea"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="4_mwy78"]
+[ext_resource type="PackedScene" uid="uid://denpjf5vhn63s" path="res://Games/source_game/props/tnt/tnt_model.tscn" id="5_2lnmj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwy78"]
+size = Vector3(0.451599, 0.403446, 0.46344)
+
+[node name="Tnt" type="RigidBody3D"]
+script = ExtResource("1_jcgqb")
+damage = 50.0
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_a0u4k")
+surface = "body"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_t6jea")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.0529769, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_mwy78")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00259399, 0.231062, -0.00210571)
+shape = SubResource("BoxShape3D_mwy78")
+
+[node name="tnt" parent="." instance=ExtResource("5_2lnmj")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00259399, 0.231062, -0.00210571)
+shape = SubResource("BoxShape3D_mwy78")
+
+[connection signal="died" from="SourceHealth" to="." method="_on_source_health_died"]

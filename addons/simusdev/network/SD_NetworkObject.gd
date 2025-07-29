@@ -9,6 +9,10 @@ class_name SD_NetworkObject
 func _enter_tree() -> void:
 	if not root:
 		root = get_parent()
+
+func _ready() -> void:
+	if !root.is_node_ready():
+		await root.ready
 	
 	_register(root, recursive_register)
 

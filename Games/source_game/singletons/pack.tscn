@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0inf6n0plcyd"]
+
+[ext_resource type="Script" uid="uid://cidx4eor8ag63" path="res://Games/source_game/singletons/scripts/SRC_S_Explosions.gd" id="1_82fki"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_6130q"]
+
+[node name="SingletonPack" type="Node"]
+
+[node name="SRC_S_Explosions" type="Node" parent="."]
+script = ExtResource("1_82fki")
+metadata/_custom_type_script = "uid://cidx4eor8ag63"
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_6130q")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"

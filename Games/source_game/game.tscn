@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=20 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
 [ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
+[ext_resource type="PackedScene" uid="uid://0inf6n0plcyd" path="res://Games/source_game/singletons/pack.tscn" id="3_tn3t5"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
 [ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
@@ -93,6 +94,7 @@ metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 script = ExtResource("1_lvrp7")
 level_handler = NodePath("SourceLevelHandler")
 death_camera = ExtResource("28_ioj0b")
+_singleton_pack = ExtResource("3_tn3t5")
 
 [node name="SourceEvents" type="Node" parent="."]
 script = ExtResource("3_8dbco")
@@ -107,7 +109,7 @@ level_at_start = "kz"
 [node name="C_SourceObjectHandler" type="Node" parent="."]
 script = ExtResource("3_aahtd")
 base_dir = "res://Games/source_game/"
-object_dirs = PackedStringArray("props")
+object_dirs = PackedStringArray("props", "objects")
 metadata/_custom_type_script = "uid://dhnvcwkrkbnk5"
 
 [node name="game_commands" type="Node" parent="."]

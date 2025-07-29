@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=4 format=3 uid="uid://br8t86vtce62v"]
+
+[ext_resource type="Texture2D" uid="uid://b1gcmwxcogmrg" path="res://Games/source_game/objects/world/explosion/particle.png" id="1_5ys8l"]
+[ext_resource type="PackedScene" uid="uid://c1eilu1hjwwvv" path="res://Games/source_game/objects/world/explosion/particle.tscn" id="2_5ys8l"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="3_eatua"]
+
+[resource]
+script = ExtResource("3_eatua")
+custom_section = "world"
+custom_id = ""
+icon = ExtResource("1_5ys8l")
+name = "explosion_particle"
+description = ""
+prefab = ExtResource("2_5ys8l")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

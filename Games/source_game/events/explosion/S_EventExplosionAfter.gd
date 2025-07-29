@@ -1,0 +1,2 @@
+extends S_EventExplosion
+class_name S_EventExplosionAfter
