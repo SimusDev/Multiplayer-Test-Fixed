@@ -27,6 +27,7 @@ func _interact_synced(interactor: W_Interactor3D) -> void:
 		interactor.interacted.emit(self)
 
 func _ready() -> void:
+	SD_Network.register_object(self)
 	SD_Network.register_function(_interact_synced)
 	area.set_meta("W_InteractableArea3D", self)
 

@@ -25,6 +25,9 @@ func _ready() -> void:
 	rigid_body.freeze = SD_Multiplayer.is_not_server()
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()
 	
+	if not rigid_body.is_in_group("props"):
+		rigid_body.add_to_group("props")
+	
 	add_child(navigation_obstacle)
 	
 	if synced_property_scene and sync_transform:

@@ -51,6 +51,7 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 		return
 	
 	var new_prop = prop_res.prefab.instantiate()
+	prop_res.set_in(new_prop)
 	var player:SourcePlayer = SD_Multiplayer.get_player_by_peer_id(peer_id).get_player_node() as SourcePlayer
 	var spawn_pos = player.interact_raycast.drag_item_link_node.global_position
 	instantiate_object_on_server(new_prop)
