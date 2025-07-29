@@ -10,6 +10,7 @@ var _events: Dictionary[Script, S_Event] = {
 	S_EventGunFirePre: S_EventGunFirePre.new(),
 	S_EventExplosionAfter: S_EventExplosionAfter.new(),
 	S_EventExplosionPre: S_EventExplosionPre.new(),
+	S_EventExplosionParticlesCreated: S_EventExplosionParticlesCreated.new()
 }
 
 static func get_by_script(script: Script) -> S_Event:

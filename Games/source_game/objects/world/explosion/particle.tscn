@@ -92,6 +92,7 @@ libraries = {
 unique_name_in_owner = true
 autoplay = true
 max_distance = 250.0
+bus = &"game"
 
 [connection signal="animation_finished" from="root/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="finished" from="root/AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
