@@ -20,12 +20,11 @@ func set_size(value: float) -> SourceExplosion:
 	size = value
 	return self
 
-static func create(explode_at_start: bool = false) -> SourceExplosion:
+static func create() -> SourceExplosion:
 	var obj := R_SourceWorldObject.get_by_id("world.explosion")
 	var obj_ref := obj.create()
 	var src: SourceExplosion = obj_ref.source
-	src.explode_at_start = explode_at_start
-	
+	src.explode_at_start = false
 	obj_ref.instantiate()
 	return src
 
