@@ -1,3 +1,4 @@
+@static_unload
 class_name SourceSurfaces extends Node
 
 static var sounds:Dictionary = {
