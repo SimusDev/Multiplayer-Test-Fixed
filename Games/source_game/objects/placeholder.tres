@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=4 format=3 uid="uid://3deeypms3y7g"]
+
+[ext_resource type="Texture2D" uid="uid://dr2ggsgy85rq4" path="res://addons/simusdev/icons/Resource.svg" id="1_ccerg"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_tvv4f"]
+[ext_resource type="PackedScene" uid="uid://8rr5gjgytmft" path="res://Games/source_game/props/tnt/tnt.tscn" id="2_ooybj"]
+
+[resource]
+script = ExtResource("1_tvv4f")
+custom_section = "debug"
+custom_id = "placeholder"
+icon = ExtResource("1_ccerg")
+name = "placeholder"
+description = ""
+prefab = ExtResource("2_ooybj")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

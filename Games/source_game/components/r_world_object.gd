@@ -17,6 +17,16 @@ var id: String = ""
 
 static var _prefab_references: Dictionary[PackedScene, R_SourceWorldObject] = {}
 
+func get_cached_id() -> int:
+	return _reference_list.find(self)
+
+static func get_by_cached_id(id: int) -> R_SourceWorldObject:
+	var founded: R_SourceWorldObject = _reference_list.get(id)
+	return founded
+
+static func get_placeholder() -> R_SourceWorldObject:
+	return get_by_id("debug.placeholder")
+
 static func get_prefab_references() -> Dictionary[PackedScene, R_SourceWorldObject]:
 	return _prefab_references
 
