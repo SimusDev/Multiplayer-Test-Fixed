@@ -111,7 +111,14 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 				return
 			
 			SD_Multiplayer.sync_call_function_on_server(self, find_and_kill_player, [command.get_value_as_string()])
-
+		
+		"level.spawn":
+			var obj: R_SourceWorldObject = R_SourceWorldObject.get_by_id(command.get_value_as_string())
+			if obj:
+				request_spawn(obj)
+			else:
+				SimusDev.console.write_error("cant find object by this id.")
+	
 func find_player(nickname:String) -> SD_MultiplayerPlayer:
 	var picked_player:SD_MultiplayerPlayer = null
 	for p:SD_MultiplayerPlayer in SD_Multiplayer.get_connected_players():
