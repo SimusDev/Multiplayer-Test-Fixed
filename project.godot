@@ -11,6 +11,8 @@ config_version=5
 [GD-Sync]
 
 version="0.10"
+csharp=false
+useSenderID=true
 
 [application]
 
@@ -35,6 +37,8 @@ UI="*res://singletons/s_UI.tscn"
 GameSaver="*res://singletons/s_GameSaver.gd"
 SoundPlayer="*res://singletons/s_SoundPlayer.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
+GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
 
 [display]
 
@@ -47,7 +51,7 @@ project/assembly_name="Multiplayer-Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
 [file_customization]
 
