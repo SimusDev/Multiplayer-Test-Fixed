@@ -1,0 +1,11 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://8kh2fbwtn6h1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tnfi"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 1, 0.498039)
+
+[resource]
+material = SubResource("StandardMaterial3D_8tnfi")
+radius = 0.025
+height = 0.05

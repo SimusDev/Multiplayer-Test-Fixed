@@ -6,6 +6,7 @@ class_name FirearmBullet extends Node3D
 @export var drag_force:float = 0.5
 @export var gravity:float = 9.8
 @export var life_time:float = 15.0
+@export var max_distance:float = 200.0
 @export_group("Bullet Hole")
 @export var decal_bullet_hole:PackedScene
 @export_group("Particle")
@@ -73,6 +74,9 @@ func _physics_process(delta: float) -> void:
 				destroy()
 	
 	total_distance += distance
+	
+	if total_distance > max_distance:
+		destroy()
 	
 	prev_pos = new_pos
 

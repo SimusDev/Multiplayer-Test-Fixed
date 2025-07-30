@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://5hggub5g64d2"]
+[gd_scene load_steps=26 format=4 uid="uid://5hggub5g64d2"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_e7di0"]
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_dnby3"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
 [ext_resource type="Texture2D" uid="uid://u5bct4tcrpgd" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_baseColor.png" id="3_4we86"]
+[ext_resource type="PackedScene" uid="uid://da0tqvpik8x1f" path="res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn" id="3_cpfqa"]
 [ext_resource type="AudioStream" uid="uid://dioa2opbycskx" path="res://Games/source_game/items/ak_47/sound/fire_5_meters.wav" id="3_dnby3"]
 [ext_resource type="AudioStream" uid="uid://l6j2a7bfqbgx" path="res://Games/source_game/items/ak_47/sound/fire_25_meters.wav" id="3_shxlq"]
 [ext_resource type="AudioStream" uid="uid://81eycmfqk5po" path="res://Games/source_game/items/ak_47/sound/fire_100_meters.wav" id="4_dnby3"]
@@ -499,6 +500,7 @@ script = ExtResource("1_e7di0")
 audioplayers = [NodePath("audio_0"), NodePath("audio_5"), NodePath("audio_25"), NodePath("audio_50"), NodePath("audio_100")]
 audio_pitch_randomness = Vector2(0.975, 1.025)
 projectile = ExtResource("2_36t2h")
+shell = ExtResource("3_cpfqa")
 bullet_resource = SubResource("Resource_qx83c")
 bullet_force = 205.0
 shell_force = 1.5
