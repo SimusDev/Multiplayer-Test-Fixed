@@ -57,8 +57,9 @@ static func serialize(item: SourceItemStack) -> Dictionary:
 	data.i = item.object.get_cached_id()
 	return data
 
-static func deserialize(data: Dictionary) -> SourceItemStack:
+static func deserialize(data: Dictionary, inventory: SourceInventory) -> SourceItemStack:
 	var item := SourceItemStack.new()
 	item._data = data.d
 	item.object = R_SourceWorldObject.get_by_cached_id(item.i)
+	item._inventory = inventory
 	return item
