@@ -697,7 +697,7 @@ mesh = SubResource("ArrayMesh_wrfrq")
 skeleton = NodePath("")
 
 [node name="left_hand_position" type="Marker3D" parent="model"]
-transform = Transform3D(0.145322, -0.088057, -0.985458, 0.984655, -0.0843974, 0.152745, -0.0966203, -0.992534, 0.0744411, -0.0491882, -0.455934, 0.70025)
+transform = Transform3D(0.145322, -0.088057, -0.985458, 0.984655, -0.0843974, 0.152745, -0.0966203, -0.992534, 0.0744409, -0.0491882, -0.455934, 0.70025)
 
 [node name="right_hand_position" type="Marker3D" parent="model"]
 transform = Transform3D(-0.916936, 0.206384, 0.341516, -0.341554, 0.0365893, -0.939149, -0.206321, -0.977787, 0.0369414, 0.030525, -0.0251694, 0.199286)
