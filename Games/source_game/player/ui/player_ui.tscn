@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=10 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_1k71d"]
 [ext_resource type="PackedScene" uid="uid://dc5y124phqhmn" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.tscn" id="5_d3a31"]
 [ext_resource type="Shader" uid="uid://cq7dsvms68sw6" path="res://Games/source_game/player/ui/player_ui.gdshader" id="6_m14t5"]
+[ext_resource type="PackedScene" uid="uid://dclxv5v2xeltv" path="res://Games/source_game/ui/inventory/inventory.tscn" id="7_henmv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ltpmo"]
 font = ExtResource("4_1k71d")
@@ -77,3 +78,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Inventory" parent="." instance=ExtResource("7_henmv")]
+layout_mode = 1

@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dclxv5v2xeltv"]
+
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_qq6th"]
+[ext_resource type="Script" uid="uid://q1st0q0sjbro" path="res://Games/source_game/ui/inventory/inventory.gd" id="1_wpwsr"]
+[ext_resource type="AudioStream" uid="uid://dmi3vdknn2am7" path="res://sounds/hl2/inventory/inv_open.ogg" id="2_ya1jy"]
+[ext_resource type="AudioStream" uid="uid://1n6a4un1urxh" path="res://sounds/hl2/inventory/inv_close.ogg" id="3_k0d3s"]
+[ext_resource type="Shader" uid="uid://b3ikxkqdkbahg" path="res://addons/simusdev/shaders/bg_blur.gdshader" id="4_k0d3s"]
+[ext_resource type="PackedScene" uid="uid://ckpemnnfs6bi3" path="res://Games/source_game/ui/inventory/window.tscn" id="6_qsyy4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsyy4"]
+shader = ExtResource("4_k0d3s")
+shader_parameter/lod = 1.5
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wpwsr")
+audio_open = ExtResource("2_ya1jy")
+audio_close = ExtResource("3_k0d3s")
+
+[node name="fade" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qsyy4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+volume_db = -24.0
+bus = &"game"
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_qq6th")
+target = NodePath("..")
+input_action = "source.inventory"
+close_on_escape = false
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="Window" parent="." instance=ExtResource("6_qsyy4")]
+custom_minimum_size = Vector2(600, 468)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -662.0
+offset_top = -292.0
+offset_right = -62.0
+offset_bottom = 292.0
+grow_horizontal = 0
+player_inventory = true
+
+[connection signal="closed" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_closed"]
+[connection signal="opened" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_opened"]

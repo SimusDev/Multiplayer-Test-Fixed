@@ -19,26 +19,28 @@
 [ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
 [ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="11_lhwgh"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
 [ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
-[ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/source_inventory.gd" id="12_fucap"]
+[ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="12_fucap"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="12_j3nm0"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="12_sf1eh"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="13_3yygh"]
 [ext_resource type="Shape3D" uid="uid://dvvatkk8j3tge" path="res://Games/source_game/player/collisions/source_player_collision_crouch.tres" id="13_4d7pv"]
 [ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="13_kou6u"]
-[ext_resource type="Script" uid="uid://ddrcohrb5p7fr" path="res://Games/source_game/components/source_initial_item_stack.gd" id="13_ssngh"]
+[ext_resource type="Script" uid="uid://bwp1cvwjkhvwt" path="res://Games/source_game/components/inventory/source_inventory_slot.gd" id="13_ssngh"]
 [ext_resource type="Resource" uid="uid://dj6i3p7c1wjed" path="res://Games/source_game/props/tnt/tnt.tres" id="14_ax0ug"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="14_efvha"]
+[ext_resource type="Script" uid="uid://rk2typl4w3ca" path="res://Games/source_game/components/inventory/source_itemstack.gd" id="14_ji8mb"]
 [ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="14_kim0n"]
 [ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="14_x0g0d"]
 [ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="15_inl2s"]
 [ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="15_qmy00"]
-[ext_resource type="Resource" uid="uid://cw1cchur6h14w" path="res://Games/source_game/props/toilet/toilet_prop.tres" id="15_vsb7e"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="16_kal50"]
 [ext_resource type="AudioStream" uid="uid://dnsq0ogn2jeqy" path="res://sounds/hl2/player/footsteps/gravel1.wav" id="16_lhwgh"]
+[ext_resource type="Resource" uid="uid://btkb6f6yfvef3" path="res://Games/source_game/props/radio/radio_prop.tres" id="16_nyu7s"]
+[ext_resource type="Resource" uid="uid://crw2cwi0ltk0" path="res://Games/source_game/props/lootbox/lootbox.tres" id="17_0td7v"]
 [ext_resource type="AudioStream" uid="uid://dq3nelmioi1vl" path="res://sounds/hl2/player/footsteps/gravel2.wav" id="17_2q6gp"]
 [ext_resource type="AudioStream" uid="uid://covvae6mj6fp4" path="res://sounds/hl2/player/footsteps/gravel3.wav" id="18_suq2s"]
 [ext_resource type="AudioStream" uid="uid://bbw8lofjwplcd" path="res://sounds/hl2/player/footsteps/gravel4.wav" id="19_bnn5b"]
@@ -114,18 +116,6 @@
 [ext_resource type="PackedScene" uid="uid://b5x2sct5a26u8" path="res://cheat/cheatcommands.tscn" id="100_4d7pv"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="105_u7p5y"]
 [ext_resource type="Script" uid="uid://cjkp4qdncq7w7" path="res://addons/simusdev/scene_saver/SD_SceneSaverInstance.gd" id="109_3qhl4"]
-
-[sub_resource type="Resource" id="Resource_ajwf6"]
-script = ExtResource("13_ssngh")
-object = ExtResource("14_ax0ug")
-quantity = 5
-metadata/_custom_type_script = "uid://ddrcohrb5p7fr"
-
-[sub_resource type="Resource" id="Resource_ji8mb"]
-script = ExtResource("13_ssngh")
-object = ExtResource("15_vsb7e")
-quantity = 1
-metadata/_custom_type_script = "uid://ddrcohrb5p7fr"
 
 [sub_resource type="Resource" id="Resource_7lynq"]
 script = ExtResource("13_3yygh")
@@ -240,12 +230,169 @@ interact_raycast = NodePath("SourceCamera/interact_raycast")
 footsteps_component = NodePath("footsteps")
 death_camera = ExtResource("11_efvha")
 
-[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+[node name="SourceInventory" type="Node" parent="."]
 script = ExtResource("12_fucap")
-root = NodePath("..")
-initial_items = Array[ExtResource("13_ssngh")]([SubResource("Resource_ajwf6"), SubResource("Resource_ji8mb")])
 debug = true
 metadata/_custom_type_script = "uid://vgml0sp3idxv"
+
+[node name="1" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="item" type="Node" parent="SourceInventory/1"]
+script = ExtResource("14_ji8mb")
+object = ExtResource("14_ax0ug")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
+[node name="2" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="item" type="Node" parent="SourceInventory/2"]
+script = ExtResource("14_ji8mb")
+object = ExtResource("16_nyu7s")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
+[node name="3" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="item" type="Node" parent="SourceInventory/3"]
+script = ExtResource("14_ji8mb")
+object = ExtResource("17_0td7v")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
+[node name="4" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="5" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="6" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="7" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="8" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="9" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="10" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="11" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="12" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="13" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="14" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="15" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="16" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="17" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="18" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="19" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="20" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="21" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="22" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="23" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="24" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="25" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="26" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="27" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="28" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="29" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="30" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="31" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="32" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="33" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="34" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="35" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="36" type="Node" parent="SourceInventory"]
+script = ExtResource("13_ssngh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("12_j3nm0")
@@ -304,7 +451,7 @@ ceiling_detection = NodePath("../ceiling_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 
 [node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.104934, -0.0136667, -0.259234, -0.00783557, -0.279318, 0.0178972, -0.259476, 0.0139617, 0.104295, 0.266968, -0.0203829, -0.0210884)
+transform = Transform3D(-0.107215, -0.0148883, -0.258231, -0.00885368, -0.279161, 0.019771, -0.258509, 0.0157358, 0.106422, 0.263377, -0.0243472, -0.0239299)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
@@ -469,17 +616,17 @@ metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
 
 [node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
-bones/0/position = Vector3(-0.0128276, 3.75679, 0.0496523)
-bones/0/rotation = Quaternion(-0.0326466, -0.0466693, -0.0260951, 0.998036)
-bones/1/rotation = Quaternion(-0.0158365, 0.012708, 0.0247575, 0.999487)
-bones/2/rotation = Quaternion(0.0100001, 0.00247777, 0.0145012, 0.999842)
-bones/3/rotation = Quaternion(0.00954757, 0.00229346, 0.0144129, 0.999848)
-bones/4/rotation = Quaternion(0.113276, -0.00156087, 0.00478676, 0.993551)
-bones/5/rotation = Quaternion(-0.133214, 0.0108933, -0.000355247, 0.991027)
-bones/7/rotation = Quaternion(-0.681811, -0.320708, 0.520747, -0.401377)
-bones/8/rotation = Quaternion(0.474235, 0.130298, 0.0586568, 0.868725)
-bones/9/rotation = Quaternion(0.0015552, 0.000337009, 0.0138681, 0.999903)
-bones/10/rotation = Quaternion(0.0833336, -0.247361, -0.0217434, 0.965088)
+bones/0/position = Vector3(-0.0177575, 3.75362, 0.0481462)
+bones/0/rotation = Quaternion(-0.0360493, -0.0447961, -0.0271421, 0.997977)
+bones/1/rotation = Quaternion(-0.0059598, 0.016326, 0.0283424, 0.999447)
+bones/2/rotation = Quaternion(0.0119579, 0.00337272, 0.0150912, 0.999809)
+bones/3/rotation = Quaternion(0.011956, 0.00359986, 0.0151919, 0.999807)
+bones/4/rotation = Quaternion(0.120672, -0.00196093, 0.0025826, 0.992687)
+bones/5/rotation = Quaternion(-0.141579, 0.00790134, -6.00564e-05, 0.989895)
+bones/7/rotation = Quaternion(-0.689685, -0.310461, 0.51784, -0.399737)
+bones/8/rotation = Quaternion(0.46743, 0.126271, 0.064679, 0.872572)
+bones/9/rotation = Quaternion(0.00172228, 0.000336963, 0.0153563, 0.999881)
+bones/10/rotation = Quaternion(0.0773646, -0.258884, -0.0118021, 0.962733)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -495,10 +642,10 @@ bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
 bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
 bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
 bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
-bones/31/rotation = Quaternion(0.681273, -0.316907, 0.541388, 0.377276)
-bones/32/rotation = Quaternion(0.396639, -0.228896, -0.0817934, 0.885208)
-bones/33/rotation = Quaternion(0.00628126, 0.000175132, -0.0575391, 0.998324)
-bones/34/rotation = Quaternion(0.0943145, 0.133537, 0.0432991, 0.985595)
+bones/31/rotation = Quaternion(0.685519, -0.312151, 0.536793, 0.380105)
+bones/32/rotation = Quaternion(0.396805, -0.222524, -0.0792287, 0.88699)
+bones/33/rotation = Quaternion(0.00629267, 0.000175093, -0.0576441, 0.998317)
+bones/34/rotation = Quaternion(0.0899011, 0.138329, 0.041104, 0.985441)
 bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
 bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
 bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
@@ -514,14 +661,14 @@ bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
 bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
 bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
 bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
-bones/55/rotation = Quaternion(0.136235, 0.0648395, 0.985369, -0.0792745)
-bones/56/rotation = Quaternion(-0.127988, -0.0154567, 0.0302548, 0.991194)
-bones/57/rotation = Quaternion(0.510291, -0.119444, -0.000782381, 0.851666)
+bones/55/rotation = Quaternion(0.140541, 0.0656271, 0.984523, -0.0815833)
+bones/56/rotation = Quaternion(-0.1349, -0.00851712, 0.029891, 0.990372)
+bones/57/rotation = Quaternion(0.513714, -0.119605, -0.000738626, 0.849584)
 bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
-bones/60/rotation = Quaternion(-0.0918715, -0.0207135, 0.995244, -0.0249111)
-bones/61/rotation = Quaternion(-0.0771996, 0.0844978, -0.0240693, 0.993137)
-bones/62/rotation = Quaternion(0.546444, 0.1127, -0.0305777, 0.829314)
-bones/63/rotation = Quaternion(0.323258, 0.0274787, -0.000178609, 0.945912)
+bones/60/rotation = Quaternion(-0.0926082, -0.019818, 0.995174, -0.0256905)
+bones/61/rotation = Quaternion(-0.0878624, 0.0841653, -0.0253124, 0.992248)
+bones/62/rotation = Quaternion(0.551066, 0.114426, -0.0301704, 0.826029)
+bones/63/rotation = Quaternion(0.324572, 0.0277633, -8.46796e-05, 0.945454)
 
 [node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
 parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
