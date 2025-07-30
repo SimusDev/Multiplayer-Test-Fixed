@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=128 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="2_d1rl6"]
 [ext_resource type="PackedScene" uid="uid://cq0fecxbg4nlf" path="res://Games/source_game/player/ui/player_ui.tscn" id="2_inl2s"]
 [ext_resource type="AudioStream" uid="uid://cblntyohb33mu" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet1.wav" id="5_6qnpk"]
-[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="6_2q6gp"]
 [ext_resource type="AudioStream" uid="uid://vveni31yjbmd" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet2.wav" id="6_kal50"]
 [ext_resource type="AudioStream" uid="uid://jp5jqyr0ld1k" path="res://sounds/death/death1.wav" id="7_3yygh"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="7_4cdfe"]
@@ -20,25 +19,30 @@
 [ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
 [ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="11_lhwgh"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
 [ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
+[ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/source_inventory.gd" id="12_fucap"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="12_j3nm0"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="12_sf1eh"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="13_3yygh"]
 [ext_resource type="Shape3D" uid="uid://dvvatkk8j3tge" path="res://Games/source_game/player/collisions/source_player_collision_crouch.tres" id="13_4d7pv"]
 [ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="13_kou6u"]
+[ext_resource type="Script" uid="uid://ddrcohrb5p7fr" path="res://Games/source_game/components/source_initial_item_stack.gd" id="13_ssngh"]
+[ext_resource type="Resource" uid="uid://dj6i3p7c1wjed" path="res://Games/source_game/props/tnt/tnt.tres" id="14_ax0ug"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="14_efvha"]
 [ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="14_kim0n"]
 [ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="14_x0g0d"]
 [ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="15_inl2s"]
 [ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="15_qmy00"]
+[ext_resource type="Resource" uid="uid://cw1cchur6h14w" path="res://Games/source_game/props/toilet/toilet_prop.tres" id="15_vsb7e"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="16_kal50"]
 [ext_resource type="AudioStream" uid="uid://dnsq0ogn2jeqy" path="res://sounds/hl2/player/footsteps/gravel1.wav" id="16_lhwgh"]
 [ext_resource type="AudioStream" uid="uid://dq3nelmioi1vl" path="res://sounds/hl2/player/footsteps/gravel2.wav" id="17_2q6gp"]
 [ext_resource type="AudioStream" uid="uid://covvae6mj6fp4" path="res://sounds/hl2/player/footsteps/gravel3.wav" id="18_suq2s"]
 [ext_resource type="AudioStream" uid="uid://bbw8lofjwplcd" path="res://sounds/hl2/player/footsteps/gravel4.wav" id="19_bnn5b"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="20_j3nm0"]
 [ext_resource type="AudioStream" uid="uid://bxblu0hifdh4u" path="res://sounds/hl2/player/footsteps/dirt1.wav" id="20_rpvag"]
 [ext_resource type="AudioStream" uid="uid://dieq0hhk3inw1" path="res://sounds/hl2/player/footsteps/dirt2.wav" id="21_7mm0c"]
 [ext_resource type="AudioStream" uid="uid://m4lg17oy25uh" path="res://sounds/hl2/player/footsteps/dirt3.wav" id="22_fiyss"]
@@ -49,6 +53,7 @@
 [ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="26_1l832"]
 [ext_resource type="PackedScene" uid="uid://bgj4wemxqf21y" path="res://Games/source_game/items/guitar/guitar.tscn" id="26_5jte2"]
 [ext_resource type="AudioStream" uid="uid://b6n7utojgf2ws" path="res://sounds/hl2/player/footsteps/mud3.wav" id="26_6qnpk"]
+[ext_resource type="Script" uid="uid://beeaaqggu6nod" path="res://addons/simusdev/components/interactables/W_Interactor3D.gd" id="26_mf063"]
 [ext_resource type="AudioStream" uid="uid://ckgpko78avrt1" path="res://sounds/hl2/player/footsteps/mud4.wav" id="27_kal50"]
 [ext_resource type="AudioStream" uid="uid://dmusj0kfab4ym" path="res://sounds/hl2/player/footsteps/sand1.wav" id="28_x0g0d"]
 [ext_resource type="AudioStream" uid="uid://j2retdoqw78y" path="res://sounds/hl2/player/footsteps/sand2.wav" id="29_qmy00"]
@@ -107,6 +112,19 @@
 [ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://Games/source_game/game/3dmodels/dr_kleiner/animated_model.tscn" id="81_kim0n"]
 [ext_resource type="PackedScene" uid="uid://b5x2sct5a26u8" path="res://cheat/cheatcommands.tscn" id="100_4d7pv"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="105_u7p5y"]
+[ext_resource type="Script" uid="uid://cjkp4qdncq7w7" path="res://addons/simusdev/scene_saver/SD_SceneSaverInstance.gd" id="109_3qhl4"]
+
+[sub_resource type="Resource" id="Resource_ajwf6"]
+script = ExtResource("13_ssngh")
+object = ExtResource("14_ax0ug")
+quantity = 5
+metadata/_custom_type_script = "uid://ddrcohrb5p7fr"
+
+[sub_resource type="Resource" id="Resource_ji8mb"]
+script = ExtResource("13_ssngh")
+object = ExtResource("15_vsb7e")
+quantity = 1
+metadata/_custom_type_script = "uid://ddrcohrb5p7fr"
 
 [sub_resource type="Resource" id="Resource_7lynq"]
 script = ExtResource("13_3yygh")
@@ -207,7 +225,7 @@ radius = 0.163574
 [node name="source_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "canvas", "model", "interact_raycast", "footsteps_component")]
 floor_max_angle = 1.13446
 script = ExtResource("1_4cdfe")
-health = NodePath("Health")
+health = NodePath("SourceHealth")
 take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
 death_assets = Array[AudioStream]([ExtResource("7_3yygh"), ExtResource("8_efvha")])
 movement = NodePath("SourceMovement")
@@ -220,6 +238,13 @@ model = NodePath("W_AnimatedModel3D")
 interact_raycast = NodePath("SourceCamera/interact_raycast")
 footsteps_component = NodePath("footsteps")
 death_camera = ExtResource("11_efvha")
+
+[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("12_fucap")
+root = NodePath("..")
+initial_items = Array[ExtResource("13_ssngh")]([SubResource("Resource_ajwf6"), SubResource("Resource_ji8mb")])
+debug = true
+metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("12_j3nm0")
@@ -242,10 +267,10 @@ max_safe_fall_speed = 15.0
 hard_grounding_sounds = Array[AudioStream]([ExtResource("14_x0g0d"), ExtResource("15_qmy00")])
 metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("6_2q6gp")
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("20_j3nm0")
 target = NodePath("..")
-metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+metadata/_custom_type_script = "uid://cr18fup83we2u"
 
 [node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("16_kal50")
@@ -278,7 +303,7 @@ ceiling_detection = NodePath("../ceiling_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 
 [node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.101765, -0.0121731, -0.260568, -0.0112751, -0.279228, 0.0174484, -0.260609, 0.0168342, 0.100994, 0.264652, -0.0164552, -0.0119083)
+transform = Transform3D(-0.10361, -0.0133634, -0.259781, -0.00830811, -0.279318, 0.017682, -0.259992, 0.0142512, 0.102961, 0.261941, -0.017194, -0.0139663)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
@@ -303,11 +328,25 @@ script = ExtResource("7_4cdfe")
 shadow_enabled = true
 
 [node name="interact_raycast" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("player", "drag_item_link_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.912831)
 target_position = Vector3(0, 0, -1.5)
 script = ExtResource("9_kou6u")
 player = NodePath("../..")
 drag_item_link_node = NodePath("../hands")
+
+[node name="interactor" type="RayCast3D" parent="SourceCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.694588)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 9
+collide_with_areas = true
+
+[node name="W_Interactor3D" type="Node" parent="SourceCamera/interactor" node_paths=PackedStringArray("root", "raycast")]
+script = ExtResource("26_mf063")
+root = NodePath("../../..")
+raycast = NodePath("..")
+input_action = "source.interact"
+multiplayer_authorative = true
+metadata/_custom_type_script = "uid://beeaaqggu6nod"
 
 [node name="hands" type="Marker3D" parent="SourceCamera"]
 
@@ -361,7 +400,7 @@ collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320068, 0)
@@ -372,7 +411,7 @@ collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.532132, 0)
@@ -383,7 +422,7 @@ collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head"]
@@ -425,17 +464,17 @@ metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
 
 [node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
-bones/0/position = Vector3(0.00649176, 3.75524, 0.0267325)
-bones/0/rotation = Quaternion(-0.0283527, -0.0508589, -0.0310409, 0.997821)
-bones/1/rotation = Quaternion(-0.0144387, 0.0109563, 0.0228198, 0.999575)
-bones/2/rotation = Quaternion(0.0102576, 0.00224171, 0.0139031, 0.999848)
-bones/3/rotation = Quaternion(0.0100204, 0.00240813, 0.013926, 0.99985)
-bones/4/rotation = Quaternion(0.113755, -0.00134871, 0.00440972, 0.993498)
-bones/5/rotation = Quaternion(-0.132485, 0.0113228, -0.000954637, 0.99112)
-bones/7/rotation = Quaternion(-0.685068, -0.316574, 0.519124, -0.401215)
-bones/8/rotation = Quaternion(0.469051, 0.133622, 0.057172, 0.87113)
-bones/9/rotation = Quaternion(0.00144045, 0.000336937, 0.0128443, 0.999916)
-bones/10/rotation = Quaternion(0.0841495, -0.250898, -0.0227731, 0.96408)
+bones/0/position = Vector3(0.00889055, 3.75504, 0.0194534)
+bones/0/rotation = Quaternion(-0.0311895, -0.0464907, -0.0302694, 0.997973)
+bones/1/rotation = Quaternion(-0.0147636, 0.011705, 0.023771, 0.99954)
+bones/2/rotation = Quaternion(0.0100932, 0.00162821, 0.0137764, 0.999853)
+bones/3/rotation = Quaternion(0.00986988, 0.00182041, 0.0138214, 0.999854)
+bones/4/rotation = Quaternion(0.114448, -0.000971504, 0.00391227, 0.993421)
+bones/5/rotation = Quaternion(-0.131074, 0.0120029, -0.000709444, 0.9913)
+bones/7/rotation = Quaternion(-0.685589, -0.315849, 0.519174, -0.400832)
+bones/8/rotation = Quaternion(0.469383, 0.132518, 0.0562628, 0.871179)
+bones/9/rotation = Quaternion(0.00141963, 0.000336924, 0.0126585, 0.999919)
+bones/10/rotation = Quaternion(0.0843341, -0.252271, -0.0210679, 0.963744)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -451,10 +490,10 @@ bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
 bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
 bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
 bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
-bones/31/rotation = Quaternion(0.680753, -0.31778, 0.540753, 0.378388)
-bones/32/rotation = Quaternion(0.397169, -0.227526, -0.0840319, 0.885115)
-bones/33/rotation = Quaternion(0.00629963, 0.000175064, -0.0577078, 0.998314)
-bones/34/rotation = Quaternion(0.0986869, 0.133137, 0.0422781, 0.985266)
+bones/31/rotation = Quaternion(0.680937, -0.317611, 0.540425, 0.378669)
+bones/32/rotation = Quaternion(0.398326, -0.226399, -0.0844822, 0.88484)
+bones/33/rotation = Quaternion(0.0063354, 0.000175062, -0.0580349, 0.998294)
+bones/34/rotation = Quaternion(0.0980539, 0.133541, 0.0420179, 0.985285)
 bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
 bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
 bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
@@ -470,14 +509,14 @@ bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
 bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
 bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
 bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
-bones/55/rotation = Quaternion(0.137197, 0.0764447, 0.984127, -0.0826236)
-bones/56/rotation = Quaternion(-0.137926, -0.0180582, 0.0292407, 0.989846)
-bones/57/rotation = Quaternion(0.513175, -0.11867, 0.000482451, 0.850041)
+bones/55/rotation = Quaternion(0.136057, 0.0752832, 0.984498, -0.0811475)
+bones/56/rotation = Quaternion(-0.136652, -0.0150954, 0.0293444, 0.990069)
+bones/57/rotation = Quaternion(0.51266, -0.118274, 0.00107059, 0.850406)
 bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
-bones/60/rotation = Quaternion(-0.0894705, -0.0146291, 0.995491, -0.027924)
-bones/61/rotation = Quaternion(-0.0739325, 0.0847589, -0.0232598, 0.993383)
-bones/62/rotation = Quaternion(0.540998, 0.111123, -0.0303549, 0.833098)
-bones/63/rotation = Quaternion(0.324526, 0.0277534, -8.77658e-05, 0.94547)
+bones/60/rotation = Quaternion(-0.0899976, -0.0143286, 0.995471, -0.0270833)
+bones/61/rotation = Quaternion(-0.0778913, 0.0841967, -0.0238628, 0.993113)
+bones/62/rotation = Quaternion(0.541799, 0.114533, -0.031506, 0.832071)
+bones/63/rotation = Quaternion(0.325539, 0.027973, -1.54948e-05, 0.945115)
 
 [node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
 parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
@@ -489,8 +528,13 @@ parameters/look_dir_add/add_amount = 1.0
 
 [node name="Cheatcommands" parent="." instance=ExtResource("100_4d7pv")]
 
-[connection signal="died" from="Health" to="." method="_on_health_died"]
-[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[node name="SD_SceneSaverInstance" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("109_3qhl4")
+root = NodePath("..")
+properties = Dictionary[NodePath, PackedStringArray]({
+NodePath(".."): PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://cjkp4qdncq7w7"
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]

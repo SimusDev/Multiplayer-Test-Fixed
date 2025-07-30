@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://btkb6f6yfvef3"]
+
+[ext_resource type="Texture2D" uid="uid://dgdlpp6ar5yl7" path="res://Games/source_game/props/radio/icon.png" id="1_38esc"]
+[ext_resource type="PackedScene" uid="uid://cdjjxovs1uyne" path="res://Games/source_game/props/radio/radio.tscn" id="2_uto2u"]
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="3_vynfr"]
+
+[resource]
+script = ExtResource("3_vynfr")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_38esc")
+name = "radio"
+description = ""
+prefab = ExtResource("2_uto2u")
+metadata/_custom_type_script = "uid://bljdyrjeubrdg"

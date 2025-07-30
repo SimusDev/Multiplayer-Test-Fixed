@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=28 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="3_gr3v1"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="16_eejt7"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="17_v4o5a"]
 [ext_resource type="PackedScene" uid="uid://b4ypo6jnmm7fw" path="res://Games/source_game/props/dummy_target/dummy_target.tscn" id="17_y1g7y"]
+[ext_resource type="PackedScene" uid="uid://8rr5gjgytmft" path="res://Games/source_game/props/tnt/tnt.tscn" id="18_fj02r"]
+[ext_resource type="PackedScene" uid="uid://cplgn5rbodten" path="res://Games/source_game/props/lootbox/lootbox.tscn" id="19_u0ham"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
 albedo_texture = ExtResource("3_gr3v1")
@@ -73,7 +75,7 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.589361
+shader_parameter/_atm_moon_mie_intensity = 0.589365
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("9_17bi3")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
@@ -139,9 +141,6 @@ shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
-
-[node name="spawn_points" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="floor" type="CSGBox3D" parent="." index="2"]
 use_collision = true
@@ -313,15 +312,6 @@ dome_path = NodePath("../Skydome")
 total_cycle_in_minutes = 60.0
 total_hours = 19.81
 
-[node name="dummy_target" parent="props" index="2" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(0.106611, 0, -0.994301, 0, 1, 0, 0.994301, 0, 0.106611, 16.3719, 0, -20.6)
-
-[node name="dummy_target2" parent="props" index="3" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(-0.0370449, 0, -0.999314, 0, 1, 0, 0.999314, 0, -0.0370449, 16.3719, 0, -19.5358)
-
-[node name="dummy_target3" parent="props" index="4" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(0.0352657, 0, -0.999378, 0, 1, 0, 0.999378, 0, 0.0352657, 16.3719, 0, -18.2822)
-
 [node name="CSGBox3D" type="CSGBox3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1, 2.7, -26.184)
 use_collision = true
@@ -332,3 +322,39 @@ material = SubResource("StandardMaterial3D_y1g7y")
 light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
+
+[node name="spawn_points" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="dummy_target" parent="props" index="0" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(0.106611, 0, -0.994301, 0, 1, 0, 0.994301, 0, 0.106611, 16.3719, 0, -20.6)
+
+[node name="dummy_target2" parent="props" index="1" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(-0.0370449, 0, -0.999314, 0, 1, 0, 0.999314, 0, -0.0370449, 16.3719, 0, -19.5358)
+
+[node name="dummy_target3" parent="props" index="2" instance=ExtResource("17_y1g7y")]
+transform = Transform3D(0.0352657, 0, -0.999378, 0, 1, 0, 0.999378, 0, 0.0352657, 16.3719, 0, -18.2822)
+
+[node name="Tnt" parent="props" index="3" instance=ExtResource("18_fj02r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -23.1841)
+
+[node name="Tnt2" parent="props" index="4" instance=ExtResource("18_fj02r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -23.7643)
+
+[node name="Tnt3" parent="props" index="5" instance=ExtResource("18_fj02r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -24.3862)
+
+[node name="Tnt4" parent="props" index="6" instance=ExtResource("18_fj02r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -24.9691)
+
+[node name="lootbox" parent="props" index="7" instance=ExtResource("19_u0ham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6218, 0.459432, -30.7656)
+
+[node name="lootbox2" parent="props" index="8" instance=ExtResource("19_u0ham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9586, 0.459432, -30.7656)
+
+[node name="lootbox3" parent="props" index="9" instance=ExtResource("19_u0ham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.05, 0.459432, -30.7656)
+
+[node name="lootbox4" parent="props" index="10" instance=ExtResource("19_u0ham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37616, 0.459432, -30.7656)

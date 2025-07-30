@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=4 format=3 uid="uid://dj6i3p7c1wjed"]
+
+[ext_resource type="Texture2D" uid="uid://c8hw4bfxp5qfw" path="res://Games/source_game/props/tnt/icon2.png" id="1_0b4ia"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_dc6bm"]
+[ext_resource type="PackedScene" uid="uid://8rr5gjgytmft" path="res://Games/source_game/props/tnt/tnt.tscn" id="1_ijvec"]
+
+[resource]
+script = ExtResource("1_dc6bm")
+custom_section = "explosive"
+custom_id = ""
+icon = ExtResource("1_0b4ia")
+name = "tnt"
+description = ""
+prefab = ExtResource("1_ijvec")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

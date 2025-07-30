@@ -1,0 +1,2 @@
+extends Node
+class_name SRC_S_Singleton

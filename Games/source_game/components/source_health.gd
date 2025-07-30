@@ -1,0 +1,2 @@
+extends C_HealthComponent
+class_name SourceHealth

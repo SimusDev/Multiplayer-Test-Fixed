@@ -29,14 +29,14 @@ func _on_console_visibility_changed() -> void:
 
 func _on_enabled() -> void:
 	if raycast:
-		raycast.collide_with_areas = true
-		raycast.collide_with_bodies = false
+		#raycast.collide_with_areas = true
+		#raycast.collide_with_bodies = false
 		raycast.enabled = true
 
 func _on_disabled() -> void:
 	if raycast:
-		raycast.collide_with_areas = false
-		raycast.collide_with_bodies = false
+		#raycast.collide_with_areas = false
+		#raycast.collide_with_bodies = false
 		raycast.enabled = false
 	
 	if _selected == null:

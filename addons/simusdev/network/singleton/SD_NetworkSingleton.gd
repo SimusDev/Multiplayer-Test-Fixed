@@ -106,7 +106,8 @@ func set_dedicated_server(value: bool) -> SD_NetworkSingleton:
 
 func get_unique_id() -> int:
 	if is_active():
-		return multiplayer.get_unique_id()
+		if multiplayer:
+			return multiplayer.get_unique_id()
 	return SERVER_ID
 
 func get_peers() -> PackedInt32Array:

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://crw2cwi0ltk0"]
+
+[ext_resource type="Texture2D" uid="uid://q8k6mcshd4ho" path="res://Games/source_game/props/lootbox/icon.png" id="1_fqfmc"]
+[ext_resource type="PackedScene" uid="uid://cplgn5rbodten" path="res://Games/source_game/props/lootbox/lootbox.tscn" id="2_eyxsq"]
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="3_avkig"]
+
+[resource]
+script = ExtResource("3_avkig")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_fqfmc")
+name = "lootbox"
+description = ""
+prefab = ExtResource("2_eyxsq")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://bcbhujwpage56"]
+
+[ext_resource type="Texture2D" uid="uid://cufwljtfxnc75" path="res://Games/source_game/props/dummy_target/icon.png" id="1_6ban1"]
+[ext_resource type="PackedScene" uid="uid://b4ypo6jnmm7fw" path="res://Games/source_game/props/dummy_target/dummy_target.tscn" id="2_qa7ck"]
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="3_78v04"]
+
+[resource]
+script = ExtResource("3_78v04")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_6ban1")
+name = "dummy_target"
+description = ""
+prefab = ExtResource("2_qa7ck")

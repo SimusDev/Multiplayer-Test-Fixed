@@ -40,10 +40,25 @@ func _ready() -> void:
 
 
 func fire():
-	spawn_projectile()
+	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
+	pre_event.source = player
+	pre_event.player = player
+	pre_event.weapon = self
+	
+	if pre_event.publish() == false:
+		return
+	
+	var bullet: FirearmBullet = spawn_projectile()
 	spawn_shell()
 	animation_player.play(_fire)
 	play_fire_sound()
+	
+	var event: S_EventGunFire = S_EventGunFire.get_by_script(S_EventGunFire) as S_EventGunFire
+	event.source = player
+	event.player = player
+	event.bullet = bullet
+	event.weapon = self
+	event.publish()
 
 func play_fire_sound():
 	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
@@ -52,7 +67,7 @@ func play_fire_sound():
 		audioplayer.play()
 
 
-func spawn_projectile():
+func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()
 	new_bullet.bullet_resource = bullet_resource
 	if is_instance_valid(SourcePlayer.instance): new_bullet.player = SourcePlayer.instance
@@ -75,6 +90,7 @@ func spawn_projectile():
 	new_bullet.global_position.z += (spread_random * spread_counter).y
 	new_bullet.global_position.y += (spread_random * spread_counter).x
 	
+	return new_bullet
 
 #sleep 1711270725 
 
