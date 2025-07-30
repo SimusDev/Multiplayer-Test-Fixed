@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ba60xhdbe4xbv"]
+[gd_scene load_steps=10 format=3 uid="uid://ba60xhdbe4xbv"]
 
 [ext_resource type="Script" uid="uid://bjyvgy0hcmp5e" path="res://interface/lobby/map.gd" id="1_flotp"]
 [ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="2_4m6li"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_ke7f7"]
-[ext_resource type="Texture2D" uid="uid://1iyybqe410mv" path="res://sourcelike_interface/gmod_bg_placeholder.png" id="5_flotp"]
 [ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="6_esmi6"]
 [ext_resource type="Texture2D" uid="uid://box6vb54v3d48" path="res://textures/icons/heart.png" id="7_oa40b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4m6li"]
+[sub_resource type="LabelSettings" id="LabelSettings_qbulm"]
 font = ExtResource("4_ke7f7")
 font_size = 18
 outline_size = 4
@@ -19,13 +18,13 @@ font_size = 14
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ke7f7"]
+[sub_resource type="LabelSettings" id="LabelSettings_flotp"]
 font = ExtResource("4_ke7f7")
 font_size = 17
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_tv68w"]
+[sub_resource type="LabelSettings" id="LabelSettings_4m6li"]
 font = ExtResource("4_ke7f7")
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
@@ -88,7 +87,7 @@ anchor_top = 0.166667
 anchor_right = 0.989286
 offset_left = 0.0
 text = "map_name"
-label_settings = SubResource("LabelSettings_4m6li")
+label_settings = SubResource("LabelSettings_qbulm")
 text_overrun_behavior = 3
 font = ExtResource("4_ke7f7")
 outline_size = 4
@@ -120,7 +119,6 @@ offset_top = 0.074852
 offset_right = 1.01075
 offset_bottom = 0.074852
 grow_vertical = 2
-texture = ExtResource("5_flotp")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -156,7 +154,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SD_Label" parent="Popup/content/play" index="0"]
 offset_top = 2.0
 text = "start"
-label_settings = SubResource("LabelSettings_ke7f7")
+label_settings = SubResource("LabelSettings_flotp")
 font_size = 17
 outline_size = 3
 
@@ -184,7 +182,7 @@ offset_top = 2.42515
 offset_right = -0.0107498
 offset_bottom = 0.425148
 text = "favorite"
-label_settings = SubResource("LabelSettings_tv68w")
+label_settings = SubResource("LabelSettings_4m6li")
 font_size = 16
 outline_size = 3
 
