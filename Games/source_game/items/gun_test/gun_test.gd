@@ -7,9 +7,11 @@ class_name SourceFireWeapon extends SourceItem
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
 @export var projectile:PackedScene
+@export var shell:PackedScene
 @export var bullet_resource:R_SourceBullet
 @export var bullet_force:float = 105.0
 @export var shell_force:float = 1.0
+@export var can_bounce:bool = false
 @export_subgroup("Spread")
 var spread_random:Vector2 = Vector2.ZERO
 var spread_multiplier:float = 1.0
@@ -70,6 +72,7 @@ func play_fire_sound():
 func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()
 	new_bullet.bullet_resource = bullet_resource
+	new_bullet.can_bounce = can_bounce
 	if is_instance_valid(SourcePlayer.instance): new_bullet.player = SourcePlayer.instance
 	bullet_marker.add_child(new_bullet)
 	new_bullet.top_level = true
@@ -96,7 +99,7 @@ func spawn_projectile() -> FirearmBullet:
 
 func spawn_shell():
 	var new_bullet_shell:SourceBulletShell = SourceBulletShell.new()
-	new_bullet_shell.model = preload("res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn")
+	new_bullet_shell.model = shell
 	SourceGame.instance.add_child(new_bullet_shell)
 	new_bullet_shell.global_position = shell_marker.global_position
 	new_bullet_shell.global_rotation_degrees = shell_marker.global_rotation_degrees

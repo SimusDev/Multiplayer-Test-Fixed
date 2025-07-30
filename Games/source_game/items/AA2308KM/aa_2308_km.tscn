@@ -1,9 +1,10 @@
-[gd_scene load_steps=40 format=4 uid="uid://bokaet0mksmo3"]
+[gd_scene load_steps=41 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_1bs4f"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="3_i202i"]
 [ext_resource type="Texture2D" uid="uid://eaneprmwbxyv" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_0.jpg" id="3_j3diw"]
+[ext_resource type="PackedScene" uid="uid://da0tqvpik8x1f" path="res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn" id="3_ken8p"]
 [ext_resource type="Resource" uid="uid://cju5tmvtq4ltf" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tres" id="3_nqkmu"]
 [ext_resource type="Texture2D" uid="uid://drnbgvwkh28aa" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_1.png" id="4_nqkmu"]
 [ext_resource type="Texture2D" uid="uid://bno7kaua7m6xu" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_2.jpg" id="5_tgxpf"]
@@ -609,6 +610,7 @@ script = ExtResource("1_k2044")
 audioplayers = [NodePath("audio")]
 audio_pitch_randomness = Vector2(0.98, 1.1)
 projectile = ExtResource("2_1bs4f")
+shell = ExtResource("3_ken8p")
 bullet_resource = SubResource("Resource_42m7w")
 shell_force = 1.08
 shell_marker = NodePath("shell_marker")

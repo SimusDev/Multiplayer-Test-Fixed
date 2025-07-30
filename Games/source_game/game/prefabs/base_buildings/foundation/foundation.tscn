@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq30mnl4ccb7e"]
+
+[ext_resource type="Texture2D" uid="uid://cedafnri3v7jj" path="res://Games/source_game/game/levels/source_flatgrass/3d/gm_flatgrass_2.png" id="1_0vqkk"]
+[ext_resource type="PackedScene" uid="uid://vkn5wykomtyq" path="res://Games/source_game/game/prefabs/base_buildings/wall/wall.tscn" id="2_fnets"]
+[ext_resource type="Script" uid="uid://dy4grxr5xpuy2" path="res://Games/source_game/game/prefabs/base_buildings/wall_grid.gd" id="3_crjlj"]
+[ext_resource type="Script" uid="uid://d03riostsw5hx" path="res://Games/source_game/game/prefabs/base_buildings/foundation_grid.gd" id="3_mwgfn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fnets"]
+size = Vector3(2.5, 1, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnets"]
+albedo_texture = ExtResource("1_0vqkk")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnets"]
+size = Vector3(0.7, 1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwgfn"]
+size = Vector3(2.4, 1, 1.25)
+
+[node name="foundation" type="Node3D"]
+
+[node name="mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_fnets")
+material = SubResource("StandardMaterial3D_fnets")
+
+[node name="wall" parent="." instance=ExtResource("2_fnets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+visible = false
+
+[node name="wall_grid1" type="Area3D" parent="." groups=["wall_grid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.3, 0)
+script = ExtResource("3_crjlj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_grid1"]
+shape = SubResource("BoxShape3D_fnets")
+
+[node name="snap" type="Node3D" parent="wall_grid1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.2, 1.7, 0)
+
+[node name="wall_grid2" type="Area3D" parent="." groups=["wall_grid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.3, 0)
+script = ExtResource("3_crjlj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_grid2"]
+shape = SubResource("BoxShape3D_fnets")
+
+[node name="snap" type="Node3D" parent="wall_grid2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.2, 1.7, -8.74228e-09)
+
+[node name="wall_grid3" type="Area3D" parent="." groups=["wall_grid"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.90067e-08, 0.3, -0.8)
+script = ExtResource("3_crjlj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_grid3"]
+shape = SubResource("BoxShape3D_fnets")
+
+[node name="snap" type="Node3D" parent="wall_grid3"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.2, 1.7, 8.74226e-09)
+
+[node name="wall_grid4" type="Area3D" parent="." groups=["wall_grid"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.02026e-08, 0.3, 0.8)
+script = ExtResource("3_crjlj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_grid4"]
+shape = SubResource("BoxShape3D_fnets")
+
+[node name="snap" type="Node3D" parent="wall_grid4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.2, 1.7, -8.74228e-09)
+
+[node name="foundation_grid1" type="Area3D" parent="." groups=["foundation_grid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7)
+script = ExtResource("3_mwgfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foundation_grid1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+shape = SubResource("BoxShape3D_mwgfn")
+
+[node name="snap" type="Node3D" parent="foundation_grid1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="foundation_grid2" type="Area3D" parent="." groups=["foundation_grid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("3_mwgfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foundation_grid2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+shape = SubResource("BoxShape3D_mwgfn")
+
+[node name="snap" type="Node3D" parent="foundation_grid2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="foundation_grid3" type="Area3D" parent="." groups=["foundation_grid"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 0)
+script = ExtResource("3_mwgfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foundation_grid3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+shape = SubResource("BoxShape3D_mwgfn")
+
+[node name="snap" type="Node3D" parent="foundation_grid3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31134e-08, 0, 0.5)
+
+[node name="foundation_grid4" type="Area3D" parent="." groups=["foundation_grid"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.7, 0, 0)
+script = ExtResource("3_mwgfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foundation_grid4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+shape = SubResource("BoxShape3D_mwgfn")
+
+[node name="snap" type="Node3D" parent="foundation_grid4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=129 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -70,6 +70,7 @@
 [ext_resource type="AudioStream" uid="uid://bos1qocyqmii8" path="res://sounds/hl2/player/footsteps/tile1.wav" id="36_efvha"]
 [ext_resource type="AudioStream" uid="uid://yks5khomtnq8" path="res://sounds/hl2/player/footsteps/tile2.wav" id="37_7lynq"]
 [ext_resource type="AudioStream" uid="uid://bcjcila2dj5f3" path="res://sounds/hl2/player/footsteps/tile3.wav" id="38_u7p5y"]
+[ext_resource type="PackedScene" uid="uid://cxaois3c1hpmp" path="res://Games/source_game/items/gm_toolgun/gm_toolgun.tscn" id="38_vsb7e"]
 [ext_resource type="AudioStream" uid="uid://ctf73fb8dp0b1" path="res://sounds/hl2/player/footsteps/tile4.wav" id="39_k6hwe"]
 [ext_resource type="AudioStream" uid="uid://bkfwsejc2mjdv" path="res://sounds/hl2/player/footsteps/chainlink1.wav" id="40_j3nm0"]
 [ext_resource type="AudioStream" uid="uid://uugrkw4b3sjl" path="res://sounds/hl2/player/footsteps/chainlink2.wav" id="41_mf063"]
@@ -475,8 +476,8 @@ script = ExtResource("7_4cdfe")
 shadow_enabled = true
 
 [node name="interact_raycast" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("player", "drag_item_link_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.912831)
-target_position = Vector3(0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.207389)
+target_position = Vector3(0, 0, -2.5)
 script = ExtResource("9_kou6u")
 player = NodePath("../..")
 drag_item_link_node = NodePath("../hands")
@@ -506,7 +507,7 @@ player_ui = NodePath("../../canvas")
 
 [node name="crowbar" parent="SourceCamera/item_container" instance=ExtResource("11_lhwgh")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999999, 0, 0, 0)
 visible = false
 strength = 15.0
 
@@ -522,6 +523,10 @@ transform = Transform3D(-1, 2.11003e-10, 1.4808e-07, 3.0559e-10, 1, -2.79397e-09
 
 [node name="aa_2308_km" parent="SourceCamera/item_container" instance=ExtResource("26_1l832")]
 transform = Transform3D(0.999549, -0.0174472, 0.0244322, 0.0174524, 0.999848, 0, -0.0244285, 0.0004264, 0.999701, -0.2, 0.188, -0.264)
+visible = false
+
+[node name="gm_toolgun" parent="SourceCamera/item_container" instance=ExtResource("38_vsb7e")]
+transform = Transform3D(0.997803, 0.000340216, 0.0662411, 0.00174447, 0.999504, -0.0314107, -0.066219, 0.0314573, 0.997308, -0.0868593, 0.192302, -0.121131)
 visible = false
 
 [node name="axe" parent="SourceCamera/item_container" instance=ExtResource("31_k6hwe")]

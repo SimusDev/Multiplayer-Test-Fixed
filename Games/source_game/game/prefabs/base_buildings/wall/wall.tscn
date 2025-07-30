@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://vkn5wykomtyq"]
+
+[ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="1_auanr"]
+[ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="2_feq7x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
+albedo_texture = ExtResource("1_auanr")
+normal_enabled = true
+normal_texture = ExtResource("2_feq7x")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_auanr"]
+material = SubResource("StandardMaterial3D_fywtf")
+size = Vector3(2.5, 3, 0.5)
+
+[node name="wall" type="Node3D"]
+
+[node name="mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_auanr")

@@ -66,6 +66,8 @@ folder_colors={
 
 props=""
 penetrable=""
+foundation_grid=""
+wall_grid=""
 
 [gui]
 
