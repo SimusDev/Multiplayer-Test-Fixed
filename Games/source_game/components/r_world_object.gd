@@ -10,6 +10,14 @@ class_name R_SourceWorldObject
 @export_group("World")
 @export var prefab: PackedScene : get = get_prefab
 
+@export_group("ItemStack")
+@export var itemstack_script: GDScript : get = get_itemstack_script
+
+func get_itemstack_script() -> GDScript:
+	if itemstack_script:
+		return itemstack_script
+	return SourceItemStack
+
 static var _references: Dictionary[String, R_SourceWorldObject] = {}
 static var _reference_list: Array[R_SourceWorldObject] = []
 
