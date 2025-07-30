@@ -1,19 +1,25 @@
-[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=7 format=3 uid="uid://3wl8oxwmp5ux"]
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=9 format=3]
 
-[ext_resource type="Script" uid="uid://chrfdjatuxh2l" path="res://addons/simusdev/network/SD_NetworkCacheSettings.gd" id="1_lvuwi"]
-[ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="2"]
-[ext_resource type="Script" uid="uid://bsn5pysgtogq7" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="2_lvuwi"]
-[ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="3"]
-
-[sub_resource type="Resource" id="Resource_lvuwi"]
-script = ExtResource("1_lvuwi")
-cache_resources = []
-metadata/_custom_type_script = "uid://chrfdjatuxh2l"
+[ext_resource type="Script" path="res://addons/simusdev/multiplayer/SD_MultiplayerSettings.gd" id="1"]
+[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkCacheSettings.gd" id="2"]
+[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="3"]
+[ext_resource type="Script" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="4"]
+[ext_resource type="Script" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="5"]
 
 [sub_resource type="Resource" id="Resource_2wia1"]
-script = ExtResource("2_lvuwi")
-enabled = true
-channels = ["main"]
+script = ExtResource("1")
+show_all_connected_players = true
+dedicated_server = false
+dedicated_server_port = 80
+
+[sub_resource type="Resource" id="Resource_me2gm"]
+script = ExtResource("2")
+cache_resources = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_m7xkw"]
+script = ExtResource("3")
+enabled = false
+channels = PackedStringArray("main")
 root_path = "/root/"
 global_tickrate = 64.0
 global_process = 1
@@ -22,7 +28,7 @@ compression = 2
 serializer_compression = 1
 serializer_min_bytes_to_compress = 500
 show_all_connected_players = true
-player_unique_names = true
+player_unique_names = false
 dedicated_server = false
 dedicated_server_port = 80
 dedicated_server_max_clients = 32
@@ -30,23 +36,22 @@ debug = true
 debug_callables = true
 debug_vars = true
 debug_cache = true
-cache = SubResource("Resource_lvuwi")
-metadata/_custom_type_script = "uid://bsn5pysgtogq7"
+cache = SubResource("Resource_me2gm")
 
 [resource]
-script = ExtResource("3")
-developer = "simusdev and zxcvlxd"
+script = ExtResource("5")
+developer = ""
 game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
 "create_singleton": true,
-"enabled": false,
+"enabled": true,
 "pause_when_ad_show": true
 })
 game = Dictionary[String, Variant]({
 "minimize_feature": false,
 "minimize_feature_on_release": true,
-"mute_audio_when_minimized": false,
+"mute_audio_when_minimized": true,
 "pause_when_minimized": false
 })
 console = Dictionary[String, Variant]({
@@ -54,7 +59,8 @@ console = Dictionary[String, Variant]({
 "enabled": true,
 "enabled_desktop_override": true,
 "gd_print": true,
-"hide_private_commands": true
+"hide_private_commands": true,
+"size": Vector2(768, 512)
 })
 audio = Dictionary[String, Variant]({
 "bus_volume_max": 1.0,
@@ -76,6 +82,7 @@ localization = Dictionary[String, Variant]({
 })
 localization_flags = Dictionary[String, Texture]({})
 localization_language_unique_name = Dictionary[String, String]({})
-popups_default_animations = Array[ExtResource("2")]([])
+popups_default_animations = Array[ExtResource("4")]([])
 tools = Array[PackedScene]([])
-network = SubResource("Resource_2wia1")
+network = SubResource("Resource_m7xkw")
+multiplayer = SubResource("Resource_2wia1")

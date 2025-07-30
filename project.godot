@@ -37,8 +37,6 @@ UI="*res://singletons/s_UI.tscn"
 GameSaver="*res://singletons/s_GameSaver.gd"
 SoundPlayer="*res://singletons/s_SoundPlayer.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
-GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
-GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
 
 [display]
 
@@ -51,7 +49,7 @@ project/assembly_name="Multiplayer-Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
 [file_customization]
 
@@ -61,7 +59,6 @@ folder_colors={
 "res://Games/source_game/": "gray",
 "res://addons/": "red",
 "res://game_components/": "orange",
-"res://rust/": "orange",
 "res://sourcelike_interface/": "gray"
 }
 
@@ -326,6 +323,14 @@ source.interact={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
+}
+mwheeldown={
+"deadzone": 0.2,
+"events": []
+}
+mwheelup={
+"deadzone": 0.2,
+"events": []
 }
 source.inventory={
 "deadzone": 0.2,
