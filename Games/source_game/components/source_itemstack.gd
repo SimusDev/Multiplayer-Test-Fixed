@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resource
 class_name SourceItemStack
 
 @export var _data: Dictionary = {
@@ -42,6 +42,15 @@ func get_quantity() -> int:
 static func create(from: Variant) -> SourceItemStack:
 	var result := SourceItemStack.new()
 	
+	if from is String:
+		var founded: R_SourceWorldObject = R_SourceWorldObject.get_by_id(from)
+		result.object = founded
+		if not founded:
+			result.object = R_SourceWorldObject.get_placeholder()
+			print(R_SourceWorldObject.get_placeholder())
+		return result
+		
+	
 	if from is SourceInitialItemStack:
 		result.object = from.get_object()
 		result.set_quantity(from.quantity)
@@ -51,15 +60,21 @@ static func create(from: Variant) -> SourceItemStack:
 	p.object = R_SourceWorldObject.get_placeholder()
 	return p
 
-static func serialize(item: SourceItemStack) -> Dictionary:
+static func serialize(item: SourceItemStack) -> Variant:
+	if not item:
+		return null
+	
 	var data := {}
 	data.d = item.get_data()
 	data.i = item.object.get_cached_id()
 	return data
 
-static func deserialize(data: Dictionary, inventory: SourceInventory) -> SourceItemStack:
+static func deserialize(data: Variant, inventory: SourceInventory) -> SourceItemStack:
+	if not data is Dictionary:
+		return null
+	
 	var item := SourceItemStack.new()
 	item._data = data.d
-	item.object = R_SourceWorldObject.get_by_cached_id(item.i)
+	item.object = R_SourceWorldObject.get_by_cached_id(data.i)
 	item._inventory = inventory
 	return item

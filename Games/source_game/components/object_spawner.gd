@@ -14,8 +14,8 @@ func _ready() -> void:
 		]
 	)
 
-
 var _queue: Dictionary[String, Node] = {}
+
 func _on_spawn_begin(node: Node, parent: Node, wish_transform: Variant, wish_name: String, path: String) -> void:
 	_queue[path] = node
 	SD_Network.call_func_on_server(_from_client, [path])
@@ -28,6 +28,9 @@ func _from_client(path: String) -> void:
 		var object: R_SourceWorldObject = R_SourceWorldObject.find_in(node)
 		if object:
 			data.obj_id = object.id
+		
+		if "transform" in node:
+			data.transform = node.transform
 		
 		SimusDev.console.write_info("%s syncing..." % path)
 		
@@ -44,11 +47,12 @@ func _recieve_data(path: String, data: Dictionary) -> void:
 		
 		var parent: Node = get_node_or_null(path.get_base_dir())
 		parent.add_child(node)
+		if "global_transform" in node:
+			node.set("transform", data.get("transform"))
 		
 		SimusDev.console.write_info("%s synced..." % path)
 		
-		#print(object)
-		#print(path.get_base_dir())
+		_queue.erase(path)
 		
 
 func _recieve_free(path: String) -> void:
