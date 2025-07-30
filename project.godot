@@ -37,8 +37,6 @@ UI="*res://singletons/s_UI.tscn"
 GameSaver="*res://singletons/s_GameSaver.gd"
 SoundPlayer="*res://singletons/s_SoundPlayer.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
-GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
-GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
 
 [display]
 
@@ -61,7 +59,6 @@ folder_colors={
 "res://Games/source_game/": "gray",
 "res://addons/": "red",
 "res://game_components/": "orange",
-"res://rust/": "orange",
 "res://sourcelike_interface/": "gray"
 }
 
