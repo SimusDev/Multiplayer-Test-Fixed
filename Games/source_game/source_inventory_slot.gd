@@ -5,6 +5,14 @@ var _inventory: SourceInventory
 
 @export var _data: Dictionary = {}
 
+var _item_id: int = -1
+
+func get_item() -> SourceItemStack:
+	return _inventory._get_item_by_id(_item_id)
+
+func is_free() -> bool:
+	return not get_item()
+
 func get_inventory() -> SourceInventory:
 	return _inventory
 

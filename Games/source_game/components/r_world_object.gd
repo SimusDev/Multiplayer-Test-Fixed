@@ -44,6 +44,9 @@ func register() -> void:
 	
 	if id.is_empty():
 		id = "%s.%s" % [get_section(), resource_path.get_file().get_basename()]
+	else:
+		id = "%s.%s" % [get_section(), custom_id]
+	
 	
 	if _references.has(id):
 		id += "_"
