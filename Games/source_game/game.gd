@@ -18,14 +18,14 @@ func _ready() -> void:
 	level_handler._load_level.connect(check_level)
 
 	instance = self
-	check_level()
+	check_level(null)
 
-func check_level():
+func check_level(_level):
 	if SD_Network.is_server():
 		mp_player_spawner = level_handler.current_level.get_node("player_spawner")
 
 func _on_peer_connected(_peer_id:int):
-	check_level()
+	check_level(null)
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	if SD_Network.is_server() and is_instance_valid(mp_player_spawner):

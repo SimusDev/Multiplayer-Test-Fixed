@@ -278,7 +278,7 @@ ceiling_detection = NodePath("../ceiling_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 
 [node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.101765, -0.0121732, -0.260568, -0.0112753, -0.279228, 0.0174485, -0.260609, 0.0168343, 0.100994, 0.264652, -0.0164549, -0.0119079)
+transform = Transform3D(-0.101765, -0.0121731, -0.260568, -0.0112751, -0.279228, 0.0174484, -0.260609, 0.0168342, 0.100994, 0.264652, -0.0164552, -0.0119083)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true

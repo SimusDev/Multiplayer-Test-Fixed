@@ -1,7 +1,7 @@
 class_name SourceLevelHandler extends Node
 
 signal _free_current_level
-signal _load_level
+signal _load_level(_level)
 
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
 
