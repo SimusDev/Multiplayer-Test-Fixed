@@ -9,6 +9,7 @@ func _ready() -> void:
 	console = SimusDev.console
 	
 	await singleton.initialized
+	singleton.register_object(self)
 	_initialized()
 
 func _initialized() -> void:

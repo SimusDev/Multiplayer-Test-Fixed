@@ -17,6 +17,11 @@ var max_channels: int = 0
 
 var _queue: Array[Dictionary] = []
 
+var _remote_sender_id: int = -1
+
+func get_remote_sender_id() -> int:
+	return _remote_sender_id
+
 func register_function(callable: Callable, options: Dictionary = {}) -> void:
 	var object: Object = callable.get_object()
 	get_registered_functions(object).set(callable.get_method(), options)
@@ -37,7 +42,6 @@ func __register_all_functions__(arr: Array[String], script: Script) -> void:
 			arr.append(method.name)
 	
 	__register_all_functions__(arr, script.get_base_script())
-
 
 func get_registered_functions(object: Object) -> Dictionary[String, Dictionary]:
 	if object.has_meta("_net_functions"):
@@ -125,11 +129,17 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("failed to call function on object: %s, %s!, object must inherit Node!" % [str(node), method])
 		return
 	
+	if !singleton.is_object_registered(node):
+		debug_print("failed to call function on unregistered object: %s, %s!, object must be registered!, use SD_Network.register_object()" % [str(node), method], SD_ConsoleCategories.ERROR)
+		return
+	
 	if (not is_function_registered(callable)) and not SD_Network.is_server():
 		debug_print("failed to call unregistered function: %s, %s!, use SD_Network.register_function() for func registration" % [str(node), method], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
+	
 	if peer == singleton.get_unique_id():
+		_remote_sender_id = peer
 		callable.callv(args)
 		return
 	
@@ -141,29 +151,42 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("cant call func(%s) on channel %s, because id is greater than max channels: %s" % [method, channel, max_channels], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
+	var path: NodePath = node.get_path()
 	var node_path: String = str(node.get_path()).replacen(singleton.settings.root_path, "")
 	
-	var _cached_id: int = 0
+	var _cached_id: int = singleton.cache.get_cached_nodes_by_path().get(path, -1)
+	
+	var serialized_args: Variant = SD_NetworkSerializer.parse(args)
 	
 	var packet: Dictionary = {
-		"p": node_path,
+		"n": _cached_id,
 		"m": method,
-		"a": SD_NetworkSerializer.parse(args),
+		"a": serialized_args,
 	}
 	
+	#print(type_string(typeof(serialized_args)))
 	
+	#print(var_to_bytes(serialized_args).size())
 	
-	#if _cached_id < 0:
-		#var queue_dict: Dictionary = {}
-		#queue_dict.packet = packet
-		#queue_dict.callmode = callmode
-		#queue_dict.channel_id = channel_id
-		#queue_dict.node_path = node_path
-		#queue_dict.peer = peer
-		#queue_dict.method = method
-		#_queue.append(queue_dict)
-		#debug_print("the method (%s) call on %s was been added to the queue because the cache node was not found! %s" % [method, str(peer), node_path], SD_ConsoleCategories.CATEGORY.WARNING)
-		#return
+	#print(var_to_bytes(packet).size())
+	
+	#print(var_to_bytes(_cached_id).size())
+	#print(var_to_bytes(method).size())
+	#print(var_to_bytes(SD_NetworkSerializer.parse(args)).size())
+	
+	#print(var_to_bytes(packet).size())
+	
+	if _cached_id < 0:
+		var queue_dict: Dictionary = {}
+		queue_dict.packet = packet
+		queue_dict.callmode = callmode
+		queue_dict.channel_id = channel_id
+		queue_dict.node_path = path
+		queue_dict.peer = peer
+		queue_dict.method = method
+		_queue.append(queue_dict)
+		debug_print("the method (%s) call on %s was been added to the queue because the cache node was not found! %s" % [method, str(peer), node_path], SD_ConsoleCategories.CATEGORY.WARNING)
+		return
 	
 	_call_func_on_queue(peer, singleton.get_unique_id(), packet, channel_id, callmode)
 	
@@ -186,23 +209,30 @@ func _call_func_on_queue(peer: int, from_peer: int, packet: Dictionary, channel_
 
 
 func _process(delta: float) -> void:
+	#print(_queue)
 	for data in _queue:
-		var node_path: String = data.node_path
-		var node: Node = get_node_or_null(node_path)
-		if node == null:
-			_queue.erase(data)
-			debug_print("queue node not found %s, cancelling the remote calling." % [node_path], SD_ConsoleCategories.CATEGORY.ERROR)
-			continue
+		var node_path: NodePath = data.node_path
+		#var node: Node = get_node_or_null(node_path)
+		#if node == null:
+			#_queue.erase(data)
+			#debug_print("queue node not found %s, cancelling the remote call." % [node_path], SD_ConsoleCategories.CATEGORY.ERROR)
+			#continue
 		
-		if true: #if SD_Network.is_node_cached(node):
-			var packet: Dictionary = data.packet
-			var callmode: int = data.callmode
-			var channel_id: int = data.channel_id
-			var peer: int = data.peer
-			var method: String = data.method
-			_call_func_on_queue(peer, singleton.get_unique_id(), packet, channel_id, callmode)
-			_queue.erase(data)
-			debug_print("trying calling method (%s) from queue on peer %s on node: %s" % [method, str(peer), node_path], SD_ConsoleCategories.CATEGORY.WARNING)
+		var net_id: int = singleton.cache.get_cached_id_by_path(node_path)
+		if net_id == -1:
+			return
+		
+		var packet: Dictionary = data.packet
+		var callmode: int = data.callmode
+		var channel_id: int = data.channel_id
+		var peer: int = data.peer
+		var method: String = data.method
+		
+		packet.n = net_id
+		
+		_call_func_on_queue(peer, singleton.get_unique_id(), packet, channel_id, callmode)
+		_queue.erase(data)
+		debug_print("trying call method (%s) from queue on peer %s on node: %s" % [method, str(peer), node_path], SD_ConsoleCategories.CATEGORY.WARNING)
 
 
 func call_func(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:
@@ -219,20 +249,26 @@ func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Netw
 	call_func_on(singleton.SERVER_ID, callable, args, callmode, channel)
 
 func _recieve_call_from_local(from_peer: int, packet: Dictionary) -> void:
-	#var cached_id: int = packet.get("cp", -1) as int
+	var cached_id: int = packet.get("n", -1) as int
+	if cached_id == -1:
+		debug_print("cant find cached node: %s" % str(cached_id), SD_ConsoleCategories.CATEGORY.ERROR)
+		return
+	
 	var root_path: String = singleton.settings.root_path
-	var node_path: String = root_path + packet.get("p", "") as String
+	#var node_path: String = root_path + packet.get("n", "") as String
 	var method: String = packet.get("m", "") as String
 	var args: Array = SD_NetworkDeserializer.parse(packet.get("a"))
 	
-	#var cached_path: String = SD_Array.get_value_from_array(get_cached_nodes(), cached_id, "") as String
-	#if cached_path.is_empty():
-		#debug_print("cant find cached node: %s" % str(cached_id), SD_ConsoleCategories.CATEGORY.ERROR)
-		#return
+	var cached_path: String = str(singleton.cache.get_cached_path_by_id(cached_id))
 	
-	var node: Node = get_node_or_null(node_path)
+	var node: Node = get_node_or_null(cached_path)
 	
 	if node:
+		if !singleton.is_object_registered(node):
+			debug_print("failed to call function on unregistered object: %s, %s!, object must be registered!, use SD_Network.register_object()" % [str(node), method], SD_ConsoleCategories.ERROR)
+			return
+		
+		_remote_sender_id = from_peer
 		var callable: Callable = Callable(node, method)
 		if from_peer == SD_Network.SERVER_ID:
 			callable.callv(args)

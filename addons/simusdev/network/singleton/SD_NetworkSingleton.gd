@@ -45,7 +45,7 @@ var _s_network_deserializer: SD_NetworkDeserializer
 
 var username: String = "player"
 
-var _cache: Dictionary[String, Array] = {}
+var _cache: Dictionary[String, Variant] = {}
 
 var _active: bool = false
 
@@ -60,13 +60,13 @@ func set_active(value: bool) -> void:
 	_active = value
 	on_active_status_changed.emit(_active)
 
-func get_cached_resources() -> Array[String]:
-	return _cache.get_or_add("r", [] as Array[String]) as Array[String]
+func get_cached_resources() -> PackedStringArray:
+	return _cache.get_or_add("r", PackedStringArray()) as PackedStringArray
 
-func cache_set(new: Dictionary[String, Array]) -> void:
+func cache_set(new: Dictionary[String, Variant]) -> void:
 	_cache = new
 
-func cache_get() -> Dictionary[String, Array]:
+func cache_get() -> Dictionary[String, Variant]:
 	return _cache
 
 func get_game_info() -> Dictionary:
@@ -90,7 +90,8 @@ func get_nickname() -> String:
 
 func is_server() -> bool:
 	if is_active():
-		return multiplayer.is_server()
+		if multiplayer:
+			return multiplayer.is_server()
 	return true
 
 func is_client() -> bool:
@@ -105,7 +106,8 @@ func set_dedicated_server(value: bool) -> SD_NetworkSingleton:
 
 func get_unique_id() -> int:
 	if is_active():
-		return multiplayer.get_unique_id()
+		if multiplayer:
+			return multiplayer.get_unique_id()
 	return SERVER_ID
 
 func get_peers() -> PackedInt32Array:
@@ -197,10 +199,36 @@ func terminate_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, me
 			if (_peer.get_connection_status() == _peer.CONNECTION_CONNECTED) or (_peer.get_connection_status() == _peer.CONNECTION_CONNECTING):
 				SD_NetConnectionErrors.set_error(error, message)
 				_peer.close()
+				set_active(false)
 			
-
 
 func debug_print(text, category: int = 0) -> void:
 	if settings.debug:
 		var t: String = "[Network] %s" % str(text)
 		console.write(t, category)
+
+func register_object(node: Node) -> void:
+	if is_object_registered(node):
+		return
+	
+	if not node.is_inside_tree():
+		await node.tree_entered
+	
+	node.set_meta("_networked", true)
+	node.tree_exiting.connect(_on_net_object_tree_exiting.bind(node))
+	cache.try_cache_node(node)
+
+func _on_net_object_tree_exiting(node: Node) -> void:
+	if is_object_registered(node):
+		if node.is_queued_for_deletion():
+			unregister_object(node)
+			cache.try_uncache_node(node.get_path())
+
+func is_object_registered(node: Node) -> bool:
+	if is_instance_valid(node):
+		return node.has_meta("_networked")
+	return false
+
+func unregister_object(node: Node) -> void:
+	if is_object_registered(node):
+		node.remove_meta("_networked")

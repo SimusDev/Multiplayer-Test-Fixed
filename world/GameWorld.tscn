@@ -18,10 +18,10 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="GameWorld" type="Node"]
+[node name="GW" type="Node"]
 script = ExtResource("1_uvpr4")
 
-[node name="MapSpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("spawn_at")]
+[node name="M" type="Node" parent="." node_paths=PackedStringArray("spawn_at")]
 script = ExtResource("2_xbm2x")
 spawn_at = NodePath(".")
 metadata/_custom_type_script = "uid://cg20f3igakhjf"

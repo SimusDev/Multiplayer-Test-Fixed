@@ -112,6 +112,13 @@ func is_on_floor() -> bool:
 	return actor.is_on_floor()
 
 func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_functions(
+		[
+			_server_clear_inputs
+		]
+	)
+	
 	_handle_input.append(key_forward)
 	_handle_input.append(key_backward)
 	_handle_input.append(key_left)
@@ -146,7 +153,9 @@ func _ready() -> void:
 
 
 func _on_interface_opened_closed(node:Node, status:bool):
-	if status: add_disable_priority()
+	if status: 
+		add_disable_priority()
+		clear_inputs()
 	else:
 		subtract_disable_priority()
 
@@ -216,6 +225,15 @@ func _server_set_input_pressed(action: String, pressed: bool) -> void:
 
 func _is_input_pressed(action: String) -> bool:
 	return _server_actions.get(action, false) as bool
+
+func clear_inputs() -> void:
+	if server_authorative:
+		SD_Network.call_func_on_server(_server_clear_inputs)
+	else:
+		_server_actions.clear()
+
+func _server_clear_inputs() -> void:
+	_server_actions.clear()
 
 func _handle_ground_physics(delta: float) -> void:
 	#actor.velocity.x = wish_direction.x * get_wish_move_speed()

@@ -21,13 +21,14 @@ func _process(delta: float) -> void:
 	for p in _list:
 		if p.tickrate_mode == p.TICKRATE_MODE.IDLE:
 			_update(p, delta)
-			_interpolate(p, delta)
+		
+		_interpolate(p, delta)
 
 func _physics_process(delta: float) -> void:
 	for p in _list:
 		if p.tickrate_mode == p.TICKRATE_MODE.PHYSICS:
 			_update(p, delta)
-			_interpolate(p, delta)
+			#_interpolate(p, delta)
 
 func synchronize(property: SD_NetSyncedProperty, at_start: bool = false) -> void:
 	if at_start and not SD_Network.is_server():
@@ -107,6 +108,9 @@ func _interpolate_rotation(rotation: Variant, to: Variant, delta: float) -> Vari
 	return rotation
 
 func _interpolate(property: SD_NetSyncedProperty, delta: float) -> void:
+	if not property.interpolation_enabled:
+		return
+	
 	var node: Node = _synchronizer.get_node(property.node_path)
 	var synced: Dictionary[String, Variant] = _synchronizer.get_synced_data(node)
 	
@@ -115,11 +119,15 @@ func _interpolate(property: SD_NetSyncedProperty, delta: float) -> void:
 		if INTERPOLATING_VARTYPES.has(typeof(synced_value)):
 			var node_value: Variant = node.get(p_name)
 			
+			var lerp_speed: float = property.interpolation_speed * delta
+			#lerp_speed *= 0.8
+			#print(lerp_speed)
+			
 			if p_name in INTERPOLATING_PROPERTY_METHODS:
 				var callable: Callable = INTERPOLATING_PROPERTY_METHODS[p_name]
-				node_value = callable.call(node_value, synced_value, property.interpolation_speed * delta) 
+				node_value = callable.call(node_value, synced_value, lerp_speed) 
 			else:
-				node_value = lerp(node_value, synced_value, property.interpolation_speed * delta)
+				node_value = lerp(node_value, synced_value, lerp_speed)
 			
 			node.set(p_name, node_value)
 	

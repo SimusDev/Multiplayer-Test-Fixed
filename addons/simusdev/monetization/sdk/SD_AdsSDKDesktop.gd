@@ -23,3 +23,7 @@ func _show_interstitial_placeholder_() -> void:
 
 func _show_reward_placeholder_() -> void:
 	_interface.open_ad(_interface.reward_scene)
+
+func _load_and_show_reward_placeholder_() -> void:
+	await SimusDev.get_tree().create_timer(1).timeout
+	show_reward()

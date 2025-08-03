@@ -37,13 +37,13 @@ static func get_unique_id() -> int:
 static func get_multiplayer_authority() -> int:
 	return get_unique_id()
 
-static func get_cached_resources() -> Array[String]:
+static func get_cached_resources() -> PackedStringArray:
 	return singleton.get_cached_resources()
 
 static func cache_set(new: Dictionary[String, Array]) -> void:
 	singleton.cache_set(new)
 
-static func cache_get() -> Dictionary[String, Array]:
+static func cache_get() -> Dictionary[String, Variant]:
 	return singleton.cache_get()
 
 static func get_peers() -> PackedInt32Array:
@@ -115,3 +115,15 @@ static func var_send_to(peer: int, node: Node, properties: PackedStringArray, ca
 
 static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
 	return singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)
+
+static func get_remote_sender_id() -> int:
+	return singleton.callables.get_remote_sender_id()
+
+static func register_object(node: Node) -> void:
+	singleton.register_object(node)
+
+static func unregister_object(node: Node) -> void:
+	singleton.unregister_object(node)
+
+static func is_object_registered(node: Node) -> bool:
+	return singleton.is_object_registered(node)

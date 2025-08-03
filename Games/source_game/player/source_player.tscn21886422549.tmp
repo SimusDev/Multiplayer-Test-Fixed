@@ -1,0 +1,487 @@
+[gd_scene load_steps=123 format=3 uid="uid://ckgrvgsjahpj4"]
+
+[ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="2_7lw5d"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="2_d1rl6"]
+[ext_resource type="PackedScene" uid="uid://cq0fecxbg4nlf" path="res://Games/source_game/player/ui/player_ui.tscn" id="2_inl2s"]
+[ext_resource type="AudioStream" uid="uid://cblntyohb33mu" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet1.wav" id="5_6qnpk"]
+[ext_resource type="AudioStream" uid="uid://vveni31yjbmd" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet2.wav" id="6_kal50"]
+[ext_resource type="AudioStream" uid="uid://jp5jqyr0ld1k" path="res://sounds/death/death1.wav" id="7_3yygh"]
+[ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="7_4cdfe"]
+[ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="7_6qnpk"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
+[ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="7_suq2s"]
+[ext_resource type="AudioStream" uid="uid://p0185rphsnhs" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet3.wav" id="7_x0g0d"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="8_0gjdh"]
+[ext_resource type="AudioStream" uid="uid://bpc30dxy6kkl8" path="res://sounds/death/death3.wav" id="8_efvha"]
+[ext_resource type="AudioStream" uid="uid://cvi2jhn54tf6i" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet4.wav" id="8_qmy00"]
+[ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
+[ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
+[ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="11_lhwgh"]
+[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
+[ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="12_j3nm0"]
+[ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="12_sf1eh"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="13_3yygh"]
+[ext_resource type="Shape3D" uid="uid://dvvatkk8j3tge" path="res://Games/source_game/player/collisions/source_player_collision_crouch.tres" id="13_4d7pv"]
+[ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="13_kou6u"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="14_efvha"]
+[ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="14_kim0n"]
+[ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="14_x0g0d"]
+[ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="15_inl2s"]
+[ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="15_qmy00"]
+[ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="16_kal50"]
+[ext_resource type="AudioStream" uid="uid://dnsq0ogn2jeqy" path="res://sounds/hl2/player/footsteps/gravel1.wav" id="16_lhwgh"]
+[ext_resource type="AudioStream" uid="uid://dq3nelmioi1vl" path="res://sounds/hl2/player/footsteps/gravel2.wav" id="17_2q6gp"]
+[ext_resource type="AudioStream" uid="uid://covvae6mj6fp4" path="res://sounds/hl2/player/footsteps/gravel3.wav" id="18_suq2s"]
+[ext_resource type="AudioStream" uid="uid://bbw8lofjwplcd" path="res://sounds/hl2/player/footsteps/gravel4.wav" id="19_bnn5b"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="20_j3nm0"]
+[ext_resource type="AudioStream" uid="uid://bxblu0hifdh4u" path="res://sounds/hl2/player/footsteps/dirt1.wav" id="20_rpvag"]
+[ext_resource type="AudioStream" uid="uid://dieq0hhk3inw1" path="res://sounds/hl2/player/footsteps/dirt2.wav" id="21_7mm0c"]
+[ext_resource type="AudioStream" uid="uid://m4lg17oy25uh" path="res://sounds/hl2/player/footsteps/dirt3.wav" id="22_fiyss"]
+[ext_resource type="Script" uid="uid://dcq3rk7e60xye" path="res://Games/source_game/components/item_container.gd" id="23_qmy00"]
+[ext_resource type="AudioStream" uid="uid://2s6kq8geons3" path="res://sounds/hl2/player/footsteps/dirt4.wav" id="23_yxgei"]
+[ext_resource type="AudioStream" uid="uid://kng46fh2h032" path="res://sounds/hl2/player/footsteps/mud1.wav" id="24_kp36w"]
+[ext_resource type="AudioStream" uid="uid://dwhupyasucyfb" path="res://sounds/hl2/player/footsteps/mud2.wav" id="25_utg5q"]
+[ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="26_1l832"]
+[ext_resource type="PackedScene" uid="uid://bgj4wemxqf21y" path="res://Games/source_game/items/guitar/guitar.tscn" id="26_5jte2"]
+[ext_resource type="AudioStream" uid="uid://b6n7utojgf2ws" path="res://sounds/hl2/player/footsteps/mud3.wav" id="26_6qnpk"]
+[ext_resource type="Script" uid="uid://beeaaqggu6nod" path="res://addons/simusdev/components/interactables/W_Interactor3D.gd" id="26_mf063"]
+[ext_resource type="AudioStream" uid="uid://ckgpko78avrt1" path="res://sounds/hl2/player/footsteps/mud4.wav" id="27_kal50"]
+[ext_resource type="AudioStream" uid="uid://dmusj0kfab4ym" path="res://sounds/hl2/player/footsteps/sand1.wav" id="28_x0g0d"]
+[ext_resource type="AudioStream" uid="uid://j2retdoqw78y" path="res://sounds/hl2/player/footsteps/sand2.wav" id="29_qmy00"]
+[ext_resource type="AudioStream" uid="uid://hftmap0wrt3x" path="res://sounds/hl2/player/footsteps/sand3.wav" id="30_j431o"]
+[ext_resource type="AudioStream" uid="uid://c6q16mrbw1cpv" path="res://sounds/hl2/player/footsteps/sand4.wav" id="31_1l832"]
+[ext_resource type="PackedScene" uid="uid://5hggub5g64d2" path="res://Games/source_game/items/ak_47/ak_47.tscn" id="31_7lynq"]
+[ext_resource type="PackedScene" uid="uid://dp4g8b6hojp73" path="res://Games/source_game/items/axe/axe.tscn" id="31_k6hwe"]
+[ext_resource type="AudioStream" uid="uid://cqs7k2tjkdjjx" path="res://sounds/hl2/player/footsteps/concrete1.wav" id="32_5jte2"]
+[ext_resource type="AudioStream" uid="uid://bdiboxh5k3r35" path="res://sounds/hl2/player/footsteps/concrete2.wav" id="33_4d7pv"]
+[ext_resource type="AudioStream" uid="uid://bwer8p2x4sw3o" path="res://sounds/hl2/player/footsteps/concrete3.wav" id="34_krprw"]
+[ext_resource type="AudioStream" uid="uid://ctk4fa7resa76" path="res://sounds/hl2/player/footsteps/concrete4.wav" id="35_3yygh"]
+[ext_resource type="AudioStream" uid="uid://bos1qocyqmii8" path="res://sounds/hl2/player/footsteps/tile1.wav" id="36_efvha"]
+[ext_resource type="AudioStream" uid="uid://yks5khomtnq8" path="res://sounds/hl2/player/footsteps/tile2.wav" id="37_7lynq"]
+[ext_resource type="AudioStream" uid="uid://bcjcila2dj5f3" path="res://sounds/hl2/player/footsteps/tile3.wav" id="38_u7p5y"]
+[ext_resource type="AudioStream" uid="uid://ctf73fb8dp0b1" path="res://sounds/hl2/player/footsteps/tile4.wav" id="39_k6hwe"]
+[ext_resource type="AudioStream" uid="uid://bkfwsejc2mjdv" path="res://sounds/hl2/player/footsteps/chainlink1.wav" id="40_j3nm0"]
+[ext_resource type="AudioStream" uid="uid://uugrkw4b3sjl" path="res://sounds/hl2/player/footsteps/chainlink2.wav" id="41_mf063"]
+[ext_resource type="AudioStream" uid="uid://bmn6kyp8aun32" path="res://sounds/hl2/player/footsteps/chainlink3.wav" id="42_3qhl4"]
+[ext_resource type="AudioStream" uid="uid://50jgod7m8wqd" path="res://sounds/hl2/player/footsteps/chainlink4.wav" id="43_fucap"]
+[ext_resource type="AudioStream" uid="uid://b88cmx1vla6li" path="res://sounds/hl2/player/footsteps/duct1.wav" id="44_ssngh"]
+[ext_resource type="AudioStream" uid="uid://c0hd6gj7h6536" path="res://sounds/hl2/player/footsteps/duct2.wav" id="45_ajwf6"]
+[ext_resource type="AudioStream" uid="uid://bgrag7j0tc5cb" path="res://sounds/hl2/player/footsteps/duct3.wav" id="46_ax0ug"]
+[ext_resource type="AudioStream" uid="uid://cpsaufq4j2phi" path="res://sounds/hl2/player/footsteps/duct4.wav" id="47_vsb7e"]
+[ext_resource type="AudioStream" uid="uid://dj8iqcpisaql5" path="res://sounds/hl2/player/footsteps/metal1.wav" id="48_ji8mb"]
+[ext_resource type="AudioStream" uid="uid://c7tqtsj4iqqdk" path="res://sounds/hl2/player/footsteps/metal2.wav" id="49_nyu7s"]
+[ext_resource type="AudioStream" uid="uid://buwditvoljv7a" path="res://sounds/hl2/player/footsteps/metal3.wav" id="50_0td7v"]
+[ext_resource type="AudioStream" uid="uid://b07kngqpjlxt" path="res://sounds/hl2/player/footsteps/metal4.wav" id="51_05f30"]
+[ext_resource type="AudioStream" uid="uid://ue08qlxmb6h2" path="res://sounds/hl2/player/footsteps/metalgrate1.wav" id="52_xjyrg"]
+[ext_resource type="AudioStream" uid="uid://bs3uvkty43ha6" path="res://sounds/hl2/player/footsteps/metalgrate2.wav" id="53_555si"]
+[ext_resource type="AudioStream" uid="uid://747b6ad7q3ne" path="res://sounds/hl2/player/footsteps/metalgrate3.wav" id="54_kpjcl"]
+[ext_resource type="AudioStream" uid="uid://dxg30xetr1762" path="res://sounds/hl2/player/footsteps/metalgrate4.wav" id="55_yrxvb"]
+[ext_resource type="AudioStream" uid="uid://wsiwrjrfh17v" path="res://sounds/hl2/player/footsteps/wood1.wav" id="56_ghaiv"]
+[ext_resource type="AudioStream" uid="uid://dj4j8hjdpr48w" path="res://sounds/hl2/player/footsteps/wood2.wav" id="57_w0g4y"]
+[ext_resource type="AudioStream" uid="uid://x43goxqclq3d" path="res://sounds/hl2/player/footsteps/wood3.wav" id="58_uup8u"]
+[ext_resource type="AudioStream" uid="uid://dfbtndtene1ar" path="res://sounds/hl2/player/footsteps/wood4.wav" id="59_ffmj6"]
+[ext_resource type="AudioStream" uid="uid://ccnbxrrpecjcy" path="res://sounds/hl2/player/footsteps/woodpanel1.wav" id="60_8t8m6"]
+[ext_resource type="AudioStream" uid="uid://blcw0kklb4a8a" path="res://sounds/hl2/player/footsteps/woodpanel2.wav" id="61_2kbkh"]
+[ext_resource type="AudioStream" uid="uid://duoxhrycjjo41" path="res://sounds/hl2/player/footsteps/woodpanel3.wav" id="62_dutmd"]
+[ext_resource type="AudioStream" uid="uid://c55bum61d7v80" path="res://sounds/hl2/player/footsteps/woodpanel4.wav" id="63_tm2k5"]
+[ext_resource type="AudioStream" uid="uid://ermstv8itlvn" path="res://sounds/hl2/player/footsteps/ladder1.wav" id="64_xunsx"]
+[ext_resource type="AudioStream" uid="uid://cwvh0uimcsynj" path="res://sounds/hl2/player/footsteps/ladder2.wav" id="65_n6g3j"]
+[ext_resource type="AudioStream" uid="uid://dd4kwjo5s72g7" path="res://sounds/hl2/player/footsteps/ladder3.wav" id="66_lol0p"]
+[ext_resource type="AudioStream" uid="uid://cv84usba8fnqi" path="res://sounds/hl2/player/footsteps/ladder4.wav" id="67_ojkre"]
+[ext_resource type="AudioStream" uid="uid://c7bpo8hr5w1p" path="res://sounds/hl2/player/footsteps/wade1.wav" id="68_wxr10"]
+[ext_resource type="AudioStream" uid="uid://dm3uofkhd0y08" path="res://sounds/hl2/player/footsteps/wade2.wav" id="69_663cx"]
+[ext_resource type="AudioStream" uid="uid://bcggcmemie6j3" path="res://sounds/hl2/player/footsteps/wade3.wav" id="70_feli0"]
+[ext_resource type="AudioStream" uid="uid://drshxt65nb3uv" path="res://sounds/hl2/player/footsteps/wade4.wav" id="71_rvt2t"]
+[ext_resource type="AudioStream" uid="uid://ckwhq2ujb8u6r" path="res://sounds/hl2/player/footsteps/wade5.wav" id="72_xbqvd"]
+[ext_resource type="AudioStream" uid="uid://bi6wtfsofs31p" path="res://sounds/hl2/player/footsteps/wade6.wav" id="73_6gamx"]
+[ext_resource type="AudioStream" uid="uid://c5scqofir6ogc" path="res://sounds/hl2/player/footsteps/wade7.wav" id="74_1oyyu"]
+[ext_resource type="AudioStream" uid="uid://bq2wci3q0phs3" path="res://sounds/hl2/player/footsteps/wade8.wav" id="75_ud2iu"]
+[ext_resource type="AudioStream" uid="uid://bt2700chp1du4" path="res://sounds/hl2/player/footsteps/slosh1.wav" id="76_2ks7t"]
+[ext_resource type="AudioStream" uid="uid://4ma5b6x7fokl" path="res://sounds/hl2/player/footsteps/slosh2.wav" id="77_77jy0"]
+[ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="78_ia2t2"]
+[ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="79_l7c0e"]
+[ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://Games/source_game/game/3dmodels/dr_kleiner/animated_model.tscn" id="81_kim0n"]
+[ext_resource type="PackedScene" uid="uid://b5x2sct5a26u8" path="res://cheat/cheatcommands.tscn" id="100_4d7pv"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="105_u7p5y"]
+[ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/soucre_interactable.gd" id="109_fucap"]
+[ext_resource type="Script" uid="uid://dar7l6igeudpk" path="res://addons/simusdev/components/interactables/W_Interactable.gd" id="110_ssngh"]
+
+[sub_resource type="Resource" id="Resource_7lynq"]
+script = ExtResource("13_3yygh")
+properties = PackedStringArray("transform")
+interpolation_enabled = true
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_u7p5y"]
+script = ExtResource("13_3yygh")
+properties = PackedStringArray("transform")
+interpolation_enabled = true
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("../SourceCamera")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_k6hwe"]
+script = ExtResource("13_3yygh")
+properties = PackedStringArray("velocity")
+interpolation_enabled = false
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_j3nm0"]
+script = ExtResource("13_3yygh")
+properties = PackedStringArray("transform")
+interpolation_enabled = false
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("../SourceCamera/hands")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_mf063"]
+script = ExtResource("14_efvha")
+_list = Array[ExtResource("13_3yygh")]([SubResource("Resource_7lynq"), SubResource("Resource_u7p5y"), SubResource("Resource_k6hwe"), SubResource("Resource_j3nm0")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1l832"]
+radius = 0.335526
+
+[sub_resource type="Gradient" id="Gradient_4d7pv"]
+colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_krprw"]
+frequency = 0.0628
+domain_warp_amplitude = 29.365
+domain_warp_frequency = 22.375
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 10
+domain_warp_fractal_lacunarity = 10.83
+domain_warp_fractal_gain = 10.845
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kim0n"]
+color_ramp = SubResource("Gradient_4d7pv")
+noise = SubResource("FastNoiseLite_krprw")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_k6hwe"]
+height = 0.845215
+radius = 0.345215
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j3nm0"]
+height = 0.853492
+radius = 0.34375
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mf063"]
+height = 0.28368
+radius = 0.163574
+
+[node name="source_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "canvas", "model", "interact_raycast", "footsteps_component")]
+floor_max_angle = 1.13446
+script = ExtResource("1_4cdfe")
+health = NodePath("SourceHealth")
+take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
+death_assets = Array[AudioStream]([ExtResource("7_3yygh"), ExtResource("8_efvha")])
+movement = NodePath("SourceMovement")
+camera = NodePath("SourceCamera")
+max_safe_fall_speed = 15.0
+ragdoll_model = ExtResource("7_6qnpk")
+player_ui = ExtResource("2_inl2s")
+canvas = NodePath("canvas")
+model = NodePath("W_AnimatedModel3D")
+interact_raycast = NodePath("SourceCamera/interact_raycast")
+footsteps_component = NodePath("footsteps")
+death_camera = ExtResource("11_efvha")
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("12_j3nm0")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"
+
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("12_4d7pv")
+_data = SubResource("Resource_mf063")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+shape = ExtResource("12_5jte2")
+debug_color = Color(0.341176, 0.486275, 1, 1)
+
+[node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("7_suq2s")
+player = NodePath("..")
+max_safe_fall_speed = 15.0
+hard_grounding_sounds = Array[AudioStream]([ExtResource("14_x0g0d"), ExtResource("15_qmy00")])
+metadata/_custom_type_script = "uid://dvv35phe3qh7s"
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("20_j3nm0")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("16_kal50")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://4q60q717rxsh"
+
+[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible"]
+shape = SubResource("CapsuleShape3D_1l832")
+debug_color = Color(0.341176, 0.486275, 1, 0)
+
+[node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
+actor = NodePath("..")
+_move_speed = 5.0
+_crouch_speed = 2.5
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="SourceCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("2_d1rl6")]
+camera = NodePath("../SourceCamera")
+movement = NodePath("../SourceMovement")
+collision_normal = NodePath("../collision_normal")
+crouch_shape = ExtResource("13_4d7pv")
+normal_shape = ExtResource("12_5jte2")
+ceiling_detection = NodePath("../ceiling_raycast")
+crouch_camera_position = NodePath("../crouch_camera_pos")
+
+[node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.107638, -0.0149752, -0.25805, -0.00827379, -0.279187, 0.0196529, -0.258352, 0.0151802, 0.106883, 0.262045, -0.0239993, -0.0251888)
+bone_name = "mixamorig_RightHand"
+bone_idx = 34
+use_external_skeleton = true
+external_skeleton = NodePath("../W_AnimatedModel3D/model3d/Skeleton3D")
+
+[node name="model_item_container" type="Node3D" parent="right_hand_attachment"]
+transform = Transform3D(-0.192886, 2.47279, -0.313238, -0.158075, -0.325677, -2.47365, -2.48753, -0.171047, 0.181482, 0.150291, 0.525182, 0.0341337)
+
+[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_7lw5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+body = NodePath("..")
+
+[node name="W_Interactor3D" type="Node" parent="SourceCamera" node_paths=PackedStringArray("root", "raycast")]
+script = ExtResource("26_mf063")
+root = NodePath("../..")
+raycast = NodePath("../interact_raycast")
+input_action = "source.interact"
+multiplayer_authorative = true
+metadata/_custom_type_script = "uid://beeaaqggu6nod"
+
+[node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
+light_projector = SubResource("NoiseTexture2D_kim0n")
+shadow_enabled = true
+spot_range = 7.82003
+spot_angle = 31.8552
+script = ExtResource("7_4cdfe")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SourceCamera/flashlight"]
+shadow_enabled = true
+
+[node name="interact_raycast" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("player", "drag_item_link_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+target_position = Vector3(0, 0, -1.5)
+collide_with_areas = true
+script = ExtResource("9_kou6u")
+player = NodePath("../..")
+drag_item_link_node = NodePath("../hands")
+
+[node name="hands" type="Marker3D" parent="SourceCamera"]
+
+[node name="item_container" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("player", "model_item_container", "player_ui")]
+transform = Transform3D(0.997361, -0.0722082, -0.00733578, 0.0721557, 0.997371, -0.00718117, 0.00783468, 0.0066328, 0.999948, 0.407259, -0.417902, -0.376351)
+script = ExtResource("23_qmy00")
+player = NodePath("../..")
+model_item_container = NodePath("../../right_hand_attachment/model_item_container")
+player_ui = NodePath("../../canvas")
+
+[node name="crowbar" parent="SourceCamera/item_container" instance=ExtResource("11_lhwgh")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
+visible = false
+strength = 15.0
+
+[node name="ak_47" parent="SourceCamera/item_container" instance=ExtResource("31_7lynq")]
+transform = Transform3D(0.999743, 0.000435539, 0.0226831, 0, 0.999815, -0.0191974, -0.0226873, 0.0191925, 0.999558, -0.233273, 0.272573, 0.0750237)
+visible = false
+
+[node name="right_hand_pos" parent="SourceCamera/item_container/ak_47/root" index="2"]
+transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
+
+[node name="arms" parent="SourceCamera/item_container/ak_47" index="10"]
+transform = Transform3D(-1, 2.11003e-10, 1.4808e-07, 3.0559e-10, 1, -2.79397e-09, -1.50874e-07, -1.39698e-09, -1, -0.08456, -0.300802, 0.291285)
+
+[node name="aa_2308_km" parent="SourceCamera/item_container" instance=ExtResource("26_1l832")]
+transform = Transform3D(0.999549, -0.0174472, 0.0244322, 0.0174524, 0.999848, 0, -0.0244285, 0.0004264, 0.999701, -0.2, 0.188, -0.264)
+visible = false
+
+[node name="axe" parent="SourceCamera/item_container" instance=ExtResource("31_k6hwe")]
+transform = Transform3D(1, 3.74312e-08, 9.31323e-10, -8.32842e-08, 0.999999, 9.77889e-09, -4.65661e-09, -1.02445e-08, 0.999999, -0.105776, 0.23412, -0.118438)
+visible = false
+
+[node name="guitar" parent="SourceCamera/item_container" instance=ExtResource("26_5jte2")]
+transform = Transform3D(0.999986, -0.00512843, 0.000934996, 0.00496886, 0.991946, 0.126563, -0.00157652, -0.126556, 0.991958, -0.35, -0.4, 0.4)
+visible = false
+
+[node name="arms_item" type="Marker3D" parent="SourceCamera"]
+transform = Transform3D(-0.968148, -0.227836, -0.103831, -0.241849, 0.958289, 0.152289, 0.0648032, 0.172549, -0.982867, 0.293641, -0.517513, -0.402066)
+
+[node name="ceiling_raycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_camera_pos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("105_u7p5y")
+health = NodePath("../SourceHealth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320068, 0)
+shape = SubResource("CylinderShape3D_k6hwe")
+
+[node name="hitbox_legs" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("105_u7p5y")
+health = NodePath("../SourceHealth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.532132, 0)
+shape = SubResource("CylinderShape3D_j3nm0")
+
+[node name="hitbox_head" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("105_u7p5y")
+health = NodePath("../SourceHealth")
+damage_multiplier = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886506, 0)
+shape = SubResource("CylinderShape3D_mf063")
+
+[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true", "authority_false")]
+script = ExtResource("7_ilpss")
+hide_at_start = true
+authority_true = [NodePath("../W_AnimatedModel3D"), NodePath("../nickname"), NodePath("../right_hand_attachment/model_item_container")]
+authority_false = [NodePath("../SourceCamera/item_container")]
+
+[node name="nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("8_0gjdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+authority_node = NodePath("..")
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("11_8sjbn")
+player = NodePath("..")
+grass = Array[AudioStream]([ExtResource("12_sf1eh"), ExtResource("13_kou6u"), ExtResource("14_kim0n"), ExtResource("15_inl2s")])
+gravel = Array[AudioStream]([ExtResource("16_lhwgh"), ExtResource("17_2q6gp"), ExtResource("18_suq2s"), ExtResource("19_bnn5b")])
+dirt = Array[AudioStream]([ExtResource("20_rpvag"), ExtResource("21_7mm0c"), ExtResource("22_fiyss"), ExtResource("23_yxgei")])
+mud = Array[AudioStream]([ExtResource("24_kp36w"), ExtResource("25_utg5q"), ExtResource("26_6qnpk"), ExtResource("27_kal50")])
+sand = Array[AudioStream]([ExtResource("28_x0g0d"), ExtResource("29_qmy00"), ExtResource("30_j431o"), ExtResource("31_1l832")])
+concrete = Array[AudioStream]([ExtResource("32_5jte2"), ExtResource("33_4d7pv"), ExtResource("34_krprw"), ExtResource("35_3yygh")])
+tile = Array[AudioStream]([ExtResource("36_efvha"), ExtResource("37_7lynq"), ExtResource("38_u7p5y"), ExtResource("39_k6hwe")])
+chainlink = Array[AudioStream]([ExtResource("40_j3nm0"), ExtResource("41_mf063"), ExtResource("42_3qhl4"), ExtResource("43_fucap")])
+duct = Array[AudioStream]([ExtResource("44_ssngh"), ExtResource("45_ajwf6"), ExtResource("46_ax0ug"), ExtResource("47_vsb7e")])
+metal = Array[AudioStream]([ExtResource("48_ji8mb"), ExtResource("49_nyu7s"), ExtResource("50_0td7v"), ExtResource("51_05f30")])
+metalgrate = Array[AudioStream]([ExtResource("52_xjyrg"), ExtResource("53_555si"), ExtResource("54_kpjcl"), ExtResource("55_yrxvb")])
+wood = Array[AudioStream]([ExtResource("56_ghaiv"), ExtResource("57_w0g4y"), ExtResource("58_uup8u"), ExtResource("59_ffmj6")])
+woodpanel = Array[AudioStream]([ExtResource("60_8t8m6"), ExtResource("61_2kbkh"), ExtResource("62_dutmd"), ExtResource("63_tm2k5")])
+ladder = Array[AudioStream]([ExtResource("64_xunsx"), ExtResource("65_n6g3j"), ExtResource("66_lol0p"), ExtResource("67_ojkre")])
+wade = Array[AudioStream]([ExtResource("68_wxr10"), ExtResource("69_663cx"), ExtResource("70_feli0"), ExtResource("71_rvt2t"), ExtResource("72_xbqvd"), ExtResource("73_6gamx"), ExtResource("74_1oyyu"), ExtResource("75_ud2iu")])
+slosh = Array[AudioStream]([ExtResource("76_2ks7t"), ExtResource("77_77jy0"), ExtResource("78_ia2t2"), ExtResource("79_l7c0e")])
+metadata/_custom_type_script = "uid://m4rd2xovd0yt"
+
+[node name="W_AnimatedModel3D" parent="." instance=ExtResource("81_kim0n")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
+
+[node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
+bones/0/position = Vector3(-0.0163964, 3.75334, 0.054475)
+bones/0/rotation = Quaternion(-0.0369666, -0.0453868, -0.0274493, 0.997908)
+bones/1/rotation = Quaternion(-0.00894305, 0.0168332, 0.0274982, 0.99944)
+bones/2/rotation = Quaternion(0.0114483, 0.00356763, 0.014943, 0.999816)
+bones/3/rotation = Quaternion(0.0113438, 0.00376959, 0.0149734, 0.999816)
+bones/4/rotation = Quaternion(0.119708, -0.00202336, 0.00270246, 0.992803)
+bones/5/rotation = Quaternion(-0.137685, 0.00850364, -0.00066219, 0.990439)
+bones/7/rotation = Quaternion(-0.687657, -0.313019, 0.519121, -0.399576)
+bones/8/rotation = Quaternion(0.468558, 0.127051, 0.0629231, 0.871982)
+bones/9/rotation = Quaternion(0.00177297, 0.000336944, 0.0158097, 0.999873)
+bones/10/rotation = Quaternion(0.0783838, -0.255809, -0.0146798, 0.963433)
+bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
+bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
+bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
+bones/15/rotation = Quaternion(0.0452996, -0.0080699, 0.0659134, 0.996764)
+bones/16/rotation = Quaternion(0.149442, -0.000245918, -0.0422956, 0.987866)
+bones/17/rotation = Quaternion(0.0693605, 0.000803979, -0.0129754, 0.997507)
+bones/19/rotation = Quaternion(0.113756, -0.0176685, 0.033825, 0.992775)
+bones/20/rotation = Quaternion(0.14936, 2.3146e-05, -0.049342, 0.987551)
+bones/21/rotation = Quaternion(0.157931, 0.00209245, -0.0353633, 0.986815)
+bones/23/rotation = Quaternion(0.159868, -0.0209712, 0.0222201, 0.986665)
+bones/24/rotation = Quaternion(0.17885, -0.00191226, -0.0472152, 0.982741)
+bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
+bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
+bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
+bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
+bones/31/rotation = Quaternion(0.68525, -0.312035, 0.538802, 0.377835)
+bones/32/rotation = Quaternion(0.396337, -0.224732, -0.0784769, 0.88671)
+bones/33/rotation = Quaternion(0.0063867, 0.00017522, -0.0585051, 0.998267)
+bones/34/rotation = Quaternion(0.0913284, 0.137324, 0.0427498, 0.98538)
+bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
+bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
+bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
+bones/39/rotation = Quaternion(0.0286148, 0.023088, -0.0624956, 0.997368)
+bones/40/rotation = Quaternion(0.149687, 4.72132e-05, 0.0353601, 0.988101)
+bones/41/rotation = Quaternion(0.0694734, -0.000531459, 0.00782123, 0.997553)
+bones/43/rotation = Quaternion(0.0977086, 0.0175481, -0.0408632, 0.994221)
+bones/44/rotation = Quaternion(0.150426, 0.000474846, 0.0427019, 0.987698)
+bones/45/rotation = Quaternion(0.159049, -0.00178055, 0.0357864, 0.98662)
+bones/47/rotation = Quaternion(0.144386, 0.0249427, -0.0302124, 0.988746)
+bones/48/rotation = Quaternion(0.179973, 0.000427918, 0.050674, 0.982365)
+bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
+bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
+bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
+bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
+bones/55/rotation = Quaternion(0.141249, 0.0651003, 0.984378, -0.0825284)
+bones/56/rotation = Quaternion(-0.137543, -0.00788591, 0.029381, 0.990029)
+bones/57/rotation = Quatern

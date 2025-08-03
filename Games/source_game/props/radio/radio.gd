@@ -24,6 +24,7 @@ func _ready() -> void:
 
 	load_assets()
 	SD_Network.register_all_functions(self)
+	SD_Network.register_object(self)
 	if autoplay: audio_player.play()
 
 	
@@ -62,4 +63,4 @@ func _on_source_prop_key_pressed(key:String):
 func _on_switched():
 	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.play("switched")
-	$now_playing.text = "Now playing:\n%s" % [ assets[current_stream_position] ]
+	$now_playing.text = "Now playing:\n '%s' " % [ assets[current_stream_position].resource_path.get_file() ]

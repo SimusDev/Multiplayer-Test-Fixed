@@ -6,9 +6,12 @@ class_name SourceFireWeapon extends SourceItem
 @export var audioplayers:Array[AudioStreamPlayer3D]
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
+@export var projectile:PackedScene
+@export var shell:PackedScene
 @export var bullet_resource:R_SourceBullet
 @export var bullet_force:float = 105.0
 @export var shell_force:float = 1.0
+@export var can_bounce:bool = false
 @export_subgroup("Spread")
 var spread_random:Vector2 = Vector2.ZERO
 var spread_multiplier:float = 1.0
@@ -39,10 +42,25 @@ func _ready() -> void:
 
 
 func fire():
-	spawn_projectile()
+	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
+	pre_event.source = player
+	pre_event.player = player
+	pre_event.weapon = self
+	
+	if pre_event.publish() == false:
+		return
+	
+	var bullet: FirearmBullet = spawn_projectile()
 	spawn_shell()
 	animation_player.play(_fire)
 	play_fire_sound()
+	
+	var event: S_EventGunFire = S_EventGunFire.get_by_script(S_EventGunFire) as S_EventGunFire
+	event.source = player
+	event.player = player
+	event.bullet = bullet
+	event.weapon = self
+	event.publish()
 
 func play_fire_sound():
 	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
@@ -51,35 +69,37 @@ func play_fire_sound():
 		audioplayer.play()
 
 
-func spawn_projectile():
-	var new_bullet:SourceWeaponBullet = SourceWeaponBullet.new()
-	new_bullet.bullet_model = preload("res://Games/source_game/game/prefabs/bullet_9_mm.tscn")
+func spawn_projectile() -> FirearmBullet:
+	var new_bullet:FirearmBullet = projectile.instantiate()
 	new_bullet.bullet_resource = bullet_resource
-	SourceGame.instance.add_child(new_bullet)
+	new_bullet.can_bounce = can_bounce
+	if is_instance_valid(SourcePlayer.instance): new_bullet.player = SourcePlayer.instance
+	bullet_marker.add_child(new_bullet)
+	new_bullet.top_level = true
 	reset_spread_timer.start(0)
 	
-	if SourcePlayer.instance.movement.is_crouched: spread_multiplier = 0.5
-	if SourcePlayer.instance.movement.is_sprinting: spread_multiplier = 2.0
-	if not SourcePlayer.instance.is_on_floor(): spread_multiplier = 3.0
-	else:
-		spread_multiplier = 1.0
+	if is_instance_valid(SourcePlayer.instance):
+		if SourcePlayer.instance.movement.is_crouched: spread_multiplier = 0.5
+		elif SourcePlayer.instance.movement.is_sprinting: spread_multiplier = 2.0
+		elif not SourcePlayer.instance.is_on_floor(): spread_multiplier = 4.0
+		else:
+			spread_multiplier = 1.0
 	
 	spread_counter += 0.01
 	spread_random.x = randf_range(-1.0, 1.0) * spread_multiplier
 	spread_random.y = randf_range(-1.0, 1.0) * spread_multiplier
 	
 	new_bullet.global_position = bullet_marker.global_position
-	new_bullet.global_position.x += (spread_random * spread_counter).x
-	new_bullet.global_position.y += (spread_random * spread_counter).y
+	new_bullet.global_position.z += (spread_random * spread_counter).y
+	new_bullet.global_position.y += (spread_random * spread_counter).x
 	
-	new_bullet.global_rotation_degrees = bullet_marker.global_rotation_degrees
-	
-	var bullet_dir:Vector3 = -bullet_marker.global_transform.basis.z.normalized()
-	new_bullet.linear_velocity = bullet_dir * bullet_force
-#sleep
+	return new_bullet
+
+#sleep 1711270725 
+
 func spawn_shell():
 	var new_bullet_shell:SourceBulletShell = SourceBulletShell.new()
-	new_bullet_shell.model = preload("res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn")
+	new_bullet_shell.model = shell
 	SourceGame.instance.add_child(new_bullet_shell)
 	new_bullet_shell.global_position = shell_marker.global_position
 	new_bullet_shell.global_rotation_degrees = shell_marker.global_rotation_degrees

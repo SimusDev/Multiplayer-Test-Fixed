@@ -1,3 +1,4 @@
+@static_unload
 extends SD_Object
 class_name SD_ConsoleCategories
 
@@ -9,6 +10,13 @@ enum CATEGORY {
 	WARNING,
 	EVENTS,
 }
+
+const DEFAULT: int = CATEGORY.DEFAULT
+const ERROR: int = CATEGORY.ERROR
+const SUCCESS: int = CATEGORY.SUCCESS
+const INFO: int = CATEGORY.INFO
+const WARNING: int = CATEGORY.WARNING
+const EVENTS: int = CATEGORY.EVENTS
 
 static var CATEGORY_STRING := {
 	CATEGORY.DEFAULT: "",

@@ -10,10 +10,33 @@ class_name R_SourceWorldObject
 @export_group("World")
 @export var prefab: PackedScene : get = get_prefab
 
+@export_group("ItemStack")
+@export var itemstack_script: GDScript : get = get_itemstack_script
+
+func get_itemstack_script() -> GDScript:
+	if itemstack_script:
+		return itemstack_script
+	return SourceItemStack
+
 static var _references: Dictionary[String, R_SourceWorldObject] = {}
 static var _reference_list: Array[R_SourceWorldObject] = []
 
 var id: String = ""
+
+static var _prefab_references: Dictionary[PackedScene, R_SourceWorldObject] = {}
+
+func get_cached_id() -> int:
+	return _reference_list.find(self)
+
+static func get_by_cached_id(id: int) -> R_SourceWorldObject:
+	var founded: R_SourceWorldObject = _reference_list.get(id)
+	return founded
+
+static func get_placeholder() -> R_SourceWorldObject:
+	return get_by_id("debug.placeholder")
+
+static func get_prefab_references() -> Dictionary[PackedScene, R_SourceWorldObject]:
+	return _prefab_references
 
 static func get_by_id(by_id: String) -> R_SourceWorldObject:
 	return _references.get(by_id, null)
@@ -29,21 +52,25 @@ func register() -> void:
 	
 	if id.is_empty():
 		id = "%s.%s" % [get_section(), resource_path.get_file().get_basename()]
+	else:
+		id = "%s.%s" % [get_section(), custom_id]
+	
 	
 	if _references.has(id):
 		id += "_"
 	
 	_references[id] = self
 	_reference_list.append(self)
+	_prefab_references[prefab] = self
 	SimusDev.console.write_info("object registered: %s" % id)
 
-static func find_in(node: Node) -> SB_WorldObject:
-	if node.has_meta("SB_WorldObject"):
-		return node.get_meta("SB_WorldObject")
+static func find_in(node: Node) -> R_SourceWorldObject:
+	if node.has_meta("R_SourceWorldObject"):
+		return node.get_meta("R_SourceWorldObject")
 	return null
 
 func set_in(node: Node) -> void:
-	node.set_meta("SB_WorldObject", self)
+	node.set_meta("R_SourceWorldObject", self)
 
 func get_prefab() -> PackedScene:
 	return prefab
@@ -56,7 +83,7 @@ func get_section() -> String:
 func _get_section() -> String:
 	return "object"
 
-func create(parent: Node) -> C_SourceWorldObjectReference:
+func create() -> C_SourceWorldObjectReference:
 	if !prefab:
 		SimusDev.console.write_error("cant create world object, prefab is null! %s" % [resource_path])
 		return null
@@ -65,9 +92,9 @@ func create(parent: Node) -> C_SourceWorldObjectReference:
 	
 	var instance: Node = prefab.instantiate()
 	instance.name = name.validate_node_name()
+	set_in(instance)
 	
 	ref.source = instance
-	ref.parent = parent
 	ref.object = self
 	
 	return ref

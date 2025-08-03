@@ -11,6 +11,7 @@ signal despawned(node: Node, path: String)
 signal spawn_begin(node: Node, parent: Node, wish_transform: Variant, wish_name: String, path: String)
 signal despawn_begin(node: Node, path: String)
 
+@export var clear_roots: bool = false
 @export var auto_handle_spawn: bool = true
 @export var auto_handle_logic: bool = true
 
@@ -102,19 +103,16 @@ func _ready() -> void:
 	if bake_at_runtime:
 		_bake(true)
 	
-	if SD_Multiplayer.is_server():
-		for root in _detect_roots:
-			add_detect_root(root)
-	else:
+	for root in _detect_roots:
+		add_detect_root(root)
+	
+	if not SD_Network.is_server():
 		if auto_handle_spawn == true:
 			request_spawn_all_nodes()
 	
 	
 
 func add_detect_root(root: Node) -> void:
-	if SD_Multiplayer.is_not_server():
-		return
-	
 	if _init_roots.has(root):
 		return
 	
@@ -128,18 +126,16 @@ func add_detect_root(root: Node) -> void:
 	_init_roots.append(root)
 
 func remove_detect_root(root: Node) -> void:
-	if SD_Multiplayer.is_not_server():
-		return
-	
 	if !_init_roots.has(root):
 		return
 	
 	if _detect_roots.has(root):
 		_detect_roots.erase(root)
 	
-	root.child_entered_tree.disconnect(_on_server_root_node_add)
-	root.child_exiting_tree.disconnect(_on_server_root_node_remove)
-	
+	if SD_Network.is_server():
+		root.child_entered_tree.disconnect(_on_server_root_node_add)
+		root.child_exiting_tree.disconnect(_on_server_root_node_remove)
+		
 	_init_roots.erase(root)
 	
 
@@ -154,6 +150,12 @@ func _on_server_root_node_remove(node: Node, root: Node) -> void:
 
 
 func request_spawn_all_nodes() -> void:
+	if clear_roots:
+		for i in _init_roots:
+			for node in i.get_children():
+				node.get_parent().remove_child(node)
+				node.queue_free()
+		
 	SD_Multiplayer.sync_call_function_on_server(self, _server_send_all_nodes_to_peer, [SD_Multiplayer.get_unique_id()])
 
 func _server_send_all_nodes_to_peer(peer: int) -> void:
@@ -318,7 +320,7 @@ func spawn(data: Dictionary) -> void:
 		str(data["path"]),
 		
 		)
-		if parent and auto_handle_logic:
+		if parent:
 			node.tree_entered.connect(
 				func():
 					if is_instance_valid(node):
@@ -335,7 +337,8 @@ func spawn(data: Dictionary) -> void:
 						spawned.emit(node)
 			)
 			
-			parent.add_child.call_deferred(node)
+			if auto_handle_logic:
+				parent.add_child.call_deferred(node)
 
 func despawn(path: NodePath) -> void:
 	if SD_Multiplayer.is_server():
@@ -347,9 +350,11 @@ func despawn(path: NodePath) -> void:
 	
 	
 	despawn_begin.emit(node, str(path))
-	if node and auto_handle_logic:
+	if node:
 		node.tree_exited.connect(
 			func():
 				despawned.emit(node)
 		)
-		node.queue_free.call_deferred()
+		
+		if auto_handle_logic:
+			node.queue_free.call_deferred()

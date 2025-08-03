@@ -1,5 +1,9 @@
 extends Node
 
+func _ready() -> void:
+	SD_Network.register_all_functions(self)
+	SD_Network.register_object(self)
+
 func finish_audio_and_queue_free(audio: Node) -> void:
 	audio.queue_free()
 

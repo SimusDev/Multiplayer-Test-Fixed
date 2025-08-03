@@ -1,7 +1,6 @@
 extends SD_Object
 class_name SD_Array
 
-
 static func append_to_array(array: Array, value, repeat := true) -> void:
 	if !repeat and array.has(value):
 		return

@@ -67,6 +67,11 @@ static func _parse_resource(resource: Resource) -> Variant:
 		dict["p"] = resource.resource_path
 	return dict
 
+static func get_node_reference(variant: Variant) -> String:
+	if variant is Dictionary:
+		return variant.get("cn", "")
+	return ""
+
 static func parse(variant: Variant) -> Variant:
 	#print(type_string(typeof(variant)))
 	

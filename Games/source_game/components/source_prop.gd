@@ -15,18 +15,52 @@ var is_drag:bool = false
 var drag_target:Node3D = null
 
 func _ready() -> void:
+	
 	if !is_instance_valid(rigid_body):
 		rigid_body = get_parent() as RigidBody3D
 	drag.connect(_on_drag_syncronized)
 	
+	SD_Network.register_object(rigid_body)
+	
 	rigid_body.freeze = SD_Multiplayer.is_not_server()
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()
+	
+	if not rigid_body.is_in_group("props"):
+		rigid_body.add_to_group("props")
 	
 	add_child(navigation_obstacle)
 	
 	if synced_property_scene and sync_transform:
 		var synced_property:SD_MPPropertySynchronizer = synced_property_scene.instantiate()
 		rigid_body.add_child.call_deferred(synced_property)
+	
+	_try_init_object_reference()
+	
+
+
+func _try_init_object_reference() -> void:
+	if rigid_body.scene_file_path.is_empty():
+		return
+	
+	if SD_Network.is_server():
+		var saver := SD_SceneSaverInstance.new()
+		saver.replicate = true
+		saver.root = rigid_body
+		saver.register_properties(rigid_body, ["transform"])
+		add_child(saver)
+		saver.try_load_data()
+
+	
+	if R_SourceWorldObject.find_in(rigid_body) != null:
+		return
+	
+	var scene: PackedScene = load(rigid_body.scene_file_path)
+	if scene:
+		var object: R_SourceWorldObject = R_SourceWorldObject.get_prefab_references().get(scene) as R_SourceWorldObject
+		if object:
+			object.set_in(rigid_body)
+			SimusDev.console.write_warning("%s: founded object without reference, setting object reference to: %s" % [str(rigid_body), object.id])
+		
 
 func _process(delta: float) -> void:
 	if is_drag and drag_target:

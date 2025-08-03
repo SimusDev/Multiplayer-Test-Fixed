@@ -49,6 +49,7 @@ func set_collider(_collider:Variant):
 		return
 	
 	if _collider.is_in_group("props"):
+		SourcePlayerUI.get_instance().object_info.set_object(R_SourceWorldObject.find_in(_collider))
 		SourcePlayerUI.get_instance().object_info.show()
 		detect_object(_collider)
 
@@ -68,7 +69,7 @@ func detect_object(obj:RigidBody3D):
 
 func show_object_info(object:RigidBody3D):
 	var object_info = SourcePlayerUI.get_instance().get_node("object_info")
-	object_info.get_node("name_label").text = str(object.name)
+	#object_info.get_node("name_label").text = str(object.name)
 	var camera = player.camera.camera
 	var screen_pos = camera.unproject_position(object.global_position)
 	object_info.position = screen_pos - Vector2(128, 128)
@@ -76,6 +77,8 @@ func show_object_info(object:RigidBody3D):
 func drag_prop(object:RigidBody3D):
 	if not is_instance_valid(current_object): return
 	var source_prop_component = current_object.get_node("SourceProp") as SourceProp
+	if not is_instance_valid(source_prop_component): return
+	
 	drag_item_link_node.tree_exited.connect( func(): source_prop_component.drag.emit(!source_prop_component.is_drag, drag_item_link_node))
 	drag_item_link_node.global_position = get_collision_point()
 	drag_item_link_node.global_rotation_degrees = source_prop_component.rigid_body.global_rotation_degrees

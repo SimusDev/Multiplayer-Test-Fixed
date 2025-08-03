@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b6gh8mnrcsbsn" path="res://Games/sandbox/tools/spawner/tool.tscn" id="5_ab5mh"]
 [ext_resource type="Resource" uid="uid://dnyuficp8p0ko" path="res://Games/sandbox/resources/network.tres" id="7_yk1wo"]
 [ext_resource type="PackedScene" uid="uid://c0qqos1tvadl7" path="res://Games/sandbox/interface/login/login.tscn" id="10_dr7ho"]
-[ext_resource type="Script" uid="uid://drae5ak55vnyf" path="res://Games/sandbox/singletons/SB_SModuleRagdolls.gd" id="11_q7uj5"]
+[ext_resource type="Script" uid="uid://drae5ak55vnyf" path="res://Games/sandbox/singletons/SB_SModuleDeaths.gd" id="11_q7uj5"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="11_si5o7"]
 [ext_resource type="Script" uid="uid://cgtvs0cw5hdui" path="res://Games/sandbox/singletons/SB_SModuleSkins.gd" id="12_dx5bs"]
 
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://b6vtbie572lqf"
 script = ExtResource("5_14fed")
 metadata/_custom_type_script = "uid://ducwl5wbq2u66"
 
-[node name="SB_SModuleRagdolls" type="Node" parent="EL_GameSingleton"]
+[node name="SB_SModuleDeaths" type="Node" parent="EL_GameSingleton"]
 script = ExtResource("11_q7uj5")
 metadata/_custom_type_script = "uid://drae5ak55vnyf"
 

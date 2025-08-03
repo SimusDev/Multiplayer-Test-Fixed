@@ -5,28 +5,21 @@ extends Control
 @export var tab_conteiner_node:Control 
 
 var control_sections:Array[Control] = []
-var resources:Array[R_SourceProp]
+var resources:Array[R_SourceWorldObject] = []
 
 func _ready() -> void:
 	_readcreate_sections()
 
 func _readcreate_sections():
-	var files:Array[String] = dir_files(props_folder_path)
-	var folders:Array[String] = dir_folders(props_folder_path)
+	resources = R_SourceWorldObject.get_reference_list()
 	
-	var sections:Array[String]
-	
-	for file:String in files:
-		var splited:PackedStringArray = file.split(".")
-		var extension = splited[-1]
-		
-		if extension == ".tres" or ".res":
-			var r_source_prop:R_SourceProp = load(props_folder_path + file)
-			resources.append(r_source_prop)
+	var sections:Array[String] = []
 	
 	for resource in resources:
-		if !sections.has(resource.section):
-			sections.append(resource.section)
+		if resource.get_section().is_empty() or resource.get_section() in sections:
+			continue
+		
+		sections.append(resource.get_section())
 
 	for section in sections:
 		_create_section(section)
@@ -53,9 +46,8 @@ func _create_section_grid(section:Control):
 	section.add_child(new_section_grid)
 	new_section_grid.prop_ui_prefab = load("res://Games/source_game/ui/prop_spawner/prop_preview.tscn")
 
-	for resource:R_SourceProp in resources:
-		print(resource.name)
-		if resource.section == section.name:
+	for resource:R_SourceWorldObject in resources:
+		if resource.get_section() == section.name:
 			var prop_ui_prefab = new_section_grid.prop_ui_prefab.instantiate()
 			prop_ui_prefab.prop_res = resource
 			new_section_grid.add_child(prop_ui_prefab)
@@ -71,31 +63,3 @@ func show_section_by_name(section_name:String):
 	for child in content_node.get_children():
 		if child.name == section_name:
 			child.show()
-
-func dir_files(path:String):
-	var dir = DirAccess.open(path)
-	var files:Array[String] = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if !dir.current_is_dir():
-				files.append(file_name)
-			file_name = dir.get_next()
-	else:
-		push_error("cant open path: '" + path + "'")
-	return files
-
-func dir_folders(path):
-	var dir = DirAccess.open(path)
-	var folders:Array[String] = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				folders.append(file_name)
-			file_name = dir.get_next()
-	else:
-		push_error("cant open path: '" + path + "'")
-	return folders

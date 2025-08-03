@@ -1,16 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dgabibeos57hv"]
+[gd_scene load_steps=20 format=3 uid="uid://dgabibeos57hv"]
 
 [ext_resource type="Script" uid="uid://x1dk7fqhj1j3" path="res://Games/fnaf/entities/player.gd" id="1_ncpg0"]
 [ext_resource type="PackedScene" uid="uid://chw18g34emnq3" path="res://prefabs/models/player/default.tscn" id="2_0tgpj"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_ennxi"]
-[ext_resource type="Script" uid="uid://lih5qidttg3m" path="res://Games/fnaf/components/F_Inventory.gd" id="2_sf0t1"]
 [ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="3_vacrf"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="4_1v7vv"]
-[ext_resource type="Script" uid="uid://b33usissl2osh" path="res://addons/simusdev/components/inventory/W_InventorySlot.gd" id="4_odlko"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_vreqt"]
-[ext_resource type="Script" uid="uid://cxuf8ophbjpsd" path="res://addons/simusdev/components/inventory/W_InventoryItem.gd" id="5_j5t3b"]
-[ext_resource type="Resource" uid="uid://bvakvjy6y25gf" path="res://Games/fnaf/resources/items/flashlight.tres" id="6_wwsac"]
-[ext_resource type="Resource" uid="uid://o5humlj5571o" path="res://Games/fnaf/resources/items/tablet.tres" id="7_7pil2"]
 [ext_resource type="PackedScene" uid="uid://n3r0klkoo635" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikePlayerCamera.tscn" id="7_ennxi"]
 [ext_resource type="Script" uid="uid://cuwtndm6vgivt" path="res://Games/fnaf/components/sourcelike/FNAF_SourceLikeComponentSettings.gd" id="8_vacrf"]
 [ext_resource type="PackedScene" uid="uid://ct8ihv7nhnk66" path="res://Games/fnaf/components/footsteps/FNAF_FootstepsComponent.tscn" id="9_vreqt"]
@@ -22,44 +17,44 @@
 
 [sub_resource type="Resource" id="Resource_hl5hj"]
 script = ExtResource("4_vreqt")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("..")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_ennxi"]
 script = ExtResource("4_vreqt")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["rotation"])
 sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("../W_FPCSourceLikePlayerCamera")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_j0ipk"]
 script = ExtResource("4_vreqt")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["normalized_velocity"])
 sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 30.0
 node_path = NodePath("..")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_awhc6"]
@@ -74,7 +69,7 @@ script = ExtResource("1_ncpg0")
 movement = NodePath("W_FPCSourceLikeMovement")
 camera = NodePath("W_FPCSourceLikePlayerCamera")
 crouch = NodePath("W_FPCSourceLikeCrouch")
-inventory = NodePath("F_Inventory")
+inventory = NodePath("")
 GameUI_scene = ExtResource("12_fwir6")
 
 [node name="ComponentActivatorDeactivator" type="Node" parent="." node_paths=PackedStringArray("root", "components", "node_based_components")]
@@ -83,46 +78,6 @@ root = NodePath("..")
 components = [NodePath("../W_FPCSourceLikeMovement"), NodePath("../W_FPCSourceLikePlayerCamera"), NodePath("../W_FPCSourceLikeCrouch")]
 node_based_components = [NodePath("../W_FPCSourceLikePlayerCamera/W_Interactor3D")]
 metadata/_custom_type_script = "uid://cuwtndm6vgivt"
-
-[node name="F_Inventory" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("2_sf0t1")
-root = NodePath("..")
-_initial_slot_count = 0
-metadata/_custom_type_script = "uid://lih5qidttg3m"
-
-[node name="1" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
-
-[node name="flashlight" type="Node" parent="F_Inventory/1"]
-script = ExtResource("5_j5t3b")
-data = ExtResource("6_wwsac")
-metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
-
-[node name="2" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
-
-[node name="tablet" type="Node" parent="F_Inventory/2"]
-script = ExtResource("5_j5t3b")
-data = ExtResource("7_7pil2")
-metadata/_custom_type_script = "uid://cxuf8ophbjpsd"
-
-[node name="3" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
-
-[node name="4" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
-
-[node name="5" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
-
-[node name="6" type="Node" parent="F_Inventory"]
-script = ExtResource("4_odlko")
-metadata/_custom_type_script = "uid://b33usissl2osh"
 
 [node name="crouch_raycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.632608, 0)
@@ -138,7 +93,19 @@ camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
 [node name="body_root" parent="default/rotation" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0361017, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0136458, 0)
+
+[node name="glasses" parent="default/rotation/body_root/body/rotation/head" index="0"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="godot" parent="default/rotation/body_root/body/rotation/head" index="1"]
 texture = null
@@ -147,7 +114,6 @@ texture = null
 "parameters/Add2 3/add_amount" = 0
 "parameters/Add2 5/add_amount" = 0.00694444
 parameters/consider_item/blend_position = false
-parameters/driver/blend_position = 0
 parameters/item_in_right_hand/blend_position = false
 parameters/walk_blend/blend_position = 0.00694444
 
@@ -167,7 +133,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72305, 0)
 movement = NodePath("../W_FPCSourceLikeMovement")
 body = NodePath("..")
 make_current_at_start = false
-_mouse_captured = false
 enabled = false
 
 [node name="interactor" type="RayCast3D" parent="W_FPCSourceLikePlayerCamera"]
@@ -181,11 +146,10 @@ input_action = "interact"
 _active = false
 metadata/_custom_type_script = "uid://beeaaqggu6nod"
 
-[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_6357b")]
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("10_6357b")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../collision_normal")
-collision_crouch = NodePath("../collision_crouch")
 ceiling_detection = NodePath("../crouch_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 enabled = false
@@ -206,7 +170,7 @@ camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 
 [node name="FNAF_EntityHands" parent="." node_paths=PackedStringArray("inventory", "hand_node", "model") instance=ExtResource("16_j5t3b")]
-inventory = NodePath("../F_Inventory")
+inventory = NodePath("")
 hand_node = NodePath("../default/rotation/body_root/body/hands/left/lpoint/left/hands")
 model = NodePath("../default")
 

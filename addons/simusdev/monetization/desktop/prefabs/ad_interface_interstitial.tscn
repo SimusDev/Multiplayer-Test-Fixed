@@ -3,12 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cyxpiljtqpdc6" path="res://addons/simusdev/monetization/desktop/prefabs/ad_interface.tscn" id="1_0d5e6"]
 [ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="2_djv6b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ic8bq"]
+[sub_resource type="LabelSettings" id="LabelSettings_djv6b"]
 font = ExtResource("2_djv6b")
 font_size = 64
 
 [node name="ad_interface_interstitial" instance=ExtResource("1_0d5e6")]
+start_event = "interstitial"
+finish_event = "interstitial"
 
 [node name="Label" parent="panel" index="0"]
 text = "INTERSTITIAL!!!"
-label_settings = SubResource("LabelSettings_ic8bq")
+label_settings = SubResource("LabelSettings_djv6b")

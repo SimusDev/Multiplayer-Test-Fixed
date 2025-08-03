@@ -6,6 +6,8 @@
 script/source = "extends Node
 
 func _ready() -> void:
+	return
+	
 	get_parent().auto_handle_spawn = false
 	
 	for path in SD_FileSystem.get_all_files_with_extension_from_directory(SB_GameSingleton.instance.gamepath, SD_FileExtensions.EC_SCRIPT):

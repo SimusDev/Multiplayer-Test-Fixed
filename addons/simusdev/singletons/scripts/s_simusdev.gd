@@ -17,8 +17,6 @@ var audio := SD_TrunkAudio.new()
 
 var db_resource := SD_DBResource.new()
 
-var world_saver := SD_WorldSaver.new()
-
 var game := SD_TrunkGame.new()
 var monetization := SD_TrunkMonetization.new()
 

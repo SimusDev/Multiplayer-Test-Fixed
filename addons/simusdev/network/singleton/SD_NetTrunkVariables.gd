@@ -22,6 +22,40 @@ func _snap_vector3(v: Vector3, step: float) -> Vector3:
 func _initialized() -> void:
 	SD_Network.register_function(_recieve_var)
 	SD_Network.register_function(var_send_to)
+	SD_Network.register_function(_var_send_to)
+
+var _method_queue: Array[Dictionary] = []
+
+func _process(delta: float) -> void:
+	for i in _method_queue:
+		var node_path_var: Variant = i.node_path
+		
+		var net_id: int = -1
+		
+		if node_path_var is NodePath:
+			net_id = singleton.cache.get_cached_id_by_path(node_path_var)
+		elif node_path_var is int:
+			net_id = node_path_var
+		
+		
+		if net_id == -1:
+			return
+		
+		if not singleton.cache.get_cached_nodes_by_id().has(net_id):
+			return
+		
+		var callable: Callable = i.method as Callable
+		callable.callv(i.args)
+		_method_queue.erase(i)
+		debug_print("trying to call method from queue: %s, %s" % [str(i.method), str(i.args)])
+
+func _method_queue_create(node_path: Variant, method: Callable, args: Array = []) -> void:
+	var queue: Dictionary[String, Variant] = {}
+	queue.node_path = node_path
+	queue.method = method
+	queue.args = args
+	_method_queue.append(queue)
+	debug_print("queue created: %s, %s, %s" % [str(node_path), str(method), str(args)], SD_ConsoleCategories.WARNING)
 
 func register_recieve_var_callback(callback: Callable) -> void:
 	var object: Object = callback.get_object()
@@ -75,8 +109,14 @@ func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmod
 	if peer == SD_Network.get_unique_id():
 		return
 	
-	
 	var queue: SD_NetSyncedVars = get_var_queue(node)
+	
+	var net_id: int = singleton.cache.get_cached_id_by_node(node)
+	if net_id < 0:
+		#debug_print("cached node not found: %s" % [node.get_path()], SD_ConsoleCategories.CATEGORY.WARNING)
+		_method_queue_create(node.get_path(), var_sync_from, [peer, node, properties, callmode, channel, options])
+		return
+	
 	
 	for property in properties:
 		if is_variable_registered(node, property):
@@ -84,14 +124,26 @@ func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmod
 		else:
 			singleton.debug_print("cant sync var from peer %s, %s, %s, use SD_Network.register_variable() to register the var." % [str(peer), str(node), property], SD_ConsoleCategories.CATEGORY.ERROR)
 	
-
-	
-	SD_Network.call_func_on(peer, var_send_to, [SD_Network.get_unique_id(), node, properties, callmode, channel, options], callmode, channel)
+	SD_Network.call_func_on(peer, _var_send_to, [SD_Network.get_unique_id(), net_id, properties, callmode, channel, options], callmode, channel)
 	
 	return queue
 
 func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
 	if !node:
+		return
+	
+	var net_id: int = singleton.cache.get_cached_id_by_node(node)
+	if net_id < 0:
+		#debug_print("cached node not found: %s" % [node.get_path()], SD_ConsoleCategories.CATEGORY.WARNING)
+		_method_queue_create(node.get_path(), var_send_to, [peer, node, properties, callmode, channel, options])
+		return
+	
+	_var_send_to(peer, net_id, properties, callmode, channel, options)
+	
+func _var_send_to(peer: int, node_net_id: int, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
+	var node: Node = get_node_or_null(singleton.cache.get_cached_path_by_id(node_net_id))
+	if not node:
+		_method_queue_create(node_net_id, var_send_to, [peer, node, properties, callmode, channel, options])
 		return
 	
 	for property in properties:
@@ -112,12 +164,15 @@ func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode:
 			
 		parsed[p_name] = p_value
 	
-	SD_Network.call_func_on(peer, _recieve_var, [SD_Network.get_unique_id(), node, parsed], callmode, channel)
+	SD_Network.call_func_on(peer, _recieve_var, [SD_Network.get_unique_id(), node_net_id, parsed], callmode, channel)
+
 
 func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
 	return var_sync_from(SD_Network.SERVER_ID, node, properties, callmode, channel)
 
-func _recieve_var(from: int, node: Node, properties: Dictionary) -> void:
+func _recieve_var(from: int, node_net_id: int, properties: Dictionary) -> void:
+	var node: Node = get_node_or_null(singleton.cache.get_cached_path_by_id(node_net_id))
+	
 	if !node:
 		return
 	
@@ -147,5 +202,7 @@ func _recieve_var(from: int, node: Node, properties: Dictionary) -> void:
 		var callbacks: Array[String] = _recieve_callbacks[path]
 		for method in callbacks:
 			cb_node.callv(method, [from, node, recieved_callback_properties])
-	
-	
+
+func debug_print(text, category: int = 0) -> void:
+	if singleton.settings.debug_vars:
+		singleton.debug_print("[Variables] %s" % str(text), category)

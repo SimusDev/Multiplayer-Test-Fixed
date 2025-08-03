@@ -1,3 +1,4 @@
+@tool
 extends SD_Object
 class_name SD_FileSystem
 

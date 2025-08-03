@@ -1,0 +1,4 @@
+extends S_EventImpact
+class_name S_EventWeaponMeleeImpact
+
+var weapon: SourceWeaponMelee

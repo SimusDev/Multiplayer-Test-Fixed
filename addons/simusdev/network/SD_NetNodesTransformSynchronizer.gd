@@ -40,6 +40,8 @@ func initialize() -> void:
 	if _initialized:
 		return
 	
+	SD_Network.register_object(self)
+	
 	SD_Network.register_function(_recieve_data)
 	SD_Network.register_function(_send_data_to_client)
 	
@@ -98,7 +100,10 @@ func _process(delta: float) -> void:
 			
 			
 			var synced: Dictionary = _data[node_name]
-			for p: String in synced:
+			for p in synced:
+				if p == null:
+					continue
+				
 				var value: Variant = synced[p]
 				var node_value: Variant = node.get(p)
 				node_value = lerp(node_value, value, interpolate_speed * delta)
