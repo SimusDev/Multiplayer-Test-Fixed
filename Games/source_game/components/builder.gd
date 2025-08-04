@@ -31,9 +31,9 @@ func _on_item_use() -> void:
 
 func build(_building:R_SourceBuilding, _transform:Transform3D) -> void:
 	if SD_Network.is_server():
-		var new_building = _building.prefab.instantiate()
-		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
-		new_building.global_transform = _transform
+		var new_building: C_SourceWorldObjectReference = _building.create()
+		SourceLevelSection3D.get_by_name("buildings").add_child(new_building.source)
+		new_building.source.global_transform = _transform
 		print("ZOMBIE SSEXED")
 
 func pick_building(idx:int) -> void:
