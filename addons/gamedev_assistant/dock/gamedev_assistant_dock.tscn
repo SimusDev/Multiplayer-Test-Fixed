@@ -103,6 +103,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 tooltip_text = "Start new conversation"
 theme_override_styles/normal = SubResource("StyleBoxFlat_f477a")
+disabled = true
 icon = ExtResource("2_t26tc")
 icon_alignment = 1
 script = ExtResource("5_6lodt")
@@ -123,6 +124,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 tooltip_text = "My Conversations"
 theme_override_styles/normal = SubResource("StyleBoxFlat_xllvu")
+disabled = true
 icon = ExtResource("3_lxmj1")
 icon_alignment = 1
 script = ExtResource("7_avdbs")
@@ -145,7 +147,7 @@ offset_left = 37.0
 offset_right = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "New Conversation"
+text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -210,6 +212,7 @@ dialog_text = "Are you sure you want to delete this conversation?"
 dialog_autowrap = true
 
 [node name="Screen_Chat" type="Control" parent="."]
+visible = false
 clip_children = 1
 layout_mode = 1
 anchors_preset = 15
@@ -367,7 +370,6 @@ text = "Feedback"
 uri = "https://forms.zenva.com/zenvaptyltd/form/GameDevAssistantFeedbackForm/formperma/FtlM2J26ia6bZRvUm3EZ5oU9VK7RUQmzkYOzs4xmyIQ"
 
 [node name="Screen_Settings" type="Control" parent="."]
-visible = false
 clip_children = 1
 clip_contents = true
 layout_mode = 1
@@ -412,6 +414,7 @@ text = "You are already in the latest version"
 fit_content = true
 
 [node name="TokenValidationError" type="RichTextLabel" parent="Screen_Settings/VBoxContainer"]
+visible = false
 modulate = Color(1, 0.499129, 0.460804, 1)
 layout_mode = 2
 bbcode_enabled = true
