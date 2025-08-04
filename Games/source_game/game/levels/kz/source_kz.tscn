@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="15_uyxp6"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="16_eejt7"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="17_v4o5a"]
-[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
+[ext_resource type="Script" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
 albedo_texture = ExtResource("3_gr3v1")

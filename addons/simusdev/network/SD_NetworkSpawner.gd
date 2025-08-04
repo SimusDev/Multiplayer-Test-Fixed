@@ -98,7 +98,6 @@ func _on_child_entered_tree(node: Node) -> void:
 		return
 	
 	SD_Network.call_func(spawn, [serialize(node)], callmode, channel)
-	
 
 func _on_child_exited_tree(node: Node) -> void:
 	if is_instance_valid(node):

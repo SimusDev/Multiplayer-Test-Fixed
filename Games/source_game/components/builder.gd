@@ -34,13 +34,14 @@ func _ready() -> void:
 		print(canvas_layer)
 
 func _on_item_use() -> void:
-	if !is_instance_valid(ghost_model):
-		return
-	
-	if can_place:
-		var new_building = current_building.duplicate()
-		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
-		new_building.global_transform = ghost_model.global_transform
+	if is_multiplayer_authority():
+		if !is_instance_valid(ghost_model):
+			return
+		
+		if can_place:
+			var new_building = current_building.duplicate()
+			SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
+			new_building.global_transform = ghost_model.global_transform
 
 func _on_item_current_changed() -> void:
 	set_active(item.current)
@@ -66,17 +67,18 @@ func pick_building(idx:int) -> void:
 	building_pick.emit(buildings.buildings[idx])
 
 func add_ghost_building(_ghost_building:SourceBuilding) -> void:
-	ghost_model = _ghost_building.model.duplicate()
-	ghost_model_offset = _ghost_building.model_offset
-	var material = StandardMaterial3D.new()
-	material.flags_transparent = true
-	material.albedo_color = ghost_color
-	material.metallic = 0.0
-	material.roughness = 1.0
-	
-	ghost_model.material_override = material
-	SourceLevelSection3D.get_by_name("ghost_buildings").add_child(ghost_model)
-	print(ghost_model.get_path())
+	if is_multiplayer_authority():
+		ghost_model = _ghost_building.model.duplicate()
+		ghost_model_offset = _ghost_building.model_offset
+		var material = StandardMaterial3D.new()
+		material.flags_transparent = true
+		material.albedo_color = ghost_color
+		material.metallic = 0.0
+		material.roughness = 1.0
+		
+		ghost_model.material_override = material
+		SourceLevelSection3D.get_by_name("ghost_buildings").add_child(ghost_model)
+		print(ghost_model.get_path())
 
 func update_ghost_building() -> void:
 	if not ghost_model:
@@ -109,6 +111,9 @@ func close_pick_menu() -> void:
 	pick_menu.hide()
 
 func _process(_delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	if not is_active(): 
 		if SourceLevelSection3D.get_by_name("ghost_buildings").get_children().size() > 0:
 			free_ghost_buildings()
