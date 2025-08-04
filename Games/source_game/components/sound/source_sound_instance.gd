@@ -42,6 +42,9 @@ func get_audio_by_source(source: R_SourceSoundSource) -> AudioStreamPlayer3D:
 	return _audio_src.get(source)
 
 func play() -> void:
+	if !is_node_ready():
+		await ready
+	
 	for src in _audio_src:
 		var audio: AudioStreamPlayer3D = _audio_src[src]
 		

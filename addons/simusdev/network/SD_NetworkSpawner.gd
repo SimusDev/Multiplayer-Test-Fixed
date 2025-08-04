@@ -91,10 +91,13 @@ func unregister(node: Node) -> void:
 	_nodes.erase(node)
 
 func _on_child_entered_tree(node: Node) -> void:
+	if not can_serialize(node):
+		return
+	
 	if server_wait_process_frame:
 		await get_tree().process_frame
 	
-	if not can_serialize(node):
+	if not is_instance_valid(node):
 		return
 	
 	SD_Network.call_func(spawn, [serialize(node)], callmode, channel)

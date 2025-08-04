@@ -179,7 +179,8 @@ func add_item(item: SourceItemStack) -> void:
 
 func _add_item_net(serialized: Variant) -> void:
 	var item := SourceItemStack.deserialize(serialized)
-	get_free_slot().add_child(item)
+	if get_free_slot():
+		get_free_slot().add_child(item)
 
 func remove_item(item: SourceItemStack) -> void:
 	if not SD_Network.is_server():
