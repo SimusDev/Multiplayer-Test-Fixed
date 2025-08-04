@@ -22,12 +22,15 @@ func _ready() -> void:
 	
 	SD_Network.register_object(self)
 	SD_Network.register_function(pick_building)
+	SD_Network.register_function(build)
 
 func _on_item_use() -> void:
-	if !is_instance_valid(ghost_model):
-		return
-	if can_place:
-		build(current_building, ghost_model.global_transform)
+	if SD_Network.is_authority(self):
+		if !is_instance_valid(ghost_model):
+			return
+		if can_place:
+			SD_Network.call_func_on_server(build, [current_building, ghost_model.global_transform])
+			#build(current_building, ghost_model.global_transform)
 
 func build(_building:R_SourceBuilding, _transform:Transform3D) -> void:
 	if SD_Network.is_server():
