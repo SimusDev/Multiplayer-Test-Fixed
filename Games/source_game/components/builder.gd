@@ -25,10 +25,12 @@ func _ready() -> void:
 	SD_Network.register_function(build)
 
 func _on_item_use() -> void:
-	if !is_instance_valid(ghost_model) and !is_multiplayer_authority():
-		return
-	build(current_building, ghost_model.global_transform, can_place)
-#
+	if SD_Network.is_authority(self):
+		if !is_instance_valid(ghost_model):
+			return
+		
+		SD_Network.call_func_on_server(build, [current_building, ghost_model.global_transform, can_place])
+
 func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -> void:
 	if SD_Network.is_server() and can_place:
 		var new_building = _building.prefab.instantiate()
