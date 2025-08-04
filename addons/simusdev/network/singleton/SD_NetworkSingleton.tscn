@@ -43,16 +43,25 @@ _script = NodePath("script")
 source = "
 #//////////////////////////////////////////////////////////////////////////////////////////////////
 @rpc(\"any_peer\", \"call_remote\", \"reliable\", %s)
-func _recieve_call_from_rpc_reliable%s(from_peer: int, serialized: Variant) -> void:
-	get_parent()._recieve_call_from_local(from_peer, serialized)
+func _recieve_call_from_rpc_reliable%s(serialized: Variant) -> void:
+	var from_peer: int = multiplayer.get_remote_sender_id()
+	var channel: int = %s
+
+	get_parent()._recieve_call_from_local(from_peer, serialized, channel)
 
 @rpc(\"any_peer\", \"call_remote\", \"unreliable\", %s)
-func _recieve_call_from_rpc_unreliable%s(from_peer: int, serialized: Variant) -> void:
-	get_parent()._recieve_call_from_local(from_peer, serialized)
+func _recieve_call_from_rpc_unreliable%s(serialized: Variant) -> void:
+	var from_peer: int = multiplayer.get_remote_sender_id()
+	var channel: int = %s
+
+	get_parent()._recieve_call_from_local(from_peer, serialized, channel)
 
 @rpc(\"any_peer\", \"call_remote\", \"unreliable_ordered\", %s)
-func _recieve_call_from_rpc_unreliable_ordered%s(from_peer: int, serialized: Variant) -> void:
-	get_parent()._recieve_call_from_local(from_peer, serialized)
+func _recieve_call_from_rpc_unreliable_ordered%s(serialized: Variant) -> void:
+	var from_peer: int = multiplayer.get_remote_sender_id()
+	var channel: int = %s
+
+	get_parent()._recieve_call_from_local(from_peer, serialized, channel)
 "
 metadata/_custom_type_script = "uid://c6qw4bth4bbg7"
 
@@ -68,12 +77,9 @@ metadata/_custom_type_script = "uid://b53chxdtmx840"
 script = ExtResource("8_oycid")
 metadata/_custom_type_script = "uid://pfrh8umtg4j8"
 
-[node name="Sync" type="Node" parent="." node_paths=PackedStringArray("_timer")]
+[node name="Sync" type="Node" parent="."]
 script = ExtResource("9_gb48q")
-_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://oxklms8j40rm"
-
-[node name="Timer" type="Timer" parent="Sync"]
 
 [node name="Vars" type="Node" parent="."]
 script = ExtResource("10_i6ihn")

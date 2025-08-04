@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://u4152vbqrtjb"]
+
+[ext_resource type="PackedScene" uid="uid://e4idhqmode5u" path="res://sourcelike_interface/buttons/button_panel.tscn" id="1_ge8ba"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_ngwad"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ge8ba"]
+font = ExtResource("2_ngwad")
+font_size = 21
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="action" instance=ExtResource("1_ge8ba")]
+custom_minimum_size = Vector2(140, 24)
+
+[node name="SD_Label" parent="." index="0"]
+label_settings = SubResource("LabelSettings_ge8ba")

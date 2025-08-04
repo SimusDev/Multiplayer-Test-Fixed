@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_SourcePlayer" load_steps=3 format=3 uid="uid://c5rxmvlm7k4sw"]
+
+[ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="1_6mxdh"]
+[ext_resource type="Texture2D" uid="uid://dsnj0asls7sw5" path="res://Games/source_game/objects/players/anime/icon.png" id="1_gse4w"]
+
+[resource]
+script = ExtResource("1_6mxdh")
+custom_section = ""
+custom_id = "anime"
+icon = ExtResource("1_gse4w")
+name = ""
+description = ""
+metadata/_custom_type_script = "uid://cmevnham1hog4"

@@ -28,12 +28,26 @@ static var instance:SourcePlayer
 @export var footsteps_component:SourceFootsteps
 @export var death_camera:PackedScene
 
+@export var object: R_SourcePlayer
+
 var in_backrooms:bool = false : set = set_in_backrooms, get = is_in_backrooms
 
 func set_in_backrooms(value:bool): in_backrooms = value
 func is_in_backrooms() -> bool: return in_backrooms
 
+static var _list: Array[SourcePlayer] = []
+
+static func get_list() -> Array[SourcePlayer]:
+	return _list
+
+func _enter_tree() -> void:
+	_list.append(self)
+
+func _exit_tree() -> void:
+	_list.erase(self)
+
 func _ready() -> void:
+	
 	movement.state_machine.state_enter.connect(_on_state_enter)
 	model.on_footstep.connect(func(): $footsteps._do_footstep())
 	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1.0)
@@ -48,11 +62,6 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		instance = self
 		
-		var new_player_ui = player_ui.instantiate()
-		canvas.add_child(new_player_ui)
-		
-	if is_instance_valid(SourcePlayerUI.instance):
-		SourcePlayerUI.instance.update(health.health)
 
 func _on_state_enter(state:SD_State):
 	model.tree.get("parameters/StateMachine/playback").travel(state.name)
@@ -69,30 +78,3 @@ func set_model_blend():
 
 func _physics_process(_delta: float) -> void:
 	set_model_blend()
-
-func _on_health_died() -> void:
-	SourceGame.instance.start_respawn_timer(SD_MultiplayerPlayer.find_in_node(self))
-	
-	if is_multiplayer_authority():
-		var new_death_camera = death_camera.instantiate()
-		new_death_camera.set_multiplayer_authority(get_multiplayer_authority())
-		SourceGame.instance.add_child(new_death_camera)
-		new_death_camera.global_position = self.global_position
-		new_death_camera.make_current()
-		SourcePlayer.instance = null
-		SD_Multiplayer.call_func(self.queue_free)
-	
-	SoundPlayer.play_global_audio_3d(self.global_position, death_assets.pick_random())
-	var new_ragdoll_model = ragdoll_model.instantiate()
-	SourceGame.instance.add_child(new_ragdoll_model)
-	new_ragdoll_model.global_position = global_position
-	new_ragdoll_model.physical_bones_simulator.physical_bones_start_simulation()
-
-func _on_health_health_changed() -> void:
-	if health.health > health._last_health:
-		pass
-	else: SoundPlayer.play_global_audio_3d(self.global_position, take_damage_assets.pick_random())
-	
-	if is_multiplayer_authority():
-		if SourcePlayerUI.instance:
-			SourcePlayerUI.instance.update(health.health)

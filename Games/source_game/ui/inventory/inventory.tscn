@@ -45,19 +45,32 @@ input_action = "source.inventory"
 close_on_escape = false
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
-[node name="Window" parent="." instance=ExtResource("6_qsyy4")]
+[node name="PlayerWindow" parent="." instance=ExtResource("6_qsyy4")]
 custom_minimum_size = Vector2(600, 468)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -662.0
+offset_left = -631.0
 offset_top = -292.0
-offset_right = -62.0
+offset_right = -31.0
 offset_bottom = 292.0
 grow_horizontal = 0
 player_inventory = true
+
+[node name="ContainerWindow" parent="." instance=ExtResource("6_qsyy4")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -292.0
+offset_right = 632.0
+offset_bottom = 292.0
+grow_horizontal = 1
 
 [connection signal="closed" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_closed"]
 [connection signal="opened" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_opened"]

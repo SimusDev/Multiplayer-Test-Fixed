@@ -216,7 +216,7 @@ func register_object(node: Node) -> void:
 	
 	node.set_meta("_networked", true)
 	node.tree_exiting.connect(_on_net_object_tree_exiting.bind(node))
-	cache.try_cache_node(node)
+	SD_NetRegisteredNode.create(node)
 
 func _on_net_object_tree_exiting(node: Node) -> void:
 	if is_object_registered(node):

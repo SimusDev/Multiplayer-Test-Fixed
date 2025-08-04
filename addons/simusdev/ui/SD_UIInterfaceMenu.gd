@@ -22,7 +22,14 @@ signal interface_closed(node: Node)
 static func find_in(node: Node) -> SD_UIInterfaceMenu:
 	if node.has_meta("SD_UIInterfaceMenu"):
 		return node.get_meta("SD_UIInterfaceMenu") as SD_UIInterfaceMenu
-	return null
+	
+	var founded: SD_UIInterfaceMenu = null
+	
+	for child in node.get_children():
+		if child is SD_UIInterfaceMenu:
+			return founded
+	
+	return founded
 
 static func find_or_create(node: Node) -> SD_UIInterfaceMenu:
 	if node.has_meta("SD_UIInterfaceMenu"):
@@ -39,10 +46,18 @@ static func find_or_create(node: Node) -> SD_UIInterfaceMenu:
 
 func _enter_tree() -> void:
 	if !target:
-		target = get_parent()
-	target.set_meta("SD_UIInterfaceMenu", self)
+		if get_parent() is CanvasItem:
+			target = get_parent()
+	
+	if target.owner:
+		target.owner.set_meta("SD_UIInterfaceMenu", self)
+	else:
+		target.set_meta("SD_UIInterfaceMenu", self)
 
 func _ready() -> void:
+	if not target:
+		_enter_tree()
+	
 	if not target:
 		return
 	

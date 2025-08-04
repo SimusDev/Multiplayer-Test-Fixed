@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://daeairbjfvuy8"]
+
+[ext_resource type="Script" uid="uid://dxxbuahykpvlp" path="res://Games/source_game/components/source_object.gd" id="1_flkf8"]
+[ext_resource type="Script" uid="uid://uweixb42nruy" path="res://Games/source_game/components/ai/source_ai.gd" id="2_0un5n"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0un5n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3lvf7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0un5n"]
+size = Vector3(50, 50, 50)
+
+[node name="Test" type="RigidBody3D"]
+
+[node name="SourceObject" type="Node" parent="."]
+script = ExtResource("1_flkf8")
+metadata/_custom_type_script = "uid://dxxbuahykpvlp"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0un5n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3lvf7")
+
+[node name="SourceAI" type="Node3D" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_0un5n")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://uweixb42nruy"
+
+[node name="Vision" type="Area3D" parent="SourceAI"]
+
+[node name="Collision" type="CollisionShape3D" parent="SourceAI/Vision"]
+shape = SubResource("BoxShape3D_0un5n")

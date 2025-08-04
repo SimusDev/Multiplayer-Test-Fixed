@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv02ldy4wvnp5"]
+
+[ext_resource type="Script" uid="uid://c5cd8kyrs0uli" path="res://Games/source_game/ui/character_select/spawn.gd" id="1_lylok"]
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="1_s50h0"]
+
+[node name="Spawn" type="Button"]
+custom_minimum_size = Vector2(288, 38)
+offset_right = 288.0
+offset_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_s50h0")
+script = ExtResource("1_lylok")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

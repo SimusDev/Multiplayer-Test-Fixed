@@ -10,6 +10,10 @@ var is_drag_item:bool = false
 var collider:Node3D = null : set = set_collider
 var current_object = null
 
+func _ready() -> void:
+	SD_Network.register_object(self)
+	
+
 func _exit_tree() -> void:
 	if is_drag_item and current_object:
 		drag_prop(current_object)
@@ -90,11 +94,6 @@ func detect_entity(ent:Node3D):
 		return
 
 #OHALERA 
-
-
-
-
-
 
 
 

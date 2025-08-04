@@ -7,11 +7,12 @@ class_name SourceItemContainer extends Node3D
 @export var items_ui:PackedScene
 
 func _ready() -> void:
+	SD_Network.register_object(self)
 	SD_Network.register_function(add_model_item)
 	SD_Network.register_function(hide_all_model_items)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and SimusDev.ui.get_active_interfaces().is_empty():
+	if event is InputEventKey and event.is_released() and SimusDev.ui.get_active_interfaces().is_empty():
 		match event.keycode:
 			KEY_1: pick_item(0)
 			KEY_2: pick_item(1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=26 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="3_gr3v1"]
@@ -16,9 +16,7 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="15_uyxp6"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="16_eejt7"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="17_v4o5a"]
-[ext_resource type="PackedScene" uid="uid://b4ypo6jnmm7fw" path="res://Games/source_game/props/dummy_target/dummy_target.tscn" id="17_y1g7y"]
-[ext_resource type="PackedScene" uid="uid://8rr5gjgytmft" path="res://Games/source_game/props/tnt/tnt.tscn" id="18_fj02r"]
-[ext_resource type="PackedScene" uid="uid://cplgn5rbodten" path="res://Games/source_game/props/lootbox/lootbox.tscn" id="19_u0ham"]
+[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
 albedo_texture = ExtResource("3_gr3v1")
@@ -75,7 +73,7 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.0532335
+shader_parameter/_atm_moon_mie_intensity = 0.0532334
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("9_17bi3")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
@@ -322,140 +320,12 @@ light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="spawn_points" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="kz" type="Node3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)
+script = ExtResource("17_y1g7y")
+metadata/_custom_type_script = "uid://dxp3pky5254bi"
 
-[node name="dummy_target" parent="props" index="0" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(0.106611, 0, -0.994301, 0, 1, 0, 0.994301, 0, 0.106611, 16.3719, 0, -20.6)
-
-[node name="dummy_target2" parent="props" index="1" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(-0.0370449, 0, -0.999314, 0, 1, 0, 0.999314, 0, -0.0370449, 16.3719, 0, -19.5358)
-
-[node name="dummy_target3" parent="props" index="2" instance=ExtResource("17_y1g7y")]
-transform = Transform3D(0.0352657, 0, -0.999378, 0, 1, 0, 0.999378, 0, 0.0352657, 16.3719, 0, -18.2822)
-
-[node name="Tnt" parent="props" index="3" instance=ExtResource("18_fj02r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -23.1841)
-
-[node name="Tnt2" parent="props" index="4" instance=ExtResource("18_fj02r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -23.7643)
-
-[node name="Tnt3" parent="props" index="5" instance=ExtResource("18_fj02r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -24.3862)
-
-[node name="Tnt4" parent="props" index="6" instance=ExtResource("18_fj02r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6161, 0, -24.9691)
-
-[node name="lootbox" parent="props" index="7" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6218, 0.459432, -30.7656)
-
-[node name="lootbox2" parent="props" index="8" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9586, 0.459432, -30.7656)
-
-[node name="lootbox3" parent="props" index="9" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.05, 0.459432, -30.7656)
-
-[node name="lootbox4" parent="props" index="10" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37616, 0.459432, -30.7656)
-
-[node name="lootbox5" parent="props" index="11" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37616, 0.459432, -30.7656)
-
-[node name="lootbox6" parent="props" index="12" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -31.7656)
-
-[node name="lootbox24" parent="props" index="13" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -31.7656)
-
-[node name="lootbox25" parent="props" index="14" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -31.7656)
-
-[node name="lootbox26" parent="props" index="15" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -32.7656)
-
-[node name="lootbox27" parent="props" index="16" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -33.7656)
-
-[node name="lootbox28" parent="props" index="17" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -34.7656)
-
-[node name="lootbox29" parent="props" index="18" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -34.7656)
-
-[node name="lootbox30" parent="props" index="19" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -33.7656)
-
-[node name="lootbox31" parent="props" index="20" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -32.7656)
-
-[node name="lootbox32" parent="props" index="21" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -29.7656)
-
-[node name="lootbox33" parent="props" index="22" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9762, 0.459432, -29.7656)
-
-[node name="lootbox7" parent="props" index="23" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -32.7656)
-
-[node name="lootbox8" parent="props" index="24" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -33.7656)
-
-[node name="lootbox9" parent="props" index="25" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -34.7656)
-
-[node name="lootbox10" parent="props" index="26" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -35.7656)
-
-[node name="lootbox11" parent="props" index="27" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -36.7656)
-
-[node name="lootbox19" parent="props" index="28" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -36.7656)
-
-[node name="lootbox34" parent="props" index="29" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0762, 0.459432, -36.7656)
-
-[node name="lootbox35" parent="props" index="30" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -37.7656)
-
-[node name="lootbox36" parent="props" index="31" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -37.7656)
-
-[node name="lootbox37" parent="props" index="32" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0762, 0.459432, -36.7656)
-
-[node name="lootbox38" parent="props" index="33" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -38.7656)
-
-[node name="lootbox20" parent="props" index="34" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0762, 0.459432, -35.7656)
-
-[node name="lootbox21" parent="props" index="35" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -35.7656)
-
-[node name="lootbox22" parent="props" index="36" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0762, 0.459432, -36.7656)
-
-[node name="lootbox23" parent="props" index="37" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -37.7656)
-
-[node name="lootbox12" parent="props" index="38" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0762, 0.459432, -30.7656)
-
-[node name="lootbox13" parent="props" index="39" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7762, 0.459432, -30.7656)
-
-[node name="lootbox14" parent="props" index="40" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2762, 0.459432, -30.7656)
-
-[node name="lootbox15" parent="props" index="41" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2762, 0.459432, -31.7656)
-
-[node name="lootbox16" parent="props" index="42" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2762, 0.459432, -29.7656)
-
-[node name="lootbox17" parent="props" index="43" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7762, 0.459432, -29.7656)
-
-[node name="lootbox18" parent="props" index="44" instance=ExtResource("19_u0ham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7762, 0.459432, -31.7656)
+[node name="main" type="Node3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.83878, 0)
+script = ExtResource("17_y1g7y")
+metadata/_custom_type_script = "uid://dxp3pky5254bi"

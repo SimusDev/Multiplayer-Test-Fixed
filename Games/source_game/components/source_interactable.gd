@@ -2,8 +2,6 @@
 extends Area3D
 class_name SourceInteractable
 
-var interactable: W_InteractableArea3D
-
 const INTERACTABLE_LAYER: int = 4
 
 func _ready() -> void:
@@ -17,7 +15,4 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	interactable = W_InteractableArea3D.new()
-	interactable.name = "W_InteractableArea3D"
-	interactable.area = self
-	add_child(interactable)
+	

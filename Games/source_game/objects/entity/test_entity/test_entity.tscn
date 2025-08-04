@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5eshaacppkh"]
+
+[ext_resource type="Script" uid="uid://djr3hiaaowaek" path="res://Games/source_game/objects/entity/test_entity/test_entity.gd" id="1_yhu3f"]
+[ext_resource type="Script" uid="uid://dxxbuahykpvlp" path="res://Games/source_game/components/source_object.gd" id="2_laua4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yhu3f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_laua4"]
+
+[node name="TestEntity" type="CharacterBody3D"]
+script = ExtResource("1_yhu3f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yhu3f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_laua4")
+
+[node name="SourceObject" type="Node" parent="."]
+script = ExtResource("2_laua4")
+metadata/_custom_type_script = "uid://dxxbuahykpvlp"

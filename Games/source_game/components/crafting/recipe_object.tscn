@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://c55s3wah7vy47"]
+
+[ext_resource type="Script" uid="uid://cdarxs3qjb3uc" path="res://Games/source_game/components/crafting/recipe_object.gd" id="1_cap4b"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_ck7by"]
+[ext_resource type="Texture2D" uid="uid://k88be7ll153x" path="res://addons/kenney_prototype_textures/light/texture_06.png" id="2_mbfr0"]
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="5_faxup"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tl671"]
+albedo_texture = ExtResource("2_mbfr0")
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ck7by"]
+size = Vector3(0.4, 0.01, 0.3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cap4b"]
+points = PackedVector3Array(-0.2, -0.005, -0.1, -0.2, 0.005, -0.1, 0.2, -0.005, -0.1, -0.2, -0.005, 0.1, -0.2, 0.005, 0.1, 0.2, 0.005, -0.1, 0.2, -0.005, 0.1, 0.2, 0.005, 0.1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gbxgd"]
+font = ExtResource("5_faxup")
+font_size = 48
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mbfr0"]
+viewport_path = NodePath("SubViewportContainer")
+
+[node name="RecipeObject" type="RigidBody3D"]
+script = ExtResource("1_cap4b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_tl671")
+mesh = SubResource("BoxMesh_ck7by")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_cap4b")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("2_ck7by")
+surface = "body"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="SubViewportContainer" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ingridients:
+item x1"
+label_settings = SubResource("LabelSettings_gbxgd")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-2.40413e-09, 0.055, 2.40413e-09, 0, -2.40413e-09, 0.055, 0.055, 2.40413e-09, 1.05088e-16, 0.0398515, 0.00579591, 0.000338204)
+texture = SubResource("ViewportTexture_mbfr0")

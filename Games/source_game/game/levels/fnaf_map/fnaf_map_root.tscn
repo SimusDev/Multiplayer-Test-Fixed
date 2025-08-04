@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhpdpoj67oway"]
+[gd_scene load_steps=5 format=3 uid="uid://bhpdpoj67oway"]
 
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_lwcjj"]
 [ext_resource type="PackedScene" uid="uid://bsuaqxh8uhd37" path="res://Games/fnaf/maps/fnaf1_u/base.tscn" id="1_ya4wd"]
-[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_bnarr"]
 
 [sub_resource type="VoxelGIData" id="VoxelGIData_te7lc"]
 interior = true
@@ -20,13 +18,6 @@ tonemap_white = 6.0
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_s8025"]
 
 [node name="MapRoot" type="Node3D"]
-
-[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("1_lwcjj")
-player_scene = ExtResource("2_bnarr")
-parent = NodePath("..")
-spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
 
 [node name="Untitled" parent="." instance=ExtResource("1_ya4wd")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -132,15 +123,3 @@ omni_range = 4.222
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jgx21")
 camera_attributes = SubResource("CameraAttributesPractical_s8025")
-
-[node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 36)
-
-[node name="1" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26817, 0, 0)
-
-[node name="2" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65029, 0, -0.0420418)
-
-[node name="3" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85077, 0, 0.170113)

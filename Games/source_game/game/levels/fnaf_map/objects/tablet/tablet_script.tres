@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5blfcfjssyp3"]
+
+[ext_resource type="Script" uid="uid://eyprrjha22sb" path="res://Games/source_game/game/levels/fnaf_map/objects/tablet/tablet_script.gd" id="1_usiqh"]
+
+[resource]
+script = ExtResource("1_usiqh")
+code = "open"
+metadata/_custom_type_script = "uid://ljoyr2dp1aew"

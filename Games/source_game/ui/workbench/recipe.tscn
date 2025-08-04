@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://co4llpj8e58n1"]
+
+[ext_resource type="Script" uid="uid://cy4mpk2yp2p0q" path="res://Games/source_game/ui/workbench/recipe.gd" id="1_6x077"]
+[ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="2_4ptyv"]
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="3_t17os"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_v4hdv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k2mx8"]
+font = ExtResource("3_t17os")
+
+[node name="Recipe" type="Control"]
+custom_minimum_size = Vector2(358, 101)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 358.0
+offset_bottom = 101.0
+mouse_filter = 2
+script = ExtResource("1_6x077")
+metadata/_edit_vertical_guides_ = [100.0]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 2
+texture = ExtResource("2_4ptyv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SD_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.279
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.117996
+grow_horizontal = 2
+grow_vertical = 2
+text = "object"
+label_settings = SubResource("LabelSettings_k2mx8")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_v4hdv")
+font = ExtResource("3_t17os")
+localization_enabled = true
+localization_key = "object"
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

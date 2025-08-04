@@ -6,6 +6,8 @@ class_name C_SourceObjectHandler
 
 var _resources: Array[R_SourceWorldObject]
 
+@export var init_resources: Array[R_SourceWorldObject] = []
+
 func _ready() -> void:
 	for dir in object_dirs:
 		var dir_path: String = base_dir.path_join(dir)
@@ -14,4 +16,11 @@ func _ready() -> void:
 			if resource is R_SourceWorldObject:
 				_resources.append(resource)
 				resource.register()
-				
+	
+	for res in init_resources:
+		_resources.append(res)
+		res.register()
+
+func _exit_tree() -> void:
+	for i in _resources:
+		i.unregister()

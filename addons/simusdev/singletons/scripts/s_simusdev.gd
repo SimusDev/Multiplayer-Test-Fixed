@@ -47,7 +47,8 @@ var _autoload_classes = [
 	SD_Settings.new(),
 	SD_BooleansStorage.new(),
 	SD_Variables.new(),
-	SD_Components.new()
+	SD_Components.new(),
+	SD_Nodes.new()
 ]
 
 var _settings: SD_EngineSettings

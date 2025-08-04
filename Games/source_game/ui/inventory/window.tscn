@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckpemnnfs6bi3"]
+[gd_scene load_steps=4 format=3 uid="uid://ckpemnnfs6bi3"]
 
 [ext_resource type="Script" uid="uid://bswl4pql3jdtf" path="res://Games/source_game/ui/inventory/window.gd" id="1_va7wf"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_r0vmh"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_shyxp"]
-[ext_resource type="PackedScene" uid="uid://dl4tin75tv8gq" path="res://Games/source_game/ui/inventory/slot.tscn" id="4_h8asj"]
 
 [node name="Window" type="Control" node_paths=PackedStringArray("container")]
 custom_minimum_size = Vector2(832, 468)
@@ -44,57 +43,3 @@ grow_vertical = 2
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
 columns = 6
-
-[node name="Slot" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot2" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot3" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot4" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot5" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot6" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot7" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot8" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot9" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot10" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot11" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot12" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot13" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot14" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot15" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot16" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot17" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2
-
-[node name="Slot18" parent="CenterContainer/GridContainer" instance=ExtResource("4_h8asj")]
-layout_mode = 2

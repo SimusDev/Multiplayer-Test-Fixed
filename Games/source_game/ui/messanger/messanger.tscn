@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcntnmluwxm7f"]
+
+[ext_resource type="Script" uid="uid://d3k0nsfu8cntw" path="res://Games/source_game/ui/messanger/messanger.gd" id="1_wlvgo"]
+[ext_resource type="Texture2D" uid="uid://drjnul6jaq8nm" path="res://Games/source_game/ui/messanger/icons/def.png" id="2_40upb"]
+[ext_resource type="PackedScene" uid="uid://dl8qlh3ghcoy4" path="res://Games/source_game/ui/messanger/message.tscn" id="2_exhxf"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_kexg2"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_40upb"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_fj5y6"]
+
+[sub_resource type="Resource" id="Resource_ao8hl"]
+script = ExtResource("4_40upb")
+update_at_start = true
+code = "send"
+value = ""
+private = false
+binds = Array[ExtResource("5_fj5y6")]([])
+number_min_value = 0.0
+number_max_value = 0.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="Messanger" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wlvgo")
+icons = Array[Texture]([ExtResource("2_40upb")])
+message_scene = ExtResource("2_exhxf")
+container = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -134.0
+offset_right = 1027.0
+offset_bottom = 134.0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("3_kexg2")
+commands = Array[ExtResource("4_40upb")]([SubResource("Resource_ao8hl")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]

@@ -13,7 +13,9 @@ func _ready() -> void:
 	for p in _list:
 		
 		for property in p.properties:
-			SD_Network.register_variable(_synchronizer.get_node_or_null(p.node_path), property, {"apply_changes": false})
+			var node: Node = _synchronizer.get_node_or_null(p.node_path)
+			SD_Network.register_object(node)
+			SD_Network.register_variable(node, property, {"apply_changes": false})
 		
 		synchronize(p, true)
 

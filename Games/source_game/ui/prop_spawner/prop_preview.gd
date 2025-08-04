@@ -29,5 +29,5 @@ func _on_source_button_mouse_entered() -> void:
 func _on_source_button_mouse_exited() -> void:
 	highlight.hide()
 	for child in full_desc_node.get_children():
-		print(child)
+		#print(child)
 		child.queue_free()

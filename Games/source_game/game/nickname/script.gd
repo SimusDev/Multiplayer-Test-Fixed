@@ -7,7 +7,7 @@ func _ready() -> void:
 	update()
 
 func update():
-	var mp_player: SD_MultiplayerPlayer = SD_MultiplayerPlayer.find_in_node(authority_node)
+	var mp_player: SD_NetworkPlayer = SD_NetworkPlayer.find_in(authority_node)
 	if mp_player:
-		label.text = mp_player.get_username() #EZ
+		label.text = mp_player.get_username()
 # WW

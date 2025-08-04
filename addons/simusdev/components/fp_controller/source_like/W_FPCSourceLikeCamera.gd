@@ -76,7 +76,7 @@ func _enabled_status_changed() -> void:
 		set_mouse_captured(enabled)
 
 func _ready() -> void:
-	
+	SD_Network.register_object(self)
 	if not is_authority():
 		add_disable_priority()
 		return

@@ -1,11 +1,47 @@
 extends SD_NetTrunk
 class_name SD_NetTrunkCache
 
-var _local_changes: Array[Dictionary] = []
-
 func _initialized() -> void:
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
 	
+
+func get_cached_methods() -> PackedStringArray:
+	var cache := singleton.cache_get()
+	if cache.has("m"):
+		return cache["m"]
+	var methods: PackedStringArray = PackedStringArray()
+	cache.set("m", methods)
+	return methods
+
+func cache_method(method: Callable) -> void:
+	var methods: PackedStringArray = get_cached_methods()
+	var m_name: String = method.get_method()
+	if methods.has(m_name):
+		return
+	
+	methods.append(m_name)
+	
+	debug_print("method cached: %s" % m_name)
+	
+	_cache_method_rpc.rpc(m_name)
+
+@rpc("call_local", "any_peer", "reliable")
+func _cache_method_rpc(method_name: String) -> void:
+	if SD_Network.is_server():
+		return
+	
+	get_cached_methods().append(method_name)
+
+func serialize_method(callable: Callable) -> Variant:
+	var id: int = get_cached_methods().find(callable.get_method())
+	if id > -1:
+		return id
+	return callable.get_method()
+
+func deserialize_method(serialized: Variant) -> Variant:
+	if serialized is int:
+		return get_cached_methods().get(serialized)
+	return serialized
 
 func _on_active_status_changed(status: bool) -> void:
 	if status:
@@ -50,7 +86,6 @@ func get_cached_id_by_node(node: Node) -> int:
 	return get_cached_id_by_path(node.get_path())
 
 func try_cache_node(node: Node) -> void:
-	
 	if not is_instance_valid(node):
 		return
 	
@@ -62,22 +97,12 @@ func try_cache_node(node: Node) -> void:
 	
 	var net_id: int = node.get_instance_id()
 	
-	if cache_by_id.has(net_id):
-		return
-	
-	var path: NodePath = node.get_path()
+	var path: NodePath = SD_NetRegisteredNode.get_or_create(node).last_path
 	
 	cache_by_path[path] = net_id
 	cache_by_id[net_id] = path
 	
-	#node.tree_exited.connect(_on_cached_node_tree_exited.bind(node, path))
-	
-	var local_change: Dictionary[String, Variant] = {}
-	local_change.net_id = net_id
-	local_change.path = path
-	local_change.status = true
-	
-	_local_changes.append(local_change)
+	_client_cache.rpc(net_id, path)
 	
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
@@ -94,29 +119,18 @@ func try_uncache_node(path: NodePath) -> void:
 	cache_by_id.erase(net_id)
 	cache_by_path.erase(path)
 	
+	_client_uncache.rpc(net_id, path)
+	return
+	
 	var local_change: Dictionary[String, Variant] = {}
 	local_change.net_id = net_id
 	local_change.path = path
 	local_change.status = false
 	
-	_local_changes.append(local_change)
-	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 func _on_scene_tree_node_added(node: Node) -> void:
 	try_cache_node(node)
-
-func _on_scene_tree_node_removed(node: Node) -> void:
-	try_uncache_node(node.get_path())
-
-func _process(delta: float) -> void:
-	
-	if !SD_Network.is_server() or !SD_Network.singleton.is_active():
-		return
-	
-	if not _local_changes.is_empty():
-		_client_recieve_changes.rpc(_local_changes)
-		_local_changes.clear()
 
 @rpc("any_peer", "reliable", "call_local")
 func _client_recieve_changes(changes: Array[Dictionary]) -> void:
@@ -129,6 +143,7 @@ func _client_recieve_changes(changes: Array[Dictionary]) -> void:
 		else:
 			_client_uncache(change.net_id, change.path) 
 
+@rpc("any_peer", "reliable", "call_local")
 func _client_cache(net_id: int, path: NodePath) -> void:
 	if SD_Network.is_server():
 		return
@@ -136,6 +151,7 @@ func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
 
+@rpc("any_peer", "reliable", "call_local")
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	if SD_Network.is_server():
 		return
@@ -146,3 +162,16 @@ func _client_uncache(net_id: int, path: NodePath) -> void:
 func debug_print(text, category: int = 0) -> void:
 	if singleton.settings.debug_cache:
 		singleton.debug_print(text, category)
+
+func serialize_node_reference(node: Node) -> Variant:
+	var reg: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
+	var path: NodePath = reg.last_path
+	var id: int = get_cached_id_by_path(path)
+	if id < 0:
+		return path
+	return id
+
+func deserialize_node_reference(data: Variant) -> Node:
+	if data is int:
+		return get_node_or_null(get_cached_path_by_id(data))
+	return get_node_or_null(data)

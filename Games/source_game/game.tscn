@@ -1,17 +1,25 @@
-[gd_scene load_steps=21 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=29 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
-[ext_resource type="Script" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
 [ext_resource type="PackedScene" uid="uid://0inf6n0plcyd" path="res://Games/source_game/singletons/pack.tscn" id="3_tn3t5"]
+[ext_resource type="Script" uid="uid://cdt25w8dxwwiq" path="res://Games/source_game/components/source_network_spawner.gd" id="4_gfajl"]
+[ext_resource type="PackedScene" uid="uid://bpbmeo4fcecox" path="res://Games/source_game/ui/ui_handler.tscn" id="4_spe63"]
+[ext_resource type="Script" uid="uid://dkfgyaafl2e0u" path="res://Games/source_game/components/source_network.gd" id="6_152x2"]
+[ext_resource type="Script" uid="uid://cjh0w1rqjt1q3" path="res://Games/source_game/components/source_player_spawner.gd" id="6_dvi7y"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
+[ext_resource type="PackedScene" uid="uid://crc5q81krdogr" path="res://Games/source_game/ui/character_select/character_select.tscn" id="7_lg245"]
 [ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
+[ext_resource type="Script" uid="uid://brbjcyxkk7elj" path="res://Games/source_game/components/crafting/source_crafting.gd" id="8_spe63"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
+[ext_resource type="Script" uid="uid://djvskk2xxjjpo" path="res://addons/simusdev/network/SD_NetworkSpawner.gd" id="16_h0jfs"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
+[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -101,11 +109,38 @@ number_min_value = 0.0
 number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="source_game" type="Node" node_paths=PackedStringArray("level_handler")]
+[node name="source_game" type="Node" node_paths=PackedStringArray("level_handler", "_spawner")]
 script = ExtResource("1_lvrp7")
 level_handler = NodePath("SourceLevelHandler")
 death_camera = ExtResource("28_ioj0b")
 _singleton_pack = ExtResource("3_tn3t5")
+_spawner = NodePath("SourceNetworkSpawner")
+
+[node name="SourceNetworkSpawner" type="Node" parent="."]
+script = ExtResource("4_gfajl")
+sync_at_start = false
+debug = true
+instant = false
+channel = "spawn"
+metadata/_custom_type_script = "uid://cdt25w8dxwwiq"
+
+[node name="MapSpawner" type="Node" parent="." node_paths=PackedStringArray("initial_nodes")]
+script = ExtResource("16_h0jfs")
+initial_nodes = [NodePath("../map_holder")]
+debug = true
+channel = "spawn"
+metadata/_custom_type_script = "uid://djvskk2xxjjpo"
+
+[node name="SourcePlayerSpawner" type="Node" parent="."]
+script = ExtResource("6_dvi7y")
+interface = ExtResource("7_lg245")
+metadata/_custom_type_script = "uid://cjh0w1rqjt1q3"
+
+[node name="SourceNetwork" type="Node" parent="."]
+script = ExtResource("6_152x2")
+metadata/_custom_type_script = "uid://dkfgyaafl2e0u"
+
+[node name="SourceUIHandler" parent="." instance=ExtResource("4_spe63")]
 
 [node name="SourceEvents" type="Node" parent="."]
 script = ExtResource("3_8dbco")
@@ -121,7 +156,12 @@ level_at_start = "kz"
 [node name="C_SourceObjectHandler" type="Node" parent="."]
 script = ExtResource("3_aahtd")
 base_dir = "res://Games/source_game/"
-object_dirs = PackedStringArray("props", "objects")
+object_dirs = PackedStringArray("props", "objects", "recipes")
+
+[node name="SourceCrafting" type="Node" parent="." node_paths=PackedStringArray("object_handler")]
+script = ExtResource("8_spe63")
+object_handler = NodePath("../C_SourceObjectHandler")
+metadata/_custom_type_script = "uid://brbjcyxkk7elj"
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
@@ -149,16 +189,10 @@ room = ExtResource("11_8dbco")
 
 [node name="map_holder" type="Node3D" parent="."]
 
-[node name="SD_MPClientNodeSpawner" type="Node" parent="map_holder" node_paths=PackedStringArray("_detect_roots")]
-script = ExtResource("6_s8025")
-_detect_roots = [NodePath("..")]
-APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
-"CharacterBody3D": PackedStringArray("transform"),
-"Node2D": PackedStringArray("transform"),
-"Node3D": PackedStringArray("transform")
-})
-metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
+[node name="FreeCamera" parent="." instance=ExtResource("20_ha5cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.0987, 0)
 
+[connection signal="spawned" from="MapSpawner" to="SourcePlayerSpawner" method="_on_map_spawner_spawned"]
 [connection signal="_free_current_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__free_current_level"]
 [connection signal="_load_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__load_level"]
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

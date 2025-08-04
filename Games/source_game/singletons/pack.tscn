@@ -1,14 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://0inf6n0plcyd"]
+[gd_scene load_steps=7 format=3 uid="uid://0inf6n0plcyd"]
 
 [ext_resource type="Script" uid="uid://cidx4eor8ag63" path="res://Games/source_game/singletons/scripts/SRC_S_Explosions.gd" id="1_82fki"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_6130q"]
+[ext_resource type="Script" uid="uid://carjv00swntw4" path="res://Games/source_game/singletons/scripts/SRC_S_Interactables.gd" id="2_gfjqt"]
 [ext_resource type="Script" uid="uid://do50ygiketeqm" path="res://Games/source_game/singletons/scripts/SRC_S_GameSaver.gd" id="2_y437i"]
+[ext_resource type="Script" uid="uid://nnewuu7kv2vx" path="res://Games/source_game/singletons/scripts/SourceSounds.gd" id="3_1xv3b"]
+[ext_resource type="Script" uid="uid://cx8d17wyikvak" path="res://Games/source_game/singletons/scripts/SRC_S_Deaths.gd" id="4_3rutf"]
 
 [node name="SingletonPack" type="Node"]
 
 [node name="SRC_S_Explosions" type="Node" parent="."]
 script = ExtResource("1_82fki")
 metadata/_custom_type_script = "uid://cidx4eor8ag63"
+
+[node name="SRC_S_Interactables" type="Node" parent="."]
+script = ExtResource("2_gfjqt")
+metadata/_custom_type_script = "uid://carjv00swntw4"
+
+[node name="SourceSounds" type="Node" parent="."]
+script = ExtResource("3_1xv3b")
+metadata/_custom_type_script = "uid://nnewuu7kv2vx"
+
+[node name="SRC_S_Deaths" type="Node" parent="."]
+script = ExtResource("4_3rutf")
+metadata/_custom_type_script = "uid://cx8d17wyikvak"
 
 [node name="SRC_S_GameSaver" type="Node" parent="."]
 script = ExtResource("2_y437i")

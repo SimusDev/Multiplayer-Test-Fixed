@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2yv5d1ybwgxc"]
+
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_1houd"]
+
+[node name="FreeCamera" instance=ExtResource("1_1houd")]
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_boost = "sprint"
+key_slowdown = "crouch"
+multiplayer_authorative = false

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="R_SourceRecipe" load_steps=9 format=3 uid="uid://cik8n7eqpo11o"]
+
+[ext_resource type="Texture2D" uid="uid://dr2ggsgy85rq4" path="res://addons/simusdev/icons/Resource.svg" id="1_mdtn7"]
+[ext_resource type="Script" uid="uid://82oo1iuaxrch" path="res://Games/source_game/components/crafting/source_recipe_input.gd" id="1_yvraq"]
+[ext_resource type="Resource" uid="uid://ghhtgd7bsx2l" path="res://Games/source_game/objects/entity/zombie.tres" id="2_mdtn7"]
+[ext_resource type="Script" uid="uid://3bq4bc82j34c" path="res://Games/source_game/components/crafting/source_recipe_output.gd" id="3_45mpg"]
+[ext_resource type="Resource" uid="uid://c3ye4j7ajwc25" path="res://Games/source_game/props/doll/doll_prop.tres" id="3_mdtn7"]
+[ext_resource type="Script" uid="uid://b7iaay778gprw" path="res://Games/source_game/components/crafting/source_recipe.gd" id="5_mmybi"]
+
+[sub_resource type="Resource" id="Resource_worqe"]
+script = ExtResource("1_yvraq")
+source = ExtResource("3_mdtn7")
+quantity = 5
+metadata/_custom_type_script = "uid://82oo1iuaxrch"
+
+[sub_resource type="Resource" id="Resource_yvraq"]
+script = ExtResource("3_45mpg")
+source = ExtResource("2_mdtn7")
+quantity = 1
+metadata/_custom_type_script = "uid://3bq4bc82j34c"
+
+[resource]
+script = ExtResource("5_mmybi")
+time = 0.0
+input = Array[ExtResource("1_yvraq")]([SubResource("Resource_worqe")])
+output = SubResource("Resource_yvraq")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_mdtn7")
+name = ""
+description = ""
+metadata/_custom_type_script = "uid://b7iaay778gprw"
