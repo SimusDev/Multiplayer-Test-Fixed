@@ -19,11 +19,11 @@
 [ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
 [ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="11_lhwgh"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
 [ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
-[ext_resource type="Script" path="res://Games/source_game/components/source_playable.gd" id="12_ax0ug"]
+[ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="12_ax0ug"]
 [ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="12_fucap"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="12_j3nm0"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="12_sf1eh"]
@@ -61,7 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://dp4g8b6hojp73" path="res://Games/source_game/items/axe/axe.tscn" id="31_k6hwe"]
 [ext_resource type="AudioStream" uid="uid://cqs7k2tjkdjjx" path="res://sounds/hl2/player/footsteps/concrete1.wav" id="32_5jte2"]
 [ext_resource type="AudioStream" uid="uid://bdiboxh5k3r35" path="res://sounds/hl2/player/footsteps/concrete2.wav" id="33_4d7pv"]
-[ext_resource type="Script" path="res://Games/source_game/components/source_interact_ray.gd" id="34_0td7v"]
+[ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="34_0td7v"]
 [ext_resource type="AudioStream" uid="uid://bwer8p2x4sw3o" path="res://sounds/hl2/player/footsteps/concrete3.wav" id="34_krprw"]
 [ext_resource type="AudioStream" uid="uid://ctk4fa7resa76" path="res://sounds/hl2/player/footsteps/concrete4.wav" id="35_3yygh"]
 [ext_resource type="AudioStream" uid="uid://bos1qocyqmii8" path="res://sounds/hl2/player/footsteps/tile1.wav" id="36_efvha"]
@@ -441,7 +441,7 @@ ceiling_detection = NodePath("../ceiling_raycast")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 
 [node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.108843, -0.0139643, -0.257601, -0.00459685, -0.27944, 0.0170905, -0.257938, 0.0108727, 0.108396, 0.267356, -0.0217247, -0.0273395)
+transform = Transform3D(-0.108843, -0.0139642, -0.257601, -0.00459696, -0.27944, 0.0170904, -0.257938, 0.0108727, 0.108396, 0.267356, -0.0217237, -0.0273392)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
