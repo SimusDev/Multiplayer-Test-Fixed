@@ -30,10 +30,7 @@ func _ready() -> void:
 	
 	S_EventDeathLocal.as_event().published.connect(_on_local_death.bind(S_EventDeathLocal.as_event()))
 	
-	await get_parent().ready
-	await get_tree().process_frame
 	
-	sync_spawnpoints()
 
 func _on_local_death(event: S_EventDeathLocal) -> void:
 	open_interface()
@@ -54,7 +51,7 @@ func _recieve(spawnpoints: Array) -> void:
 		var resource: SourceSpawnPointResource = SourceSpawnPoint.deserialize(spawn)
 		self.spawnpoints.append(resource)
 		spawnpoint_synchronized.emit(resource)
-		
+	
 	
 	open_interface()
 
@@ -89,13 +86,17 @@ func _request_spawn(id: String, spawn: String) -> void:
 		return
 	
 	var ref: C_SourceWorldObjectReference = object.create()
-	net_player.set_in(ref.source)
-	ref.source.name = str(net_player.get_peer_id())
-	SourceLevelSection3D.get_by_name("players").add_child(ref.source)
-	ref.set_global_position_from(spawnpoint)
+	if ref.source:
+		net_player.set_in(ref.source)
+		ref.source.name = str(net_player.get_peer_id())
+		SourceLevelSection3D.get_by_name("players").add_child(ref.source)
+		ref.set_global_position_from(spawnpoint)
 
 func _on_map_spawner_spawned(node: Node, data: Dictionary) -> void:
 	if !node.is_node_ready():
 		await node.ready
 	
+
+
+func _on_source_level_handler_level_updated() -> void:
 	sync_spawnpoints()

@@ -195,4 +195,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.0987, 0)
 [connection signal="spawned" from="MapSpawner" to="SourcePlayerSpawner" method="_on_map_spawner_spawned"]
 [connection signal="_free_current_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__free_current_level"]
 [connection signal="_load_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__load_level"]
+[connection signal="level_updated" from="SourceLevelHandler" to="SourcePlayerSpawner" method="_on_source_level_handler_level_updated"]
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

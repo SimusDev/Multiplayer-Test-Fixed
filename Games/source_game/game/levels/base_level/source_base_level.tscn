@@ -36,4 +36,3 @@ networked = true
 
 [node name="ghost_buildings" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
-networked = true

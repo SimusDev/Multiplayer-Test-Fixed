@@ -1,5 +1,6 @@
 class_name SourceLevelHandler extends Node
 
+signal level_updated()
 signal _free_current_level
 signal _load_level(_level)
 
@@ -27,7 +28,6 @@ func _ready() -> void:
 	
 	check_level()
 	
-	print(root_node.get_children())
 	if root_node.get_children().size() > 0:
 		game._spawner.synchronize_all()
 
@@ -66,4 +66,8 @@ func load_level(level_name:StringName) -> bool:
 	return true
 
 func _on_child_entered_tree(node: Node) -> void:
+	if !node.is_node_ready():
+		await node.ready
+	
 	game._spawner.synchronize_all()
+	level_updated.emit()
