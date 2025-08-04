@@ -16,6 +16,9 @@ func _readcreate_sections():
 	var sections:Array[String] = []
 	
 	for resource in resources:
+		if resource.is_visible() == false:
+			continue
+		
 		if resource.get_section().is_empty() or resource.get_section() in sections:
 			continue
 		

@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl4tin75tv8gq"]
+[gd_scene load_steps=7 format=3 uid="uid://dl4tin75tv8gq"]
 
 [ext_resource type="Script" uid="uid://chhx3y5tloktk" path="res://Games/source_game/ui/inventory/slot.gd" id="1_xan3g"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_1obx4"]
 [ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="2_8kgjj"]
+[ext_resource type="Script" uid="uid://dv4aas07newsa" path="res://Games/source_game/components/item_actions/drop.gd" id="3_1ewkx"]
 [ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="3_7emnb"]
+
+[sub_resource type="Resource" id="Resource_p2iye"]
+script = ExtResource("3_1ewkx")
+code = ""
+metadata/_custom_type_script = "uid://dv4aas07newsa"
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(85, 85)
@@ -13,6 +20,9 @@ offset_bottom = 85.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_xan3g")
+item_binds = Dictionary[String, ExtResource("2_1obx4")]({
+"source.quick_drop": SubResource("Resource_p2iye")
+})
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -42,3 +52,6 @@ draggable_node = NodePath("../icon")
 drop_node = NodePath("..")
 preview_node = NodePath("../icon")
 metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="dropped" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_dropped"]

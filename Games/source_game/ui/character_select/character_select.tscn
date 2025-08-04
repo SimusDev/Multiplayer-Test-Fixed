@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://crc5q81krdogr"]
+
+[ext_resource type="Script" uid="uid://bn6uo3scs7onc" path="res://Games/source_game/ui/character_select/character_select.gd" id="1_2ucuu"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_gqi34"]
+[ext_resource type="PackedScene" uid="uid://b8ub3oro62esl" path="res://Games/source_game/ui/character_select/slot.tscn" id="2_hypjj"]
+[ext_resource type="Shader" uid="uid://b3ikxkqdkbahg" path="res://addons/simusdev/shaders/bg_blur.gdshader" id="3_6pm5p"]
+[ext_resource type="PackedScene" uid="uid://cv02ldy4wvnp5" path="res://Games/source_game/ui/character_select/spawn.tscn" id="3_vsg7p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsg7p"]
+shader = ExtResource("3_6pm5p")
+shader_parameter/lod = 2.0
+
+[node name="CharacterSelect" type="CanvasLayer" node_paths=PackedStringArray("container", "container_spawn")]
+script = ExtResource("1_2ucuu")
+container = NodePath("root/ScrollContainer/CenterContainer/GridContainer")
+container_spawn = NodePath("root/desc/ScrollContainer/CenterContainer/GridContainer")
+slot = ExtResource("2_hypjj")
+spawn = ExtResource("3_vsg7p")
+
+[node name="blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vsg7p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="desc" type="Control" parent="root"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="root/desc"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="root/desc/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="VBoxContainer" parent="root/desc/ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="root"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="root/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="root/ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_gqi34")
+target = NodePath("../root")
+open_at_start = true
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"

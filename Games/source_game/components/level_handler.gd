@@ -7,7 +7,6 @@ signal _load_level(_level)
 
 @export var game: SourceGame
 @export var root_node:Node
-var props_node:Node
 var local_props_node: Node
 var current_level:Node=null
 @export_category("Settings")
@@ -17,6 +16,8 @@ var current_level:Node=null
 func _ready() -> void:
 	await game.ready
 	
+	root_node.child_entered_tree.connect(_on_child_entered_tree)
+	
 	cmd_change_level.executed.connect(_on_cmd_change_level_executed)
 	
 	if level_at_start == "":
@@ -25,6 +26,11 @@ func _ready() -> void:
 		load_level(level_at_start)
 	
 	check_level()
+	
+	print(root_node.get_children())
+	if root_node.get_children().size() > 0:
+		game._spawner.synchronize_all()
+
 
 func check_level():
 	if SD_Network.is_server():
@@ -32,17 +38,13 @@ func check_level():
 
 
 func _on_cmd_change_level_executed():
-	if SD_Multiplayer.is_not_server():
+	if not SD_Network.is_server():
 		SimusDev.console.write_error("Only server can change level")
 		return
 	load_level(cmd_change_level.get_value_as_string())
 
 func free_current_level():
-	for child in root_node.get_children():
-		if child is SD_MPClientNodeSpawner:
-			continue
-		
-		child.queue_free()
+	SD_Nodes.clear_all_children(root_node)
 	current_level = null
 	_free_current_level.emit()
 
@@ -60,7 +62,8 @@ func load_level(level_name:StringName) -> bool:
 	current_level = new_level_scene
 	root_node.add_child(new_level_scene)
 	_load_level.emit(new_level_scene)
-	props_node = current_level.get_node("props")
-	local_props_node = current_level.get_node("local_props")
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
 	return true
+
+func _on_child_entered_tree(node: Node) -> void:
+	game._spawner.synchronize_all()

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpbmeo4fcecox"]
+
+[ext_resource type="Script" uid="uid://84obo5vc6xdx" path="res://Games/source_game/ui/ui_handler.gd" id="1_t5wk6"]
+[ext_resource type="PackedScene" uid="uid://dcntnmluwxm7f" path="res://Games/source_game/ui/messanger/messanger.tscn" id="2_7y7wa"]
+
+[node name="SourceUIHandler" type="CanvasLayer"]
+script = ExtResource("1_t5wk6")
+metadata/_custom_type_script = "uid://84obo5vc6xdx"
+
+[node name="Messanger" parent="." instance=ExtResource("2_7y7wa")]

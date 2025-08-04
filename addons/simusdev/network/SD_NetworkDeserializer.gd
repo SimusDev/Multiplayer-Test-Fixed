@@ -31,73 +31,50 @@ static func __deserialize_data(data: Variant, mode: int = _compression) -> Varia
 static func _parse_object(object_str: String) -> Variant:
 	return str_to_var(object_str)
 
-static func _parse_array(array: Array) -> Array:
-	var parsed: Array = array.duplicate()
-	parsed.clear()
-	
+static func _parse_array(array: Array) -> Variant:
+	var result: Array = []
 	for i in array:
-		parsed.append(parse(i))
-	
-	return parsed
+		result.append(parse(i))
+	return result
 
-static func _parse_dictionary(dict: Dictionary) -> Dictionary:
-	var parsed: Dictionary = dict.duplicate()
-	parsed.clear()
-	
-	for key in dict:
-		parsed[parse(key)] = parse(dict[key])
-	
-	return parsed
+static func _parse_dictionary(dict: Variant) -> Variant:
+	return dict
 
 static func _parse_node_reference(path: String) -> Variant:
 	return SimusDev.get_node_or_null(path)
 
 static var _CALLABLES = {
-	"a": _parse_array,
-	"d": _parse_dictionary,
 	"cn": _parse_node_reference,
 	"o": _parse_object,
 	"r": _parse_resource,
 }
 
-static func parse(serialized: Variant) -> Variant:
-	if serialized is Dictionary:
-		for p: String in serialized:
-			if _CALLABLES.has(p):
-				var callable: Callable = _CALLABLES.get(p) as Callable
-				var result: Variant = callable.call(serialized[p])
-				return result
-	
-	return serialized
-	
-	#if deserialized is Dictionary:
-		#var packet: Dictionary = deserialized
-		#if packet.has("v"):
-			#var value: Variant = packet.get("v")
-			#
-			#var type: int = typeof(value)
-			#match type:
-				#TYPE_DICTIONARY:
-					#return _parse_dictionary(value)
-				#TYPE_ARRAY:
-					#return _parse_array(value)
-			#
-			#return value
-		#
-		#if packet.has("cn"):
-			#var cached_id: int = packet.get("cn", -1) as int
-			#var path: String = SD_Array.get_value_from_array(_singleton.get_cached_nodes(), cached_id, "")
-			#return SimusDev.get_node_or_null(path)
-		#
-		#if packet.has("o"):
-			#return _parse_object(packet["o"])
-		#
-		#if packet.has("r"):
-			#return _parse_resource(packet["r"])
-		#
-	#return deserialized
-
 static func _parse_resource(dict: Dictionary) -> Variant:
 	if dict.has("l"):
 		return str_to_var(dict["l"])
 	return load(dict["p"])
+
+static var _CALLABLE_TYPES = {
+	TYPE_ARRAY: _parse_array,
+	TYPE_DICTIONARY: _parse_dictionary,
+}
+
+static var _PARSER_CALLABLES: Dictionary[int, Callable] = {
+	SD_NetworkSerializer.PACKET_TYPE.ARRAY: _parse_array,
+	SD_NetworkSerializer.PACKET_TYPE.DICTIONARY: _parse_dictionary,
+	SD_NetworkSerializer.PACKET_TYPE.NODE: _parse_node_reference,
+	SD_NetworkSerializer.PACKET_TYPE.RESOURCE: _parse_resource,
+	SD_NetworkSerializer.PACKET_TYPE.OBJECT: _parse_object,
+}
+
+static func parse(serialized: Variant) -> Variant:
+	if serialized is Array:
+		if serialized.size() == 2:
+			var type_id: int = SD_Array.get_value_from_array(serialized, 1, -1) as int
+			if _PARSER_CALLABLES.has(type_id):
+				var value: Variant = serialized[0]
+				var callable: Callable = _PARSER_CALLABLES[type_id]
+				var result: Variant = callable.call(value)
+				return result
+	return serialized
+	

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6m3o25wo4dyi"]
+
+[ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_reraf"]
+[ext_resource type="PackedScene" uid="uid://bhpdpoj67oway" path="res://Games/source_game/game/levels/fnaf_map/fnaf_map_root.tscn" id="2_haxg5"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_haxg5"]
+
+[node name="source_base_level" instance=ExtResource("1_reraf")]
+
+[node name="spawn_points" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49395, 3.1932, 35.2405)
+
+[node name="MapRoot" parent="." index="7" instance=ExtResource("2_haxg5")]
+
+[node name="C_SourceObjectHandler" type="Node" parent="." index="8"]
+script = ExtResource("3_haxg5")
+base_dir = "res://Games/source_game/game/levels/fnaf_map/"
+object_dirs = PackedStringArray("objects")
+metadata/_custom_type_script = "uid://dhnvcwkrkbnk5"

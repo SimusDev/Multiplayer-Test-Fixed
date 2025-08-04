@@ -4,15 +4,29 @@ class_name C_HealthComponent
 var damage_source: Object
 
 func _ready() -> void:
-	if SD_Multiplayer.is_server():
-		health_changed.connect(_on_server_health_changed)
-		max_health_changed.connect(_on_server_max_health_changed)
+	SD_Network.register_object(self)
+	
+	SD_Network.register_functions(
+		[_send,
+		
+		]
+	)
+	
+	if SD_Network.is_server():
+		if !SD_Network.is_authority(self):
+			health_changed.connect(_on_server_health_changed)
+			max_health_changed.connect(_on_server_max_health_changed)
 		return
 	
-	SD_Multiplayer.request_and_sync_var_from_server(self, "health")
-	SD_Multiplayer.request_and_sync_var_from_server(self, "max_health")
-	
-	
+	if SD_Network.is_authority(self):
+		SD_Network.call_func_on_server(_send)
+
+func _send() -> void:
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [health, max_health])
+
+func _recieve(health: float, max_health: float) -> void:
+	self.health = health
+	self.max_health = max_health
 
 func _enter_tree() -> void:
 	target.set_meta("C_HealthComponent", self)
@@ -23,10 +37,10 @@ static func find_in(node: Node) -> C_HealthComponent:
 	return null
 
 func _on_server_health_changed() -> void:
-	SD_Multiplayer.sync_call_function_except_self(self, _synchronize_health, [health])
+	SD_Network.call_func_except_self(_synchronize_health, [health])
 
 func _on_server_max_health_changed() -> void:
-	SD_Multiplayer.sync_call_function_except_self(self, _synchronize_max_health, [max_health])
+	SD_Network.call_func_except_self(_synchronize_max_health, [max_health])
 
 func _synchronize_health(synced: float) -> void:
 	health = synced

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=8 format=3 uid="uid://cyv7iu507bmsv"]
+
+[ext_resource type="Texture2D" uid="uid://bwdefdqof2ijv" path="res://Games/fnaf/icon.png" id="1_leui4"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="2_8pq0a"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_8xgl4"]
+[ext_resource type="PackedScene" uid="uid://cplgn5rbodten" path="res://Games/source_game/props/lootbox/lootbox.tscn" id="2_svgd6"]
+[ext_resource type="Resource" uid="uid://5blfcfjssyp3" path="res://Games/source_game/game/levels/fnaf_map/objects/tablet/tablet_script.tres" id="3_4un7g"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_5d3yd"]
+
+[sub_resource type="Resource" id="Resource_sh134"]
+script = ExtResource("3_5d3yd")
+stackable = true
+stack_size = 64
+pickable = true
+actions = Array[ExtResource("2_8xgl4")]([ExtResource("3_4un7g")])
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[resource]
+script = ExtResource("2_8pq0a")
+custom_section = "fnaf"
+custom_id = ""
+icon = ExtResource("1_leui4")
+name = ""
+description = ""
+prefab = ExtResource("2_svgd6")
+itemstack = SubResource("Resource_sh134")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://b42jlhl4nkgn3"]
+
+[ext_resource type="Script" uid="uid://bxgscpy1mwv5o" path="res://Games/source_game/objects/tools/workbench/prefab.gd" id="1_7j5q5"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_hqe5t"]
+[ext_resource type="PackedScene" uid="uid://cm52o7468o6nf" path="res://Games/source_game/ui/workbench/workbench.tscn" id="2_qgym4"]
+[ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="3_lell6"]
+[ext_resource type="Texture2D" uid="uid://bux4083eacafw" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="4_ujf2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hseud"]
+albedo_texture = ExtResource("4_ujf2u")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7j5q5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lell6"]
+
+[node name="workbench" type="RigidBody3D"]
+script = ExtResource("1_7j5q5")
+ui = ExtResource("2_qgym4")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_hqe5t")
+surface = "concrete"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hseud")
+mesh = SubResource("BoxMesh_7j5q5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lell6")
+
+[node name="label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829061, 0)
+billboard = 1
+text = "WORKBENCH"
+
+[node name="SourceInteractable" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+script = ExtResource("3_lell6")
+metadata/_custom_type_script = "uid://bkpx7tuo0vlho"

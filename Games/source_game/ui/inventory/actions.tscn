@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ttllfpgkth0"]
+
+[ext_resource type="Script" uid="uid://b6gpcn1312r2f" path="res://Games/source_game/ui/inventory/actions.gd" id="1_eou6f"]
+[ext_resource type="PackedScene" uid="uid://u4152vbqrtjb" path="res://Games/source_game/ui/inventory/action_button.tscn" id="2_ef7lh"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_v32qx"]
+
+[node name="Actions" type="Control" node_paths=PackedStringArray("_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 148.0
+offset_bottom = 199.0
+script = ExtResource("1_eou6f")
+button_scene = ExtResource("2_ef7lh")
+_container = NodePath("ScrollContainer/CenterContainer/VBoxContainer")
+
+[node name="panel_default" parent="." instance=ExtResource("2_v32qx")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

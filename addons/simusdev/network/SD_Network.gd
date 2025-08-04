@@ -12,6 +12,8 @@ enum CALLMODE {
 
 const SERVER_ID: int = 1
 
+static var remote_sender: SD_NetSender = SD_NetSender.new()
+
 func _init(net: SD_NetworkSingleton) -> void:
 	singleton = net
 

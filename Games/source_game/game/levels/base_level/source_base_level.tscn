@@ -1,64 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://wjpo1d0fdtji"]
+[gd_scene load_steps=4 format=3 uid="uid://wjpo1d0fdtji"]
 
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="1_4yp1p"]
-[ext_resource type="Script" uid="uid://dab1fa2nexja1" path="res://Games/source_game/components/object_spawner.gd" id="1_y25mi"]
-[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_q28k2"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="1_q28k2"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="3_7hp3h"]
 [ext_resource type="Script" uid="uid://c8rej87mqo2sp" path="res://Games/source_game/components/source_level_section.gd" id="3_y25mi"]
 
 [node name="source_base_level" type="Node3D"]
 
+[node name="Objects" type="Node" parent="."]
+script = ExtResource("1_q28k2")
+metadata/_custom_type_script = "uid://dhnvcwkrkbnk5"
+
 [node name="transform" type="Node" parent="." node_paths=PackedStringArray("_roots")]
 script = ExtResource("3_7hp3h")
 channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 interpolate_speed = 64.0
-_roots = [NodePath("../props"), NodePath("../buildings")]
+_roots = [NodePath("../objects")]
 metadata/_custom_type_script = "uid://b3gscceeely20"
 
-[node name="spawner" type="Node" parent="." node_paths=PackedStringArray("_detect_roots")]
-script = ExtResource("1_y25mi")
-_detect_roots = [NodePath("../props")]
-clear_roots = true
-auto_handle_logic = false
-APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
-"CharacterBody3D": PackedStringArray("transform"),
-"Node2D": PackedStringArray("transform"),
-"Node3D": PackedStringArray("transform")
-})
-metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
-
-[node name="player_spawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("1_4yp1p")
-player_scene = ExtResource("2_q28k2")
-parent = NodePath("../players")
-spawn_points = [NodePath("../spawn_points/1"), NodePath("../spawn_points/2"), NodePath("../spawn_points/3")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
-
-[node name="spawn_points" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770691, 0.831896, 5.07006)
-
-[node name="1" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0346376, 0, 0)
-
-[node name="2" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
-
-[node name="3" type="Marker3D" parent="spawn_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75025, 0, 0.170113)
-
 [node name="players" type="Node3D" parent="."]
-
-[node name="props" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
+networked = true
+can_clear = false
+metadata/_custom_type_script = "uid://c8rej87mqo2sp"
 
-[node name="local_props" type="Node3D" parent="."]
+[node name="objects" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
+networked = true
 
-[node name="buildings" type="Node3D" parent="."]
+[node name="local_objects" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
-
-[node name="ghost_buildings" type="Node3D" parent="."]
-script = ExtResource("3_y25mi")
-
-[connection signal="despawn_begin" from="spawner" to="spawner" method="_on_despawn_begin"]
-[connection signal="spawn_begin" from="spawner" to="spawner" method="_on_spawn_begin"]

@@ -28,6 +28,8 @@ func _ready() -> void:
 		if area is SourceHitbox:
 			if not area in _hitboxes:
 				_hitboxes.append(area)
+	
+	
 
 func get_overlapping_hitboxes() -> Array[SourceHitbox]:
 	return _hitboxes

@@ -9,6 +9,15 @@ const TYPES: Array[int] = [
 	
 ]
 
+enum PACKET_TYPE {
+	ARRAY,
+	DICTIONARY,
+	OBJECT,
+	NODE,
+	RESOURCE,
+	
+}
+
 static var _compression: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ
 static var _min_bytes_to_compress: int = 250
 
@@ -35,22 +44,14 @@ static func try_compress(data: Variant, mode: int = _compression) -> Variant:
 	var compressed: PackedByteArray = bytes.compress(mode)
 	return compressed
 
-static func _parse_array(array: Array) -> Array:
-	var parsed: Array = array.duplicate()
-	parsed.clear()
-	
+static func _parse_array(array: Array) -> Variant:
+	var result: Array = []
 	for i in array:
-		parsed.append(parse(i))
-	
-	return parsed
+		result.append(parse(i))
+	return result
 
-static func _parse_dictionary(dict: Dictionary) -> Dictionary:
-	var parsed: Dictionary = {}
-	
-	for key in dict:
-		parsed[parse(key)] = parse(dict[key])
-	
-	return parsed
+static func _parse_dictionary(dict: Variant) -> Variant:
+	return dict
 
 static func _parse_object(object: Object) -> String:
 	return var_to_str(object)
@@ -72,37 +73,37 @@ static func get_node_reference(variant: Variant) -> String:
 		return variant.get("cn", "")
 	return ""
 
+static var _PARSER_CALLABLES: Dictionary[String, Array] = {
+	"Array": [_parse_array, PACKET_TYPE.ARRAY],
+	"Dictionary": [_parse_dictionary, PACKET_TYPE.DICTIONARY],
+	"Node": [_parse_node_reference, PACKET_TYPE.NODE],
+	"Resource": [_parse_resource, PACKET_TYPE.RESOURCE],
+	"Object": [_parse_object, PACKET_TYPE.OBJECT],
+}
+
 static func parse(variant: Variant) -> Variant:
 	#print(type_string(typeof(variant)))
 	
-	var type: int = typeof(variant)
-	if !TYPES.has(type):
-		
-		return variant
-	
-	var packet: Dictionary = {}
-	
-	match type:
-		TYPE_ARRAY:
-			var parsed: Array = _parse_array(variant)
-			packet["a"] = parsed
-			return packet
-			
-		TYPE_DICTIONARY:
-			var parsed: Dictionary = _parse_dictionary(variant)
-			packet["d"] = parsed
-			return packet
-	
-	if variant is Node:
-		packet["cn"] = _parse_node_reference(variant)
-		return packet
-	
-	if variant is Resource:
-		packet["r"] = _parse_resource(variant)
-		return packet
+	var packet: Array = []
+	var type_string: String = type_string(typeof(variant))
 	
 	if variant is Object:
-		packet["o"] = _parse_object(variant)
-		return packet
+		type_string = variant.get_class()
 	
-	return packet
+	if variant is Resource:
+		type_string = "Resource"
+	
+	if variant is Node:
+		type_string = "Node"
+	
+	
+	if _PARSER_CALLABLES.has(type_string):
+		var arguments: Array = _PARSER_CALLABLES[type_string]
+		var callable: Callable = arguments[0]
+		var packet_type: int = arguments[1]
+		var result: Variant = callable.call(variant)
+		packet.append(result)
+		packet.append(packet_type)
+		return packet
+	return variant
+	

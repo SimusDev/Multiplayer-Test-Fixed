@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=3 uid="uid://dl8qlh3ghcoy4"]
+
+[ext_resource type="Script" uid="uid://cqtx6udj5dodt" path="res://Games/source_game/ui/messanger/message.gd" id="1_w2pnj"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_djb21"]
+[ext_resource type="Texture2D" uid="uid://b786c466xeoxc" path="res://addons/simusdev/textures/godot.png" id="3_f82hs"]
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="4_2u47v"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_mi2f8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nqee6"]
+font = ExtResource("4_2u47v")
+
+[sub_resource type="Animation" id="Animation_djb21"]
+resource_name = "in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f82hs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2u47v"]
+resource_name = "out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mi2f8"]
+_data = {
+&"RESET": SubResource("Animation_f82hs"),
+&"in": SubResource("Animation_djb21"),
+&"out": SubResource("Animation_2u47v")
+}
+
+[node name="Message" type="Control"]
+custom_minimum_size = Vector2(1000, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1000.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_w2pnj")
+metadata/_edit_vertical_guides_ = [64.0]
+metadata/_edit_horizontal_guides_ = [64.0]
+
+[node name="panel_default" parent="." instance=ExtResource("2_djb21")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="root" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="icon" type="TextureRect" parent="root"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.001
+anchor_right = 0.064
+anchor_bottom = 0.984
+offset_top = 1.0
+offset_bottom = 0.0239983
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_f82hs")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SD_Label" type="Label" parent="root"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MESSAGE"
+label_settings = SubResource("LabelSettings_nqee6")
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("5_mi2f8")
+font = ExtResource("4_2u47v")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_method = 1
+libraries = {
+&"": SubResource("AnimationLibrary_mi2f8")
+}
+autoplay = "in"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"game"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

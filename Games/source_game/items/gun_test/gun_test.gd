@@ -40,7 +40,6 @@ func _ready() -> void:
 	
 	reset_spread_timer.timeout.connect(reset_spread)
 
-
 func fire():
 	print("goida")
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre

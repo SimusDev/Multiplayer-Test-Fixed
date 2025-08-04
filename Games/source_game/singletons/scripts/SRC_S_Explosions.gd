@@ -16,8 +16,8 @@ func create_particles(size: int, position: Vector3) -> void:
 	var particle: Node3D = particle_obj.source
 	
 	particle.size = size
+	particle_obj.position = position
 	particle_obj.instantiate_local()
-	particle.global_position = position
 	var event: S_EventExplosionParticlesCreated = S_EventExplosionParticlesCreated.get_by_script(S_EventExplosionParticlesCreated)
 	event.particles = particle
 	event.publish()

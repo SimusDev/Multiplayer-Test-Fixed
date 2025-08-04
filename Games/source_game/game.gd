@@ -14,6 +14,10 @@ var sv_cheats:bool = false : set = set_sv_cheats
 
 var _surfaces := SourceSurfaces.new()
 
+@export var _spawner: SourceNetworkSpawner
+
+const GAME_PATH: String = "res://Games/source_game/"
+
 func _ready() -> void:
 	SD_Network.register_function(spawn_on_server)
 	SD_Network.register_function(clear_objects)
@@ -49,26 +53,34 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 	
 	var new_prop = prop_res.prefab.instantiate()
 	prop_res.set_in(new_prop)
-	var player:SourcePlayer = SD_Multiplayer.get_player_by_peer_id(peer_id).get_player_node() as SourcePlayer
-	var spawn_pos = player.interact_raycast.drag_item_link_node.global_position
-	instantiate_object_on_server(new_prop)
-	new_prop.global_position = spawn_pos
-	
-	prop_spawned.emit(new_prop)
+	var player: Node = SD_NetworkPlayer.get_by_peer_id(peer_id)
+	if player:
+		var node: Node = player.get_player_node()
+		if is_instance_valid(node):
+			if "global_position" in node:
+				instantiate_object_on_server(new_prop, node.global_position)
+		else:
+			instantiate_object_on_server(new_prop, Vector3.ZERO)
 
-func instantiate_object_on_server(node: Node) -> Node:
+func instantiate_object_on_server(node: Node, position: Variant) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 	
-	SourceLevelSection3D.get_by_name("props").add_child(node)
+	node.position = SourceObject.get_vector3_position(position)
+	
+	await get_tree().process_frame
+	SourceLevelSection3D.get_by_name("objects").add_child(node)
 	
 	return node
 
-func instantiate_object_local(node: Node) -> Node:
+func instantiate_object_local(node: Node, position: Variant) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 	
-	SourceLevelSection3D.get_by_name("local_props").add_child(node)
+	node.position = SourceObject.get_vector3_position(position)
+	
+	await get_tree().process_frame
+	SourceLevelSection3D.get_by_name("local_objects").add_child(node)
 	
 	return node
 
@@ -174,3 +186,13 @@ func teleport_player(player:Node3D, position:Vector3):
 func set_sv_cheats(value:bool) -> void:
 	sv_cheats = value
 	SimusDev.console.write_info("sv_cheats: " + str(value))
+
+static func get_camera_position() -> Vector3:
+	var pos: Vector3 = Vector3.ZERO
+	var camera: Camera3D = SimusDev.get_tree().root.get_camera_3d()
+	if camera:
+		pos = camera.global_position
+	return pos
+
+func _on_map_spawner_spawned(node: Node, path: String) -> void:
+	_spawner.synchronize_all()

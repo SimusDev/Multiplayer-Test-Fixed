@@ -89,7 +89,6 @@ func try_load_data() -> void:
 		for p in list:
 			var value: Variant = read_node_property(node, p, node.get(p))
 			node.set(p, value)
-			print(_data.node_properties.get(get_path_to(node)))
 
 func try_save_data() -> void:
 	if not root.scene_file_path.is_empty() and replicate:

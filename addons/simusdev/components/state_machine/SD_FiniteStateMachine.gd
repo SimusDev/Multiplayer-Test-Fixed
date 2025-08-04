@@ -1,6 +1,7 @@
 extends Node
 class_name SD_FiniteStateMachine
 
+@export var server_authority: bool = false
 @export var _initial_state: SD_FiniteState
 
 @onready var _console: SD_TrunkConsole = SimusDev.console
@@ -19,7 +20,7 @@ func get_state() -> SD_FiniteState:
 func _ready() -> void:
 	SD_Network.register_functions(
 		[
-			_server_send_state,
+			_send_,
 			_transition_requested_net,
 		]
 	)
@@ -41,19 +42,25 @@ func _ready() -> void:
 		
 		return
 	
-	SD_Network.call_func_on_server(_server_send_state)
+	SD_Network.call_func_on_server(_send_)
 
-func _server_send_state() -> void:
+func _send_() -> void:
 	if get_state():
-		SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _client_recieve_state, [_state.name])
+		SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve_, [_state.name])
 
-func _client_recieve_state(state_name: String) -> void:
-	pass
+func _recieve_(state_name: String) -> void:
+	switch_by_name(state_name)
 
 func _transition_requested(state: SD_FiniteState) -> void:
+	if server_authority and not SD_Network.is_server():
+		return
+	
 	SD_Network.call_func_on_server(_transition_requested_net, [state.name])
 
 func _transition_requested_net(state_name: String) -> void:
+	if server_authority:
+		return
+	
 	if get_multiplayer_authority() == SD_Network.get_remote_sender_id():
 		SD_Network.call_func(_transition, [state_name])
 

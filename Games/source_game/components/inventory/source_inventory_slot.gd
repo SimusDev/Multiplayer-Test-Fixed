@@ -16,6 +16,7 @@ signal item_removed(item: SourceItemStack)
 signal item_changed(item: SourceItemStack)
 
 func _enter_tree() -> void:
+	SD_Network.register_object(self)
 	name = name.validate_node_name()
 	_inventory = get_parent()
 	

@@ -35,5 +35,23 @@ func get_unique_id() -> int:
 func get_peer_id() -> int:
 	return _peer
 
+var _node: Node
+
+func set_in(node: Node) -> void:
+	node.set_meta("network_player", get_peer_id())
+	_node = node
+	_node.set_multiplayer_authority(get_peer_id())
+
+static func get_local() -> SD_NetworkPlayer:
+	return get_by_peer_id(SD_Network.get_unique_id())
+
+static func find_in(node: Node) -> SD_NetworkPlayer:
+	if node.has_meta("network_player"):
+		return get_by_peer_id(node.get_meta("network_player"))
+	return null
+
+func get_player_node() -> Node:
+	return _node
+
 static func get_by_peer_id(id: int) -> SD_NetworkPlayer:
 	return SD_Network.get_players().get(id)

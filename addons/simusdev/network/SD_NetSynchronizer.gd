@@ -44,6 +44,7 @@ func set_data(new: SD_NetSyncProperties) -> void:
 		
 
 func _ready() -> void:
+	SD_Network.register_object(self)
 	SD_Network.singleton.variables.register_recieve_var_callback(_var_recieved)
 	_cached()
 

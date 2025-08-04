@@ -11,12 +11,11 @@ class_name R_SourceWorldObject
 @export var prefab: PackedScene : get = get_prefab
 
 @export_group("ItemStack")
-@export var itemstack_script: GDScript : get = get_itemstack_script
+@export var itemstack: SourceItemStackSettings = null : get = get_itemstack
 
-func get_itemstack_script() -> GDScript:
-	if itemstack_script:
-		return itemstack_script
-	return SourceItemStack
+
+func get_itemstack() -> SourceItemStackSettings:
+	return itemstack
 
 static var _references: Dictionary[String, R_SourceWorldObject] = {}
 static var _reference_list: Array[R_SourceWorldObject] = []
@@ -48,6 +47,7 @@ static func get_reference_list() -> Array[R_SourceWorldObject]:
 	return _reference_list
 
 func register() -> void:
+	_begin_register()
 	id = custom_id
 	
 	if id.is_empty():
@@ -55,14 +55,41 @@ func register() -> void:
 	else:
 		id = "%s.%s" % [get_section(), custom_id]
 	
-	
 	if _references.has(id):
 		id += "_"
 	
 	_references[id] = self
 	_reference_list.append(self)
 	_prefab_references[prefab] = self
+	
+	if name.is_empty():
+		name = id
+	
+	if not itemstack:
+		itemstack = SourceItemStackSettings.new()
+	
+	itemstack.register()
+	
+	_registered()
+	
 	SimusDev.console.write_info("object registered: %s" % id)
+
+func unregister() -> void:
+	_references.erase(id)
+	_reference_list.erase(self)
+	_prefab_references.erase(prefab)
+	
+	_unregistered()
+	SimusDev.console.write_info("object unregistered: %s" % id)
+
+func _unregistered() -> void:
+	pass
+
+func _begin_register() -> void:
+	pass
+
+func _registered() -> void:
+	pass
 
 static func find_in(node: Node) -> R_SourceWorldObject:
 	if node.has_meta("R_SourceWorldObject"):
@@ -98,3 +125,14 @@ func create() -> C_SourceWorldObjectReference:
 	ref.object = self
 	
 	return ref
+
+func serialize_cached() -> Variant:
+	return id
+
+static func deserialize_cached(from: Variant) -> R_SourceWorldObject:
+	if from is String:
+		return get_by_id(from)
+	return null
+
+func is_visible() -> bool:
+	return true

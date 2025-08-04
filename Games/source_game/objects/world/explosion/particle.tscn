@@ -1,13 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1eilu1hjwwvv"]
+[gd_scene load_steps=7 format=3 uid="uid://c1eilu1hjwwvv"]
 
 [ext_resource type="Script" uid="uid://bo8jvcac64bn4" path="res://Games/source_game/objects/world/explosion/particle.gd" id="1_0csom"]
-[ext_resource type="AudioStream" uid="uid://b0r8sn3rgt8gt" path="res://sounds/hl2/explosion/explode_close_power_1_1.ogg" id="2_4gqv1"]
 [ext_resource type="Texture2D" uid="uid://b1gcmwxcogmrg" path="res://Games/source_game/objects/world/explosion/particle.png" id="2_fg4ub"]
-[ext_resource type="AudioStream" uid="uid://c6ppa3k0267ld" path="res://sounds/hl2/explosion/explode_close_power_1_2.ogg" id="3_ryf1r"]
-[ext_resource type="AudioStream" uid="uid://bb5tttjicqry3" path="res://sounds/hl2/explosion/explode_close_power_1_3.ogg" id="4_j1ncv"]
-[ext_resource type="AudioStream" uid="uid://dl3pppxajn6qq" path="res://sounds/hl2/explosion/explode_close_power_2_1.ogg" id="5_aniry"]
-[ext_resource type="AudioStream" uid="uid://bhqjvm3ymfgby" path="res://sounds/hl2/explosion/explode_close_power_2_2.ogg" id="6_0pn8t"]
-[ext_resource type="AudioStream" uid="uid://b7yswb52x7sdc" path="res://sounds/hl2/explosion/explode_close_power_2_3.ogg" id="7_m238r"]
+[ext_resource type="Resource" uid="uid://wysja6oo1cv0" path="res://Games/source_game/objects/sound/explosion.tres" id="8_ryf1r"]
 
 [sub_resource type="Animation" id="Animation_tjf0k"]
 length = 0.001
@@ -72,7 +67,7 @@ _data = {
 
 [node name="particle" type="Node3D"]
 script = ExtResource("1_0csom")
-sounds = Array[AudioStream]([ExtResource("2_4gqv1"), ExtResource("3_ryf1r"), ExtResource("4_j1ncv"), ExtResource("5_aniry"), ExtResource("6_0pn8t"), ExtResource("7_m238r")])
+sound = ExtResource("8_ryf1r")
 
 [node name="root" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -88,11 +83,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_kgkee")
 }
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="root"]
-unique_name_in_owner = true
-autoplay = true
-max_distance = 250.0
-bus = &"game"
-
 [connection signal="animation_finished" from="root/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="finished" from="root/AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

@@ -26,3 +26,10 @@ static func instantiate_class(name: String) -> Variant:
 	script.reload()
 	__class_instantiator.set_script(script)
 	return __class_instantiator.instantiate(name)
+
+static func get_class_from(object: Object) -> String:
+	var script: Script = object.get_script() as Script
+	if script:
+		if script is Script:
+			return script.get_global_name()
+	return object.get_class()

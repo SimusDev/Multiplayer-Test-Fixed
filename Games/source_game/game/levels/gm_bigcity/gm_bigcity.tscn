@@ -1,4 +1,4 @@
-[gd_scene load_steps=535 format=4 uid="uid://b3g8gtngmas8l"]
+[gd_scene load_steps=536 format=4 uid="uid://b3g8gtngmas8l"]
 
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="1_pf18o"]
 [ext_resource type="Texture2D" uid="uid://cjcgfpjmqkfrf" path="res://Games/source_game/game/levels/gm_bigcity/gm_bigcity_0.png" id="1_tjas5"]
@@ -117,6 +117,7 @@
 [ext_resource type="AudioStream" uid="uid://dgtikq77l24ea" path="res://sounds/hl2/ambience/wind1.wav" id="115_p7001"]
 [ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="116_b5t8c"]
 [ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="117_7hbrq"]
+[ext_resource type="Script" uid="uid://c8rej87mqo2sp" path="res://Games/source_game/components/source_level_section.gd" id="118_7hbrq"]
 
 [sub_resource type="Resource" id="Resource_lg245"]
 script = ExtResource("3_ughkn")
@@ -5416,3 +5417,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70144, 0, -0.0420427)
 
 [node name="3" type="Marker3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36843, 0, 0.170113)
+
+[node name="props" type="Node3D" parent="."]
+script = ExtResource("118_7hbrq")
+networked = true
+metadata/_custom_type_script = "uid://c8rej87mqo2sp"
+
+[node name="local_props" type="Node3D" parent="."]
+script = ExtResource("118_7hbrq")
+metadata/_custom_type_script = "uid://c8rej87mqo2sp"

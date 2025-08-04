@@ -18,19 +18,20 @@ func set_size(value: float) -> SourceExplosion:
 	size = value
 	return self
 
-static func create() -> SourceExplosion:
+static func create(at: Variant = null) -> SourceExplosion:
 	var obj := R_SourceWorldObject.get_by_id("world.explosion")
 	var obj_ref := obj.create()
 	var src: SourceExplosion = obj_ref.source
 	src.explode_at_start = false
+	
+	if at != null:
+		obj_ref.position = at
+	
 	obj_ref.instantiate()
 	return src
 
 static func create_at(node: Node) -> SourceExplosion:
-	var src := create()
-	if node is Node3D:
-		src.global_position = node.global_position
-	return src
+	return create(node)
 
 func _ready() -> void:
 	if not SD_Network.is_server():
@@ -41,10 +42,18 @@ func _ready() -> void:
 	
 	if explode_at_start:
 		explode()
+	
+	
 
 func explode() -> void:
 	if not SD_Network.is_server() or _exploded:
 		return
+	
+	if !is_inside_tree():
+		await tree_entered
+	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	
 	_area.scale = Vector3(size, size, size)
 	

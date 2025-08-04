@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="R_SourcePlayer" load_steps=5 format=3 uid="uid://dpuexjbqo8qf0"]
+
+[ext_resource type="Texture2D" uid="uid://b4y2r4w6vfs0g" path="res://Games/source_game/objects/players/source/icon.png" id="1_lbpjy"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_7xhae"]
+[ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="3_4armm"]
+[ext_resource type="Resource" uid="uid://mc20haafd6ps" path="res://Games/source_game/objects/ragdolls/kleiner/kleiner.tres" id="3_7xhae"]
+
+[resource]
+script = ExtResource("3_4armm")
+ragdoll = ExtResource("3_7xhae")
+custom_section = ""
+custom_id = "source"
+icon = ExtResource("1_lbpjy")
+name = ""
+description = ""
+prefab = ExtResource("2_7xhae")
+metadata/_custom_type_script = "uid://cmevnham1hog4"

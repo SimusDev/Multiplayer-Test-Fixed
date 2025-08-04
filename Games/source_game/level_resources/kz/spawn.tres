@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_SourceSpawn" load_steps=2 format=3 uid="uid://cxpe4idx4foud"]
+
+[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="1_70cei"]
+
+[resource]
+script = ExtResource("1_70cei")
+custom_section = ""
+custom_id = ""
+name = ""
+description = ""
+metadata/_custom_type_script = "uid://dxp3pky5254bi"

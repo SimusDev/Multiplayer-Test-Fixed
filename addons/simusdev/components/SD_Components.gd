@@ -24,7 +24,7 @@ static func append_to(node: Node, component: Variant) -> void:
 	var c_instance: Node
 	
 	if component is Node:
-		c_instance = node
+		c_instance = component
 	
 	elif component is Script:
 		if component.has_method("new"):
@@ -42,13 +42,25 @@ static func find_random(node: Node, component: Script) -> Node:
 static func find_all(node: Node, component: Script) -> Array[Node]:
 	var result: Array[Node] = []
 	for c in get_list_from(node):
-		if c.get_script() == component:
+		if get_base_script_from_node(c) == component:
 			SD_Array.append_to_array_no_repeat(result, c)
 	
 	for i in node.get_children():
-		if i.get_script() == component:
+		if get_base_script_from_node(i) == component:
 			SD_Array.append_to_array_no_repeat(result, i)
+	
 	return result
+
+static func get_base_script(script: Script) -> Script:
+	var result: Script = script
+	if result.get_base_script():
+		return get_base_script(script.get_base_script())
+	return result
+
+static func get_base_script_from_node(node: Node) -> Script:
+	if not node.get_script():
+		return null
+	return get_base_script(node.get_script())
 
 static func node_find_above_by_script(from: Node, script: Script) -> Node:
 	if from.get_script() == script:
