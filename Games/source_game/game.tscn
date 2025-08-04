@@ -120,7 +120,6 @@ _spawner = NodePath("SourceNetworkSpawner")
 script = ExtResource("4_gfajl")
 sync_at_start = false
 debug = true
-instant = false
 channel = "spawn"
 
 [node name="MapSpawner" type="Node" parent="." node_paths=PackedStringArray("initial_nodes")]

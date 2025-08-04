@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 					if not animation_player.is_playing():
 						SD_Network.call_func(use)
 #ZV EZ
-func use(local: bool = false):
+func use():
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
 	event.item = self
 	event.container = get_parent()

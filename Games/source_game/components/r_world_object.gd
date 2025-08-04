@@ -46,6 +46,13 @@ static func get_references() -> Dictionary[String, R_SourceWorldObject]:
 static func get_reference_list() -> Array[R_SourceWorldObject]:
 	return _reference_list
 
+static func get_visible_reference_list() -> Array[R_SourceWorldObject]:
+	var result: Array[R_SourceWorldObject] = []
+	for i in get_reference_list():
+		if i.is_visible():
+			result.append(i)
+	return result
+
 func register() -> void:
 	_begin_register()
 	id = custom_id
@@ -136,3 +143,6 @@ static func deserialize_cached(from: Variant) -> R_SourceWorldObject:
 
 func is_visible() -> bool:
 	return true
+
+func is_destroyable() -> bool:
+	return false
