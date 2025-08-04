@@ -34,6 +34,9 @@ func _ready() -> void:
 		print(canvas_layer)
 
 func _on_item_use() -> void:
+	if !is_instance_valid(ghost_model):
+		return
+	
 	if can_place:
 		var new_building = current_building.duplicate()
 		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
