@@ -22,6 +22,7 @@ func _ready() -> void:
 	
 	SD_Network.register_object(self)
 	SD_Network.register_function(pick_building)
+	SD_Network.register_function(build)
 
 func _on_item_use() -> void:
 	if !is_instance_valid(ghost_model) and !is_multiplayer_authority():
