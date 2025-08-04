@@ -36,7 +36,6 @@ func check_level():
 	if SD_Network.is_server():
 		game.mp_player_spawner = current_level.get_node("player_spawner")
 
-
 func _on_cmd_change_level_executed():
 	if not SD_Network.is_server():
 		SimusDev.console.write_error("Only server can change level")

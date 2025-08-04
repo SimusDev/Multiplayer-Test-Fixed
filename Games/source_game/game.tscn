@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
 [ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="3_aahtd"]
 [ext_resource type="PackedScene" uid="uid://0inf6n0plcyd" path="res://Games/source_game/singletons/pack.tscn" id="3_tn3t5"]
-[ext_resource type="Script" uid="uid://cdt25w8dxwwiq" path="res://Games/source_game/components/source_network_spawner.gd" id="4_gfajl"]
+[ext_resource type="Script" path="res://Games/source_game/components/source_network_spawner.gd" id="4_gfajl"]
 [ext_resource type="PackedScene" uid="uid://bpbmeo4fcecox" path="res://Games/source_game/ui/ui_handler.tscn" id="4_spe63"]
-[ext_resource type="Script" uid="uid://dkfgyaafl2e0u" path="res://Games/source_game/components/source_network.gd" id="6_152x2"]
+[ext_resource type="Script" path="res://Games/source_game/components/source_network.gd" id="6_152x2"]
 [ext_resource type="Script" uid="uid://cjh0w1rqjt1q3" path="res://Games/source_game/components/source_player_spawner.gd" id="6_dvi7y"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="6_s8025"]
 [ext_resource type="PackedScene" uid="uid://crc5q81krdogr" path="res://Games/source_game/ui/character_select/character_select.tscn" id="7_lg245"]
@@ -18,8 +18,8 @@
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -122,7 +122,6 @@ sync_at_start = false
 debug = true
 instant = false
 channel = "spawn"
-metadata/_custom_type_script = "uid://cdt25w8dxwwiq"
 
 [node name="MapSpawner" type="Node" parent="." node_paths=PackedStringArray("initial_nodes")]
 script = ExtResource("16_h0jfs")
@@ -138,7 +137,6 @@ metadata/_custom_type_script = "uid://cjh0w1rqjt1q3"
 
 [node name="SourceNetwork" type="Node" parent="."]
 script = ExtResource("6_152x2")
-metadata/_custom_type_script = "uid://dkfgyaafl2e0u"
 
 [node name="SourceUIHandler" parent="." instance=ExtResource("4_spe63")]
 
@@ -156,7 +154,7 @@ level_at_start = "kz"
 [node name="C_SourceObjectHandler" type="Node" parent="."]
 script = ExtResource("3_aahtd")
 base_dir = "res://Games/source_game/"
-object_dirs = PackedStringArray("props", "objects", "recipes")
+object_dirs = PackedStringArray("props", "objects", "recipes", "buildings")
 
 [node name="SourceCrafting" type="Node" parent="." node_paths=PackedStringArray("object_handler")]
 script = ExtResource("8_spe63")

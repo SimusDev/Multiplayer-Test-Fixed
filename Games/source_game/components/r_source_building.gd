@@ -1,5 +1,7 @@
-class_name R_SourceBuilding extends Resource
+class_name R_SourceBuilding extends R_SourceWorldObject
 
-@export var _name:StringName
-@export var _icon:Texture
-@export var _prefab:PackedScene
+func _get_section() -> String:
+	return "buildings"
+
+func is_visible() -> bool:
+	return false

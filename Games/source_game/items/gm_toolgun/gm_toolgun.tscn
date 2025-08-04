@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cxaois3c1hpmp"]
+[gd_scene load_steps=31 format=4 uid="uid://cxaois3c1hpmp"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_6udmt"]
 [ext_resource type="PackedScene" uid="uid://s76u5krgs1jm" path="res://Games/source_game/items/gm_toolgun/bullet.tscn" id="2_5ubcn"]
@@ -14,7 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://bvpt68icf207p" path="res://Games/source_game/items/gm_toolgun/sound/airboat_gun_lastshot1.wav" id="9_yv5g7"]
 [ext_resource type="Script" uid="uid://dwkovwn8o5f8m" path="res://Games/source_game/components/builder.gd" id="13_qmi5f"]
 [ext_resource type="Resource" uid="uid://c24vqlvk2rvua" path="res://Games/source_game/buildings/source/source_buildings.tres" id="14_8tnfi"]
-[ext_resource type="PackedScene" uid="uid://5x3vqrrapt32" path="res://Games/source_game/game/prefabs/pick_building_menu.tscn" id="14_c5hed"]
 
 [sub_resource type="Resource" id="Resource_5ubcn"]
 script = ExtResource("2_5uyei")
@@ -395,7 +394,6 @@ target_node = NodePath("../../../../model/right")
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("item")]
 script = ExtResource("13_qmi5f")
 item = NodePath("..")
-pick_menu_prefab = ExtResource("14_c5hed")
 buildings = ExtResource("14_8tnfi")
 
 [node name="toolgun_ui" type="Node" parent="." node_paths=PackedStringArray("builder", "toolgun_label")]
