@@ -91,17 +91,18 @@ func unregister(node: Node) -> void:
 	_nodes.erase(node)
 
 func _on_child_entered_tree(node: Node) -> void:
-	if not can_serialize(node):
-		return
-	
 	if server_wait_process_frame:
 		await get_tree().process_frame
+	
+	if not can_serialize(node):
+		return
 	
 	SD_Network.call_func(spawn, [serialize(node)], callmode, channel)
 	
 
 func _on_child_exited_tree(node: Node) -> void:
-	SD_Network.call_func(despawn, [get_path_to(node)], callmode, channel)
+	if is_instance_valid(node):
+		SD_Network.call_func(despawn, [get_path_to(node)], callmode, channel)
 
 func spawn(data: Dictionary) -> void:
 	if SD_Network.is_server():
@@ -136,6 +137,9 @@ func despawn(path: NodePath) -> void:
 		)
 
 func can_serialize(node: Node) -> bool:
+	if not is_instance_valid(node):
+		return false
+	
 	if node is SD_NetworkSpawner:
 		return false
 	

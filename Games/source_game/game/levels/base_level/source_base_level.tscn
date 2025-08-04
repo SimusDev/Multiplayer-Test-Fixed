@@ -29,3 +29,11 @@ networked = true
 
 [node name="local_objects" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
+
+[node name="buildings" type="Node3D" parent="."]
+script = ExtResource("3_y25mi")
+networked = true
+
+[node name="ghost_buildings" type="Node3D" parent="."]
+script = ExtResource("3_y25mi")
+networked = true
