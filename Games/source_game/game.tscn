@@ -159,6 +159,8 @@ APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
 })
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
+[node name="ghost_buildings" type="Node3D" parent="."]
+
 [connection signal="_free_current_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__free_current_level"]
 [connection signal="_load_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__load_level"]
 [connection signal="on_executed" from="game_commands" to="." method="_on_console_executed"]

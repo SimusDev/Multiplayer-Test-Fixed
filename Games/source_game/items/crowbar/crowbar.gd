@@ -21,8 +21,9 @@ func impact():
 		if is_instance_valid(collider):
 			SD_Network.call_func(SoundPlayer.play_global_audio_3d, [player.interact_raycast.get_collision_point(), SourceSurfaces.sounds["flesh"]["impact"]["bullet"].pick_random()])
 			
-			if collider is SourceHitbox:
+			if collider.has_method("apply_damage"):
 				collider.apply_damage(damage)
+				print("AASSs")
 			
 			if collider is RigidBody3D:
 				var direction = (collider.global_position - player.global_position).normalized()
@@ -46,8 +47,6 @@ func impact():
 	
 	
 func spawn_bullethole(collider:Node3D, point:Vector3, normal:Vector3, hole:PackedScene, hole_life_time:float = 60.0):
-	print("sex")
-
 	var new_bullet_hole:Node3D = hole.instantiate()
 	collider.add_child(new_bullet_hole)
 	new_bullet_hole.position = point

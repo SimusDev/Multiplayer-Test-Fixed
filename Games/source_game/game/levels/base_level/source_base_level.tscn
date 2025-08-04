@@ -12,7 +12,7 @@
 script = ExtResource("3_7hp3h")
 channels = Array[String](["transform1", "transform2", "transform3", "transform4", "transform5", "transform6"])
 interpolate_speed = 64.0
-_roots = [NodePath("../props")]
+_roots = [NodePath("../props"), NodePath("../buildings")]
 metadata/_custom_type_script = "uid://b3gscceeely20"
 
 [node name="spawner" type="Node" parent="." node_paths=PackedStringArray("_detect_roots")]
@@ -52,6 +52,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75025, 0, 0.170113)
 script = ExtResource("3_y25mi")
 
 [node name="local_props" type="Node3D" parent="."]
+script = ExtResource("3_y25mi")
+
+[node name="buildings" type="Node3D" parent="."]
+script = ExtResource("3_y25mi")
+
+[node name="ghost_buildings" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
 
 [connection signal="despawn_begin" from="spawner" to="spawner" method="_on_despawn_begin"]

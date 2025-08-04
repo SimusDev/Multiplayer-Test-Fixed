@@ -903,7 +903,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqeiw"]
-size = Vector3(0.506096, 0.537232, 0.548889)
+size = Vector3(0.506096, 0.601959, 0.548889)
 
 [node name="lootbox" type="RigidBody3D"]
 script = ExtResource("1_eqeiw")
@@ -1575,7 +1575,7 @@ health = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.273328, -0.00186157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.287198, -0.00186157)
 shape = SubResource("BoxShape3D_eqeiw")
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]

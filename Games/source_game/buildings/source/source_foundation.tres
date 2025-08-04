@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=3 format=3 uid="uid://civ5bd7gdw6h6"]
+
+[ext_resource type="PackedScene" uid="uid://cq30mnl4ccb7e" path="res://Games/source_game/game/prefabs/base_buildings/foundation/foundation.tscn" id="1_56buv"]
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_mml6v"]
+
+[resource]
+script = ExtResource("1_mml6v")
+_name = &"source_foundation"
+_prefab = ExtResource("1_56buv")
+metadata/_custom_type_script = "uid://cwcmpqixyglaj"

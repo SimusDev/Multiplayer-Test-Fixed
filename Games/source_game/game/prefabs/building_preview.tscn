@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://jinoi4go4yhw"]
+
+[ext_resource type="Script" uid="uid://b55g0yehx7c0h" path="res://Games/source_game/game/prefabs/building_preview.gd" id="1_svaxo"]
+[ext_resource type="Texture2D" uid="uid://bfemikasjimu4" path="res://addons/YouCanDoIt/Images/Girls/Chill/Frieren Rust 2.png" id="2_8dwmd"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="3_77oyn"]
+[ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="4_vjkoh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0j3f"]
+font = ExtResource("3_77oyn")
+font_size = 12
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="building_preview" type="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchor_right = 0.078125
+anchor_bottom = 0.138889
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svaxo")
+metadata/_edit_use_anchors_ = true
+
+[node name="bg_color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.236753, 0.236753, 0.236753, 1)
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8dwmd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="label_name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.04
+anchor_right = 0.97
+anchor_bottom = 0.21
+text = "source_foundation"
+label_settings = SubResource("LabelSettings_i0j3f")
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="TextureRect" parent="."]
+self_modulate = Color(0.598759, 0.598759, 0.598759, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vjkoh")
+metadata/_edit_lock_ = true

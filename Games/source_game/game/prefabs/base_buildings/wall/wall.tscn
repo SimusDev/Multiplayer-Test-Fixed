@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://vkn5wykomtyq"]
+[gd_scene load_steps=7 format=3 uid="uid://vkn5wykomtyq"]
 
 [ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="1_auanr"]
+[ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_feq7x"]
 [ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="2_feq7x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
@@ -11,9 +12,21 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_auanr"]
 material = SubResource("StandardMaterial3D_fywtf")
-size = Vector3(2.5, 3, 0.5)
+size = Vector3(3, 3, 0.5)
 
-[node name="wall" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_feq7x"]
+size = Vector3(3, 3, 0.5)
+
+[node name="wall" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_feq7x")
+model = NodePath("mesh")
+model_offset = Vector3(0, 1.5, 0)
+metadata/_custom_type_script = "uid://05gqrla3psra"
 
 [node name="mesh" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_auanr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_feq7x")

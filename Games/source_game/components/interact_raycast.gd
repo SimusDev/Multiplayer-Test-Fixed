@@ -89,7 +89,7 @@ func detect_entity(ent:Node3D):
 	if !is_multiplayer_authority():
 		return
 
-#OHALERA 
+#OHALERA #GG #DELETE GODOT ENGINE 
 
 
 

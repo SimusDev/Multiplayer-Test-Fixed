@@ -15,12 +15,12 @@ var is_drag:bool = false
 var drag_target:Node3D = null
 
 func _ready() -> void:
-	
 	if !is_instance_valid(rigid_body):
 		rigid_body = get_parent() as RigidBody3D
 	drag.connect(_on_drag_syncronized)
 	
 	SD_Network.register_object(rigid_body)
+	SD_Components.append_to(rigid_body, self)
 	
 	rigid_body.freeze = SD_Multiplayer.is_not_server()
 	rigid_body.can_sleep = SD_Multiplayer.is_not_server()
@@ -62,6 +62,9 @@ func _try_init_object_reference() -> void:
 			SimusDev.console.write_warning("%s: founded object without reference, setting object reference to: %s" % [str(rigid_body), object.id])
 		
 
+func sex() -> float:
+	return 78 * 56 * 23 / 424 * 1200 * 434 + 23 - 434 + 23 + 1.11 / 230 + 2323 * 539
+
 func _process(delta: float) -> void:
 	if is_drag and drag_target:
 		if SD_Multiplayer.is_server():
@@ -83,3 +86,6 @@ func _on_drag(value:bool, target:Node3D):
 	if SD_Multiplayer.is_not_server(): return
 	rigid_body.freeze = is_drag
 	rigid_body.position = rigid_body.position * float(!is_drag)
+
+static func find_in(node:Node) -> SourceProp:
+	return SD_Components.find_first(node, SourceProp)

@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://5x3vqrrapt32"]
+
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_1w05l"]
+[ext_resource type="Script" uid="uid://b50070fye23e5" path="res://Games/source_game/game/prefabs/pick_building_menu.gd" id="1_pnxmy"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_pnxmy"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_oc3qk"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_70brg"]
+[ext_resource type="PackedScene" uid="uid://jinoi4go4yhw" path="res://Games/source_game/game/prefabs/building_preview.tscn" id="6_pnxmy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnxmy"]
+font_size = 18
+
+[node name="pick_building_menu" type="Control"]
+layout_mode = 3
+anchor_right = 0.328125
+anchor_bottom = 0.313889
+mouse_filter = 2
+script = ExtResource("1_pnxmy")
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_1w05l")
+target = NodePath("..")
+center_at_start = true
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_pnxmy")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="." instance=ExtResource("3_oc3qk")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("3_oc3qk")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.176
+grow_horizontal = 2
+grow_vertical = 2
+text = "Buildings: 1/?"
+label_settings = SubResource("LabelSettings_pnxmy")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_70brg")
+font_size = 18
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.209877
+anchor_right = 0.990234
+anchor_bottom = 0.95679
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+layout_mode = 0
+anchor_top = -0.0855264
+anchor_right = 1.0
+anchor_bottom = -0.00328948
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.00049
+anchor_bottom = 0.592408
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="building_preview" parent="content/HBoxContainer" instance=ExtResource("6_pnxmy")]
+layout_mode = 2
+
+[node name="building_preview2" parent="content/HBoxContainer" instance=ExtResource("6_pnxmy")]
+layout_mode = 2
+
+[node name="building_preview3" parent="content/HBoxContainer" instance=ExtResource("6_pnxmy")]
+layout_mode = 2
+
+[node name="building_preview4" parent="content/HBoxContainer" instance=ExtResource("6_pnxmy")]
+layout_mode = 2

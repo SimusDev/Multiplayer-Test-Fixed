@@ -1,3 +1,4 @@
+@icon("res://Games/source_game/components/icons/source_item.png")
 class_name SourceItem extends Node3D
 
 signal on_use
@@ -51,7 +52,9 @@ func _process(_delta: float) -> void:
 	if is_multiplayer_authority() and current:
 		if Input.is_action_pressed("fire"):
 			if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
-				SD_Network.call_func(use)
+				if is_instance_valid(animation_player):
+					if not animation_player.is_playing():
+						SD_Network.call_func(use)
 #ZV EZ
 func use():
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
@@ -62,9 +65,8 @@ func use():
 	
 	var event_status: bool = event.publish()
 	if event_status:
-		if not is_inside_tree():
+		if not is_inside_tree(): #v padlu
 			return
-		if is_instance_valid(animation_player):
-			if not animation_player.is_playing():
-				animation_player.play(_fire)
-				on_use.emit()
+		
+		animation_player.play(_fire)
+		on_use.emit()
