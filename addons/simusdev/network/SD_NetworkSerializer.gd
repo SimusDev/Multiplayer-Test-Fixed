@@ -56,22 +56,11 @@ static func _parse_dictionary(dict: Variant) -> Variant:
 static func _parse_object(object: Object) -> String:
 	return var_to_str(object)
 
-static func _parse_node_reference(node: Node) -> String:
-	var path: String = str(node.get_path())
-	return path
+static func _parse_node_reference(node: Node) -> Variant:
+	return SD_Network.singleton.cache.serialize_node_reference(node)
 
 static func _parse_resource(resource: Resource) -> Variant:
-	var dict: Dictionary = {}
-	if resource.resource_local_to_scene or resource.resource_path.is_empty():
-		dict["l"] = var_to_str(resource)
-	else:
-		dict["p"] = resource.resource_path
-	return dict
-
-static func get_node_reference(variant: Variant) -> String:
-	if variant is Dictionary:
-		return variant.get("cn", "")
-	return ""
+	return SD_Network.singleton.cache.serialize_resource(resource)
 
 static var _PARSER_CALLABLES: Dictionary[String, Array] = {
 	"Array": [_parse_array, PACKET_TYPE.ARRAY],
@@ -88,7 +77,7 @@ static func parse(variant: Variant) -> Variant:
 	var type_string: String = type_string(typeof(variant))
 	
 	if variant is Object:
-		type_string = variant.get_class()
+		type_string = "Object"
 	
 	if variant is Resource:
 		type_string = "Resource"

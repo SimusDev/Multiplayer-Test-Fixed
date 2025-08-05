@@ -30,6 +30,12 @@ func _ready() -> void:
 		_send,
 	])
 	
+	SD_Network.cache_functions([
+		_recieve,
+		spawn,
+		despawn
+	])
+	
 	for i in initial_nodes:
 		register(i)
 	

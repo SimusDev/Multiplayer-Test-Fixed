@@ -2,11 +2,12 @@
 extends Node
 class_name SD_NetTrunkCallablesScript
 
+@export_multiline var source: String = ""
 @export var max_channels: int = 32
 @export_tool_button("Generate Code") var _tb_generate_code = _generate_code
 
 func _generate_code() -> void:
-	var source: String = get_parent().source
+	var source: String = source
 	var generated: String = ""
 	for id in max_channels:
 		var str_id: String = str(id)

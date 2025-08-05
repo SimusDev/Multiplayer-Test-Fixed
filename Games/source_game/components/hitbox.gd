@@ -9,6 +9,15 @@ const HITBOX_LAYER: int = 2
 
 signal health_died()
 
+signal interacted(ray: SourceInteractRay)
+signal interacted_by_player(playable: SourcePlayable)
+
+func _source_interacted(ray: SourceInteractRay) -> void:
+	interacted.emit(ray)
+
+func _source_interacted_by_player(playable: SourcePlayable) -> void:
+	interacted_by_player.emit(playable)
+
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		if not SD_Network.is_server():

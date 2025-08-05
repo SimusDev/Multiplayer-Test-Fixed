@@ -79,7 +79,8 @@ func register() -> void:
 	
 	_registered()
 	
-	SimusDev.console.write_info("object registered: %s" % id)
+	#SimusDev.console.write_info("object registered: %s" % id)
+	SD_Network.singleton.cache.cache_resource(self)
 
 func unregister() -> void:
 	_references.erase(id)
