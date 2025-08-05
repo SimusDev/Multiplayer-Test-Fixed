@@ -36,6 +36,11 @@ func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -
 		var new_building = _building.prefab.instantiate()
 		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
 		new_building.global_transform = _transform
+		SD_Network.call_func_on(SD_Network.remote_sender.id, builded, [_building])
+		
+
+func builded(building: R_SourceBuilding) -> void:
+	ui_SourceMessanger.send("builded: %s" % building.id)
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:
@@ -60,7 +65,7 @@ func add_ghost_building(_building:SourceBuilding) -> void:
 	ghost_model.material_override = material
 	
 	SourceLevelSection3D.get_by_name("ghost_buildings").add_child(ghost_model)
-	print(ghost_model.get_path())
+	#print(ghost_model.get_path())
 
 func update_ghost_building() -> void:
 	if not ghost_model:

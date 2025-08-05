@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_SourceEntityDoor" load_steps=3 format=3 uid="uid://dtbmtgixh35kq"]
+
+[ext_resource type="PackedScene" uid="uid://dwi5fc647foql" path="res://Games/source_game/objects/doors/base/resources/door.tscn" id="1_jxrtg"]
+[ext_resource type="Script" uid="uid://dp4uq7ndi34nk" path="res://Games/source_game/objects/doors/base/resources/r_door.gd" id="2_cnbrn"]
+
+[resource]
+script = ExtResource("2_cnbrn")
+custom_section = ""
+custom_id = ""
+name = ""
+description = ""
+prefab = ExtResource("1_jxrtg")
+metadata/_custom_type_script = "uid://dp4uq7ndi34nk"

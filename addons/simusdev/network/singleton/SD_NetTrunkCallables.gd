@@ -3,8 +3,6 @@ class_name SD_NetTrunkCallables
 
 @export var _script: SD_NetTrunkCallablesScript
 
-@export_multiline var source: String = ""
-
 var _disallowed: Dictionary[String, Array] = {}
 var _disallowed_nodes: Array[String] = []
 
@@ -139,15 +137,19 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		debug_print("failed to call unregistered function: %s, %s!, use SD_Network.register_function() for func registration" % [str(node), method], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
 	
+	var channel_id: int = get_channel_by_name(channel)
 	
 	if peer == singleton.get_unique_id():
 		_remote_sender_id = peer
+		SD_Network.remote_sender.id = peer
+		SD_Network.remote_sender.channel = channel
+		SD_Network.remote_sender.channel_id = channel_id
+		SD_Network.remote_sender.callmode = callmode
+		SD_Network.remote_sender.player = SD_NetworkPlayer.get_by_peer_id(peer)
 		callable.callv(args)
 		return
 	
 	var base_class: String = _find_base_class(node)
-	
-	var channel_id: int = get_channel_by_name(channel)
 	
 	if channel_id > max_channels - 1:
 		debug_print("cant call func(%s) on channel %s, because id is greater than max channels: %s" % [method, channel, max_channels], SD_ConsoleCategories.CATEGORY.ERROR)
@@ -158,24 +160,57 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var packet_a: Array = [
 		singleton.cache.serialize_node_reference(node),
 		singleton.cache.serialize_method(callable),
-		serialized_args
 	]
 	
+	if serialized_args is Array:
+		var first_array: Array = SD_Array.get_value_from_array(serialized_args, 0, []) as Array
+		if !first_array.is_empty():
+			packet_a.append(serialized_args)
+	
+	##print(packet_a)
+	##print(var_to_bytes(packet_a).size())
+	#
+	#if packet_a.size() == 2:
+		#if packet_a[0] is int and packet_a[1] is int:
+			#var pbt: PackedInt32Array = PackedInt32Array([1_000_000, 1_000_000])
+			#print(pbt)
+			#print(var_to_bytes(pbt).size())
+			##packet_a = PackedByteArray(packet_a)
+	
 	_call_func_on_queue(peer, packet_a, channel_id, callmode)
+	
+	singleton.cache.cache_method(callable)
 	
 	var debug: bool = false
 	if !debug:
 		return
 	
+	var pbytes: PackedByteArray = var_to_bytes(packet_a)
+	if pbytes.size() >= 100:
+		return
+	
+	if packet_a[0] is int and packet_a[1] is int:
+		var ser_bytes: PackedByteArray = PackedByteArray(packet_a)
+		var testt: PackedByteArray = PackedByteArray()
+		testt.resize(0)
+		print(var_to_bytes(ser_bytes).size())
+		print(var_to_bytes(testt).size())
+	
+	
+	return
+	print(packet_a)
+	
 	print("full packet: ", var_to_bytes(packet_a).size())
-	print("node: ", var_to_bytes(packet_a[0]).size())
-	print("method: ", var_to_bytes(packet_a[1]).size())
-	print("args: ", var_to_bytes(packet_a[2]).size())
+	#print("node: ", var_to_bytes(packet_a[0]).size())
+	#print("method: ", var_to_bytes(packet_a[1]).size())
+	#print("args: ", var_to_bytes(packet_a[2]).size())
 	
 	var bytes: PackedByteArray = var_to_bytes(packet_a)
-	var compressed: PackedByteArray = bytes.compress(FileAccess.CompressionMode.COMPRESSION_GZIP)
+	var compressed: PackedByteArray = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
 	print("uncompressed: ", bytes.size())
 	print("compressed", compressed.size())
+	#var array: PackedByteArray = PackedByteArray([1_000_000, 1_000])
+	#print("packedbytearray test: ", var_to_bytes(array).size())
 	
 	
 	
@@ -211,8 +246,13 @@ func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Netw
 
 func _recieve_call_from_local(from_peer: int, packet: Array, channel_id: int) -> void:
 	var method: String = singleton.cache.deserialize_method(packet[1])
-	var args: Array = SD_NetworkDeserializer.parse(packet[2])
-	#print(args)
+	if method.is_empty():
+		debug_print("BUG? remote call method %s from %s failed, method cache not found!" % [str(packet[1]), str(from_peer)], SD_ConsoleCategories.ERROR)
+		return
+	
+	var args: Array = []
+	if packet.size() >= 3:
+		args = SD_NetworkDeserializer.parse(packet[2])
 	
 	var node: Node = singleton.cache.deserialize_node_reference(packet[0])
 	

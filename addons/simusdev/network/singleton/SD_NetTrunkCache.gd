@@ -1,9 +1,60 @@
 extends SD_NetTrunk
 class_name SD_NetTrunkCache
 
+enum TYPE {
+	RESOURCE,
+	METHOD,
+	NODE,
+}
+
+const CHANNELS: Dictionary[int, int] = {
+	TYPE.RESOURCE: 100,
+	TYPE.METHOD : 101,
+	TYPE.NODE : 102,
+	
+}
+
 func _initialized() -> void:
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
+
+func cache_resource(resource: Resource) -> void:
+	var path: String = resource.resource_path
+	if path.is_empty():
+		debug_print("cant cache resource without path: %s" % str(resource), SD_ConsoleCategories.ERROR)
+		return
 	
+	var cache: PackedStringArray = SD_Network.get_cached_resources()
+	if cache.has(path):
+		return
+	
+	
+	_cache_resource_rpc.rpc(path)
+
+@rpc("call_local", "any_peer", "reliable", CHANNELS[TYPE.RESOURCE])
+func _cache_resource_rpc(path: String) -> void:
+	SD_Network.get_cached_resources().append(path)
+	debug_print("resource cached: %s" % path)
+
+func serialize_resource(resource: Resource) -> Variant:
+	if resource.resource_path.is_empty() or resource.resource_local_to_scene:
+		var array: Array = []
+		array.append(var_to_str(resource))
+		return array
+	var id: int = get_cached_resources().find(resource.resource_path)
+	if id > -1:
+		return get_cached_resources().get(id)
+	return resource.resource_path
+
+func deserialize_resource(resource: Variant) -> Variant:
+	if resource is int:
+		return load(get_cached_resources().get(resource))
+	elif resource is String:
+		return load(resource)
+	var arg: String = resource[0]
+	return str_to_var(arg)
+
+func get_cached_resources() -> PackedStringArray:
+	return SD_Network.get_cached_resources()
 
 func get_cached_methods() -> PackedStringArray:
 	var cache := singleton.cache_get()
@@ -44,31 +95,7 @@ func deserialize_method(serialized: Variant) -> Variant:
 	return serialized
 
 func _on_active_status_changed(status: bool) -> void:
-	if status:
-		if SD_Network.is_server():
-			_cache_all_resources()
-	else:
-		SD_Network.get_cached_resources().clear()
-
-func _cache_all_resources() -> void:
-	var settings: SD_NetworkCacheSettings = singleton.settings.cache
-	if !settings:
-		settings = SD_NetworkCacheSettings.new()
-	
-	var resources: PackedStringArray = SD_Network.get_cached_resources()
-	
-	for path in settings.cache_resources:
-		cache_folder(path)
-
-func cache_folder(path: String) -> void:
-	debug_print("caching resources...: %s" % [path])
-	var resources: PackedStringArray = SD_Network.get_cached_resources()
-	var files: Array = SD_FileSystem.get_all_files_with_all_extenions_from_directory(path)
-	var files_str: PackedStringArray = PackedStringArray(files)
-	resources.append_array(files_str)
-	
-	var str_size: String = String.humanize_size(var_to_bytes(resources).size())
-	debug_print("resources were cached, size: %s" % str_size)
+	pass
 
 func get_cached_nodes_by_id() -> Dictionary[int, NodePath]:
 	return SD_Network.cache_get().get_or_add("cn_id", {} as Dictionary[int, NodePath]) as Dictionary[int, NodePath]

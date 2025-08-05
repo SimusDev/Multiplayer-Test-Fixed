@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://de25fv8uudtud"]
+[gd_scene load_steps=12 format=3 uid="uid://de25fv8uudtud"]
 
 [ext_resource type="Script" uid="uid://cltn8bdg6gbe4" path="res://addons/simusdev/network/singleton/SD_NetworkSingleton.gd" id="1_vwplp"]
 [ext_resource type="Script" uid="uid://cu84klb6vy2j1" path="res://addons/simusdev/network/singleton/SD_NetTrunkClient.gd" id="2_i41d2"]
@@ -10,8 +10,9 @@
 [ext_resource type="Script" uid="uid://pfrh8umtg4j8" path="res://addons/simusdev/network/singleton/SD_NetTrunkHandShake.gd" id="8_oycid"]
 [ext_resource type="Script" uid="uid://oxklms8j40rm" path="res://addons/simusdev/network/singleton/SD_NetTrunkSynchronization.gd" id="9_gb48q"]
 [ext_resource type="Script" uid="uid://dhrq2tlm0h2yx" path="res://addons/simusdev/network/singleton/SD_NetTrunkVariables.gd" id="10_i6ihn"]
+[ext_resource type="Script" uid="uid://1utem6n6u6mj" path="res://addons/simusdev/network/singleton/SD_NetTrunkRpc.gd" id="11_vhk8f"]
 
-[node name="Network" type="Node" node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "synchronization", "variables", "info")]
+[node name="Network" type="Node" node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "synchronization", "variables", "rpc", "info")]
 script = ExtResource("1_vwplp")
 client = NodePath("Client")
 server = NodePath("Server")
@@ -20,6 +21,7 @@ players = NodePath("Players")
 cache = NodePath("Cache")
 synchronization = NodePath("Sync")
 variables = NodePath("Vars")
+rpc = NodePath("Rpc")
 info = NodePath("Not Active")
 metadata/_custom_type_script = "uid://cltn8bdg6gbe4"
 
@@ -40,6 +42,10 @@ metadata/_custom_type_script = "uid://bw4p2w1c3k710"
 [node name="Callables" type="Node" parent="." node_paths=PackedStringArray("_script")]
 script = ExtResource("2_yx433")
 _script = NodePath("script")
+metadata/_custom_type_script = "uid://c6qw4bth4bbg7"
+
+[node name="script" type="Node" parent="Callables"]
+script = ExtResource("3_wx4ld")
 source = "
 #//////////////////////////////////////////////////////////////////////////////////////////////////
 @rpc(\"any_peer\", \"call_remote\", \"reliable\", %s)
@@ -63,10 +69,6 @@ func _recieve_call_from_rpc_unreliable_ordered%s(serialized: Variant) -> void:
 
 	get_parent()._recieve_call_from_local(from_peer, serialized, channel)
 "
-metadata/_custom_type_script = "uid://c6qw4bth4bbg7"
-
-[node name="script" type="Node" parent="Callables"]
-script = ExtResource("3_wx4ld")
 metadata/_custom_type_script = "uid://dex7k1wd0fmns"
 
 [node name="Cache" type="Node" parent="."]
@@ -84,3 +86,12 @@ metadata/_custom_type_script = "uid://oxklms8j40rm"
 [node name="Vars" type="Node" parent="."]
 script = ExtResource("10_i6ihn")
 metadata/_custom_type_script = "uid://dhrq2tlm0h2yx"
+
+[node name="script" type="Node" parent="Vars"]
+script = ExtResource("3_wx4ld")
+source = null
+metadata/_custom_type_script = "uid://dex7k1wd0fmns"
+
+[node name="Rpc" type="Node" parent="."]
+script = ExtResource("11_vhk8f")
+metadata/_custom_type_script = "uid://1utem6n6u6mj"

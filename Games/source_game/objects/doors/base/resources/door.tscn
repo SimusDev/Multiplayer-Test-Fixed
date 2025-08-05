@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwi5fc647foql"]
+
+[ext_resource type="Script" uid="uid://but8dp85o0qlc" path="res://Games/source_game/objects/doors/base/resources/door.gd" id="1_1p3hy"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_o5tix"]
+[ext_resource type="PackedScene" uid="uid://cp1tvhnv3vllg" path="res://Games/source_game/objects/doors/base/resources/scene.tscn" id="4_7803s"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="4_v8yoj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kh2jr"]
+size = Vector3(1.14948, 2.4516, 0.144836)
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_1p3hy")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_o5tix")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_v8yoj")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00234985, 1.22134, -0.0227356)
+shape = SubResource("BoxShape3D_kh2jr")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("4_7803s")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0, 0)
+
+[node name="Door" parent="Sketchfab_Scene/Sketchfab_model/Door_fbx/Object_2/RootNode/DoorFrame" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.8, 105, 2.21)
+
+[connection signal="interacted" from="SourceHitbox" to="." method="_on_source_hitbox_interacted"]
+
+[editable path="Sketchfab_Scene"]

@@ -14,6 +14,7 @@ signal initialized()
 @export var cache: SD_NetTrunkCache
 @export var synchronization: SD_NetTrunkSynchronization
 @export var variables: SD_NetTrunkVariables
+@export var rpc: SD_NetTrunkRpc
 @export var info: Node
 
 var _dedicated_server: bool = false
@@ -61,6 +62,8 @@ func set_active(value: bool) -> void:
 	on_active_status_changed.emit(_active)
 
 func get_cached_resources() -> PackedStringArray:
+	if _cache.has("r"):
+		return _cache.get("r")
 	return _cache.get_or_add("r", PackedStringArray()) as PackedStringArray
 
 func cache_set(new: Dictionary[String, Variant]) -> void:

@@ -1,0 +1,2 @@
+extends SD_NetTrunk
+class_name SD_NetTrunkRpc

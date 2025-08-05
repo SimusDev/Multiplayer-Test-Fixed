@@ -55,7 +55,7 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 	prop_res.set_in(new_prop)
 	var player: Node = SD_NetworkPlayer.get_by_peer_id(peer_id)
 	if player:
-		var node: Node = player.get_player_node()
+		var node = player.get_player_node()
 		if is_instance_valid(node):
 			if "global_position" in node:
 				instantiate_object_on_server(new_prop, node.global_position)

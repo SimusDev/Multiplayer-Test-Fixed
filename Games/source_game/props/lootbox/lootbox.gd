@@ -16,7 +16,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		
 
 func drop() -> void:
-	var suprize_mazafuker: R_SourceWorldObject = R_SourceWorldObject.get_reference_list().pick_random() as R_SourceWorldObject
+	var suprize_mazafuker: R_SourceWorldObject = R_SourceWorldObject.get_visible_reference_list().pick_random() as R_SourceWorldObject
+	
 	var obj := suprize_mazafuker.create().instantiate()
 	
 	var pos: Vector3 = global_position

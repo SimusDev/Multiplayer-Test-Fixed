@@ -40,8 +40,8 @@ static func _parse_array(array: Array) -> Variant:
 static func _parse_dictionary(dict: Variant) -> Variant:
 	return dict
 
-static func _parse_node_reference(path: String) -> Variant:
-	return SimusDev.get_node_or_null(path)
+static func _parse_node_reference(reference: Variant) -> Variant:
+	return SD_Network.singleton.cache.deserialize_node_reference(reference)
 
 static var _CALLABLES = {
 	"cn": _parse_node_reference,
@@ -49,10 +49,8 @@ static var _CALLABLES = {
 	"r": _parse_resource,
 }
 
-static func _parse_resource(dict: Dictionary) -> Variant:
-	if dict.has("l"):
-		return str_to_var(dict["l"])
-	return load(dict["p"])
+static func _parse_resource(resource: Variant) -> Variant:
+	return SD_Network.singleton.cache.deserialize_resource(resource)
 
 static var _CALLABLE_TYPES = {
 	TYPE_ARRAY: _parse_array,

@@ -30,6 +30,13 @@ static func register_functions(callables: Array[Callable]) -> void:
 	for callable in callables:
 		register_function(callable)
 
+static func cache_function(callable: Callable) -> void:
+	singleton.cache.cache_method(callable)
+
+static func cache_functions(callables: Array[Callable]) -> void:
+	for i in callables:
+		cache_function(i)
+
 static func register_all_functions(node: Node) -> void:
 	singleton.callables.register_all_functions(node)
 

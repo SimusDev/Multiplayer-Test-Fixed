@@ -14,6 +14,8 @@ var _nodes: Array[Node] = []
 @export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
 @export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
 
+@export var compression: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_GZIP
+
 signal spawned(node: Node, data: Dictionary)
 signal despawned(node: Node, last_path: NodePath)
 
@@ -26,6 +28,12 @@ func _ready() -> void:
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
 		_send,
+	])
+	
+	SD_Network.cache_functions([
+		_recieve,
+		spawn,
+		despawn
 	])
 	
 	for i in initial_nodes:
@@ -51,16 +59,18 @@ func _send() -> void:
 		for i in root.get_children():
 			if can_serialize(i):
 				nodes.append(serialize(i))
-		
+	
+	var nodes_compressed: PackedByteArray = SD_Variables.compress(nodes, compression)
 	
 	if instant:
 		debug_print("sending all... %s" % [str(nodes)])
-		SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [nodes], callmode, channel)
+		SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [nodes_compressed, compression], callmode, channel)
 	else:
 		for serialized in nodes:
 			SD_Network.call_func_on(SD_Network.get_remote_sender_id(), spawn, [serialized], callmode, channel)
 
-func _recieve(nodes: Array) -> void:
+func _recieve(bytes: PackedByteArray, server_compression: int) -> void:
+	var nodes: Array = SD_Variables.decompress(bytes, server_compression)
 	
 	debug_print("recieving... %s" % [str(nodes)])
 	for i: Dictionary in nodes:
@@ -153,6 +163,7 @@ func serialize(node: Node) -> Dictionary:
 	_serialize_main(node, data)
 	_serialize_instance(node, data)
 	_serialize_authority(node, data)
+	_serialize_tags(node, data)
 	_serialize_custom(node, data)
 	
 	return data
@@ -174,6 +185,10 @@ func _deserialize_main(node: Node, data: Dictionary) -> void:
 
 func _serialize_instance(node: Node, data: Dictionary) -> void:
 	data.i = node.scene_file_path
+
+func _serialize_tags(node: Node, data: Dictionary) -> void:
+	if SD_NetTag.has_tags(node):
+		data.nt = SD_NetTag.serialize_tags(node)
 
 func _deserialize_instance(data: Dictionary) -> Node:
 	var scene: PackedScene = load(data.i) as PackedScene
@@ -198,11 +213,16 @@ func _deserialize_authority(node: Node, data: Dictionary) -> void:
 		if player:
 			player.set_in(node)
 
+func _deserialize_tags(node: Node, data: Dictionary) -> void:
+	if data.has("nt"):
+		SD_NetTag.deserialize_tags(node, data.nt)
+
 func deserialize(data: Dictionary) -> Dictionary:
 	var deserialized: Dictionary = {}
 	var node: Node = _deserialize_instance(data)
 	_deserialize_main(node, data)
 	_deserialize_authority(node, data)
+	_deserialize_tags(node, data)
 	_deserialize_custom(node, data)
 	deserialized.node = node
 	deserialized.data = data
