@@ -36,7 +36,6 @@ func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -
 		var new_building = _building.prefab.instantiate()
 		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
 		new_building.global_transform = _transform
-		print("ZOMBIE SSEXED")
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:
@@ -78,8 +77,7 @@ func update_ghost_building() -> void:
 		ghost_model.global_position = raycast_point + ghost_model_offset
 		var push_distance = 0
 		ghost_model.global_translate(normal * push_distance)
-		
-
+	
 	if snapping:
 		ghost_model.global_position = ghost_model.global_position.snapped(Vector3(.1, .1, .1))
 
