@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
 [ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="11_lhwgh"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
 [ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
@@ -61,7 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://dp4g8b6hojp73" path="res://Games/source_game/items/axe/axe.tscn" id="31_k6hwe"]
 [ext_resource type="AudioStream" uid="uid://cqs7k2tjkdjjx" path="res://sounds/hl2/player/footsteps/concrete1.wav" id="32_5jte2"]
 [ext_resource type="AudioStream" uid="uid://bdiboxh5k3r35" path="res://sounds/hl2/player/footsteps/concrete2.wav" id="33_4d7pv"]
-[ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="34_0td7v"]
+[ext_resource type="Script" path="res://Games/source_game/components/source_interact_ray.gd" id="34_0td7v"]
 [ext_resource type="AudioStream" uid="uid://bwer8p2x4sw3o" path="res://sounds/hl2/player/footsteps/concrete3.wav" id="34_krprw"]
 [ext_resource type="AudioStream" uid="uid://ctk4fa7resa76" path="res://sounds/hl2/player/footsteps/concrete4.wav" id="35_3yygh"]
 [ext_resource type="AudioStream" uid="uid://bos1qocyqmii8" path="res://sounds/hl2/player/footsteps/tile1.wav" id="36_efvha"]
@@ -113,7 +113,6 @@
 [ext_resource type="PackedScene" uid="uid://b5x2sct5a26u8" path="res://cheat/cheatcommands.tscn" id="100_4d7pv"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="105_u7p5y"]
 [ext_resource type="Script" uid="uid://cjkp4qdncq7w7" path="res://addons/simusdev/scene_saver/SD_SceneSaverInstance.gd" id="109_3qhl4"]
-
 
 [sub_resource type="Resource" id="Resource_7lynq"]
 script = ExtResource("13_3yygh")

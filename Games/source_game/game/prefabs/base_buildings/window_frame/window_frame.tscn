@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://b81ai65qocesq"]
+
+[ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_gwagn"]
+[ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="2_gxdfi"]
+[ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="3_hcyho"]
+[ext_resource type="Texture2D" uid="uid://b12hk2ay7uhpx" path="res://Games/fnaf/maps/fnaf1_u/materialsffpconcrete_wall_crete4w.png" id="4_8mgcx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
+albedo_texture = ExtResource("2_gxdfi")
+normal_enabled = true
+normal_texture = ExtResource("3_hcyho")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_auanr"]
+material = SubResource("StandardMaterial3D_fywtf")
+size = Vector3(3, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sv843"]
+size = Vector3(2, 1.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6w0k5"]
+albedo_texture = ExtResource("4_8mgcx")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_feq7x"]
+size = Vector3(3, 3, 0.5)
+
+[node name="window_frame" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_gwagn")
+model = NodePath("mesh")
+model_offset = Vector3(0, 1.5, 0)
+metadata/_custom_type_script = "uid://05gqrla3psra"
+
+[node name="mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_auanr")
+
+[node name="frame" type="CSGMesh3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+operation = 2
+mesh = SubResource("BoxMesh_sv843")
+material = SubResource("StandardMaterial3D_6w0k5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_feq7x")

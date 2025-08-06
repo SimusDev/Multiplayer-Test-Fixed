@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://cfo6pwwmf2uje"]
+
+[ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="1_xfcsl"]
+[ext_resource type="PackedScene" uid="uid://b81ai65qocesq" path="res://Games/source_game/game/prefabs/base_buildings/window_frame/window_frame.tscn" id="2_xfcsl"]
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="3_i7i0p"]
+
+[resource]
+script = ExtResource("3_i7i0p")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_xfcsl")
+name = "source_window_frame"
+description = ""
+prefab = ExtResource("2_xfcsl")
+metadata/_custom_type_script = "uid://cwcmpqixyglaj"
