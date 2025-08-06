@@ -50,7 +50,7 @@ func _on_tree_exited() -> void:
 	
 	if reference.is_queued_for_deletion():
 		SD_Network.singleton.cache.try_uncache_node(path)
-		print(path)
+		
 
 
 

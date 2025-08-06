@@ -218,14 +218,7 @@ func register_object(node: Node) -> void:
 		await node.tree_entered
 	
 	node.set_meta("_networked", true)
-	node.tree_exiting.connect(_on_net_object_tree_exiting.bind(node))
 	SD_NetRegisteredNode.create(node)
-
-func _on_net_object_tree_exiting(node: Node) -> void:
-	if is_object_registered(node):
-		if node.is_queued_for_deletion():
-			unregister_object(node)
-			cache.try_uncache_node(node.get_path())
 
 func is_object_registered(node: Node) -> bool:
 	if is_instance_valid(node):

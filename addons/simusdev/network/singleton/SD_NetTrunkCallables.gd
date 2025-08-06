@@ -6,9 +6,6 @@ class_name SD_NetTrunkCallables
 var _disallowed: Dictionary[String, Array] = {}
 var _disallowed_nodes: Array[String] = []
 
-var _channels_by_id: Dictionary[int, String] = {}
-var _channels_by_name: Dictionary[String, int] = {}
-
 const CHANNEL_DEFAULT: String = "main"
 
 var max_channels: int = 0
@@ -67,17 +64,42 @@ func _initialized() -> void:
 		channels.append(CHANNEL_DEFAULT)
 	
 	for c_name in channels:
-		var id: int = channels.find(c_name)
-		_channels_by_id[id] = c_name
-		_channels_by_name[c_name] = id
+		register_channel(c_name)
+
+func get_registered_channels() -> PackedStringArray:
+	if singleton.cache_get().has("cs"):
+		return singleton.cache_get().get("cs")
 	
+	var channels: PackedStringArray = PackedStringArray()
+	singleton.cache_get().set("cs", channels)
+	return channels
+
+func register_channel(channel_name: String) -> void:
+	if not SD_Network.is_server():
+		return
 	
+	var channels: PackedStringArray = get_registered_channels()
+	if channels.has(channel_name):
+		singleton.debug_print("cant register channel %s, channel already exists.", SD_ConsoleCategories.WARNING)
+		return
+	
+	channels.append(channel_name)
+	
+	var id: int = channels.find(channel_name)
+	singleton.debug_print("channel registered, %s, id: %s" % [channel_name, str(id)], SD_ConsoleCategories.INFO)
 
 func get_channel_by_id(id: int) -> String:
-	return _channels_by_id.get(id, CHANNEL_DEFAULT) as String
+	if id < 0:
+		id = 0
+	if id > get_registered_channels().size() - 1:
+		return CHANNEL_DEFAULT
+	return get_registered_channels().get(id) as String
 
 func get_channel_by_name(c_name: String) -> int:
-	return _channels_by_name.get(c_name, 0) as int
+	var id: int = get_registered_channels().find(c_name)
+	if id < 0:
+		id = 0
+	return id
 
 func get_cached_nodes() -> Array[String]:
 	return singleton.get_cached_nodes()

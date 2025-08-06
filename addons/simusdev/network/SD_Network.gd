@@ -136,3 +136,6 @@ static func unregister_object(node: Node) -> void:
 
 static func is_object_registered(node: Node) -> bool:
 	return singleton.is_object_registered(node)
+
+static func register_channel(name: String) -> void:
+	singleton.callables.register_channel(name)
