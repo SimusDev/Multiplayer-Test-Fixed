@@ -6,6 +6,7 @@ static var instance:SourcePlayer
 @export var health:C_HealthComponent
 @export var take_damage_assets:Array[AudioStream]
 @export var death_assets:Array[AudioStream]
+@export var flat_line_sound:AudioStream
 
 @export_group("Controls")
 @export var movement:W_FPCSourceLikeMovement
@@ -47,7 +48,6 @@ func _exit_tree() -> void:
 	_list.erase(self)
 
 func _ready() -> void:
-	
 	movement.state_machine.state_enter.connect(_on_state_enter)
 	model.on_footstep.connect(func(): $footsteps._do_footstep())
 	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1.0)
