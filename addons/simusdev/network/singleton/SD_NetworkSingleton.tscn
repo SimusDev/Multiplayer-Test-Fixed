@@ -87,11 +87,6 @@ metadata/_custom_type_script = "uid://oxklms8j40rm"
 script = ExtResource("10_i6ihn")
 metadata/_custom_type_script = "uid://dhrq2tlm0h2yx"
 
-[node name="script" type="Node" parent="Vars"]
-script = ExtResource("3_wx4ld")
-source = null
-metadata/_custom_type_script = "uid://dex7k1wd0fmns"
-
 [node name="Rpc" type="Node" parent="."]
 script = ExtResource("11_vhk8f")
 metadata/_custom_type_script = "uid://1utem6n6u6mj"

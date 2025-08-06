@@ -89,6 +89,7 @@ func _request_spawn(id: String, spawn: String) -> void:
 	if ref.source:
 		net_player.set_in(ref.source)
 		ref.source.name = str(net_player.get_peer_id())
+		net_player.set_in(ref.source)
 		SourceLevelSection3D.get_by_name("players").add_child(ref.source)
 		ref.set_global_position_from(spawnpoint)
 
