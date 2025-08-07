@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bptengm8t34i3"
+path.s3tc="res://.godot/imported/Untitled_nuke_metaltrims_01.png-6583cf7a71e3f322bbe3c702ec6baa82.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_nuke_metaltrims_01.png-6583cf7a71e3f322bbe3c702ec6baa82.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6817c5d4a5874d95fef97b0df744d94c"
+}
+
+[deps]
+
+source_file="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_nuke_metaltrims_01.png"
+dest_files=["res://.godot/imported/Untitled_nuke_metaltrims_01.png-6583cf7a71e3f322bbe3c702ec6baa82.s3tc.ctex", "res://.godot/imported/Untitled_nuke_metaltrims_01.png-6583cf7a71e3f322bbe3c702ec6baa82.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

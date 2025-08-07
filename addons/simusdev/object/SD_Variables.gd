@@ -34,6 +34,12 @@ static func get_class_from(object: Object) -> String:
 			return script.get_global_name()
 	return object.get_class()
 
+static func compress_gzip(variant: Variant) -> PackedByteArray:
+	return compress(variant, FileAccess.COMPRESSION_GZIP)
+
+static func decompress_gzip(bytes: PackedByteArray, mode: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_DEFLATE) -> Variant:
+	return decompress(bytes, FileAccess.COMPRESSION_GZIP)
+
 static func compress(variant: Variant, mode: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_DEFLATE) -> PackedByteArray:
 	var bytes: PackedByteArray = var_to_bytes(variant)
 	var compressed: PackedByteArray = bytes.compress(mode)

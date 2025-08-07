@@ -1,6 +1,6 @@
 extends Node
 
-var VERSION: String = "4.12"
+var VERSION: String = "4.13"
 
 signal on_notification(what: int)
 

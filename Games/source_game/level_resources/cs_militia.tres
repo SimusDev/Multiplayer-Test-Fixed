@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://b1yichlalgmn7"]
+
+[ext_resource type="PackedScene" uid="uid://cqniy34c52new" path="res://Games/source_game/game/levels/counter-strike/cs_militia/map.tscn" id="1_1i1cp"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_level.gd" id="2_cimej"]
+
+[resource]
+script = ExtResource("2_cimej")
+map_name = &"cs_militia"
+level_scene = ExtResource("1_1i1cp")

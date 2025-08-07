@@ -117,7 +117,8 @@ func _recieve_player_from_client_and_send_anwser(parsed: Variant, game_info: Dic
 			send[joined_player_data.peer_id] = joined_player_data
 
 		
-		_receive_players_from_server_and_connect.rpc_id(resource.peer_id, send, singleton.cache_get())
+		var cache_bytes: PackedByteArray = SD_Variables.compress_gzip(singleton.cache_get())
+		_receive_players_from_server_and_connect.rpc_id(resource.peer_id, send, cache_bytes)
 
 @rpc("call_remote", "any_peer", "reliable")
 func _receive_player_from_server(data: Dictionary) -> void:
@@ -128,9 +129,10 @@ func _receive_player_from_server(data: Dictionary) -> void:
 	_recieve_player(net)
 
 @rpc("call_remote", "any_peer", "reliable")
-func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache: Dictionary[String, Variant]) -> void:
+func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache_bytes: PackedByteArray) -> void:
 	singleton.on_handshake_begin.emit()
 	
+	var cache: Dictionary[String, Variant] = SD_Variables.decompress_gzip(cache_bytes)
 	singleton.cache_set(cache)
 	singleton.on_cache_from_server_recieve.emit()
 	

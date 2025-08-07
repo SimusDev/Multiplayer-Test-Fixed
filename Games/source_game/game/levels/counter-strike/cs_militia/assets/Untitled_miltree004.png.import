@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://lbbe5wysso5u"
+path.s3tc="res://.godot/imported/Untitled_miltree004.png-b8771a604e1b2d51101b0e9c06bd992d.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_miltree004.png-b8771a604e1b2d51101b0e9c06bd992d.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "ee94e05a8584acec2383891f04430dcc"
+}
+
+[deps]
+
+source_file="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_miltree004.png"
+dest_files=["res://.godot/imported/Untitled_miltree004.png-b8771a604e1b2d51101b0e9c06bd992d.s3tc.ctex", "res://.godot/imported/Untitled_miltree004.png-b8771a604e1b2d51101b0e9c06bd992d.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
