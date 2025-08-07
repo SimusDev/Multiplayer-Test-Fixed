@@ -95,6 +95,13 @@ func _process(_delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 	
+	if not item.is_current() and SourceLevelSection3D.get_by_name("ghost_buildings").get_children().size() > 0:
+		free_ghost_buildings()
+		return
+	
+	if not item.is_current():
+		return
+	
 	if is_instance_valid(ghost_model):
 		update_ghost_building()
 	if Input.is_action_just_pressed("z"): pick_building(0)
