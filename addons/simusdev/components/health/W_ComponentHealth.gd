@@ -1,4 +1,5 @@
 @tool
+@icon("res://Games/source_game/components/icons/health.png")
 extends Node
 class_name W_ComponentHealth
 

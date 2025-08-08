@@ -1,4 +1,4 @@
-@icon("res://Games/source_game/components/icons/source_item.png")
+@icon("res://Games/source_game/components/icons/item.png")
 class_name SourceItem extends Node3D
 
 signal on_use

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lm2djf5tj34l"
-path="res://.godot/imported/FunnyMan2.jpg-e4e2804bd8938c7525124eb1b3f3f930.ctex"
+path="res://.godot/imported/FunnyMan2.jpg-f9245078a49e998344100bd302a6d7de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sourcelike_interface/textures/FunnyMan2.jpg"
-dest_files=["res://.godot/imported/FunnyMan2.jpg-e4e2804bd8938c7525124eb1b3f3f930.ctex"]
+source_file="res://sourcelike_interface/bg_textures/FunnyMan2.jpg"
+dest_files=["res://.godot/imported/FunnyMan2.jpg-f9245078a49e998344100bd302a6d7de.ctex"]
 
 [params]
 

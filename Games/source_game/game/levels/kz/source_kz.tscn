@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=27 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="3_gr3v1"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bm7dot7t7u1q4" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/StarField.jpg" id="14_jn4gf"]
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="15_uyxp6"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/Skydome.gd" id="16_eejt7"]
+[ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="17_v4o5a"]
 [ext_resource type="Script" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
@@ -73,7 +74,7 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.0532335
+shader_parameter/_atm_moon_mie_intensity = 0.0532334
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("9_17bi3")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
@@ -319,6 +320,21 @@ material = SubResource("StandardMaterial3D_y1g7y")
 light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
+
+[node name="tree" parent="objects" index="0" instance=ExtResource("17_17bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, -0.5, -10.3)
+
+[node name="tree2" parent="objects" index="1" instance=ExtResource("17_17bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0274, -0.5, -16.319)
+
+[node name="tree3" parent="objects" index="2" instance=ExtResource("17_17bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -12.7706)
+
+[node name="tree4" parent="objects" index="3" instance=ExtResource("17_17bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -19.3888)
+
+[node name="tree5" parent="objects" index="4" instance=ExtResource("17_17bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2048, -0.5, -22.9961)
 
 [node name="kz" type="Node3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)

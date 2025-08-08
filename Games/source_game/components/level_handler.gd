@@ -2,7 +2,7 @@ class_name SourceLevelHandler extends Node
 
 signal level_updated()
 signal _free_current_level
-signal _load_level(_level)
+signal _load_level()
 
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
 
@@ -12,7 +12,7 @@ var local_props_node: Node
 var current_level:Node=null
 @export_category("Settings")
 @export var levels_folder_path:String
-@export var level_at_start:String = "" ## Set a value if you want to set the level on start, a variable with a default value does nothing
+@export var level_at_start:String = "" ## set a value if you want to set the level on start, a variable with a default value does nothing
 
 func _ready() -> void:
 	await game.ready
@@ -60,7 +60,7 @@ func load_level(level_name:StringName) -> bool:
 	var new_level_scene = level_res.level_scene.instantiate()
 	current_level = new_level_scene
 	root_node.add_child(new_level_scene)
-	_load_level.emit(new_level_scene)
+	_load_level.emit()
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
 	return true
 

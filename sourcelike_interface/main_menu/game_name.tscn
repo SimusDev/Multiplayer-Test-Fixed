@@ -4,16 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cyj56486e1iyo" path="res://icon.png" id="2_awi1t"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_jn02e"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_77dlp"]
-font_size = 32
+[sub_resource type="LabelSettings" id="LabelSettings_awi1t"]
+font_size = 38
 shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_nf1fo"]
+[sub_resource type="LabelSettings" id="LabelSettings_77dlp"]
+font_size = 22
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 1)
 
 [node name="game_name" type="Control"]
 custom_minimum_size = Vector2(512, 128)
@@ -36,20 +35,19 @@ metadata/_edit_use_anchors_ = true
 [node name="name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.34375
+anchor_top = -0.367188
 anchor_right = 1.0
-anchor_bottom = 0.0625
+anchor_bottom = 0.0390625
 grow_horizontal = 2
 grow_vertical = 2
 text = "Multiplayer-Test"
-label_settings = SubResource("LabelSettings_77dlp")
+label_settings = SubResource("LabelSettings_awi1t")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("2_jn02e")
-font_size = 32
+font_size = 38
 shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
 
@@ -62,12 +60,12 @@ anchor_bottom = 0.289062
 grow_horizontal = 2
 grow_vertical = 2
 text = "by zxcvxld and simusdev"
-label_settings = SubResource("LabelSettings_nf1fo")
+label_settings = SubResource("LabelSettings_77dlp")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("2_jn02e")
+font_size = 22
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
