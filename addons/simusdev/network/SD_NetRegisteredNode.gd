@@ -38,9 +38,6 @@ func _uncache(path: NodePath) -> void:
 	if !SD_Network.is_server():
 		return
 	
-	
-	if SimusDev.get_tree():
-		await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
 	SD_Network.singleton.cache.try_uncache_node(path)
 
 func _on_tree_exited() -> void:
