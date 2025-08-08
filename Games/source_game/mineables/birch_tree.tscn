@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="3_74jy6"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_juhil"]
 [ext_resource type="Resource" uid="uid://mc20haafd6ps" path="res://Games/source_game/objects/ragdolls/kleiner/kleiner.tres" id="4_ox6fi"]
-[ext_resource type="Script" path="res://Games/source_game/components/r_source_mineable.gd" id="5_k7ih7"]
+[ext_resource type="Script" uid="uid://dvmu0oiar45ax" path="res://Games/source_game/components/r_source_mineable.gd" id="5_k7ih7"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="7_ox6fi"]
 
 [sub_resource type="Resource" id="Resource_5vl2e"]
