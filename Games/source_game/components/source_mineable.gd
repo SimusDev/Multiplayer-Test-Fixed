@@ -15,7 +15,7 @@ func _on_destroy() -> void:
 	if SD_Network.is_server():
 		for world_obj in resource.drop:
 			var reference: C_SourceWorldObjectReference = world_obj.create().instantiate()
-			reference.set_global_position_from(self)
+			reference.set_global_position_from(root)
 			
 		destroyed.emit()
 		root.queue_free()
