@@ -287,5 +287,6 @@ func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void
 func _item_move_to_local(item_path: NodePath, to_path: NodePath) -> void:
 	var item: SourceItemStack = get_node_or_null(item_path)
 	var to: SourceInventorySlot = get_node_or_null(to_path)
-	var to_inv: SourceInventory = to.get_inventory()
-	item.reparent(to)
+	if item and to:
+		var to_inv: SourceInventory = to.get_inventory()
+		item.reparent(to)
