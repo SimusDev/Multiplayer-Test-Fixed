@@ -29,24 +29,27 @@ static func get_or_create(node: Node) -> SD_NetRegisteredNode:
 
 func _on_tree_entered() -> void:
 	if last_path != reference.get_path():
-		
 		_uncache(last_path)
 	
 	last_path = reference.get_path()
 	SD_Network.singleton.cache.try_cache_node(reference)
 
 func _uncache(path: NodePath) -> void:
+	if !SD_Network.is_server():
+		return
+	
+	
 	if SimusDev.get_tree():
 		await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
 	SD_Network.singleton.cache.try_uncache_node(path)
 
 func _on_tree_exited() -> void:
+	if !SD_Network.is_server():
+		return
+	
 	var path: NodePath = last_path
-	if reference.is_queued_for_deletion():
-		if SimusDev.get_tree():
-			await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
-		SD_Network.singleton.cache.try_uncache_node(path)
-		
+	SD_Network.singleton.cache.try_uncache_node(path)
+	
 
 static func create(node: Node) -> SD_NetRegisteredNode:
 	return get_or_create(node)

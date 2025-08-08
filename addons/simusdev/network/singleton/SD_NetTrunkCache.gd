@@ -147,7 +147,8 @@ func try_uncache_node(path: NodePath) -> void:
 	cache_by_path.erase(path)
 	
 	_client_uncache.rpc(net_id, path)
-	return
+	
+	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 func _on_scene_tree_node_added(node: Node) -> void:
