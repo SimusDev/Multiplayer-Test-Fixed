@@ -209,7 +209,7 @@ func _serialize_authority(node: Node, data: Dictionary) -> void:
 func _deserialize_authority(node: Node, data: Dictionary) -> void:
 	if data.has("pid"):
 		node.set_multiplayer_authority(data.pid)
-		var player: SD_NetworkPlayer = SD_NetworkPlayer.find_in(node)
+		var player: SD_NetworkPlayer = SD_NetworkPlayer.get_by_peer_id(data.pid)
 		if player:
 			player.set_in(node)
 
