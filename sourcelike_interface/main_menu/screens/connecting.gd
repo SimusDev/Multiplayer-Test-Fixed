@@ -28,7 +28,6 @@ func _on_menu_switched(node: Node) -> void:
 func _on_connected() -> void:
 	menu_switcher.switch_by_name("lobby")
 
-
 func _on_menu_switched_from(node: Node) -> void:
 	if node != self:
 		return
