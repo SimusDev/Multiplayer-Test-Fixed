@@ -1,8 +1,16 @@
-[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://c3ye4j7ajwc25"]
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=7 format=3 uid="uid://c3ye4j7ajwc25"]
 
 [ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="1_agjdf"]
 [ext_resource type="PackedScene" uid="uid://bb8wig78ool4e" path="res://Games/source_game/props/doll/doll.tscn" id="2_m2w4f"]
 [ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="3_0jne1"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_0jne1"]
+[ext_resource type="Resource" uid="uid://c275b3e1js5l1" path="res://Games/source_game/props/doll/view3d.tres" id="5_xrqxd"]
+
+[sub_resource type="Resource" id="Resource_5sqx8"]
+script = ExtResource("4_0jne1")
+view = ExtResource("5_xrqxd")
+world = ExtResource("5_xrqxd")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("3_0jne1")
@@ -12,4 +20,5 @@ icon = ExtResource("1_agjdf")
 name = "doll"
 description = ""
 prefab = ExtResource("2_m2w4f")
+viewmodel = SubResource("Resource_5sqx8")
 metadata/_custom_type_script = "uid://bljdyrjeubrdg"

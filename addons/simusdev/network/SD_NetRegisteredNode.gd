@@ -40,19 +40,13 @@ func _uncache(path: NodePath) -> void:
 		await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
 	SD_Network.singleton.cache.try_uncache_node(path)
 
-
-
 func _on_tree_exited() -> void:
 	var path: NodePath = last_path
-	
-	if SimusDev.get_tree():
-		await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
-	
 	if reference.is_queued_for_deletion():
+		if SimusDev.get_tree():
+			await SimusDev.get_tree().create_timer(CACHE_TIMEOUT).timeout
 		SD_Network.singleton.cache.try_uncache_node(path)
 		
-
-
 
 static func create(node: Node) -> SD_NetRegisteredNode:
 	return get_or_create(node)

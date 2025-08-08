@@ -9,6 +9,7 @@ class_name R_SourceWorldObject
 
 @export_group("World")
 @export var prefab: PackedScene : get = get_prefab
+@export var viewmodel: R_SourceViewModel = null
 
 @export_group("ItemStack")
 @export var itemstack: SourceItemStackSettings = null : get = get_itemstack

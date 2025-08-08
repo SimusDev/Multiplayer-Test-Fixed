@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="R_SourceView3D" load_steps=3 format=3 uid="uid://c275b3e1js5l1"]
+
+[ext_resource type="ArrayMesh" uid="uid://de8tqghet2fn" path="res://Games/source_game/props/doll/mesh.tres" id="1_ecspy"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="2_wrw3a"]
+
+[resource]
+script = ExtResource("2_wrw3a")
+mesh = ExtResource("1_ecspy")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, -92)
+scale = Vector3(0.01, 0.01, 0.01)
+metadata/_custom_type_script = "uid://chuimtehu4j13"

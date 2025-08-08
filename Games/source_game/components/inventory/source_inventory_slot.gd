@@ -15,6 +15,12 @@ signal item_removed(item: SourceItemStack)
 
 signal item_changed(item: SourceItemStack)
 
+func select() -> void:
+	_inventory.select_slot(self)
+
+func can_select() -> bool:
+	return _data.get(&"selectable", false)
+
 func _enter_tree() -> void:
 	SD_Network.register_object(self)
 	name = name.validate_node_name()

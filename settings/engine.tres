@@ -19,18 +19,19 @@ cache_resources = []
 [sub_resource type="Resource" id="Resource_m7xkw"]
 script = ExtResource("3")
 enabled = true
-channels = []
-root_path = "/root/"
-default_peer = true
-show_all_connected_players = true
+channels = null
+root_path = null
+default_peer = null
+compression = null
+show_all_connected_players = null
 player_unique_names = true
-dedicated_server = false
-dedicated_server_port = 80
-dedicated_server_max_clients = 32
+dedicated_server = null
+dedicated_server_port = null
+dedicated_server_max_clients = null
 debug = true
-debug_callables = true
-debug_vars = true
-debug_cache = true
+debug_callables = null
+debug_vars = null
+debug_cache = null
 cache = SubResource("Resource_me2gm")
 
 [resource]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://7mptmrpb1qvm"]
+
+[ext_resource type="Script" uid="uid://l3nn0yyhk2i4" path="res://Games/source_game/components/viewmodel/default_view.gd" id="1_hk08h"]
+[ext_resource type="Texture2D" uid="uid://cyj56486e1iyo" path="res://icon.png" id="2_07cyx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fbcm"]
+albedo_texture = ExtResource("2_07cyx")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hk08h"]
+
+[node name="DefaultView" type="Node3D"]
+script = ExtResource("1_hk08h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_5fbcm")
+mesh = SubResource("SphereMesh_hk08h")

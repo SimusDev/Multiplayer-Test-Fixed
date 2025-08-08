@@ -25,6 +25,9 @@ func _update_all() -> void:
 		i.queue_free()
 	
 	for slot in _inventory.get_slots():
+		if slot.can_select():
+			continue
+		
 		ui_SourceSlot.create(container, _inventory, slot)
 
 func set_inventory(new: SourceInventory) -> void:

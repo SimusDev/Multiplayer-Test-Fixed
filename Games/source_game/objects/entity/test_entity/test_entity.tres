@@ -7,6 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_c1j58"]
 script = ExtResource("2_v2ge6")
+stackable = true
+stack_size = 64
 pickable = true
 actions = Array[ExtResource("1_ua282")]([])
 metadata/_custom_type_script = "uid://by2u8yhp1402w"

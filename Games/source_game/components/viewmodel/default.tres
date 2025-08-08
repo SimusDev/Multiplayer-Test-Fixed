@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="R_SourceViewModel" load_steps=6 format=3 uid="uid://b6wfetw8s3ti6"]
+
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="1_4k38a"]
+[ext_resource type="PackedScene" uid="uid://7mptmrpb1qvm" path="res://Games/source_game/components/viewmodel/default_view.tscn" id="2_q1a82"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="3_7egl4"]
+
+[sub_resource type="Resource" id="Resource_uwgso"]
+script = ExtResource("3_7egl4")
+prefab = ExtResource("2_q1a82")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_l575o"]
+script = ExtResource("3_7egl4")
+prefab = ExtResource("2_q1a82")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[resource]
+script = ExtResource("1_4k38a")
+view = SubResource("Resource_uwgso")
+world = SubResource("Resource_l575o")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"

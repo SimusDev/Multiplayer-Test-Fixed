@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://de25fv8uudtud"]
+[gd_scene load_steps=13 format=3 uid="uid://de25fv8uudtud"]
 
 [ext_resource type="Script" uid="uid://cltn8bdg6gbe4" path="res://addons/simusdev/network/singleton/SD_NetworkSingleton.gd" id="1_vwplp"]
 [ext_resource type="Script" uid="uid://cu84klb6vy2j1" path="res://addons/simusdev/network/singleton/SD_NetTrunkClient.gd" id="2_i41d2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://oxklms8j40rm" path="res://addons/simusdev/network/singleton/SD_NetTrunkSynchronization.gd" id="9_gb48q"]
 [ext_resource type="Script" uid="uid://dhrq2tlm0h2yx" path="res://addons/simusdev/network/singleton/SD_NetTrunkVariables.gd" id="10_i6ihn"]
 [ext_resource type="Script" uid="uid://1utem6n6u6mj" path="res://addons/simusdev/network/singleton/SD_NetTrunkRpc.gd" id="11_vhk8f"]
+[ext_resource type="Script" uid="uid://clg6tk3j1png4" path="res://addons/simusdev/network/singleton/SD_NetTrunkNetworkProcessor.gd" id="12_7qnfw"]
 
 [node name="Network" type="Node" node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "synchronization", "variables", "rpc", "info")]
 script = ExtResource("1_vwplp")
@@ -90,3 +91,7 @@ metadata/_custom_type_script = "uid://dhrq2tlm0h2yx"
 [node name="Rpc" type="Node" parent="."]
 script = ExtResource("11_vhk8f")
 metadata/_custom_type_script = "uid://1utem6n6u6mj"
+
+[node name="Processor" type="Node" parent="."]
+script = ExtResource("12_7qnfw")
+metadata/_custom_type_script = "uid://clg6tk3j1png4"

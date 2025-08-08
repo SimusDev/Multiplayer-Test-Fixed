@@ -9,6 +9,8 @@ class_name SourceInventory
 var _slots: Array[SourceInventorySlot] = []
 var _items: Array[SourceItemStack] = []
 
+var _selected_slot: SourceInventorySlot = null
+
 @export var initial_slots: int = 36
 
 var is_initialized: bool = false
@@ -17,10 +19,17 @@ signal initialized()
 
 var _is_full: bool = false
 
+signal slot_selected(slot: SourceInventorySlot)
 signal craft_queue_add(craft: R_SourceCraftQueue)
 signal craft_queue_remove(craft: R_SourceCraftQueue)
 
 var _craft_queue: Array[R_SourceCraftQueue] = []
+
+static func find_above(from: Node) -> SourceInventory:
+	var founded: SourceInventory = SD_Components.find_first(from, SourceInventory)
+	if founded:
+		return founded
+	return find_above(from.get_parent())
 
 func debug_print(text, category: int = SD_ConsoleCategories.INFO) -> void:
 	if debug:
@@ -33,6 +42,11 @@ func _ready() -> void:
 		_drop_server,
 		_action_request,
 		_item_move_to_net,
+		_select_slot_server,
+	])
+	
+	SD_Network.cache_functions([
+		_select_slot_local,
 	])
 	
 	if not root:
@@ -52,7 +66,17 @@ func _ready() -> void:
 		var slot := SourceInventorySlot.new()
 		add_child(slot)
 	
+	_select_initial_slot()
 	_try_initialize()
+
+func get_selected_slot() -> SourceInventorySlot:
+	return _selected_slot
+
+func _select_initial_slot() -> void:
+	for slot in get_slots():
+		if slot.can_select():
+			_selected_slot = slot
+			break
 
 func _try_initialize() -> void:
 	if is_initialized:
@@ -83,7 +107,41 @@ func __send() -> void:
 	for slot in get_slots():
 		slots.append(slot.serialize())
 	
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots])
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots, _selected_slot])
+
+func __recieve(slots: Array, selected: SourceInventorySlot) -> void:
+	_clear_inventory_slots()
+	
+	for serialized in slots:
+		var slot: SourceInventorySlot = SourceInventorySlot.deserialize(serialized)
+		add_child(slot)
+	
+	_selected_slot = selected
+	
+	debug_print("synced all slots and items! %s")
+	_try_initialize()
+
+func select_slot(slot: SourceInventorySlot) -> void:
+	if not slot:
+		return
+	
+	if is_initialized:
+		SD_Network.call_func_on_server(_select_slot_server, [slot])
+
+func _select_slot_server(slot: SourceInventorySlot) -> void:
+	if SD_Network.is_server():
+		if is_instance_valid(slot) and is_initialized:
+			if slot.can_select():
+				SD_Network.call_func(_select_slot_local, [slot])
+			else:
+				debug_print("cant select slot without selectable attribute!", SD_ConsoleCategories.ERROR)
+			
+
+func _select_slot_local(slot: SourceInventorySlot) -> void:
+	if is_instance_valid(slot):
+		_selected_slot = slot
+		slot_selected.emit(_selected_slot)
+		debug_print("slot selected %s" % str(slot))
 
 func item_action_request(item: SourceItemStack, action: SourceItemAction) -> void:
 	SD_Network.call_func_on_server(_action_request, [item, SourceNetwork.serialize_resource(action)])
@@ -103,15 +161,7 @@ func _do_action_local(item: SourceItemStack, serialized: Variant) -> void:
 	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized)
 	action_class._action_local(item)
 
-func __recieve(slots: Array) -> void:
-	_clear_inventory_slots()
-	
-	for serialized in slots:
-		var slot: SourceInventorySlot = SourceInventorySlot.deserialize(serialized)
-		add_child(slot)
-	
-	debug_print("synced all slots and items! %s")
-	_try_initialize()
+
 
 func is_full() -> bool:
 	var full: int = 0

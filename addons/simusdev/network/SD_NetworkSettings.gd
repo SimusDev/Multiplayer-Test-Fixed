@@ -2,12 +2,13 @@ extends Resource
 class_name SD_NetworkSettings
 
 @export var enabled: bool = false
+var custom_poll: bool = false
 @export var channels: PackedStringArray = []
 @export var root_path: String = "/root/"
 var global_tickrate: float = 64.0
 var global_process: Timer.TimerProcessCallback = Timer.TimerProcessCallback.TIMER_PROCESS_IDLE
 @export var default_peer: bool = true
-var compression: ENetConnection.CompressionMode = ENetConnection.COMPRESS_FASTLZ
+@export var compression: ENetConnection.CompressionMode = ENetConnection.COMPRESS_RANGE_CODER
 var serializer_compression: FileAccess.CompressionMode = FileAccess.COMPRESSION_DEFLATE
 var serializer_min_bytes_to_compress: int = 500
 @export var show_all_connected_players: bool = true

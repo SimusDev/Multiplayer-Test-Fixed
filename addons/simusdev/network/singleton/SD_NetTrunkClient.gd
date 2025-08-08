@@ -4,7 +4,7 @@ class_name SD_NetTrunkClient
 func create(address: String, port: int) -> bool:
 	var peer: PacketPeer = singleton.get_peer()
 	
-	if peer is MultiplayerPeer:
+	if peer is ENetMultiplayerPeer:
 		if peer.get_connection_status() == peer.CONNECTION_DISCONNECTED:
 			var err: Error = peer.create_client(address, port)
 			if err == OK:

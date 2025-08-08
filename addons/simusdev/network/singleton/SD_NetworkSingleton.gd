@@ -159,6 +159,7 @@ func _ready() -> void:
 	
 	get_tree().set_multiplayer(SceneMultiplayer.new())
 	#multiplayer.allow_object_decoding = true
+	get_tree().multiplayer_poll = not settings.custom_poll
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.peer_connected.connect(_on_peer_connected)

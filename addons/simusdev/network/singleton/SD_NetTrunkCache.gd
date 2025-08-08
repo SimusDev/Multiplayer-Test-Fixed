@@ -148,12 +148,6 @@ func try_uncache_node(path: NodePath) -> void:
 	
 	_client_uncache.rpc(net_id, path)
 	return
-	
-	var local_change: Dictionary[String, Variant] = {}
-	local_change.net_id = net_id
-	local_change.path = path
-	local_change.status = false
-	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 func _on_scene_tree_node_added(node: Node) -> void:
