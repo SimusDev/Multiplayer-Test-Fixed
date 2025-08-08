@@ -12,12 +12,6 @@ static var instance:SourcePlayer
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 
-@export_group("Physics")
-@export var max_safe_fall_speed: float = 10.0
-@export var base_fall_damage: float = 8.0
-@export var fall_damage_multiplier: float = 1
-@export var ragdoll_model:PackedScene
-
 @export_group("UI")
 @export var player_ui:PackedScene
 @export var canvas:CanvasLayer
@@ -30,7 +24,7 @@ static var instance:SourcePlayer
 @export var death_camera:PackedScene
 
 @export var object: R_SourcePlayer
-
+ 
 var in_backrooms:bool = false : set = set_in_backrooms, get = is_in_backrooms
 
 func set_in_backrooms(value:bool): in_backrooms = value

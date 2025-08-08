@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://o7jtge2xsoh7"]
+[gd_scene load_steps=8 format=3 uid="uid://o7jtge2xsoh7"]
 
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="1_7qtul"]
 [ext_resource type="Script" uid="uid://idslyd7spk5" path="res://sourcelike_interface/main_menu/screens/main.gd" id="1_xxop7"]
 [ext_resource type="PackedScene" uid="uid://ifr1hdhssphu" path="res://sourcelike_interface/buttons/menu_button.tscn" id="2_e1ny1"]
 [ext_resource type="PackedScene" uid="uid://cnems64x804he" path="res://commands/last_ip.tscn" id="2_qljke"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7qtul")
 script = ExtResource("1_xxop7")
 buttons = [NodePath("VBoxContainer/start_game"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit"), NodePath("VBoxContainer/network-test")]
 buttons_ingame = [NodePath("VBoxContainer/continue"), NodePath("VBoxContainer/settings"), NodePath("VBoxContainer/quit_to_main_menu")]
@@ -58,6 +60,7 @@ layout_mode = 2
 label_text = "START GAME"
 
 [node name="network-test" parent="VBoxContainer" instance=ExtResource("2_e1ny1")]
+visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 label_text = "NETWORK TEST"

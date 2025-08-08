@@ -1,0 +1,19 @@
+Controls:
+	Game UI:
+		F1 - Open Multiplayer UI
+		T - Game Chat
+	Player:
+		W, A, S, D - Movement
+		Ctrl - Crouch
+		Shift - Sprint
+		Space - Jump
+		
+		Q - Open spawn menu
+		E - Interact
+		Tab - Inventory
+		123..9 - Hotbar slots
+		Left Mouse Button - Fire
+	Building:
+		Z, X, C, V - Select building (requires gm_toolgun)
+		Right Mouse Button - snap ghost building
+		

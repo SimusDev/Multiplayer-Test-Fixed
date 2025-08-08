@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dlkfywpbt8odw" path="res://sourcelike_interface/main_menu/screens/loading.gd" id="1_l488u"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_11p7j"]
-[ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/textures/SourceEngineVibe2.jpg" id="2_xurmo"]
+[ext_resource type="Texture2D" uid="uid://7yn15g0hgnmy" path="res://sourcelike_interface/bg_textures/SourceEngineVibe2.jpg" id="2_xurmo"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="3_xurmo"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="4_s3rwh"]
 

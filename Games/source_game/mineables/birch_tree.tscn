@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwmp7x75o8kny"]
+
+[ext_resource type="PackedScene" uid="uid://cvwj1m3quvfcm" path="res://Games/source_game/game/3dmodels/tree/tree.tscn" id="1_nym6i"]
+[ext_resource type="Script" uid="uid://d2ip56q60ir56" path="res://Games/source_game/components/source_mineable.gd" id="2_f06tf"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="3_74jy6"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_juhil"]
+[ext_resource type="Resource" uid="uid://mc20haafd6ps" path="res://Games/source_game/objects/ragdolls/kleiner/kleiner.tres" id="4_ox6fi"]
+[ext_resource type="Script" uid="uid://dvmu0oiar45ax" path="res://Games/source_game/components/r_source_mineable.gd" id="5_k7ih7"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="7_ox6fi"]
+
+[sub_resource type="Resource" id="Resource_5vl2e"]
+script = ExtResource("5_k7ih7")
+drop = Array[ExtResource("3_74jy6")]([ExtResource("4_ox6fi")])
+metadata/_custom_type_script = "uid://dvmu0oiar45ax"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ox6fi"]
+size = Vector3(0.783936, 2.50732, 0.55719)
+
+[node name="birch_tree" type="Node3D"]
+
+[node name="tree" parent="." instance=ExtResource("1_nym6i")]
+
+[node name="SourceMineable" type="Node" parent="." node_paths=PackedStringArray("root", "health")]
+script = ExtResource("2_f06tf")
+root = NodePath("..")
+resource = SubResource("Resource_5vl2e")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://d2ip56q60ir56"
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_juhil")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("7_ox6fi")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161255, 1.229, -0.000152588)
+shape = SubResource("BoxShape3D_ox6fi")

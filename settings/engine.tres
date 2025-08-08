@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=9 format=3 uid="uid://3wl8oxwmp5ux"]
 
-[ext_resource type="Script" uid="uid://b6d1d4yh6pph6" path="res://addons/simusdev/multiplayer/SD_MultiplayerSettings.gd" id="1"]
+[ext_resource type="Script" path="res://addons/simusdev/multiplayer/SD_MultiplayerSettings.gd" id="1"]
 [ext_resource type="Script" uid="uid://chrfdjatuxh2l" path="res://addons/simusdev/network/SD_NetworkCacheSettings.gd" id="2"]
 [ext_resource type="Script" uid="uid://bsn5pysgtogq7" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="3"]
 [ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="4"]
@@ -36,7 +36,7 @@ cache = SubResource("Resource_me2gm")
 
 [resource]
 script = ExtResource("5")
-developer = ""
+developer = "zxcvlxd and simusdev"
 game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,

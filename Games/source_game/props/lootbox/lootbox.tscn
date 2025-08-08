@@ -914,24 +914,29 @@ surface = "body"
 rigid_body = NodePath("..")
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
-[node name="Sketchfab_model" type="Node3D" parent="."]
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_yjqbk")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="model" type="Node3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, 0.05, 0, -0.05, -2.18557e-09, 0, 0, 0)
 
-[node name="f204f95b317f4ab685462247d5555622_fbx" type="Node3D" parent="Sketchfab_model"]
+[node name="f204f95b317f4ab685462247d5555622_fbx" type="Node3D" parent="model"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[node name="Object_2" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx"]
+[node name="Object_2" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx"]
 
-[node name="RootNode" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2"]
+[node name="RootNode" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2"]
 
-[node name="gift" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode"]
+[node name="gift" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode"]
 
-[node name="giftJnts" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode"]
+[node name="giftJnts" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
 
-[node name="Object_6" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts"]
+[node name="Object_6" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6"]
+[node name="Skeleton3D" type="Skeleton3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6"]
 bones/0/name = "_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -1542,11 +1547,11 @@ bones/86/position = Vector3(5.66716, -1.59963, 2.82061)
 bones/86/rotation = Quaternion(0.0117899, -0.133247, -0.0349066, 0.990398)
 bones/86/scale = Vector3(1, 1, 1)
 
-[node name="Object_9" type="MeshInstance3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6/Skeleton3D"]
+[node name="Object_9" type="MeshInstance3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6/Skeleton3D"]
 mesh = SubResource("ArrayMesh_u0cta")
 skin = SubResource("Skin_3cl4p")
 
-[node name="Object_8" type="Node3D" parent="Sketchfab_model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6"]
+[node name="Object_8" type="Node3D" parent="model/f204f95b317f4ab685462247d5555622_fbx/Object_2/RootNode/giftJnts/Object_6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.88178e-16, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1578,10 +1583,5 @@ metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.287198, -0.00186157)
 shape = SubResource("BoxShape3D_eqeiw")
 
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("6_yjqbk")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://cr18fup83we2u"
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="died" from="SourceHealth" to="." method="_on_source_health_died"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

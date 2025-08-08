@@ -41,3 +41,4 @@ func __on_health_died() -> void:
 
 func apply_damage(points: float) -> void:
 	health.apply_damage(points * damage_multiplier)
+	print("Sex")

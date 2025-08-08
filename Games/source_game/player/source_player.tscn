@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://ckgrvgsjahpj4"]
+[gd_scene load_steps=126 format=3 uid="uid://ckgrvgsjahpj4"]
 
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_4cdfe"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="1_ixdeb"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://vveni31yjbmd" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet2.wav" id="6_kal50"]
 [ext_resource type="AudioStream" uid="uid://jp5jqyr0ld1k" path="res://sounds/death/death1.wav" id="7_3yygh"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="7_4cdfe"]
-[ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="7_6qnpk"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
 [ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="7_suq2s"]
 [ext_resource type="AudioStream" uid="uid://p0185rphsnhs" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet3.wav" id="7_x0g0d"]
@@ -180,9 +179,6 @@ script = ExtResource("14_efvha")
 _list = Array[ExtResource("13_3yygh")]([SubResource("Resource_7lynq"), SubResource("Resource_u7p5y"), SubResource("Resource_k6hwe"), SubResource("Resource_j3nm0")])
 metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1l832"]
-radius = 0.335526
-
 [sub_resource type="Gradient" id="Gradient_4d7pv"]
 colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
 
@@ -211,23 +207,99 @@ radius = 0.34375
 height = 0.28368
 radius = 0.163574
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1l832"]
+radius = 0.335526
+
 [node name="source_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "canvas", "model", "interact_raycast", "footsteps_component") groups=["penetrable"]]
 floor_max_angle = 1.13446
 script = ExtResource("1_4cdfe")
-health = NodePath("Health")
+health = NodePath("SourceHealth")
 take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
 death_assets = Array[AudioStream]([ExtResource("7_3yygh"), ExtResource("8_efvha")])
 flat_line_sound = ExtResource("9_vsb7e")
 movement = NodePath("SourceMovement")
 camera = NodePath("SourceCamera")
-max_safe_fall_speed = 15.0
-ragdoll_model = ExtResource("7_6qnpk")
 player_ui = ExtResource("2_inl2s")
 canvas = NodePath("canvas")
 model = NodePath("W_AnimatedModel3D")
 interact_raycast = NodePath("SourceCamera/interact_raycast")
 footsteps_component = NodePath("footsteps")
 death_camera = ExtResource("11_efvha")
+
+[node name="W_AnimatedModel3D" parent="." instance=ExtResource("81_kim0n")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
+
+[node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
+bones/0/position = Vector3(-0.0138417, 3.75649, 0.0546166)
+bones/0/rotation = Quaternion(-0.0326785, -0.0478529, -0.0262746, 0.997974)
+bones/1/rotation = Quaternion(-0.0132873, 0.0134419, 0.0255921, 0.999494)
+bones/2/rotation = Quaternion(0.0103638, 0.00245115, 0.0144663, 0.999839)
+bones/3/rotation = Quaternion(0.0101801, 0.00270217, 0.0144928, 0.99984)
+bones/4/rotation = Quaternion(0.115751, -0.00161755, 0.00390024, 0.993269)
+bones/5/rotation = Quaternion(-0.136555, 0.00980147, 0.000330679, 0.990584)
+bones/7/rotation = Quaternion(-0.684309, -0.317428, 0.520105, -0.400563)
+bones/8/rotation = Quaternion(0.471279, 0.128547, 0.0615462, 0.870393)
+bones/9/rotation = Quaternion(0.00156979, 0.000337018, 0.0139983, 0.999901)
+bones/10/rotation = Quaternion(0.082548, -0.250472, -0.0206851, 0.964376)
+bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
+bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
+bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
+bones/15/rotation = Quaternion(0.0452996, -0.0080699, 0.0659134, 0.996764)
+bones/16/rotation = Quaternion(0.149442, -0.000245918, -0.0422956, 0.987866)
+bones/17/rotation = Quaternion(0.0693605, 0.000803979, -0.0129754, 0.997507)
+bones/19/rotation = Quaternion(0.113756, -0.0176685, 0.033825, 0.992775)
+bones/20/rotation = Quaternion(0.14936, 2.3146e-05, -0.049342, 0.987551)
+bones/21/rotation = Quaternion(0.157931, 0.00209245, -0.0353633, 0.986815)
+bones/23/rotation = Quaternion(0.159868, -0.0209712, 0.0222201, 0.986665)
+bones/24/rotation = Quaternion(0.17885, -0.00191226, -0.0472152, 0.982741)
+bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
+bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
+bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
+bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
+bones/31/rotation = Quaternion(0.683574, -0.313826, 0.540967, 0.376291)
+bones/32/rotation = Quaternion(0.396763, -0.226962, -0.0805265, 0.885767)
+bones/33/rotation = Quaternion(0.00634613, 0.000175188, -0.0581333, 0.998289)
+bones/34/rotation = Quaternion(0.0945246, 0.133845, 0.042964, 0.985548)
+bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
+bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
+bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
+bones/39/rotation = Quaternion(0.0286148, 0.023088, -0.0624956, 0.997368)
+bones/40/rotation = Quaternion(0.149687, 4.72132e-05, 0.0353601, 0.988101)
+bones/41/rotation = Quaternion(0.0694734, -0.000531459, 0.00782123, 0.997553)
+bones/43/rotation = Quaternion(0.0977086, 0.0175481, -0.0408632, 0.994221)
+bones/44/rotation = Quaternion(0.150426, 0.000474846, 0.0427019, 0.987698)
+bones/45/rotation = Quaternion(0.159049, -0.00178055, 0.0357864, 0.98662)
+bones/47/rotation = Quaternion(0.144386, 0.0249427, -0.0302124, 0.988746)
+bones/48/rotation = Quaternion(0.179973, 0.000427918, 0.050674, 0.982365)
+bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
+bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
+bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
+bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
+bones/55/rotation = Quaternion(0.138087, 0.0648408, 0.985045, -0.0800852)
+bones/56/rotation = Quaternion(-0.130043, -0.0147803, 0.0299584, 0.990946)
+bones/57/rotation = Quaternion(0.511772, -0.119682, -0.00104986, 0.850743)
+bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
+bones/60/rotation = Quaternion(-0.091856, -0.0216298, 0.995223, -0.025015)
+bones/61/rotation = Quaternion(-0.0782335, 0.0844592, -0.0243542, 0.993052)
+bones/62/rotation = Quaternion(0.547131, 0.111874, -0.0296535, 0.829007)
+bones/63/rotation = Quaternion(0.323578, 0.0275479, -0.000155795, 0.945801)
+
+[node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
+parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
+parameters/StateMachine/crouched_walk/blend_position = Vector2(0.000885725, -0.0130436)
+parameters/item_right_hand_blend/blend_amount = false
+parameters/look_dir_add/add_amount = 1.0
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("12_j3nm0")
+root = NodePath("..")
+recursive_register = false
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"
+
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("12_4d7pv")
+_data = SubResource("Resource_mf063")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
 [node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("12_ax0ug")
@@ -426,21 +498,6 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 script = ExtResource("13_ssngh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("12_j3nm0")
-root = NodePath("..")
-recursive_register = false
-metadata/_custom_type_script = "uid://cotoo7b7sohgn"
-
-[node name="SD_NetSynchronizer" type="Node" parent="."]
-script = ExtResource("12_4d7pv")
-_data = SubResource("Resource_mf063")
-metadata/_custom_type_script = "uid://blbs0u7qkn6if"
-
-[node name="collision_normal" type="CollisionShape3D" parent="."]
-shape = ExtResource("12_5jte2")
-debug_color = Color(0.341176, 0.486275, 1, 1)
-
 [node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("7_suq2s")
 player = NodePath("..")
@@ -448,19 +505,10 @@ max_safe_fall_speed = 15.0
 hard_grounding_sounds = Array[AudioStream]([ExtResource("14_x0g0d"), ExtResource("15_qmy00")])
 metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("20_j3nm0")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://cr18fup83we2u"
-
-[node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("16_kal50")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://4q60q717rxsh"
-
-[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible"]
-shape = SubResource("CapsuleShape3D_1l832")
-debug_color = Color(0.341176, 0.486275, 1, 0)
 
 [node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("1_ixdeb")]
 actor = NodePath("..")
@@ -509,22 +557,24 @@ script = ExtResource("7_4cdfe")
 shadow_enabled = true
 
 [node name="interact_raycast" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("player", "drag_item_link_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.207389)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.407389)
 target_position = Vector3(0, 0, -3)
+collision_mask = 3
 collide_with_areas = true
 script = ExtResource("9_kou6u")
 player = NodePath("../..")
 drag_item_link_node = NodePath("../hands")
 
 [node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.694588)
-target_position = Vector3(0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.394588)
+target_position = Vector3(0, 0, -3)
 collision_mask = 11
 collide_with_areas = true
 script = ExtResource("34_0td7v")
 root = NodePath("../..")
 
 [node name="hands" type="Marker3D" parent="SourceCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
 [node name="item_container" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("player", "model_item_container", "player_ui")]
 transform = Transform3D(0.997361, -0.0722082, -0.00733578, 0.0721557, 0.997371, -0.00718117, 0.00783468, 0.0066328, 0.999948, 0.407259, -0.417902, -0.376351)
@@ -568,19 +618,12 @@ visible = false
 [node name="arms_item" type="Marker3D" parent="SourceCamera"]
 transform = Transform3D(-0.968148, -0.227836, -0.103831, -0.241849, 0.958289, 0.152289, 0.0648032, 0.172549, -0.982867, 0.293641, -0.517513, -0.402066)
 
-[node name="ceiling_raycast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-target_position = Vector3(0, 1, 0)
-
-[node name="crouch_camera_pos" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
 [node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320068, 0)
@@ -591,7 +634,7 @@ collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.532132, 0)
@@ -602,12 +645,54 @@ collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("105_u7p5y")
-health = NodePath("../Health")
+health = NodePath("../SourceHealth")
 damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886506, 0)
 shape = SubResource("CylinderShape3D_mf063")
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="Cheatcommands" parent="." instance=ExtResource("100_4d7pv")]
+
+[node name="SD_SceneSaverInstance" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("109_3qhl4")
+root = NodePath("..")
+properties = Dictionary[NodePath, PackedStringArray]({
+NodePath(".."): PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://cjkp4qdncq7w7"
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+shape = ExtResource("12_5jte2")
+debug_color = Color(0.341176, 0.486275, 1, 1)
+
+[node name="ceiling_raycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_camera_pos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("16_kal50")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://4q60q717rxsh"
+
+[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible"]
+shape = SubResource("CapsuleShape3D_1l832")
+debug_color = Color(0.341176, 0.486275, 1, 0)
+
+[node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.104964, -0.0162358, -0.259073, -0.00814616, -0.279108, 0.0207917, -0.259454, 0.0153315, 0.104157, 0.262239, -0.0222619, -0.0217838)
+bone_name = "mixamorig_RightHand"
+bone_idx = 34
+use_external_skeleton = true
+external_skeleton = NodePath("../W_AnimatedModel3D/model3d/Skeleton3D")
+
+[node name="model_item_container" type="Node3D" parent="right_hand_attachment"]
+transform = Transform3D(-0.192886, 2.47279, -0.313238, -0.158075, -0.325677, -2.47365, -2.48753, -0.171047, 0.181482, 0.150291, 0.525182, 0.0341337)
 
 [node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true", "authority_false")]
 script = ExtResource("7_ilpss")
@@ -716,6 +801,8 @@ NodePath(".."): PackedStringArray("transform")
 })
 metadata/_custom_type_script = "uid://cjkp4qdncq7w7"
 
+[editable path="W_AnimatedModel3D"]
+[editable path="W_AnimatedModel3D/model3d"]
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
 [editable path="SourceCamera/item_container/crowbar"]
@@ -723,5 +810,3 @@ metadata/_custom_type_script = "uid://cjkp4qdncq7w7"
 [editable path="SourceCamera/item_container/crowbar/arms"]
 [editable path="SourceCamera/item_container/ak_47"]
 [editable path="SourceCamera/item_container/ak_47/arms"]
-[editable path="W_AnimatedModel3D"]
-[editable path="W_AnimatedModel3D/model3d"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7yn15g0hgnmy"
-path="res://.godot/imported/SourceEngineVibe2.jpg-e8878d19575bf0188a05d1f5a45e79b0.ctex"
+uid="uid://b22ken87h3hvs"
+path="res://.godot/imported/health.png-90aca26267446f4b7e3dbbb0f9dafb8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sourcelike_interface/textures/SourceEngineVibe2.jpg"
-dest_files=["res://.godot/imported/SourceEngineVibe2.jpg-e8878d19575bf0188a05d1f5a45e79b0.ctex"]
+source_file="res://Games/source_game/components/icons/health.png"
+dest_files=["res://.godot/imported/health.png-90aca26267446f4b7e3dbbb0f9dafb8d.ctex"]
 
 [params]
 

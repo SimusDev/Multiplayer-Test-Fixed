@@ -5,17 +5,17 @@ signal prop_spawned
 static var instance:SourceGame = null
 
 var sv_cheats:bool = false : set = set_sv_cheats
+var mp_player_spawner:SD_MPPlayerSpawner
+
 @export var level_handler:SourceLevelHandler
+@export var welcome_text:String
+@export var help_text_file_path:String
 
-@export var mp_player_spawner:SD_MPPlayerSpawner
 @export var death_camera:PackedScene
-
 @export var _singleton_pack: PackedScene
-
-var _surfaces := SourceSurfaces.new()
-
 @export var _spawner: SourceNetworkSpawner
 
+var _surfaces := SourceSurfaces.new()
 const GAME_PATH: String = "res://Games/source_game/"
 
 func _ready() -> void:
@@ -31,6 +31,7 @@ func _ready() -> void:
 
 	instance = self
 	
+	send_welcome_message()
 
 func _on_peer_connected(_peer_id:int):
 	level_handler.check_level()
@@ -147,6 +148,17 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 				SimusDev.console.write_error("cant find object by this id.")
 		"level.clear":
 			SD_Network.call_func_on_server(clear_objects)
+		"game.help":
+			SimusDev.console.write_info(get_help_file_text())
+
+func send_welcome_message():
+	chat_interface.instance.send_message(welcome_text)
+
+func get_help_file_text() -> String:
+	var file = FileAccess.open(help_text_file_path, FileAccess.READ)
+	var text = file.get_as_text()
+	file.close()
+	return text
 
 func clear_objects() -> void:
 	if sv_cheats:
