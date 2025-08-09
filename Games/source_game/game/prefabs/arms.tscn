@@ -219,10 +219,9 @@ bind/59/name = &"handcontrol.R_end_058"
 bind/59/bone = -1
 bind/59/pose = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[node name="arms" type="Node3D" node_paths=PackedStringArray("hands_ik")]
+[node name="arms" type="Node3D"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 script = ExtResource("1_sltjb")
-hands_ik = []
 
 [node name="root" type="Node3D" parent="."]
 
