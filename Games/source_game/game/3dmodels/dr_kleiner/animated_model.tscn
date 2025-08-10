@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cwqpcddsojjt7"]
+[gd_scene load_steps=37 format=4 uid="uid://cwqpcddsojjt7"]
 
 [ext_resource type="Script" uid="uid://lnfhngtm7g8a" path="res://Games/source_game/game/3dmodels/dr_kleiner/animated_model.gd" id="1_p2etw"]
 [ext_resource type="PackedScene" uid="uid://dwpb4vcsaovcf" path="res://Games/source_game/game/3dmodels/dr_kleiner/dr_kleiner_scene.tscn" id="2_p2etw"]
@@ -14,10 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c7xrxn70r4cqn" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_8.png" id="10_ma4pq"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="13_ke3q8"]
 [ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="14_c6elt"]
-[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="15_emf6g"]
-[ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="16_emf6g"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="17_4p1ol"]
-[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="17_jifjd"]
 [ext_resource type="PackedScene" uid="uid://c3bby5tbyvcto" path="res://Games/source_game/items/AA2308KM/view.tscn" id="18_jifjd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mjwt"]
@@ -458,28 +455,6 @@ bind/3/name = &"mixamorig_RightShoulder"
 bind/3/bone = -1
 bind/3/pose = Transform3D(-0.431199, -0.870929, -9.95267, -9.1371, 4.06347, 0.0402825, 4.04073, 9.09559, -0.970993, -0.342073, 2.17213, 5.48449)
 
-[sub_resource type="Resource" id="Resource_5cwov"]
-script = ExtResource("17_jifjd")
-prefab = ExtResource("16_emf6g")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_u64gf"]
-script = ExtResource("17_jifjd")
-prefab = ExtResource("18_jifjd")
-position = Vector3(0.104266, 0.54879, 0.0678333)
-rotation = Vector3(1.30835, 0.521302, -1.07843)
-scale = Vector3(2, 2, 2)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_xnmxq"]
-script = ExtResource("15_emf6g")
-view = SubResource("Resource_5cwov")
-world = SubResource("Resource_u64gf")
-metadata/_custom_type_script = "uid://dmfqusepbcc80"
-
 [node name="W_AnimatedModel3D" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
 script = ExtResource("1_p2etw")
 model_scene = ExtResource("2_p2etw")
@@ -510,7 +485,6 @@ bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
 bones/15/rotation = Quaternion(0.0452996, -0.0080699, 0.0659134, 0.996764)
-bones/16/rotation = Quaternion(0.149442, -0.000245918, -0.0422956, 0.987866)
 bones/17/rotation = Quaternion(0.0693605, 0.000803979, -0.0129754, 0.997507)
 bones/19/rotation = Quaternion(0.113756, -0.0176685, 0.033825, 0.992775)
 bones/20/rotation = Quaternion(0.14936, 2.3146e-05, -0.049342, 0.987551)
@@ -614,14 +588,12 @@ external_skeleton = NodePath("../model3d/Skeleton3D")
 [node name="root" type="Node3D" parent="viewmodel" node_paths=PackedStringArray("view_node")]
 script = ExtResource("13_ke3q8")
 object = ExtResource("14_c6elt")
-viewmodel = SubResource("Resource_xnmxq")
 reset_transform = true
 placeholder = ExtResource("17_4p1ol")
 view_node = NodePath("prefab")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
-[node name="prefab" type="RigidBody3D" parent="viewmodel/root" instance=ExtResource("18_jifjd")]
+[node name="prefab" parent="viewmodel/root" instance=ExtResource("18_jifjd")]
 transform = Transform3D(-0.0278059, 1.98304, 0.258413, -0.457256, 0.245287, -1.93152, -1.94683, -0.0859341, 0.449968, 0.104266, 0.54879, 0.0678333)
-sleeping = true
 
 [editable path="model3d"]

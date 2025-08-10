@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ytpcj6iearn5"]
+[gd_scene load_steps=23 format=3 uid="uid://ytpcj6iearn5"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_u7f0k"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="4_7qwl4"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://bwp1cvwjkhvwt" path="res://Games/source_game/components/inventory/source_inventory_slot.gd" id="9_u7f0k"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ucdsr"]
 [ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="14_i7do4"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="15_f1apa"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="16_47ntt"]
 
 [sub_resource type="Resource" id="Resource_3mrjm"]
 script = ExtResource("8_u7f0k")
@@ -109,6 +111,7 @@ metadata/_custom_type_script = "uid://nede851wojx1"
 [node name="SourceViewModelRoot3D" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122909, -0.165861, -0.496867)
 script = ExtResource("8_jkxvs")
+authorative_visibility = true
 type = 0
 placeholder = ExtResource("9_i7do4")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
@@ -150,8 +153,9 @@ script = ExtResource("14_i7do4")
 inventory = NodePath("../SourceInventory")
 metadata/_custom_type_script = "uid://cfi3ck311echs"
 
-[node name="SourceInventory" type="Node" parent="."]
+[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("8_a2vi6")
+root = NodePath("..")
 metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
 [node name="h1" type="Node" parent="SourceInventory"]
@@ -183,3 +187,20 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 script = ExtResource("9_u7f0k")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("15_f1apa")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="collision" type="CollisionShape3D" parent="SourceHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.1226, -0.037447)
+shape = SubResource("BoxShape3D_q3met")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("16_47ntt")
+target = NodePath(".")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
