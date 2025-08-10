@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq30mnl4ccb7e"]
+[gd_scene load_steps=7 format=3 uid="uid://cq30mnl4ccb7e"]
 
 [ext_resource type="Texture2D" uid="uid://cedafnri3v7jj" path="res://Games/source_game/game/levels/source_flatgrass/3d/gm_flatgrass_2.png" id="1_0vqkk"]
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_mg7j0"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_mwgfn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnets"]
 size = Vector3(3, 1, 3)
@@ -28,3 +29,10 @@ material = SubResource("StandardMaterial3D_fnets")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 0, 0)
 shape = SubResource("BoxShape3D_crjlj")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_mwgfn")
+target = NodePath("..")
+health = 15.0
+max_health = 15.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"

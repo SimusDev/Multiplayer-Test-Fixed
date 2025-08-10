@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwmp7x75o8kny"]
+[gd_scene load_steps=11 format=3 uid="uid://dwmp7x75o8kny"]
 
 [ext_resource type="PackedScene" uid="uid://cvwj1m3quvfcm" path="res://Games/source_game/game/3dmodels/tree/tree.tscn" id="1_nym6i"]
 [ext_resource type="Script" uid="uid://d2ip56q60ir56" path="res://Games/source_game/components/source_mineable.gd" id="2_f06tf"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="3_74jy6"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_juhil"]
 [ext_resource type="Resource" uid="uid://mc20haafd6ps" path="res://Games/source_game/objects/ragdolls/kleiner/kleiner.tres" id="4_ox6fi"]
-[ext_resource type="Script" path="res://Games/source_game/components/r_source_mineable.gd" id="5_k7ih7"]
+[ext_resource type="Script" uid="uid://dvmu0oiar45ax" path="res://Games/source_game/components/r_source_mineable.gd" id="5_k7ih7"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="7_ox6fi"]
 
 [sub_resource type="Resource" id="Resource_5vl2e"]
@@ -15,6 +15,10 @@ metadata/_custom_type_script = "uid://dvmu0oiar45ax"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ox6fi"]
 size = Vector3(0.783936, 2.50732, 0.55719)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ox6fi"]
+height = 2.5854
+radius = 0.116211
 
 [node name="birch_tree" type="Node3D"]
 
@@ -42,3 +46,11 @@ metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161255, 1.229, -0.000152588)
 shape = SubResource("BoxShape3D_ox6fi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138099, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2781, 0)
+shape = SubResource("CylinderShape3D_ox6fi")
+debug_color = Color(0.98852, 0, 0.301054, 0.42)
