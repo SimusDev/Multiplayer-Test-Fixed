@@ -605,36 +605,11 @@ player = NodePath("../..")
 model_item_container = NodePath("../../right_hand_attachment/model_item_container")
 player_ui = NodePath("../../canvas")
 
-[node name="crowbar" parent="SourceCamera/item_container" instance=ExtResource("11_lhwgh")]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999999, 0, 0, 0)
-strength = 15.0
-
-[node name="ak_47" parent="SourceCamera/item_container" instance=ExtResource("31_7lynq")]
-transform = Transform3D(0.999743, 0.000435539, 0.0226831, 0, 0.999815, -0.0191974, -0.0226873, 0.0191925, 0.999558, -0.233273, 0.272573, 0.0750237)
-visible = false
-
 [node name="right_hand_pos" parent="SourceCamera/item_container/ak_47/root" index="2"]
 transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
 
 [node name="arms" parent="SourceCamera/item_container/ak_47" index="10"]
 transform = Transform3D(-1, 2.11003e-10, 1.4808e-07, 3.0559e-10, 1, -2.79397e-09, -1.50874e-07, -1.39698e-09, -1, -0.08456, -0.300802, 0.291285)
-
-[node name="aa_2308_km" parent="SourceCamera/item_container" instance=ExtResource("26_1l832")]
-transform = Transform3D(0.999549, -0.0174472, 0.0244322, 0.0174524, 0.999848, 0, -0.0244285, 0.0004264, 0.999701, -0.2, 0.188, -0.264)
-visible = false
-
-[node name="gm_toolgun" parent="SourceCamera/item_container" instance=ExtResource("38_vsb7e")]
-transform = Transform3D(0.997803, 0.000340216, 0.0662411, 0.00174447, 0.999504, -0.0314107, -0.066219, 0.0314573, 0.997308, -0.0868593, 0.192302, -0.121131)
-visible = false
-
-[node name="axe" parent="SourceCamera/item_container" instance=ExtResource("31_k6hwe")]
-transform = Transform3D(1, 3.74312e-08, 9.31323e-10, -8.32842e-08, 0.999999, 9.77889e-09, -4.65661e-09, -1.02445e-08, 0.999999, -0.105776, 0.23412, -0.118438)
-visible = false
-
-[node name="guitar" parent="SourceCamera/item_container" instance=ExtResource("26_5jte2")]
-transform = Transform3D(0.999986, -0.00512843, 0.000934996, 0.00496886, 0.991946, 0.126563, -0.00157652, -0.126556, 0.991958, -0.35, -0.4, 0.4)
-visible = false
 
 [node name="arms_item" type="Marker3D" parent="SourceCamera"]
 transform = Transform3D(-0.968148, -0.227836, -0.103831, -0.241849, 0.958289, 0.152289, 0.0648032, 0.172549, -0.982867, 0.293641, -0.517513, -0.402066)
