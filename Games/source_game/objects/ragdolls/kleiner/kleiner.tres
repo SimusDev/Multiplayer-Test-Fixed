@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="R_SourceRagdoll" load_steps=3 format=3 uid="uid://mc20haafd6ps"]
 
-[ext_resource type="Script" uid="uid://dbpi7cs5u88u6" path="res://Games/source_game/components/r_ragdoll.gd" id="1_etpkd"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_ragdoll.gd" id="1_etpkd"]
 [ext_resource type="PackedScene" uid="uid://boojwimqsjoji" path="res://Games/source_game/player/ragdoll_model/dr_kleiner_ragdoll.tscn" id="1_jy41v"]
 
 [resource]
@@ -10,4 +10,3 @@ custom_id = ""
 name = ""
 description = ""
 prefab = ExtResource("1_jy41v")
-metadata/_custom_type_script = "uid://dbpi7cs5u88u6"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://cw5oibpawydbh"]
+[gd_scene load_steps=84 format=3 uid="uid://cw5oibpawydbh"]
 
 [ext_resource type="Script" uid="uid://ddyrchekq1gjg" path="res://Games/source_game/components/enemy_ai.gd" id="1_c1i8f"]
 [ext_resource type="PackedScene" uid="uid://chyunnwrsr8cq" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.tscn" id="1_jud0w"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_n5qw2"]
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="3_a04ck"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="3_c1i8f"]
-[ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="5_tyhak"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="5_tyhak"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="6_0mdbs"]
 [ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="7_tyhak"]
 [ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="8_vvyed"]
@@ -79,6 +79,7 @@
 [ext_resource type="AudioStream" uid="uid://4ma5b6x7fokl" path="res://sounds/hl2/player/footsteps/slosh2.wav" id="71_7hdkl"]
 [ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="72_pqy00"]
 [ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="73_nqbpn"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="80_vvyed"]
 
 [sub_resource type="Resource" id="Resource_ei143"]
 script = ExtResource("3_a04ck")
@@ -110,7 +111,7 @@ metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pktsj"]
 radius = 0.319827
-height = 1.75965
+height = 1.5
 
 [node name="zombie_creature" type="CharacterBody3D" node_paths=PackedStringArray("footsteps", "ai")]
 script = ExtResource("1_k8hqk")
@@ -122,10 +123,10 @@ script = ExtResource("1_pb25s")
 properties = Array[ExtResource("2_k8hqk")]([SubResource("Resource_ei143"), SubResource("Resource_pb25s")])
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="C_HealthComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_tyhak")
 target = NodePath("..")
-metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
+metadata/_custom_type_script = "uid://cr18fup83we2u"
 
 [node name="footsteps" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_a04ck")
@@ -551,5 +552,17 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+visible = false
 billboard = 2
 text = "sex"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("80_vvyed")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+shape = SubResource("CapsuleShape3D_pktsj")

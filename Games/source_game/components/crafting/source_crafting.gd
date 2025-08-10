@@ -45,10 +45,17 @@ func _request_(inventory: SourceInventory, recipe_id: String) -> void:
 			SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _queue_create, [inventory, recipe_id, SD_Network.get_remote_sender_id()])
 		_queue_create(inventory, recipe_id, SD_Network.get_remote_sender_id())
 
+func _take_craft_items(_recipe:R_SourceRecipe, _inventory:SourceInventory):
+	pass
+	#for input_item in _recipe.input:
+		#for x in input_item.quantity:
+			#SD_Nodes.fast_queue_free(input_item)
+
 func _create_item(recipe: R_SourceRecipe, inventory: SourceInventory) -> void:
 	var itemstack := SourceItemStack.create_from_object(recipe.output.source)
 	itemstack.set_quantity(recipe.output.quantity)
 	inventory.add_item(itemstack)
+	_take_craft_items(recipe, inventory)
 
 func _queue_create(inventory: SourceInventory, recipe_id: String, peer: int) -> void:
 	var recipe: R_SourceRecipe = R_SourceRecipe.get_by_id(recipe_id) as R_SourceRecipe

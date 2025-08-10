@@ -30,7 +30,10 @@ func pick_target() -> AI_Visible:
 	for target:AI_Visible in vision.visible_targets:
 		if target.ai_priority < 0:
 			continue
-			
+		
+		if not is_instance_valid(target):
+			return
+		
 		var distance = enemy.global_position.distance_to(target.global_position)
 		var score = target.ai_priority / (distance + 0.1)
 		

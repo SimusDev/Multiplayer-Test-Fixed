@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq30mnl4ccb7e"]
+[gd_scene load_steps=9 format=3 uid="uid://cq30mnl4ccb7e"]
 
 [ext_resource type="Texture2D" uid="uid://cedafnri3v7jj" path="res://Games/source_game/game/levels/source_flatgrass/3d/gm_flatgrass_2.png" id="1_0vqkk"]
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_mg7j0"]
+[ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="2_crjlj"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_mwgfn"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="4_mg7j0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnets"]
 size = Vector3(3, 1, 3)
@@ -13,10 +16,12 @@ uv1_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_crjlj"]
 size = Vector3(3, 1, 3)
 
-[node name="foundation" type="Node3D" node_paths=PackedStringArray("model")]
+[node name="foundation" type="Node3D" node_paths=PackedStringArray("model", "health")]
 script = ExtResource("1_mg7j0")
 model = NodePath("mesh")
 model_offset = Vector3(0, 0.5, 0)
+particle = ExtResource("2_crjlj")
+health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
 [node name="mesh" type="CSGMesh3D" parent="."]
@@ -28,3 +33,22 @@ material = SubResource("StandardMaterial3D_fnets")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 0, 0)
 shape = SubResource("BoxShape3D_crjlj")
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_mg7j0")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 2.98023e-08, 0, 0)
+shape = SubResource("BoxShape3D_crjlj")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_mwgfn")
+target = NodePath("..")
+health = 15.0
+max_health = 15.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"

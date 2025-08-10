@@ -51,7 +51,7 @@ func pick_building(idx:int) -> void:
 	free_ghost_buildings()
 	add_ghost_building(buildings.buildings[idx].prefab.instantiate())
 	
-	building_pick.emit()
+	building_pick.emit(current_building)
 
 func add_ghost_building(_building:SourceBuilding) -> void:
 	ghost_model = _building.model.duplicate()

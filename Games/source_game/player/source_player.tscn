@@ -249,6 +249,59 @@ bones/60/rotation = Quaternion(-0.0922362, -0.0213719, 0.995203, -0.0246229)
 bones/61/rotation = Quaternion(-0.0776434, 0.0844546, -0.0242206, 0.993102)
 bones/62/rotation = Quaternion(0.546323, 0.113518, -0.0309241, 0.82927)
 bones/63/rotation = Quaternion(0.323144, 0.027454, -0.000186745, 0.945952)
+bones/0/position = Vector3(-0.018198, 3.75355, 0.0495628)
+bones/0/rotation = Quaternion(-0.0362547, -0.0447217, -0.0270365, 0.997975)
+bones/1/rotation = Quaternion(-0.00635146, 0.0165743, 0.0282445, 0.999444)
+bones/2/rotation = Quaternion(0.0119261, 0.00349703, 0.015122, 0.999808)
+bones/3/rotation = Quaternion(0.0119814, 0.003738, 0.0152415, 0.999805)
+bones/4/rotation = Quaternion(0.120785, -0.00188097, 0.00233027, 0.992674)
+bones/5/rotation = Quaternion(-0.141867, 0.00792226, -0.000145557, 0.989854)
+bones/7/rotation = Quaternion(-0.689482, -0.31072, 0.517958, -0.399734)
+bones/8/rotation = Quaternion(0.467479, 0.126222, 0.0643732, 0.872576)
+bones/9/rotation = Quaternion(0.00174262, 0.000336943, 0.0155382, 0.999878)
+bones/10/rotation = Quaternion(0.0775619, -0.258562, -0.0123325, 0.962797)
+bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
+bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
+bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
+bones/15/rotation = Quaternion(0.0452996, -0.0080699, 0.0659134, 0.996764)
+bones/16/rotation = Quaternion(0.149442, -0.000245918, -0.0422956, 0.987866)
+bones/17/rotation = Quaternion(0.0693605, 0.000803979, -0.0129754, 0.997507)
+bones/19/rotation = Quaternion(0.113756, -0.0176685, 0.033825, 0.992775)
+bones/20/rotation = Quaternion(0.14936, 2.3146e-05, -0.049342, 0.987551)
+bones/21/rotation = Quaternion(0.157931, 0.00209245, -0.0353633, 0.986815)
+bones/23/rotation = Quaternion(0.159868, -0.0209712, 0.0222201, 0.986665)
+bones/24/rotation = Quaternion(0.17885, -0.00191226, -0.0472152, 0.982741)
+bones/25/rotation = Quaternion(0.153025, -0.000730752, -0.0589092, 0.986465)
+bones/27/rotation = Quaternion(0.209287, -0.0150826, 0.00526665, 0.977724)
+bones/28/rotation = Quaternion(0.149415, 0.000194222, -0.0554012, 0.987221)
+bones/29/rotation = Quaternion(0.141741, 0.00131917, -0.0404966, 0.989074)
+bones/31/rotation = Quaternion(0.685573, -0.312109, 0.536655, 0.380236)
+bones/32/rotation = Quaternion(0.396745, -0.222845, -0.0795057, 0.886912)
+bones/33/rotation = Quaternion(0.00630947, 0.000175116, -0.0577978, 0.998308)
+bones/34/rotation = Quaternion(0.0903885, 0.138305, 0.0415017, 0.985383)
+bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
+bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
+bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
+bones/39/rotation = Quaternion(0.0286148, 0.023088, -0.0624956, 0.997368)
+bones/40/rotation = Quaternion(0.149687, 4.72132e-05, 0.0353601, 0.988101)
+bones/41/rotation = Quaternion(0.0694734, -0.000531459, 0.00782123, 0.997553)
+bones/43/rotation = Quaternion(0.0977086, 0.0175481, -0.0408632, 0.994221)
+bones/44/rotation = Quaternion(0.150426, 0.000474846, 0.0427019, 0.987698)
+bones/45/rotation = Quaternion(0.159049, -0.00178055, 0.0357864, 0.98662)
+bones/47/rotation = Quaternion(0.144386, 0.0249427, -0.0302124, 0.988746)
+bones/48/rotation = Quaternion(0.179973, 0.000427918, 0.050674, 0.982365)
+bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
+bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
+bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
+bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
+bones/55/rotation = Quaternion(0.140681, 0.0651976, 0.98452, -0.0817171)
+bones/56/rotation = Quaternion(-0.135022, -0.00822213, 0.029896, 0.990357)
+bones/57/rotation = Quaternion(0.513943, -0.119664, -0.000817693, 0.849436)
+bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
+bones/60/rotation = Quaternion(-0.0925217, -0.0204052, 0.995168, -0.0257858)
+bones/61/rotation = Quaternion(-0.08752, 0.0841832, -0.0253335, 0.992276)
+bones/62/rotation = Quaternion(0.551178, 0.11439, -0.0300647, 0.825963)
+bones/63/rotation = Quaternion(0.324465, 0.0277403, -9.22887e-05, 0.945491)
 
 [node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
 parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
@@ -552,6 +605,37 @@ player = NodePath("../..")
 model_item_container = NodePath("../../right_hand_attachment/model_item_container")
 player_ui = NodePath("../../canvas")
 
+[node name="crowbar" parent="SourceCamera/item_container" instance=ExtResource("11_lhwgh")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999999, 0, 0, 0)
+strength = 15.0
+
+[node name="ak_47" parent="SourceCamera/item_container" instance=ExtResource("31_7lynq")]
+transform = Transform3D(0.999743, 0.000435539, 0.0226831, 0, 0.999815, -0.0191974, -0.0226873, 0.0191925, 0.999558, -0.233273, 0.272573, 0.0750237)
+visible = false
+
+[node name="right_hand_pos" parent="SourceCamera/item_container/ak_47/root" index="2"]
+transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
+
+[node name="arms" parent="SourceCamera/item_container/ak_47" index="10"]
+transform = Transform3D(-1, 2.11003e-10, 1.4808e-07, 3.0559e-10, 1, -2.79397e-09, -1.50874e-07, -1.39698e-09, -1, -0.08456, -0.300802, 0.291285)
+
+[node name="aa_2308_km" parent="SourceCamera/item_container" instance=ExtResource("26_1l832")]
+transform = Transform3D(0.999549, -0.0174472, 0.0244322, 0.0174524, 0.999848, 0, -0.0244285, 0.0004264, 0.999701, -0.2, 0.188, -0.264)
+visible = false
+
+[node name="gm_toolgun" parent="SourceCamera/item_container" instance=ExtResource("38_vsb7e")]
+transform = Transform3D(0.997803, 0.000340216, 0.0662411, 0.00174447, 0.999504, -0.0314107, -0.066219, 0.0314573, 0.997308, -0.0868593, 0.192302, -0.121131)
+visible = false
+
+[node name="axe" parent="SourceCamera/item_container" instance=ExtResource("31_k6hwe")]
+transform = Transform3D(1, 3.74312e-08, 9.31323e-10, -8.32842e-08, 0.999999, 9.77889e-09, -4.65661e-09, -1.02445e-08, 0.999999, -0.105776, 0.23412, -0.118438)
+visible = false
+
+[node name="guitar" parent="SourceCamera/item_container" instance=ExtResource("26_5jte2")]
+transform = Transform3D(0.999986, -0.00512843, 0.000934996, 0.00496886, 0.991946, 0.126563, -0.00157652, -0.126556, 0.991958, -0.35, -0.4, 0.4)
+visible = false
+
 [node name="arms_item" type="Marker3D" parent="SourceCamera"]
 transform = Transform3D(-0.968148, -0.227836, -0.103831, -0.241849, 0.958289, 0.152289, 0.0648032, 0.172549, -0.982867, 0.293641, -0.517513, -0.402066)
 
@@ -575,6 +659,7 @@ health = NodePath("../SourceHealth")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320068, 0)
 shape = SubResource("CylinderShape3D_k6hwe")
+debug_color = Color(0, 1, 0, 1)
 
 [node name="hitbox_legs" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
@@ -586,6 +671,7 @@ health = NodePath("../SourceHealth")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.532132, 0)
 shape = SubResource("CylinderShape3D_j3nm0")
+debug_color = Color(0, 0, 1, 1)
 
 [node name="hitbox_head" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
@@ -598,6 +684,7 @@ damage_multiplier = 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886506, 0)
 shape = SubResource("CylinderShape3D_mf063")
+debug_color = Color(0.807843, 0.00392157, 0.988235, 1)
 
 [node name="canvas" type="CanvasLayer" parent="."]
 
@@ -612,6 +699,7 @@ NodePath(".."): PackedStringArray("transform")
 metadata/_custom_type_script = "uid://cjkp4qdncq7w7"
 
 [node name="collision_normal" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0312108, 0)
 shape = ExtResource("12_5jte2")
 debug_color = Color(0.341176, 0.486275, 1, 1)
 

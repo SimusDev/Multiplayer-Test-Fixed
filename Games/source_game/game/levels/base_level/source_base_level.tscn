@@ -34,5 +34,8 @@ script = ExtResource("3_y25mi")
 script = ExtResource("3_y25mi")
 networked = true
 
+[node name="physical_particles" type="Node3D" parent="."]
+script = ExtResource("3_y25mi")
+
 [node name="ghost_buildings" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=4 format=3 uid="uid://c1agcmxpov5c5"]
+
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="1_ha8r3"]
+[ext_resource type="Texture2D" uid="uid://0sn845f8ln6g" path="res://Games/source_game/props/metrudev's_brick/icon.png" id="1_m1nl0"]
+[ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="2_h4iul"]
+
+[resource]
+script = ExtResource("1_ha8r3")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_m1nl0")
+name = "metrudev's brick"
+description = "place of ownership is metrudev
+Please ask him for permission to use this prop."
+prefab = ExtResource("2_h4iul")
+metadata/_custom_type_script = "uid://bljdyrjeubrdg"

@@ -257,7 +257,7 @@ func _ready() -> void:
 	builder.building_pick.connect(_update)
 
 func _update(source_building:R_SourceBuilding):
-	toolgun_label.text = source_building._name
+	toolgun_label.text = source_building.name
 "
 
 [node name="gm_toolgun" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
