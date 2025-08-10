@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ytpcj6iearn5"]
+[gd_scene load_steps=21 format=3 uid="uid://ytpcj6iearn5"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_u7f0k"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="4_7qwl4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_nucxo"]
 [ext_resource type="Script" uid="uid://bwp1cvwjkhvwt" path="res://Games/source_game/components/inventory/source_inventory_slot.gd" id="9_u7f0k"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ucdsr"]
+[ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="14_i7do4"]
 
 [sub_resource type="Resource" id="Resource_3mrjm"]
 script = ExtResource("8_u7f0k")
@@ -106,6 +107,7 @@ root = NodePath("../..")
 metadata/_custom_type_script = "uid://nede851wojx1"
 
 [node name="SourceViewModelRoot3D" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122909, -0.165861, -0.496867)
 script = ExtResource("8_jkxvs")
 type = 0
 placeholder = ExtResource("9_i7do4")
@@ -142,6 +144,11 @@ shape = SubResource("BoxShape3D_k5ng1")
 
 [node name="crouch_camera_pos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15361, -0.154)
+
+[node name="SourceInventorySlotSwitcher" type="Node" parent="." node_paths=PackedStringArray("inventory")]
+script = ExtResource("14_i7do4")
+inventory = NodePath("../SourceInventory")
+metadata/_custom_type_script = "uid://cfi3ck311echs"
 
 [node name="SourceInventory" type="Node" parent="."]
 script = ExtResource("8_a2vi6")
