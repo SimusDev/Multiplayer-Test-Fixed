@@ -13,19 +13,33 @@ var health: SourceHealth
 
 var network: SD_NetworkPlayer
 
+static var _local: SourcePlayable = null
+
+static func get_local() -> SourcePlayable:
+	return _local
+
+static func find_above(node: Node) -> SourcePlayable:
+	if node is SourceGame:
+		return null
+	var founded: SourcePlayable = SD_Components.find_first(node, SourcePlayable)
+	if founded:
+		return founded
+	return find_above(node.get_parent())
+	
+
 func _enter_tree() -> void:
 	if not root:
 		root = get_parent()
 	
 
 func _ready() -> void:
-	
 	SD_Components.append_to(root, self)
 	health = SourceHealth.find_in(root)
 	
 	network = SD_NetworkPlayer.find_in(root)
 	
 	if SD_Network.is_authority(self):
+		_local = self
 		_initialize_ui()
 	
 	

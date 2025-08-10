@@ -4,6 +4,7 @@ class_name SourceInventorySlot
 
 var _inventory: SourceInventory
 
+@export var selectable: bool = false
 @export var _data: Dictionary = {}
 
 var _item: SourceItemStack
@@ -19,7 +20,7 @@ func select() -> void:
 	_inventory.select_slot(self)
 
 func can_select() -> bool:
-	return _data.get(&"selectable", false)
+	return selectable
 
 func _enter_tree() -> void:
 	SD_Network.register_object(self)
@@ -33,6 +34,7 @@ func _exit_tree() -> void:
 
 func update() -> void:
 	updated.emit()
+	get_inventory().slot_updated.emit(self)
 
 func get_item() -> SourceItemStack:
 	return _item

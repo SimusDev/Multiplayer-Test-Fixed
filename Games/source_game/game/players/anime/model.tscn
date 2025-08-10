@@ -1,8 +1,8 @@
 [gd_scene load_steps=43 format=4 uid="uid://dj4rmps0ab5u8"]
 
-[ext_resource type="Texture2D" uid="uid://ddi2r35xm63on" path="res://Games/sandbox/models/player/source/体.png.png" id="1_c3c3t"]
-[ext_resource type="Texture2D" uid="uid://c5x5ndryvkbim" path="res://Games/sandbox/models/player/source/髮.png.png" id="2_vhlgw"]
-[ext_resource type="Texture2D" uid="uid://bbkheieki5exu" path="res://Games/sandbox/models/player/source/颜.png.png" id="3_mp62v"]
+[ext_resource type="Texture2D" uid="uid://ddi2r35xm63on" path="res://Games/source_game/game/players/anime/体.png.png" id="1_c3c3t"]
+[ext_resource type="Texture2D" uid="uid://c5x5ndryvkbim" path="res://Games/source_game/game/players/anime/髮.png.png" id="2_vhlgw"]
+[ext_resource type="Texture2D" uid="uid://bbkheieki5exu" path="res://Games/source_game/game/players/anime/颜.png.png" id="3_mp62v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqyi1"]
 resource_name = "New_Material"

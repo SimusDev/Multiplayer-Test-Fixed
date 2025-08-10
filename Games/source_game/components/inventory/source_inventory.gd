@@ -20,12 +20,16 @@ signal initialized()
 var _is_full: bool = false
 
 signal slot_selected(slot: SourceInventorySlot)
+signal slot_updated(slot: SourceInventorySlot)
 signal craft_queue_add(craft: R_SourceCraftQueue)
 signal craft_queue_remove(craft: R_SourceCraftQueue)
 
 var _craft_queue: Array[R_SourceCraftQueue] = []
 
 static func find_above(from: Node) -> SourceInventory:
+	if from is SourceGame:
+		return null
+	
 	var founded: SourceInventory = SD_Components.find_first(from, SourceInventory)
 	if founded:
 		return founded
@@ -141,6 +145,7 @@ func _select_slot_local(slot: SourceInventorySlot) -> void:
 	if is_instance_valid(slot):
 		_selected_slot = slot
 		slot_selected.emit(_selected_slot)
+		_selected_slot.update()
 		debug_print("slot selected %s" % str(slot))
 
 func item_action_request(item: SourceItemStack, action: SourceItemAction) -> void:

@@ -148,3 +148,6 @@ func is_visible() -> bool:
 
 func is_destroyable() -> bool:
 	return false
+
+func get_node_script() -> GDScript:
+	return SourceObject

@@ -47,7 +47,12 @@ func _on_child_entered_tree(child: Node) -> void:
 	
 	var source_object: SourceObject = SD_Components.find_first(child, SourceObject)
 	
+	var node_script: GDScript = SourceObject
+	var object: R_SourceWorldObject = R_SourceWorldObject.find_in(child)
+	if object:
+		node_script = object.get_node_script()
+	
 	if not source_object:
-		source_object = SourceObject.new()
+		source_object = node_script.new()
 		source_object.name = "object" 
 		child.add_child(source_object)

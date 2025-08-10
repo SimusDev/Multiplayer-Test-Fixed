@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://scuy4tbjdt0e"]
 
-[ext_resource type="Script" uid="uid://c86b7q2mpdehh" path="res://Games/sandbox/models/player/source/animated_model.gd" id="1_qcu43"]
-[ext_resource type="PackedScene" uid="uid://dj4rmps0ab5u8" path="res://Games/sandbox/models/player/source/model.tscn" id="2_qcu43"]
+[ext_resource type="Script" uid="uid://c86b7q2mpdehh" path="res://Games/source_game/game/players/anime/animated_model.gd" id="1_qcu43"]
+[ext_resource type="PackedScene" uid="uid://dj4rmps0ab5u8" path="res://Games/source_game/game/players/anime/model.tscn" id="2_qcu43"]
 [ext_resource type="AnimationLibrary" uid="uid://6luwsgfb4bi0" path="res://Games/sandbox/animations/player/library.tres" id="3_wnolm"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bev6yf7wxq854" path="res://Games/sandbox/animations/player/blend_tree.tres" id="4_2263x"]
 

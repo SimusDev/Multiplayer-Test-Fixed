@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://fjtqmc2o0eeo"
-path="res://.godot/imported/mixamo.fbx-d408b193b9d8ca3b1ca34fcbf072218a.scn"
+path="res://.godot/imported/mixamo.fbx-ad1e1e19d73880f68d369389df82e76b.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/models/player/source/mixamo.fbx"
-dest_files=["res://.godot/imported/mixamo.fbx-d408b193b9d8ca3b1ca34fcbf072218a.scn"]
+source_file="res://Games/source_game/game/players/anime/mixamo.fbx"
+dest_files=["res://.godot/imported/mixamo.fbx-ad1e1e19d73880f68d369389df82e76b.scn"]
 
 [params]
 

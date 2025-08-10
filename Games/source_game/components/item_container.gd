@@ -12,6 +12,8 @@ func _ready() -> void:
 	SD_Network.register_function(hide_all_model_items)
 
 func _input(event: InputEvent) -> void:
+	return
+	
 	if event is InputEventKey and event.is_released() and SimusDev.ui.get_active_interfaces().is_empty():
 		match event.keycode:
 			KEY_1: pick_item(0)

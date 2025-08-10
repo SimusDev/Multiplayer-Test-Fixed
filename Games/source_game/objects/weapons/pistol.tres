@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://b440aconnxv71"]
+
+[ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_l8wlm"]
+[ext_resource type="PackedScene" uid="uid://dsm8t234ot3lx" path="res://Games/source_game/items/AA2308KM/world.tscn" id="2_j2l07"]
+[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_u64gf"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_sx4ob"]
+[ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="5_5cwov"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_l8wlm"]
+[ext_resource type="PackedScene" uid="uid://c3bby5tbyvcto" path="res://Games/source_game/items/AA2308KM/view.tscn" id="7_u64gf"]
+
+[sub_resource type="Resource" id="Resource_5cwov"]
+script = ExtResource("5_l8wlm")
+prefab = ExtResource("5_5cwov")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_u64gf"]
+script = ExtResource("5_l8wlm")
+prefab = ExtResource("7_u64gf")
+position = Vector3(0.104266, 0.54879, 0.0678333)
+rotation = Vector3(1.30835, 0.521302, -1.07843)
+scale = Vector3(2, 2, 2)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_xnmxq"]
+script = ExtResource("4_sx4ob")
+view = SubResource("Resource_5cwov")
+world = SubResource("Resource_u64gf")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("3_u64gf")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_l8wlm")
+name = ""
+description = "PEW PEW"
+prefab = ExtResource("2_j2l07")
+viewmodel = SubResource("Resource_xnmxq")
+metadata/_custom_type_script = "uid://fiotmdlqxei6"

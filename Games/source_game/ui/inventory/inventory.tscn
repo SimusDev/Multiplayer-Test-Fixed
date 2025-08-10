@@ -55,7 +55,7 @@ anchor_bottom = 0.5
 offset_left = -631.0
 offset_top = -292.0
 offset_right = -31.0
-offset_bottom = 292.0
+offset_bottom = 211.0
 grow_horizontal = 0
 player_inventory = true
 
@@ -69,7 +69,7 @@ anchor_bottom = 0.5
 offset_left = 32.0
 offset_top = -292.0
 offset_right = 632.0
-offset_bottom = 292.0
+offset_bottom = 211.0
 grow_horizontal = 1
 
 [connection signal="closed" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_closed"]

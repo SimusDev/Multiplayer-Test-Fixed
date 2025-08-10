@@ -12,11 +12,11 @@ code = ""
 metadata/_custom_type_script = "uid://dv4aas07newsa"
 
 [node name="Slot" type="Control"]
-custom_minimum_size = Vector2(85, 85)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 85.0
-offset_bottom = 85.0
+offset_right = 70.0
+offset_bottom = 70.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_xan3g")

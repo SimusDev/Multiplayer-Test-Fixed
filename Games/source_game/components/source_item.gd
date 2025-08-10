@@ -17,10 +17,14 @@ signal on_current_change
 @export var _reload:String = "reload"
 @export var _pick:String = "pick"
 
-var player:SourcePlayer
+var player:Node3D
 var current:bool = false : set = set_current, get = is_current
 
+var stack: SourceItemStack
+
 func _ready() -> void:
+	stack = SD_Components.find_first(self, SourceItemStack)
+	current = true
 	SD_Network.register_object(self)
 	SD_Network.register_functions(
 		[
@@ -28,8 +32,12 @@ func _ready() -> void:
 		]
 	)
 	
-	player = (get_parent() as SourceItemContainer).player
+	var playable: SourcePlayable = SourcePlayable.find_above(self)
+	if playable:
+		player = playable.root
+	
 	on_current_change.connect(_on_current_changed)
+	_on_current_changed()
 
 func _on_current_changed():
 	if not is_instance_valid(animation_player): return
@@ -59,9 +67,7 @@ func _process(_delta: float) -> void:
 func use():
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
 	event.item = self
-	event.container = get_parent()
 	event.source = player
-	event.player = player
 	
 	var event_status: bool = event.publish()
 	if event_status:

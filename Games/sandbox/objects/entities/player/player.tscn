@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bswwjdjra4rnm"]
 
 [ext_resource type="Script" uid="uid://b3v82ef34b3t8" path="res://Games/sandbox/components/player/SB_PlayerComponent.gd" id="1_k5ng1"]
-[ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/sandbox/models/player/source/animated_model.tscn" id="2_6d6yq"]
+[ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="2_6d6yq"]
 [ext_resource type="Script" uid="uid://blryw67pt5b2q" path="res://Games/sandbox/components/inventory/SB_Inventory.gd" id="2_im0pj"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_k5ng1"]
 [ext_resource type="Script" uid="uid://co6ddscxxrcwc" path="res://Games/sandbox/components/inventory/SB_InventorySlot.gd" id="3_p7spj"]
@@ -13,44 +13,44 @@
 
 [sub_resource type="Resource" id="Resource_im0pj"]
 script = ExtResource("5_p7spj")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = true
 interpolation_speed = 30.0
 node_path = NodePath("..")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_k5ng1"]
 script = ExtResource("5_p7spj")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["velocity"])
 sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 30.0
 node_path = NodePath("..")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="Resource" id="Resource_jyhyi"]
 script = ExtResource("5_p7spj")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
 properties = Array[String](["transform"])
 sync_at_start = true
 interpolation_enabled = false
 interpolation_speed = 30.0
 node_path = NodePath("..")
-reliable = false
-mode = 1
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+sync = 0
+callmode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3met"]
@@ -59,7 +59,7 @@ size = Vector3(0.840088, 2.30609, 0.817444)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k5ng1"]
 size = Vector3(0.840088, 1.13914, 0.817444)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="anime" type="CharacterBody3D"]
 collision_layer = 0
 
 [node name="EL_PlayerComponent" type="Node" parent="." node_paths=PackedStringArray("source")]
@@ -67,10 +67,8 @@ script = ExtResource("1_k5ng1")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://b3v82ef34b3t8"
 
-[node name="EL_Inventory" type="Node" parent="." node_paths=PackedStringArray("source", "hotbar_slots")]
+[node name="EL_Inventory" type="Node" parent="."]
 script = ExtResource("2_im0pj")
-source = NodePath("..")
-hotbar_slots = [NodePath("hotbar1"), NodePath("hotbar2"), NodePath("hotbar3"), NodePath("hotbar4"), NodePath("hotbar5"), NodePath("hotbar6")]
 metadata/_custom_type_script = "uid://blryw67pt5b2q"
 
 [node name="hotbar1" type="Node" parent="EL_Inventory"]
@@ -130,11 +128,10 @@ key_crouch = "crouch"
 script = ExtResource("3_k5ng1")
 metadata/_custom_type_script = "uid://5by2ms76p5wg"
 
-[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("5_8g0ve")]
+[node name="W_FPCSourceLikeCrouch" parent="." node_paths=PackedStringArray("camera", "movement", "collision_normal", "ceiling_detection", "crouch_camera_position") instance=ExtResource("5_8g0ve")]
 camera = NodePath("../W_FPCSourceLikePlayerCamera")
 movement = NodePath("../W_FPCSourceLikeMovement")
 collision_normal = NodePath("../collision")
-collision_crouch = NodePath("../collision_crouch")
 ceiling_detection = NodePath("ceiling_detection")
 crouch_camera_position = NodePath("../crouch_camera_pos")
 

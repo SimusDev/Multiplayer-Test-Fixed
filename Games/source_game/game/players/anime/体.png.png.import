@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5x5ndryvkbim"
-path.s3tc="res://.godot/imported/髮.png.png-b5abaee66477a36ba10e115334179f89.s3tc.ctex"
-path.etc2="res://.godot/imported/髮.png.png-b5abaee66477a36ba10e115334179f89.etc2.ctex"
+uid="uid://ddi2r35xm63on"
+path.s3tc="res://.godot/imported/体.png.png-f8f832aa84e5bb6ae3461482e61e7e2d.s3tc.ctex"
+path.etc2="res://.godot/imported/体.png.png-f8f832aa84e5bb6ae3461482e61e7e2d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Games/sandbox/models/player/source/髮.png.png"
-dest_files=["res://.godot/imported/髮.png.png-b5abaee66477a36ba10e115334179f89.s3tc.ctex", "res://.godot/imported/髮.png.png-b5abaee66477a36ba10e115334179f89.etc2.ctex"]
+source_file="res://Games/source_game/game/players/anime/体.png.png"
+dest_files=["res://.godot/imported/体.png.png-f8f832aa84e5bb6ae3461482e61e7e2d.s3tc.ctex", "res://.godot/imported/体.png.png-f8f832aa84e5bb6ae3461482e61e7e2d.etc2.ctex"]
 
 [params]
 

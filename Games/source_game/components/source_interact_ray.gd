@@ -14,9 +14,13 @@ var player: bool = false
 
 @export var server_authority: bool = true
 
+const RAY_POSITION: Vector3 = Vector3(0, 0, -3.0)
+
 signal interacted(object: Object)
 
 func _ready() -> void:
+	target_position = RAY_POSITION
+	
 	if not root:
 		root = get_parent()
 	

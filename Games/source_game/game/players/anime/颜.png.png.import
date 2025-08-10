@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddi2r35xm63on"
-path.s3tc="res://.godot/imported/体.png.png-dedcbbbc40add8df1b07483435255f7e.s3tc.ctex"
-path.etc2="res://.godot/imported/体.png.png-dedcbbbc40add8df1b07483435255f7e.etc2.ctex"
+uid="uid://bbkheieki5exu"
+path.s3tc="res://.godot/imported/颜.png.png-720b99b23dc054b4eaae04963a8f1be5.s3tc.ctex"
+path.etc2="res://.godot/imported/颜.png.png-720b99b23dc054b4eaae04963a8f1be5.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Games/sandbox/models/player/source/体.png.png"
-dest_files=["res://.godot/imported/体.png.png-dedcbbbc40add8df1b07483435255f7e.s3tc.ctex", "res://.godot/imported/体.png.png-dedcbbbc40add8df1b07483435255f7e.etc2.ctex"]
+source_file="res://Games/source_game/game/players/anime/颜.png.png"
+dest_files=["res://.godot/imported/颜.png.png-720b99b23dc054b4eaae04963a8f1be5.s3tc.ctex", "res://.godot/imported/颜.png.png-720b99b23dc054b4eaae04963a8f1be5.etc2.ctex"]
 
 [params]
 

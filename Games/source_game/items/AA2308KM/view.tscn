@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3bby5tbyvcto"]
+
+[ext_resource type="PackedScene" uid="uid://dsm8t234ot3lx" path="res://Games/source_game/items/AA2308KM/world.tscn" id="1_dbpp3"]
+
+[node name="world" instance=ExtResource("1_dbpp3")]
+process_mode = 4
+collision_layer = 0
+collision_mask = 0
+sleeping = true

@@ -44,7 +44,6 @@ func fire():
 	print("goida")
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
-	pre_event.player = player
 	pre_event.weapon = self
 	
 	if pre_event.publish() == false:
@@ -57,7 +56,6 @@ func fire():
 	
 	var event: S_EventGunFire = S_EventGunFire.get_by_script(S_EventGunFire) as S_EventGunFire
 	event.source = player
-	event.player = player
 	event.bullet = bullet
 	event.weapon = self
 	event.publish()

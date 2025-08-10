@@ -5,14 +5,14 @@ class_name ui_SourceInventoryWindow
 
 @export var player_inventory: bool = false
 
-var _player: SourcePlayer
+var _player: SourcePlayable
 var _inventory: SourceInventory
 
 func _ready() -> void:
-	_player = SourcePlayer.instance
+	_player = SourcePlayable.get_local()
 	
 	if player_inventory and is_instance_valid(_player):
-		var inv: SourceInventory = SD_Components.find_first(_player, SourceInventory)
+		var inv: SourceInventory = SD_Components.find_first(_player.root, SourceInventory)
 		set_inventory(inv)
 
 
