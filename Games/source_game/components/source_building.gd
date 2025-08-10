@@ -19,9 +19,12 @@ func _ready() -> void:
 func _on_destroy():
 	spawn_physical_particles()
 	destroy.emit()
+	print("SEXSEXSEXSEX")
+	queue_free()
 
 func spawn_physical_particles():
 	for i in particles_amount:
 		var new_particle = particle.instantiate()
 		SourceLevelSection3D.get_by_name("physical_particles").add_child(new_particle)
+		new_particle.global_position = global_position
 		

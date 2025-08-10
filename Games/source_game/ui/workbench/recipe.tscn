@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="3_t17os"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_v4hdv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_k2mx8"]
+[sub_resource type="LabelSettings" id="LabelSettings_4ptyv"]
 font = ExtResource("3_t17os")
 
 [node name="Recipe" type="Control"]
@@ -45,7 +45,7 @@ offset_left = 0.117996
 grow_horizontal = 2
 grow_vertical = 2
 text = "object"
-label_settings = SubResource("LabelSettings_k2mx8")
+label_settings = SubResource("LabelSettings_4ptyv")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

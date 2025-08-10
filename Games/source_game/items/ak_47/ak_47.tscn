@@ -405,8 +405,8 @@ tracks/0/path = NodePath("root:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(0.176777, 2, 1),
+"times": PackedFloat32Array(0.0333333, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.287175, 2, 1),
 "update": 0,
 "values": [Vector3(0.160051, -0.154729, 0), Vector3(0.091, -0.002, -0.142), Vector3(0, 0, 0)]
 }
@@ -418,7 +418,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.366667, 0.566667, 0.8),
-"transitions": PackedFloat32Array(-2, -2, -2, 1),
+"transitions": PackedFloat32Array(-0.435275, -0.406126, 0.5, 1),
 "update": 0,
 "values": [Vector3(-0.881548, 0, 0), Vector3(0.0698132, 0.340339, 0.349066), Vector3(-0.139626, 0.340339, 0.349066), Vector3(0, 0, 0)]
 }

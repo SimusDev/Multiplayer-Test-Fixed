@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://c3kfrfj8fldjp"]
 
-[ext_resource type="Texture2D" uid="uid://blynn1uj6b17o" path="res://Games/source_game/game/prefabs/base_buildings/brick/kirpi4_0.png" id="1_60iwv"]
+[ext_resource type="Texture2D" uid="uid://blynn1uj6b17o" path="res://Games/source_game/props/metrudev's_brick/kirpi4_0.png" id="1_60iwv"]
 [ext_resource type="FontFile" uid="uid://bowbjk40qu8ld" path="res://fonts/Samson.ttf" id="2_s1oxd"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="3_vtpbs"]
 
@@ -9,8 +9,8 @@ size = Vector3(0.136133, 0.064264, 0.28631)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g32fs"]
 resource_name = "material"
-cull_mode = 2
 albedo_texture = ExtResource("1_60iwv")
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_orbx6"]
 _surfaces = [{
@@ -50,6 +50,12 @@ shadow_mesh = SubResource("ArrayMesh_orbx6")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mass = 2.0
 
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("3_vtpbs")
+surface = "body"
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.000336103, 0.00131553, 0.000993879)
 shape = SubResource("BoxShape3D_60iwv")
@@ -57,17 +63,12 @@ shape = SubResource("BoxShape3D_60iwv")
 [node name="brick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.034, 0, 0, 0, -2.62268e-09, -0.14, 0, 0.06, -6.11959e-09, -0.000225306, 0.00283308, 0.00134501)
 mesh = SubResource("ArrayMesh_kcfhf")
-skeleton = NodePath("")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(5.73206e-16, 1.31134e-08, 0.3, 0.3, -1.31134e-08, 0, 1.31134e-08, 0.3, -1.31134e-08, 0.10204, 0.00371906, 0.0363033)
+visible = false
 billboard = 1
 outline_modulate = Color(0.478431, 0, 0.0823529, 0.25098)
 text = "place of ownership is metrudev
 Please ask him for permission to use this prefab."
 font = ExtResource("2_s1oxd")
-
-[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
-script = ExtResource("3_vtpbs")
-rigid_body = NodePath("..")
-metadata/_custom_type_script = "uid://d2inw684rgrh8"

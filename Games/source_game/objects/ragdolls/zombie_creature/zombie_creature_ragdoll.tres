@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="R_SourceRagdoll" load_steps=4 format=3 uid="uid://p47n8xhgvpuh"]
+
+[ext_resource type="Texture2D" uid="uid://d3mf87dk2p8dd" path="res://Games/source_game/objects/ragdolls/zombie_creature/icon.png" id="1_2230n"]
+[ext_resource type="PackedScene" uid="uid://djn7gqje64qvc" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_ragdoll.tscn" id="2_klm17"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_ragdoll.gd" id="3_qgnd6"]
+
+[resource]
+script = ExtResource("3_qgnd6")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_2230n")
+name = "zombie_creature_ragdoll"
+description = "zombie creature ragdoll
+"
+prefab = ExtResource("2_klm17")

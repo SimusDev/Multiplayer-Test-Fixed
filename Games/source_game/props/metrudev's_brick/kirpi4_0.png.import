@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blynn1uj6b17o"
-path.s3tc="res://.godot/imported/kirpi4_0.png-fc3a6bd9e35fa163e082a4a097cdc0fc.s3tc.ctex"
-path.etc2="res://.godot/imported/kirpi4_0.png-fc3a6bd9e35fa163e082a4a097cdc0fc.etc2.ctex"
+path.s3tc="res://.godot/imported/kirpi4_0.png-6deb298624c199245680421036c87ac8.s3tc.ctex"
+path.etc2="res://.godot/imported/kirpi4_0.png-6deb298624c199245680421036c87ac8.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Games/source_game/game/prefabs/base_buildings/brick/kirpi4_0.png"
-dest_files=["res://.godot/imported/kirpi4_0.png-fc3a6bd9e35fa163e082a4a097cdc0fc.s3tc.ctex", "res://.godot/imported/kirpi4_0.png-fc3a6bd9e35fa163e082a4a097cdc0fc.etc2.ctex"]
+source_file="res://Games/source_game/props/metrudev's_brick/kirpi4_0.png"
+dest_files=["res://.godot/imported/kirpi4_0.png-6deb298624c199245680421036c87ac8.s3tc.ctex", "res://.godot/imported/kirpi4_0.png-6deb298624c199245680421036c87ac8.etc2.ctex"]
 
 [params]
 
