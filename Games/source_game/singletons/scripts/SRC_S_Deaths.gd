@@ -9,6 +9,7 @@ func _on_death(event: S_EventDeath) -> void:
 		return
 	
 	var object: R_SourceWorldObject = R_SourceWorldObject.find_in(event.source)
+	
 	if !object:
 		return
 	
@@ -20,7 +21,6 @@ func _on_death(event: S_EventDeath) -> void:
 		if object.death_sound:
 			object.death_sound.try_play_server(event.source)
 			
-	
 	if object.is_destroyable():
 		event.source.queue_free()
 	

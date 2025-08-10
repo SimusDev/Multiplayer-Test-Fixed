@@ -1,6 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://ytpcj6iearn5"]
+[gd_scene load_steps=28 format=3 uid="uid://ytpcj6iearn5"]
 
+[ext_resource type="Script" uid="uid://jbqb1jwu6wx0" path="res://Games/source_game/game/players/anime/animep.gd" id="1_47ntt"]
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_u7f0k"]
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="2_hlhjw"]
+[ext_resource type="Resource" uid="uid://w33s2d6tj8yk" path="res://Games/source_game/objects/sound/player/anime1.tres" id="3_h01hw"]
+[ext_resource type="Resource" uid="uid://d0t8cuahwqcpt" path="res://Games/source_game/objects/sound/player/anime2.tres" id="4_0oq0i"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="4_7qwl4"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="6_jkxvs"]
 [ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="7_365w2"]
@@ -16,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="14_i7do4"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="15_f1apa"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="16_47ntt"]
+[ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="18_b47qn"]
 
 [sub_resource type="Resource" id="Resource_3mrjm"]
 script = ExtResource("8_u7f0k")
@@ -67,14 +72,19 @@ script = ExtResource("9_365w2")
 _list = Array[ExtResource("8_u7f0k")]([SubResource("Resource_3mrjm"), SubResource("Resource_a2vi6"), SubResource("Resource_u7f0k")])
 metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlhjw"]
+size = Vector3(0.840088, 2.17851, 0.471695)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3met"]
 size = Vector3(0.840088, 2.30609, 0.817444)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_k5ng1"]
-size = Vector3(0.840088, 1.13914, 0.817444)
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 0
+script = ExtResource("1_47ntt")
+_sounds = Dictionary[int, ExtResource("2_hlhjw")]({
+49: ExtResource("4_0oq0i"),
+50: ExtResource("3_h01hw")
+})
 
 [node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("1_u7f0k")
@@ -138,12 +148,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.963449, 0)
 target_position = Vector3(0, 1, 0)
 
 [node name="collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.1226, -0.037447)
-shape = SubResource("BoxShape3D_q3met")
-
-[node name="collision_crouch" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 0.539127, -0.037447)
-shape = SubResource("BoxShape3D_k5ng1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00417638, 1.11818, -0.0550328)
+shape = SubResource("BoxShape3D_hlhjw")
 
 [node name="crouch_camera_pos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15361, -0.154)
@@ -192,6 +198,7 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 collision_layer = 2
 collision_mask = 2
 monitoring = false
+priority = 4
 script = ExtResource("15_f1apa")
 health = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
@@ -202,5 +209,12 @@ shape = SubResource("BoxShape3D_q3met")
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("16_47ntt")
-target = NodePath(".")
+target = NodePath("..")
 metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SD_NodeInput" type="Node2D" parent="."]
+script = ExtResource("18_b47qn")
+multiplayer_authorative = true
+metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[connection signal="on_input" from="SD_NodeInput" to="." method="_on_sd_node_input_on_input"]
