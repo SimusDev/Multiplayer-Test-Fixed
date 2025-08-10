@@ -124,6 +124,8 @@ func update_viewmodel() -> void:
 				if item:
 					SD_Components.append_to(view_node, item)
 	
+	view_node.set_multiplayer_authority(get_multiplayer_authority())
+	
 	get_root_node().add_child(view_node)
 	if view_node is Node3D and view:
 		view_node.position = view.position

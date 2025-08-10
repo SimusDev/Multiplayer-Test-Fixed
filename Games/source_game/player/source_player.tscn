@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
 [ext_resource type="AudioStream" uid="uid://dhlegqxn2se2f" path="res://sounds/gm_death.mp3" id="9_vsb7e"]
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="11_8sjbn"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="11_efvha"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="12_4d7pv"]
 [ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_5jte2"]
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="12_ax0ug"]
@@ -227,6 +227,7 @@ death_camera = ExtResource("11_efvha")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
 
 [node name="Skeleton3D" parent="W_AnimatedModel3D/model3d" index="1"]
+
 bones/0/position = Vector3(-0.0109372, 3.75687, 0.0467187)
 bones/0/rotation = Quaternion(-0.0338325, -0.0453786, -0.0260382, 0.998057)
 bones/1/rotation = Quaternion(-0.0172469, 0.0128852, 0.0246555, 0.999464)
@@ -249,6 +250,30 @@ bones/60/rotation = Quaternion(-0.0922331, -0.0215432, 0.995204, -0.0244715)
 bones/61/rotation = Quaternion(-0.0777425, 0.0844449, -0.0242544, 0.993095)
 bones/62/rotation = Quaternion(0.546252, 0.113714, -0.0309457, 0.829289)
 bones/63/rotation = Quaternion(0.323119, 0.0274485, -0.000188562, 0.94596)
+
+bones/0/position = Vector3(-0.0104892, 3.75518, 0.0420089)
+bones/0/rotation = Quaternion(-0.0338555, -0.0459558, -0.027274, 0.997997)
+bones/1/rotation = Quaternion(-0.0113804, 0.0153407, 0.0259275, 0.999481)
+bones/2/rotation = Quaternion(0.0107163, 0.00315775, 0.0145375, 0.999832)
+bones/3/rotation = Quaternion(0.0104433, 0.00328144, 0.0145525, 0.999834)
+bones/4/rotation = Quaternion(0.115823, -0.00216588, 0.00305337, 0.993263)
+bones/5/rotation = Quaternion(-0.139201, 0.00702593, -0.00106833, 0.990239)
+bones/7/rotation = Quaternion(-0.686624, -0.314267, 0.520046, -0.399168)
+bones/8/rotation = Quaternion(0.469001, 0.128105, 0.0595855, 0.871824)
+bones/9/rotation = Quaternion(0.00148187, 0.000336963, 0.0132138, 0.999912)
+bones/10/rotation = Quaternion(0.0821936, -0.251861, -0.0199972, 0.964059)
+bones/31/rotation = Quaternion(0.684572, -0.31303, 0.538668, 0.378432)
+bones/32/rotation = Quaternion(0.396623, -0.227971, -0.0801089, 0.885608)
+bones/33/rotation = Quaternion(0.00622935, 0.000175069, -0.0570651, 0.998351)
+bones/34/rotation = Quaternion(0.0935237, 0.136332, 0.0437908, 0.985266)
+bones/55/rotation = Quaternion(0.1388, 0.0676201, 0.984682, -0.0810176)
+bones/56/rotation = Quaternion(-0.133337, -0.011338, 0.0292413, 0.990574)
+bones/57/rotation = Quaternion(0.512303, -0.119082, -0.000133923, 0.850509)
+bones/60/rotation = Quaternion(-0.0916396, -0.0189395, 0.995276, -0.0258619)
+bones/61/rotation = Quaternion(-0.0819926, 0.0843169, -0.0249039, 0.992748)
+bones/62/rotation = Quaternion(0.547619, 0.114424, -0.0307374, 0.828297)
+bones/63/rotation = Quaternion(0.323657, 0.0275652, -0.00014993, 0.945773)
+
 
 [node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
 parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
@@ -525,7 +550,7 @@ script = ExtResource("7_4cdfe")
 shadow_enabled = true
 
 [node name="interact_raycast" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("player", "drag_item_link_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0165361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.407389)
 target_position = Vector3(0, 0, -3)
 collision_mask = 3
 collide_with_areas = true
