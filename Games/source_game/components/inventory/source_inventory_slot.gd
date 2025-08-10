@@ -55,6 +55,7 @@ func serialize() -> Dictionary:
 		data.i = get_item().serialize()
 	
 	data.n = name
+	data.slct = selectable
 	
 	_serialize_custom(data)
 	return data
@@ -70,6 +71,7 @@ static func deserialize(data: Dictionary) -> SourceInventorySlot:
 	var item: SourceItemStack = SourceItemStack.deserialize(data.i)
 	slot._data = data.d
 	slot.name = data.n
+	slot.selectable = data.slct
 	
 	if item:
 		slot.add_child(item)
