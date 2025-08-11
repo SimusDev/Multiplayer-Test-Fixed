@@ -14,10 +14,9 @@ func initialize(node: Node) -> void:
 	last_path = node.get_path()
 	_on_tree_entered()
 	
-	if SD_Network.is_server():
-		node.tree_entered.connect(_on_tree_entered)
-		node.tree_exited.connect(_on_tree_exited)
-		
+	node.tree_entered.connect(_on_tree_entered)
+	node.tree_exited.connect(_on_tree_exited)
+	
 
 static func get_or_create(node: Node) -> SD_NetRegisteredNode:
 	if node.has_meta("SD_NetRegisteredNode"):
