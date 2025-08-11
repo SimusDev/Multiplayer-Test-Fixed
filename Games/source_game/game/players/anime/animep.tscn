@@ -96,9 +96,10 @@ script = ExtResource("7_a2vi6")
 _data = SubResource("Resource_jkxvs")
 metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
-[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement") instance=ExtResource("4_7qwl4")]
+[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement", "_camera") instance=ExtResource("4_7qwl4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 _movement = NodePath("../Movement")
+_camera = NodePath("../Camera")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("6_jkxvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08299, -0.119803)
@@ -120,6 +121,7 @@ metadata/_custom_type_script = "uid://nede851wojx1"
 
 [node name="SourceViewModelRoot3D" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122909, -0.165861, -0.496867)
+visible = false
 script = ExtResource("8_jkxvs")
 authorative_visibility = true
 type = 0

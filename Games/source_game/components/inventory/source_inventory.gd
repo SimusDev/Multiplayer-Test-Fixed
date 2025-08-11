@@ -258,7 +258,7 @@ func _drop_server(item: SourceItemStack) -> void:
 		var drop: C_SourceWorldObjectReference = item.object.create().instantiate()
 		drop.set_global_position_from(root)
 		item.serialize_and_append_to(drop.source)
-		SD_Nodes.fast_queue_free(item)
+		remove_item(item)
 
 func craft(recipe: R_SourceRecipe) -> void:
 	SourceCrafting.as_node().request(self, recipe)

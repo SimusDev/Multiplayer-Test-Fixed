@@ -2,6 +2,10 @@
 extends W_AnimatedModel3D
 
 @export var _movement: W_FPCSourceLikeMovement
+@export var _camera: W_FPCSourceLikeCamera
+
+@export var _look_at_node: Marker3D
+@export var _look_at_offset: float = 0.0
 
 @onready var _actor: CharacterBody3D = _movement.actor
 @onready var _movement_playback: AnimationNodeStateMachinePlayback
@@ -10,6 +14,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	tree.active = true
+	
 	visible = !is_multiplayer_authority()
 	
 	_movement_playback = get_tree_parameter("parameters/movement_sm/playback")
@@ -17,8 +23,12 @@ func _ready() -> void:
 	#_movement.state_machine.transitioned.connect(_on_state_machine_transitioned)
 	_movement.state_machine.state_enter.connect(update_from_state)
 	update_from_state(_movement.state_machine.get_current_state())
+	
+	
 
 func _physics_process(delta: float) -> void:
+	
+	
 	if Engine.is_editor_hint():
 		return
 	
@@ -30,6 +40,12 @@ func _physics_process(delta: float) -> void:
 	set_tree_parameter("parameters/movement_sm/crouch/blend_position", blend_position)
 	
 	set_tree_parameter("parameters/movement_tscale/scale", actor_velocity.length() / 6.0)
+	
+	
+
+func _process(delta: float) -> void:
+	_look_at_offset = _camera.rotation.x
+	_look_at_node.position.y = 1.9 * _look_at_offset + 1.9
 
 func update_from_state(state: SD_State) -> void:
 	#print(state)
