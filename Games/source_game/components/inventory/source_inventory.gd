@@ -26,6 +26,8 @@ signal craft_queue_remove(craft: R_SourceCraftQueue)
 
 var _craft_queue: Array[R_SourceCraftQueue] = []
 
+var ray: SourceInteractRay
+
 static func find_above(from: Node) -> SourceInventory:
 	if from is SourceGame:
 		return null
@@ -72,6 +74,8 @@ func _ready() -> void:
 	
 	_select_initial_slot()
 	_try_initialize()
+	
+	ray = SD_Components.find_first(root, SourceInteractRay)
 
 func get_selected_slot() -> SourceInventorySlot:
 	return _selected_slot
@@ -256,7 +260,12 @@ func drop(item: SourceItemStack) -> void:
 func _drop_server(item: SourceItemStack) -> void:
 	if get_items().has(item):
 		var drop: C_SourceWorldObjectReference = item.object.create().instantiate()
-		drop.set_global_position_from(root)
+		if ray:
+			var pos: Vector3 = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
+			drop.set_global_position(pos)
+		else:
+			drop.set_global_position_from(root)
+		
 		item.serialize_and_append_to(drop.source)
 		remove_item(item)
 

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://b123u6latr4pb"]
+
+[ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_ekivk"]
+[ext_resource type="PackedScene" uid="uid://cxaois3c1hpmp" path="res://Games/source_game/items/gm_toolgun/gm_toolgun.tscn" id="2_duuqm"]
+[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_f5rn0"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_nmg2y"]
+[ext_resource type="PackedScene" uid="uid://dh5c418tsjjkr" path="res://Games/source_game/items/gm_toolgun/model.tscn" id="5_vyk4h"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_fqxls"]
+[ext_resource type="PackedScene" uid="uid://6tldmvgwkf6b" path="res://Games/source_game/items/gm_toolgun/world.tscn" id="6_vyk4h"]
+
+[sub_resource type="Resource" id="Resource_ekivk"]
+script = ExtResource("6_fqxls")
+prefab = ExtResource("2_duuqm")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_1r5kv"]
+script = ExtResource("6_fqxls")
+prefab = ExtResource("5_vyk4h")
+position = Vector3(0.062041, -0.271615, -0.00863278)
+rotation = Vector3(1.22846, -1.6016, -2.5512)
+scale = Vector3(2, 2, 2)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_f5rn0"]
+script = ExtResource("4_nmg2y")
+view = SubResource("Resource_ekivk")
+world = SubResource("Resource_1r5kv")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("3_f5rn0")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_ekivk")
+name = ""
+description = ""
+prefab = ExtResource("6_vyk4h")
+viewmodel = SubResource("Resource_f5rn0")
+metadata/_custom_type_script = "uid://fiotmdlqxei6"

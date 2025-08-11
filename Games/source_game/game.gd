@@ -58,8 +58,9 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 	if player:
 		var node = player.get_player_node()
 		if is_instance_valid(node):
-			if "global_position" in node:
-				instantiate_object_on_server(new_prop, node.global_position)
+			var ray: SourceInteractRay = SD_Components.find_first(node, SourceInteractRay)
+			if ray:
+				instantiate_object_on_server(new_prop, ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y))
 		else:
 			instantiate_object_on_server(new_prop, Vector3.ZERO)
 

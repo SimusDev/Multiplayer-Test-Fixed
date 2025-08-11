@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://scuy4tbjdt0e"]
+[gd_scene load_steps=11 format=3 uid="uid://scuy4tbjdt0e"]
 
 [ext_resource type="Script" uid="uid://c86b7q2mpdehh" path="res://Games/source_game/game/players/anime/animated_model.gd" id="1_qcu43"]
 [ext_resource type="PackedScene" uid="uid://dj4rmps0ab5u8" path="res://Games/source_game/game/players/anime/model.tscn" id="2_qcu43"]
 [ext_resource type="AnimationLibrary" uid="uid://6luwsgfb4bi0" path="res://Games/sandbox/animations/player/library.tres" id="3_wnolm"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bev6yf7wxq854" path="res://Games/sandbox/animations/player/blend_tree.tres" id="4_2263x"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="5_4u8yr"]
+[ext_resource type="Resource" uid="uid://b123u6latr4pb" path="res://Games/source_game/objects/weapons/toolgun.tres" id="6_8r4ed"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="6_yv8gn"]
+[ext_resource type="PackedScene" uid="uid://6tldmvgwkf6b" path="res://Games/source_game/items/gm_toolgun/world.tscn" id="8_mnjq3"]
 
 [sub_resource type="Animation" id="Animation_mnjq3"]
 length = 0.001
@@ -108,11 +110,18 @@ use_external_skeleton = true
 external_skeleton = NodePath("../model3d/Skeleton3D")
 
 [node name="root" type="Node3D" parent="hand" node_paths=PackedStringArray("view_node")]
-transform = Transform3D(0.3, 0, 1.11759e-08, 0, 0.3, 4.47035e-08, 0, 1.86265e-09, 0.3, -0.012768, 0.167654, 0.0221661)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.012768, 0.167654, 0.0221661)
 script = ExtResource("5_4u8yr")
+object = ExtResource("6_8r4ed")
+reset_transform = true
+default_position = Vector3(-0.012768, 0.167654, 0.0221661)
+default_scale = Vector3(0.3, 0.3, 0.3)
 placeholder = ExtResource("6_yv8gn")
-view_node = NodePath("")
+view_node = NodePath("prefab")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
+
+[node name="prefab" parent="hand/root" instance=ExtResource("8_mnjq3")]
+transform = Transform3D(1.09943, 1.53001, -0.671055, -0.373742, -0.557726, -1.88395, -1.62836, 1.16104, -0.0206768, 0.062041, -0.271615, -0.00863278)
 
 [node name="look_ak_node" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 2)
