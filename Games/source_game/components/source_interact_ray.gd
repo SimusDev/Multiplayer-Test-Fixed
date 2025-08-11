@@ -21,10 +21,13 @@ signal interacted(object: Object)
 func _ready() -> void:
 	target_position = RAY_POSITION
 	
+	
+	
 	if not root:
 		root = get_parent()
 	
 	if !Engine.is_editor_hint():
+		SD_Components.append_to(root, self)
 		SD_Network.register_object(self)
 		SD_Network.register_functions([
 			_interact_server,

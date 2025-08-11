@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ytpcj6iearn5"]
+[gd_scene load_steps=29 format=3 uid="uid://ytpcj6iearn5"]
 
 [ext_resource type="Script" uid="uid://jbqb1jwu6wx0" path="res://Games/source_game/game/players/anime/animep.gd" id="1_47ntt"]
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_u7f0k"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="15_f1apa"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="16_47ntt"]
 [ext_resource type="Script" uid="uid://d2voalokbx57v" path="res://addons/simusdev/input/SD_NodeInput.gd" id="18_b47qn"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="22_h01hw"]
 
 [sub_resource type="Resource" id="Resource_3mrjm"]
 script = ExtResource("8_u7f0k")
@@ -218,5 +219,9 @@ metadata/_custom_type_script = "uid://cr18fup83we2u"
 script = ExtResource("18_b47qn")
 multiplayer_authorative = true
 metadata/_custom_type_script = "uid://d2voalokbx57v"
+
+[node name="base_nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("22_h01hw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37674, 0)
+authority_node = NodePath("..")
 
 [connection signal="on_input" from="SD_NodeInput" to="." method="_on_sd_node_input_on_input"]

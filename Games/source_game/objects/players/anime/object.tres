@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="R_SourcePlayer" load_steps=5 format=3 uid="uid://c5rxmvlm7k4sw"]
+[gd_resource type="Resource" script_class="R_SourcePlayer" load_steps=6 format=3 uid="uid://c5rxmvlm7k4sw"]
 
 [ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="1_6mxdh"]
 [ext_resource type="Resource" uid="uid://w33s2d6tj8yk" path="res://Games/source_game/objects/sound/player/anime1.tres" id="1_ehhlg"]
 [ext_resource type="Texture2D" uid="uid://dsnj0asls7sw5" path="res://Games/source_game/objects/players/anime/icon.png" id="1_gse4w"]
 [ext_resource type="PackedScene" uid="uid://ytpcj6iearn5" path="res://Games/source_game/game/players/anime/animep.tscn" id="2_8qrwt"]
+[ext_resource type="Resource" uid="uid://c0b8cw3me03co" path="res://Games/source_game/objects/players/anime/anime.tres" id="4_58oyv"]
 
 [resource]
 script = ExtResource("1_6mxdh")
+ragdoll = ExtResource("4_58oyv")
 death_sound = ExtResource("1_ehhlg")
 custom_section = ""
 custom_id = "anime"

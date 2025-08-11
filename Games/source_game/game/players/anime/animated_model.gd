@@ -44,7 +44,8 @@ func _physics_process(delta: float) -> void:
 	
 
 func _process(delta: float) -> void:
-	_look_at_offset = _camera.rotation.x
+	if _camera:
+		_look_at_offset = _camera.rotation.x
 	_look_at_node.position.y = 1.9 * _look_at_offset + 1.9
 
 func update_from_state(state: SD_State) -> void:

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://dbiivpveow0mi"]
+
+[ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_eknev"]
+[ext_resource type="PackedScene" uid="uid://cmb7vfqcx4kcn" path="res://Games/source_game/items/axe/world.tscn" id="2_eknev"]
+[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_2ghj0"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_gb7oe"]
+[ext_resource type="PackedScene" uid="uid://dp4g8b6hojp73" path="res://Games/source_game/items/axe/axe.tscn" id="5_ii6dl"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_k01w2"]
+[ext_resource type="PackedScene" uid="uid://b40yco0sunmv7" path="res://Games/source_game/items/axe/model.tscn" id="7_2ghj0"]
+
+[sub_resource type="Resource" id="Resource_cr4ht"]
+script = ExtResource("6_k01w2")
+prefab = ExtResource("5_ii6dl")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_ar8qm"]
+script = ExtResource("6_k01w2")
+prefab = ExtResource("7_2ghj0")
+position = Vector3(0.183711, 0.00555754, 0.0272532)
+rotation = Vector3(-0.735245, -1.41895, -2.09265)
+scale = Vector3(2, 2, 2)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_3tvgs"]
+script = ExtResource("4_gb7oe")
+view = SubResource("Resource_cr4ht")
+world = SubResource("Resource_ar8qm")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("3_2ghj0")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_eknev")
+name = ""
+description = ""
+prefab = ExtResource("2_eknev")
+viewmodel = SubResource("Resource_3tvgs")
+metadata/_custom_type_script = "uid://fiotmdlqxei6"
