@@ -7,6 +7,10 @@ class_name SourcePlayable
 @export_group("UI")
 @export var ui_custom: PackedScene
 
+@export_group("Voice")
+@export var voice_chat_input: String = "source.voice"
+@export var voice_chat_output: AudioStreamPlayer3D
+
 var ui: PackedScene
 
 var health: SourceHealth
@@ -42,7 +46,28 @@ func _ready() -> void:
 		_local = self
 		_initialize_ui()
 	
+	_initialize_voice()
 	
+	
+
+var _voice: SD_NetVoiceChat
+func _initialize_voice() -> void:
+	_voice = SD_NetVoiceChat.new()
+	_voice.name = "voice"
+	_voice.set_multiplayer_authority(get_multiplayer_authority())
+	_voice.process_mode = Node.PROCESS_MODE_DISABLED
+	if !voice_chat_output:
+		voice_chat_output = AudioStreamPlayer3D.new()
+		root.add_child(voice_chat_output)
+	_voice.set_output_player(voice_chat_output)
+	add_child(_voice)
+	
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(voice_chat_input) and !SimusDev.ui.has_active_interface():
+		_voice.process_mode = Node.PROCESS_MODE_INHERIT
+	if Input.is_action_just_released(voice_chat_input):
+		_voice.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _initialize_ui() -> void:
 	var ui: PackedScene = load(SourceGame.GAME_PATH.path_join("player/ui/player_ui.tscn"))
