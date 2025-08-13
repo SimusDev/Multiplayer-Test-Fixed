@@ -155,6 +155,7 @@ func _configure_input() -> void:
 	
 	var microphone_player : AudioStreamPlayer = AudioStreamPlayer.new()
 	microphone_player.name = "MicIn"
+	microphone_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(microphone_player)
 	microphone_player.bus = _bus_name
 	microphone_player.stream = _microphone_stream
