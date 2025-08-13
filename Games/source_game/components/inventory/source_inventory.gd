@@ -26,6 +26,8 @@ signal craft_queue_remove(craft: R_SourceCraftQueue)
 
 var _craft_queue: Array[R_SourceCraftQueue] = []
 
+var ray: SourceInteractRay
+
 static func find_above(from: Node) -> SourceInventory:
 	if from is SourceGame:
 		return null
@@ -72,6 +74,8 @@ func _ready() -> void:
 	
 	_select_initial_slot()
 	_try_initialize()
+	
+	ray = SD_Components.find_first(root, SourceInteractRay)
 
 func get_selected_slot() -> SourceInventorySlot:
 	return _selected_slot
@@ -152,11 +156,13 @@ func item_action_request(item: SourceItemStack, action: SourceItemAction) -> voi
 	SD_Network.call_func_on_server(_action_request, [item, SourceNetwork.serialize_resource(action)])
 
 func _action_request(item: SourceItemStack, serialized: Variant) -> void:
-	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized) as SourceItemAction
-	action_class._action(item)
-	action_class._action_server(item)
-	SD_Network.call_func_except_self(_do_action_net, [item, SourceNetwork.serialize_resource(action_class)])
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _do_action_local, [item, SourceNetwork.serialize_resource(action_class)])
+	if is_instance_valid(item):
+		var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized) as SourceItemAction
+		if action_class:
+			action_class._action(item)
+			action_class._action_server(item)
+			SD_Network.call_func_except_self(_do_action_net, [item, SourceNetwork.serialize_resource(action_class)])
+			SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _do_action_local, [item, SourceNetwork.serialize_resource(action_class)])
 
 func _do_action_net(item: SourceItemStack, serialized: Variant) -> void:
 	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized)
@@ -201,9 +207,12 @@ func pick_up(object: Object) -> void:
 			SD_Nodes.fast_queue_free(target)
 		else:
 			for i in items:
-				add_item(i.deserialize())
-			
+				var item: SourceItemStack = i.deserialize()
+				add_item(item)
+				
 			SD_Nodes.fast_queue_free(target)
+			
+				
 
 func get_free_slot() -> SourceInventorySlot:
 	for s in get_slots():
@@ -231,6 +240,8 @@ func add_item(item: SourceItemStack) -> void:
 	SD_Nodes.fast_queue_free(item)
 	
 	SD_Network.call_func(_add_item_net, [serialized])
+	
+	sort_stackables(item.object)
 
 func _add_item_net(serialized: Variant) -> void:
 	var item := SourceItemStack.deserialize(serialized)
@@ -253,12 +264,46 @@ func drop(item: SourceItemStack) -> void:
 		SD_Network.call_func_on_server(_drop_server, [item])
 		SD_Nodes.fast_queue_free(item)
 
+func stack_items(stackable: SourceItemStack, item: SourceItemStack) -> SourceItemStack:
+	return
+	
+	if SD_Network.is_server():
+		if get_items().has(stackable) and get_items().has(item):
+			
+			if !stackable.object.get_itemstack().stackable or !item.object.get_itemstack().stackable:
+				return null
+			
+			if stackable.object == item.object:
+				item.set_quantity(item.get_quantity() + stackable.get_quantity())
+				remove_item(stackable)
+				return item
+	return null
+
+func sort_stackables(object: R_SourceWorldObject) -> void:
+	if SD_Network.is_server():
+		var items: Array[SourceItemStack] = get_items_by_object(object)
+		while items.size() > 1:
+			var first: SourceItemStack = items[0]
+			var second: SourceItemStack = items[1]
+			items.erase(first)
+			stack_items(second, first)
+
+func sort() -> void:
+	if SD_Network.is_server():
+		for item in get_items():
+			sort_stackables(item.object)
+
 func _drop_server(item: SourceItemStack) -> void:
 	if get_items().has(item):
 		var drop: C_SourceWorldObjectReference = item.object.create().instantiate()
-		drop.set_global_position_from(root)
+		if ray:
+			var pos: Vector3 = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
+			drop.set_global_position(pos)
+		else:
+			drop.set_global_position_from(root)
+		
 		item.serialize_and_append_to(drop.source)
-		SD_Nodes.fast_queue_free(item)
+		remove_item(item)
 
 func craft(recipe: R_SourceRecipe) -> void:
 	SourceCrafting.as_node().request(self, recipe)
@@ -268,6 +313,7 @@ func item_move_to(item: SourceItemStack, slot: SourceInventorySlot) -> void:
 		SD_Network.call_func_on_server(_item_move_to_net, [item, slot])
 
 func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void:
+	
 	if not is_instance_valid(slot):
 		return
 	
