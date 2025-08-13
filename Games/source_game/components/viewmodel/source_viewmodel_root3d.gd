@@ -60,11 +60,6 @@ func _slot_selected(slot: SourceInventorySlot) -> void:
 	if not slot:
 		return
 	
-	print(_slot)
-	print(slot.get_item())
-	
-	#print(slot)
-	
 	_update_slot(slot)
 
 func _update_slot(slot: SourceInventorySlot) -> void:

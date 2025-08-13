@@ -29,7 +29,7 @@ class_name SD_NetVoiceChat
 ## The minimum input volume at which the audio is broadcasted to other players.
 @export var input_volume_threshold : float = 0.01
 ## The audio quality. Not recommended to go above Medium.
-@export_enum("Very High", "High", "Medium", "Low") var audio_quality : int = 2 : 
+@export_enum("Very High", "High", "Medium", "Low") var audio_quality : int = 1 : 
 	set(value):
 		audio_quality = value
 		update_configuration_warnings()
@@ -130,9 +130,14 @@ func _process(delta: float) -> void:
 			max_amp = max(abs(data[i]), max_amp)
 		
 		if max_amp > input_volume_threshold:
+			#_process_audio.rpc(data, sr)
 			SD_Network.call_func_except_self(_process_audio, [data, sr], callmode, channel)
 
+@rpc("any_peer", "unreliable_ordered", "call_local")
 func _process_audio(audio : PackedFloat32Array, mixrate : float) -> void:
+	if multiplayer.get_unique_id() == multiplayer.get_remote_sender_id():
+		return
+	
 	if _output_stream.mix_rate != mixrate: _output_stream.mix_rate = mixrate
 	for i in range(min(_output_stream_playback.get_frames_available(), audio.size())):
 		var d : float = audio[i]
