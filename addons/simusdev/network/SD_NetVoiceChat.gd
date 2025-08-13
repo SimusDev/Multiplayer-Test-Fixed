@@ -220,13 +220,14 @@ func _configure_output() -> void:
 	_output_stream = AudioStreamGenerator.new()
 	_output_stream.buffer_length = 0.1
 	
-	match(spatial_mode):
-		0:
-			_output_player = AudioStreamPlayer.new()
-		1:
-			_output_player = AudioStreamPlayer2D.new()
-		2:
-			_output_player = AudioStreamPlayer3D.new()
+	if not is_instance_valid(_output_player):
+		match(spatial_mode):
+			0:
+				_output_player = AudioStreamPlayer.new()
+			1:
+				_output_player = AudioStreamPlayer2D.new()
+			2:
+				_output_player = AudioStreamPlayer3D.new()
 	
 	_output_player.name = "MicOut"
 	add_child(_output_player)
