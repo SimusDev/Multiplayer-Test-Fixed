@@ -76,6 +76,8 @@ func _ready() -> void:
 		set_process(false)
 		return
 	
+	SD_Network.register_object(self)
+	
 	SD_Network.register_function(_process_audio)
 	
 	_configure_bus()
