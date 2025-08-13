@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl4tin75tv8gq"]
+[gd_scene load_steps=8 format=3 uid="uid://dl4tin75tv8gq"]
 
 [ext_resource type="Script" uid="uid://chhx3y5tloktk" path="res://Games/source_game/ui/inventory/slot.gd" id="1_xan3g"]
-[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_1obx4"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_1obx4"]
 [ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="2_8kgjj"]
 [ext_resource type="Script" uid="uid://dv4aas07newsa" path="res://Games/source_game/components/item_actions/drop.gd" id="3_1ewkx"]
 [ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="3_7emnb"]
@@ -10,6 +10,9 @@
 script = ExtResource("3_1ewkx")
 code = ""
 metadata/_custom_type_script = "uid://dv4aas07newsa"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1obx4"]
+bg_color = Color(0, 0, 0, 0.941176)
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(70, 70)
@@ -32,8 +35,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1obx4")
 
 [node name="icon" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

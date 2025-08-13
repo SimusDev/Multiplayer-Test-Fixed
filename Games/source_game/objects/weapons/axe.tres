@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://dbiivpveow0mi"]
 
-[ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_eknev"]
+[ext_resource type="Texture2D" uid="uid://c07b2wq1yl1tb" path="res://Games/source_game/items/axe/icon.png" id="1_eknev"]
 [ext_resource type="PackedScene" uid="uid://cmb7vfqcx4kcn" path="res://Games/source_game/items/axe/world.tscn" id="2_eknev"]
 [ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_2ghj0"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_gb7oe"]

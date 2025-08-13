@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://fahxl71di7ib"]
+
+[ext_resource type="Texture2D" uid="uid://3s84w0lxkp1w" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_tilefloor018a.png" id="1_rs026"]
+[ext_resource type="Texture2D" uid="uid://brt7qs18yrtuj" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_tilefloor018a_normal.png" id="2_xcj2y"]
+
+[resource]
+albedo_texture = ExtResource("1_rs026")
+normal_enabled = true
+normal_texture = ExtResource("2_xcj2y")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+grow_amount = -2.772
+distance_fade_min_distance = 20.0
+distance_fade_max_distance = 20.75

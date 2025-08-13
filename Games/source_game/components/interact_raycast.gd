@@ -24,7 +24,8 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventKey and current_object and event.is_released():
 		var source_prop_component = current_object.get_node("SourceProp") as SourceProp
-		source_prop_component.key_pressed.emit(event.as_text().to_lower())
+		if is_instance_valid(source_prop_component):
+			source_prop_component.key_pressed.emit(event.as_text().to_lower())
 	
 	if is_drag_item:
 		if Input.is_action_pressed("rotate_item"):

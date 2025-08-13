@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dbe2iqxylg2ce"]
+
+[ext_resource type="Texture2D" uid="uid://c1w3jiyx0mt3e" path="res://Games/fnaf/maps/fnaf1_u/materialstileceilingtilea.png" id="1_epou3"]
+
+[resource]
+albedo_texture = ExtResource("1_epou3")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.03526
+texture_filter = 0

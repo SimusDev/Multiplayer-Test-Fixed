@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://dleahb87yliqi"]
 
+[ext_resource type="Texture2D" uid="uid://ctiweaurl6pvj" path="res://Games/source_game/items/crowbar/icon.png" id="1_0ge6h"]
 [ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="1_i8tk8"]
-[ext_resource type="Texture2D" uid="uid://d2od68ddy5ttf" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_microwave01.png" id="1_lwvv3"]
 [ext_resource type="PackedScene" uid="uid://bb4td7haplyos" path="res://Games/source_game/game/3dmodels/crowbar/crowbar_world_obj.tscn" id="2_0ge6h"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_ryo66"]
 [ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="4_0ge6h"]
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 script = ExtResource("1_i8tk8")
 custom_section = ""
 custom_id = ""
-icon = ExtResource("1_lwvv3")
+icon = ExtResource("1_0ge6h")
 name = "crowbar"
 description = ""
 prefab = ExtResource("2_0ge6h")
