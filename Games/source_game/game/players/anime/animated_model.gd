@@ -7,7 +7,7 @@ extends W_AnimatedModel3D
 @export var _look_at_node: Marker3D
 @export var _look_at_offset: float = 0.0
 
-@onready var _actor: CharacterBody3D = _movement.actor
+var _actor: CharacterBody3D
 var _movement_playback: AnimationNodeStateMachinePlayback
 var _body_playback: AnimationNodeStateMachinePlayback
 
@@ -18,6 +18,9 @@ func _ready() -> void:
 		return
 	
 	tree.active = true
+	
+	if _movement:
+		_actor = _movement.actor
 	
 	visible = !is_multiplayer_authority()
 	
