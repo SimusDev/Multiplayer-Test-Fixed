@@ -90,7 +90,7 @@ func _process(delta: float) -> void:
 		var sr : float = AudioServer.get_mix_rate()
 		#_sample_raw(recording_data, data)
 		_downsample_half(recording_data, data)
-		sr /= 4
+		sr /= 2
 		var max_amp : float = 0.0
 		for i in range(data.size()):
 			max_amp = max(abs(data[i]), max_amp)
