@@ -143,9 +143,6 @@ func set_viewmodel(resource: R_SourceViewModel) -> void:
 	if !editor and Engine.is_editor_hint():
 		return
 	
-	if viewmodel == resource and !Engine.is_editor_hint():
-		return
-	
 	viewmodel = resource
 	update_viewmodel()
 
