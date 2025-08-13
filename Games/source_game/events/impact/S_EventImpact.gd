@@ -2,7 +2,7 @@ extends S_Event
 class_name S_EventImpact
 
 var source: Node
-var player: SourcePlayer
+var player: Node3D
 var collider: Object
 
 func try_get_hitbox() -> SourceHitbox:
