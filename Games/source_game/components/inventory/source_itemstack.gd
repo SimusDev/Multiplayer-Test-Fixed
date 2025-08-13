@@ -77,9 +77,8 @@ func _enter_tree() -> void:
 	_slot.item_added.emit(self)
 	_slot.item_changed.emit(self)
 	
-	_slot.update()
-	
 	_inventory._items.append(self)
+	_slot.update()
 	
 	_last_path = get_path()
 
