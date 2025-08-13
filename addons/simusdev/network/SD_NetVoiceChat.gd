@@ -2,30 +2,6 @@
 extends Node
 class_name SD_NetVoiceChat
 
-#Copyright (c) 2025 GD-Sync.
-#All rights reserved.
-#
-#Redistribution and use in source form, with or without modification,
-#are permitted provided that the following conditions are met:
-#
-#1. Redistributions of source code must retain the above copyright notice,
-#   this list of conditions and the following disclaimer.
-#
-#2. Neither the name of GD-Sync nor the names of its contributors may be used
-#   to endorse or promote products derived from this software without specific
-#   prior written permission.
-#
-#THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-#EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-#OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
-#SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-#INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-#TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-#BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-#CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-#ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-#SUCH DAMAGE.
-
 ## The minimum input volume at which the audio is broadcasted to other players.
 @export var input_volume_threshold : float = 0.01
 ## The audio quality. Not recommended to go above Medium.
@@ -112,19 +88,7 @@ func _process(delta: float) -> void:
 		var data : PackedFloat32Array = PackedFloat32Array()
 		
 		var sr : float = AudioServer.get_mix_rate()
-		match(audio_quality):
-			0:
-				_sample_raw(recording_data, data)
-			1:
-				_downsample_half(recording_data, data)
-				sr /= 2.0
-			2:
-				_downsample_quarter(recording_data, data)
-				sr /= 4.0
-			3:
-				_downsample_eighth(recording_data, data)
-				sr /= 8.0
-		
+		_sample_raw(recording_data, data)
 		var max_amp : float = 0.0
 		for i in range(data.size()):
 			max_amp = max(abs(data[i]), max_amp)
@@ -145,27 +109,6 @@ func _sample_raw(recording_data: PackedVector2Array, data : PackedFloat32Array) 
 		data[i] = (recording_data[i].x + recording_data[i].y) / 2
 	return data
 
-func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
-	var frames : int = recording_data.size()
-	var half_frames : int = frames / 2
-	data.resize(half_frames)
-	for i in range(half_frames):
-		var v1 : float = (recording_data[i * 2].x + recording_data[i * 2].y) / 2
-		var v2 : float = (recording_data[i * 2 + 1].x + recording_data[i * 2 + 1].y) / 2
-		data[i] = (v1 + v2) / 2
-	return data
-
-func _downsample_quarter(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
-	var frames : int = recording_data.size()
-	var quarter_frames : int = frames / 4
-	data.resize(quarter_frames)
-	for i in range(quarter_frames):
-		var v0 : float = (recording_data[i * 4].x + recording_data[i * 4].y) / 2
-		var v1 : float = (recording_data[i * 4 + 1].x + recording_data[i * 4 + 1].y) / 2
-		var v2 : float = (recording_data[i * 4 + 2].x + recording_data[i * 4 + 2].y) / 2
-		var v3 : float = (recording_data[i * 4 + 3].x + recording_data[i * 4 + 3].y) / 2
-		data[i] = (v0 + v1 + v2 + v3) / 4
-	return data
 
 func _downsample_eighth(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
@@ -218,7 +161,7 @@ func _configure_output() -> void:
 	_output_configured = true
 	
 	_output_stream = AudioStreamGenerator.new()
-	_output_stream.buffer_length = 0.1
+	_output_stream.buffer_length = 0.2
 	
 	if not is_instance_valid(_output_player):
 		match(spatial_mode):
