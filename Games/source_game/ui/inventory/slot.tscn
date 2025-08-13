@@ -12,7 +12,7 @@ code = ""
 metadata/_custom_type_script = "uid://dv4aas07newsa"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1obx4"]
-bg_color = Color(0, 0, 0, 0.941176)
+bg_color = Color(0.220691, 0.220691, 0.220691, 0.921569)
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(70, 70)
@@ -38,7 +38,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1obx4")
 
 [node name="icon" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
