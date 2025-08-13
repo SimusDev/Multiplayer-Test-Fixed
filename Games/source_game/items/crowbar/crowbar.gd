@@ -39,6 +39,7 @@ func impact():
 	event.weapon = self
 	event.collider = collider
 	event.publish()
+	
 
 func spawn_bullethole(collider:Node3D, point:Vector3, normal:Vector3, hole:PackedScene, hole_life_time:float = 60.0):
 	var new_bullet_hole:Node3D = hole.instantiate()

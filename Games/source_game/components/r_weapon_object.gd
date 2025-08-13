@@ -1,5 +1,8 @@
 extends R_SourceWorldObject
 class_name R_WeaponObject
 
+func get_node_script() -> GDScript:
+	return SourceProp
+
 func _get_section() -> String:
 	return "weapon"

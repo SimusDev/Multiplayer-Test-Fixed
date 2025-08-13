@@ -2,6 +2,7 @@
 extends Node3D
 class_name W_AnimatedModel3D
 
+@export var root: Node
 @export var model_scene: PackedScene
 @export var library: AnimationLibrary
 @export var blend_tree: AnimationNodeBlendTree
@@ -16,10 +17,29 @@ class_name W_AnimatedModel3D
 @export var player: AnimationPlayer
 @export var skeleton: Skeleton3D
 
-signal event(code: String, value: Variant)
+var _events: Dictionary[String, SD_Event] = {}
 
-func throw_event(code: String, value: Variant = null) -> void:
-	event.emit(code, value)
+func create_event(code: String) -> SD_Event:
+	_events[code] = SD_Event.new()
+	return _events[code]
+
+func _enter_tree() -> void:
+	if not root:
+		root = get_parent()
+	
+	SD_Components.append_to(root, self)
+
+static func find_in(node: Node) -> W_AnimatedModel3D:
+	return SD_Components.find_first(node, W_AnimatedModel3D)
+
+static func find_above(node: Node) -> W_AnimatedModel3D:
+	if node == SimusDev.get_tree().root:
+		return null
+	
+	var founded: W_AnimatedModel3D = find_in(node)
+	if founded:
+		return founded
+	return find_above(node.get_parent())
 
 func _setup_model(value: bool) -> void:
 	if not value:

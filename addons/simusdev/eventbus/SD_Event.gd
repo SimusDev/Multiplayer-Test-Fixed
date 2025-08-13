@@ -1,6 +1,7 @@
 extends SD_Object
 class_name SD_Event
 
+var debug: bool = true
 var _cancelled: bool = false
 var _arguments: Variant = null
 var _code: String
@@ -37,7 +38,7 @@ func get_code() -> String:
 	return _code
 
 func console_write(text) -> SD_ConsoleMessage:
-	if not SimusDev.eventbus.DEBUG:
+	if not SimusDev.eventbus.DEBUG or not debug:
 		return
 	
 	if get_console():

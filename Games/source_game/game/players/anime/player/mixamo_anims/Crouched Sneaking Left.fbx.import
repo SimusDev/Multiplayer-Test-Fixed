@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cb853e4ispn7b"
-path="res://.godot/imported/Jumping.fbx-894923b855749c44d12ac98507597054.scn"
+uid="uid://d6fgxi4rb873"
+path="res://.godot/imported/Crouched Sneaking Left.fbx-3ca4ed3c17fb307821722138614c763f.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Jumping.fbx"
-dest_files=["res://.godot/imported/Jumping.fbx-894923b855749c44d12ac98507597054.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Crouched Sneaking Left.fbx"
+dest_files=["res://.godot/imported/Crouched Sneaking Left.fbx-3ca4ed3c17fb307821722138614c763f.scn"]
 
 [params]
 

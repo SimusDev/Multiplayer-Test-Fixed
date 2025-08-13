@@ -16,6 +16,17 @@ signal item_removed(item: SourceItemStack)
 
 signal item_changed(item: SourceItemStack)
 
+var _events: Dictionary[String, SD_Event] = {}
+
+func event_get_or_create(code: String) -> SD_Event:
+	if _events.has(code):
+		return _events[code]
+	
+	var event: SD_Event = SD_Event.new()
+	event.debug = false
+	_events[code] = event
+	return event
+
 func select() -> void:
 	_inventory.select_slot(self)
 

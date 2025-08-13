@@ -8,7 +8,10 @@ extends W_AnimatedModel3D
 @export var _look_at_offset: float = 0.0
 
 @onready var _actor: CharacterBody3D = _movement.actor
-@onready var _movement_playback: AnimationNodeStateMachinePlayback
+var _movement_playback: AnimationNodeStateMachinePlayback
+var _body_playback: AnimationNodeStateMachinePlayback
+
+@export var inventory: SourceInventory
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -19,11 +22,20 @@ func _ready() -> void:
 	visible = !is_multiplayer_authority()
 	
 	_movement_playback = get_tree_parameter("parameters/movement_sm/playback")
+	_body_playback = get_tree_parameter("parameters/body_sm/playback")
 	
 	#_movement.state_machine.transitioned.connect(_on_state_machine_transitioned)
 	_movement.state_machine.state_enter.connect(update_from_state)
 	update_from_state(_movement.state_machine.get_current_state())
 	
+	inventory.event_get_or_create("item_use").published.connect(_on_item_used)
+
+func _on_item_used() -> void:
+	var event: SD_Event = inventory.event_get_or_create("item_use")
+	var item: SourceItem = event.get_arguments()[0]
+	
+	if item is SourceWeaponMelee:
+		_body_playback.travel("sword_slash")
 	
 
 func _physics_process(delta: float) -> void:

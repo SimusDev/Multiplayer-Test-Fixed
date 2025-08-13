@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cr6tyeiy8lvgi"
-path="res://.godot/imported/Crouched Sneaking Right.fbx-58d919fe51d3b867fcf0ad5cccbfc661.scn"
+uid="uid://bri3aauq1gdev"
+path="res://.godot/imported/Idle.fbx-67554b4e53518ba80be88f430c293bc7.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Crouched Sneaking Right.fbx"
-dest_files=["res://.godot/imported/Crouched Sneaking Right.fbx-58d919fe51d3b867fcf0ad5cccbfc661.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Idle.fbx"
+dest_files=["res://.godot/imported/Idle.fbx-67554b4e53518ba80be88f430c293bc7.scn"]
 
 [params]
 

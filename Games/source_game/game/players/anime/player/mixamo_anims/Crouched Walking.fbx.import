@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmymdk51gx2yv"
-path="res://.godot/imported/Run Forward.fbx-bc8f68ea75d083be2decceec0f3a3d36.scn"
+uid="uid://cvqqwjref0di3"
+path="res://.godot/imported/Crouched Walking.fbx-5cceeb7fbb618b1e14087e930f1e17d6.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Run Forward.fbx"
-dest_files=["res://.godot/imported/Run Forward.fbx-bc8f68ea75d083be2decceec0f3a3d36.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Crouched Walking.fbx"
+dest_files=["res://.godot/imported/Crouched Walking.fbx-5cceeb7fbb618b1e14087e930f1e17d6.scn"]
 
 [params]
 

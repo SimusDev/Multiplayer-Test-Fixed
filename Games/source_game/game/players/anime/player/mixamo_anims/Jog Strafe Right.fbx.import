@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d6fgxi4rb873"
-path="res://.godot/imported/Crouched Sneaking Left.fbx-0830a792de8590411d149183c850cc73.scn"
+uid="uid://mukf0j82m8v2"
+path="res://.godot/imported/Jog Strafe Right.fbx-c9c31d6f0157731961282d79e3696433.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Crouched Sneaking Left.fbx"
-dest_files=["res://.godot/imported/Crouched Sneaking Left.fbx-0830a792de8590411d149183c850cc73.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Jog Strafe Right.fbx"
+dest_files=["res://.godot/imported/Jog Strafe Right.fbx-c9c31d6f0157731961282d79e3696433.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bri3aauq1gdev"
-path="res://.godot/imported/Idle.fbx-4dd91e117c98dfa209baab3a99a97ab1.scn"
+uid="uid://cb7tqpbpp57ts"
+path="res://.godot/imported/Jog Strafe Left.fbx-c6f9af619bd2c81491ed00cd4afc9546.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Idle.fbx"
-dest_files=["res://.godot/imported/Idle.fbx-4dd91e117c98dfa209baab3a99a97ab1.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Jog Strafe Left.fbx"
+dest_files=["res://.godot/imported/Jog Strafe Left.fbx-c6f9af619bd2c81491ed00cd4afc9546.scn"]
 
 [params]
 

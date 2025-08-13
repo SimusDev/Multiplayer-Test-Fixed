@@ -23,6 +23,9 @@ var current:bool = false : set = set_current, get = is_current
 
 var stack: SourceItemStack
 
+var animated_model: W_AnimatedModel3D
+var inventory: SourceInventory
+
 func _ready() -> void:
 	stack = SD_Components.find_first(self, SourceItemStack)
 	current = true
@@ -37,6 +40,8 @@ func _ready() -> void:
 	if playable:
 		player = playable.root
 		interact_ray = SD_Components.find_first(player, SourceInteractRay)
+		animated_model = W_AnimatedModel3D.find_in(playable.root)
+		inventory = SD_Components.find_first(playable.root, SourceInventory)
 	
 	on_current_change.connect(_on_current_changed)
 	_on_current_changed()
@@ -80,3 +85,5 @@ func use():
 		
 		on_use.emit()
 		
+		var inv_event: SD_Event = inventory.event_get_or_create("item_use")
+		inv_event.publish([self])

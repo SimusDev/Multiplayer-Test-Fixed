@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://drss5ag3sjx4r"
-path="res://.godot/imported/Crouch Idle.fbx-0f811eb75d05cb1951b9db91912b8760.scn"
+uid="uid://csmbko8yxg1n3"
+path="res://.godot/imported/Running Backward.fbx-60c12ebd71c54dddda8693d240fea28c.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Crouch Idle.fbx"
-dest_files=["res://.godot/imported/Crouch Idle.fbx-0f811eb75d05cb1951b9db91912b8760.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Running Backward.fbx"
+dest_files=["res://.godot/imported/Running Backward.fbx-60c12ebd71c54dddda8693d240fea28c.scn"]
 
 [params]
 

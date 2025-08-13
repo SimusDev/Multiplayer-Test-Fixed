@@ -97,10 +97,11 @@ script = ExtResource("7_a2vi6")
 _data = SubResource("Resource_jkxvs")
 metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
-[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement", "_camera") instance=ExtResource("4_7qwl4")]
+[node name="AnimatedModel" parent="." node_paths=PackedStringArray("_movement", "_camera", "inventory") instance=ExtResource("4_7qwl4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 _movement = NodePath("../Movement")
 _camera = NodePath("../Camera")
+inventory = NodePath("../SourceInventory")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("6_jkxvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08299, -0.119803)

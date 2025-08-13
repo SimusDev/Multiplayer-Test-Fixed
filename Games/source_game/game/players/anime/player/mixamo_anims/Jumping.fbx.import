@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cb7tqpbpp57ts"
-path="res://.godot/imported/Jog Strafe Left.fbx-fc14f832b14d6a6bc2c228a0a17b144a.scn"
+uid="uid://cb853e4ispn7b"
+path="res://.godot/imported/Jumping.fbx-720add6cc14db021d8963cc27bc3b044.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Jog Strafe Left.fbx"
-dest_files=["res://.godot/imported/Jog Strafe Left.fbx-fc14f832b14d6a6bc2c228a0a17b144a.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Jumping.fbx"
+dest_files=["res://.godot/imported/Jumping.fbx-720add6cc14db021d8963cc27bc3b044.scn"]
 
 [params]
 

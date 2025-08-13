@@ -1,0 +1,32 @@
+[gd_resource type="AnimationLibrary" load_steps=14 format=3 uid="uid://6luwsgfb4bi0"]
+
+[ext_resource type="Animation" uid="uid://cq3jkf2vikqcu" path="res://Games/source_game/game/players/anime/player/anims/crouch_idle.res" id="1_8ubu7"]
+[ext_resource type="Animation" uid="uid://c5ayyg2gfag8u" path="res://Games/source_game/game/players/anime/player/anims/crouch_left.res" id="2_n75b1"]
+[ext_resource type="Animation" uid="uid://o8jfnd5vq01q" path="res://Games/source_game/game/players/anime/player/anims/crouch_right.res" id="3_1tmmu"]
+[ext_resource type="Animation" uid="uid://dlw3pqcgugvxn" path="res://Games/source_game/game/players/anime/player/anims/crouch_walk.res" id="4_80cc2"]
+[ext_resource type="Animation" uid="uid://cfas5b41jgh4k" path="res://Games/source_game/game/players/anime/player/anims/female_walk.res" id="5_u7lnr"]
+[ext_resource type="Animation" uid="uid://bonh4ohf8toww" path="res://Games/source_game/game/players/anime/player/anims/idle.res" id="6_t5v3o"]
+[ext_resource type="Animation" uid="uid://do6nyxmge6jrk" path="res://Games/source_game/game/players/anime/player/anims/jog_strafe_left.res" id="7_jbgbh"]
+[ext_resource type="Animation" uid="uid://d0lmg724nh5ge" path="res://Games/source_game/game/players/anime/player/anims/jog_strafe_right.res" id="8_424a3"]
+[ext_resource type="Animation" uid="uid://u8frylk7dvm8" path="res://Games/source_game/game/players/anime/player/anims/jump.res" id="9_2hxwu"]
+[ext_resource type="Animation" uid="uid://cvmaic0jnbx7w" path="res://Games/source_game/game/players/anime/player/anims/run_backward.res" id="10_yeskw"]
+[ext_resource type="Animation" uid="uid://do6mepa5p0n4s" path="res://Games/source_game/game/players/anime/player/anims/run_forward.res" id="11_tdjgb"]
+[ext_resource type="Animation" uid="uid://6nfhj7ut3fd5" path="res://Games/source_game/game/players/anime/player/anims/sword_slash.res" id="12_4hnqb"]
+[ext_resource type="Animation" uid="uid://cu7uyj7rhft46" path="res://Games/source_game/game/players/anime/player/anims/empty.res" id="13_n75b1"]
+
+[resource]
+_data = {
+&"crouch_idle": ExtResource("1_8ubu7"),
+&"crouch_left": ExtResource("2_n75b1"),
+&"crouch_right": ExtResource("3_1tmmu"),
+&"crouch_walk": ExtResource("4_80cc2"),
+&"empty": ExtResource("13_n75b1"),
+&"female_walk": ExtResource("5_u7lnr"),
+&"idle": ExtResource("6_t5v3o"),
+&"jog_strafe_left": ExtResource("7_jbgbh"),
+&"jog_strafe_right": ExtResource("8_424a3"),
+&"jump": ExtResource("9_2hxwu"),
+&"run_backward": ExtResource("10_yeskw"),
+&"run_forward": ExtResource("11_tdjgb"),
+&"sword_slash": ExtResource("12_4hnqb")
+}

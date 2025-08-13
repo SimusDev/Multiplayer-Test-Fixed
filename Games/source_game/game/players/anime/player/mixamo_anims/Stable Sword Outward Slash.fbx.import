@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://03ljdb4frybw"
-path="res://.godot/imported/Female Walk.fbx-e4e5c55437f090310a6ff72869d41d0d.scn"
+uid="uid://che5px8ir4lnh"
+path="res://.godot/imported/Stable Sword Outward Slash.fbx-588e6d0811caec1391057ae957514cb6.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Female Walk.fbx"
-dest_files=["res://.godot/imported/Female Walk.fbx-e4e5c55437f090310a6ff72869d41d0d.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Stable Sword Outward Slash.fbx"
+dest_files=["res://.godot/imported/Stable Sword Outward Slash.fbx-588e6d0811caec1391057ae957514cb6.scn"]
 
 [params]
 

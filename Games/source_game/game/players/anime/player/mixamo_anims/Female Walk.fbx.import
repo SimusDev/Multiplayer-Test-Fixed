@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://csmbko8yxg1n3"
-path="res://.godot/imported/Running Backward.fbx-f7f5639f38bb33790a7040a2e5e87ed4.scn"
+uid="uid://03ljdb4frybw"
+path="res://.godot/imported/Female Walk.fbx-b13d03d5eae0ed3d5e968136a4230126.scn"
 
 [deps]
 
-source_file="res://Games/sandbox/animations/player/mixamo_anims/Running Backward.fbx"
-dest_files=["res://.godot/imported/Running Backward.fbx-f7f5639f38bb33790a7040a2e5e87ed4.scn"]
+source_file="res://Games/source_game/game/players/anime/player/mixamo_anims/Female Walk.fbx"
+dest_files=["res://.godot/imported/Female Walk.fbx-b13d03d5eae0ed3d5e968136a4230126.scn"]
 
 [params]
 

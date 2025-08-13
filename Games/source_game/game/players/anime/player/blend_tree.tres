@@ -1,6 +1,34 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=27 format=3 uid="uid://bev6yf7wxq854"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=34 format=3 uid="uid://bev6yf7wxq854"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_m3u8o"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_neb1h"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k1wwg"]
+animation = &"library/empty"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m3u8o"]
+animation = &"library/sword_slash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s0gvb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x0kjv"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hvrjy"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k1wwg"]
+states/End/position = Vector2(902.222, 100)
+states/Start/position = Vector2(84.4444, 76.2963)
+states/idle/node = SubResource("AnimationNodeAnimation_k1wwg")
+states/idle/position = Vector2(306.667, 98.5303)
+states/sword_slash/node = SubResource("AnimationNodeAnimation_m3u8o")
+states/sword_slash/position = Vector2(536.667, 96.1755)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s0gvb"), "idle", "sword_slash", SubResource("AnimationNodeStateMachineTransition_x0kjv"), "sword_slash", "idle", SubResource("AnimationNodeStateMachineTransition_hvrjy")]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_svrcm"]
 filter_enabled = true
@@ -155,14 +183,18 @@ graph_offset = Vector2(70, -31)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_neb1h"]
 
 [resource]
-graph_offset = Vector2(-182.291, 45.6932)
+graph_offset = Vector2(-341.504, 135.411)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_neb1h")
-nodes/Add2/position = Vector2(380, 120)
+nodes/Add2/position = Vector2(533.333, 111.111)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_m3u8o")
+"nodes/Add2 2/position" = Vector2(133.333, 244.444)
+nodes/body_sm/node = SubResource("AnimationNodeStateMachine_k1wwg")
+nodes/body_sm/position = Vector2(-200, 333.333)
 nodes/jumpBlendTree/node = SubResource("AnimationNodeBlendTree_u08wm")
-nodes/jumpBlendTree/position = Vector2(200, 360)
+nodes/jumpBlendTree/position = Vector2(422.222, 377.778)
 nodes/movement_sm/node = SubResource("AnimationNodeStateMachine_76rui")
-nodes/movement_sm/position = Vector2(-80, 120)
+nodes/movement_sm/position = Vector2(-133.333, 111.111)
 nodes/movement_tscale/node = SubResource("AnimationNodeTimeScale_neb1h")
-nodes/movement_tscale/position = Vector2(160, 140)
-nodes/output/position = Vector2(580, 180)
-node_connections = [&"Add2", 0, &"movement_tscale", &"Add2", 1, &"jumpBlendTree", &"movement_tscale", 0, &"movement_sm", &"output", 0, &"Add2"]
+nodes/movement_tscale/position = Vector2(311.111, 177.778)
+nodes/output/position = Vector2(844.444, 133.333)
+node_connections = [&"Add2", 0, &"movement_tscale", &"Add2", 1, &"jumpBlendTree", &"Add2 2", 0, &"movement_sm", &"Add2 2", 1, &"body_sm", &"movement_tscale", 0, &"Add2 2", &"output", 0, &"Add2"]
