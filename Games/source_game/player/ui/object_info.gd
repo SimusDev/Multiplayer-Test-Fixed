@@ -2,8 +2,8 @@ extends Control
 
 @onready var info_container:VBoxContainer = $refrect/info
 
-@onready var name_label: Label = $name_label
-@onready var icon: TextureRect = $icon
+@onready var name_label: Label = $refrect/name_label
+@onready var icon: TextureRect = $refrect/icon
 
 func remove_info(text:String):
 	for child in info_container.get_children():
