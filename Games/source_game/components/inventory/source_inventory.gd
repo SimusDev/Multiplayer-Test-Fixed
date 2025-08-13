@@ -126,16 +126,16 @@ func __send() -> void:
 	for slot in get_slots():
 		slots.append(slot.serialize())
 	
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots, _selected_slot])
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots, _slots.find(_selected_slot)])
 
-func __recieve(slots: Array, selected: SourceInventorySlot) -> void:
+func __recieve(slots: Array, slot_index: int) -> void:
 	_clear_inventory_slots()
 	
 	for serialized in slots:
 		var slot: SourceInventorySlot = SourceInventorySlot.deserialize(serialized)
 		add_child(slot)
 	
-	_selected_slot = selected
+	_selected_slot = _slots.get(slot_index)
 	
 	debug_print("synced all slots and items! %s")
 	_try_initialize()
