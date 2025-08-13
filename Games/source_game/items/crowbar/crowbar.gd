@@ -14,8 +14,6 @@ func _on_item_use():
 		player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func impact():
-	if not is_instance_valid(SourcePlayer.instance): return
-	
 	var collider = player.interact_raycast.get_collider()
 	
 	if SD_Network.is_server():
@@ -24,7 +22,6 @@ func impact():
 			
 			if collider.has_method("apply_damage"):
 				collider.apply_damage(damage)
-				print("AASSs")
 			
 			if collider is RigidBody3D:
 				var direction = (collider.global_position - player.global_position).normalized()

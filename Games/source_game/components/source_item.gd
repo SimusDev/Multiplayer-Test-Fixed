@@ -18,6 +18,7 @@ signal on_current_change
 @export var _pick:String = "pick"
 
 var player:Node3D
+var interact_ray:SourceInteractRay
 var current:bool = false : set = set_current, get = is_current
 
 var stack: SourceItemStack
@@ -35,6 +36,7 @@ func _ready() -> void:
 	var playable: SourcePlayable = SourcePlayable.find_above(self)
 	if playable:
 		player = playable.root
+		interact_ray = SD_Components.find_first(player, SourceInteractRay)
 	
 	on_current_change.connect(_on_current_changed)
 	_on_current_changed()
