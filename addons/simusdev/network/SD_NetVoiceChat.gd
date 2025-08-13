@@ -89,6 +89,8 @@ func _ready() -> void:
 		_configure_input()
 	else:
 		_configure_output()
+	
+	
 
 func _owner_changed(owner_id : int) -> void:
 	if SD_Network.is_authority(self):
@@ -97,7 +99,7 @@ func _owner_changed(owner_id : int) -> void:
 		_configure_output()
 
 func _process(delta: float) -> void:
-	if SD_Network.is_authority(self):
+	if not SD_Network.is_authority(self):
 		return
 	
 	if _input_configured and _record_effect.get_frames_available() > 0:
