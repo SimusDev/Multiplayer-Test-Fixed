@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_ekivk"]
 script = ExtResource("6_fqxls")
 prefab = ExtResource("2_duuqm")
-position = Vector3(0, 0, 0)
+position = Vector3(-0.1, 0, 0.1)
 rotation = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"

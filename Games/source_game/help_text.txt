@@ -16,4 +16,3 @@ Controls:
 	Building:
 		Z, X, C, V - Select building (requires gm_toolgun)
 		Right Mouse Button - snap ghost building
-		
