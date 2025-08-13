@@ -33,8 +33,9 @@ func _refresh() -> void:
 	set_object(object)
 
 func _ready() -> void:
-	if authorative_visibility:
-		visible = SD_Network.is_authority(self)
+	if !Engine.is_editor_hint():
+		if authorative_visibility:
+			visible = SD_Network.is_authority(self)
 	
 	if not placeholder:
 		placeholder = load("res://Games/source_game/components/viewmodel/default.tres")
@@ -141,9 +142,6 @@ func update_viewmodel() -> void:
 
 func set_viewmodel(resource: R_SourceViewModel) -> void:
 	if !editor and Engine.is_editor_hint():
-		return
-	
-	if viewmodel == resource and !Engine.is_editor_hint():
 		return
 	
 	viewmodel = resource
