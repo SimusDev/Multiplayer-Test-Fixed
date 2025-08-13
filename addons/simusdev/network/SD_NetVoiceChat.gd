@@ -88,7 +88,9 @@ func _process(delta: float) -> void:
 		var data : PackedFloat32Array = PackedFloat32Array()
 		
 		var sr : float = AudioServer.get_mix_rate()
-		_sample_raw(recording_data, data)
+		#_sample_raw(recording_data, data)
+		_downsample_half(recording_data, data)
+		sr /= 4
 		var max_amp : float = 0.0
 		for i in range(data.size()):
 			max_amp = max(abs(data[i]), max_amp)
@@ -96,6 +98,16 @@ func _process(delta: float) -> void:
 		if max_amp > input_volume_threshold:
 			#_process_audio.rpc(data, sr)
 			SD_Network.call_func_except_self(_process_audio, [data, sr], callmode, channel)
+
+func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
+	var frames : int = recording_data.size()
+	var half_frames : int = frames / 2
+	data.resize(half_frames)
+	for i in range(half_frames):
+		var v1 : float = (recording_data[i * 2].x + recording_data[i * 2].y) / 2
+		var v2 : float = (recording_data[i * 2 + 1].x + recording_data[i * 2 + 1].y) / 2
+		data[i] = (v1 + v2) / 2
+	return data
 
 @rpc("any_peer", "unreliable_ordered", "call_local")
 func _process_audio(audio : PackedFloat32Array, mixrate : float) -> void:
