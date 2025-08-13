@@ -1,0 +1,354 @@
+[gd_scene load_steps=30 format=3 uid="uid://27kpi31p3gfe"]
+
+[ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
+[ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="2_3mc7r"]
+[ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_qw2b4"]
+[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="3_2hdmp"]
+[ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="3_bcxex"]
+[ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="4_gssfp"]
+[ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="5_ghdio"]
+[ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="6_abx2t"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="7_qdiq6"]
+[ext_resource type="Script" uid="uid://bwp1cvwjkhvwt" path="res://Games/source_game/components/inventory/source_inventory_slot.gd" id="7_xpejh"]
+[ext_resource type="PackedScene" uid="uid://ised7kw4idro" path="res://Games/source_game/game/prefabs/source_footsteps.tscn" id="8_3mc7r"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_amac5"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ghdio"]
+[ext_resource type="Shape3D" uid="uid://dvvatkk8j3tge" path="res://Games/source_game/player/collisions/source_player_collision_crouch.tres" id="11_abx2t"]
+[ext_resource type="Shape3D" uid="uid://c6w6f0gb7ytwi" path="res://Games/source_game/player/collisions/source_player_collision_normal.tres" id="12_xpejh"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="13_y5oya"]
+[ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="14_hs1xq"]
+[ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="16_26rsp"]
+[ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
+[ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
+[ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="26_26rsp"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="27_y3hgg"]
+[ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
+[ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
+
+[sub_resource type="Gradient" id="Gradient_4d7pv"]
+colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_krprw"]
+frequency = 0.0628
+domain_warp_amplitude = 29.365
+domain_warp_frequency = 22.375
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 10
+domain_warp_fractal_lacunarity = 10.83
+domain_warp_fractal_gain = 10.845
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0lyu"]
+color_ramp = SubResource("Gradient_4d7pv")
+noise = SubResource("FastNoiseLite_krprw")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
+radius = 0.335526
+
+[node name="base_player" type="CharacterBody3D"]
+
+[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_qw2b4")
+root = NodePath("..")
+recursive_register = false
+metadata/_custom_type_script = "uid://cotoo7b7sohgn"
+
+[node name="SD_NetSynchronizer" type="Node" parent="."]
+script = ExtResource("3_2hdmp")
+metadata/_custom_type_script = "uid://blbs0u7qkn6if"
+
+[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true", "authority_false")]
+script = ExtResource("28_1yv11")
+hide_at_start = true
+authority_true = [NodePath("../nickname")]
+authority_false = [null]
+
+[node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("1_5m5ro")
+root = NodePath("..")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("7_qdiq6")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceInventorySlotSwitcher" type="Node" parent="." node_paths=PackedStringArray("inventory")]
+script = ExtResource("5_ghdio")
+inventory = NodePath("../SourceInventory")
+metadata/_custom_type_script = "uid://cfi3ck311echs"
+
+[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("6_abx2t")
+root = NodePath("..")
+debug = true
+private = true
+metadata/_custom_type_script = "uid://vgml0sp3idxv"
+
+[node name="h1" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="h2" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="h3" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="h4" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="h5" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="h6" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+selectable = true
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="1" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="2" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="3" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="4" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="5" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="6" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="7" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="8" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="9" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="10" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="11" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="12" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="13" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="14" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="15" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="16" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="17" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="18" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="19" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="20" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="21" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="22" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="23" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="24" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="25" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="26" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="27" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="28" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="29" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="30" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="31" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="32" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="33" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="34" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="35" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="36" type="Node" parent="SourceInventory"]
+script = ExtResource("7_xpejh")
+metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_3mc7r")
+player = NodePath("..")
+max_safe_fall_speed = 15.0
+hard_grounding_sounds = Array[AudioStream]([ExtResource("3_bcxex"), ExtResource("4_gssfp")])
+metadata/_custom_type_script = "uid://dvv35phe3qh7s"
+
+[node name="SourceFootsteps" parent="." instance=ExtResource("8_3mc7r")]
+
+[node name="SourceMovement" parent="." instance=ExtResource("9_amac5")]
+_move_speed = 5.0
+_crouch_speed = 2.5
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="SourceCrouch" parent="." instance=ExtResource("10_ghdio")]
+crouch_shape = ExtResource("11_abx2t")
+normal_shape = ExtResource("12_xpejh")
+
+[node name="SourceCamera" parent="." instance=ExtResource("13_y5oya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
+light_projector = SubResource("NoiseTexture2D_i0lyu")
+shadow_enabled = true
+spot_range = 7.82003
+spot_angle = 31.8552
+script = ExtResource("14_hs1xq")
+
+[node name="light" type="SpotLight3D" parent="SourceCamera/flashlight"]
+shadow_enabled = true
+
+[node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.394588)
+target_position = Vector3(0, 0, -3)
+collision_mask = 11
+collide_with_areas = true
+script = ExtResource("16_26rsp")
+root = NodePath("../..")
+
+[node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("inventory")]
+visible = false
+script = ExtResource("18_1yv11")
+authorative_visibility = true
+type = 0
+object = ExtResource("20_abx2t")
+inventory = NodePath("../../SourceInventory")
+placeholder = ExtResource("19_em5yj")
+metadata/_custom_type_script = "uid://bp0rdj4e63cah"
+
+[node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("26_26rsp")
+health = NodePath("../SourceHealth")
+
+[node name="hitbox_legs" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("26_26rsp")
+health = NodePath("../SourceHealth")
+
+[node name="hitbox_head" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("26_26rsp")
+health = NodePath("../SourceHealth")
+damage_multiplier = 2.0
+
+[node name="nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("27_y3hgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+authority_node = NodePath("..")
+
+[node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target", "target_health_component")]
+script = ExtResource("29_em5yj")
+target = NodePath("..")
+target_health_component = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://4q60q717rxsh"
+
+[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible"]
+shape = SubResource("CapsuleShape3D_i0lyu")
+debug_color = Color(0.341176, 0.486275, 1, 0)
+
+[editable path="SourceMovement"]
+[editable path="SourceCamera"]

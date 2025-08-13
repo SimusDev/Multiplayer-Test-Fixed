@@ -46,15 +46,12 @@ func set_collider(_collider:Variant):
 	collider = _collider
 	collider_changed.emit(collider)
 	if not is_instance_valid(SourcePlayerUI.instance): return
-	
-	SourcePlayerUI.get_instance().object_info.hide()
+
 	if !_collider or _collider is SourcePlayer:
 		current_object = null
 		return
 	
 	if _collider.is_in_group("props"):
-		SourcePlayerUI.get_instance().object_info.set_object(R_SourceWorldObject.find_in(_collider))
-		SourcePlayerUI.get_instance().object_info.show()
 		detect_object(_collider)
 
 func _process(_delta: float) -> void:
@@ -63,7 +60,6 @@ func _process(_delta: float) -> void:
 	set_collider(get_collider())
 
 func detect_object(obj:RigidBody3D):
-	show_object_info(obj)
 	if Input.is_action_just_pressed("interact") and is_instance_valid(current_object):
 		drag_prop(current_object)
 	
@@ -71,12 +67,7 @@ func detect_object(obj:RigidBody3D):
 	current_object = obj
 	object_detected.emit(obj)
 
-func show_object_info(object:RigidBody3D):
-	var object_info = SourcePlayerUI.get_instance().get_node("object_info")
-	#object_info.get_node("name_label").text = str(object.name)
-	var camera = player.camera.camera
-	var screen_pos = camera.unproject_position(object.global_position)
-	object_info.position = screen_pos - Vector2(128, 128)
+#drug
 
 func drag_prop(object:RigidBody3D):
 	if not is_instance_valid(current_object): return
@@ -94,7 +85,7 @@ func detect_entity(ent:Node3D):
 		return
 
 #OHALERA #GG #DELETE GODOT ENGINE 
-
+#😘👍😂😍👌👌👌👌❤❤️❤️❤❤❤❤❤❤❤❤️😊😒🙌🙌🤣💕
 
 
 #

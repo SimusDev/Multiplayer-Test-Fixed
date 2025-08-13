@@ -1,20 +1,33 @@
-[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=7 format=3 uid="uid://dleahb87yliqi"]
+[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://dleahb87yliqi"]
 
 [ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="1_i8tk8"]
 [ext_resource type="Texture2D" uid="uid://d2od68ddy5ttf" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_microwave01.png" id="1_lwvv3"]
+[ext_resource type="PackedScene" uid="uid://bb4td7haplyos" path="res://Games/source_game/game/3dmodels/crowbar/crowbar_world_obj.tscn" id="2_0ge6h"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_ryo66"]
+[ext_resource type="PackedScene" uid="uid://dmepknoq0be13" path="res://Games/source_game/items/crowbar/crowbar.tscn" id="4_0ge6h"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="4_td2dw"]
+[ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="6_u3gjc"]
 
 [sub_resource type="Resource" id="Resource_0ge6h"]
 script = ExtResource("4_td2dw")
+prefab = ExtResource("4_0ge6h")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
+[sub_resource type="Resource" id="Resource_dsvhs"]
+script = ExtResource("4_td2dw")
+prefab = ExtResource("6_u3gjc")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.03, 0.03, 0.03)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
 [sub_resource type="Resource" id="Resource_u3gjc"]
 script = ExtResource("3_ryo66")
 view = SubResource("Resource_0ge6h")
+world = SubResource("Resource_dsvhs")
 metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
@@ -22,7 +35,8 @@ script = ExtResource("1_i8tk8")
 custom_section = ""
 custom_id = ""
 icon = ExtResource("1_lwvv3")
-name = ""
+name = "crowbar"
 description = ""
+prefab = ExtResource("2_0ge6h")
 viewmodel = SubResource("Resource_u3gjc")
 metadata/_custom_type_script = "uid://fiotmdlqxei6"

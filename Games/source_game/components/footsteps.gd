@@ -32,6 +32,10 @@ class_name SourceFootsteps extends AudioStreamPlayer3D
 @export_category("Settings")
 @export var current_surface:String = "tile"
 
+func _ready() -> void:
+	if is_instance_valid(player):
+		SD_Components.append_to(player, self)
+
 func _do_footstep():
 	if !get(current_surface) or !player.is_on_floor() or !player.velocity:
 		return

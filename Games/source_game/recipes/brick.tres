@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="R_SourceRecipe" load_steps=6 format=3 uid="uid://bacitlsldrqtd"]
+[gd_resource type="Resource" script_class="R_SourceRecipe" load_steps=7 format=3 uid="uid://bacitlsldrqtd"]
 
 [ext_resource type="Script" uid="uid://82oo1iuaxrch" path="res://Games/source_game/components/crafting/source_recipe_input.gd" id="1_7kly6"]
 [ext_resource type="Script" uid="uid://b7iaay778gprw" path="res://Games/source_game/components/crafting/source_recipe.gd" id="2_cyiah"]
 [ext_resource type="Script" uid="uid://3bq4bc82j34c" path="res://Games/source_game/components/crafting/source_recipe_output.gd" id="2_e2ckj"]
 [ext_resource type="Resource" uid="uid://c1agcmxpov5c5" path="res://Games/source_game/props/metrudev's_brick/metrudev's_brick.tres" id="3_obaku"]
+
+[sub_resource type="Resource" id="Resource_e2ckj"]
+script = ExtResource("1_7kly6")
+quantity = 1
+metadata/_custom_type_script = "uid://82oo1iuaxrch"
 
 [sub_resource type="Resource" id="Resource_ap3qb"]
 script = ExtResource("2_e2ckj")
@@ -14,7 +19,7 @@ metadata/_custom_type_script = "uid://3bq4bc82j34c"
 [resource]
 script = ExtResource("2_cyiah")
 time = 0.0
-input = Array[ExtResource("1_7kly6")]([])
+input = Array[ExtResource("1_7kly6")]([SubResource("Resource_e2ckj")])
 output = SubResource("Resource_ap3qb")
 custom_section = ""
 custom_id = ""
