@@ -59,6 +59,9 @@ var _output_player : Node
 var _input_configured : bool = false
 var _output_configured : bool = false
 
+@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.UNRELIABLE_ORDERED
+@export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
+
 func set_input_device(device_name : String) -> void:
 	AudioServer.input_device = device_name
 
@@ -127,7 +130,7 @@ func _process(delta: float) -> void:
 			max_amp = max(abs(data[i]), max_amp)
 		
 		if max_amp > input_volume_threshold:
-			SD_Network.call_func_except_self(_process_audio, [data, sr])
+			SD_Network.call_func_except_self(_process_audio, [data, sr], callmode, channel)
 
 func _process_audio(audio : PackedFloat32Array, mixrate : float) -> void:
 	if _output_stream.mix_rate != mixrate: _output_stream.mix_rate = mixrate

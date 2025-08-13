@@ -64,6 +64,9 @@ func _initialize_voice() -> void:
 	
 
 func _input(event: InputEvent) -> void:
+	if !SD_Network.is_authority(self):
+		return
+	
 	if Input.is_action_just_pressed(voice_chat_input) and !SimusDev.ui.has_active_interface():
 		_voice.process_mode = Node.PROCESS_MODE_INHERIT
 	if Input.is_action_just_released(voice_chat_input):
