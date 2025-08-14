@@ -7,7 +7,7 @@ var object: R_SourceWorldObject
 var position: Variant = Vector3.ZERO
 
 func instantiate() -> C_SourceWorldObjectReference:
-	SourceGame.instance.instantiate_object_on_server(source, position)
+	SourceGame.instance.instantiate_object_on_server(source)
 	return self
 
 func set_global_position(position: Variant) -> C_SourceWorldObjectReference:

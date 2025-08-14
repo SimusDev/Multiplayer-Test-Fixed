@@ -11,6 +11,6 @@ func _ready() -> void:
 	label.text = "ingridients:\n"
 	
 	for input in reference.input:
-		if reference:
+		if reference and input.source:
 			var text: String = "%s, x%s\n" % [input.source.id, str(input.quantity)]
 			label.text += text

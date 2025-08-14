@@ -60,15 +60,17 @@ func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
 		if is_instance_valid(node):
 			var ray: SourceInteractRay = SD_Components.find_first(node, SourceInteractRay)
 			if ray:
-				instantiate_object_on_server(new_prop, ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y))
+				instantiate_object_on_server(new_prop)
+				new_prop.global_position = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
 		else:
-			instantiate_object_on_server(new_prop, Vector3.ZERO)
+			instantiate_object_on_server(new_prop)
+			
 
-func instantiate_object_on_server(node: Node, position: Variant) -> Node:
+func instantiate_object_on_server(node: Node) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 	
-	node.position = SourceObject.get_vector3_position(position)
+	#node.position = SourceObject.get_vector3_position(position)
 	
 	SourceLevelSection3D.get_by_name("objects").add_child(node)
 	
@@ -78,9 +80,8 @@ func instantiate_object_local(node: Node, position: Variant) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 	
-	node.position = SourceObject.get_vector3_position(position)
+	#node.position = SourceObject.get_vector3_position(position)
 	
-	await get_tree().process_frame
 	SourceLevelSection3D.get_by_name("local_objects").add_child(node)
 	
 	return node

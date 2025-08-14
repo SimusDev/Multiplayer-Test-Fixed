@@ -24,10 +24,13 @@ static func create(at: Variant = null) -> SourceExplosion:
 	var src: SourceExplosion = obj_ref.source
 	src.explode_at_start = false
 	
-	if at != null:
-		obj_ref.position = at
-	
 	obj_ref.instantiate()
+	
+	if at is Node:
+		obj_ref.set_global_position_from(at)
+	if at is Vector3:
+		obj_ref.set_global_position(at)
+	
 	return src
 
 static func create_at(node: Node) -> SourceExplosion:
