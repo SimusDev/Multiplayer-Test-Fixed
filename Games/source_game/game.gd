@@ -70,7 +70,6 @@ func instantiate_object_on_server(node: Node, position: Variant) -> Node:
 	
 	node.position = SourceObject.get_vector3_position(position)
 	
-	await get_tree().process_frame
 	SourceLevelSection3D.get_by_name("objects").add_child(node)
 	
 	return node
