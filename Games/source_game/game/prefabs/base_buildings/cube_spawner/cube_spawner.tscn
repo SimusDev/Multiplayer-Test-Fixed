@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="4_4d0qa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tbhl4"]
-size = Vector3(1, 0.2, 0.5)
+size = Vector3(1, 0.2, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4d0qa"]
 size = Vector3(0.5, 2, 0.2)
@@ -44,10 +44,10 @@ mesh = SubResource("BoxMesh_im7ea")
 
 [node name="SourceCubeSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_marker")]
 script = ExtResource("3_fhegs")
-spawn_marker = NodePath("Marker3D")
+spawn_marker = NodePath("../Marker3D")
 object = ExtResource("3_tbhl4")
 
-[node name="Marker3D" type="Marker3D" parent="SourceCubeSpawner"]
+[node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.6)
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]

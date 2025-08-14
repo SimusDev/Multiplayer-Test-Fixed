@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=5 format=3 uid="uid://bl87k6r53jq71"]
+
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_0sh5e"]
+[ext_resource type="PackedScene" uid="uid://danoxw1eto00t" path="res://Games/source_game/game/prefabs/base_buildings/conveyor/conveyor.tscn" id="1_1ht5u"]
+
+[sub_resource type="Gradient" id="Gradient_3mggm"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lwn0s"]
+gradient = SubResource("Gradient_3mggm")
+
+[resource]
+script = ExtResource("1_0sh5e")
+custom_section = ""
+custom_id = ""
+icon = SubResource("GradientTexture2D_lwn0s")
+name = "conveyor"
+description = ""
+prefab = ExtResource("1_1ht5u")
+metadata/_custom_type_script = "uid://cwcmpqixyglaj"
