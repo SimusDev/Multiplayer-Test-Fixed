@@ -47,6 +47,9 @@ static func close() -> void:
 	instance.container_window.hide()
 
 static func open_inventory(inventory: SourceInventory) -> void:
+	if not inventory.is_initialized:
+		await inventory.initialized
+	
 	instance.container_window.set_inventory(inventory)
 	instance.container_window.show()
 	open()

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs300xfl8ogrd"]
+
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_6j0y4"]
+[ext_resource type="Script" uid="uid://73k3ha4cqyid" path="res://Games/source_game/game/3dmodels/crates/base_crate.gd" id="1_nb6sm"]
+[ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="3_xa0kb"]
+
+[node name="BaseCrate" type="RigidBody3D" node_paths=PackedStringArray("inventory")]
+script = ExtResource("1_nb6sm")
+inventory = NodePath("SourceInventory")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_6j0y4")
+rigid_body = NodePath("..")
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("3_xa0kb")
+root = NodePath("..")
+initial_slots = 18
+metadata/_custom_type_script = "uid://vgml0sp3idxv"

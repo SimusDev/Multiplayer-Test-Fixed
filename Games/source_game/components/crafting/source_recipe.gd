@@ -1,6 +1,7 @@
 extends R_SourceWorldObject
 class_name R_SourceRecipe
 
+@export var visible: bool = true : get = is_visible
 @export var time: float = 0.0
 @export var input: Array[R_SourceRecipeInput] = []
 @export var output: R_SourceRecipeOutput
@@ -9,6 +10,9 @@ static var _list: Array[R_SourceRecipe] = []
 
 static func get_list() -> Array[R_SourceRecipe]:
 	return _list
+
+func is_visible() -> bool:
+	return visible
 
 func _begin_register() -> void:
 	custom_section = "recipe"

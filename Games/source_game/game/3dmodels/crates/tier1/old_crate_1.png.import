@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl0eh1kjpt2ua"
-path.s3tc="res://.godot/imported/old_crate_0.png-b22677b0bf1002178e133aee1157e87f.s3tc.ctex"
-path.etc2="res://.godot/imported/old_crate_0.png-b22677b0bf1002178e133aee1157e87f.etc2.ctex"
+uid="uid://bv2qpo8qnkqy8"
+path.s3tc="res://.godot/imported/old_crate_1.png-58d4aceb065130c9b0cda5149ab583f0.s3tc.ctex"
+path.etc2="res://.godot/imported/old_crate_1.png-58d4aceb065130c9b0cda5149ab583f0.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2f825dea41716ad00f04ac4e867d0a00"
+"md5": "becccda8df2702f0d7cf7414b12c3b29"
 }
 
 [deps]
 
-source_file="res://Games/source_game/game/3dmodels/old_crate/old_crate_0.png"
-dest_files=["res://.godot/imported/old_crate_0.png-b22677b0bf1002178e133aee1157e87f.s3tc.ctex", "res://.godot/imported/old_crate_0.png-b22677b0bf1002178e133aee1157e87f.etc2.ctex"]
+source_file="res://Games/source_game/game/3dmodels/crates/tier1/old_crate_1.png"
+dest_files=["res://.godot/imported/old_crate_1.png-58d4aceb065130c9b0cda5149ab583f0.s3tc.ctex", "res://.godot/imported/old_crate_1.png-58d4aceb065130c9b0cda5149ab583f0.etc2.ctex"]
 
 [params]
 

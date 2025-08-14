@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://du5eshaacppkh" path="res://Games/source_game/objects/entity/test_entity/test_entity.tscn" id="1_n8caj"]
 [ext_resource type="Script" uid="uid://1rarld6gcrwq" path="res://Games/source_game/components/r_entity.gd" id="1_pbau8"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_ua282"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_v2ge6"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_ua282"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_v2ge6"]
 
 [sub_resource type="Resource" id="Resource_c1j58"]
 script = ExtResource("2_v2ge6")

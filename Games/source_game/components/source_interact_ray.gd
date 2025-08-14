@@ -61,6 +61,9 @@ func _ready() -> void:
 		set_collision_mask_value(layer, true)
 
 func _input(event: InputEvent) -> void:
+	if not SD_Network.is_authority(self):
+		return
+	
 	if Input.is_action_just_pressed(input):
 		if SimusDev.ui.has_active_interface():
 			return
