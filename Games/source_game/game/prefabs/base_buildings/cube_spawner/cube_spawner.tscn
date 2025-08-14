@@ -1,8 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dj0l7n2o5b715"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ckrk8"]
-[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_fhegs"]
-[ext_resource type="Script" path="res://Games/source_game/scripts/cube_spawner.gd" id="3_fhegs"]
+[ext_resource type="Script" uid="uid://du6jcb1h1oxym" path="res://Games/source_game/scripts/cube_spawner.gd" id="3_fhegs"]
 [ext_resource type="Resource" uid="uid://bkufu0twiu0rq" path="res://Games/source_game/objects/entity/test_entity/test_entity.tres" id="4_tbhl4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tbhl4"]

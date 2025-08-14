@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="R_SourceBuildings" load_steps=3 format=3 uid="uid://jj367ir8o3tx"]
+[gd_resource type="Resource" script_class="R_SourceBuildings" load_steps=4 format=3 uid="uid://jj367ir8o3tx"]
 
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_l6cu4"]
+[ext_resource type="Resource" uid="uid://dfp868cagu7ig" path="res://Games/source_game/buildings/automation/cube_spawner.tres" id="2_6xw5b"]
 [ext_resource type="Script" uid="uid://c4bxcrs7oiury" path="res://Games/source_game/components/r_source_buildings.gd" id="2_27j8p"]
 
 [resource]
 script = ExtResource("2_27j8p")
 _name = &"Automation"
-buildings = Array[ExtResource("1_l6cu4")]([null])
+buildings = Array[ExtResource("1_l6cu4")]([ExtResource("2_6xw5b")])
 metadata/_custom_type_script = "uid://c4bxcrs7oiury"
