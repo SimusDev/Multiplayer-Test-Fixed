@@ -8,6 +8,6 @@
 
 [resource]
 script = ExtResource("1_0quy1")
-_name = &"source_buildings"
+_name = &"Building"
 buildings = Array[ExtResource("1_tsw7t")]([ExtResource("2_13a5p"), ExtResource("3_13a5p"), ExtResource("4_n51qd")])
 metadata/_custom_type_script = "uid://c4bxcrs7oiury"

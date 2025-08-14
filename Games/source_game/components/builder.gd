@@ -4,9 +4,12 @@ class_name SourceBuilder extends Node3D
 signal building_pick(source_building)
 
 @export var item:SourceItem
+@export var allowed_buildings:Array[R_SourceBuildings]
 @export var buildings:R_SourceBuildings
 
 @export var ghost_color:Color = Color(0, 0.5, 1, 0.5)
+
+var current_buildings_pos:int = 0
 
 var active:bool = false
 var can_place:bool = false
@@ -41,6 +44,13 @@ func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -
 
 func builded(building: R_SourceBuilding) -> void:
 	ui_SourceMessanger.send("builded: %s" % building.id)
+
+func pick_buildings(value:int) -> R_SourceBuildings:
+	if current_buildings_pos + value < allowed_buildings.size(): current_buildings_pos += value
+	else:
+		current_buildings_pos = 0
+	
+	return allowed_buildings[current_buildings_pos]
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:
@@ -108,6 +118,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("x"): pick_building(1)
 	if Input.is_action_just_pressed("c"): pick_building(2)
 	if Input.is_action_just_pressed("v"): pick_building(3)
+	if Input.is_action_just_pressed("page_up"): pick_buildings(1)
+	if Input.is_action_just_pressed("page_down"): pick_buildings(-1)
 	if Input.is_action_just_pressed("rotate_ghost_building"):
 		if is_instance_valid(ghost_model):
 			ghost_model.rotation_degrees.y += 90

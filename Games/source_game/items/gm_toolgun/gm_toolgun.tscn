@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cxaois3c1hpmp"]
+[gd_scene load_steps=33 format=4 uid="uid://cxaois3c1hpmp"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_6udmt"]
 [ext_resource type="PackedScene" uid="uid://s76u5krgs1jm" path="res://Games/source_game/items/gm_toolgun/bullet.tscn" id="2_5ubcn"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://bvpt68icf207p" path="res://Games/source_game/items/gm_toolgun/sound/airboat_gun_lastshot1.wav" id="9_yv5g7"]
 [ext_resource type="Script" uid="uid://dwkovwn8o5f8m" path="res://Games/source_game/components/builder.gd" id="13_qmi5f"]
 [ext_resource type="Resource" uid="uid://c24vqlvk2rvua" path="res://Games/source_game/buildings/source/source_buildings.tres" id="14_8tnfi"]
+[ext_resource type="Script" uid="uid://c4bxcrs7oiury" path="res://Games/source_game/components/r_source_buildings.gd" id="14_u4lwl"]
+[ext_resource type="Resource" uid="uid://jj367ir8o3tx" path="res://Games/source_game/buildings/automation/automation_buildings.tres" id="16_of7im"]
 
 [sub_resource type="Resource" id="Resource_5ubcn"]
 script = ExtResource("2_5uyei")
@@ -252,12 +254,14 @@ extends Node
 
 @export var builder:SourceBuilder
 @export var toolgun_label:Label3D
+@export var buildings_label:Label3D
 
 func _ready() -> void:
 	builder.building_pick.connect(_update)
 
 func _update(source_building:R_SourceBuilding):
 	toolgun_label.text = source_building.name
+	buildings_label.text = builder.buildings._name
 "
 
 [node name="gm_toolgun" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
@@ -344,12 +348,20 @@ transform = Transform3D(-0.987541, 0.0277806, -0.154894, 0.155552, 0.0233399, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009161, 0.060994, -0.357123)
 
 [node name="label" type="Label3D" parent="model"]
-transform = Transform3D(0.025, 0, 0, 0, 0.0176777, 0.0176777, 0, -0.0176777, 0.0176777, -0.005, 0.11, -0.11)
+transform = Transform3D(0.025, 0, 0, 0, 0.0176777, 0.0176777, 0, -0.0176777, 0.0176777, -0.005, 0.104094, -0.104832)
+visibility_range_fade_mode = 1
 pixel_size = 0.006
 double_sided = false
 texture_filter = 0
-text = "helo helo hi hih hi"
-outline_size = 6
+text = "cube_spawner"
+autowrap_mode = 1
+
+[node name="label2" type="Label3D" parent="model"]
+transform = Transform3D(0.025, 0, 0, 0, 0.0176777, 0.0176777, 0, -0.0176777, 0.0176777, -0.005, 0.11215, -0.112995)
+pixel_size = 0.006
+double_sided = false
+texture_filter = 0
+text = "Autiomation"
 autowrap_mode = 1
 
 [node name="OmniLight3D" type="OmniLight3D" parent="model"]
@@ -394,11 +406,13 @@ target_node = NodePath("../../../../model/right")
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("item")]
 script = ExtResource("13_qmi5f")
 item = NodePath("..")
+allowed_buildings = Array[ExtResource("14_u4lwl")]([ExtResource("14_8tnfi"), ExtResource("16_of7im")])
 buildings = ExtResource("14_8tnfi")
 
-[node name="toolgun_ui" type="Node" parent="." node_paths=PackedStringArray("builder", "toolgun_label")]
+[node name="toolgun_ui" type="Node" parent="." node_paths=PackedStringArray("builder", "toolgun_label", "buildings_label")]
 script = SubResource("GDScript_8tnfi")
 builder = NodePath("../Builder")
 toolgun_label = NodePath("../model/label")
+buildings_label = NodePath("../model/label2")
 
 [editable path="arms"]

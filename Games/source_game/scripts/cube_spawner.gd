@@ -27,16 +27,15 @@ func _on_cooldown_timer_timeout() -> void:
 	cooldown_timer.start()
 
 func try_spawn() -> void:
-	if is_cooldown:
-		return
 	if not is_instance_valid(spawn_marker):
+		return
+	if is_cooldown:
 		return
 	
 	spawn()
  
 func spawn() -> void:
-	var new_object = object.prefab.instantiate()
-	SourceLevelSection3D.get_by_name("objects").add_child(new_object)
+	var new_object = object.create().instantiate()
 	new_object.global_position = spawn_marker.global_position
 
 func _process(delta: float) -> void:
