@@ -45,12 +45,12 @@ func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -
 func builded(building: R_SourceBuilding) -> void:
 	ui_SourceMessanger.send("builded: %s" % building.id)
 
-func pick_buildings(value:int) -> R_SourceBuildings:
+func pick_buildings(value:int) -> void:
 	if current_buildings_pos + value < allowed_buildings.size(): current_buildings_pos += value
 	else:
 		current_buildings_pos = 0
 	
-	return allowed_buildings[current_buildings_pos]
+	buildings = allowed_buildings[current_buildings_pos]
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:
