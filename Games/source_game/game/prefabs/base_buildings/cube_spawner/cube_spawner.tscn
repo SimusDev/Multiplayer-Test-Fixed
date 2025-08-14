@@ -42,7 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.6)
 operation = 2
 mesh = SubResource("BoxMesh_im7ea")
 
-[node name="SourceCubeSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_marker")]
+[node name="SourceCubeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_marker")]
 script = ExtResource("3_fhegs")
 spawn_marker = NodePath("Marker3D")
 object = ExtResource("3_tbhl4")
