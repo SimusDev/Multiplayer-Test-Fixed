@@ -60,10 +60,12 @@ inventory = NodePath("../SourceInventory")
 [node name="SD_NetSynchronizer" parent="." index="2"]
 _data = SubResource("Resource_6p28h")
 
-[node name="SourceCrouch" parent="." index="11" node_paths=PackedStringArray("collision_normal")]
+[node name="SourceCrouch" parent="." index="11" node_paths=PackedStringArray("collision_normal", "ceiling_detection", "crouch_camera_position")]
 collision_normal = NodePath("../AI_Visible/collision_normal")
 crouch_shape = null
 normal_shape = null
+ceiling_detection = NodePath("../crouch_ray")
+crouch_camera_position = NodePath("../crouch_pos")
 
 [node name="SourceCamera" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
@@ -71,7 +73,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
 [node name="SourceViewModelRoot3D" parent="SourceCamera" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171651, -0.172915, -0.348444)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="13"]
+[node name="crouch_ray" type="RayCast3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536034, -0.054951)
+target_position = Vector3(0, 1, 0)
+
+[node name="crouch_pos" type="Node3D" parent="." index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824919, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13615, -0.0360413)
 visible = false
 shape = SubResource("BoxShape3D_b4w1e")
@@ -87,6 +96,9 @@ shape = SubResource("BoxShape3D_1jxyn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248108, 2.06825, -0.0527891)
 shape = SubResource("BoxShape3D_an3tc")
+
+[node name="nickname" parent="." index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40819, 0)
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
