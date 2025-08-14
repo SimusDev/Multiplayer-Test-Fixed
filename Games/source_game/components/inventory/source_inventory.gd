@@ -164,11 +164,10 @@ func _select_slot_local(slot: SourceInventorySlot) -> void:
 		debug_print("slot selected %s" % str(slot))
 
 func item_action_request(item: SourceItemStack, action: SourceItemAction) -> void:
-	SD_Network.call_func_on_server(_action_request, [item, SourceNetwork.serialize_resource(action)])
+	SD_Network.call_func_on_server(_action_request, [item, action])
 
-func _action_request(item: SourceItemStack, serialized: Variant) -> void:
+func _action_request(item: SourceItemStack, action_class: SourceItemAction) -> void:
 	if is_instance_valid(item):
-		var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized) as SourceItemAction
 		if action_class:
 			action_class._action(item)
 			action_class._action_server(item)
