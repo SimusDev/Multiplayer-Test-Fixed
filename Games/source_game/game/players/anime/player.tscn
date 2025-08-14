@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cea8mnn7xt8va"]
+[gd_scene load_steps=13 format=3 uid="uid://cea8mnn7xt8va"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_b4w1e"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="2_1jxyn"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_oynvx"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_mitkl"]
+[ext_resource type="Script" uid="uid://bl7u4n7rmh53s" path="res://Games/source_game/components/emotions/source_emotions.gd" id="5_mitkl"]
+[ext_resource type="Resource" uid="uid://cjle81nnb3h56" path="res://Games/source_game/game/players/anime/emotions/emotions.tres" id="6_o4uiq"]
 
 [sub_resource type="Resource" id="Resource_o4uiq"]
 script = ExtResource("3_oynvx")
@@ -99,6 +101,11 @@ shape = SubResource("BoxShape3D_an3tc")
 
 [node name="nickname" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40819, 0)
+
+[node name="SourceEmotions" type="Node" parent="." index="21"]
+script = ExtResource("5_mitkl")
+resource = ExtResource("6_o4uiq")
+metadata/_custom_type_script = "uid://bl7u4n7rmh53s"
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]

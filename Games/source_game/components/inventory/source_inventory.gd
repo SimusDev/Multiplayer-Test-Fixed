@@ -323,7 +323,6 @@ func item_move_to(item: SourceItemStack, slot: SourceInventorySlot) -> void:
 		SD_Network.call_func_on_server(_item_move_to_net, [item, slot])
 
 func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void:
-	
 	if not is_instance_valid(slot):
 		return
 	
@@ -339,9 +338,11 @@ func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void
 	
 	var to_inv: SourceInventory = slot.get_inventory()
 	
-	if to_inv.private and to_inv != self:
-		debug_print("cant move item to private inventory!")
-		return
+	#if to_inv == self:
+		#debug_print("cant move item to private inventory!")
+		#return
+	
+	#print(to_inv)
 	
 	SD_Network.call_func(_item_move_to_local, [item.get_path(), slot.get_path()])
 
