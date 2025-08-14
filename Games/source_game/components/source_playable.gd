@@ -2,6 +2,8 @@
 extends Node
 class_name SourcePlayable
 
+signal _voice_active(value: bool)
+
 @export var root: Node
 
 @export_group("UI")
@@ -10,6 +12,7 @@ class_name SourcePlayable
 @export_group("Voice")
 @export var voice_chat_input: String = "source.voice"
 @export var voice_chat_output: AudioStreamPlayer3D
+
 
 var ui: PackedScene
 
@@ -68,8 +71,10 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed(voice_chat_input) and !SimusDev.ui.has_active_interface():
+		_voice_active.emit(true)
 		_voice.process_mode = Node.PROCESS_MODE_INHERIT
 	if Input.is_action_just_released(voice_chat_input):
+		_voice_active.emit(false)
 		_voice.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _initialize_ui() -> void:

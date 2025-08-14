@@ -2,20 +2,16 @@
 extends Node
 class_name SD_NetVoiceChat
 
-## The minimum input volume at which the audio is broadcasted to other players.
 @export var input_volume_threshold : float = 0.01
-## The audio quality. Not recommended to go above Medium.
 @export_enum("Very High", "High", "Medium", "Low") var audio_quality : int = 1 : 
 	set(value):
 		audio_quality = value
 		update_configuration_warnings()
 
 @export_group("Audio Bus")
-## Any extra effects you would like to be added to the record bus.
 @export var record_effects : Array[AudioEffect] = []
 
 @export_group("Output")
-## Allows you to create 2D or 3D spatial audio, where players can only hear each other when close ingame.
 @export_enum("None", "2D", "3D") var spatial_mode : int : 
 	set(value):
 		spatial_mode = value
@@ -29,13 +25,12 @@ var _record_effect : AudioEffectCapture
 
 var _output_stream : AudioStreamGenerator
 var _output_stream_playback : AudioStreamGeneratorPlayback
-## The output player which will play received voice samples.
 var _output_player : Node
 
 var _input_configured : bool = false
 var _output_configured : bool = false
 
-@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.UNRELIABLE_ORDERED
+@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
 @export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
 
 func set_input_device(device_name : String) -> void:
@@ -56,7 +51,6 @@ func _ready() -> void:
 		return
 	
 	SD_Network.register_object(self)
-	
 	SD_Network.register_function(_process_audio)
 	
 	_configure_bus()
@@ -70,8 +64,6 @@ func _ready() -> void:
 		_configure_input()
 	else:
 		_configure_output()
-	
-	
 
 func _owner_changed(owner_id : int) -> void:
 	if SD_Network.is_authority(self):
@@ -88,7 +80,6 @@ func _process(delta: float) -> void:
 		var data : PackedFloat32Array = PackedFloat32Array()
 		
 		var sr : float = AudioServer.get_mix_rate()
-		#_sample_raw(recording_data, data)
 		_downsample_half(recording_data, data)
 		sr /= 2
 		var max_amp : float = 0.0
