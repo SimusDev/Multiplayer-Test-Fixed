@@ -1,20 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=13 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="PackedScene" uid="uid://h7yi20x5r44y" path="res://Games/source_game/ui/inventory/hotbar.tscn" id="2_xxxcs"]
 [ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_ltpmo"]
 [ext_resource type="PackedScene" uid="uid://dc5y124phqhmn" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.tscn" id="5_d3a31"]
-[ext_resource type="Shader" uid="uid://cq7dsvms68sw6" path="res://Games/source_game/player/ui/player_ui.gdshader" id="6_m14t5"]
 [ext_resource type="PackedScene" uid="uid://dclxv5v2xeltv" path="res://Games/source_game/ui/inventory/inventory.tscn" id="7_henmv"]
 [ext_resource type="Texture2D" uid="uid://d4j3kgyo2i0nn" path="res://textures/icons/microphone.png" id="9_1ipc1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_henmv"]
-shader = ExtResource("6_m14t5")
-shader_parameter/wiggle = 0.05
-shader_parameter/wiggle_speed = 25.0
-shader_parameter/smear = 1.0
-shader_parameter/blur_samples = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxxcs"]
 outline_size = 3
@@ -99,17 +91,6 @@ expand_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="vhs" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_henmv")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
 [node name="Inventory" parent="." instance=ExtResource("7_henmv")]
 layout_mode = 1
 
@@ -140,8 +121,8 @@ label_settings = SubResource("LabelSettings_xxxcs")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0465116
-anchor_top = 1.0
-anchor_right = 2.7093
+anchor_top = 1.17647
+anchor_right = 2.55814
 anchor_bottom = 7.41176
 offset_right = -1.52588e-05
 metadata/_edit_use_anchors_ = true
