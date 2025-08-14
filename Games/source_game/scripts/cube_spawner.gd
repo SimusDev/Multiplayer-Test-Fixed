@@ -13,7 +13,7 @@ var cooldown_timer:Timer = Timer.new()
 
 
 func _ready() -> void:
-	pass
+	add_timer()
 
 func add_timer() -> void:
 	add_child(cooldown_timer)
@@ -23,21 +23,15 @@ func add_timer() -> void:
 	cooldown_timer.start()
 
 func _on_cooldown_timer_timeout() -> void:
-	is_cooldown = false
+	try_spawn()
 	cooldown_timer.start()
 
 func try_spawn() -> void:
 	if not is_instance_valid(spawn_marker):
 		return
-	if is_cooldown:
-		return
-	
-	spawn()
+	if SD_Network.is_server():
+		spawn()
  
 func spawn() -> void:
-	if SD_Network.is_server():
-		var new_object = object.create().instantiate()
-		new_object.source.global_position = spawn_marker.global_position
-
-func _process(delta: float) -> void:
-	try_spawn()
+	var new_object = object.create().instantiate()
+	new_object.source.global_position = spawn_marker.global_position

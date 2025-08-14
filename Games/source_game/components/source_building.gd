@@ -19,7 +19,6 @@ func _ready() -> void:
 func _on_destroy():
 	spawn_physical_particles()
 	destroy.emit()
-	print("SEXSEXSEXSEX")
 	queue_free()
 
 func spawn_physical_particles():

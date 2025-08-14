@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ckrk8"]
 [ext_resource type="Script" uid="uid://du6jcb1h1oxym" path="res://Games/source_game/scripts/cube_spawner.gd" id="3_fhegs"]
+[ext_resource type="Resource" uid="uid://5v3fa1r2ogpy" path="res://Games/source_game/props/ball/ball_prop.tres" id="3_tbhl4"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="4_4d0qa"]
-[ext_resource type="Resource" uid="uid://bkufu0twiu0rq" path="res://Games/source_game/objects/entity/test_entity/test_entity.tres" id="4_tbhl4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tbhl4"]
 size = Vector3(1, 0.2, 0.5)
@@ -45,7 +45,7 @@ mesh = SubResource("BoxMesh_im7ea")
 [node name="SourceCubeSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_marker")]
 script = ExtResource("3_fhegs")
 spawn_marker = NodePath("Marker3D")
-object = ExtResource("4_tbhl4")
+object = ExtResource("3_tbhl4")
 
 [node name="Marker3D" type="Marker3D" parent="SourceCubeSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.6)
