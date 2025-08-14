@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj0l7n2o5b715"]
+[gd_scene load_steps=9 format=3 uid="uid://dj0l7n2o5b715"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ckrk8"]
 [ext_resource type="Script" uid="uid://du6jcb1h1oxym" path="res://Games/source_game/scripts/cube_spawner.gd" id="3_fhegs"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="4_4d0qa"]
 [ext_resource type="Resource" uid="uid://bkufu0twiu0rq" path="res://Games/source_game/objects/entity/test_entity/test_entity.tres" id="4_tbhl4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tbhl4"]
@@ -16,8 +17,10 @@ size = Vector3(0.45, 0.5, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_im7ea"]
 size = Vector3(0.225, 0.5, 0.5)
 
-[node name="cube_spawner" type="Node3D"]
+[node name="cube_spawner" type="Node3D" node_paths=PackedStringArray("model", "health")]
 script = ExtResource("1_ckrk8")
+model = NodePath("model")
+health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
 [node name="model" type="CSGMesh3D" parent="."]
@@ -44,3 +47,8 @@ object = ExtResource("4_tbhl4")
 
 [node name="Marker3D" type="Marker3D" parent="SourceCubeSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.6)
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_4d0qa")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cr18fup83we2u"
