@@ -17,7 +17,6 @@ func _on_death(event: S_EventDeath) -> void:
 		if object.ragdoll:
 			var ragdoll: C_SourceWorldObjectReference = object.ragdoll.create().instantiate()
 			ragdoll.set_global_transform_from(event.source)
-			
 		
 		if object.death_sound:
 			object.death_sound.try_play_server(event.source)
