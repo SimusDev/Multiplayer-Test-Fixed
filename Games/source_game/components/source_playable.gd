@@ -29,7 +29,6 @@ static func find_above(node: Node) -> SourcePlayable:
 	if founded:
 		return founded
 	return find_above(node.get_parent())
-	
 
 func _enter_tree() -> void:
 	if not root:

@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://cea8mnn7xt8va"]
+
+[ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_b4w1e"]
+[ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="2_1jxyn"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_oynvx"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_mitkl"]
+
+[sub_resource type="Resource" id="Resource_o4uiq"]
+script = ExtResource("3_oynvx")
+properties = PackedStringArray("rotation", "position")
+interpolation_enabled = true
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_eokyo"]
+script = ExtResource("3_oynvx")
+properties = PackedStringArray("rotation")
+interpolation_enabled = true
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("../SourceCamera")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_6p28h"]
+script = ExtResource("4_mitkl")
+_list = Array[ExtResource("3_oynvx")]([SubResource("Resource_o4uiq"), SubResource("Resource_eokyo")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4w1e"]
+size = Vector3(1, 2.21121, 0.578186)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jxyn"]
+size = Vector3(0.728516, 0.977058, 0.578186)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_an3tc"]
+size = Vector3(0.512634, 0.455857, 0.468338)
+
+[node name="player" instance=ExtResource("1_b4w1e")]
+
+[node name="AnimatedModel" parent="." index="0" node_paths=PackedStringArray("_movement", "_camera", "inventory") instance=ExtResource("2_1jxyn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+_movement = NodePath("../SourceMovement")
+_camera = NodePath("../SourceCamera")
+inventory = NodePath("../SourceInventory")
+
+[node name="SD_NetSynchronizer" parent="." index="2"]
+_data = SubResource("Resource_6p28h")
+
+[node name="SourceCrouch" parent="." index="11" node_paths=PackedStringArray("collision_normal")]
+collision_normal = NodePath("../AI_Visible/collision_normal")
+crouch_shape = null
+normal_shape = null
+
+[node name="SourceCamera" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
+
+[node name="SourceViewModelRoot3D" parent="SourceCamera" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171651, -0.172915, -0.348444)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13615, -0.0360413)
+visible = false
+shape = SubResource("BoxShape3D_b4w1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0263383, 1.3809, -0.0360413)
+shape = SubResource("BoxShape3D_1jxyn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219026, 0.513551, -0.0360413)
+shape = SubResource("BoxShape3D_1jxyn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248108, 2.06825, -0.0527891)
+shape = SubResource("BoxShape3D_an3tc")
+
+[editable path="SourceMovement"]
+[editable path="SourceCamera"]

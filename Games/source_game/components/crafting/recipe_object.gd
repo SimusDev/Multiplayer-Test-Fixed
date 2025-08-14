@@ -5,8 +5,12 @@ extends RigidBody3D
 @onready var label: Label = $SubViewportContainer/Label
 
 func _ready() -> void:
+	if not reference:
+		return
+	
 	label.text = "ingridients:\n"
 	
 	for input in reference.input:
-		var text: String = "%s, x%s\n" % [input.source.id, str(input.quantity)]
-		label.text += text
+		if reference:
+			var text: String = "%s, x%s\n" % [input.source.id, str(input.quantity)]
+			label.text += text

@@ -35,7 +35,7 @@ var _output_player : Node
 var _input_configured : bool = false
 var _output_configured : bool = false
 
-@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.UNRELIABLE_ORDERED
+@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
 @export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
 
 func set_input_device(device_name : String) -> void:
@@ -102,6 +102,7 @@ func _process(delta: float) -> void:
 func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
 	var half_frames : int = frames / 2
+	
 	data.resize(half_frames)
 	for i in range(half_frames):
 		var v1 : float = (recording_data[i * 2].x + recording_data[i * 2].y) / 2
@@ -125,7 +126,6 @@ func _sample_raw(recording_data: PackedVector2Array, data : PackedFloat32Array) 
 	for i in range(frames):
 		data[i] = (recording_data[i].x + recording_data[i].y) / 2
 	return data
-
 
 func _downsample_eighth(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
