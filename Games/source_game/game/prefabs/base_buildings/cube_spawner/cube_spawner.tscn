@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://dj0l7n2o5b715"]
+
+[ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ckrk8"]
+[ext_resource type="PackedScene" uid="uid://ckgrvgsjahpj4" path="res://Games/source_game/player/source_player.tscn" id="2_fhegs"]
+[ext_resource type="Script" uid="uid://du6jcb1h1oxym" path="res://Games/source_game/scripts/cube_spawner.gd" id="3_fhegs"]
+[ext_resource type="Resource" uid="uid://bkufu0twiu0rq" path="res://Games/source_game/objects/entity/test_entity/test_entity.tres" id="4_tbhl4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tbhl4"]
+size = Vector3(1, 0.2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4d0qa"]
+size = Vector3(0.5, 2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0mvle"]
+size = Vector3(0.45, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_im7ea"]
+size = Vector3(0.225, 0.5, 0.5)
+
+[node name="cube_spawner" type="Node3D"]
+script = ExtResource("1_ckrk8")
+metadata/_custom_type_script = "uid://05gqrla3psra"
+
+[node name="model" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("BoxMesh_tbhl4")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+mesh = SubResource("BoxMesh_4d0qa")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="model/CSGMesh3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0.5)
+mesh = SubResource("BoxMesh_0mvle")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="model/CSGMesh3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.6)
+operation = 2
+mesh = SubResource("BoxMesh_im7ea")
+
+[node name="source_player" parent="." instance=ExtResource("2_fhegs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 0.9, 1.2)
+
+[node name="SourceCubeSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_marker")]
+script = ExtResource("3_fhegs")
+spawn_marker = NodePath("Marker3D")
+object = ExtResource("4_tbhl4")
+
+[node name="Marker3D" type="Marker3D" parent="SourceCubeSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.6)
