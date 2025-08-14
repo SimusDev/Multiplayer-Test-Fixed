@@ -35,8 +35,9 @@ func try_spawn() -> void:
 	spawn()
  
 func spawn() -> void:
-	var new_object = object.create().instantiate()
-	new_object.global_position = spawn_marker.global_position
+	if SD_Network.is_server():
+		var new_object = object.create().instantiate()
+		new_object.source.global_position = spawn_marker.global_position
 
 func _process(delta: float) -> void:
 	try_spawn()
