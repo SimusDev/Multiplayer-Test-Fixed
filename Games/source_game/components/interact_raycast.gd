@@ -3,7 +3,7 @@ class_name SourceInteractRaycast extends RayCast3D
 signal collider_changed
 signal object_detected(obj)
 
-@export var player:SourcePlayer
+@export var player:Node3D
 @export var drag_item_link_node:Node3D
 var is_drag_item:bool = false
 
