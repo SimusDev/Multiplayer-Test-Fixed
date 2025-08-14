@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://3bq4bc82j34c"
 
 [resource]
 script = ExtResource("5_mmybi")
+workbench = true
 time = 0.0
 input = Array[ExtResource("1_yvraq")]([SubResource("Resource_worqe")])
 output = SubResource("Resource_yvraq")

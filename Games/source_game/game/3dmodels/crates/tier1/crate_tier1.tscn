@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://djgta3wl2s2b0"]
+
+[ext_resource type="PackedScene" uid="uid://bs300xfl8ogrd" path="res://Games/source_game/game/3dmodels/crates/base_crate.tscn" id="1_iuwxg"]
+[ext_resource type="PackedScene" uid="uid://r80fkfg47ccq" path="res://Games/source_game/game/3dmodels/crates/tier1/old_crate.glb" id="2_tndtp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuwxg"]
+size = Vector3(0.509705, 0.440399, 0.513672)
+
+[node name="crate_tier1" instance=ExtResource("1_iuwxg")]
+
+[node name="SourceInventory" parent="." index="1"]
+initial_slots = 9
+
+[node name="Sketchfab_Scene" parent="." index="2" instance=ExtResource("2_tndtp")]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 0, 0.239647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00088501, 0.016983, -0.00292969)
+shape = SubResource("BoxShape3D_iuwxg")
