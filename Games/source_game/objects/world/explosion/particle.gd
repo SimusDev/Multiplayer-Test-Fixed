@@ -11,6 +11,7 @@ func _ready() -> void:
 	scale = Vector3(size, size, size)
 	%AnimationPlayer.play("anim")
 	
+	await get_tree().process_frame
 	sound.try_play(self)
 	#print(global_position)
 

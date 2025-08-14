@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://3bq4bc82j34c"
 
 [resource]
 script = ExtResource("2_cyiah")
+visible = true
 time = 0.0
 input = Array[ExtResource("1_7kly6")]([SubResource("Resource_e2ckj")])
 output = SubResource("Resource_ap3qb")

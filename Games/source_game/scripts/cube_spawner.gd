@@ -1,5 +1,5 @@
 @icon("res://textures/icons/cube.png")
-class_name SourceCubeSpawner extends Node
+class_name SourceCubeSpawner extends Node3D
 
 @export var spawn_marker:Node3D
 @export_group("Settings")
@@ -11,9 +11,9 @@ var is_cooldown:bool = false
 
 var cooldown_timer:Timer = Timer.new()
 
-
 func _ready() -> void:
-	add_timer()
+	if SD_Network.is_server():
+		add_timer()
 
 func add_timer() -> void:
 	add_child(cooldown_timer)
