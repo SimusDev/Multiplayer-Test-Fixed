@@ -25,8 +25,8 @@ func create3d(position: Variant) -> SourceSoundInstance:
 	
 	var obj: C_SourceWorldObjectReference = create()
 	obj.source.play_at_start = false
-	obj.position = position
 	obj.instantiate_local()
+	obj.get_global_position_at(position)
 	return obj.source
 
 func try_play(position: Variant) -> SourceSoundInstance:
@@ -43,7 +43,7 @@ func try_play_server(position: Variant) -> SourceSoundInstance:
 		
 		var obj: C_SourceWorldObjectReference = create()
 		obj.source.play_at_start = true
-		obj.position = position
 		obj.instantiate()
+		obj.get_global_position_at(position)
 		return obj.source
 	return null

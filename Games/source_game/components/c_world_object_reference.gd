@@ -4,8 +4,6 @@ class_name C_SourceWorldObjectReference
 var source: Node
 var object: R_SourceWorldObject
 
-var position: Variant = Vector3.ZERO
-
 func instantiate() -> C_SourceWorldObjectReference:
 	SourceGame.instance.instantiate_object_on_server(source)
 	return self
@@ -13,6 +11,11 @@ func instantiate() -> C_SourceWorldObjectReference:
 func set_global_position(position: Variant) -> C_SourceWorldObjectReference:
 	if "global_position" in source:
 		source.global_position = position
+	return self
+
+func get_global_position_at(at: Variant) -> C_SourceWorldObjectReference:
+	var vector: Vector3 = SourceObject.get_vector3_position(at)
+	set_global_position(vector)
 	return self
 
 func set_global_position_from(node: Node) -> C_SourceWorldObjectReference:
@@ -32,5 +35,5 @@ func set_global_transform_from(node: Node) -> C_SourceWorldObjectReference:
 
 
 func instantiate_local() -> C_SourceWorldObjectReference:
-	SourceGame.instance.instantiate_object_local(source, position)
+	SourceGame.instance.instantiate_object_local(source)
 	return self

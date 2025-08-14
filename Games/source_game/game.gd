@@ -76,7 +76,7 @@ func instantiate_object_on_server(node: Node) -> Node:
 	
 	return node
 
-func instantiate_object_local(node: Node, position: Variant) -> Node:
+func instantiate_object_local(node: Node) -> Node:
 	if node.is_inside_tree():
 		node.get_parent().remove_child(node)
 	

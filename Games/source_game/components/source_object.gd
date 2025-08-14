@@ -73,7 +73,7 @@ static func teleport(node: Node, to: Variant) -> void:
 
 static func get_vector3_position(from: Variant) -> Vector3:
 	var result: Vector3 = Vector3.ZERO
-	if from is Node3D:
+	if "global_position" in from:
 		result = from.global_position
 	if from is Vector3:
 		result = from
