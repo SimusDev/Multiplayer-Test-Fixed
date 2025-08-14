@@ -27,7 +27,8 @@ func _enter_tree() -> void:
 	if not root:
 		root = get_parent()
 	
-	SD_Components.append_to(root, self)
+	if not Engine.is_editor_hint():
+		SD_Components.append_to(root, self)
 
 static func find_in(node: Node) -> W_AnimatedModel3D:
 	return SD_Components.find_first(node, W_AnimatedModel3D)

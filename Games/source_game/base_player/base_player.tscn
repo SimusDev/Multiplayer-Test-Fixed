@@ -57,15 +57,15 @@ metadata/_custom_type_script = "uid://cotoo7b7sohgn"
 script = ExtResource("3_2hdmp")
 metadata/_custom_type_script = "uid://blbs0u7qkn6if"
 
-[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true", "authority_false")]
+[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true")]
 script = ExtResource("28_1yv11")
 hide_at_start = true
 authority_true = [NodePath("../nickname")]
-authority_false = [null]
 
-[node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root")]
+[node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root", "voice_chat_output")]
 script = ExtResource("1_5m5ro")
 root = NodePath("..")
+voice_chat_output = NodePath("../SourceCamera/voice")
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_qdiq6")
@@ -267,7 +267,8 @@ metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
 [node name="SourceFootsteps" parent="." instance=ExtResource("8_3mc7r")]
 
-[node name="SourceMovement" parent="." instance=ExtResource("9_amac5")]
+[node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_amac5")]
+actor = NodePath("..")
 _move_speed = 5.0
 _crouch_speed = 2.5
 key_forward = "move_forward"
@@ -278,12 +279,17 @@ key_jump = "jump"
 key_sprint = "sprint"
 key_crouch = "crouch"
 
-[node name="SourceCrouch" parent="." instance=ExtResource("10_ghdio")]
+[node name="SourceCrouch" parent="." node_paths=PackedStringArray("camera", "movement") instance=ExtResource("10_ghdio")]
+camera = NodePath("../SourceCamera")
+movement = NodePath("../SourceMovement")
 crouch_shape = ExtResource("11_abx2t")
 normal_shape = ExtResource("12_xpejh")
 
-[node name="SourceCamera" parent="." instance=ExtResource("13_y5oya")]
+[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+body = NodePath("..")
+
+[node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera"]
 
 [node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)

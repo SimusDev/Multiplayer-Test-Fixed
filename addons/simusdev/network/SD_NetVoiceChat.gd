@@ -93,6 +93,7 @@ func _process(delta: float) -> void:
 func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
 	var half_frames : int = frames / 2
+	
 	data.resize(half_frames)
 	for i in range(half_frames):
 		var v1 : float = (recording_data[i * 2].x + recording_data[i * 2].y) / 2
@@ -116,7 +117,6 @@ func _sample_raw(recording_data: PackedVector2Array, data : PackedFloat32Array) 
 	for i in range(frames):
 		data[i] = (recording_data[i].x + recording_data[i].y) / 2
 	return data
-
 
 func _downsample_eighth(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
