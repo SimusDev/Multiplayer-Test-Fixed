@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://criu38np4cu7b"]
+
+[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="1_0w6wa"]
+[ext_resource type="Script" uid="uid://b6omgd3ip6tlf" path="res://Games/source_game/ui/emotions/emotion.gd" id="1_ax4ut"]
+
+[node name="emotion" type="Button"]
+custom_minimum_size = Vector2(220, 48)
+offset_right = 220.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("1_0w6wa")
+text = "emotion"
+script = ExtResource("1_ax4ut")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

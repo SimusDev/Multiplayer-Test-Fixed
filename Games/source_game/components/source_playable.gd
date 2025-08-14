@@ -25,6 +25,9 @@ static var _local: SourcePlayable = null
 static func get_local() -> SourcePlayable:
 	return _local
 
+func is_local() -> bool:
+	return self == get_local()
+
 static func find_above(node: Node) -> SourcePlayable:
 	if node is SourceGame:
 		return null
