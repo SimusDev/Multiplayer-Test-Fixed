@@ -25,9 +25,6 @@ enum ArmState {
 @export_group("Audio Settings")
 @export var moving_audio_player: AudioStreamPlayer3D
 
-@onready var source_playable: SourcePlayable = SourcePlayable.get_local()
-@onready var source_player: SourcePlayer = source_playable.network.get_player_node() as SourcePlayer
-
 var current_target: Node3D = null : set = set_current_target
 var drop_target_confirmed: bool = false
 var current_state: ArmState = ArmState.IDLE : set = switch_state, get = get_current_state

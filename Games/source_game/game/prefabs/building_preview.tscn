@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://jinoi4go4yhw"]
+[gd_scene load_steps=5 format=3 uid="uid://jinoi4go4yhw"]
 
 [ext_resource type="Script" uid="uid://b55g0yehx7c0h" path="res://Games/source_game/game/prefabs/building_preview.gd" id="1_svaxo"]
-[ext_resource type="Texture2D" uid="uid://bfemikasjimu4" path="res://addons/YouCanDoIt/Images/Girls/Chill/Frieren Rust 2.png" id="2_8dwmd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="3_77oyn"]
 [ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="4_vjkoh"]
 
@@ -37,7 +36,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8dwmd")
 expand_mode = 1
 stretch_mode = 5
 

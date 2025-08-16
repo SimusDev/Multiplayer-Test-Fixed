@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=9 format=3]
+[gd_resource type="Resource" script_class="SD_EngineSettings" load_steps=9 format=3 uid="uid://d4mh5s24c6fda"]
 
 [ext_resource type="Script" path="res://addons/simusdev/multiplayer/SD_MultiplayerSettings.gd" id="1"]
-[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkCacheSettings.gd" id="2"]
-[ext_resource type="Script" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="3"]
-[ext_resource type="Script" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="4"]
-[ext_resource type="Script" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="5"]
+[ext_resource type="Script" uid="uid://chrfdjatuxh2l" path="res://addons/simusdev/network/SD_NetworkCacheSettings.gd" id="2"]
+[ext_resource type="Script" uid="uid://bsn5pysgtogq7" path="res://addons/simusdev/network/SD_NetworkSettings.gd" id="3"]
+[ext_resource type="Script" uid="uid://bpr665ltjd8ed" path="res://addons/simusdev/popups/SD_PopupAnimationResource.gd" id="4"]
+[ext_resource type="Script" uid="uid://c0ux46dsfilvl" path="res://addons/simusdev/settings/SD_EngineSettings.gd" id="5"]
 
 [sub_resource type="Resource" id="Resource_2wia1"]
 script = ExtResource("1")
@@ -14,12 +14,12 @@ dedicated_server_port = 80
 
 [sub_resource type="Resource" id="Resource_me2gm"]
 script = ExtResource("2")
-cache_resources = PackedStringArray()
+cache_resources = []
 
 [sub_resource type="Resource" id="Resource_m7xkw"]
 script = ExtResource("3")
-enabled = false
-channels = PackedStringArray()
+enabled = true
+channels = []
 root_path = "/root/"
 default_peer = true
 compression = 1
@@ -36,7 +36,7 @@ cache = SubResource("Resource_me2gm")
 
 [resource]
 script = ExtResource("5")
-developer = ""
+developer = "zxcvlxd and simusdev "
 game_code = ""
 monetization = Dictionary[String, Variant]({
 "autoselect_sdk": true,
