@@ -50,7 +50,14 @@ func pick_buildings(value:int) -> void:
 	else:
 		current_buildings_pos = 0
 	
+	var current_building_idx = 0
+	for x in buildings.buildings.size():
+		if buildings.buildings[x] == current_building:
+			current_building_idx = x
+			break
+	
 	buildings = allowed_buildings[current_buildings_pos]
+	pick_building(current_building_idx)
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:

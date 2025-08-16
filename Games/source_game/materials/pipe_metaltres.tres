@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://oh7i6obtc2x0"]
+
+[ext_resource type="Texture2D" uid="uid://b71360ocuj037" path="res://Games/fnaf/maps/fnaf1_u/materialsmodelsprops_pipespipeset_metal02.png" id="1_be3em"]
+[ext_resource type="Texture2D" uid="uid://tp84uoq8pdxc" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_pi_apc_normal.png" id="2_wvxnq"]
+
+[resource]
+albedo_texture = ExtResource("1_be3em")
+normal_scale = 2.24
+normal_texture = ExtResource("2_wvxnq")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+texture_filter = 0

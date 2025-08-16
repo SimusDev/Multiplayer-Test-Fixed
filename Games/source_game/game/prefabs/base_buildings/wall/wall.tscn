@@ -28,13 +28,15 @@ particle = ExtResource("4_fywtf")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
-[node name="mesh" type="CSGMesh3D" parent="."]
-mesh = SubResource("BoxMesh_auanr")
-
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_uv2w3")
 target = NodePath("..")
+health = 500.0
+max_health = 500.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_auanr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

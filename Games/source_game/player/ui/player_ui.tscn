@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=10 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
@@ -17,43 +17,6 @@ font_size = 20
 font_color = Color(1, 0, 0, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_xxxcs"]
-resource_name = "blink"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0666667, 0, 0.466667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_1ipc1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jidd8"]
-_data = {
-&"RESET": SubResource("Animation_1ipc1"),
-&"blink": SubResource("Animation_xxxcs")
-}
 
 [node name="player_ui" type="Control"]
 layout_mode = 3
@@ -142,16 +105,9 @@ label_settings = SubResource("LabelSettings_1ipc1")
 [node name="icon" type="TextureRect" parent="nickname/VBoxContainer/voice_chat_label"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.703057
-anchor_top = -0.142857
-anchor_right = 0.799127
-anchor_bottom = 0.904762
+anchor_left = 0.740741
+anchor_right = 0.836811
+anchor_bottom = 1.04762
 texture = ExtResource("9_1ipc1")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="anim" type="AnimationPlayer" parent="nickname/VBoxContainer/voice_chat_label/icon"]
-libraries = {
-&"": SubResource("AnimationLibrary_jidd8")
-}
-autoplay = "blink"

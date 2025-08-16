@@ -24,6 +24,13 @@ particle = ExtResource("2_crjlj")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_mwgfn")
+target = NodePath("..")
+health = 500.0
+max_health = 500.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
 [node name="mesh" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_fnets")
 material = SubResource("StandardMaterial3D_fnets")
@@ -45,10 +52,3 @@ metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 2.98023e-08, 0, 0)
 shape = SubResource("BoxShape3D_crjlj")
-
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("3_mwgfn")
-target = NodePath("..")
-health = 15.0
-max_health = 15.0
-metadata/_custom_type_script = "uid://cr18fup83we2u"

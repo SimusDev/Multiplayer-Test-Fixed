@@ -26,6 +26,19 @@ model = NodePath("model")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_4d0qa")
+target = NodePath("..")
+health = 250.0
+max_health = 250.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceCubeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_marker")]
+script = ExtResource("3_fhegs")
+spawn_marker = NodePath("../Marker3D")
+object = ExtResource("3_tbhl4")
+cooldown_time = 5.0
+
 [node name="model" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_tbhl4")
 
@@ -42,19 +55,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.6)
 operation = 2
 mesh = SubResource("BoxMesh_im7ea")
 
-[node name="SourceCubeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_marker")]
-script = ExtResource("3_fhegs")
-spawn_marker = NodePath("../Marker3D")
-object = ExtResource("3_tbhl4")
-cooldown_time = 5.0
-
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.6)
-
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("4_4d0qa")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://cr18fup83we2u"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

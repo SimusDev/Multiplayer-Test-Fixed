@@ -1,17 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://danoxw1eto00t"]
+[gd_scene load_steps=15 format=3 uid="uid://danoxw1eto00t"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ekdbf"]
-[ext_resource type="Texture2D" uid="uid://cadpwjqtajyfy" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_vagcs"]
+[ext_resource type="Texture2D" uid="uid://4omp4imfyu10" path="res://addons/kenney_prototype_textures/dark/texture_06.png" id="3_0p64p"]
 [ext_resource type="Material" uid="uid://fahxl71di7ib" path="res://Games/source_game/materials/tilefloor.tres" id="3_28rhi"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_ekdbf"]
 [ext_resource type="Script" uid="uid://blboa0hkyc0oe" path="res://Games/source_game/game/prefabs/base_buildings/conveyor/area_3d.gd" id="5_28rhi"]
 [ext_resource type="Texture2D" uid="uid://bbag3jovgula2" path="res://addons/simusdev/Game/icons/ui_icon_arrow.png" id="6_hph3d"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="7_0p64p"]
+[ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="8_a4jyt"]
+[ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="9_imo3n"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hph3d"]
 size = Vector3(1, 0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hph3d"]
-albedo_texture = ExtResource("2_vagcs")
+albedo_texture = ExtResource("3_0p64p")
 texture_filter = 0
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_0p64p"]
@@ -20,14 +23,21 @@ radius = 0.025
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vagcs"]
 data = PackedVector3Array(0.5, 0.211213, 0.5, 0.5, 0.211213, -0.5, 0.5, -0.25, -0.5, -0.5, 0.25, 0.5, -0.5, 0.248787, 0.5, -0.5, 0.248787, -0.5, -0.497071, 0.25, 0.5, -0.5, 0.25, 0.5, -0.497071, 0.25, 0.182845, -0.497071, 0.25, 0.5, -0.5, 0.248787, 0.5, -0.5, 0.25, 0.5, -0.497071, 0.25, 0.5, -0.472929, 0.25, 0.5, -0.5, 0.248787, 0.5, -0.5, 0.211213, 0.5, 0.5, 0.25, 0.5, -0.5, -0.25, 0.5, 0.5, 0.25, 0.5, -0.5, 0.211213, 0.5, -0.5, 0.248787, 0.5, -0.472929, 0.25, 0.5, 0.472929, 0.25, 0.5, -0.5, 0.248787, 0.5, 0.5, -0.25, 0.5, 0.5, -0.25, -0.5, -0.5, -0.25, -0.5, -0.5, -0.25, 0.5, 0.5, 0.211213, 0.5, 0.5, -0.25, 0.5, 0.5, 0.211213, 0.5, 0.5, -0.25, -0.5, 0.5, -0.25, 0.5, 0.472929, 0.25, -0.5, -0.472929, 0.25, -0.5, 0.5, -0.25, -0.5, 0.5, -0.25, -0.5, 0.5, 0.211213, -0.5, 0.497071, 0.25, -0.5, 0.497071, 0.25, -0.5, 0.472929, 0.25, -0.5, 0.5, -0.25, -0.5, 0.5, -0.25, -0.5, -0.5, 0.211213, -0.5, -0.5, -0.25, -0.5, 0.497071, 0.25, -0.5, 0.5, 0.211213, -0.5, 0.5, 0.248787, -0.5, 0.497071, 0.25, -0.5, 0.5, 0.248787, -0.5, 0.5, 0.25, -0.5, 0.497071, 0.25, -0.5, 0.5, 0.25, -0.5, 0.497071, 0.25, -0.182842, 0.5, 0.25, -0.5, 0.5, 0.248787, -0.5, 0.5, 0.248787, 0.5, 0.497071, 0.25, -0.182842, 0.5, 0.25, -0.5, 0.5, 0.25, 0.5, -0.5, -0.25, 0.5, 0.5, 0.248787, 0.5, 0.5, 0.211213, 0.5, 0.5, 0.25, 0.5, 0.5, 0.248787, 0.5, -0.5, -0.25, 0.5, 0.472929, 0.25, 0.182845, -0.472929, 0.25, 0.5, 0.472929, 0.25, -0.5, 0.472929, 0.25, 0.5, -0.472929, 0.25, 0.5, 0.472929, 0.25, 0.182845, 0.472929, 0.25, 0.5, 0.497071, 0.25, 0.5, -0.5, 0.248787, 0.5, 0.497071, 0.25, 0.5, 0.5, 0.25, 0.5, -0.5, 0.248787, 0.5, 0.5, 0.25, -0.5, 0.5, 0.248787, 0.5, 0.5, 0.25, 0.5, 0.497071, 0.25, -0.182842, 0.5, 0.25, 0.5, 0.497071, 0.25, 0.5, -0.497071, 0.25, 0.182845, -0.5, 0.25, -0.5, -0.497071, 0.25, -0.5, -0.5, 0.25, 0.5, -0.5, 0.248787, -0.5, -0.5, 0.25, -0.5, 0.5, -0.25, -0.5, -0.5, 0.248787, -0.5, -0.5, 0.211213, -0.5, -0.5, 0.25, -0.5, -0.5, 0.248787, -0.5, 0.5, -0.25, -0.5, -0.497071, 0.25, -0.5, -0.5, 0.25, -0.5, 0.5, -0.25, -0.5, -0.472929, 0.25, -0.5, -0.497071, 0.25, -0.5, 0.5, -0.25, -0.5, -0.472929, 0.25, -0.5, 0.472929, 0.25, -0.5, -0.472929, 0.25, -0.182842, -0.472929, 0.25, -0.182842, 0.472929, 0.25, -0.5, -0.472929, 0.25, 0.5, -0.5, -0.25, 0.5, -0.5, 0.211213, -0.5, -0.5, 0.211213, 0.5, -0.497071, 0.25, 0.182845, -0.5, 0.25, 0.5, -0.5, 0.25, -0.5, -0.5, -0.25, 0.5, 0.5, -0.25, 0.5, -0.5, -0.25, -0.5, -0.5, -0.25, 0.5, -0.5, -0.25, -0.5, -0.5, 0.211213, -0.5, 0.497071, 0.25, -0.182842, 0.485, 0.255, -0.5, 0.497071, 0.25, -0.5, 0.472929, 0.25, -0.5, 0.485, 0.255, -0.5, 0.472929, 0.25, 0.182845, 0.5, 0.211213, 0.5, 0.502678, 0.212322, -0.5, 0.5, 0.211213, -0.5, 0.51, 0.23, -0.5, 0.502678, 0.212322, -0.5, 0.51, 0.23, 0.5, 0.502678, 0.247678, -0.5, 0.51, 0.23, -0.5, 0.502678, 0.247678, 0.5, 0.5, 0.248787, -0.5, 0.502678, 0.247678, -0.5, 0.5, 0.248787, 0.5, 0.485, 0.255, -0.5, 0.497071, 0.25, -0.182842, 0.485, 0.255, 0.5, 0.485, 0.255, -0.5, 0.485, 0.255, 0.5, 0.472929, 0.25, 0.182845, 0.485, 0.255, 0.5, 0.497071, 0.25, 0.5, 0.472929, 0.25, 0.5, 0.485, 0.255, -0.5, 0.472929, 0.25, -0.5, 0.497071, 0.25, -0.5, 0.5, 0.211213, -0.5, 0.502678, 0.247678, -0.5, 0.5, 0.248787, -0.5, 0.502678, 0.212322, -0.5, 0.5, 0.211213, 0.5, 0.502678, 0.212322, 0.5, 0.51, 0.23, -0.5, 0.502678, 0.247678, -0.5, 0.5, 0.211213, -0.5, 0.502678, 0.212322, -0.5, 0.51, 0.23, -0.5, 0.5, 0.211213, -0.5, 0.502678, 0.212322, 0.5, 0.51, 0.23, 0.5, 0.502678, 0.212322, -0.5, 0.51, 0.23, 0.5, 0.502678, 0.247678, 0.5, 0.51, 0.23, -0.5, 0.502678, 0.247678, -0.5, 0.502678, 0.247678, 0.5, 0.5, 0.248787, 0.5, 0.485, 0.255, 0.5, 0.497071, 0.25, -0.182842, 0.497071, 0.25, 0.5, 0.472929, 0.25, 0.5, 0.472929, 0.25, 0.182845, 0.485, 0.255, 0.5, 0.5, 0.211213, 0.5, 0.5, 0.248787, 0.5, 0.502678, 0.212322, 0.5, 0.502678, 0.247678, 0.5, 0.51, 0.23, 0.5, 0.502678, 0.212322, 0.5, 0.502678, 0.247678, 0.5, 0.502678, 0.212322, 0.5, 0.5, 0.248787, 0.5, -0.502678, 0.212322, -0.5, -0.5, 0.248787, -0.5, -0.51, 0.23, -0.5, -0.502678, 0.212322, -0.5, -0.5, 0.211213, -0.5, -0.5, 0.248787, -0.5, -0.51, 0.23, -0.5, -0.5, 0.248787, -0.5, -0.502678, 0.247678, -0.5, -0.502678, 0.212322, -0.5, -0.51, 0.23, -0.5, -0.502678, 0.212322, 0.5, -0.485, 0.255, -0.5, -0.497071, 0.25, -0.5, -0.472929, 0.25, -0.5, -0.485, 0.255, 0.5, -0.497071, 0.25, 0.182845, -0.485, 0.255, -0.5, -0.502678, 0.247678, 0.5, -0.51, 0.23, 0.5, -0.502678, 0.247678, -0.5, -0.472929, 0.25, -0.182842, -0.472929, 0.25, 0.5, -0.485, 0.255, 0.5, -0.502678, 0.212322, 0.5, -0.51, 0.23, 0.5, -0.5, 0.211213, 0.5, -0.51, 0.23, -0.5, -0.51, 0.23, 0.5, -0.502678, 0.212322, 0.5, -0.497071, 0.25, 0.182845, -0.485, 0.255, 0.5, -0.497071, 0.25, 0.5, -0.51, 0.23, 0.5, -0.502678, 0.247678, 0.5, -0.5, 0.211213, 0.5, -0.502678, 0.247678, 0.5, -0.5, 0.248787, 0.5, -0.5, 0.211213, 0.5, -0.5, 0.211213, -0.5, -0.502678, 0.212322, 0.5, -0.5, 0.211213, 0.5, -0.472929, 0.25, -0.5, -0.472929, 0.25, -0.182842, -0.485, 0.255, -0.5, -0.485, 0.255, 0.5, -0.472929, 0.25, 0.5, -0.497071, 0.25, 0.5, -0.485, 0.255, 0.5, -0.485, 0.255, -0.5, -0.472929, 0.25, -0.182842, -0.502678, 0.247678, -0.5, -0.5, 0.248787, -0.5, -0.502678, 0.247678, 0.5, -0.51, 0.23, -0.5, -0.502678, 0.247678, -0.5, -0.51, 0.23, 0.5, -0.5, 0.248787, 0.5, -0.502678, 0.247678, 0.5, -0.5, 0.248787, -0.5, -0.502678, 0.212322, 0.5, -0.5, 0.211213, -0.5, -0.502678, 0.212322, -0.5, -0.485, 0.255, -0.5, -0.497071, 0.25, 0.182845, -0.497071, 0.25, -0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_28rhi"]
-size = Vector3(1, 0.5, 0.995)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hph3d"]
+size = Vector3(0.921326, 0.50824, 0.995)
 
 [node name="conveyor" type="Node3D" node_paths=PackedStringArray("model", "health")]
 script = ExtResource("1_ekdbf")
 model = NodePath("model")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_ekdbf")
+target = NodePath("..")
+health = 300.0
+max_health = 300.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"
 
 [node name="model" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_hph3d")
@@ -43,31 +53,50 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.485
 mesh = SubResource("TubeTrailMesh_0p64p")
 material = ExtResource("3_28rhi")
 
+[node name="dir1" type="Sprite3D" parent="model"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, 0.28)
+modulate = Color(0.676107, 0.676107, 0.676107, 1)
+pixel_size = 0.005
+shaded = true
+texture_filter = 0
+texture = ExtResource("6_hph3d")
+
+[node name="dir2" type="Sprite3D" parent="model"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, -0.22)
+modulate = Color(0.676107, 0.676107, 0.676107, 1)
+pixel_size = 0.005
+shaded = true
+texture_filter = 0
+texture = ExtResource("6_hph3d")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="collision" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vagcs")
 
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("3_ekdbf")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://cr18fup83we2u"
-
-[node name="Area3D" type="Area3D" parent="."]
+[node name="SourceConveyorBelt" type="Area3D" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("5_28rhi")
+root = NodePath("..")
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0.00519991, 0)
-shape = SubResource("BoxShape3D_28rhi")
+[node name="collision" type="CollisionShape3D" parent="SourceConveyorBelt"]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -0.0037912, 0.00936098, 0)
+shape = SubResource("BoxShape3D_hph3d")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, 0.28)
-pixel_size = 0.005
-shaded = true
-texture = ExtResource("6_hph3d")
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("7_0p64p")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, -0.22)
-pixel_size = 0.005
-shaded = true
-texture = ExtResource("6_hph3d")
+[node name="collision" type="CollisionShape3D" parent="SourceHitbox"]
+shape = SubResource("ConcavePolygonShape3D_vagcs")
+
+[node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_a4jyt")
+unit_size = 0.1
+stream_paused = true
+max_distance = 5.0
+script = ExtResource("9_imo3n")
+metadata/_custom_type_script = "uid://dcdd6kovrah03"
