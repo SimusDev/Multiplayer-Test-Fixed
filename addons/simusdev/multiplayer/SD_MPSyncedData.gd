@@ -108,7 +108,7 @@ func client_sync_data_from_server() -> void:
 	_client_sync_data_from_server_rpc.rpc_id(singleton.HOST_ID)
 
 
-@rpc("any_peer", "reliable")
+@rpc("any_peer", "reliable", "call_local")
 func _client_sync_data_from_server_rpc() -> void:
 	if singleton.is_server():
 		var server_data: Dictionary[String, Variant] = local_get_data()
