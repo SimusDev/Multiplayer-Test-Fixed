@@ -10,6 +10,7 @@ gradient = SubResource("Gradient_3mggm")
 
 [resource]
 script = ExtResource("1_0sh5e")
+pick_on_build = true
 custom_section = ""
 custom_id = ""
 icon = SubResource("GradientTexture2D_lwn0s")

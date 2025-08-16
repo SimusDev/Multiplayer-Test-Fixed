@@ -74,6 +74,7 @@ func drag_prop(object:RigidBody3D):
 	if not is_instance_valid(current_object): return
 	var source_prop_component = current_object.get_node("SourceProp") as SourceProp
 	if not is_instance_valid(source_prop_component): return
+	#if not is_instance_valid(drag_item_link_node): return
 	
 	drag_item_link_node.tree_exited.connect( func(): source_prop_component.drag.emit(!source_prop_component.is_drag, drag_item_link_node))
 	drag_item_link_node.global_position = get_collision_point()

@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dfp868cagu7ig" path="res://Games/source_game/buildings/automation/cube_spawner.tres" id="2_6xw5b"]
 [ext_resource type="Script" uid="uid://c4bxcrs7oiury" path="res://Games/source_game/components/r_source_buildings.gd" id="2_27j8p"]
 [ext_resource type="Resource" uid="uid://bl87k6r53jq71" path="res://Games/source_game/buildings/automation/conveyor.tres" id="3_6xw5b"]
-[ext_resource type="Resource" uid="uid://cbplxfsyxqvj4" path="res://Games/source_game/buildings/automation/mechanical_catcher.tres" id="4_oj8l0"]
+[ext_resource type="Resource" uid="uid://dastacydefuhl" path="res://Games/source_game/buildings/automation/mechanical_arm.tres" id="4_oj8l0"]
 
 [resource]
 script = ExtResource("2_27j8p")

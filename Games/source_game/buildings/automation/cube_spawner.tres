@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_fl68q")
+pick_on_build = true
 custom_section = ""
 custom_id = ""
 icon = ExtResource("1_hwrel")

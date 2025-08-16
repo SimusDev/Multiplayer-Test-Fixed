@@ -9,6 +9,10 @@ signal building_pick(source_building)
 
 @export var ghost_color:Color = Color(0, 0.5, 1, 0.5)
 
+@export_group("Audio")
+@export var rotate_sound:AudioStream = preload("res://Games/source_game/game/audio/building/rotate.ogg")
+@export var switch_buildings_sound:AudioStream = preload("res://Games/source_game/game/audio/ui/item_drop.ogg")
+
 var current_buildings_pos:int = 0
 
 var active:bool = false
@@ -34,11 +38,19 @@ func _on_item_use() -> void:
 		
 		SD_Network.call_func_on_server(build, [current_building, ghost_model.global_transform, can_place])
 
+func _exit_tree() -> void:
+	free_ghost_buildings()
+
 func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -> void:
 	if SD_Network.is_server() and can_place:
 		var new_building = _building.prefab.instantiate()
 		SourceLevelSection3D.get_by_name("buildings").add_child(new_building)
 		new_building.global_transform = _transform
+		new_building.set_multiplayer_authority(self.get_multiplayer_authority())
+		if not _building.pick_on_build:
+			ghost_model.queue_free()
+			ghost_model = null
+			free_ghost_buildings()
 		SD_Network.call_func_on(SD_Network.remote_sender.id, builded, [_building])
 		
 
@@ -58,6 +70,7 @@ func pick_buildings(value:int) -> void:
 	
 	buildings = allowed_buildings[current_buildings_pos]
 	pick_building(current_building_idx)
+	SoundPlayer.play_global_audio(switch_buildings_sound)
 
 func pick_building(idx:int) -> void:
 	if idx > buildings.buildings.size()-1:
@@ -108,6 +121,13 @@ func free_ghost_buildings() -> void:
 		child.queue_free()
 	ghost_model = null
 
+func rotate_ghost_model() -> void:
+	if not is_instance_valid(ghost_model):
+		return
+	
+	ghost_model.rotation_degrees.y -= 90
+	SoundPlayer.play_global_audio(rotate_sound)
+
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
@@ -127,8 +147,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("v"): pick_building(3)
 	if Input.is_action_just_pressed("page_up"): pick_buildings(1)
 	if Input.is_action_just_pressed("page_down"): pick_buildings(-1)
-	if Input.is_action_just_pressed("rotate_ghost_building"):
-		if is_instance_valid(ghost_model):
-			ghost_model.rotation_degrees.y += 90
+	if Input.is_action_just_pressed("rotate_ghost_building"): rotate_ghost_model()
 	
 	snapping = Input.is_action_pressed("rmb")

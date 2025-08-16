@@ -1,5 +1,7 @@
 class_name R_SourceBuilding extends R_SourceWorldObject
 
+@export var pick_on_build:bool = true
+
 func _get_section() -> String:
 	return "buildings"
 
