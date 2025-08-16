@@ -310,9 +310,10 @@ size = Vector3(0.207446, 0.830688, 0.203064)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xyry0"]
 size = Vector3(0.7, 1, 0.7)
 
-[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "model", "health")]
+[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "hand_target_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "model", "health")]
 script = ExtResource("1_g833h")
 main_target_node = NodePath("main_target")
+hand_target_node = NodePath("main_target/target")
 area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
 drop_target_node = NodePath("drop_point")
@@ -445,7 +446,7 @@ bones/14/rotation = Quaternion(0, 0, 0, 1)
 bones/14/scale = Vector3(1, 1, 1)
 
 [node name="Claw 2" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, -8.9407e-08, 3.55271e-14, 8.9407e-08, 1, 7.81597e-14, -5.68434e-14, -7.10543e-14, 1, 1.29333, 15.9648, 1.86274e-09)
+transform = Transform3D(0.876693, 0.480435, -0.0243126, -0.48105, 0.875573, -0.0443087, -2.39379e-09, 0.0505407, 0.998722, -0.614308, 12.5246, 0.38845)
 bone_name = "Claw 2"
 bone_idx = 7
 
@@ -454,7 +455,7 @@ mesh = SubResource("ArrayMesh_ln7fh")
 skeleton = NodePath("")
 
 [node name="Claw 1" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 8.9407e-08, -4.9738e-14, -8.9407e-08, 1, 7.10543e-15, 4.9738e-14, -7.10543e-15, 1, -1.29333, 15.9648, 4.19111e-09)
+transform = Transform3D(0.876693, 0.480435, -0.0243126, -0.48105, 0.875573, -0.0443087, 4.36557e-11, 0.0505407, 0.998722, -2.83736, 13.7443, 0.388446)
 bone_name = "Claw 1"
 bone_idx = 10
 
@@ -463,7 +464,7 @@ mesh = SubResource("ArrayMesh_xe6tq")
 skeleton = NodePath("")
 
 [node name="Wrist" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26197e-08, 14.2727, 3.25963e-08)
+transform = Transform3D(0.876693, 0.480435, -0.0243126, -0.48105, 0.875573, -0.0443087, 7.45058e-09, 0.0505407, 0.998722, -2.53363, 11.6624, 0.303484)
 bone_name = "Wrist"
 bone_idx = 11
 
@@ -472,7 +473,7 @@ mesh = SubResource("ArrayMesh_7joe3")
 skeleton = NodePath("")
 
 [node name="Arm 2" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58325e-08, 9.45841, 1.98167e-05)
+transform = Transform3D(0.425974, -0.903183, 0.0529851, 0.903183, 0.421083, -0.0833678, 0.0529852, 0.0833677, 0.995109, 0.799387, 9.30173, -0.0737671)
 bone_name = "Arm 2"
 bone_idx = 12
 
@@ -481,7 +482,7 @@ mesh = SubResource("ArrayMesh_ijgf5")
 skeleton = NodePath("")
 
 [node name="Arm 1" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07698e-08, 5.10971, 4.63729e-10)
+transform = Transform3D(0.987946, 0.154796, 0.00111266, -0.154796, 0.987843, 0.0142884, 0.00111266, -0.0142884, 0.999897, 0.0169821, 5.10837, -0.00156752)
 bone_name = "Arm 1"
 bone_idx = 13
 
@@ -517,10 +518,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.525)
 mesh = SubResource("BoxMesh_xyry0")
 
 [node name="main_target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.6, 0.5)
+transform = Transform3D(0.876693, 0.480435, -0.0243126, -0.48105, 0.875573, -0.0443086, 0, 0.0505406, 0.998722, 0, 0.81359, 0.0284661)
 
 [node name="target" type="Marker3D" parent="main_target"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.184, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -5.32907e-15, 0, 5.32907e-15, 1, 0, -0.3, 0)
 
 [node name="left_claw_target" type="Marker3D" parent="main_target/target"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
