@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cea8mnn7xt8va"]
+[gd_scene load_steps=14 format=3 uid="uid://cea8mnn7xt8va"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_b4w1e"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="2_1jxyn"]
@@ -37,9 +37,24 @@ sync = 0
 callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
+[sub_resource type="Resource" id="Resource_sqnm3"]
+script = ExtResource("3_oynvx")
+properties = PackedStringArray("velocity")
+interpolation_enabled = false
+interpolation_speed = 32.0
+float_snap = 0.0
+node_path = NodePath("..")
+channels = Array[String](["main"])
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 1
+sync = 0
+callmode = 1
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
 [sub_resource type="Resource" id="Resource_6p28h"]
 script = ExtResource("4_mitkl")
-_list = Array[ExtResource("3_oynvx")]([SubResource("Resource_o4uiq"), SubResource("Resource_eokyo")])
+_list = Array[ExtResource("3_oynvx")]([SubResource("Resource_o4uiq"), SubResource("Resource_eokyo"), SubResource("Resource_sqnm3")])
 metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4w1e"]
@@ -72,7 +87,7 @@ crouch_camera_position = NodePath("../crouch_pos")
 [node name="SourceCamera" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
 
-[node name="SourceViewModelRoot3D" parent="SourceCamera" index="5"]
+[node name="SourceViewModelRoot3D" parent="SourceCamera" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171651, -0.172915, -0.348444)
 
 [node name="crouch_ray" type="RayCast3D" parent="." index="13"]
