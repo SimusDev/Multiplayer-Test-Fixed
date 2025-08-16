@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://danoxw1eto00t"]
+[gd_scene load_steps=12 format=3 uid="uid://danoxw1eto00t"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ekdbf"]
 [ext_resource type="Texture2D" uid="uid://cadpwjqtajyfy" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_vagcs"]
 [ext_resource type="Material" uid="uid://fahxl71di7ib" path="res://Games/source_game/materials/tilefloor.tres" id="3_28rhi"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_ekdbf"]
 [ext_resource type="Script" uid="uid://blboa0hkyc0oe" path="res://Games/source_game/game/prefabs/base_buildings/conveyor/area_3d.gd" id="5_28rhi"]
+[ext_resource type="Texture2D" uid="uid://bbag3jovgula2" path="res://addons/simusdev/Game/icons/ui_icon_arrow.png" id="6_hph3d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hph3d"]
 size = Vector3(1, 0.5, 1)
@@ -58,3 +59,15 @@ script = ExtResource("5_28rhi")
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0.00519991, 0)
 shape = SubResource("BoxShape3D_28rhi")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, 0.28)
+pixel_size = 0.005
+shaded = true
+texture = ExtResource("6_hph3d")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, -0.22)
+pixel_size = 0.005
+shaded = true
+texture = ExtResource("6_hph3d")
