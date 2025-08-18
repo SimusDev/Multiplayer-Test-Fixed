@@ -1,74 +1,9 @@
-class_name SourcePlayer extends CharacterBody3D
+class_name SourcePlayer extends SourceEntity
 
 static var instance:SourcePlayer
 
-@export_group("Health")
-@export var health:C_HealthComponent
-@export var take_damage_assets:Array[AudioStream]
-@export var death_assets:Array[AudioStream]
-@export var flat_line_sound:AudioStream
-
-@export_group("Controls")
-@export var movement:W_FPCSourceLikeMovement
-@export var camera:W_FPCSourceLikeCamera
-
-@export_group("UI")
-@export var player_ui:PackedScene
-@export var canvas:CanvasLayer
-@onready var chat := chat_interface.instance
-
-@export_group("Other")
-@export var model:W_AnimatedModel3D
-@export var interact_raycast:SourceInteractRaycast
-@export var footsteps_component:SourceFootsteps
-@export var death_camera:PackedScene
-
-@export var object: R_SourcePlayer
- 
-var in_backrooms:bool = false : set = set_in_backrooms, get = is_in_backrooms
-
-func set_in_backrooms(value:bool): in_backrooms = value
-func is_in_backrooms() -> bool: return in_backrooms
-
-static var _list: Array[SourcePlayer] = []
-
-static func get_list() -> Array[SourcePlayer]:
-	return _list
-
-func _enter_tree() -> void:
-	_list.append(self)
-
-func _exit_tree() -> void:
-	_list.erase(self)
-
 func _ready() -> void:
-	movement.state_machine.state_enter.connect(_on_state_enter)
-	model.on_footstep.connect(func(): $footsteps._do_footstep())
-	model.set_tree_parameter("parameters/item_right_hand_blend/blend_amount", 1.0)
-	model.set_tree_parameter("parameters/melee_attack_blend/blend_amount", 1.0)
-	model.set_tree_parameter("parameters/look_dir_add/add_amount", 1.0)
-
-	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
-	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )
-
-	SD_Network.register_function(SourceGame.instance.start_respawn_timer)
-
+	super()
 	if is_multiplayer_authority():
 		instance = self
 		
-
-func _on_state_enter(state:SD_State):
-	model.tree.get("parameters/StateMachine/playback").travel(state.name)
-
-func set_model_blend():
-	var actor_velocity: Vector3 = velocity.normalized() * transform.basis
-	var blend_position: Vector2 = Vector2(actor_velocity.x, -actor_velocity.z)
-	
-	model.set_tree_parameter("parameters/StateMachine/walk/blend_position", blend_position)
-	model.set_tree_parameter("parameters/StateMachine/run/blend_position", blend_position)
-	model.set_tree_parameter("parameters/StateMachine/crouched_walk/blend_position", blend_position)
-	model.set_tree_parameter("parameters/StateMachine/crouched_run/blend_position", blend_position)
-	model.set_tree_parameter("parameters/look_dir/blend_position", camera.rotation_degrees.x / 90)
-
-func _physics_process(_delta: float) -> void:
-	set_model_blend()

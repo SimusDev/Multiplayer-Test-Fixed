@@ -37,12 +37,13 @@ func _ready() -> void:
 		SD_Components.append_to(player, self)
 
 func _do_footstep():
-	if !get(current_surface) or !player.is_on_floor() or !player.velocity:
-		return
+	if is_instance_valid(player):
+		if !get(current_surface) or !player.is_on_floor() or !player.velocity:
+			return
 
-	randomize()
-	var rand_idx = randi()% (get(current_surface).size())
-	stream = get(current_surface)[rand_idx]
-	
+		randomize()
+		var rand_idx = randi()% (get(current_surface).size())
+		stream = get(current_surface)[rand_idx]
+		
 
-	play()
+		play()

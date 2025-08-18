@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2ly2hwdj87jl"]
+
+[ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
+[ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ues7"]
+radius = 0.205
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efwcb"]
+radius = 0.205
+height = 0.9
+
+[node name="anime2" node_paths=PackedStringArray("model") instance=ExtResource("1_pyl8t")]
+model = NodePath("SourceAnimatedModel")
+
+[node name="SourceCrouch" parent="." index="10" node_paths=PackedStringArray("collision_normal", "collision_crouch")]
+collision_normal = NodePath("../collision_normal")
+collision_crouch = NodePath("../collision_crouched")
+
+[node name="SourceCamera" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="Camera3D" parent="SourceCamera" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00802197, 1.61487)
+
+[node name="nickname" parent="." index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="collision_normal" parent="AI_Visible" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026482, 0, 0)
+
+[node name="SourceAnimatedModel" parent="." index="17" node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+target = NodePath("..")
+
+[node name="Sketchfab_model" parent="SourceAnimatedModel/model3d" index="0"]
+transform = Transform3D(0.991928, 0.0241442, -0.124486, 0.10099, -0.744102, 0.660388, -0.076686, -0.667629, -0.740533, 0.029019, -0.245174, -0.561495)
+
+[node name="Skeleton3D" parent="SourceAnimatedModel/model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0" index="1"]
+bones/2/rotation = Quaternion(0.10752, -0.00401331, -0.0195396, 0.994003)
+bones/3/rotation = Quaternion(0.171325, 0.00552887, -0.0239483, 0.984908)
+bones/4/rotation = Quaternion(0.71432, 0.428151, 0.468776, -0.294419)
+bones/5/rotation = Quaternion(-0.259261, -0.0547131, -0.300513, 0.916232)
+bones/7/rotation = Quaternion(-0.402324, 0.0129944, -0.532113, 0.744864)
+bones/9/rotation = Quaternion(0.0700347, 0.55252, -0.0731518, 0.827324)
+bones/10/rotation = Quaternion(-0.118955, -0.12199, 0.384361, 0.907323)
+bones/11/rotation = Quaternion(-0.382611, 0.0265392, 0.231533, 0.894034)
+bones/12/rotation = Quaternion(-1.6685e-08, 0.0254973, 1.87429e-08, 0.999675)
+bones/13/rotation = Quaternion(-0.160563, -0.040266, 0.220452, 0.961249)
+bones/14/rotation = Quaternion(-0.335236, 0.0135991, 0.222834, 0.915302)
+bones/15/rotation = Quaternion(-1.11277e-10, 0.0466761, 2.16532e-08, 0.99891)
+bones/16/rotation = Quaternion(-0.113972, -0.00820166, 0.0665634, 0.991218)
+bones/17/rotation = Quaternion(-0.308144, -0.00136114, 0.19028, 0.932115)
+bones/18/rotation = Quaternion(-1.1527e-08, 0.0410576, 1.17579e-08, 0.999157)
+bones/19/rotation = Quaternion(-0.0995317, 0.0305816, -0.0262454, 0.994218)
+bones/20/rotation = Quaternion(-0.267827, 0.00348254, 0.183369, 0.94585)
+bones/21/rotation = Quaternion(-1.04455e-08, 0.0193813, 4.31028e-08, 0.999812)
+bones/22/rotation = Quaternion(-0.301268, 0.00235537, -0.0880758, 0.94946)
+bones/23/rotation = Quaternion(0.196172, 0.122244, 0.185771, 0.955019)
+bones/27/rotation = Quaternion(0.0273223, -0.0059334, -0.0030442, 0.999605)
+bones/28/rotation = Quaternion(-0.0417835, -0.00603251, -0.00284292, 0.999104)
+bones/50/rotation = Quaternion(-0.0396246, 0.723169, 0.688934, 0.0287567)
+bones/53/rotation = Quaternion(0.608121, -0.35761, -0.679156, -0.202613)
+bones/54/rotation = Quaternion(-0.107427, 0.309668, 0.284586, 0.900875)
+bones/56/rotation = Quaternion(-0.218075, 0.0164542, 0.315132, 0.923507)
+bones/58/rotation = Quaternion(0.395027, -0.407111, 0.417483, 0.709875)
+bones/59/rotation = Quaternion(0.052728, -0.000665553, -0.299578, 0.952613)
+bones/60/rotation = Quaternion(-0.18435, 0.0083819, -0.0583157, 0.981093)
+bones/61/rotation = Quaternion(6.32785e-08, -0.0254981, -1.45519e-08, 0.999675)
+bones/62/rotation = Quaternion(0.00208284, 0.0184589, -0.137813, 0.990284)
+bones/63/rotation = Quaternion(-0.147808, 0.00383826, -0.0773329, 0.985981)
+bones/64/rotation = Quaternion(1.92997e-08, -0.0466761, 1.14087e-08, 0.99891)
+bones/65/rotation = Quaternion(-0.0271554, 0.030348, -0.0269423, 0.998807)
+bones/66/rotation = Quaternion(-0.132984, 0.00221946, -0.0798969, 0.98789)
+bones/67/rotation = Quaternion(2.913e-08, -0.0410576, -3.60887e-08, 0.999157)
+bones/68/rotation = Quaternion(-0.0550888, 0.0410616, 0.066742, 0.995402)
+bones/69/rotation = Quaternion(-0.0830087, -0.00809883, -0.0715991, 0.99394)
+bones/70/rotation = Quaternion(4.10247e-08, -0.0193813, -8.61473e-09, 0.999812)
+bones/71/rotation = Quaternion(-0.285464, 0.236267, 0.306902, 0.876641)
+bones/107/rotation = Quaternion(0.610135, 0.201476, -0.207021, 0.737757)
+bones/108/rotation = Quaternion(0.911786, -0.0209243, -0.0624612, 0.405349)
+bones/109/rotation = Quaternion(-0.81123, 0.108515, 0.284381, 0.499257)
+bones/110/rotation = Quaternion(-0.369102, 0.0654593, 0.014019, 0.926975)
+bones/111/rotation = Quaternion(0.6005, -0.0286076, 0.0989262, 0.792966)
+bones/112/rotation = Quaternion(0.9409, -0.0176447, -0.0165423, 0.337819)
+bones/113/rotation = Quaternion(-0.861851, 0.0208806, 0.00502823, 0.506707)
+bones/114/rotation = Quaternion(-0.403442, -0.0725626, -0.00941951, 0.912075)
+
+[node name="collision_normal" type="CollisionShape3D" parent="." index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_6ues7")
+
+[node name="collision_crouched" type="CollisionShape3D" parent="." index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("CapsuleShape3D_efwcb")
+disabled = true
+
+[editable path="SourceMovement"]
+[editable path="SourceCamera"]
+[editable path="SourceAnimatedModel"]
+[editable path="SourceAnimatedModel/model3d"]

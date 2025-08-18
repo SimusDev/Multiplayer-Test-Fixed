@@ -4,10 +4,7 @@ class_name W_FPCSourceLikeCrouch
 @export var camera: W_FPCSourceLikeCamera
 @export var movement: W_FPCSourceLikeMovement
 @export var collision_normal: CollisionShape3D
-#@export var collision_crouch: CollisionShape3D
-
-@export var crouch_shape: Shape3D
-@export var normal_shape: Shape3D
+@export var collision_crouch: CollisionShape3D
 
 @export var ceiling_detection: RayCast3D
 
@@ -29,10 +26,11 @@ func _process(delta: float) -> void:
 	if not is_authority():
 		return
 	
-	if movement.is_crouched:
-		camera.position = lerp(camera.position, crouch_camera_position.position, interpolate_speed * delta)
-	else:
-		camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
+	if is_instance_valid(crouch_camera_position):
+		if movement.is_crouched:
+			camera.position = lerp(camera.position, crouch_camera_position.position, interpolate_speed * delta)
+		else:
+			camera.position = lerp(camera.position, _saved_pos, interpolate_speed * delta)
 
 func _ready() -> void:
 	super()
@@ -48,9 +46,9 @@ func _ready() -> void:
 
 func _on_crouched_status_changed() -> void:
 	if movement:
-		if normal_shape and crouch_shape:
-			if movement.is_crouched:
-				collision_normal.shape = crouch_shape
-			else:
-				collision_normal.shape = normal_shape
-		collision_normal.disabled = not is_authority() and !movement.server_authorative
+		if is_instance_valid(collision_normal) and is_instance_valid(collision_crouch):
+			collision_normal.disabled = movement.is_crouched
+			collision_crouch.disabled = not movement.is_crouched
+		
+		#collision_normal.disabled = not is_authority() and !movement.server_authorative
+		#collision_crouch.disabled = not is_authority() and !movement.server_authorative

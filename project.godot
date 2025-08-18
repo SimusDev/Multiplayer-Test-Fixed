@@ -17,10 +17,10 @@ useSenderID=true
 [application]
 
 config/name="Multiplayer-Test"
-config/version="0.001a"
+config/version="0.002a"
 run/main_scene="uid://c31uhxfwryhme"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cyj56486e1iyo"
 
 [audio]
 
