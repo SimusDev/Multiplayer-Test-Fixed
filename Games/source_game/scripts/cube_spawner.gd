@@ -1,4 +1,4 @@
-@icon("res://textures/icons/cube.png")
+@icon("res://textures/icons/red_cube.png")
 class_name SourceCubeSpawner extends Node3D
 
 @export var spawn_marker:Node3D

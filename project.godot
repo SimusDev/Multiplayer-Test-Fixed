@@ -50,7 +50,7 @@ project/assembly_name="Multiplayer-Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/godotfgd/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/gamedev_assistant/plugin.cfg", "res://addons/godotfgd/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
 [file_customization]
 
