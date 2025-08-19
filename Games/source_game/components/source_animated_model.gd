@@ -3,7 +3,7 @@ class_name SourceAnimatedModel extends W_AnimatedModel3D
 signal footstep
 
 @export var target:SourceEntity
-@export var state_machine_name:String
+@export var state_machine_name:String = "StateMachine"
 @export var properties:Dictionary[String, String]
 
 var state_machine:SD_NodeStateMachine

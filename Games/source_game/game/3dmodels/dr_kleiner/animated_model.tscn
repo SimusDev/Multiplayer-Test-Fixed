@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=4 uid="uid://cwqpcddsojjt7"]
 
-[ext_resource type="Script" uid="uid://lnfhngtm7g8a" path="res://Games/source_game/game/3dmodels/dr_kleiner/animated_model.gd" id="1_p2etw"]
+[ext_resource type="Script" uid="uid://bo8uwskkur08r" path="res://Games/source_game/components/source_animated_model.gd" id="1_c6elt"]
 [ext_resource type="PackedScene" uid="uid://dwpb4vcsaovcf" path="res://Games/source_game/game/3dmodels/dr_kleiner/dr_kleiner_scene.tscn" id="2_p2etw"]
 [ext_resource type="Texture2D" uid="uid://ddq3xg2uyev3f" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_0.png" id="3_ah0tw"]
 [ext_resource type="AnimationLibrary" uid="uid://c3f7w83jil31c" path="res://Games/source_game/player/animations/dr_kleiner.res" id="3_yxv2h"]
@@ -481,7 +481,14 @@ world = SubResource("Resource_u64gf")
 metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [node name="SourceAnimatedModel" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
-script = ExtResource("1_p2etw")
+script = ExtResource("1_c6elt")
+properties = Dictionary[String, String]({
+"crouched": "blend_position",
+"crouched_run": "blend_position",
+"crouched_walk": "blend_position",
+"run": "blend_position",
+"walk": "blend_position"
+})
 model_scene = ExtResource("2_p2etw")
 library = ExtResource("3_yxv2h")
 blend_tree = ExtResource("4_bvy8f")
@@ -495,17 +502,17 @@ metadata/_custom_type_script = "uid://bo8uwskkur08r"
 transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
 
 [node name="Skeleton3D" parent="model3d" index="1"]
-bones/0/position = Vector3(-0.0136244, 3.75692, 0.053889)
-bones/0/rotation = Quaternion(-0.0321326, -0.0476607, -0.0260803, 0.998006)
-bones/1/rotation = Quaternion(-0.0143315, 0.0126839, 0.0252983, 0.999497)
-bones/2/rotation = Quaternion(0.0102457, 0.0024598, 0.0144776, 0.99984)
-bones/3/rotation = Quaternion(0.00982999, 0.00230398, 0.0143935, 0.999846)
-bones/4/rotation = Quaternion(0.0932473, -0.00162142, 0.00429657, 0.995632)
-bones/5/rotation = Quaternion(-0.0703306, 0.0100957, -0.000414859, 0.997473)
-bones/7/rotation = Quaternion(-0.683437, -0.318563, 0.520393, -0.400777)
-bones/8/rotation = Quaternion(0.472115, 0.129068, 0.0605852, 0.86993)
-bones/9/rotation = Quaternion(0.00156505, 0.000337015, 0.013956, 0.999901)
-bones/10/rotation = Quaternion(0.0827322, -0.249377, -0.0211551, 0.964634)
+bones/0/position = Vector3(-0.0139585, 3.75507, 0.0544)
+bones/0/rotation = Quaternion(-0.0342526, -0.0472234, -0.0269395, 0.997933)
+bones/1/rotation = Quaternion(-0.01089, 0.0158345, 0.0263358, 0.999469)
+bones/2/rotation = Quaternion(0.0109524, 0.00330341, 0.0146829, 0.999827)
+bones/3/rotation = Quaternion(0.0107557, 0.0033985, 0.0147153, 0.999828)
+bones/4/rotation = Quaternion(0.095328, -0.00198727, 0.00312068, 0.995439)
+bones/5/rotation = Quaternion(-0.0742094, 0.00876306, -0.000821946, 0.997204)
+bones/7/rotation = Quaternion(-0.686271, -0.314827, 0.519644, -0.399858)
+bones/8/rotation = Quaternion(0.4694, 0.127937, 0.0624558, 0.871433)
+bones/9/rotation = Quaternion(0.00164432, 0.000337053, 0.0146619, 0.999891)
+bones/10/rotation = Quaternion(0.0792076, -0.252961, -0.0171795, 0.964076)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -540,14 +547,14 @@ bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
 bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
 bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
 bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
-bones/55/rotation = Quaternion(0.137103, 0.0650288, 0.985233, -0.0793148)
-bones/56/rotation = Quaternion(-0.128438, -0.0157133, 0.030023, 0.991138)
-bones/57/rotation = Quaternion(0.510894, -0.11959, -0.000963428, 0.851284)
+bones/55/rotation = Quaternion(0.139753, 0.065278, 0.984677, -0.0813632)
+bones/56/rotation = Quaternion(-0.133784, -0.0119137, 0.0296054, 0.990497)
+bones/57/rotation = Quaternion(0.513801, -0.119663, -0.000877386, 0.849523)
 bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
-bones/60/rotation = Quaternion(-0.0917562, -0.0211795, 0.995245, -0.0248925)
-bones/61/rotation = Quaternion(-0.0777851, 0.0844796, -0.0242266, 0.993089)
-bones/62/rotation = Quaternion(0.546579, 0.111847, -0.0298809, 0.829366)
-bones/63/rotation = Quaternion(0.323474, 0.0275254, -0.000163209, 0.945837)
+bones/60/rotation = Quaternion(-0.0919293, -0.0219018, 0.995199, -0.0254522)
+bones/61/rotation = Quaternion(-0.0810984, 0.0843806, -0.0248194, 0.992818)
+bones/62/rotation = Quaternion(0.548836, 0.112505, -0.0292448, 0.827808)
+bones/63/rotation = Quaternion(0.323708, 0.0275761, -0.000146502, 0.945755)
 
 [node name="Object_2" parent="model3d/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_7b8h1")
@@ -605,7 +612,7 @@ parameters/look_dir/blend_position = 0.0
 parameters/look_dir_add/add_amount = 0.0
 
 [node name="viewmodel" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.00953722, 0.0696676, 0.271027, 0.278355, 0.0255192, -0.0163548, -0.0287706, 0.269991, -0.068389, -0.379274, 1.41663, 0.26697)
+transform = Transform3D(0.00890999, 0.0726684, 0.270259, 0.278529, 0.0240185, -0.0156408, -0.0272422, 0.269337, -0.0715224, -0.376029, 1.41393, 0.27155)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
@@ -621,11 +628,7 @@ placeholder = ExtResource("17_4p1ol")
 view_node = NodePath("prefab")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
-[node name="prefab" type="RigidBody3D" parent="viewmodel/root" instance=ExtResource("18_jifjd")]
-process_mode = 4
+[node name="prefab2" parent="viewmodel/root" instance=ExtResource("18_jifjd")]
 transform = Transform3D(-0.576975, -0.805908, -0.132711, 0.200579, 0.0176994, -0.979518, 0.79175, -0.591776, 0.151436, 0.00319022, 0.206988, -0.0442603)
-collision_layer = 0
-collision_mask = 0
-sleeping = true
 
 [editable path="model3d"]
