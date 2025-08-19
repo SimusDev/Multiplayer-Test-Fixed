@@ -19,9 +19,9 @@ metadata/_custom_type_script = "uid://chuimtehu4j13"
 [sub_resource type="Resource" id="Resource_1r5kv"]
 script = ExtResource("6_fqxls")
 prefab = ExtResource("5_vyk4h")
-position = Vector3(0.062041, -0.271615, -0.00863278)
-rotation = Vector3(1.22846, -1.6016, -2.5512)
-scale = Vector3(2, 2, 2)
+position = Vector3(-0.0232231, 0.102967, -0.0270663)
+rotation = Vector3(1.11192, -1.27028, 0.534592)
+scale = Vector3(0.7, 0.7, 0.7)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_f5rn0"]
