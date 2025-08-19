@@ -18,7 +18,6 @@ func initialize() -> void:
 	if not initialized:
 		return
 	state_machine = target.movement.state_machine
-	print(state_machine)
 	
 	if is_instance_valid(state_machine):
 		state_machine.state_enter.connect(switch_state)

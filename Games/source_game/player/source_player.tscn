@@ -156,7 +156,7 @@ health = NodePath("SourceHealth")
 take_damage_assets = Array[AudioStream]([ExtResource("5_6qnpk"), ExtResource("6_kal50"), ExtResource("7_x0g0d"), ExtResource("8_qmy00"), ExtResource("9_j431o")])
 movement = NodePath("SourceMovement")
 camera = NodePath("SourceCamera")
-model = NodePath("W_AnimatedModel3D")
+model = NodePath("SourceAnimatedModel")
 interact_raycast = NodePath("SourceCamera/interact_raycast")
 footsteps_component = NodePath("footsteps")
 
@@ -176,6 +176,22 @@ bones/7/rotation = Quaternion(-0.687008, -0.314354, 0.516877, -0.402541)
 bones/8/rotation = Quaternion(0.471617, 0.130891, 0.0597355, 0.869987)
 bones/9/rotation = Quaternion(0.00151406, 0.000336991, 0.0134985, 0.999908)
 bones/10/rotation = Quaternion(0.0815447, -0.25661, -0.0167437, 0.962923)
+[node name="SourceAnimatedModel" parent="." node_paths=PackedStringArray("target") instance=ExtResource("81_kim0n")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.968719, 0)
+target = NodePath("..")
+
+[node name="Skeleton3D" parent="SourceAnimatedModel/model3d" index="1"]
+bones/0/position = Vector3(-0.020153, 3.75483, 0.0493925)
+bones/0/rotation = Quaternion(-0.0376059, -0.0416603, -0.0254503, 0.998099)
+bones/1/rotation = Quaternion(-0.0138369, 0.0145741, 0.0264465, 0.999448)
+bones/2/rotation = Quaternion(0.0101774, 0.00280495, 0.0147384, 0.999836)
+bones/3/rotation = Quaternion(0.00991414, 0.00290455, 0.0147678, 0.999838)
+bones/4/rotation = Quaternion(0.115541, -0.00239971, 0.00484432, 0.993288)
+bones/5/rotation = Quaternion(-0.136023, 0.00802339, -0.000664522, 0.990673)
+bones/7/rotation = Quaternion(-0.682981, -0.319314, 0.519725, -0.401822)
+bones/8/rotation = Quaternion(0.47545, 0.129906, 0.0587086, 0.868116)
+bones/9/rotation = Quaternion(0.00151137, 0.000336982, 0.013477, 0.999908)
+bones/10/rotation = Quaternion(0.0851778, -0.250411, -0.0215029, 0.964146)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -195,6 +211,10 @@ bones/31/rotation = Quaternion(0.683848, -0.31429, 0.537541, 0.380295)
 bones/32/rotation = Quaternion(0.399035, -0.223981, -0.0815414, 0.885412)
 bones/33/rotation = Quaternion(0.00630452, 0.000175082, -0.0577524, 0.998311)
 bones/34/rotation = Quaternion(0.0925812, 0.134286, 0.0420318, 0.985713)
+bones/31/rotation = Quaternion(0.683219, -0.314771, 0.539187, 0.378693)
+bones/32/rotation = Quaternion(0.397211, -0.226897, -0.0804447, 0.88559)
+bones/33/rotation = Quaternion(0.00617928, 0.000175072, -0.0566072, 0.998377)
+bones/34/rotation = Quaternion(0.0937855, 0.134498, 0.043016, 0.985528)
 bones/35/rotation = Quaternion(0.159663, -0.063116, -0.166825, 0.970924)
 bones/36/rotation = Quaternion(-0.108346, -0.0531062, 0.177105, 0.976768)
 bones/37/rotation = Quaternion(-0.165281, 0.0569407, -0.120909, 0.977149)
@@ -218,8 +238,16 @@ bones/60/rotation = Quaternion(-0.091198, -0.0147783, 0.995381, -0.0261152)
 bones/61/rotation = Quaternion(-0.0849476, 0.0840582, -0.0249025, 0.992521)
 bones/62/rotation = Quaternion(0.546528, 0.113764, -0.0307378, 0.829108)
 bones/63/rotation = Quaternion(0.324934, 0.0278418, -5.87761e-05, 0.945327)
+bones/55/rotation = Quaternion(0.137942, 0.0619143, 0.98526, -0.080013)
+bones/56/rotation = Quaternion(-0.130169, -0.008283, 0.0297808, 0.99101)
+bones/57/rotation = Quaternion(0.510935, -0.119424, -0.000668882, 0.851283)
+bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
+bones/60/rotation = Quaternion(-0.0929943, -0.0225894, 0.995102, -0.0247728)
+bones/61/rotation = Quaternion(-0.084948, 0.0843217, -0.025149, 0.992492)
+bones/62/rotation = Quaternion(0.550719, 0.116972, -0.0319874, 0.825835)
+bones/63/rotation = Quaternion(0.323038, 0.0274311, -0.000194218, 0.945988)
 
-[node name="AnimationTree" parent="W_AnimatedModel3D" index="2"]
+[node name="AnimationTree" parent="SourceAnimatedModel" index="2"]
 parameters/StateMachine/crouched_run/blend_position = Vector2(0.0129646, 0.00470579)
 parameters/StateMachine/crouched_walk/blend_position = Vector2(0.000885725, -0.0130436)
 parameters/item_right_hand_blend/blend_amount = false
@@ -227,8 +255,10 @@ parameters/look_dir_add/add_amount = 1.0
 
 [node name="viewmodel" parent="W_AnimatedModel3D" index="3"]
 transform = Transform3D(0.105828, 0.0146647, 0.258815, -0.00935873, -0.279153, 0.0196438, 0.259061, -0.0160752, -0.105018, -0.260547, 0.946947, 0.014844)
+[node name="viewmodel" parent="SourceAnimatedModel" index="3"]
+transform = Transform3D(0.109264, 0.0145864, 0.257388, -0.0058316, -0.27934, 0.0183061, 0.257735, -0.0125042, -0.108703, -0.266788, 0.946377, 0.0267402)
 
-[node name="root" parent="W_AnimatedModel3D/viewmodel" index="0" node_paths=PackedStringArray("inventory")]
+[node name="root" parent="SourceAnimatedModel/viewmodel" index="0" node_paths=PackedStringArray("inventory")]
 inventory = NodePath("../../../SourceInventory")
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -465,10 +495,11 @@ crouch_camera_position = NodePath("../crouch_camera_pos")
 
 [node name="right_hand_attachment" type="BoneAttachment3D" parent="."]
 transform = Transform3D(-0.105828, -0.0146647, -0.258815, -0.00935873, -0.279153, 0.0196438, -0.259061, 0.0160752, 0.105018, 0.260547, -0.0217725, -0.014844)
+transform = Transform3D(-0.109264, -0.0145864, -0.257388, -0.0058316, -0.27934, 0.0183061, -0.257735, 0.0125042, 0.108703, 0.266788, -0.0223423, -0.0267402)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
-external_skeleton = NodePath("../W_AnimatedModel3D/model3d/Skeleton3D")
+external_skeleton = NodePath("../SourceAnimatedModel/model3d/Skeleton3D")
 
 [node name="model_item_container" type="Node3D" parent="right_hand_attachment"]
 transform = Transform3D(-0.192886, 2.47279, -0.313238, -0.158075, -0.325677, -2.47365, -2.48753, -0.171047, 0.181482, 0.150291, 0.525182, 0.0341337)
@@ -609,7 +640,7 @@ debug_color = Color(0.341176, 0.486275, 1, 0)
 [node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true", "authority_false")]
 script = ExtResource("7_ilpss")
 hide_at_start = true
-authority_true = [NodePath("../W_AnimatedModel3D"), NodePath("../nickname"), NodePath("../right_hand_attachment/model_item_container")]
+authority_true = [NodePath("../SourceAnimatedModel"), NodePath("../nickname"), NodePath("../right_hand_attachment/model_item_container")]
 authority_false = [NodePath("../SourceCamera/item_container")]
 
 [node name="nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("8_0gjdh")]
@@ -619,7 +650,7 @@ authority_node = NodePath("..")
 [node name="footsteps" parent="." node_paths=PackedStringArray("player") instance=ExtResource("42_8vdyk")]
 player = NodePath("..")
 
-[editable path="W_AnimatedModel3D"]
-[editable path="W_AnimatedModel3D/model3d"]
+[editable path="SourceAnimatedModel"]
+[editable path="SourceAnimatedModel/model3d"]
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
