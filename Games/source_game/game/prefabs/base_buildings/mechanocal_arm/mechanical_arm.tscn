@@ -311,10 +311,11 @@ size = Vector3(0.207446, 0.830688, 0.203064)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xyry0"]
 size = Vector3(0.7, 1, 0.7)
 
-[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "hand_target_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "model", "health")]
+[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "hand_target_node", "drag_item_link_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "model", "health")]
 script = ExtResource("1_g833h")
 main_target_node = NodePath("main_target")
 hand_target_node = NodePath("main_target/target")
+drag_item_link_node = NodePath("BoneAttachment3D/root")
 area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
 drop_target_node = NodePath("drop_point")
@@ -597,3 +598,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.169004)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.7)
 shape = SubResource("BoxShape3D_xyry0")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
+bone_name = "Bone.005"
+bone_idx = 5
+use_external_skeleton = true
+external_skeleton = NodePath("../mechanical_arm/root/Armature/Skeleton3D")
+
+[node name="root" type="Node3D" parent="BoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)

@@ -17,6 +17,7 @@ enum ArmState {
 @export var speed: float = 0.66
 
 @export_group("Drag Settings")
+@export var drag_item_link_node:Node3D
 @export var area: Area3D
 @export var animation_player: AnimationPlayer
 @export var grab_anim_name: StringName = "grab"
@@ -29,6 +30,7 @@ enum ArmState {
 @export var moving_audio_player: AudioStreamPlayer3D
 
 var current_target: Node3D = null : set = set_current_target
+var target_previous_parent:Node3D
 var target_basis:Basis 
 var drop_target_confirmed: bool = false
 var current_state: ArmState = ArmState.IDLE : set = switch_state, get = get_current_state
@@ -111,6 +113,14 @@ func _on_target_reached(target_name:StringName) -> void:
 func grab_and_move_item() -> void:
 	switch_state(ArmState.GRABBING)
 	await animation_player.animation_finished
+	var source_prop:SourceProp = SD_Components.find_first(current_target, SourceProp)
+	print(source_prop)
+	if is_instance_valid(source_prop):
+		source_prop.rigid_body.freeze = true
+		source_prop.rigid_body.sleeping = true
+		target_previous_parent = source_prop.get_parent()
+		current_target.reparent(drag_item_link_node)
+			
 	switch_state(ArmState.MOVING_TO_DROP)
 	move_to(drop_target_node.global_position, "drop")
 
@@ -127,4 +137,9 @@ func pick_target() -> Node3D:
 	var bodies:Array[Node3D] = area.get_overlapping_bodies()
 	if bodies.is_empty(): return null
 	
+	for body in bodies:
+		if body is RigidBody3D:
+			pass
+		else:
+			bodies.erase(body)
 	return bodies[0]
