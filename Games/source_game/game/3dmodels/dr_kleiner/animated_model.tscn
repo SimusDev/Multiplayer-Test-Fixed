@@ -502,17 +502,17 @@ metadata/_custom_type_script = "uid://bo8uwskkur08r"
 transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
 
 [node name="Skeleton3D" parent="model3d" index="1"]
-bones/0/position = Vector3(0.00828835, 3.75532, 0.0247358)
-bones/0/rotation = Quaternion(-0.0293483, -0.0507192, -0.0308475, 0.997805)
-bones/1/rotation = Quaternion(-0.0147094, 0.0107966, 0.0229295, 0.999571)
-bones/2/rotation = Quaternion(0.0102205, 0.00210485, 0.0138744, 0.999849)
-bones/3/rotation = Quaternion(0.00998649, 0.00227703, 0.0139023, 0.999851)
-bones/4/rotation = Quaternion(0.0918857, -0.00126307, 0.00439872, 0.995759)
-bones/5/rotation = Quaternion(-0.0669968, 0.0108596, -0.00121622, 0.997693)
-bones/7/rotation = Quaternion(-0.685207, -0.316417, 0.518942, -0.401337)
-bones/8/rotation = Quaternion(0.469887, 0.135356, 0.0560921, 0.870482)
-bones/9/rotation = Quaternion(0.00143574, 0.000336934, 0.0128023, 0.999917)
-bones/10/rotation = Quaternion(0.0849738, -0.250759, -0.023219, 0.964033)
+bones/0/position = Vector3(-0.012852, 3.75682, 0.0436566)
+bones/0/rotation = Quaternion(-0.0350809, -0.0435426, -0.0248057, 0.998127)
+bones/1/rotation = Quaternion(-0.0172865, 0.013928, 0.0259021, 0.999418)
+bones/2/rotation = Quaternion(0.00924395, 0.00254823, 0.0145851, 0.999848)
+bones/3/rotation = Quaternion(0.00903394, 0.00274326, 0.014625, 0.999849)
+bones/4/rotation = Quaternion(0.0900009, -0.0024742, 0.0055104, 0.995923)
+bones/5/rotation = Quaternion(-0.0678466, 0.00896525, -0.00137674, 0.997655)
+bones/7/rotation = Quaternion(-0.680753, -0.322265, 0.520101, -0.402761)
+bones/8/rotation = Quaternion(0.478561, 0.131208, 0.0569551, 0.866325)
+bones/9/rotation = Quaternion(0.00152261, 0.000336989, 0.0135773, 0.999907)
+bones/10/rotation = Quaternion(0.0882925, -0.246869, -0.0223917, 0.964758)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -547,14 +547,14 @@ bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
 bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
 bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
 bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
-bones/55/rotation = Quaternion(0.136844, 0.0761805, 0.984217, -0.0823841)
-bones/56/rotation = Quaternion(-0.138233, -0.0184342, 0.0293223, 0.989794)
-bones/57/rotation = Quaternion(0.51332, -0.11863, 0.000545289, 0.849959)
+bones/55/rotation = Quaternion(0.135754, 0.0622495, 0.985729, -0.0776853)
+bones/56/rotation = Quaternion(-0.125247, -0.0130274, 0.0298743, 0.99159)
+bones/57/rotation = Quaternion(0.508855, -0.119023, -0.000180685, 0.852584)
 bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
-bones/60/rotation = Quaternion(-0.0894642, -0.0142091, 0.995498, -0.0278917)
-bones/61/rotation = Quaternion(-0.0748365, 0.0847007, -0.0234327, 0.993316)
-bones/62/rotation = Quaternion(0.540911, 0.111477, -0.0303881, 0.833106)
-bones/63/rotation = Quaternion(0.324685, 0.0277879, -7.64051e-05, 0.945414)
+bones/60/rotation = Quaternion(-0.0927467, -0.0210344, 0.995194, -0.0233442)
+bones/61/rotation = Quaternion(-0.081251, 0.0843572, -0.0244357, 0.992817)
+bones/62/rotation = Quaternion(0.547618, 0.115423, -0.0315997, 0.828126)
+bones/63/rotation = Quaternion(0.322803, 0.0273801, -0.000211079, 0.94607)
 
 [node name="Object_2" parent="model3d/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_7b8h1")
@@ -612,7 +612,7 @@ parameters/look_dir/blend_position = 0.0
 parameters/look_dir_add/add_amount = 0.0
 
 [node name="viewmodel" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0142178, 0.0669102, 0.271516, 0.278329, 0.0228929, -0.0202161, -0.0270302, 0.270922, -0.0653486, -0.371683, 1.42065, 0.256418)
+transform = Transform3D(0.00834245, 0.0728697, 0.270223, 0.277906, 0.0298647, -0.0166331, -0.0331507, 0.268697, -0.0714349, -0.376736, 1.41963, 0.265056)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
@@ -620,7 +620,6 @@ external_skeleton = NodePath("../model3d/Skeleton3D")
 
 [node name="root" type="Node3D" parent="viewmodel" node_paths=PackedStringArray("view_node")]
 script = ExtResource("13_ke3q8")
-editor = true
 object = ExtResource("14_c6elt")
 viewmodel = SubResource("Resource_xnmxq")
 reset_transform = true
