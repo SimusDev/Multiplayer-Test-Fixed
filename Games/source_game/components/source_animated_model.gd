@@ -37,7 +37,7 @@ func switch_state(state:SD_State) -> void:
 	var state_machine_playback = tree.get(state_machine_path) as AnimationNodeStateMachinePlayback
 	state_machine_playback.travel(state.name)
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not initialized:
 		return
 	
