@@ -116,8 +116,9 @@ func write(text, category: int = SD_ConsoleCategories.CATEGORY.DEFAULT) -> SD_Co
 	update_console()
 	
 	if gd_print:
-		var print_text: String = message.get_as_string() 
-		print(print_text)
+		var print_text: String = message.get_as_string()
+		var rich_text: String = SD_ConsoleCategories.RICH_COLOR[category] % print_text
+		print_rich(rich_text)
 	
 	return message
 

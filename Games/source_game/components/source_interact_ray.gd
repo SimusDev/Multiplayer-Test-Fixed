@@ -21,8 +21,6 @@ signal interacted(object: Object)
 func _ready() -> void:
 	target_position = RAY_POSITION
 	
-	
-	
 	if not root:
 		root = get_parent()
 	

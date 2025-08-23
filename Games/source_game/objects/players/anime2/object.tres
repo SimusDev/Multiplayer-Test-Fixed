@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="1_gikhi"]
 [ext_resource type="Texture2D" uid="uid://dhv0bl0tvo33v" path="res://Games/source_game/objects/players/anime2/icon.png" id="2_d01km"]
 [ext_resource type="PackedScene" uid="uid://d2ly2hwdj87jl" path="res://Games/source_game/anime_player/anime_player.tscn" id="3_0xedl"]
-[ext_resource type="Resource" uid="uid://d1x64xifs2y7g" path="res://Games/source_game/objects/ragdolls/sas/sas_ragdoll.tres" id="4_2ndjm"]
+[ext_resource type="Resource" uid="uid://bl126ntup7rf7" path="res://Games/source_game/objects/players/anime2/ragdoll.tres" id="4_0xedl"]
 
 [resource]
 script = ExtResource("1_gikhi")
-ragdoll = ExtResource("4_2ndjm")
+ragdoll = ExtResource("4_0xedl")
 death_sound = ExtResource("1_0xedl")
 custom_section = ""
 custom_id = "anime224"
