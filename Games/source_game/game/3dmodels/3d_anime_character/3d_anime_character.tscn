@@ -2046,7 +2046,6 @@ settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
 [node name="skirt0" type="SpringBoneSimulator3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 setting_count = 1
 settings/0/root_bone_name = "Skirt_0_0_117"
 settings/0/root_bone = 115
@@ -2069,7 +2068,6 @@ settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
 [node name="skirt1" type="SpringBoneSimulator3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 setting_count = 1
 settings/0/root_bone_name = "Skirt_0_1_122"
 settings/0/root_bone = 120

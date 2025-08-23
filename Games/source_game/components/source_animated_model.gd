@@ -4,7 +4,7 @@ signal footstep
 
 @export var target:SourceEntity
 @export var state_machine_name:String = "StateMachine"
-@export var properties:Dictionary[String, String]
+@export var state_machine_properties:Dictionary[String, String]
 
 var state_machine:SD_NodeStateMachine
 
@@ -26,9 +26,9 @@ func emit_footstep() -> void:
 	footstep.emit()
 
 func set_blend_tree() -> void:
-	for i in properties:
+	for i in state_machine_properties:
 		var _property_path = "parameters/%s/%s/blend_position" % [state_machine_name, i]
-		tree.set(_property_path, target.get(properties[i]))
+		tree.set(_property_path, target.get(state_machine_properties[i]))
 
 
 func switch_state(state:SD_State) -> void:

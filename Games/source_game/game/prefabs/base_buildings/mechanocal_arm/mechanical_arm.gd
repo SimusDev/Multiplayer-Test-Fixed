@@ -135,11 +135,11 @@ func set_current_target(_target:Node3D) -> void:
 
 func pick_target() -> Node3D:
 	var bodies:Array[Node3D] = area.get_overlapping_bodies()
-	if bodies.is_empty(): return null
-	
 	for body in bodies:
 		if body is RigidBody3D:
 			pass
 		else:
 			bodies.erase(body)
+	if bodies.is_empty(): return null
+	
 	return bodies[0]

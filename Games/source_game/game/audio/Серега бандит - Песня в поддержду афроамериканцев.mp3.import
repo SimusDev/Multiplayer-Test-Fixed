@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://v1mg13auucbv"
+path="res://.godot/imported/Серега бандит - Песня в поддержду афроамериканцев.mp3-a4a7617c9f60d67cb39ad4e570c22fe1.mp3str"
+
+[deps]
+
+source_file="res://Games/source_game/game/audio/Серега бандит - Песня в поддержду афроамериканцев.mp3"
+dest_files=["res://.godot/imported/Серега бандит - Песня в поддержду афроамериканцев.mp3-a4a7617c9f60d67cb39ad4e570c22fe1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
