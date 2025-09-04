@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2wfwjmh2otja"]
+[gd_scene load_steps=12 format=3 uid="uid://d2wfwjmh2otja"]
 
 [ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_wybiq"]
 [ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
@@ -10,29 +10,171 @@ script = ExtResource("2_r1srf")
 type = 0
 metadata/_custom_type_script = "uid://drk2kpbhybbiw"
 
-[node name="chapman" type="Node3D" node_paths=PackedStringArray("model")]
+[sub_resource type="Animation" id="Animation_r1srf"]
+resource_name = "pick"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.446, 0.1, 0.118129)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
+}
+
+[sub_resource type="Animation" id="Animation_ouw1w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.446, 0.1, 0.118129)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.158825, -2.56563, 0.0314158)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpe6k"]
+_data = {
+&"RESET": SubResource("Animation_ouw1w"),
+&"pick": SubResource("Animation_r1srf")
+}
+
+[sub_resource type="Animation" id="Animation_wpe6k"]
+resource_name = "animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.16667),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.002, 0.002, -0.002), Vector3(0.002, 0.002, -0.002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0261799, 0, 0), Vector3(-0.0261799, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s1mbr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fsyhf"]
+_data = {
+&"RESET": SubResource("Animation_s1mbr"),
+&"animation": SubResource("Animation_wpe6k")
+}
+
+[node name="chapman" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_wybiq")
 resource = SubResource("Resource_ouw1w")
-model = NodePath("model")
+model = NodePath("root/model")
+animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://dj1vged070hd"
 
-[node name="model" parent="." instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.0896299, -0.806677, 0.0465232, 1.48039, -0.237237, 0.810308, -0.224527, -1.24217, -0.446, 0.1, 0.118129)
+[node name="root" type="Node3D" parent="."]
 
-[node name="left_hand" type="Marker3D" parent="model"]
+[node name="model" parent="root" instance=ExtResource("2_6uvnu")]
+transform = Transform3D(-1.26145, -0.0896299, -0.806674, 0.0465232, 1.48039, -0.237237, 0.810308, -0.224527, -1.24217, -0.446, 0.1, 0.118129)
+
+[node name="left_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.00506219, -0.641592, -0.181046, -0.105623, 0.179537, -0.633289, 0.658226, 0.0238756, -0.103014, 0.0577524, -0.0188184, 0.0296512)
 
-[node name="right_hand" type="Marker3D" parent="."]
-transform = Transform3D(-0.9018, 0.164479, 0.39963, -0.20612, -0.976482, -0.0632304, 0.379831, -0.139393, 0.914493, 0.334101, -0.618725, 0.192315)
-
-[node name="arms2" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
+[node name="arms2" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 0, 0.5)
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
-[node name="left_hand_ik" parent="arms2/root/Skeleton3D" index="1"]
+[node name="Skeleton3D" parent="root/arms2/root" index="0"]
+bones/23/position = Vector3(-0.0186112, 0.0216057, -0.0279854)
+bones/23/rotation = Quaternion(-0.565903, 0.552113, -0.270113, 0.549513)
+bones/23/scale = Vector3(1, 1, 1)
+
+[node name="left_hand_ik" parent="root/arms2/root/Skeleton3D" index="1"]
 target_node = NodePath("../../../../model/left_hand")
 
-[node name="right_hand_ik" parent="arms2/root/Skeleton3D" index="2"]
-target_node = NodePath("../../../../right_hand")
+[node name="right_hand_ik" parent="root/arms2/root/Skeleton3D" index="2"]
+target_node = NodePath("../../../../../right_hand")
 
-[editable path="arms2"]
+[node name="right_hand" type="Marker3D" parent="."]
+transform = Transform3D(-0.9018, 0.164479, 0.39963, 0.361937, -0.217828, 0.906395, 0.236133, 0.962028, 0.136906, -0.459805, 0.0337538, 1.02996)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wpe6k")
+}
+
+[node name="idle_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fsyhf")
+}
+autoplay = "animation"
+
+[editable path="root/arms2"]

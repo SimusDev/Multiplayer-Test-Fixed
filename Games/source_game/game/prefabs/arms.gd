@@ -7,4 +7,5 @@ func _ready() -> void:
 
 func initialize() -> void:
 	for hand in hands_ik:
+		hand.stop()
 		hand.start()

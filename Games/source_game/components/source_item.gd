@@ -13,6 +13,7 @@ signal on_current_change
 @export var pick_sound:AudioStream
 
 @export_group("Animations Names")
+@export var _idle:String = "idle"
 @export var _fire:String = "fire"
 @export var _reload:String = "reload"
 @export var _pick:String = "pick"
@@ -47,13 +48,16 @@ func _ready() -> void:
 	_on_current_changed()
 
 func _on_current_changed():
-	if not is_instance_valid(animation_player): return
+	if not is_instance_valid(animation_player):
+		return
 	
-	animation_player.play("RESET")
+	#animation_player.play("RESET")
+
 	if is_current():
 		animation_player.play(_pick) 
 		SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
 
+	await get_tree().physics_frame
 	self.visible = is_current()
 	#какие то баги бл* рука дергается !!""!№!;!;
 

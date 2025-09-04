@@ -8,12 +8,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5h5w"]
 resource_name = "material"
 albedo_texture = ExtResource("2_xjxig")
+metallic_specular = 0.0
 metallic_texture = ExtResource("3_2k50u")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("3_2k50u")
 roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = ExtResource("4_mtbqu")
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5qxu2"]
 resource_name = "Sketchfab_Scene_arm_arm_0"
