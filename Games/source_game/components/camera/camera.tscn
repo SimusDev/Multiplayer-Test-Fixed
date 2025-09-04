@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://btyg50i3c2cht"]
+
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="1_00qm4"]
+[ext_resource type="Script" uid="uid://cte108s8l1gyn" path="res://Games/source_game/components/camera/camera.gd" id="2_f5osm"]
+
+[node name="Camera" instance=ExtResource("1_00qm4")]
+script = ExtResource("2_f5osm")

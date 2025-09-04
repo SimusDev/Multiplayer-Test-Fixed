@@ -1,6 +1,7 @@
 extends Node
 class_name SourceEmotions
 
+@export var root: Node
 @export var input: StringName = "source.emotions"
 @export var resource: R_SourceEmotions
 
@@ -9,6 +10,9 @@ var _input_node: SD_NodeInput
 var _ui: PackedScene
 
 func _ready() -> void:
+	if not root:
+		root = get_parent()
+	
 	_ui = load("res://Games/source_game/ui/emotions/emotions.tscn")
 	
 	if SD_Network.is_authority(self):

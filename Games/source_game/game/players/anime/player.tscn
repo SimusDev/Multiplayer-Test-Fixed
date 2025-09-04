@@ -79,8 +79,6 @@ _data = SubResource("Resource_6p28h")
 
 [node name="SourceCrouch" parent="." index="11" node_paths=PackedStringArray("collision_normal", "ceiling_detection", "crouch_camera_position")]
 collision_normal = NodePath("../AI_Visible/collision_normal")
-crouch_shape = null
-normal_shape = null
 ceiling_detection = NodePath("../crouch_ray")
 crouch_camera_position = NodePath("../crouch_pos")
 
@@ -117,8 +115,9 @@ shape = SubResource("BoxShape3D_an3tc")
 [node name="nickname" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40819, 0)
 
-[node name="SourceEmotions" type="Node" parent="." index="21"]
+[node name="SourceEmotions" type="Node" parent="." index="21" node_paths=PackedStringArray("root")]
 script = ExtResource("5_mitkl")
+root = NodePath("..")
 resource = ExtResource("6_o4uiq")
 metadata/_custom_type_script = "uid://bl7u4n7rmh53s"
 
