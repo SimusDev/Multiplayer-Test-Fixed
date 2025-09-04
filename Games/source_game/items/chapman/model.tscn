@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwqd0wh870xaq"]
+
+[ext_resource type="Texture2D" uid="uid://b7n71qlkb7610" path="res://Games/source_game/items/chapman/textures/pa4ka_face.png" id="1_6t5xp"]
+[ext_resource type="Texture2D" uid="uid://d3xelja76sohw" path="res://Games/source_game/items/chapman/textures/pa4ka_back.png" id="2_ve4av"]
+[ext_resource type="Texture2D" uid="uid://bhbt2qafnk1av" path="res://Games/source_game/items/chapman/textures/pa4ka_grani.png" id="3_devh8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv3a3"]
+albedo_texture = ExtResource("1_6t5xp")
+uv1_scale = Vector3(-16, 17, 16)
+uv1_offset = Vector3(0.5, -0.02, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keqxw"]
+albedo_texture = ExtResource("2_ve4av")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4613"]
+albedo_texture = ExtResource("3_devh8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igtnh"]
+albedo_texture = ExtResource("3_devh8")
+
+[node name="model" type="Node3D"]
+
+[node name="mesh" type="CSGBox3D" parent="."]
+size = Vector3(0.06, 0.06, 0.025)
+material = SubResource("StandardMaterial3D_qv3a3")
+
+[node name="pivot_krishka" type="Node3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.028, 0.01)
+
+[node name="krishka_mesh" type="CSGBox3D" parent="mesh/pivot_krishka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0172731, -0.010209)
+size = Vector3(0.06, 0.03, 0.025)
+material = SubResource("StandardMaterial3D_keqxw")
+
+[node name="sub" type="CSGBox3D" parent="mesh/pivot_krishka/krishka_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00561162, -4.99524e-05)
+operation = 2
+size = Vector3(0.055, 0.02, 0.02)
+material = SubResource("StandardMaterial3D_q4613")
+
+[node name="sub" type="CSGBox3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110475, 0)
+operation = 2
+size = Vector3(0.055, 0.053, 0.022)
+material = SubResource("StandardMaterial3D_igtnh")

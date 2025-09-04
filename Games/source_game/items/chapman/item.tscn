@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2wfwjmh2otja"]
+
+[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_wybiq"]
+[ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
+[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
+[ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_r1srf"]
+
+[sub_resource type="Resource" id="Resource_ouw1w"]
+script = ExtResource("2_r1srf")
+type = 0
+metadata/_custom_type_script = "uid://drk2kpbhybbiw"
+
+[node name="chapman" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_wybiq")
+resource = SubResource("Resource_ouw1w")
+model = NodePath("model")
+metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="model" parent="." instance=ExtResource("2_6uvnu")]
+transform = Transform3D(-1.26145, -0.0896299, -0.806677, 0.0465232, 1.48039, -0.237237, 0.810308, -0.224527, -1.24217, -0.446, 0.1, 0.118129)
+
+[node name="left_hand" type="Marker3D" parent="model"]
+transform = Transform3D(-0.00506219, -0.641592, -0.181046, -0.105623, 0.179537, -0.633289, 0.658226, 0.0238756, -0.103014, 0.0577524, -0.0188184, 0.0296512)
+
+[node name="right_hand" type="Marker3D" parent="."]
+transform = Transform3D(-0.9018, 0.164479, 0.39963, -0.20612, -0.976482, -0.0632304, 0.379831, -0.139393, 0.914493, 0.334101, -0.618725, 0.192315)
+
+[node name="arms2" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 0, 0.5)
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
+
+[node name="left_hand_ik" parent="arms2/root/Skeleton3D" index="1"]
+target_node = NodePath("../../../../model/left_hand")
+
+[node name="right_hand_ik" parent="arms2/root/Skeleton3D" index="2"]
+target_node = NodePath("../../../../right_hand")
+
+[editable path="arms2"]

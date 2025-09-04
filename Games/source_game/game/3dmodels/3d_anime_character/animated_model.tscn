@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nueoq0reyoop"]
+[gd_scene load_steps=8 format=3 uid="uid://nueoq0reyoop"]
 
 [ext_resource type="Script" uid="uid://bo8uwskkur08r" path="res://Games/source_game/components/source_animated_model.gd" id="1_c40mx"]
 [ext_resource type="PackedScene" uid="uid://d2luv1mr70rj7" path="res://Games/source_game/game/3dmodels/3d_anime_character/3d_anime_character.tscn" id="2_tkxnu"]
@@ -7,32 +7,6 @@
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="5_k2651"]
 [ext_resource type="Resource" uid="uid://b123u6latr4pb" path="res://Games/source_game/objects/weapons/toolgun.tres" id="6_yt864"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="7_upo8v"]
-[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="7_wvjsq"]
-[ext_resource type="PackedScene" uid="uid://cxaois3c1hpmp" path="res://Games/source_game/items/gm_toolgun/gm_toolgun.tscn" id="8_b53t0"]
-[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="9_b53t0"]
-[ext_resource type="PackedScene" uid="uid://dh5c418tsjjkr" path="res://Games/source_game/items/gm_toolgun/model.tscn" id="10_32ebl"]
-
-[sub_resource type="Resource" id="Resource_ekivk"]
-script = ExtResource("9_b53t0")
-prefab = ExtResource("8_b53t0")
-position = Vector3(-0.1, 0, 0.1)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_1r5kv"]
-script = ExtResource("9_b53t0")
-prefab = ExtResource("10_32ebl")
-position = Vector3(-0.0232231, 0.102967, -0.0270663)
-rotation = Vector3(1.11192, -1.27028, 0.534592)
-scale = Vector3(0.7, 0.7, 0.7)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_f5rn0"]
-script = ExtResource("7_wvjsq")
-view = SubResource("Resource_ekivk")
-world = SubResource("Resource_1r5kv")
-metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [node name="SourceAnimatedModel" type="Node3D" node_paths=PackedStringArray("model", "tree", "player")]
 script = ExtResource("1_c40mx")
@@ -81,7 +55,6 @@ bones/22/rotation = Quaternion(-0.304334, 0.000372239, -0.0968515, 0.947629)
 bones/23/rotation = Quaternion(0.194785, 0.125019, 0.17781, 0.956458)
 bones/27/rotation = Quaternion(0.0276207, -0.00575205, -0.00362175, 0.999595)
 bones/28/rotation = Quaternion(-0.0414854, -0.00587068, -0.00342624, 0.999116)
-bones/28/scale = Vector3(1, 1, 1)
 bones/29/rotation = Quaternion(0.976729, 0.134048, 0.134049, -0.100316)
 bones/32/rotation = Quaternion(0.988672, -0.028347, -0.0283478, -0.144641)
 bones/43/rotation = Quaternion(0.989335, 0.064023, 0.0640231, -0.114095)
@@ -107,30 +80,25 @@ bones/68/rotation = Quaternion(-0.0606732, 0.0421975, 0.0640597, 0.995206)
 bones/69/rotation = Quaternion(-0.0823734, -0.00811777, -0.0712151, 0.994021)
 bones/70/rotation = Quaternion(4.10247e-08, -0.0193813, -8.61473e-09, 0.999812)
 bones/71/rotation = Quaternion(-0.285464, 0.236267, 0.306902, 0.876641)
-bones/75/rotation = Quaternion(0.739033, -0.453979, -0.48559, -0.109252)
 bones/78/rotation = Quaternion(0.739033, 0.453979, 0.48559, -0.109251)
 bones/81/rotation = Quaternion(0.579636, 0.488793, 0.485712, -0.434958)
 bones/87/rotation = Quaternion(0.843267, 0.246346, -0.457778, -0.136581)
 bones/94/rotation = Quaternion(0.579635, -0.488793, -0.485711, -0.434959)
 bones/100/rotation = Quaternion(0.843267, -0.246346, 0.457778, -0.136581)
 bones/107/rotation = Quaternion(0.610702, 0.200204, -0.20706, 0.737623)
-bones/107/scale = Vector3(1.00013, 1, 1.00002)
 bones/108/rotation = Quaternion(0.911746, -0.0207576, -0.0620627, 0.405508)
 bones/109/rotation = Quaternion(-0.811197, 0.108644, 0.284008, 0.499496)
 bones/110/rotation = Quaternion(-0.368025, 0.0654422, 0.0140308, 0.927404)
 bones/111/rotation = Quaternion(0.600455, -0.0289113, 0.0987187, 0.793015)
-bones/111/scale = Vector3(0.999891, 1, 0.999983)
 bones/112/rotation = Quaternion(0.940865, -0.0183876, -0.0156108, 0.337921)
 bones/113/rotation = Quaternion(-0.862065, 0.0217779, 0.00480848, 0.506306)
 bones/114/rotation = Quaternion(-0.40335, -0.072426, -0.00947849, 0.912126)
-bones/115/rotation = Quaternion(0.980711, 0.137539, 0.137539, -0.0192959)
 bones/130/scale = Vector3(1, 1, 0.998473)
 bones/155/rotation = Quaternion(0.980711, -0.137539, -0.137539, -0.0192958)
 bones/160/rotation = Quaternion(0.985436, -0.119682, -0.119682, -0.0164123)
 bones/165/rotation = Quaternion(0.99507, -0.0698855, -0.0698855, -0.0082069)
 bones/165/scale = Vector3(1.00002, 1, 1)
 bones/170/rotation = Quaternion(0.999992, 0, -1.734e-14, -0.00389207)
-bones/170/scale = Vector3(1, 1, 1.00305)
 bones/175/rotation = Quaternion(0.995101, 0.0696543, 0.0696545, -0.00835251)
 bones/175/scale = Vector3(0.999983, 1, 1)
 bones/180/rotation = Quaternion(0.985493, 0.119437, 0.119437, -0.0165576)
@@ -155,12 +123,10 @@ bone_idx = 58
 use_external_skeleton = true
 external_skeleton = NodePath("../model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D")
 
-[node name="SourceViewModelRoot3D" type="Node3D" parent="viewmodel" node_paths=PackedStringArray("view_node")]
+[node name="SourceViewModelRoot3D" type="Node3D" parent="viewmodel"]
 script = ExtResource("5_k2651")
 object = ExtResource("6_yt864")
-viewmodel = SubResource("Resource_f5rn0")
 placeholder = ExtResource("7_upo8v")
-view_node = NodePath("prefab")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
 [editable path="model3d"]

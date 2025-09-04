@@ -226,5 +226,4 @@ static var sounds:Dictionary = {
 									]
 						}
 			}
-
 }

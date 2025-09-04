@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 		velocity.y -= 10 * delta
 	
 	if velocity: state_machine.switch_by_name("move")
-	else: state_machine.switch_by_name("idle")
+	else:
+		state_machine.switch_by_name("idle")
 
 	set_tree_blend()
 

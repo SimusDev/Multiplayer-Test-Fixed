@@ -1,11 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://cplgn5rbodten"]
+[gd_scene load_steps=18 format=4 uid="uid://cplgn5rbodten"]
 
 [ext_resource type="Script" uid="uid://b77ha7rajw87s" path="res://Games/source_game/props/lootbox/lootbox.gd" id="1_eqeiw"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_7ecak"]
 [ext_resource type="Texture2D" uid="uid://c01tbq77ayu66" path="res://Games/source_game/props/lootbox/textures/blinn1_baseColor.png" id="3_36eyv"]
+[ext_resource type="AudioStream" uid="uid://du8w58nx2l876" path="res://sounds/hl2/physics/plastic/plastic_box_impact_hard1.wav" id="3_k2423"]
 [ext_resource type="AudioStream" uid="uid://4xkxnsn4pbw3" path="res://sounds/hl2/buttons/button3.wav" id="4_7ecak"]
+[ext_resource type="AudioStream" uid="uid://bijyn8safp515" path="res://sounds/hl2/physics/plastic/plastic_box_impact_hard2.wav" id="4_jea42"]
+[ext_resource type="AudioStream" uid="uid://bo4rjlx3nr8kl" path="res://sounds/hl2/physics/plastic/plastic_box_impact_hard3.wav" id="5_pioap"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="5_yjqbk"]
+[ext_resource type="AudioStream" uid="uid://c8wawvwmuxa1" path="res://sounds/hl2/physics/plastic/plastic_box_impact_hard4.wav" id="6_bpxc2"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="6_yjqbk"]
+[ext_resource type="AudioStream" uid="uid://s3xsi8w7pj4t" path="res://sounds/hl2/physics/plastic/plastic_box_scrape_smooth_loop1.wav" id="7_ipoon"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt3pi"]
 resource_name = "blinn1"
@@ -910,8 +915,11 @@ script = ExtResource("1_eqeiw")
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("2_7ecak")
-surface = "body"
 rigid_body = NodePath("..")
+surface = "body"
+soft_impact_sounds = Array[AudioStream]([ExtResource("3_k2423"), ExtResource("4_jea42"), ExtResource("5_pioap"), ExtResource("6_bpxc2")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("3_k2423"), ExtResource("4_jea42"), ExtResource("5_pioap"), ExtResource("6_bpxc2")])
+scrape_sounds = Array[AudioStream]([ExtResource("7_ipoon")])
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]

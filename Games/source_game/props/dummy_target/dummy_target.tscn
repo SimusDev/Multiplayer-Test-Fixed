@@ -1,11 +1,19 @@
-[gd_scene load_steps=13 format=4 uid="uid://b4ypo6jnmm7fw"]
+[gd_scene load_steps=21 format=4 uid="uid://b4ypo6jnmm7fw"]
 
 [ext_resource type="Texture2D" uid="uid://dvrpldkn7tuwm" path="res://Games/source_game/game/3dmodels/dummy_target/textures/initialShadingGroup_baseColor.png" id="1_dhr41"]
 [ext_resource type="Script" uid="uid://bkf8m0t3nunsg" path="res://scripts/components/health/C_HealthComponent.gd" id="1_so8pq"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="2_kroeh"]
 [ext_resource type="Texture2D" uid="uid://c8t6amiddea5a" path="res://Games/source_game/game/3dmodels/dummy_target/textures/initialShadingGroup_metallicRoughness.png" id="2_lrjmr"]
+[ext_resource type="AudioStream" uid="uid://ch8fafk8qajwi" path="res://sounds/hl2/physics/body/body_medium_impact_soft1.wav" id="3_gi50f"]
 [ext_resource type="Texture2D" uid="uid://c5lh3kehdynfh" path="res://Games/source_game/game/3dmodels/dummy_target/textures/initialShadingGroup_normal.png" id="3_jxyek"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="4_lrjmr"]
+[ext_resource type="AudioStream" uid="uid://b605gviwuv1y" path="res://sounds/hl2/physics/body/body_medium_impact_soft2.wav" id="4_nfbm1"]
+[ext_resource type="AudioStream" uid="uid://8ft2mkjfs7ia" path="res://sounds/hl2/physics/body/body_medium_impact_soft3.wav" id="5_p01n1"]
+[ext_resource type="AudioStream" uid="uid://bkuwwy7cl100u" path="res://sounds/hl2/physics/body/body_medium_impact_soft4.wav" id="6_obmtn"]
+[ext_resource type="AudioStream" uid="uid://cvgmymydxnij4" path="res://sounds/hl2/physics/body/body_medium_impact_soft5.wav" id="7_xqvjy"]
+[ext_resource type="AudioStream" uid="uid://c6miwap52c5fv" path="res://sounds/hl2/physics/body/body_medium_impact_soft6.wav" id="8_01tdh"]
+[ext_resource type="AudioStream" uid="uid://bcb5neawlavpd" path="res://sounds/hl2/physics/body/body_medium_impact_soft7.wav" id="9_whvv6"]
+[ext_resource type="AudioStream" uid="uid://c0npbwb23iro3" path="res://sounds/hl2/physics/metal/metal_box_scrape_smooth_loop1.wav" id="10_rj2gj"]
 
 [sub_resource type="GDScript" id="GDScript_jxyek"]
 resource_name = "dummy_target"
@@ -77,6 +85,15 @@ target = NodePath("..")
 god_mode = true
 metadata/_custom_type_script = "uid://bkf8m0t3nunsg"
 
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("4_lrjmr")
+rigid_body = NodePath("..")
+surface = "body"
+soft_impact_sounds = Array[AudioStream]([ExtResource("3_gi50f"), ExtResource("4_nfbm1"), ExtResource("5_p01n1"), ExtResource("6_obmtn"), ExtResource("7_xqvjy"), ExtResource("8_01tdh"), ExtResource("9_whvv6")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("3_gi50f"), ExtResource("4_nfbm1"), ExtResource("5_p01n1"), ExtResource("6_obmtn"), ExtResource("7_xqvjy"), ExtResource("8_01tdh"), ExtResource("9_whvv6")])
+scrape_sounds = Array[AudioStream]([ExtResource("10_rj2gj")])
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
 [node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
 collision_mask = 2
@@ -95,12 +112,6 @@ transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-1
 [node name="mesh" type="MeshInstance3D" parent="root"]
 mesh = SubResource("ArrayMesh_g53nn")
 skeleton = NodePath("")
-
-[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
-script = ExtResource("4_lrjmr")
-surface = "body"
-rigid_body = NodePath("..")
-metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0.1)

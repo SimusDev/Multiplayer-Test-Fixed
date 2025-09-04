@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=3 format=3 uid="uid://bxr84o0ay8tn6"]
+
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_0jhm0"]
+[ext_resource type="PackedScene" uid="uid://v8igsv1k6y7s" path="res://Games/source_game/objects/game_resources/wood/wood_stick.tscn" id="1_6xbwk"]
+
+[resource]
+script = ExtResource("1_0jhm0")
+custom_section = ""
+custom_id = ""
+name = "wood_stick"
+description = ""
+prefab = ExtResource("1_6xbwk")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

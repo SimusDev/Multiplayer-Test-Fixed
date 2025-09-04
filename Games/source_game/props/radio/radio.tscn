@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=4 uid="uid://cdjjxovs1uyne"]
+[gd_scene load_steps=21 format=4 uid="uid://cdjjxovs1uyne"]
 
 [ext_resource type="Texture2D" uid="uid://b86fmrnoxj4n1" path="res://Games/source_game/game/3dmodels/radio/radio_0.jpg" id="1_a72kf"]
 [ext_resource type="Script" uid="uid://bigjtao74p5e6" path="res://Games/source_game/props/radio/radio.gd" id="1_po8lj"]
 [ext_resource type="Texture2D" uid="uid://c7j7vgpjdwpva" path="res://Games/source_game/game/3dmodels/radio/radio_1.png" id="2_xmmxb"]
+[ext_resource type="AudioStream" uid="uid://deig6rhcervnd" path="res://sounds/hl2/physics/metal/metal_solid_impact_soft1.wav" id="3_ofl10"]
 [ext_resource type="Texture2D" uid="uid://bqjndc6280cgb" path="res://Games/source_game/game/3dmodels/radio/radio_2.jpg" id="3_po8lj"]
+[ext_resource type="AudioStream" uid="uid://dt7iesv43la47" path="res://sounds/hl2/physics/metal/metal_solid_impact_soft2.wav" id="4_bg4jn"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="4_xmmxb"]
+[ext_resource type="AudioStream" uid="uid://wf5706c5kcc3" path="res://sounds/hl2/physics/metal/metal_solid_impact_soft3.wav" id="5_01vhb"]
+[ext_resource type="AudioStream" uid="uid://c0npbwb23iro3" path="res://sounds/hl2/physics/metal/metal_box_scrape_smooth_loop1.wav" id="6_1rb30"]
 [ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="6_r3y2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaott"]
@@ -162,8 +166,11 @@ loop_mode = false
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("4_xmmxb")
-surface = "metal_box"
 rigid_body = NodePath("..")
+surface = "metal_box"
+soft_impact_sounds = Array[AudioStream]([ExtResource("3_ofl10"), ExtResource("4_bg4jn"), ExtResource("5_01vhb")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("3_ofl10"), ExtResource("4_bg4jn"), ExtResource("5_01vhb")])
+scrape_sounds = Array[AudioStream]([ExtResource("6_1rb30")])
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="root" type="Node3D" parent="."]

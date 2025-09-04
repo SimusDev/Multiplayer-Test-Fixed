@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://lg3sb5vg4v25"]
+
+[ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="1_yvb3h"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_2f4ig"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2f4ig"]
+size = Vector3(0.06, 0.0901611, 0.025)
+
+[node name="chapman_world_prefab" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_yvb3h")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0150806, 0)
+shape = SubResource("BoxShape3D_2f4ig")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("2_2f4ig")
+rigid_body = NodePath("..")
+surface = "body"
+metadata/_custom_type_script = "uid://d2inw684rgrh8"

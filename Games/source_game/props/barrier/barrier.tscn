@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://dj1xqmdjysums"]
+[gd_scene load_steps=11 format=4 uid="uid://dj1xqmdjysums"]
 
 [ext_resource type="Texture2D" uid="uid://cpftdba8ekct7" path="res://Games/source_game/game/3dmodels/barrier/barrier_barrier_barrier_barrier.png" id="1_fkxob"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_5cqfo"]
+[ext_resource type="AudioStream" uid="uid://bs7xy5w68xgd4" path="res://sounds/hl2/physics/concrete/concrete_block_impact_hard1.wav" id="2_fl4c4"]
+[ext_resource type="AudioStream" uid="uid://ig2tkoegx2x2" path="res://sounds/hl2/physics/concrete/concrete_block_impact_hard2.wav" id="3_w6fih"]
+[ext_resource type="AudioStream" uid="uid://cgho0nhefuxvh" path="res://sounds/hl2/physics/concrete/concrete_block_impact_hard3.wav" id="4_u8rwf"]
+[ext_resource type="AudioStream" uid="uid://ddpmukswxqa2a" path="res://sounds/hl2/physics/concrete/concrete_scrape_smooth_loop1.wav" id="5_vcy0l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cqfo"]
 resource_name = "barrier_barrier.bmp"
@@ -45,8 +49,11 @@ mass = 50.0
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("2_5cqfo")
-surface = "concrete"
 rigid_body = NodePath("..")
+surface = "concrete"
+soft_impact_sounds = Array[AudioStream]([ExtResource("2_fl4c4"), ExtResource("3_w6fih"), ExtResource("4_u8rwf")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("2_fl4c4"), ExtResource("3_w6fih"), ExtResource("4_u8rwf")])
+scrape_sounds = Array[AudioStream]([ExtResource("5_vcy0l")])
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="barrier_ARM" type="Node3D" parent="."]

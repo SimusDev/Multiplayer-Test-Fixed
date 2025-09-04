@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbradpyveofaw"]
+[gd_scene load_steps=10 format=3 uid="uid://dbradpyveofaw"]
 
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_je4um"]
+[ext_resource type="AudioStream" uid="uid://b8tausv57i3yl" path="res://sounds/hl2/physics/rubber/rubber_tire_impact_hard1.wav" id="2_27j4a"]
 [ext_resource type="Texture2D" uid="uid://pgjrpk1yl3m" path="res://Games/source_game/textures/basketball.png" id="2_opcow"]
+[ext_resource type="AudioStream" uid="uid://cfddeb2vk4sdo" path="res://sounds/hl2/physics/rubber/rubber_tire_impact_hard2.wav" id="3_k65o1"]
+[ext_resource type="AudioStream" uid="uid://c1bx4pitrldo4" path="res://sounds/hl2/physics/rubber/rubber_tire_impact_hard3.wav" id="4_x8lpe"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_opcow"]
-bounce = 0.7
+bounce = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je4um"]
 albedo_texture = ExtResource("2_opcow")
@@ -33,8 +36,10 @@ physics_material_override = SubResource("PhysicsMaterial_opcow")
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("1_je4um")
-surface = "body"
 rigid_body = NodePath("..")
+surface = "body"
+soft_impact_sounds = Array[AudioStream]([ExtResource("2_27j4a"), ExtResource("3_k65o1"), ExtResource("4_x8lpe")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("2_27j4a"), ExtResource("3_k65o1"), ExtResource("4_x8lpe")])
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="mesh" type="MeshInstance3D" parent="."]

@@ -101,20 +101,21 @@ func update_ghost_building() -> void:
 	if not ghost_model:
 		return
 	
-	can_place = item.player.interact_raycast.is_colliding()
-	ghost_model.visible = item.player.interact_raycast.is_colliding()
-	
-	if item.player.interact_raycast.is_colliding():
-		var raycast_point = item.player.interact_raycast.get_collision_point()
-		var normal = item.player.interact_raycast.get_collision_normal()
-		var safe_up = Vector3.UP if abs(normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+	if is_instance_valid(item.player.interact_raycast):
+		can_place = item.player.interact_raycast.is_colliding()
+		ghost_model.visible = item.player.interact_raycast.is_colliding()
 		
-		ghost_model.global_position = raycast_point + ghost_model_offset
-		var push_distance = 0
-		ghost_model.global_translate(normal * push_distance)
-	
-	if snapping:
-		ghost_model.global_position = ghost_model.global_position.snapped(Vector3(.1, .1, .1))
+		if item.player.interact_raycast.is_colliding():
+			var raycast_point = item.player.interact_raycast.get_collision_point()
+			var normal = item.player.interact_raycast.get_collision_normal()
+			var safe_up = Vector3.UP if abs(normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+			
+			ghost_model.global_position = raycast_point + ghost_model_offset
+			var push_distance = 0
+			ghost_model.global_translate(normal * push_distance)
+		
+		if snapping:
+			ghost_model.global_position = ghost_model.global_position.snapped(Vector3(.1, .1, .1))
 
 func free_ghost_buildings() -> void:
 	for child in SourceLevelSection3D.get_by_name("ghost_buildings").get_children():
