@@ -9,7 +9,11 @@ func set_emotions(emotions: SourceEmotions) -> void:
 		return
 	
 	for i in emotions.resource.list:
-		var ui: Control = emotion_scene.instantiate() as Control
+		var ui: Button = emotion_scene.instantiate() as Button
+		ui.pressed.connect(_on_emotion_pressed.bind(emotions, i))
 		ui.resource = i
 		ui.emotions = emotions
 		_container.add_child(ui)
+
+func _on_emotion_pressed(emotions: SourceEmotions, res: R_SourceEmotion) -> void:
+	res.try_use(emotions)

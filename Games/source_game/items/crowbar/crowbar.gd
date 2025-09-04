@@ -10,7 +10,8 @@ func _ready() -> void:
 
 func _on_item_use():
 	if "model" in player:
-		player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		if player.model:
+			player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func impact():
 	if not is_instance_valid(interact_ray):

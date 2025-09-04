@@ -87,3 +87,4 @@ func _interact_net(object: Object) -> void:
 	S_EventInteract.as_event().object = object
 	S_EventInteract.as_event().ray = self
 	S_EventInteract.as_event().publish()
+	
