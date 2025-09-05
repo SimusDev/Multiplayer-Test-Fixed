@@ -10,6 +10,33 @@ script = ExtResource("2_r1srf")
 type = 0
 metadata/_custom_type_script = "uid://drk2kpbhybbiw"
 
+[sub_resource type="Animation" id="Animation_ouw1w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.446, 0.1, 0.118129)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.158825, -2.56563, 0.0314158)]
+}
+
 [sub_resource type="Animation" id="Animation_r1srf"]
 resource_name = "pick"
 length = 0.2
@@ -38,37 +65,37 @@ tracks/1/keys = {
 "values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
 }
 
-[sub_resource type="Animation" id="Animation_ouw1w"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpe6k"]
+_data = {
+&"RESET": SubResource("Animation_ouw1w"),
+&"pick": SubResource("Animation_r1srf")
+}
+
+[sub_resource type="Animation" id="Animation_s1mbr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
+tracks/0/path = NodePath("root:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.446, 0.1, 0.118129)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
+tracks/1/path = NodePath("root:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.158825, -2.56563, 0.0314158)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpe6k"]
-_data = {
-&"RESET": SubResource("Animation_ouw1w"),
-&"pick": SubResource("Animation_r1srf")
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wpe6k"]
@@ -100,33 +127,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-0.0261799, 0, 0), Vector3(-0.0261799, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_s1mbr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fsyhf"]
 _data = {
 &"RESET": SubResource("Animation_s1mbr"),
@@ -143,7 +143,7 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.0896299, -0.806674, 0.0465232, 1.48039, -0.237237, 0.810308, -0.224527, -1.24217, -0.446, 0.1, 0.118129)
+transform = Transform3D(-1.26145, -0.089631, -0.806679, 0.0465231, 1.48039, -0.237237, 0.810315, -0.224526, -1.24217, -0.446, 0.1, 0.118129)
 
 [node name="left_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.00506219, -0.641592, -0.181046, -0.105623, 0.179537, -0.633289, 0.658226, 0.0238756, -0.103014, 0.0577524, -0.0188184, 0.0296512)
@@ -153,9 +153,7 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="root/arms2/root" index="0"]
-bones/23/position = Vector3(-0.0186112, 0.0216057, -0.0279854)
 bones/23/rotation = Quaternion(-0.565903, 0.552113, -0.270113, 0.549513)
-bones/23/scale = Vector3(1, 1, 1)
 
 [node name="left_hand_ik" parent="root/arms2/root/Skeleton3D" index="1"]
 target_node = NodePath("../../../../model/left_hand")

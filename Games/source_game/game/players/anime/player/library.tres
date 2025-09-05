@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=14 format=3 uid="uid://6luwsgfb4bi0"]
+[gd_resource type="AnimationLibrary" load_steps=15 format=3 uid="uid://6luwsgfb4bi0"]
 
 [ext_resource type="Animation" uid="uid://cq3jkf2vikqcu" path="res://Games/source_game/game/players/anime/player/anims/crouch_idle.res" id="1_8ubu7"]
 [ext_resource type="Animation" uid="uid://c5ayyg2gfag8u" path="res://Games/source_game/game/players/anime/player/anims/crouch_left.res" id="2_n75b1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Animation" uid="uid://do6mepa5p0n4s" path="res://Games/source_game/game/players/anime/player/anims/run_forward.res" id="11_tdjgb"]
 [ext_resource type="Animation" uid="uid://6nfhj7ut3fd5" path="res://Games/source_game/game/players/anime/player/anims/sword_slash.res" id="12_4hnqb"]
 [ext_resource type="Animation" uid="uid://cu7uyj7rhft46" path="res://Games/source_game/game/players/anime/player/anims/empty.res" id="13_n75b1"]
+[ext_resource type="Animation" uid="uid://c7db8shyniof4" path="res://Games/source_game/game/players/anime/player/mixamo_anims/gangnam_style.res" id="14_1tmmu"]
 
 [resource]
 _data = {
@@ -22,6 +23,7 @@ _data = {
 &"crouch_walk": ExtResource("4_80cc2"),
 &"empty": ExtResource("13_n75b1"),
 &"female_walk": ExtResource("5_u7lnr"),
+&"gangnam_style": ExtResource("14_1tmmu"),
 &"idle": ExtResource("6_t5v3o"),
 &"jog_strafe_left": ExtResource("7_jbgbh"),
 &"jog_strafe_right": ExtResource("8_424a3"),

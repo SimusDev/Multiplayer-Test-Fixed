@@ -55,7 +55,6 @@ var _settings: SD_EngineSettings
 
 func _ready() -> void:
 	_settings = SD_EngineSettings.create_or_get()
-	
 	canvas._ready()
 	console._ready()
 	write_engine_info()
