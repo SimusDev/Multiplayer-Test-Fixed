@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func check_level():
-	if SD_Network.is_server():
+	if SD_Network.is_server() and is_instance_valid(current_level.get_node("player_spawner")):
 		game.mp_player_spawner = current_level.get_node("player_spawner")
 
 func _on_cmd_change_level_executed():

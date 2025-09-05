@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3hfo8yb0q8vi"]
+
+[ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="1_o21l0"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_vhvoc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vhvoc"]
+height = 0.063
+radius = 0.005
+
+[node name="ciga_world_prefab" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_o21l0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000279295, 0)
+shape = SubResource("CylinderShape3D_vhvoc")
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("2_vhvoc")
+rigid_body = NodePath("..")
+surface = "body"
+metadata/_custom_type_script = "uid://d2inw684rgrh8"

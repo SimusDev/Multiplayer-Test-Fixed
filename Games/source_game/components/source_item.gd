@@ -50,12 +50,11 @@ func _ready() -> void:
 func _on_current_changed():
 	if not is_instance_valid(animation_player):
 		return
-	
-	#animation_player.play("RESET")
 
 	if is_current():
-		animation_player.play(_pick) 
 		SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
+		if not _pick == "":
+			animation_player.play(_pick) 
 
 	await get_tree().physics_frame
 	self.visible = is_current()
@@ -75,7 +74,7 @@ func _process(_delta: float) -> void:
 					if not animation_player.is_playing():
 						SD_Network.call_func(use)
 #ZV EZ
-func use():
+func use() -> void:
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
 	event.item = self
 	event.source = player
@@ -85,7 +84,8 @@ func use():
 		if not is_inside_tree(): #v padlu
 			return
 		
-		animation_player.play(_fire)
+		if not _fire == "":
+			animation_player.play(_fire)
 		
 		on_use.emit()
 		

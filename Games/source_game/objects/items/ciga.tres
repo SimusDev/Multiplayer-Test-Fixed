@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=10 format=3 uid="uid://djajmfmy48554"]
+
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_7bc26"]
+[ext_resource type="PackedScene" uid="uid://d3hfo8yb0q8vi" path="res://Games/source_game/items/ciga/world_prefab.tscn" id="1_m8f1u"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_2pxrv"]
+[ext_resource type="PackedScene" uid="uid://bbnjcf1woyeww" path="res://Games/source_game/items/ciga/item.tscn" id="4_cpxsr"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_5m3um"]
+[ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="6_g5qg1"]
+
+[sub_resource type="Resource" id="Resource_q0xnu"]
+script = ExtResource("5_5m3um")
+prefab = ExtResource("4_cpxsr")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_6cp6r"]
+script = ExtResource("5_5m3um")
+prefab = ExtResource("6_g5qg1")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_su7du"]
+script = ExtResource("3_2pxrv")
+view = SubResource("Resource_q0xnu")
+world = SubResource("Resource_6cp6r")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_7bc26")
+custom_section = ""
+custom_id = ""
+name = "cigarette"
+description = ""
+prefab = ExtResource("1_m8f1u")
+viewmodel = SubResource("Resource_su7du")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=10 format=3 uid="uid://d28jljxxb03vp"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=14 format=3 uid="uid://d28jljxxb03vp"]
 
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_5t3j6"]
 [ext_resource type="Texture2D" uid="uid://dekqsmc8lrwc3" path="res://Games/source_game/items/chapman/icon.png" id="1_o06g2"]
 [ext_resource type="PackedScene" uid="uid://lg3sb5vg4v25" path="res://Games/source_game/items/chapman/world_prefab.tscn" id="2_7rp5u"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_pip0d"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_6mld1"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_7rp5u"]
 [ext_resource type="PackedScene" uid="uid://d2wfwjmh2otja" path="res://Games/source_game/items/chapman/item.tscn" id="4_0188h"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_v4tpx"]
+[ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="7_0dn45"]
+
+[sub_resource type="Resource" id="Resource_q4h1q"]
+script = ExtResource("3_6mld1")
+stackable = true
+stack_size = 20
+pickable = true
+actions = Array[ExtResource("2_pip0d")]([])
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
 
 [sub_resource type="Resource" id="Resource_rm0ir"]
 script = ExtResource("5_v4tpx")
@@ -17,7 +28,7 @@ metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_7rp5u"]
 script = ExtResource("5_v4tpx")
-prefab = ExtResource("2_7rp5u")
+prefab = ExtResource("7_0dn45")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -38,4 +49,5 @@ name = "chapman"
 description = ""
 prefab = ExtResource("2_7rp5u")
 viewmodel = SubResource("Resource_lwmge")
+itemstack = SubResource("Resource_q4h1q")
 metadata/_custom_type_script = "uid://csp1614nihjb5"

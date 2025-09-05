@@ -1,14 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2wfwjmh2otja"]
+[gd_scene load_steps=17 format=3 uid="uid://d2wfwjmh2otja"]
 
-[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_wybiq"]
+[ext_resource type="Script" uid="uid://cw06te5flrvc8" path="res://Games/source_game/items/chapman/script.gd" id="1_r1srf"]
 [ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_r1srf"]
+[ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="5_ouw1w"]
 
 [sub_resource type="Resource" id="Resource_ouw1w"]
 script = ExtResource("2_r1srf")
 type = 0
 metadata/_custom_type_script = "uid://drk2kpbhybbiw"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouw1w"]
+albedo_texture = ExtResource("5_ouw1w")
+uv1_scale = Vector3(1, 1.7, 1)
+texture_filter = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_s1mbr"]
+material = SubResource("StandardMaterial3D_ouw1w")
+radius = 0.004
+section_length = 0.012
 
 [sub_resource type="Animation" id="Animation_ouw1w"]
 length = 0.001
@@ -36,6 +47,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.158825, -2.56563, 0.0314158)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root/model/mesh/pivot_krishka:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("right_hand:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.215256, -0.461485, 0.386324)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("right_hand:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.827727, 2.42993, -0.94543)]
+}
 
 [sub_resource type="Animation" id="Animation_r1srf"]
 resource_name = "pick"
@@ -50,7 +97,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.166667),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.118)]
+"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.103)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -65,10 +112,118 @@ tracks/1/keys = {
 "values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
 }
 
+[sub_resource type="Animation" id="Animation_fsyhf"]
+resource_name = "open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model/mesh/pivot_krishka:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 0.266667),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.01927, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right_hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.266667, 0.4),
+"transitions": PackedFloat32Array(-2, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.215256, -0.461485, 0.386324), Vector3(-0.227, 0.14, 0.206), Vector3(-0.147, 0.155, 0.226), Vector3(-0.237, -0.365, 0.416)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right_hand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.5),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector3(0.827286, 2.4295, -1.50622), Vector3(0.71384, 2.4295, 0.624828), Vector3(0.827286, 1.60047, -0.37001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root/model:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.333333),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.371, 0.1, 0.103), Vector3(-0.371, 0.1, 0.103), Vector3(-0.371, 0.1, 0.078), Vector3(-0.371, 0.1, 0.103)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("root/model:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.233333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 0.5, 1),
+"update": 0,
+"values": [Vector3(0.158825, -2.56563, 0.0314158), Vector3(0.158825, -2.56563, 0.0314158), Vector3(0.612611, -2.49582, 0.0314159), Vector3(0.158825, -2.56563, 0.0314158)]
+}
+
+[sub_resource type="Animation" id="Animation_020dk"]
+resource_name = "take"
+length = 0.6667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.3, 0.6667),
+"transitions": PackedFloat32Array(-2, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.215256, -0.461485, 0.386324), Vector3(-0.25235, 0.103739, 0.199591), Vector3(-0.25235, 0.103739, 0.199591), Vector3(-0.145, -0.197, 0.375)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right_hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6667),
+"transitions": PackedFloat32Array(-2, 0.5, 1),
+"update": 0,
+"values": [Vector3(0.827727, 2.42993, -0.94543), Vector3(0.827727, 2.42993, -0.94543), Vector3(0.677188, 3.41386, -0.225147)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_cigu"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wpe6k"]
 _data = {
 &"RESET": SubResource("Animation_ouw1w"),
-&"pick": SubResource("Animation_r1srf")
+&"open": SubResource("Animation_fsyhf"),
+&"pick": SubResource("Animation_r1srf"),
+&"take": SubResource("Animation_020dk")
 }
 
 [sub_resource type="Animation" id="Animation_s1mbr"]
@@ -100,7 +255,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_wpe6k"]
 resource_name = "animation"
-length = 2.0
+length = 2.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -109,10 +264,10 @@ tracks/0/path = NodePath("root:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.16667),
-"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.002, 0.002, -0.002), Vector3(0.002, 0.002, -0.002)]
+"values": [Vector3(0, 0, 0), Vector3(0.002, 0.002, -0.002)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -121,10 +276,10 @@ tracks/1/path = NodePath("root:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 1.16667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0261799, 0, 0), Vector3(-0.0261799, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.0261799, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fsyhf"]
@@ -133,32 +288,50 @@ _data = {
 &"animation": SubResource("Animation_wpe6k")
 }
 
-[node name="chapman" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
-script = ExtResource("1_wybiq")
+[node name="chapman" type="Node3D" node_paths=PackedStringArray("cigi_node_parent", "custom_animation_player", "model", "animation_player")]
+script = ExtResource("1_r1srf")
+cigi_node_parent = NodePath("root/model/cigi")
+custom_animation_player = NodePath("AnimationPlayer")
 resource = SubResource("Resource_ouw1w")
 model = NodePath("root/model")
 animation_player = NodePath("AnimationPlayer")
+_fire = ""
 metadata/_custom_type_script = "uid://dj1vged070hd"
 
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.089631, -0.806681, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224527, -1.24217, -0.371, 0.1, 0.118)
+transform = Transform3D(-1.26145, -0.0896311, -0.806681, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224527, -1.24217, -0.371, 0.1, 0.118)
 
 [node name="left_hand" type="Marker3D" parent="root/model"]
-transform = Transform3D(-0.250146, -0.596689, -0.160729, 0.00417721, 0.171761, -0.644148, 0.617943, -0.242704, -0.0607092, 0.0367803, -0.0227722, 0.0458525)
+transform = Transform3D(-0.213917, -0.608106, -0.169974, 0.00519395, 0.177763, -0.64251, 0.631392, -0.207491, -0.0523019, 0.0386197, -0.0290015, 0.0481784)
+
+[node name="cigi" type="Node3D" parent="root/model"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.023, 0.014, 0.005)
+
+[node name="ciga" type="MeshInstance3D" parent="root/model/cigi"]
+transform = Transform3D(1, 0, 0, 0, -0.999999, 8.74228e-08, 0, -8.74227e-08, -1, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_s1mbr")
 
 [node name="arms2" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
 process_priority = 9
 process_physics_priority = 9
-transform = Transform3D(-0.980877, 0.00389462, 0.194589, 0.00389462, 0.999993, -0.000382584, -0.194589, 0.000382584, -0.980885, -0.551614, -0.17588, 0.434057)
+transform = Transform3D(-0.980877, 0.00389462, 0.194589, 0.00389462, 0.999993, -0.000382584, -0.194589, 0.000382584, -0.980885, -0.551614, -0.086284, 0.434057)
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="root/arms2/root" index="0"]
+bones/7/rotation = Quaternion(0.057, -0.028, 0.346, 0.991)
+bones/8/rotation = Quaternion(0.018, 0.003, 0.62, 0.888)
+bones/11/rotation = Quaternion(-0.043, 0.079, 0.408, 0.98)
 bones/12/position = Vector3(1.78385e-08, 0.0351818, -6.70168e-10)
-bones/12/rotation = Quaternion(0.003, -0.065, 0.52, 0.765)
+bones/12/rotation = Quaternion(-0.077, 0.06, 0.28, 0.765)
 bones/12/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(0.132, -0.217, 0.495, 0.885)
+bones/13/rotation = Quaternion(-0.163, -0.267, 0.687, 0.967)
+bones/15/rotation = Quaternion(-0.015, -0.02, 0.462, 0.96)
+bones/16/rotation = Quaternion(0.132, -0.217, 0.3, 0.885)
+bones/17/rotation = Quaternion(0.026, 0.13, 0.762, 0.966)
+bones/19/rotation = Quaternion(0.089, -0.115, 0.295, 1.184)
+bones/20/rotation = Quaternion(0.076, 0.021, 0.385, 0.968)
 bones/23/rotation = Quaternion(-0.596, 0.552, -0.27, 0.55)
 bones/25/position = Vector3(0.005, 0.031, 0)
 bones/25/rotation = Quaternion(0.027, 0.122, -0.113, 0.966)
@@ -171,7 +344,7 @@ target_node = NodePath("../../../../model/left_hand")
 target_node = NodePath("../../../../../right_hand")
 
 [node name="right_hand" type="Marker3D" parent="."]
-transform = Transform3D(-0.9018, 0.164479, 0.39963, 0.361937, -0.217828, 0.906395, 0.236133, 0.962028, 0.136906, -0.459805, 0.0337538, 1.02996)
+transform = Transform3D(-0.833223, -0.332426, 0.44185, -0.548513, 0.39605, -0.736395, 0.0698023, -0.855942, -0.512338, -0.215256, -0.461485, 0.386324)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -184,4 +357,5 @@ libraries = {
 }
 autoplay = "animation"
 
+[editable path="root/model"]
 [editable path="root/arms2"]

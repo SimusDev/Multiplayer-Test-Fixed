@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://brjf1n1ubpn8"]
+
+[ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="1_0b2ko"]
+
+[sub_resource type="Curve" id="Curve_wwhrl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.10871, 1), 0.0, 0.0, 0, 0, Vector2(0.223314, 0.948458), 0.771612, 0.771612, 0, 0, Vector2(0.314997, 0.926148), 0.0, 0.0, 0, 0, Vector2(0.439424, 0.976048), 0.0, 0.0, 0, 0, Vector2(0.606418, 1), 0.0, 0.0, 0, 0, Vector2(0.698101, 0.946108), 0.0, 0.0, 0, 0, Vector2(0.858546, 0.956088), 0.0, 0.0, 0, 0, Vector2(0.996071, 1), 0.319305, 0.0, 1, 0]
+point_count = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpe6k"]
+albedo_texture = ExtResource("1_0b2ko")
+uv1_scale = Vector3(1, 1.7, 1)
+texture_filter = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_nvn3t"]
+material = SubResource("StandardMaterial3D_wpe6k")
+radius = 0.004
+section_length = 0.012
+curve = SubResource("Curve_wwhrl")
+
+[node name="model" type="Node3D"]
+
+[node name="ciga" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999999, 8.74228e-08, 0, -8.74227e-08, -1, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_nvn3t")
