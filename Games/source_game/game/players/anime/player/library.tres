@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=15 format=3 uid="uid://6luwsgfb4bi0"]
+[gd_resource type="AnimationLibrary" load_steps=27 format=3 uid="uid://6luwsgfb4bi0"]
 
 [ext_resource type="Animation" uid="uid://cq3jkf2vikqcu" path="res://Games/source_game/game/players/anime/player/anims/crouch_idle.res" id="1_8ubu7"]
 [ext_resource type="Animation" uid="uid://c5ayyg2gfag8u" path="res://Games/source_game/game/players/anime/player/anims/crouch_left.res" id="2_n75b1"]
@@ -13,22 +13,46 @@
 [ext_resource type="Animation" uid="uid://do6mepa5p0n4s" path="res://Games/source_game/game/players/anime/player/anims/run_forward.res" id="11_tdjgb"]
 [ext_resource type="Animation" uid="uid://6nfhj7ut3fd5" path="res://Games/source_game/game/players/anime/player/anims/sword_slash.res" id="12_4hnqb"]
 [ext_resource type="Animation" uid="uid://cu7uyj7rhft46" path="res://Games/source_game/game/players/anime/player/anims/empty.res" id="13_n75b1"]
-[ext_resource type="Animation" uid="uid://c7db8shyniof4" path="res://Games/source_game/game/players/anime/player/mixamo_anims/gangnam_style.res" id="14_1tmmu"]
+[ext_resource type="Animation" uid="uid://c7db8shyniof4" path="res://Games/source_game/game/players/anime/player/anims/gangnam_style.res" id="14_u7lnr"]
+[ext_resource type="Animation" uid="uid://bktiuxk4bf6oy" path="res://Games/source_game/game/players/anime/player/anims/head_spinning.res" id="15_t5v3o"]
+[ext_resource type="Animation" uid="uid://b8yg0ditp7m21" path="res://Games/source_game/game/players/anime/player/anims/silly_dancing.res" id="16_jbgbh"]
+[ext_resource type="Animation" uid="uid://bp04fa4e1xdjo" path="res://Games/source_game/game/players/anime/player/anims/flair.res" id="17_t5v3o"]
+[ext_resource type="Animation" uid="uid://dtjaq7tj1klux" path="res://Games/source_game/game/players/anime/player/anims/swing_dancing.res" id="18_jbgbh"]
+[ext_resource type="Animation" uid="uid://jwlqhj8s41q3" path="res://Games/source_game/game/players/anime/player/anims/female_dance_pose.res" id="19_424a3"]
+[ext_resource type="Animation" uid="uid://immqtqrsletn" path="res://Games/source_game/game/players/anime/player/anims/dancing_running_man.res" id="20_2hxwu"]
+[ext_resource type="Animation" uid="uid://cti4cg3qd1sbv" path="res://Games/source_game/game/players/anime/player/anims/swing_dancing2.res" id="21_yeskw"]
+[ext_resource type="Animation" uid="uid://c8rm7jyge720n" path="res://Games/source_game/game/players/anime/player/anims/tut_hip_hop_dance.res" id="22_tdjgb"]
+[ext_resource type="Animation" uid="uid://cv4voxtgqhg1a" path="res://Games/source_game/game/players/anime/player/anims/bellydancing.res" id="23_4hnqb"]
+[ext_resource type="Animation" uid="uid://c0ll8xm641g5p" path="res://Games/source_game/game/players/anime/player/anims/silly_dancing2.res" id="24_12438"]
+[ext_resource type="Animation" uid="uid://dnqn1ygggejm4" path="res://Games/source_game/game/players/anime/player/anims/bboy_uprock.res" id="25_kgxqw"]
+[ext_resource type="Animation" uid="uid://bs8cw01dlmdrk" path="res://Games/source_game/game/players/anime/player/anims/hip_hop_dancing3.res" id="26_igoxs"]
 
 [resource]
 _data = {
+&"bboy_uprock": ExtResource("25_kgxqw"),
+&"bellydancing": ExtResource("23_4hnqb"),
 &"crouch_idle": ExtResource("1_8ubu7"),
 &"crouch_left": ExtResource("2_n75b1"),
 &"crouch_right": ExtResource("3_1tmmu"),
 &"crouch_walk": ExtResource("4_80cc2"),
+&"dancing_running_man": ExtResource("20_2hxwu"),
 &"empty": ExtResource("13_n75b1"),
+&"female_dance_pose": ExtResource("19_424a3"),
 &"female_walk": ExtResource("5_u7lnr"),
-&"gangnam_style": ExtResource("14_1tmmu"),
+&"flair": ExtResource("17_t5v3o"),
+&"gangnam_style": ExtResource("14_u7lnr"),
+&"head_spinning": ExtResource("15_t5v3o"),
+&"hip_hop_dancing3": ExtResource("26_igoxs"),
 &"idle": ExtResource("6_t5v3o"),
 &"jog_strafe_left": ExtResource("7_jbgbh"),
 &"jog_strafe_right": ExtResource("8_424a3"),
 &"jump": ExtResource("9_2hxwu"),
 &"run_backward": ExtResource("10_yeskw"),
 &"run_forward": ExtResource("11_tdjgb"),
-&"sword_slash": ExtResource("12_4hnqb")
+&"silly_dancing": ExtResource("16_jbgbh"),
+&"silly_dancing2": ExtResource("24_12438"),
+&"swing_dancing": ExtResource("18_jbgbh"),
+&"swing_dancing2": ExtResource("21_yeskw"),
+&"sword_slash": ExtResource("12_4hnqb"),
+&"tut_hip_hop_dance": ExtResource("22_tdjgb")
 }

@@ -10,6 +10,11 @@ var _state_machine: SD_NodeStateMachine
 signal transitioned()
 
 func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_functions([
+		_switch_synchronized,
+	])
+	
 	if Engine.is_editor_hint():
 		process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -19,7 +24,7 @@ static func create(state_id: String) -> SD_State:
 	return state
 
 func switch() -> void:
-	SD_Multiplayer.sync_call_function(self, _switch_synchronized)
+	SD_Network.call_func(_switch_synchronized)
 
 func _switch_synchronized() -> void:
 	transitioned.emit()

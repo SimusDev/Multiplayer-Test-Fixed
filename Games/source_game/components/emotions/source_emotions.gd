@@ -65,6 +65,7 @@ func _stop_current_animation_sync() -> void:
 	_animated_model.get_animation_player().stop()
 	_animated_model.tree.active = true
 	_current_animation = ""
+	_animated_model.remove_meta("source_emotions_active")
 
 func _play_animation_synced(animation: StringName) -> void:
 	if animation.is_empty():
@@ -76,3 +77,7 @@ func _play_animation_synced(animation: StringName) -> void:
 	_animated_model.tree.active = false
 	_animated_model.get_animation_player().play(animation)
 	_current_animation = animation
+	_animated_model.set_meta("source_emotions_active", true)
+
+static func is_emotion_active(node: Node) -> bool:
+	return node.has_meta("source_emotions_active")

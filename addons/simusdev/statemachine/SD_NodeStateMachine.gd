@@ -20,14 +20,20 @@ func get_current_state() -> SD_State:
 	return _current_state
 
 func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_functions([
+		_send,
+		_recieve,
+	])
+	
 	for child in get_children():
 		if child is SD_State:
 			_states[child.name] = child
 			child._state_machine = self
 			child.transitioned.connect(_on_child_state_transitioned.bind(child))
-		
-	if SD_Multiplayer.is_not_server() and SD_Multiplayer.is_active():
-		SD_Multiplayer.request_and_sync_var_from_server(self, "_current_state_name", _current_state_name_synchronized)
+	
+	if not SD_Network.is_server():
+		SD_Network.call_func_on_server(_send)
 		return
 	
 
@@ -36,8 +42,11 @@ func _ready() -> void:
 		_current_state._enter()
 	
 
-func _current_state_name_synchronized() -> void:
-	switch_by_name(_current_state_name)
+func _send() -> void:
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [_current_state_name])
+
+func _recieve(state_name: String) -> void:
+	switch_by_name(state_name)
 
 func _on_child_state_transitioned(to_state: SD_State) -> void:
 	if to_state == _current_state:
