@@ -36,7 +36,7 @@ func data_set_value(key: Variant, value: Variant) -> void:
 			_data_set_value_net(key, value)
 
 func _data_set_value_net(key: Variant, value: Variant) -> void:
-	_data[key] = value
+	_data.set(key, value)
 	_data_changed_(key, value)
 	data_changed.emit(key, value)
 	updated.emit()
