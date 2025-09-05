@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8johsvy2nf65"]
+[gd_scene load_steps=13 format=3 uid="uid://b8johsvy2nf65"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_j0kei"]
 [ext_resource type="Material" uid="uid://fahxl71di7ib" path="res://Games/source_game/materials/tilefloor.tres" id="2_uw1bk"]
 [ext_resource type="Material" uid="uid://dbe2iqxylg2ce" path="res://Games/source_game/materials/tile.tres" id="4_t23ke"]
+[ext_resource type="Script" path="res://Games/source_game/components/spawnpoint.gd" id="5_qx70r"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="5_td5tc"]
 
 [sub_resource type="Environment" id="Environment_qx70r"]
@@ -339,5 +340,6 @@ omni_attenuation = 3.27
 [node name="MeshInstance3D" type="MeshInstance3D" parent="lights/OmniLight3D2" index="0"]
 mesh = SubResource("BoxMesh_a851j")
 
-[node name="main" parent="." index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="main" type="Node3D" parent="." index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85786, 0)
+script = ExtResource("5_qx70r")
