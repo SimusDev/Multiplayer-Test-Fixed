@@ -6,7 +6,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv3a3"]
 albedo_texture = ExtResource("1_6t5xp")
-uv1_scale = Vector3(-16, 17, 16)
+uv1_scale = Vector3(-16, 17, 25)
 uv1_offset = Vector3(0.5, -0.02, 0)
 uv1_triplanar = true
 texture_filter = 0

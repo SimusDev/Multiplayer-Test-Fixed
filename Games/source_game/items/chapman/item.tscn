@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.446, 0.1, 0.118129)]
+"values": [Vector3(-0.371, 0.1, 0.118)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.166667),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.446, 0.1, 0.118129)]
+"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.118)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -143,17 +143,26 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.089631, -0.806679, 0.0465231, 1.48039, -0.237237, 0.810315, -0.224526, -1.24217, -0.446, 0.1, 0.118129)
+transform = Transform3D(-1.26145, -0.089631, -0.806681, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224527, -1.24217, -0.371, 0.1, 0.118)
 
 [node name="left_hand" type="Marker3D" parent="root/model"]
-transform = Transform3D(-0.00506219, -0.641592, -0.181046, -0.105623, 0.179537, -0.633289, 0.658226, 0.0238756, -0.103014, 0.0577524, -0.0188184, 0.0296512)
+transform = Transform3D(-0.250146, -0.596689, -0.160729, 0.00417721, 0.171761, -0.644148, 0.617943, -0.242704, -0.0607092, 0.0367803, -0.0227722, 0.0458525)
 
 [node name="arms2" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 0, 0.5)
+process_priority = 9
+process_physics_priority = 9
+transform = Transform3D(-0.980877, 0.00389462, 0.194589, 0.00389462, 0.999993, -0.000382584, -0.194589, 0.000382584, -0.980885, -0.551614, -0.17588, 0.434057)
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="root/arms2/root" index="0"]
-bones/23/rotation = Quaternion(-0.565903, 0.552113, -0.270113, 0.549513)
+bones/12/position = Vector3(1.78385e-08, 0.0351818, -6.70168e-10)
+bones/12/rotation = Quaternion(0.003, -0.065, 0.52, 0.765)
+bones/12/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(0.132, -0.217, 0.495, 0.885)
+bones/23/rotation = Quaternion(-0.596, 0.552, -0.27, 0.55)
+bones/25/position = Vector3(0.005, 0.031, 0)
+bones/25/rotation = Quaternion(0.027, 0.122, -0.113, 0.966)
+bones/25/scale = Vector3(1, 1, 1)
 
 [node name="left_hand_ik" parent="root/arms2/root/Skeleton3D" index="1"]
 target_node = NodePath("../../../../model/left_hand")
