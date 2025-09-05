@@ -5,6 +5,7 @@ extends W_AnimatedModel3D
 @export var _camera: W_FPCSourceLikeCamera
 
 @export var _look_at_node: Marker3D
+@export var _look_at_modifier: LookAtModifier3D
 @export var _look_at_offset: float = 0.0
 
 var _actor: CharacterBody3D
@@ -59,6 +60,11 @@ func _physics_process(delta: float) -> void:
 	
 
 func _process(delta: float) -> void:
+	_look_at_modifier.active = !SourceEmotions.is_emotion_active(self)
+	
+	if SourceEmotions.is_emotion_active(self):
+		return
+	
 	if _camera:
 		_look_at_offset = _camera.rotation.x
 	_look_at_node.position.y = 1.9 * _look_at_offset + 1.9

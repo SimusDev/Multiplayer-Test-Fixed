@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceEmotions" load_steps=17 format=3 uid="uid://cjle81nnb3h56"]
+[gd_resource type="Resource" script_class="R_SourceEmotions" load_steps=20 format=3 uid="uid://cjle81nnb3h56"]
 
 [ext_resource type="Script" uid="uid://uemp1u74tkca" path="res://Games/source_game/components/emotions/r_emotion.gd" id="1_ue2rk"]
 [ext_resource type="Resource" uid="uid://w33s2d6tj8yk" path="res://Games/source_game/objects/sound/player/anime1.tres" id="2_b7rgq"]
@@ -79,7 +79,25 @@ name = &"bellydancing"
 animation = &"library/bellydancing"
 metadata/_custom_type_script = "uid://uemp1u74tkca"
 
+[sub_resource type="Resource" id="Resource_b5a2g"]
+script = ExtResource("1_ue2rk")
+name = &"silly_dancing2"
+animation = &"library/silly_dancing2"
+metadata/_custom_type_script = "uid://uemp1u74tkca"
+
+[sub_resource type="Resource" id="Resource_0crjp"]
+script = ExtResource("1_ue2rk")
+name = &"bboy_uprock"
+animation = &"library/bboy_uprock"
+metadata/_custom_type_script = "uid://uemp1u74tkca"
+
+[sub_resource type="Resource" id="Resource_pdnhh"]
+script = ExtResource("1_ue2rk")
+name = &"hip_hop_dancing3"
+animation = &"library/hip_hop_dancing3"
+metadata/_custom_type_script = "uid://uemp1u74tkca"
+
 [resource]
 script = ExtResource("2_xvqje")
-list = Array[ExtResource("1_ue2rk")]([SubResource("Resource_ue2rk"), SubResource("Resource_m4k8q"), SubResource("Resource_b7rgq"), SubResource("Resource_obnpv"), SubResource("Resource_056ij"), SubResource("Resource_ugdh8"), SubResource("Resource_eb6ra"), SubResource("Resource_s1mwa"), SubResource("Resource_emncc"), SubResource("Resource_a630m"), SubResource("Resource_agcoh"), SubResource("Resource_8iwvg")])
+list = Array[ExtResource("1_ue2rk")]([SubResource("Resource_ue2rk"), SubResource("Resource_m4k8q"), SubResource("Resource_b7rgq"), SubResource("Resource_obnpv"), SubResource("Resource_056ij"), SubResource("Resource_ugdh8"), SubResource("Resource_eb6ra"), SubResource("Resource_s1mwa"), SubResource("Resource_emncc"), SubResource("Resource_a630m"), SubResource("Resource_agcoh"), SubResource("Resource_8iwvg"), SubResource("Resource_b5a2g"), SubResource("Resource_0crjp"), SubResource("Resource_pdnhh")])
 metadata/_custom_type_script = "uid://bi2t6kl2611jw"
