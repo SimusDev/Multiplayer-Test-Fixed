@@ -27,6 +27,7 @@ func _data_changed_(key: Variant, value: Variant) -> void:
 	match key:
 		"q":
 			quantity_changed.emit()
+			get_slot().update()
 
 func data_set_value(key: Variant, value: Variant) -> void:
 	if SD_Network.is_server():
@@ -43,10 +44,10 @@ func _data_set_value_net(key: Variant, value: Variant) -> void:
 
 func data_get_or_add(key: Variant, value: Variant) -> Variant:
 	if _data.has(key):
-		return _data.get(value, value)
-	
-	data_set_value(key, value)
-	
+		return _data[key]
+		#return _data.get(value, value)
+	else:
+		data_set_value(key, value)
 	return value
 
 func set_quantity(size: int) -> void:
@@ -67,7 +68,7 @@ func _ready() -> void:
 	_item_registration()
 
 func _enter_tree() -> void:
-
+	SD_Network.register_object(self)
 	name = name.validate_node_name()
 	_slot = get_parent()
 	_inventory = _slot.get_inventory()

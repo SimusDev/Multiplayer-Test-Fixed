@@ -14,6 +14,7 @@ var _mouse_entered: bool = false
 
 @export var item_binds: Dictionary[String, SourceItemAction] = {
 }
+@onready var quantity: Label = $quantity
 
 func _ready() -> void:
 	if not _created:
@@ -24,6 +25,8 @@ func _ready() -> void:
 	
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	
+	
 
 func _on_mouse_entered() -> void:
 	_mouse_entered = true
@@ -32,9 +35,12 @@ func _on_mouse_exited() -> void:
 	_mouse_entered = false
 
 func _on_slot_updated() -> void:
+	quantity.visible = false
 	icon.texture = null
 	if slot.get_item():
 		icon.texture = slot.get_item().object.icon
+		quantity.text = str(slot.get_item().get_quantity())
+		quantity.visible = true
 
 static func create(parent: Node, inventory: SourceInventory, slot: SourceInventorySlot) -> void:
 	var scene: PackedScene = load(SCENEPATH)

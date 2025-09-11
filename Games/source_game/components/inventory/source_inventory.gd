@@ -275,8 +275,6 @@ func drop(item: SourceItemStack) -> void:
 		SD_Nodes.fast_queue_free(item)
 
 func stack_items(stackable: SourceItemStack, item: SourceItemStack) -> SourceItemStack:
-	return
-	
 	if SD_Network.is_server():
 		if get_items().has(stackable) and get_items().has(item):
 			

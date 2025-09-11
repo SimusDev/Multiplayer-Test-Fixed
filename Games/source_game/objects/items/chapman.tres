@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_5t3j6"]
 [ext_resource type="Texture2D" uid="uid://dekqsmc8lrwc3" path="res://Games/source_game/items/chapman/icon.png" id="1_o06g2"]
 [ext_resource type="PackedScene" uid="uid://lg3sb5vg4v25" path="res://Games/source_game/items/chapman/world_prefab.tscn" id="2_7rp5u"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_pip0d"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_6mld1"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_pip0d"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_6mld1"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_7rp5u"]
 [ext_resource type="PackedScene" uid="uid://d2wfwjmh2otja" path="res://Games/source_game/items/chapman/item.tscn" id="4_0188h"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_v4tpx"]
@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_q4h1q"]
 script = ExtResource("3_6mld1")
-stackable = true
+stackable = false
 stack_size = 20
 pickable = true
 actions = Array[ExtResource("2_pip0d")]([])
