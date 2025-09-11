@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dut1mioirppc3"]
+
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_2sskk"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_a5px8"]
+[ext_resource type="PackedScene" uid="uid://h1koq85d088" path="res://Games/source_game/props/loot_crate/loot_container.tscn" id="1_bkkht"]
+[ext_resource type="Texture2D" uid="uid://b5ga7df86nlrm" path="res://Games/source_game/props/loot_crate/icon.png" id="1_h8gbl"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_h8gbl"]
+
+[sub_resource type="Resource" id="Resource_2aufx"]
+script = ExtResource("2_h8gbl")
+stackable = true
+stack_size = 1
+pickable = false
+actions = Array[ExtResource("1_2sskk")]([])
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[resource]
+script = ExtResource("1_a5px8")
+custom_section = ""
+custom_id = ""
+icon = ExtResource("1_h8gbl")
+name = "loot_crate"
+description = ""
+prefab = ExtResource("1_bkkht")
+itemstack = SubResource("Resource_2aufx")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

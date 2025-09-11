@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dvyp7ym44oyg2"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dgojnwogh6f5j"]
 
 [ext_resource type="Texture2D" uid="uid://bl0eh1kjpt2ua" path="res://Games/source_game/game/3dmodels/crates/tier1/old_crate_0.png" id="1_mc5nn"]
-[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_omav8"]
-[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_h75p1"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_omav8"]
+[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_h75p1"]
 [ext_resource type="PackedScene" uid="uid://djgta3wl2s2b0" path="res://Games/source_game/game/3dmodels/crates/tier1/crate_tier1.tscn" id="4_wpu73"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="5_hndwp"]
 

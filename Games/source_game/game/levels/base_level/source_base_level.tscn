@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://wjpo1d0fdtji"]
+[gd_scene load_steps=7 format=3 uid="uid://wjpo1d0fdtji"]
 
+[ext_resource type="Script" uid="uid://us3gp8gacgnf" path="res://Games/source_game/game/levels/level.gd" id="1_7hp3h"]
 [ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="1_q28k2"]
+[ext_resource type="Script" uid="uid://bh4s4yhsm0k3y" path="res://Games/source_game/components/r_source_level_settings.gd" id="2_y25mi"]
 [ext_resource type="Script" uid="uid://b3gscceeely20" path="res://addons/simusdev/network/SD_NetNodesTransformSynchronizer.gd" id="3_7hp3h"]
 [ext_resource type="Script" uid="uid://c8rej87mqo2sp" path="res://Games/source_game/components/source_level_section.gd" id="3_y25mi"]
 
+[sub_resource type="Resource" id="Resource_h1yxr"]
+script = ExtResource("2_y25mi")
+player_flashlight_enabled = true
+spawner_enabled = true
+metadata/_custom_type_script = "uid://bh4s4yhsm0k3y"
+
 [node name="source_base_level" type="Node3D"]
+script = ExtResource("1_7hp3h")
+level_settings = SubResource("Resource_h1yxr")
+metadata/_custom_type_script = "uid://us3gp8gacgnf"
 
 [node name="Objects" type="Node" parent="."]
 script = ExtResource("1_q28k2")

@@ -10,6 +10,33 @@ script = ExtResource("2_6ilh0")
 type = 0
 metadata/_custom_type_script = "uid://db0ilk7abehmb"
 
+[sub_resource type="Animation" id="Animation_p1aia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0688215, 0.0709618, 0.200762)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.15569, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ju52i"]
 resource_name = "pick"
 length = 0.25
@@ -38,37 +65,37 @@ tracks/1/keys = {
 "values": [Vector3(-0.460138, 0, 0), Vector3(1.15569, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_p1aia"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
+_data = {
+&"RESET": SubResource("Animation_p1aia"),
+&"pick": SubResource("Animation_ju52i")
+}
+
+[sub_resource type="Animation" id="Animation_6nsd7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
+tracks/0/path = NodePath("root:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0688215, 0.0709618, 0.200762)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
+tracks/1/path = NodePath("root:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.15569, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
-_data = {
-&"RESET": SubResource("Animation_p1aia"),
-&"pick": SubResource("Animation_ju52i")
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_6ilh0"]
@@ -100,33 +127,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0, -0.0174533)]
 }
 
-[sub_resource type="Animation" id="Animation_6nsd7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ju52i"]
 _data = {
 &"RESET": SubResource("Animation_6nsd7"),
@@ -144,7 +144,7 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("3_6nsd7")]
-transform = Transform3D(1.5, 0, 0, 0, 0.604935, -1.37261, 0, 1.37261, 0.604935, -0.0688215, 0.0709618, 0.200762)
+transform = Transform3D(1.5, 0, 0, 0, 0.604931, -1.37261, 0, 1.37261, 0.604931, -0.0688215, 0.0709618, 0.200762)
 
 [node name="right_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.599105, -0.108992, 0.271365, -0.290736, 0.155394, -0.579457, 0.0314816, -0.639076, -0.187178, 0.0629515, -0.0314144, 0.0630214)

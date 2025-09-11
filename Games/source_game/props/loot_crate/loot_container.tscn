@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://h1koq85d088"]
+
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_co5eg"]
+[ext_resource type="Script" uid="uid://b0dmwsp0vxn3f" path="res://Games/source_game/props/loot_crate/loot_container.gd" id="1_cuk3u"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="1_ijuma"]
+[ext_resource type="Texture2D" uid="uid://dp1gtivfdrpx" path="res://Games/source_game/props/loot_crate/texture.jpg" id="2_bdlvx"]
+[ext_resource type="AudioStream" uid="uid://cbiulsltfs4fm" path="res://sounds/hl2/physics/wood/wood_crate_break4.wav" id="3_mdrrd"]
+[ext_resource type="AudioStream" uid="uid://da0agjil4r1sw" path="res://sounds/hl2/physics/wood/wood_crate_break3.wav" id="4_bbqlt"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="4_cuk3u"]
+[ext_resource type="PackedScene" uid="uid://ce14y0l0vnhm5" path="res://Games/source_game/props/loot_crate/loot_crate_destroyed_particles.tscn" id="5_mdrrd"]
+[ext_resource type="AudioStream" uid="uid://cdegnvob833mq" path="res://sounds/hl2/physics/wood/wood_box_break1.wav" id="7_by1l7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdlvx"]
+albedo_texture = ExtResource("2_bdlvx")
+uv1_scale = Vector3(3, 2, 3)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_s1q18"]
+material = SubResource("StandardMaterial3D_bdlvx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_co5eg"]
+
+[node name="loot_container" type="RigidBody3D"]
+mass = 8.0
+script = ExtResource("1_cuk3u")
+destroy_audio_assets = Array[AudioStream]([ExtResource("7_by1l7"), ExtResource("3_mdrrd"), ExtResource("4_bbqlt")])
+destroyed_particles_prefab = ExtResource("5_mdrrd")
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_ijuma")
+target = NodePath("..")
+health = 25.0
+max_health = 25.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_co5eg")
+rigid_body = NodePath("..")
+surface = "body"
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
+
+[node name="model" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_s1q18")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_co5eg")
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_cuk3u")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+shape = SubResource("BoxShape3D_co5eg")

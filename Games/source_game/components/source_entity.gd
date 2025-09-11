@@ -14,6 +14,7 @@ class_name SourceEntity extends CharacterBody3D
 @export var model:SourceAnimatedModel
 @export var interact_raycast:SourceInteractRay
 @export var footsteps_component:SourceFootsteps
+@export var flashlight:SourceFlashlight
 
 @export var object: R_SourcePlayer
 

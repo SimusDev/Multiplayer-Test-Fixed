@@ -1,5 +1,7 @@
 extends SourceItem
 
+@export var ciga_world_resource:R_SourceWorldObject
+@export var ciga_model_prefab:PackedScene
 @export_group("Custom Animations Names")
 @export var _open_anim:String = "open"
 @export var _close_anim:String = "close"
@@ -15,20 +17,30 @@ var open:bool = false : set = set_open, get = is_open
 
 func _ready() -> void:
 	super()
-	cigi = stack.data_get_or_add("cigi_", 14)
+	cigi = stack.data_get_or_add("cigi_", 20)
 	update_cigi_v_pa4ke()
 
 func set_cigi(value:int) -> void:
 	cigi = value
 	stack.data_set_value("cigi_", value)
 
-func remove_cigu() -> void:
+func take_cigu() -> void:
 	cigi -= 1
+	inventory.add_item(SourceItemStack.create_from_object(ciga_world_resource))
 	update_cigi_v_pa4ke()
 
 func update_cigi_v_pa4ke() -> void:
-	for x in cigi_node_parent.get_children().size():
-		cigi_node_parent.get_child(x).visible = x < cigi
+	for child in cigi_node_parent.get_children():
+		child.queue_free()
+	if ciga_model_prefab:
+		for x in range(0, cigi):
+			var new_ciga:Node3D = ciga_model_prefab.instantiate()
+			cigi_node_parent.add_child(new_ciga)
+			if x < 10:
+				new_ciga.position.x += 0.005 * x
+			else:
+				new_ciga.position.x += (0.005 * x) - 0.05
+				new_ciga.position.z += 0.005
 
 func is_open() -> bool:
 	return open
@@ -47,5 +59,3 @@ func use() -> void:
 			set_open(true)
 		else:
 			animation_player.play(_take_anim)
-
-		update_cigi_v_pa4ke()

@@ -8,7 +8,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lk3ka"]
 resource_name = "hair"
-shading_mode = 0
 albedo_texture = ExtResource("1_1a3la")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_g8cr7"]
@@ -592,7 +591,6 @@ bind/184/pose = Transform3D(0.938663, 0.247521, 0.240101, 0.240101, -0.968882, 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ov51"]
 resource_name = "material"
-shading_mode = 0
 albedo_texture = ExtResource("2_m5pq3")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8q2ts"]
@@ -617,7 +615,6 @@ blend_shape_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l51k"]
 resource_name = "glasses"
-shading_mode = 0
 albedo_texture = ExtResource("3_rwjlg")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wj02i"]
@@ -643,7 +640,6 @@ blend_shape_mode = 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btspq"]
 resource_name = "material_3"
 cull_mode = 2
-shading_mode = 0
 albedo_texture = ExtResource("4_jnqbd")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fd3eb"]
@@ -668,7 +664,6 @@ blend_shape_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljtpr"]
 resource_name = "hair_shadow"
-shading_mode = 0
 albedo_texture = ExtResource("5_b3wj4")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gmdlk"]

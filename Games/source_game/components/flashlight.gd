@@ -1,5 +1,6 @@
 class_name SourceFlashlight extends SpotLight3D
 
+@export var enabled:bool = true
 @export var sound:AudioStream = preload("res://sounds/hl2/items/flashlight1.wav")
 @export var input_key:String = "f"
 
@@ -26,6 +27,8 @@ func _recieve_vars(data: Dictionary) -> void:
 	visible = data.f
 
 func _input(event: InputEvent) -> void:
+	if not enabled:
+		return
 	if SimusDev.ui.has_active_interface():
 		return
 	

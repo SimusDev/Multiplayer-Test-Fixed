@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce14y0l0vnhm5"]
+
+[ext_resource type="PackedScene" uid="uid://dcdssfr54u0m4" path="res://Games/source_game/game/prefabs/particles/wood_crate_particle.tscn" id="1_dsfwi"]
+
+[node name="loot_crate_destroyed_particles" type="Node3D"]
+
+[node name="wood_crate_particle" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135848, 0)
+mass = 4.0
+
+[node name="wood_crate_particle2" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(1, 0, 0, 0, 0.103591, -0.99462, 0, 0.99462, 0.103591, 0, 0.735848, -0.671921)
+mass = 4.0
+
+[node name="wood_crate_particle3" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(1, 0, 0, 0, -0.209004, -0.977915, 0, 0.977915, -0.209004, 0, 0.735848, 0.704685)
+mass = 4.0
+
+[node name="wood_crate_particle4" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(-4.28559e-08, 0.98043, -0.19687, 8.60547e-09, -0.19687, -0.98043, -1, -4.37114e-08, 1.91069e-15, 0.633801, 0.735848, 5.96046e-08)
+mass = 4.0
+
+[node name="wood_crate_particle5" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(-4.06503e-08, 0.929969, 0.367638, -1.607e-08, 0.367638, -0.929969, -1, -4.37114e-08, 1.91069e-15, -0.653342, 0.735848, 5.96046e-08)
+mass = 4.0
+
+[node name="wood_crate_particle6" parent="." instance=ExtResource("1_dsfwi")]
+transform = Transform3D(1.91069e-15, -8.74228e-08, -1, 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 1.91069e-15, 0, 1.43585, 5.96046e-08)
+mass = 4.0

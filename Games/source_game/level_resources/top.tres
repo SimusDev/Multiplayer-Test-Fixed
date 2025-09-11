@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://bluf7ywtr17kb"]
+
+[ext_resource type="Script" uid="uid://dfp4ypn40rblh" path="res://Games/source_game/components/r_level.gd" id="1_fdt7h"]
+[ext_resource type="PackedScene" uid="uid://0x6iyq3hynkw" path="res://Games/source_game/game/levels/top/top.tscn" id="1_spcqo"]
+
+[resource]
+script = ExtResource("1_fdt7h")
+map_name = &"top"
+level_scene = ExtResource("1_spcqo")
+metadata/_custom_type_script = "uid://dfp4ypn40rblh"

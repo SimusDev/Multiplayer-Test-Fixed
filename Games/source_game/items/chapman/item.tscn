@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2wfwjmh2otja"]
+[gd_scene load_steps=19 format=3 uid="uid://d2wfwjmh2otja"]
 
 [ext_resource type="Script" uid="uid://cw06te5flrvc8" path="res://Games/source_game/items/chapman/script.gd" id="1_r1srf"]
 [ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
+[ext_resource type="Resource" uid="uid://djajmfmy48554" path="res://Games/source_game/objects/items/ciga.tres" id="2_s1mbr"]
+[ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="2_wpe6k"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_r1srf"]
 [ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="5_ouw1w"]
 
@@ -84,34 +86,6 @@ tracks/4/keys = {
 "values": [Vector3(0.827727, 2.42993, -0.94543)]
 }
 
-[sub_resource type="Animation" id="Animation_r1srf"]
-resource_name = "pick"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.103)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
-}
-
 [sub_resource type="Animation" id="Animation_fsyhf"]
 resource_name = "open"
 length = 0.6
@@ -176,6 +150,34 @@ tracks/4/keys = {
 "values": [Vector3(0.158825, -2.56563, 0.0314158), Vector3(0.158825, -2.56563, 0.0314158), Vector3(0.612611, -2.49582, 0.0314159), Vector3(0.158825, -2.56563, 0.0314158)]
 }
 
+[sub_resource type="Animation" id="Animation_r1srf"]
+resource_name = "pick"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.103)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
+}
+
 [sub_resource type="Animation" id="Animation_020dk"]
 resource_name = "take"
 length = 0.6667
@@ -214,7 +216,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"remove_cigu"
+"method": &"take_cigu"
 }]
 }
 
@@ -290,6 +292,8 @@ _data = {
 
 [node name="chapman" type="Node3D" node_paths=PackedStringArray("cigi_node_parent", "custom_animation_player", "model", "animation_player")]
 script = ExtResource("1_r1srf")
+ciga_world_resource = ExtResource("2_s1mbr")
+ciga_model_prefab = ExtResource("2_wpe6k")
 cigi_node_parent = NodePath("root/model/cigi")
 custom_animation_player = NodePath("AnimationPlayer")
 resource = SubResource("Resource_ouw1w")
@@ -301,7 +305,7 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.0896311, -0.806681, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224527, -1.24217, -0.371, 0.1, 0.118)
+transform = Transform3D(-1.26145, -0.089631, -0.806682, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224526, -1.24217, -0.371, 0.1, 0.118)
 
 [node name="left_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.213917, -0.608106, -0.169974, 0.00519395, 0.177763, -0.64251, 0.631392, -0.207491, -0.0523019, 0.0386197, -0.0290015, 0.0481784)
@@ -325,7 +329,6 @@ bones/8/rotation = Quaternion(0.018, 0.003, 0.62, 0.888)
 bones/11/rotation = Quaternion(-0.043, 0.079, 0.408, 0.98)
 bones/12/position = Vector3(1.78385e-08, 0.0351818, -6.70168e-10)
 bones/12/rotation = Quaternion(-0.077, 0.06, 0.28, 0.765)
-bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(-0.163, -0.267, 0.687, 0.967)
 bones/15/rotation = Quaternion(-0.015, -0.02, 0.462, 0.96)
 bones/16/rotation = Quaternion(0.132, -0.217, 0.3, 0.885)
@@ -335,7 +338,6 @@ bones/20/rotation = Quaternion(0.076, 0.021, 0.385, 0.968)
 bones/23/rotation = Quaternion(-0.596, 0.552, -0.27, 0.55)
 bones/25/position = Vector3(0.005, 0.031, 0)
 bones/25/rotation = Quaternion(0.027, 0.122, -0.113, 0.966)
-bones/25/scale = Vector3(1, 1, 1)
 
 [node name="left_hand_ik" parent="root/arms2/root/Skeleton3D" index="1"]
 target_node = NodePath("../../../../model/left_hand")
@@ -344,7 +346,7 @@ target_node = NodePath("../../../../model/left_hand")
 target_node = NodePath("../../../../../right_hand")
 
 [node name="right_hand" type="Marker3D" parent="."]
-transform = Transform3D(-0.833223, -0.332426, 0.44185, -0.548513, 0.39605, -0.736395, 0.0698023, -0.855942, -0.512338, -0.215256, -0.461485, 0.386324)
+transform = Transform3D(-0.833223, -0.332424, 0.441851, -0.548513, 0.396049, -0.736395, 0.069801, -0.855943, -0.512337, -0.215256, -0.461485, 0.386324)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

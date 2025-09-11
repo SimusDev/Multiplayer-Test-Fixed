@@ -1,6 +1,8 @@
 extends Node3D
 class_name SourceSpawnPoint
 
+@export var spawn_point_name:String = "" ##надо сделать
+
 static var _list: Dictionary[String, SourceSpawnPoint] = {}
 
 static func get_list() -> Array[SourceSpawnPoint]:
