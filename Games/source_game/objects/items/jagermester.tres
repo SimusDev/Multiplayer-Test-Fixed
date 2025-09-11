@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=10 format=3 uid="uid://dsj6076um8hlj"]
+
+[ext_resource type="PackedScene" uid="uid://dirby1itotqvv" path="res://Games/source_game/items/jagermester/jagermester_world_prefab.tscn" id="1_f5xqc"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_tm5ny"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="2_w5t88"]
+[ext_resource type="PackedScene" uid="uid://cvvyypo1k1sxb" path="res://Games/source_game/items/jagermester/item.tscn" id="3_f5xqc"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="4_56jqq"]
+[ext_resource type="PackedScene" uid="uid://dxjtm8v72w5o0" path="res://Games/source_game/game/3dmodels/jagermester/model_prefab.tscn" id="5_d2kxx"]
+
+[sub_resource type="Resource" id="Resource_d1e0k"]
+script = ExtResource("4_56jqq")
+prefab = ExtResource("3_f5xqc")
+position = Vector3(-0.25, 0, 0.045)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_3bbol"]
+script = ExtResource("4_56jqq")
+prefab = ExtResource("5_d2kxx")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_458ud"]
+script = ExtResource("2_w5t88")
+view = SubResource("Resource_d1e0k")
+world = SubResource("Resource_3bbol")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_tm5ny")
+custom_section = ""
+custom_id = ""
+name = "jagermester"
+description = ""
+prefab = ExtResource("1_f5xqc")
+viewmodel = SubResource("Resource_458ud")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

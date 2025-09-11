@@ -39,7 +39,22 @@ static var sounds:Dictionary = {
 			},
 		},
 	
-
+	"glass":
+		{
+			"impact":
+				{
+					"hard":
+						[
+							
+						],
+					"soft":
+						[
+							
+						],
+				},
+		},
+		
+	
 	"metal_barrel":
 				{
 					"impact":

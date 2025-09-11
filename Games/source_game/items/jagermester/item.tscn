@@ -1,0 +1,189 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvvyypo1k1sxb"]
+
+[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_f8yk6"]
+[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_8mxnv"]
+[ext_resource type="PackedScene" uid="uid://dxjtm8v72w5o0" path="res://Games/source_game/game/3dmodels/jagermester/model_prefab.tscn" id="2_wr1br"]
+[ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="3_sbfnk"]
+
+[sub_resource type="Resource" id="Resource_sf62v"]
+script = ExtResource("2_8mxnv")
+type = 0
+metadata/_custom_type_script = "uid://drk2kpbhybbiw"
+
+[sub_resource type="Animation" id="Animation_2db58"]
+resource_name = "pick"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/jagermester_model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-0.252, -0.305, 0.195), Vector3(-0.251562, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/jagermester_model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.401726, 0.0815151, -1.36482), Vector3(0, 0.409472, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xa8gn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/jagermester_model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.251562, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/jagermester_model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.409472, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2asel"]
+_data = {
+&"RESET": SubResource("Animation_xa8gn"),
+&"pick": SubResource("Animation_2db58")
+}
+
+[sub_resource type="Animation" id="Animation_8mxnv"]
+resource_name = "animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.003, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.015708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sf62v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2db58"]
+_data = {
+&"RESET": SubResource("Animation_sf62v"),
+&"animation": SubResource("Animation_8mxnv")
+}
+
+[node name="item" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
+script = ExtResource("1_f8yk6")
+resource = SubResource("Resource_sf62v")
+model = NodePath("root/jagermester_model")
+animation_player = NodePath("AnimationPlayer")
+_fire = ""
+metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="root" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="jagermester_model" parent="root" instance=ExtResource("2_wr1br")]
+transform = Transform3D(0.614612, 0, 0.266744, 0, 0.67, 0, -0.266744, 0, 0.614612, -0.251562, 0, 0)
+
+[node name="left_hand_target" type="Marker3D" parent="root/jagermester_model"]
+transform = Transform3D(-1.36983, 0.456479, 0.377976, -0.319359, 0.233327, -1.43918, -0.499249, -1.40173, -0.116471, -0.141315, 0.053311, 0.0701644)
+
+[node name="arms" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("3_sbfnk")]
+transform = Transform3D(-0.761821, 0, 0.647788, 0, 1, 0, -0.647788, 0, -0.761821, -0.122718, 0, 0.502787)
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik")]
+
+[node name="Skeleton3D" parent="root/arms/root" index="0"]
+bones/6/rotation = Quaternion(0.115, -0.072, 0.075, 0.989)
+bones/7/rotation = Quaternion(0.057, 0.012, 0.416, 0.991)
+bones/8/rotation = Quaternion(0.018, -0.007, 0.19, 0.888)
+bones/11/rotation = Quaternion(0.022, 0.079, 0.548, 0.98)
+bones/12/rotation = Quaternion(-0.021, 0.002, 0.059, 0.898)
+bones/15/rotation = Quaternion(-0.015, -0.02, 0.682, 0.96)
+bones/16/rotation = Quaternion(-0.008, 0.018, 0.045, 0.905)
+bones/17/rotation = Quaternion(0.026, -0.03, 0.122, 0.966)
+bones/19/rotation = Quaternion(-0.101, 0.01, 0.47, 0.964)
+bones/20/rotation = Quaternion(0.026, 0.021, 0.185, 0.968)
+bones/23/rotation = Quaternion(-0.818, 0.611, -0.102, 0.682)
+bones/24/rotation = Quaternion(-0.01, -0.083, 0.253, 0.967)
+bones/25/rotation = Quaternion(0.008, 0.08, -0.102, 0.964)
+
+[node name="left_hand_ik" parent="root/arms/root/Skeleton3D" index="1"]
+target_node = NodePath("../../../../jagermester_model/left_hand_target")
+
+[node name="right_hand_ik" parent="root/arms/root/Skeleton3D" index="2"]
+active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2asel")
+}
+
+[node name="idle_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2db58")
+}
+autoplay = "animation"
+
+[editable path="root/arms"]

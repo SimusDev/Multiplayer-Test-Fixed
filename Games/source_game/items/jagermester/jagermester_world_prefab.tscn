@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dirby1itotqvv"]
+
+[ext_resource type="PackedScene" uid="uid://dxjtm8v72w5o0" path="res://Games/source_game/game/3dmodels/jagermester/model_prefab.tscn" id="1_5w8o0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3cfo"]
+size = Vector3(0.158728, 0.396053, 0.123047)
+
+[node name="jagermester_world_prefab" type="RigidBody3D"]
+
+[node name="jagermester_model" parent="." instance=ExtResource("1_5w8o0")]
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49406e-05, 0.196669, 0)
+shape = SubResource("BoxShape3D_g3cfo")

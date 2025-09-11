@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0x6iyq3hynkw"]
+[gd_scene load_steps=18 format=3 uid="uid://0x6iyq3hynkw"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_wlyvx"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="2_75tu0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="6_0exuu"]
 [ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="7_wcbuj"]
 [ext_resource type="PackedScene" uid="uid://bb4td7haplyos" path="res://Games/source_game/game/3dmodels/crowbar/crowbar_world_obj.tscn" id="8_8jks2"]
+[ext_resource type="PackedScene" uid="uid://dirby1itotqvv" path="res://Games/source_game/items/jagermester/jagermester_world_prefab.tscn" id="9_wcbuj"]
 
 [sub_resource type="Resource" id="Resource_xpsqc"]
 script = ExtResource("2_iy1ax")
@@ -21,9 +22,12 @@ metadata/_custom_type_script = "uid://bh4s4yhsm0k3y"
 [sub_resource type="Environment" id="Environment_xpsqc"]
 background_mode = 2
 ambient_light_source = 2
-ambient_light_color = Color(0.815686, 0.796078, 0, 1)
+ambient_light_color = Color(1, 1, 0, 1)
 ambient_light_energy = 0.01
 tonemap_mode = 3
+ssil_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpsqc"]
 albedo_texture = ExtResource("3_iy1ax")
@@ -62,6 +66,9 @@ transform = Transform3D(0.981178, 0.193104, 0, -0.193104, 0.981178, 0, 0, 0, 1, 
 
 [node name="crowbar_world_obj2" parent="objects" index="5" instance=ExtResource("8_8jks2")]
 transform = Transform3D(0.982478, 0.186375, 0.00123534, -0.183204, 0.966938, -0.17739, -0.0342555, 0.174055, 0.98414, 1.13072, 0.684673, -7.70778)
+
+[node name="jagermester_world_prefab" parent="objects" index="6" instance=ExtResource("9_wcbuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541045, -8.99956)
 
 [node name="spawn_1" type="Node3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26876, 0, -3.12278)
