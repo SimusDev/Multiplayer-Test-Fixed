@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw06te5flrvc8" path="res://Games/source_game/items/chapman/script.gd" id="1_r1srf"]
 [ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
-[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
 [ext_resource type="Resource" uid="uid://djajmfmy48554" path="res://Games/source_game/objects/items/ciga.tres" id="2_s1mbr"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="2_wpe6k"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_r1srf"]
