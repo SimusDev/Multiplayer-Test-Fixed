@@ -58,12 +58,9 @@ func _on_current_changed():
 		if not _pick == "":
 			animation_player.play(_pick)
 		
-		#await get_tree().process_frame #               <| FIX
-		#await get_tree().process_frame #               <| FIX
-#                                                       |
 		self.show()                    #                |
-#                                                       |
-	#какие то баги бл* рука дергается !!""!№!;!;________|
+	#                                                       |
+		#какие то баги бл* рука дергается !!""!№!;!;________|
 
 
 func set_current(value:bool):

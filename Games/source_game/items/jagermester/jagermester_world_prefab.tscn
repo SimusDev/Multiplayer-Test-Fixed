@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dirby1itotqvv"]
+[gd_scene load_steps=8 format=3 uid="uid://dirby1itotqvv"]
 
 [ext_resource type="PackedScene" uid="uid://dxjtm8v72w5o0" path="res://Games/source_game/game/3dmodels/jagermester/model_prefab.tscn" id="1_5w8o0"]
+[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_rwnhf"]
+[ext_resource type="AudioStream" uid="uid://dgxse7d5qwkwp" path="res://sounds/hl2/physics/glass/glass_impact_bullet1.wav" id="2_8g871"]
+[ext_resource type="AudioStream" uid="uid://df3u8eoidlqa4" path="res://sounds/hl2/physics/glass/glass_impact_bullet2.wav" id="3_a0ng0"]
+[ext_resource type="AudioStream" uid="uid://coo427wiwqpbg" path="res://sounds/hl2/physics/glass/glass_impact_bullet3.wav" id="4_rktgq"]
+[ext_resource type="AudioStream" uid="uid://0qpuvly7e4wv" path="res://sounds/hl2/physics/glass/glass_impact_bullet4.wav" id="5_0pp1d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3cfo"]
 size = Vector3(0.158728, 0.396053, 0.123047)
 
 [node name="jagermester_world_prefab" type="RigidBody3D"]
+
+[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
+script = ExtResource("1_rwnhf")
+rigid_body = NodePath("..")
+surface = "body"
+soft_impact_sounds = Array[AudioStream]([ExtResource("2_8g871"), ExtResource("3_a0ng0"), ExtResource("4_rktgq"), ExtResource("5_0pp1d")])
+hard_impact_sounds = Array[AudioStream]([ExtResource("2_8g871"), ExtResource("3_a0ng0"), ExtResource("4_rktgq"), ExtResource("5_0pp1d")])
+scrape_sounds = Array[AudioStream]([ExtResource("2_8g871"), ExtResource("3_a0ng0"), ExtResource("4_rktgq"), ExtResource("5_0pp1d")])
+metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="jagermester_model" parent="." instance=ExtResource("1_5w8o0")]
 

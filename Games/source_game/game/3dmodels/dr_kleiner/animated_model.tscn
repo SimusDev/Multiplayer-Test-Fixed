@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cwqpcddsojjt7"]
+[gd_scene load_steps=37 format=4 uid="uid://cwqpcddsojjt7"]
 
 [ext_resource type="Script" uid="uid://bo8uwskkur08r" path="res://Games/source_game/components/source_animated_model.gd" id="1_c6elt"]
 [ext_resource type="PackedScene" uid="uid://dwpb4vcsaovcf" path="res://Games/source_game/game/3dmodels/dr_kleiner/dr_kleiner_scene.tscn" id="2_p2etw"]
@@ -14,10 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c7xrxn70r4cqn" path="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_8.png" id="10_ma4pq"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="13_ke3q8"]
 [ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="14_c6elt"]
-[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="15_emf6g"]
-[ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="16_c6elt"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="17_4p1ol"]
-[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="17_ynv0b"]
 [ext_resource type="PackedScene" uid="uid://c3bby5tbyvcto" path="res://Games/source_game/items/AA2308KM/view.tscn" id="18_jifjd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mjwt"]
@@ -458,37 +455,8 @@ bind/3/name = &"mixamorig_RightShoulder"
 bind/3/bone = -1
 bind/3/pose = Transform3D(-0.431199, -0.870929, -9.95267, -9.1371, 4.06347, 0.0402825, 4.04073, 9.09559, -0.970993, -0.342073, 2.17213, 5.48449)
 
-[sub_resource type="Resource" id="Resource_5cwov"]
-script = ExtResource("17_ynv0b")
-prefab = ExtResource("16_c6elt")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_u64gf"]
-script = ExtResource("17_ynv0b")
-prefab = ExtResource("18_jifjd")
-position = Vector3(0.00319022, 0.206988, -0.0442603)
-rotation = Vector3(1.36805, -0.719596, 1.48278)
-scale = Vector3(1, 1, 1)
-metadata/_custom_type_script = "uid://chuimtehu4j13"
-
-[sub_resource type="Resource" id="Resource_xnmxq"]
-script = ExtResource("15_emf6g")
-view = SubResource("Resource_5cwov")
-world = SubResource("Resource_u64gf")
-metadata/_custom_type_script = "uid://dmfqusepbcc80"
-
 [node name="SourceAnimatedModel" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
 script = ExtResource("1_c6elt")
-properties = Dictionary[String, String]({
-"crouched": "blend_position",
-"crouched_run": "blend_position",
-"crouched_walk": "blend_position",
-"run": "blend_position",
-"walk": "blend_position"
-})
 model_scene = ExtResource("2_p2etw")
 library = ExtResource("3_yxv2h")
 blend_tree = ExtResource("4_bvy8f")
@@ -502,17 +470,17 @@ metadata/_custom_type_script = "uid://bo8uwskkur08r"
 transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
 
 [node name="Skeleton3D" parent="model3d" index="1"]
-bones/0/position = Vector3(-0.012852, 3.75682, 0.0436566)
-bones/0/rotation = Quaternion(-0.0350809, -0.0435426, -0.0248057, 0.998127)
-bones/1/rotation = Quaternion(-0.0172865, 0.013928, 0.0259021, 0.999418)
-bones/2/rotation = Quaternion(0.00924395, 0.00254823, 0.0145851, 0.999848)
-bones/3/rotation = Quaternion(0.00903394, 0.00274326, 0.014625, 0.999849)
-bones/4/rotation = Quaternion(0.0900009, -0.0024742, 0.0055104, 0.995923)
-bones/5/rotation = Quaternion(-0.0678466, 0.00896525, -0.00137674, 0.997655)
-bones/7/rotation = Quaternion(-0.680753, -0.322265, 0.520101, -0.402761)
-bones/8/rotation = Quaternion(0.478561, 0.131208, 0.0569551, 0.866325)
-bones/9/rotation = Quaternion(0.00152261, 0.000336989, 0.0135773, 0.999907)
-bones/10/rotation = Quaternion(0.0882925, -0.246869, -0.0223917, 0.964758)
+bones/0/position = Vector3(-0.00324861, 3.75453, 0.0251954)
+bones/0/rotation = Quaternion(-0.0335167, -0.0469827, -0.0282586, 0.997933)
+bones/1/rotation = Quaternion(-0.00970095, 0.0133764, 0.0262105, 0.99952)
+bones/2/rotation = Quaternion(0.0115523, 0.00231462, 0.014628, 0.999824)
+bones/3/rotation = Quaternion(0.0113395, 0.00251804, 0.0146745, 0.999825)
+bones/4/rotation = Quaternion(0.0940977, -0.00198492, 0.00471858, 0.99555)
+bones/5/rotation = Quaternion(-0.0743949, 0.00930388, -0.000116501, 0.997185)
+bones/7/rotation = Quaternion(-0.686719, -0.314728, 0.517004, -0.40258)
+bones/8/rotation = Quaternion(0.471834, 0.130969, 0.0593407, 0.869884)
+bones/9/rotation = Quaternion(0.00151173, 0.000336989, 0.0134777, 0.999908)
+bones/10/rotation = Quaternion(0.0820882, -0.256286, -0.0170487, 0.962958)
 bones/11/rotation = Quaternion(0.167496, 0.07573, 0.165752, 0.968884)
 bones/12/rotation = Quaternion(-0.110542, 0.0694373, -0.147667, 0.980384)
 bones/13/rotation = Quaternion(-0.130199, -0.0646027, 0.0823537, 0.985948)
@@ -547,14 +515,14 @@ bones/49/rotation = Quaternion(0.154005, -0.00135936, 0.037749, 0.987348)
 bones/51/rotation = Quaternion(0.195318, -0.000721517, -0.032928, 0.980187)
 bones/52/rotation = Quaternion(0.151309, -0.000208163, 0.055461, 0.986929)
 bones/53/rotation = Quaternion(0.14358, -0.000642472, 0.0526263, 0.988238)
-bones/55/rotation = Quaternion(0.135754, 0.0622495, 0.985729, -0.0776853)
-bones/56/rotation = Quaternion(-0.125247, -0.0130274, 0.0298743, 0.99159)
-bones/57/rotation = Quaternion(0.508855, -0.119023, -0.000180685, 0.852584)
+bones/55/rotation = Quaternion(0.13778, 0.0703043, 0.984667, -0.080656)
+bones/56/rotation = Quaternion(-0.133519, -0.0135786, 0.0298949, 0.990502)
+bones/57/rotation = Quaternion(0.511296, -0.118912, 9.49176e-05, 0.851138)
 bones/58/rotation = Quaternion(0.30626, -0.0302535, 0.00323587, 0.951461)
-bones/60/rotation = Quaternion(-0.0927467, -0.0210344, 0.995194, -0.0233442)
-bones/61/rotation = Quaternion(-0.081251, 0.0843572, -0.0244357, 0.992817)
-bones/62/rotation = Quaternion(0.547618, 0.115423, -0.0315997, 0.828126)
-bones/63/rotation = Quaternion(0.322803, 0.0273801, -0.000211079, 0.94607)
+bones/60/rotation = Quaternion(-0.0910885, -0.0145656, 0.995393, -0.0261357)
+bones/61/rotation = Quaternion(-0.0845264, 0.0840602, -0.0248507, 0.992558)
+bones/62/rotation = Quaternion(0.546149, 0.113643, -0.0307623, 0.829373)
+bones/63/rotation = Quaternion(0.324949, 0.027845, -5.77088e-05, 0.945322)
 
 [node name="Object_2" parent="model3d/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_7b8h1")
@@ -612,19 +580,17 @@ parameters/look_dir/blend_position = 0.0
 parameters/look_dir_add/add_amount = 0.0
 
 [node name="viewmodel" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.00834245, 0.0728697, 0.270223, 0.277906, 0.0298647, -0.0166331, -0.0331507, 0.268697, -0.0714349, -0.376736, 1.41963, 0.265056)
+transform = Transform3D(0.00970273, 0.0704745, 0.270812, 0.278676, 0.0221745, -0.015755, -0.0254123, 0.270077, -0.0693728, -0.374532, 1.4128, 0.261342)
 bone_name = "mixamorig_RightHand"
 bone_idx = 34
 use_external_skeleton = true
 external_skeleton = NodePath("../model3d/Skeleton3D")
 
-[node name="root" type="Node3D" parent="viewmodel" node_paths=PackedStringArray("view_node")]
+[node name="root" type="Node3D" parent="viewmodel"]
 script = ExtResource("13_ke3q8")
 object = ExtResource("14_c6elt")
-viewmodel = SubResource("Resource_xnmxq")
 reset_transform = true
 placeholder = ExtResource("17_4p1ol")
-view_node = NodePath("prefab")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
 [node name="prefab2" parent="viewmodel/root" instance=ExtResource("18_jifjd")]

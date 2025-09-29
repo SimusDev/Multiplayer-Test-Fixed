@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c6fadyxkc0ggh" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_animatied_model.gd" id="1_ji0iy"]
 [ext_resource type="PackedScene" uid="uid://dvhn3wr74ct05" path="res://Games/source_game/enemy/zombie_creature/zombie_creature_model.tscn" id="2_nd1ge"]
 [ext_resource type="AnimationLibrary" uid="uid://chc7g0ugvidd0" path="res://Games/source_game/enemy/zombie_creature/animations/zombie_lib.res" id="3_nd1ge"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://gsim5nki34dc" path="res://Games/source_game/enemy/zombie_creature/animations/zombie_creature_animatied_model.tres" id="4_lx5ct"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://ct7n5hbddorg0" path="res://Games/source_game/enemy/zombie_creature/animations/zombie_creature_animatied_model.tres" id="4_lx5ct"]
 
 [node name="zombie_creature_animatied_model" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
 script = ExtResource("1_ji0iy")
@@ -83,6 +83,9 @@ libraries = {
 root_node = NodePath("../model3d")
 tree_root = ExtResource("4_lx5ct")
 anim_player = NodePath("../AnimationPlayer")
-parameters/state_machine/move/blend_position = Vector2(0, 0)
+parameters/attack/active = false
+parameters/attack/internal_active = false
+parameters/attack/request = 0
+parameters/state_machine/move/blend_position = Vector2(0.0017637, 0.943175)
 
 [editable path="model3d"]

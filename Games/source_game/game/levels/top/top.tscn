@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://0x6iyq3hynkw"]
+[gd_scene load_steps=19 format=3 uid="uid://0x6iyq3hynkw"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_wlyvx"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="2_75tu0"]
@@ -20,13 +20,21 @@ spawner_enabled = false
 metadata/_custom_type_script = "uid://bh4s4yhsm0k3y"
 
 [sub_resource type="Environment" id="Environment_xpsqc"]
-background_mode = 2
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.01
 ambient_light_color = Color(1, 1, 0, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.01
 tonemap_mode = 3
 fog_light_color = Color(1, 1, 1, 1)
-adjustment_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icxye"]
+size = Vector3(25, 5, 25)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wcbuj"]
+vertices = PackedVector3Array(-12, 5, -12, -12, 5, 12, 12, 5, 12, 12, 5, -12, -11.25, 0.5, -1.5, -4.25, 0.5, -1.5, -4.25, 0.5, -11.25, -11.25, 0.5, -11.25, -2.5, 0.5, -1.75, 11.5, 0.5, -1.75, 11.5, 0.5, -11.25, -2.5, 0.5, -11.25, -2.5, 0.5, 0.25, -2.5, 0.5, 11.5, 11.5, 0.5, 11.5, -4.25, 0.5, 0.5, -3, 0.5, 0.75, -11.25, 0.5, 11.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(12, 8, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 9), PackedInt32Array(4, 5, 15), PackedInt32Array(16, 12, 13), PackedInt32Array(15, 16, 13), PackedInt32Array(13, 17, 15), PackedInt32Array(15, 17, 4)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpsqc"]
 albedo_texture = ExtResource("3_iy1ax")
@@ -35,9 +43,6 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_icxye"]
 size = Vector3(0.5, 4, 12)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_icxye"]
-size = Vector3(25, 5, 25)
-
 [node name="top" instance=ExtResource("1_wlyvx")]
 level_settings = SubResource("Resource_xpsqc")
 
@@ -45,7 +50,7 @@ level_settings = SubResource("Resource_xpsqc")
 environment = SubResource("Environment_xpsqc")
 
 [node name="loot_container" parent="objects" index="0" instance=ExtResource("3_icxye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.031, 0.775, -7.772)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.031, 0.775, -7.88387)
 drop = Array[ExtResource("4_bvbo4")]([ExtResource("5_pct34")])
 
 [node name="loot_container2" parent="objects" index="1" instance=ExtResource("3_icxye")]
@@ -73,37 +78,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541045, -8.99956)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26876, 0, -3.12278)
 script = ExtResource("2_75tu0")
 
-[node name="map_static_buildings" type="Node3D" parent="." index="10"]
+[node name="lights" type="Node3D" parent="." index="10"]
 
-[node name="room_1" type="CSGBox3D" parent="map_static_buildings" index="0"]
+[node name="light_cube" parent="lights" index="0" instance=ExtResource("4_iy1ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -9)
+
+[node name="reverb_area" type="Area3D" parent="." index="11"]
+reverb_bus_enabled = true
+reverb_bus_name = &"reverb"
+reverb_bus_amount = 0.6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="reverb_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_icxye")
+
+[node name="NavigationRegion3D" parent="." index="12"]
+navigation_mesh = SubResource("NavigationMesh_wcbuj")
+
+[node name="map_static_buildings" type="Node3D" parent="NavigationRegion3D" index="0"]
+
+[node name="room_1" type="CSGBox3D" parent="NavigationRegion3D/map_static_buildings" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 use_collision = true
 collision_priority = 2.0
 size = Vector3(25, 5, 25)
 material = SubResource("StandardMaterial3D_xpsqc")
 
-[node name="sub" type="CSGBox3D" parent="map_static_buildings/room_1" index="0"]
+[node name="sub" type="CSGBox3D" parent="NavigationRegion3D/map_static_buildings/room_1" index="0"]
 operation = 2
 size = Vector3(24, 4, 24)
 material = SubResource("StandardMaterial3D_xpsqc")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="map_static_buildings/room_1" index="1"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/map_static_buildings/room_1" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -6)
 mesh = SubResource("BoxMesh_icxye")
 material = SubResource("StandardMaterial3D_xpsqc")
-
-[node name="lights" type="Node3D" parent="." index="11"]
-
-[node name="light_cube" parent="lights" index="0" instance=ExtResource("4_iy1ax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -9)
-
-[node name="Area3D" type="Area3D" parent="." index="12"]
-reverb_bus_enabled = true
-reverb_bus_name = &"reverb"
-reverb_bus_amount = 0.6
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_icxye")
 
 [editable path="lights/light_cube"]

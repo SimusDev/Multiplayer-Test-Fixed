@@ -50,3 +50,5 @@ script = ExtResource("3_y25mi")
 
 [node name="ghost_buildings" type="Node3D" parent="."]
 script = ExtResource("3_y25mi")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
