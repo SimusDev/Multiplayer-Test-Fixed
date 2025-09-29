@@ -7,17 +7,11 @@
 [sub_resource type="Resource" id="Resource_uwgso"]
 script = ExtResource("3_7egl4")
 prefab = ExtResource("2_q1a82")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_l575o"]
 script = ExtResource("3_7egl4")
 prefab = ExtResource("2_q1a82")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [resource]

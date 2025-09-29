@@ -8,6 +8,25 @@ var _remote_transform: RemoteTransform3D
 
 @export var custom_point: Node3D
 
+@export var _input: SourceEntityInput
+
+func _create_inputs() -> void:
+	_input = SourceEntityInput.new()
+	_input.name = "seat_input"
+	_input.set_multiplayer_authority(_target.get_multiplayer_authority())
+	_input.allowed_actions.append("jump")
+	_target.add_child(_input)
+	_input.action_just_pressed.connect(_input_on_action_just_pressed)
+
+func _input_on_action_just_pressed(action: StringName) -> void:
+	if _target:
+		set_target(null)
+
+func _delete_inputs() -> void:
+	if is_instance_valid(_input):
+		_input.queue_free()
+		_input = null
+
 func _ready() -> void:
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
@@ -58,6 +77,8 @@ func _set_target_net(new: Node3D) -> void:
 var _data: Dictionary[String, Variant] = {}
 
 func _target_enter() -> void:
+	_create_inputs()
+	
 	if _target is CollisionObject3D:
 		_data.layer = _target.collision_layer
 		_data.mask = _target.collision_mask
@@ -70,6 +91,8 @@ func _target_enter() -> void:
 		_target.axis_lock_linear_z = true
 
 func _target_exit() -> void:
+	_delete_inputs()
+	
 	if _target is CollisionObject3D:
 		_target.collision_layer = _data.layer
 		_target.collision_mask = _data.mask

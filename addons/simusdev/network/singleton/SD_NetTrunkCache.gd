@@ -14,8 +14,32 @@ const CHANNELS: Dictionary[int, int] = {
 	
 }
 
+var _cached_input_map_string: Dictionary[StringName, int] = {}
+var _cached_input_map_id: Dictionary[int, StringName] = {}
+
 func _initialized() -> void:
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
+	
+	_cache_game_input()
+
+func _cache_game_input() -> void:
+	var action_id: int = 0
+	for action in InputMap.get_actions():
+		_cached_input_map_id[action_id] = action
+		_cached_input_map_string[action] = action_id
+		action_id += 1
+
+func get_cached_input_map_action(id: int) -> Dictionary:
+	return _cached_input_map_id.get(id)
+
+func get_cached_input_map_id(action: StringName) -> Dictionary:
+	return _cached_input_map_string.get(action)
+
+func serialize_input_map(action: StringName) -> int:
+	return _cached_input_map_string.get(action)
+
+func deserialize_input_map(id: int) -> StringName:
+	return _cached_input_map_id.get(id)
 
 func cache_resource(resource: Resource) -> void:
 	var path: String = resource.resource_path

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=31 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://brbjcyxkk7elj" path="res://Games/source_game/components/crafting/source_crafting.gd" id="8_spe63"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
+[ext_resource type="Script" uid="uid://omd1l2jsuw6u" path="res://Games/source_game/components/gamescripts/gamescripts.gd" id="13_rwrbd"]
 [ext_resource type="Script" uid="uid://djvskk2xxjjpo" path="res://addons/simusdev/network/SD_NetworkSpawner.gd" id="16_h0jfs"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
@@ -23,101 +24,51 @@
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "time.set"
-value = ""
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_wirdf"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "player.teleport"
-value = ""
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_dt7qg"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "sv_cheats"
 value = "0"
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_ij05y"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "noclip"
 value = "0"
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_fcmfk"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "time.freeze"
 value = "0"
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_ioj0b"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "player.kill"
-value = ""
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_8dbco"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "level.spawn"
 value = "object.radio_prop"
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_tn3t5"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "level.clear"
-value = ""
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_ha5cx"]
 script = ExtResource("19_dt7qg")
-update_at_start = true
 code = "game.help"
-value = ""
-private = false
-binds = Array[ExtResource("20_ij05y")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="source_game" type="Node" node_paths=PackedStringArray("level_handler", "_spawner")]
@@ -167,6 +118,11 @@ level_at_start = "top"
 script = ExtResource("3_aahtd")
 base_dir = "res://Games/source_game/"
 object_dirs = PackedStringArray("props", "objects", "recipes", "buildings")
+
+[node name="SourceGameScripts" type="Node" parent="."]
+script = ExtResource("13_rwrbd")
+path = "res://Games/source_game/gamescripts"
+metadata/_custom_type_script = "uid://omd1l2jsuw6u"
 
 [node name="SourceCrafting" type="Node" parent="." node_paths=PackedStringArray("object_handler")]
 script = ExtResource("8_spe63")

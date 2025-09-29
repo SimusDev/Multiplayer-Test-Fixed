@@ -17,6 +17,7 @@ signal _voice_active(value: bool)
 var ui: PackedScene
 
 var health: SourceHealth
+var inventory: SourceInventory
 
 var network: SD_NetworkPlayer
 
@@ -56,6 +57,7 @@ func _exit_tree() -> void:
 func _ready() -> void:
 	SD_Components.append_to(root, self)
 	health = SourceHealth.find_in(root)
+	inventory = SD_Components.find_first(root, SourceInventory)
 	
 	network = SD_NetworkPlayer.find_in(root)
 	
