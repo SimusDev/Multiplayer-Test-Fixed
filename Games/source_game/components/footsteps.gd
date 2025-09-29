@@ -38,12 +38,13 @@ func _ready() -> void:
 
 func _do_footstep():
 	if is_instance_valid(player):
+		print(player.is_on_floor())
 		if !get(current_surface) or !player.is_on_floor() or !player.velocity:
 			return
 
 		randomize()
 		var rand_idx = randi()% (get(current_surface).size())
 		stream = get(current_surface)[rand_idx]
-		
+		print("footstep")
 
 		play()

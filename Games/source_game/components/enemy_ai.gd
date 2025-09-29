@@ -1,5 +1,7 @@
 class_name EnemyAI extends Node
 
+signal current_target_changed
+
 @export var enemy:CharacterBody3D
 @export var vision:EnemyAI_Vision
 @export var navigation_agent:NavigationAgent3D
@@ -11,14 +13,23 @@ class_name EnemyAI extends Node
 @export var tick_rate:float = 32.0
 var tick_timer:Timer = Timer.new()
 
-var current_target:AI_Visible
+var current_target:AI_Visible : set = set_current_target
 var target_rotation:Basis
 
 func _ready() -> void:
+	current_target_changed.connect(on_current_target_changed)
 	add_child(tick_timer)
 	tick_timer.wait_time = 1 / tick_rate
 	tick_timer.timeout.connect(tick)
 	tick_timer.start()
+
+func set_current_target(value:AI_Visible) -> void:
+	current_target = value
+	current_target_changed.emit()
+
+func on_current_target_changed() -> void:
+	if is_instance_valid(current_target):
+		navigation_agent.set_target_position(current_target.target.global_position)
 
 func pick_target() -> AI_Visible:
 	if vision.visible_targets.is_empty():
@@ -45,43 +56,49 @@ func pick_target() -> AI_Visible:
 
 func tick():
 	current_target = pick_target()
-	
 	if current_target:
 		var direction = (current_target.global_position - enemy.global_position).normalized()
 		var target_basis = Basis.looking_at(direction, Vector3.UP)
 		target_rotation = target_basis
 
 func chase_target():
-	navigation_agent.target_position = current_target.global_position
-	var next_pos = navigation_agent.get_next_path_position()
-	print(next_pos)
+	var destination:Vector3 = navigation_agent.get_next_path_position()
+	var local_destionation:Vector3 = destination - enemy.global_position
+	var direction:Vector3 = local_destionation.normalized()
 	
-	enemy.velocity.x = -(enemy.global_position - next_pos).normalized().x * move_speed
-	enemy.velocity.z = -(enemy.global_position - next_pos).normalized().z * move_speed
+	enemy.velocity.x = direction.x * 2.0
+	enemy.velocity.z = direction.z * 2.0
 
 
 func stop_chase():
 	enemy.velocity.x = 0
 	enemy.velocity.z = 0
 
-func attack_current_target():
+func attack():
+	var model: W_AnimatedModel3D = enemy.model
+	model.tree.set("parameters/attack/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
 	if !SD_Multiplayer.is_server():
 		return
-	
-	current_target.target_health_component.apply_damage(damage)
+	var damaged:float = damage
+	for area in enemy.attack_area.get_overlapping_areas():
+		if area is SourceHitbox:
+			area.apply_damage(damaged)
+			damaged -= damaged / 1.5
 
 func _physics_process(delta: float) -> void:
 	enemy.global_transform.basis = lerp(enemy.global_transform.basis, target_rotation, rotation_speed * delta)
 	enemy.rotation_degrees.x = clamp(enemy.rotation_degrees.x, 0, 0)
 	enemy.rotation_degrees.z = clamp(enemy.rotation_degrees.z, 0, 0)
 
-	if current_target:
-		var current_target_position = Vector3(current_target.global_position.x, 0.0, current_target.global_position.z)
 		
-		if enemy.global_position.distance_to(current_target_position) > attack_range:
-			chase_target()
-		else:
-			stop_chase()
+	if is_instance_valid(current_target):
+		chase_target()
+	else:
+		stop_chase()
+	if enemy.global_position.distance_to(navigation_agent.target_position) < attack_range:
+		var state_machine:SD_NodeStateMachine = enemy.state_machine as SD_NodeStateMachine
+		if not state_machine._current_state.name == "attack":
 			enemy.state_machine.switch_by_name("attack")
 	
 	enemy.move_and_slide()

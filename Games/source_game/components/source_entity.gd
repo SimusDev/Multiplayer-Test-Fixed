@@ -37,7 +37,7 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
 	if is_instance_valid(model):
-		model.footstep.connect(func(): footsteps_component._do_footstep())
+		model.footstep.connect(footsteps_component._do_footstep)
 
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )

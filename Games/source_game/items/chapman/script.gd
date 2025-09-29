@@ -17,6 +17,7 @@ var open:bool = false : set = set_open, get = is_open
 
 func _ready() -> void:
 	super()
+	SD_Network.register_function(take_cigu)
 	cigi = stack.data_get_or_add("cigi_", 20)
 	update_cigi_v_pa4ke()
 
@@ -28,6 +29,9 @@ func take_cigu() -> void:
 	cigi -= 1
 	inventory.add_item(SourceItemStack.create_from_object(ciga_world_resource))
 	update_cigi_v_pa4ke()
+
+func take_cigu_sync() -> void:
+	SD_Network.call_func_on_server(take_cigu)
 
 func update_cigi_v_pa4ke() -> void:
 	for child in cigi_node_parent.get_children():
@@ -53,9 +57,8 @@ func use() -> void:
 	if not SD_Network.is_authority(self):
 		return
 	
-	if cigi > 0:
-		if not is_open():
-			custom_animation_player.play(_open_anim)
-			set_open(true)
-		else:
-			animation_player.play(_take_anim)
+	if not is_open():
+		custom_animation_player.play(_open_anim)
+		set_open(true)
+	elif cigi > 0:
+		animation_player.play(_take_anim)
