@@ -40,6 +40,18 @@ func _enter_tree() -> void:
 	if not root:
 		root = get_parent()
 	
+	if root is SourcePlayer:
+		S_EventPlayerSpawned.as_event().player = root
+	S_EventPlayerSpawned.as_event().root = root
+	S_EventPlayerSpawned.as_event().playable = self
+	S_EventPlayerSpawned.as_event().publish()
+
+func _exit_tree() -> void:
+	if root is SourcePlayer:
+		S_EventPlayerDespawned.as_event().player = root
+	S_EventPlayerDespawned.as_event().root = root
+	S_EventPlayerDespawned.as_event().playable = self
+	S_EventPlayerDespawned.as_event().publish()
 
 func _ready() -> void:
 	SD_Components.append_to(root, self)

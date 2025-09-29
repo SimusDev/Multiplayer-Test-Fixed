@@ -14,12 +14,36 @@ version="0.10"
 csharp=false
 useSenderID=true
 
+[SimpleGrassTextured]
+
+Shortcuts/airbrush_tool=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":68,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/pencil_tool=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":66,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/eraser_tool=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":88,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/radius_increment=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":93,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/radius_decrement=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":91,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/density_increment=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":61,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+Shortcuts/density_decrement=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":true,"keycode":45,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+],"script":null)
+
+
 [application]
 
 config/name="Multiplayer-Test"
 config/version="0.002a"
 run/main_scene="uid://c31uhxfwryhme"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://cyj56486e1iyo"
 
 [audio]
@@ -441,7 +465,7 @@ sgt_legacy_renderer={
 }
 sgt_player_position={
 "type": "vec3",
-"value": Vector3(1e+06, 1e+06, 1e+06)
+"value": Vector3(1000000, 1000000, 1000000)
 }
 sgt_player_mov={
 "type": "vec3",
