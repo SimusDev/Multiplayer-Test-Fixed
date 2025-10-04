@@ -11,9 +11,6 @@
 [sub_resource type="Resource" id="Resource_5cwov"]
 script = ExtResource("5_l8wlm")
 prefab = ExtResource("5_5cwov")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_u64gf"]
@@ -21,7 +18,6 @@ script = ExtResource("5_l8wlm")
 prefab = ExtResource("7_u64gf")
 position = Vector3(0.00726435, 0.2182, 0.017081)
 rotation = Vector3(0.93877, -2.78884, -0.34046)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_xnmxq"]
@@ -32,10 +28,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("3_u64gf")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_l8wlm")
-name = ""
 description = "PEW PEW"
 prefab = ExtResource("2_j2l07")
 viewmodel = SubResource("Resource_xnmxq")

@@ -10,11 +10,7 @@ gradient = SubResource("Gradient_3mggm")
 
 [resource]
 script = ExtResource("1_0sh5e")
-pick_on_build = true
-custom_section = ""
-custom_id = ""
 icon = SubResource("GradientTexture2D_lwn0s")
 name = "conveyor"
-description = ""
 prefab = ExtResource("1_1ht5u")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

@@ -8,8 +8,6 @@
 
 [sub_resource type="Resource" id="Resource_h1yxr"]
 script = ExtResource("2_y25mi")
-player_flashlight_enabled = true
-spawner_enabled = true
 metadata/_custom_type_script = "uid://bh4s4yhsm0k3y"
 
 [node name="source_base_level" type="Node3D"]

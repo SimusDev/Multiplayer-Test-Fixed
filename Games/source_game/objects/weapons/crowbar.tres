@@ -11,9 +11,6 @@
 [sub_resource type="Resource" id="Resource_0ge6h"]
 script = ExtResource("4_td2dw")
 prefab = ExtResource("4_0ge6h")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_dsvhs"]
@@ -32,11 +29,8 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("1_i8tk8")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_0ge6h")
 name = "crowbar"
-description = ""
 prefab = ExtResource("2_0ge6h")
 viewmodel = SubResource("Resource_u3gjc")
 metadata/_custom_type_script = "uid://fiotmdlqxei6"
