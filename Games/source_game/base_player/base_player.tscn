@@ -40,8 +40,8 @@ domain_warp_fractal_lacunarity = 10.83
 domain_warp_fractal_gain = 10.845
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0lyu"]
-color_ramp = SubResource("Gradient_4d7pv")
 noise = SubResource("FastNoiseLite_krprw")
+color_ramp = SubResource("Gradient_4d7pv")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526

@@ -58,10 +58,6 @@ func _on_current_changed():
 		if not _pick == "":
 			animation_player.play(_pick)
 		
-		#if get_tree():
-			#await get_tree().process_frame #               <| FIX
-			#await get_tree().process_frame #               <| FIX
-	#                                                       |
 		self.show()                    #                |
 	#                                                       |
 		#какие то баги бл* рука дергается !!""!№!;!;________|

@@ -23,6 +23,8 @@ func set_can_open_or_close(value: bool) -> void:
 	_console_node.can_open_or_close = value
 
 func _ready() -> void:
+	_instance = self
+	
 	initialize(SETTINGS_PATH)
 	initialize_engine_settings()
 	

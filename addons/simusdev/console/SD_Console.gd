@@ -22,6 +22,11 @@ var _commands_by_code: Dictionary[String, SD_ConsoleCommand]
 
 var gd_print: bool = true
 
+static var _instance: SD_Console
+
+static func i() -> SD_Console:
+	return _instance
+
 func __on_command_executed(command: SD_ConsoleCommand) -> void:
 	on_command_executed.emit(command)
 
