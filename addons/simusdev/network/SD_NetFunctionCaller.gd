@@ -5,7 +5,6 @@ class_name SD_NetFunctionCaller
 @export var default_callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
 
 func _ready() -> void:
-	SD_Network.register_object(self)
 	SD_Network.register_channel(default_channel)
 
 func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = default_callmode, channel: String = default_channel) -> void:
