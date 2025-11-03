@@ -8,77 +8,18 @@
 
 [sub_resource type="Resource" id="Resource_2wia1"]
 script = ExtResource("1")
-show_all_connected_players = true
-dedicated_server = false
-dedicated_server_port = 80
 
 [sub_resource type="Resource" id="Resource_me2gm"]
 script = ExtResource("2")
-cache_resources = []
 
 [sub_resource type="Resource" id="Resource_m7xkw"]
 script = ExtResource("3")
 enabled = true
-channels = []
-root_path = "/root/"
-default_peer = true
-compression = 1
-show_all_connected_players = true
-player_unique_names = false
-dedicated_server = false
-dedicated_server_port = 80
-dedicated_server_max_clients = 32
 debug = true
-debug_callables = true
-debug_vars = true
-debug_cache = true
 cache = SubResource("Resource_me2gm")
 
 [resource]
 script = ExtResource("5")
 developer = "zxcvlxd and simusdev "
-game_code = ""
-monetization = Dictionary[String, Variant]({
-"autoselect_sdk": true,
-"create_singleton": true,
-"enabled": true,
-"pause_when_ad_show": true
-})
-game = Dictionary[String, Variant]({
-"minimize_feature": false,
-"minimize_feature_on_release": true,
-"mute_audio_when_minimized": true,
-"pause_when_minimized": false
-})
-console = Dictionary[String, Variant]({
-"disable_on_release": true,
-"enabled": true,
-"enabled_desktop_override": true,
-"gd_print": true,
-"hide_private_commands": true,
-"size": Vector2(768, 512)
-})
-audio = Dictionary[String, Variant]({
-"bus_volume_max": 1.0,
-"bus_volume_min": 0.0
-})
-ui = Dictionary[String, Variant]({
-"dynamic_size_max": 1.0,
-"dynamic_size_min": 0.5
-})
-popups = Dictionary[String, Variant]({
-"apply_ui_dynamic_size": true,
-"base_path": "res://popups/%s.tscn",
-"canvas_layer": 16,
-"enabled": true,
-"input": "ui_cancel"
-})
-localization = Dictionary[String, Variant]({
-"enabled": true
-})
-localization_flags = Dictionary[String, Texture]({})
-localization_language_unique_name = Dictionary[String, String]({})
-popups_default_animations = Array[ExtResource("4")]([])
-tools = Array[PackedScene]([])
 network = SubResource("Resource_m7xkw")
 multiplayer = SubResource("Resource_2wia1")

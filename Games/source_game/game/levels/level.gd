@@ -3,6 +3,7 @@ class_name SourceLevel extends Node3D
 @export var level_settings:R_SourceLevelSettings
 
 func _ready() -> void:
+	return
 	apply_settings()
 
 func apply_settings() -> void:

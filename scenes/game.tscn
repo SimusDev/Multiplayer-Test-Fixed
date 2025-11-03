@@ -12,13 +12,7 @@ viewport_path = NodePath("WorldViewport")
 
 [sub_resource type="Resource" id="Resource_p57ef"]
 script = ExtResource("5_iywne")
-update_at_start = true
 code = "players"
-value = ""
-private = false
-binds = Array[ExtResource("6_p57ef")]([])
-number_min_value = 0.0
-number_max_value = 0.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="game" type="CanvasLayer"]

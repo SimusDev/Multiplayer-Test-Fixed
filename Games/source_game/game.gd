@@ -24,7 +24,7 @@ func _ready() -> void:
 	SD_Network.register_object(self)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
-	level_handler._load_level.connect(level_handler.check_level)
+	#level_handler._load_level.connect(level_handler.check_level)
 
 	var s_pack = _singleton_pack.instantiate()
 	add_child(s_pack)
@@ -34,7 +34,8 @@ func _ready() -> void:
 	send_welcome_message()
 
 func _on_peer_connected(_peer_id:int):
-	level_handler.check_level()
+	#level_handler.check_level()
+	pass
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 	if SD_Network.is_server() and is_instance_valid(mp_player_spawner):

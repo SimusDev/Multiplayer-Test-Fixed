@@ -4,7 +4,10 @@ signal level_updated()
 signal _free_current_level
 signal _load_level()
 
+
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
+
+@export var enabled: bool = false
 
 @export var game: SourceGame
 @export var root_node:Node
@@ -15,9 +18,18 @@ var current_level:Node=null
 @export var level_at_start:String = "" ## set a value if you want to set the level on start, a variable with a default value does nothing
 
 func _ready() -> void:
-	await game.ready
+	if !enabled:
+		return
 	
 	root_node.child_entered_tree.connect(_on_child_entered_tree)
+	
+	SD_Network.register_object(self)
+	SD_Network.register_functions([
+		_change_settings_net
+	])
+	
+	await game.ready
+	
 	
 	cmd_change_level.executed.connect(_on_cmd_change_level_executed)
 	
@@ -30,7 +42,6 @@ func _ready() -> void:
 	
 	if root_node.get_children().size() > 0:
 		game._spawner.synchronize_all()
-
 
 func check_level():
 	if SD_Network.is_server() and is_instance_valid(current_level.get_node("player_spawner")):
@@ -70,3 +81,10 @@ func _on_child_entered_tree(node: Node) -> void:
 	
 	game._spawner.synchronize_all()
 	level_updated.emit()
+
+func change_settings(to: R_SourceLevelSettings) -> void:
+	if SD_Network.is_server():
+		SD_Network.call_func(_change_settings_net)
+
+func _change_settings_net(to: R_SourceLevelSettings) -> void:
+	to.update()
