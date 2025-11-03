@@ -19,7 +19,20 @@ var _surfaces := SourceSurfaces.new()
 const GAME_PATH: String = "res://Games/source_game/"
 const SCENE_PATH:String = "res://Games/source_game/game.tscn"
 
+var test_peers: Array[int] = []
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+	#for i in test_peers:
+		#if SD_Network.get_unique_id() == i:
+			#var yo : bool = true
+
 func _ready() -> void:
+	#for i in 4000:
+		#test_peers.append(SD_Random.get_rint_range(0, 9_000_000))
+	#
+	
 	SD_Network.register_function(spawn_on_server)
 	SD_Network.register_function(clear_objects)
 	SD_Network.register_object(self)
