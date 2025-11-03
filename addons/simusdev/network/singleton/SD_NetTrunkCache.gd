@@ -88,6 +88,14 @@ func get_cached_methods() -> PackedStringArray:
 	cache.set("m", methods)
 	return methods
 
+func get_cached_variables() -> PackedStringArray:
+	var cache := singleton.cache_get()
+	if cache.has("v"):
+		return cache["v"]
+	var methods: PackedStringArray = PackedStringArray()
+	cache.set("v", methods)
+	return methods
+
 func cache_method(method: Callable) -> void:
 	var methods: PackedStringArray = get_cached_methods()
 	var m_name: String = method.get_method()
@@ -100,12 +108,31 @@ func cache_method(method: Callable) -> void:
 	
 	_cache_method_rpc.rpc(m_name)
 
+
 @rpc("call_local", "any_peer", "reliable")
 func _cache_method_rpc(method_name: String) -> void:
 	if SD_Network.is_server():
 		return
 	
 	get_cached_methods().append(method_name)
+
+func cache_variable(variable: String) -> void:
+	var variables: PackedStringArray = get_cached_variables()
+	if variables.has(variable):
+		return
+	
+	variables.append(variable)
+	
+	debug_print("variable cached: %s" % variable)
+	
+	_cache_variable_rpc.rpc(variable)
+
+@rpc("call_local", "any_peer", "reliable")
+func _cache_variable_rpc(variable: String) -> void:
+	if SD_Network.is_server():
+		return
+	
+	get_cached_variables().append(variable)
 
 func serialize_method(callable: Callable) -> Variant:
 	var id: int = get_cached_methods().find(callable.get_method())
@@ -136,7 +163,7 @@ func get_cached_id_by_path(path: NodePath) -> int:
 func get_cached_id_by_node(node: Node) -> int:
 	return get_cached_id_by_path(node.get_path())
 
-func try_cache_node(node: Node) -> void:
+func try_cache_node(node: Object) -> void:
 	if not is_instance_valid(node):
 		return
 	
@@ -147,8 +174,11 @@ func try_cache_node(node: Node) -> void:
 	var cache_by_id: Dictionary[int, NodePath] = get_cached_nodes_by_id()
 	
 	var net_id: int = node.get_instance_id()
+	if node is SD_NetworkedResource:
+		net_id = SD_NetworkedResource._cached_instances.size() * -1
 	
-	var path: NodePath = SD_NetRegisteredNode.get_or_create(node).last_path
+	var net := SD_NetRegisteredNode.get_or_create(node)
+	var path: NodePath = net.last_path
 	
 	cache_by_path[path] = net_id
 	cache_by_id[net_id] = path
@@ -209,7 +239,7 @@ func debug_print(text, category: int = 0) -> void:
 	if singleton.settings.debug_cache:
 		singleton.debug_print(text, category)
 
-func serialize_node_reference(node: Node) -> Variant:
+func serialize_node_reference(node: Object) -> Variant:
 	var reg: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
 	var path: NodePath = reg.last_path
 	var id: int = get_cached_id_by_path(path)
@@ -217,7 +247,16 @@ func serialize_node_reference(node: Node) -> Variant:
 		return path
 	return id
 
-func deserialize_node_reference(data: Variant) -> Node:
+func deserialize_node_reference(data: Variant) -> Object:
 	if data is int:
+		var founded: Object = SD_NetworkedResource.deserialize_reference(data)
+		
+		if founded:
+			return founded
+		
 		return get_node_or_null(get_cached_path_by_id(data))
-	return get_node_or_null(data)
+	
+	var founded: Object = get_node_or_null(data)
+	if founded:
+		return founded
+	return SD_NetworkedResource.find_from_global_net_id(str(data))

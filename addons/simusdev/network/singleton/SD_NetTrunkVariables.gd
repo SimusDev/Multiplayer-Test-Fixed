@@ -23,8 +23,19 @@ func _initialized() -> void:
 	SD_Network.register_function(_recieve_var)
 	SD_Network.register_function(var_send_to)
 	SD_Network.register_function(_var_send_to)
+	
+	for variable in _initial_cached_variables:
+		singleton.cache.cache_variable(variable)
 
 var _method_queue: Array[Dictionary] = []
+
+@export var _initial_cached_variables: PackedStringArray = [
+	"transform",
+	"position",
+	"rotation",
+	"scale",
+	"visible",
+]
 
 func _process(delta: float) -> void:
 	for i in _method_queue:

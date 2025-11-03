@@ -17,7 +17,7 @@ const CHANNEL_ENTITY_POSITION: String = "entity_position"
 const CHANNEL_PLAYER: String = "player"
 const CHANNEL_SPAWN: String = "spawn"
 const CHANNEL_ITEMS: String = "items"
-const CHANNEL_INVENTORY: String = "items"
+const CHANNEL_INVENTORY: String = "inventory"
 
 func _ready() -> void:
 	for channel in channels:

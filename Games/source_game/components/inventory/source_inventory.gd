@@ -30,6 +30,8 @@ var ray: SourceInteractRay
 
 var _events: Dictionary[String, SD_Event] = {}
 
+var net_caller: SD_NetFunctionCaller
+
 func event_get_or_create(code: String) -> SD_Event:
 	if _events.has(code):
 		return _events[code]
@@ -53,6 +55,10 @@ func debug_print(text, category: int = SD_ConsoleCategories.INFO) -> void:
 		SimusDev.console.write("%s: %s" % [str(self), str(text)], category)
 
 func _ready() -> void:
+	net_caller = SD_NetFunctionCaller.new()
+	net_caller.default_channel = "inventory"
+	add_child(net_caller)
+	
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
 		__send,
@@ -115,7 +121,7 @@ func synchronize_all() -> void:
 	if SD_Network.is_server():
 		return
 	
-	SD_Network.call_func_on_server(__send)
+	net_caller.call_func_on_server(__send)
 
 func _clear_inventory_slots() -> void:
 	SD_Nodes.clear_all_children(self)
@@ -126,7 +132,7 @@ func __send() -> void:
 	for slot in get_slots():
 		slots.append(slot.serialize())
 	
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots, _slots.find(_selected_slot)])
+	net_caller.call_func_on(SD_Network.get_remote_sender_id(), __recieve, [slots, _slots.find(_selected_slot)])
 
 func __recieve(slots: Array, slot_index: int) -> void:
 	_clear_inventory_slots()
@@ -145,13 +151,13 @@ func select_slot(slot: SourceInventorySlot) -> void:
 		return
 	
 	if is_initialized:
-		SD_Network.call_func_on_server(_select_slot_server, [slot])
+		net_caller.call_func_on_server(_select_slot_server, [slot])
 
 func _select_slot_server(slot: SourceInventorySlot) -> void:
 	if SD_Network.is_server():
 		if is_instance_valid(slot) and is_initialized:
 			if slot.can_select():
-				SD_Network.call_func(_select_slot_local, [slot])
+				net_caller.call_func(_select_slot_local, [slot])
 			else:
 				debug_print("cant select slot without selectable attribute!", SD_ConsoleCategories.ERROR)
 			
@@ -164,15 +170,15 @@ func _select_slot_local(slot: SourceInventorySlot) -> void:
 		debug_print("slot selected %s" % str(slot))
 
 func item_action_request(item: SourceItemStack, action: SourceItemAction) -> void:
-	SD_Network.call_func_on_server(_action_request, [item, action])
+	net_caller.call_func_on_server(_action_request, [item, action])
 
 func _action_request(item: SourceItemStack, action_class: SourceItemAction) -> void:
 	if is_instance_valid(item):
 		if action_class:
 			action_class._action(item)
 			action_class._action_server(item)
-			SD_Network.call_func_except_self(_do_action_net, [item, SourceNetwork.serialize_resource(action_class)])
-			SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _do_action_local, [item, SourceNetwork.serialize_resource(action_class)])
+			net_caller.call_func_except_self(_do_action_net, [item, SourceNetwork.serialize_resource(action_class)])
+			net_caller.call_func_on(SD_Network.get_remote_sender_id(), _do_action_local, [item, SourceNetwork.serialize_resource(action_class)])
 
 func _do_action_net(item: SourceItemStack, serialized: Variant) -> void:
 	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized)
@@ -249,7 +255,7 @@ func add_item(item: SourceItemStack) -> void:
 	var serialized: Variant = item.serialize()
 	SD_Nodes.fast_queue_free(item)
 	
-	SD_Network.call_func(_add_item_net, [serialized])
+	net_caller.call_func(_add_item_net, [serialized])
 	
 	sort_stackables(item.object)
 
@@ -263,7 +269,7 @@ func remove_item(item: SourceItemStack) -> void:
 		return
 	
 	if get_items().has(item):
-		SD_Network.call_func(_remove_item_net, [item])
+		net_caller.call_func(_remove_item_net, [item])
 
 func _remove_item_net(item: SourceItemStack) -> void:
 	if is_instance_valid(item):
@@ -271,7 +277,7 @@ func _remove_item_net(item: SourceItemStack) -> void:
 
 func drop(item: SourceItemStack) -> void:
 	if get_items().has(item):
-		SD_Network.call_func_on_server(_drop_server, [item])
+		net_caller.call_func_on_server(_drop_server, [item])
 		SD_Nodes.fast_queue_free(item)
 
 func stack_items(stackable: SourceItemStack, item: SourceItemStack) -> SourceItemStack:
@@ -318,7 +324,7 @@ func craft(recipe: R_SourceRecipe) -> void:
 
 func item_move_to(item: SourceItemStack, slot: SourceInventorySlot) -> void:
 	if get_items().has(item):
-		SD_Network.call_func_on_server(_item_move_to_net, [item, slot])
+		net_caller.call_func_on_server(_item_move_to_net, [item, slot])
 
 func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void:
 	if not is_instance_valid(slot):
@@ -342,7 +348,7 @@ func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void
 	
 	#print(to_inv)
 	
-	SD_Network.call_func(_item_move_to_local, [item.get_path(), slot.get_path()])
+	net_caller.call_func(_item_move_to_local, [item.get_path(), slot.get_path()])
 
 func _item_move_to_local(item_path: NodePath, to_path: NodePath) -> void:
 	var item: SourceItemStack = get_node_or_null(item_path)

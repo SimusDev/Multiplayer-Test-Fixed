@@ -78,15 +78,20 @@ func register_channel(channel_name: String) -> void:
 	if not SD_Network.is_server():
 		return
 	
+	_register_channel_rpc.rpc(channel_name)
+
+@rpc("any_peer", "call_local")
+func _register_channel_rpc(channel_name: String) -> void:
 	var channels: PackedStringArray = get_registered_channels()
 	if channels.has(channel_name):
-		singleton.debug_print("cant register channel %s, channel already exists.", SD_ConsoleCategories.WARNING)
+		singleton.debug_print("cant register channel '%s', channel already exists." % [channel_name], SD_ConsoleCategories.WARNING)
 		return
 	
 	channels.append(channel_name)
 	
 	var id: int = channels.find(channel_name)
-	singleton.debug_print("channel registered, %s, id: %s" % [channel_name, str(id)], SD_ConsoleCategories.INFO)
+	singleton.debug_print("channel registered, '%s', id: %s" % [channel_name, str(id)], SD_ConsoleCategories.INFO)
+
 
 func get_channel_by_id(id: int) -> String:
 	if id < 0:
@@ -142,10 +147,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var object: Object = callable.get_object()
 	var method: String = callable.get_method()
 	
-	var node: Node
-	
-	if object is Node:
-		node = object
+	var node: Object = object
 	
 	if !node:
 		debug_print("failed to call function on object: %s, %s!, object must inherit Node!" % [str(node), method])
@@ -189,6 +191,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		if !first_array.is_empty():
 			packet_a.append(serialized_args)
 	
+	
 	##print(packet_a)
 	##print(var_to_bytes(packet_a).size())
 	#
@@ -203,39 +206,39 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	
 	singleton.cache.cache_method(callable)
 	
-	var debug: bool = false
-	if !debug:
-		return
-	
-	var pbytes: PackedByteArray = var_to_bytes(packet_a)
-	if pbytes.size() >= 100:
-		return
-	
-	if packet_a[0] is int and packet_a[1] is int:
-		var ser_bytes: PackedByteArray = PackedByteArray(packet_a)
-		var testt: PackedByteArray = PackedByteArray()
-		testt.resize(0)
-		print(var_to_bytes(ser_bytes).size())
-		print(var_to_bytes(testt).size())
-	
-	
-	return
-	print(packet_a)
-	
-	print("full packet: ", var_to_bytes(packet_a).size())
-	#print("node: ", var_to_bytes(packet_a[0]).size())
-	#print("method: ", var_to_bytes(packet_a[1]).size())
-	#print("args: ", var_to_bytes(packet_a[2]).size())
-	
-	var bytes: PackedByteArray = var_to_bytes(packet_a)
-	var compressed: PackedByteArray = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
-	print("uncompressed: ", bytes.size())
-	print("compressed", compressed.size())
-	#var array: PackedByteArray = PackedByteArray([1_000_000, 1_000])
-	#print("packedbytearray test: ", var_to_bytes(array).size())
-	
-	
-	
+	#var debug: bool = false
+	#if !debug:
+		#return
+	#
+	#var pbytes: PackedByteArray = var_to_bytes(packet_a)
+	#if pbytes.size() >= 100:
+		#return
+	#
+	#if packet_a[0] is int and packet_a[1] is int:
+		#var ser_bytes: PackedByteArray = PackedByteArray(packet_a)
+		#var testt: PackedByteArray = PackedByteArray()
+		#testt.resize(0)
+		#print(var_to_bytes(ser_bytes).size())
+		#print(var_to_bytes(testt).size())
+	#
+	#
+	#return
+	#print(packet_a)
+	#
+	#print("full packet: ", var_to_bytes(packet_a).size())
+	##print("node: ", var_to_bytes(packet_a[0]).size())
+	##print("method: ", var_to_bytes(packet_a[1]).size())
+	##print("args: ", var_to_bytes(packet_a[2]).size())
+	#
+	#var bytes: PackedByteArray = var_to_bytes(packet_a)
+	#var compressed: PackedByteArray = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
+	#print("uncompressed: ", bytes.size())
+	#print("compressed", compressed.size())
+	##var array: PackedByteArray = PackedByteArray([1_000_000, 1_000])
+	##print("packedbytearray test: ", var_to_bytes(array).size())
+	#
+	#
+	#
 
 
 func _call_func_on_queue(peer: int, packet: Variant, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
@@ -276,7 +279,7 @@ func _recieve_call_from_local(from_peer: int, packet: Array, channel_id: int) ->
 	if packet.size() >= 3:
 		args = SD_NetworkDeserializer.parse(packet[2])
 	
-	var node: Node = singleton.cache.deserialize_node_reference(packet[0])
+	var node: Object = singleton.cache.deserialize_node_reference(packet[0])
 	
 	var remote_sender: SD_NetSender = SD_Network.remote_sender
 	remote_sender.id = from_peer

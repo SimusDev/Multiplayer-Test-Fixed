@@ -211,21 +211,22 @@ func debug_print(text, category: int = 0) -> void:
 		var t: String = "[Network] %s" % str(text)
 		console.write(t, category)
 
-func register_object(node: Node) -> void:
-	if is_object_registered(node):
+func register_object(object: Object) -> void:
+	if is_object_registered(object):
 		return
 	
-	if not node.is_inside_tree():
-		await node.tree_entered
+	if object is Node:
+		if not object.is_inside_tree():
+			await object.tree_entered
 	
-	node.set_meta("_networked", true)
-	SD_NetRegisteredNode.create(node)
+	object.set_meta("_networked", true)
+	SD_NetRegisteredNode.create(object)
 
-func is_object_registered(node: Node) -> bool:
-	if is_instance_valid(node):
-		return node.has_meta("_networked")
+func is_object_registered(object: Object) -> bool:
+	if is_instance_valid(object):
+		return object.has_meta("_networked")
 	return false
 
-func unregister_object(node: Node) -> void:
-	if is_object_registered(node):
-		node.remove_meta("_networked")
+func unregister_object(object: Object) -> void:
+	if is_object_registered(object):
+		object.remove_meta("_networked")

@@ -5,20 +5,23 @@ class_name SD_NetTrunkSynchronization
 
 func _initialized() -> void:
 	SD_Network.register_functions([
-		s,
+		
 	])
 
-func recieve_vars_from(peer: int, node: Node, vars: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
-	for property in vars:
-		if variables.is_variable_registered(node, property):
-			SD_Network.call_func_on(peer, s, [node, vars], callmode, channel)
-		else:
-			variables.debug_print("cant recieve var from %s, variable is not registered", SD_ConsoleCategories.ERROR)
+func recieve_var_from(peer: int, node: Node, variable: String, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	if variables.is_variable_registered(node, variable):
+		SD_Network.call_func_on(peer, send_var_to, [node, variable], callmode, channel)
+	else:
+		variables.debug_print("cant recieve var from %s, variable is not registered", SD_ConsoleCategories.ERROR)
 
 # SEND VARS TO
 
-func s(node: Node, vars: PackedStringArray) -> void:
-	a(SD_Network.get_unique_id(), node, vars)
+func send_var_to(node: Node, variable: Variant) -> void:
+	SD_Network.call_func_on(SD_Network.remote_sender.id, 
+	_recieve_var_from_rpc, 
+	[node, variable], 
+	SD_Network.remote_sender.callmode, 
+	SD_Network.remote_sender.channel)
 
-func a(peer: int, node: Node, vars: PackedStringArray) -> void:
+func _recieve_var_from_rpc(node: Node, variable: Variant) -> void:
 	pass

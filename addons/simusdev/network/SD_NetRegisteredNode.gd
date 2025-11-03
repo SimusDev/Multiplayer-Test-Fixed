@@ -1,36 +1,55 @@
 extends RefCounted
 class_name SD_NetRegisteredNode
 
-var reference: Node
+var reference: Object
 var last_path: NodePath
 
 const CACHE_TIMEOUT: float = 5.0
 
-func initialize(node: Node) -> void:
-	node.set_meta("SD_NetRegisteredNode", self)
+func initialize(object: Object) -> void:
+	object.set_meta("SD_NetRegisteredNode", self)
 	
+	reference = object
 	
-	reference = node
-	last_path = node.get_path()
-	_on_tree_entered()
+	if object is Node:
+		last_path = object.get_path()
+		_on_tree_entered()
 	
-	node.tree_entered.connect(_on_tree_entered)
-	node.tree_exited.connect(_on_tree_exited)
+		object.tree_entered.connect(_on_tree_entered)
+		object.tree_exited.connect(_on_tree_exited)
+		return
 	
+	if object is SD_NetworkedResource:
+		last_path = NodePath(object.net_id)
+		_on_tree_entered()
+		
+		if object is SD_NetResourceNode:
+			object.tree_entered.connect(_on_tree_entered)
+			object.tree_exited.connect(_on_tree_exited)
+			return
+		
+		object.unregistered.connect(_on_net_resource_unregistered)
 
-static func get_or_create(node: Node) -> SD_NetRegisteredNode:
-	if node.has_meta("SD_NetRegisteredNode"):
-		return node.get_meta("SD_NetRegisteredNode")
+func _on_net_resource_unregistered() -> void:
+	_on_tree_exited()
+
+static func get_or_create(object: Object) -> SD_NetRegisteredNode:
+	if object.has_meta("SD_NetRegisteredNode"):
+		return object.get_meta("SD_NetRegisteredNode")
 	
-	var new := SD_NetRegisteredNode.new()
-	new.initialize(node)
-	return new
+	var reg := SD_NetRegisteredNode.new()
+	reg.initialize(object)
+	return reg
 
 func _on_tree_entered() -> void:
-	if last_path != reference.get_path():
+	var path: NodePath = NodePath(reference.get_path())
+	
+	if reference is SD_NetworkedResource:
+		path = NodePath(reference.net_id)
+	if last_path != path:
 		_uncache(last_path)
 	
-	last_path = reference.get_path()
+	last_path = path
 	SD_Network.singleton.cache.try_cache_node(reference)
 
 func _uncache(path: NodePath) -> void:
@@ -47,5 +66,5 @@ func _on_tree_exited() -> void:
 	SD_Network.singleton.cache.try_uncache_node(path)
 	
 
-static func create(node: Node) -> SD_NetRegisteredNode:
-	return get_or_create(node)
+static func create(object: Object) -> SD_NetRegisteredNode:
+	return get_or_create(object)
