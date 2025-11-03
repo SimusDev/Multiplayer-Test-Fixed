@@ -2,26 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddq3xg2uyev3f"
-path.bptc="res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.bptc.ctex"
-path.astc="res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.astc.ctex"
+uid="uid://1klr4t44c5d8"
+path.s3tc="res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.s3tc.ctex"
+path.etc2="res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "c0532eb0ef5f3f17d5a7291dacd04ec2"
 }
 
 [deps]
 
 source_file="res://Games/source_game/game/3dmodels/dr_kleiner/half-_life_2_dr_isaac_kleiner_0.png"
-dest_files=["res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.bptc.ctex", "res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.astc.ctex"]
+dest_files=["res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.s3tc.ctex", "res://.godot/imported/half-_life_2_dr_isaac_kleiner_0.png-db688b53123e85c12c73fc08de28e426.etc2.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

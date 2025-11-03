@@ -2,15 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coil7s0qy8e7g"
+uid="uid://dn3ufph5grxhf"
 path.s3tc="res://.godot/imported/9mm_bullet_2.png-378e83647453a80b3f560c022f91590e.s3tc.ctex"
 path.etc2="res://.godot/imported/9mm_bullet_2.png-378e83647453a80b3f560c022f91590e.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "36f999180c46764ac1a3843ab273a2ce"
 }
 
 [deps]

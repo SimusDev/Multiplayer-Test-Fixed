@@ -7,7 +7,7 @@ signal _load_level()
 
 @onready var cmd_change_level:SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("level.change")
 
-@export var enabled: bool = false
+@export var enabled: bool = true
 
 @export var game: SourceGame
 @export var root_node:Node
