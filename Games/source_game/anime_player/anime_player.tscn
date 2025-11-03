@@ -135,9 +135,10 @@ disabled = true
 [node name="SourceCameraSwithcer" parent="." index="20" node_paths=PackedStringArray("nodes_to_hide")]
 nodes_to_hide = [NodePath("../SourceCamera/SourceViewModelRoot3D"), NodePath("../SourceCamera/item_container")]
 
-[node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
+[node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target", "root") instance=ExtResource("2_6ues7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 target = NodePath("..")
+root = NodePath("..")
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]
