@@ -66,6 +66,47 @@ func _initialized() -> void:
 	for c_name in channels:
 		register_channel(c_name)
 
+func get_active_peer_and_his_nodes() -> Dictionary[int, Array]:
+	if singleton.custom_cache.has("active_peer_and_his_nodes"):
+		return singleton.custom_cache.get("active_peer_and_his_nodes") as Dictionary[int, Array]
+	
+	var dict: Dictionary[int, Array] = {}
+	singleton.custom_cache.set("active_peer_and_his_nodes", dict)
+	return dict
+
+func send_active_node_to_all(node: Object) -> void:
+	_recieve_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
+
+@rpc("any_peer", "call_local", "reliable", 100)
+func _recieve_node_from_peer(node: Variant) -> void:
+	var sender_id: int = multiplayer.get_remote_sender_id()
+	
+	if !get_active_peer_and_his_nodes().has(sender_id):
+		get_active_peer_and_his_nodes()[sender_id] = []
+	
+	var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
+	
+	if not nodes.has(node):
+		nodes.append(node)
+	
+
+func delete_active_node_from_all(node: Object) -> void:
+	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
+
+@rpc("any_peer", "call_local", "reliable", 100)
+func _delete_node_from_peer(node: Variant) -> void:
+	var sender_id: int = multiplayer.get_remote_sender_id()
+	
+	if !get_active_peer_and_his_nodes().has(sender_id):
+		get_active_peer_and_his_nodes()[sender_id] = []
+	
+	var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
+	
+	if nodes.has(node):
+		nodes.erase(node)
+	
+
+
 func get_registered_channels() -> PackedStringArray:
 	if singleton.cache_get().has("cs"):
 		return singleton.cache_get().get("cs")

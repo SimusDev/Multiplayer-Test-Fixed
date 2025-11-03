@@ -205,35 +205,31 @@ func try_uncache_node(path: NodePath) -> void:
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-func _on_scene_tree_node_added(node: Node) -> void:
-	try_cache_node(node)
-
-@rpc("any_peer", "reliable", "call_local")
-func _client_recieve_changes(changes: Array[Dictionary]) -> void:
-	if SD_Network.is_server():
-		return
-	
-	for change in changes:
-		if change.status:
-			_client_cache(change.net_id, change.path)
-		else:
-			_client_uncache(change.net_id, change.path) 
-
 @rpc("any_peer", "reliable", "call_local")
 func _client_cache(net_id: int, path: NodePath) -> void:
-	if SD_Network.is_server():
-		return
+	if not SD_Network.is_server():
+		get_cached_nodes_by_id()[net_id] = path
+		get_cached_nodes_by_path()[path] = net_id
 	
-	get_cached_nodes_by_id()[net_id] = path
-	get_cached_nodes_by_path()[path] = net_id
+	var node: Object = deserialize_node_reference(path)
+	if node:
+		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
+		net.is_cached = true
+		net.cached.emit()
+		debug_print("object cached: %s" % path, SD_ConsoleCategories.CATEGORY.INFO)
 
 @rpc("any_peer", "reliable", "call_local")
 func _client_uncache(net_id: int, path: NodePath) -> void:
-	if SD_Network.is_server():
-		return
+	if not SD_Network.is_server():
+		get_cached_nodes_by_id().erase(net_id)
+		get_cached_nodes_by_path().erase(path)
 	
-	get_cached_nodes_by_id().erase(net_id)
-	get_cached_nodes_by_path().erase(path)
+	var node: Object = deserialize_node_reference(path)
+	if node:
+		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
+		net.is_cached = false
+		net.uncached.emit()
+		debug_print("object uncached: %s" % path, SD_ConsoleCategories.CATEGORY.INFO)
 
 func debug_print(text, category: int = 0) -> void:
 	if singleton.settings.debug_cache:
