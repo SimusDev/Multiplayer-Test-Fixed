@@ -6,10 +6,8 @@
 
 [resource]
 script = ExtResource("2_4uxxd")
-custom_section = ""
 custom_id = "anime2"
 icon = ExtResource("1_mn0vy")
-name = ""
 description = "SEEEX"
 prefab = ExtResource("2_rjkdp")
 metadata/_custom_type_script = "uid://dbpi7cs5u88u6"

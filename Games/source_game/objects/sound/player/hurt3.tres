@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=6 format=3 uid="uid://1wc7ufjdkosr"]
+
+[ext_resource type="Texture2D" uid="uid://dhv0bl0tvo33v" path="res://Games/source_game/objects/players/anime2/icon.png" id="1_j7rs6"]
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_kedh6"]
+[ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_j7rs6"]
+[ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="4_xbnwm"]
+
+[sub_resource type="Resource" id="Resource_uy1vc"]
+script = ExtResource("2_j7rs6")
+streams = Array[AudioStream]([ExtResource("4_xbnwm")])
+metadata/_custom_type_script = "uid://us246ujqip05"
+
+[resource]
+script = ExtResource("1_kedh6")
+sources = Array[ExtResource("2_j7rs6")]([SubResource("Resource_uy1vc")])
+icon = ExtResource("1_j7rs6")
+metadata/_custom_type_script = "uid://b4qsbiksbfk64"

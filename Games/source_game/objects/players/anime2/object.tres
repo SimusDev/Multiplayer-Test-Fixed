@@ -10,10 +10,7 @@
 script = ExtResource("1_gikhi")
 ragdoll = ExtResource("4_0xedl")
 death_sound = ExtResource("1_0xedl")
-custom_section = ""
 custom_id = "anime224"
 icon = ExtResource("2_d01km")
-name = ""
-description = ""
 prefab = ExtResource("3_0xedl")
 metadata/_custom_type_script = "uid://cmevnham1hog4"

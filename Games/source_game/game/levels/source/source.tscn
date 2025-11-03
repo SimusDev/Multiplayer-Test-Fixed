@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_j0kei"]
 [ext_resource type="Material" uid="uid://fahxl71di7ib" path="res://Games/source_game/materials/tilefloor.tres" id="2_uw1bk"]
 [ext_resource type="Material" uid="uid://dbe2iqxylg2ce" path="res://Games/source_game/materials/tile.tres" id="4_t23ke"]
-[ext_resource type="Script" path="res://Games/source_game/components/spawnpoint.gd" id="5_qx70r"]
+[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="5_qx70r"]
 [ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="5_td5tc"]
 
 [sub_resource type="Environment" id="Environment_qx70r"]
@@ -279,6 +279,12 @@ material = ExtResource("4_t23ke")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
+material = ExtResource("4_t23ke")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room4/wall1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(2, 3, 1)
 material = ExtResource("4_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room4" index="3"]
