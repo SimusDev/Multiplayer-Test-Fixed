@@ -24,7 +24,6 @@ func debug_print(text, category: int = 0) -> void:
 		SimusDev.console.write("[NetworkSpawner] %s: %s" % [str(self), str(text)])
 
 func _ready() -> void:
-	
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
 		_send,
@@ -35,6 +34,8 @@ func _ready() -> void:
 		spawn,
 		despawn
 	])
+	
+	SD_Network.register_channel(channel)
 	
 	for i in initial_nodes:
 		register(i)

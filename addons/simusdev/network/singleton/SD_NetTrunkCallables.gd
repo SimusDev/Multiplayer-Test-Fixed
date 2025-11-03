@@ -80,16 +80,17 @@ func register_channel(channel_name: String) -> void:
 	
 	_register_channel_rpc.rpc(channel_name)
 
+@rpc("any_peer", "call_local")
 func _register_channel_rpc(channel_name: String) -> void:
 	var channels: PackedStringArray = get_registered_channels()
 	if channels.has(channel_name):
-		singleton.debug_print("cant register channel %s, channel already exists.", SD_ConsoleCategories.WARNING)
+		singleton.debug_print("cant register channel '%s', channel already exists." % [channel_name], SD_ConsoleCategories.WARNING)
 		return
 	
 	channels.append(channel_name)
 	
 	var id: int = channels.find(channel_name)
-	singleton.debug_print("channel registered, %s, id: %s" % [channel_name, str(id)], SD_ConsoleCategories.INFO)
+	singleton.debug_print("channel registered, '%s', id: %s" % [channel_name, str(id)], SD_ConsoleCategories.INFO)
 
 
 func get_channel_by_id(id: int) -> String:
