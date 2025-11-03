@@ -1,3 +1,4 @@
+@tool
 class_name SourceAnimatedModel extends W_AnimatedModel3D
 
 signal footstep
@@ -5,12 +6,16 @@ signal footstep
 @export var target:SourceEntity
 @export var state_machine_name:String = "StateMachine"
 @export var state_machine_properties:Dictionary[String, String]
+@export var state_exceptions:Array[String]
 
 var state_machine:SD_NodeStateMachine
 
 var initialized:bool = false
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	initialize()
 
 func initialize() -> void:
@@ -32,6 +37,9 @@ func set_blend_tree() -> void:
 
 
 func switch_state(state:SD_State) -> void:
+	if state.name in state_exceptions:
+		return
+	
 	var state_machine_path = "parameters/%s/playback" % state_machine_name
 	var tree_state_machine = tree.get("parameters/%s" % state_machine_name) as AnimationNodeStateMachine
 	var state_machine_playback = tree.get(state_machine_path) as AnimationNodeStateMachinePlayback

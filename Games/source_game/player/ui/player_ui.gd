@@ -33,4 +33,4 @@ func _on_voice_active(value:bool) -> void:
 	voice_chat_label.visible = value
 
 func update():
-	health_label.text = "health: %s" % [player_health.health]
+	health_label.text = "health: %s" % [ snappedf(player_health.health, 0.1) ]

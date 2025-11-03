@@ -10,7 +10,7 @@ metadata={
 "vram_texture": true
 }
 generator_parameters={
-"md5": "84a13f945930dc780e0e7f611556bee1"
+"md5": "2db76d037bb82b0096fc51213e1dbe3b"
 }
 
 [deps]
@@ -23,6 +23,8 @@ dest_files=["res://.godot/imported/radio_2.jpg-d23d337b6ce7b297e6bc8ec7e90d5d33.
 compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=1
 compress/channel_pack=0
@@ -30,6 +32,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
 roughness/src_normal="res://Games/source_game/game/3dmodels/radio/radio_2.jpg"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

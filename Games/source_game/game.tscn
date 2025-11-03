@@ -18,8 +18,8 @@
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
-[ext_resource type="Script" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_7hhbe"]
 script = ExtResource("19_dt7qg")
@@ -101,8 +101,13 @@ metadata/_custom_type_script = "uid://mhjfnoeev371"
 [node name="SourceLevelHandlerNew" type="Node" parent="." node_paths=PackedStringArray("root_node", "spawner")]
 script = ExtResource("12_dvgr3")
 root_node = NodePath("../map_holder")
+
 spawner = NodePath("../SourceNetworkSpawner")
 metadata/_custom_type_script = "uid://dq55d0r1vqknx"
+
+levels_folder_path = "res://Games/source_game/level_resources/"
+level_at_start = "kz"
+
 
 [node name="C_SourceObjectHandler" type="Node" parent="."]
 script = ExtResource("3_aahtd")

@@ -1,54 +1,34 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2ly2hwdj87jl"]
+[gd_scene load_steps=19 format=3 uid="uid://d2ly2hwdj87jl"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="2_43l7g"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="3_efwcb"]
+[ext_resource type="AudioStream" uid="uid://x8m3j5ylddy1" path="res://sounds/ah1.mp3" id="4_qpm12"]
+[ext_resource type="AudioStream" uid="uid://jf4by30wikhc" path="res://sounds/ah2.mp3" id="5_q40i1"]
+[ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="6_12bxj"]
 [ext_resource type="Script" uid="uid://dcq3rk7e60xye" path="res://Games/source_game/components/item_container.gd" id="10_hd5tf"]
 
 [sub_resource type="Resource" id="Resource_5fc14"]
 script = ExtResource("2_43l7g")
 properties = PackedStringArray("transform")
 interpolation_enabled = true
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("..")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_gwj6c"]
 script = ExtResource("2_43l7g")
 properties = PackedStringArray("rotation")
-interpolation_enabled = false
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("../SourceCamera")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_qpm12"]
 script = ExtResource("2_43l7g")
 properties = PackedStringArray("velocity")
-interpolation_enabled = false
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("..")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_q40i1"]
@@ -78,7 +58,7 @@ height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efwcb"]
 radius = 0.205
-height = 0.9
+height = 1.0
 
 [node name="anime2" node_paths=PackedStringArray("model", "flashlight") instance=ExtResource("1_pyl8t")]
 model = NodePath("SourceAnimatedModel")
@@ -89,6 +69,10 @@ _data = SubResource("Resource_q40i1")
 
 [node name="HideNodesWhenAuthority" parent="." index="2" node_paths=PackedStringArray("authority_true")]
 authority_true = [NodePath("../nickname"), null]
+
+[node name="SourcePlayerPhysicsHandler" parent="." index="7"]
+grounding_sounds = Array[AudioStream]([null])
+hard_grounding_sounds = Array[AudioStream]([ExtResource("4_qpm12"), ExtResource("5_q40i1"), ExtResource("6_12bxj")])
 
 [node name="SourceMovement" parent="." index="9"]
 _sprint_speed = 5.0
@@ -107,6 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.429595)
 
 [node name="SourceViewModelRoot3D" parent="SourceCamera" index="4" node_paths=PackedStringArray("root_node")]
 visible = true
+object = null
 root_node = NodePath("../item_container")
 
 [node name="item_container" type="Node3D" parent="SourceCamera" index="5"]
@@ -143,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_6ues7")
 
 [node name="collision_crouched" type="CollisionShape3D" parent="." index="19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50512695, 0)
 shape = SubResource("CapsuleShape3D_efwcb")
 disabled = true
 

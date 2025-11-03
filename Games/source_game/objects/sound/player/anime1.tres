@@ -1,23 +1,18 @@
-[gd_resource type="Resource" script_class="R_SourceSound" load_steps=5 format=3 uid="uid://w33s2d6tj8yk"]
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=7 format=3 uid="uid://w33s2d6tj8yk"]
 
 [ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_74fnr"]
 [ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_ajj7x"]
-[ext_resource type="AudioStream" uid="uid://bde0hkd0ptla6" path="res://Games/source_game/sounds/player/anime1.mp3" id="3_ajj7x"]
+[ext_resource type="AudioStream" uid="uid://x8m3j5ylddy1" path="res://sounds/ah1.mp3" id="3_obwpl"]
+[ext_resource type="AudioStream" uid="uid://jf4by30wikhc" path="res://sounds/ah2.mp3" id="4_qbrdk"]
+[ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="5_dh7f7"]
 
 [sub_resource type="Resource" id="Resource_qpwqt"]
 script = ExtResource("2_ajj7x")
-min_distance_to_play = 0.0
-max_distance_to_play = 0.0
-max_distance = 50.0
-streams = Array[AudioStream]([ExtResource("3_ajj7x")])
+max_distance = 250.0
+streams = Array[AudioStream]([ExtResource("3_obwpl"), ExtResource("4_qbrdk"), ExtResource("5_dh7f7")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [resource]
 script = ExtResource("1_74fnr")
-creation_max_distance = 500.0
 sources = Array[ExtResource("2_ajj7x")]([SubResource("Resource_qpwqt")])
-custom_section = ""
-custom_id = ""
-name = ""
-description = ""
 metadata/_custom_type_script = "uid://b4qsbiksbfk64"
