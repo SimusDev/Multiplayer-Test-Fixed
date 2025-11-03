@@ -124,7 +124,11 @@ func synchronize_all() -> void:
 	net_caller.call_func_on_server(__send)
 
 func _clear_inventory_slots() -> void:
-	SD_Nodes.clear_all_children(self)
+	for i in get_children():
+		if i is SourceInventorySlot:
+			i.get_parent().remove_child(i)
+			i.queue_free()
+	
 
 func __send() -> void:
 	var slots: Array = []
