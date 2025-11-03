@@ -88,4 +88,5 @@ func _on_cancel_pressed() -> void:
 	menu_switcher.switch_to_initial()
 
 func _on_refresh_timeout() -> void:
+	
 	Maps.request_server_ready()

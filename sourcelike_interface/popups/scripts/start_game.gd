@@ -22,8 +22,8 @@ func save_cmds() -> void:
 func _on_host_pressed() -> void:
 	save_cmds()
 	SD_Multiplayer.create_server(cmd_port.get_value_as_int())
-	#slike_main_menu.find_above(self).switcher.switch_by_name("lobby")
-	get_tree().change_scene_to_file(SourceGame.SCENE_PATH)
+	slike_main_menu.find_above(self).switcher.switch_by_name("lobby")
+	#get_tree().change_scene_to_file(SourceGame.SCENE_PATH)
 	
 	queue_free()
 
