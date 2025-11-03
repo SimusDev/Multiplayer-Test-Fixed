@@ -2,15 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://my8nibgpq0nv"
+uid="uid://uf1dgawyb4b4"
 path.s3tc="res://.godot/imported/gm_bigcity_11.png-f4b5b16576402ccfa239408c7fd92e1d.s3tc.ctex"
 path.etc2="res://.godot/imported/gm_bigcity_11.png-f4b5b16576402ccfa239408c7fd92e1d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "3fbbab2c66466149c01e8d5b52edf9f6"
 }
 
 [deps]
