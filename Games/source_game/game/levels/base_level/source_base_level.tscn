@@ -13,7 +13,6 @@ metadata/_custom_type_script = "uid://bh4s4yhsm0k3y"
 [node name="source_base_level" type="Node3D"]
 script = ExtResource("1_7hp3h")
 level_settings = SubResource("Resource_h1yxr")
-metadata/_custom_type_script = "uid://us3gp8gacgnf"
 
 [node name="Objects" type="Node" parent="."]
 script = ExtResource("1_q28k2")

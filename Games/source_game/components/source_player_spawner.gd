@@ -97,7 +97,10 @@ func _on_map_spawner_spawned(node: Node, data: Dictionary) -> void:
 	if !node.is_node_ready():
 		await node.ready
 	
-
+	sync_spawnpoints()
 
 func _on_source_level_handler_level_updated() -> void:
+	sync_spawnpoints()
+
+func _on_source_level_handler_new_level_loaded(level: R_SourceLevel) -> void:
 	sync_spawnpoints()
