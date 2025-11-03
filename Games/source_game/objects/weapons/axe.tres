@@ -11,9 +11,6 @@
 [sub_resource type="Resource" id="Resource_cr4ht"]
 script = ExtResource("6_k01w2")
 prefab = ExtResource("5_ii6dl")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_ar8qm"]
@@ -32,11 +29,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("3_2ghj0")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_eknev")
-name = ""
-description = ""
 prefab = ExtResource("2_eknev")
 viewmodel = SubResource("Resource_3tvgs")
 metadata/_custom_type_script = "uid://fiotmdlqxei6"

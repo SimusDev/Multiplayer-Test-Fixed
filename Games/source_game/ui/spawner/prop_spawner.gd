@@ -1,0 +1,48 @@
+extends Control
+
+@export var tree: Tree
+
+var _sections: Dictionary[String, Texture2D] = {}
+var _objects: Dictionary[String, Array] = {}
+
+@export var section_icon_max_width: int = 24
+@export var object_preview: PackedScene
+@export var container: Control
+
+func _ready() -> void:
+	clear_objects()
+	
+	var root: TreeItem = tree.create_item()
+	root.set_text(0, "root")
+	
+	for ref in R_SourceWorldObject.get_reference_list():
+		if !_sections.has(ref.get_section()):
+			_sections[ref.get_section()] = ref.get_section_icon()
+		
+		if !_objects.has(ref.get_section()):
+			_objects[ref.get_section()] = [] as Array[R_SourceWorldObject]
+		
+		var items: Array[R_SourceWorldObject] = _objects[ref.get_section()]
+		items.append(ref)
+		
+	
+	
+	for section in _sections:
+		var item: TreeItem = tree.create_item(root)
+		item.set_text(0, section)
+		item.set_icon(0, _sections[section])
+		item.set_icon_max_width(0, section_icon_max_width)
+
+func clear_objects() -> void:
+	for i in container.get_children():
+		i.queue_free()
+
+func _on_tree_item_selected() -> void:
+	clear_objects()
+	var items: Array[R_SourceWorldObject] = _objects.get(tree.get_selected().get_text(0), [] as Array[R_SourceWorldObject])
+	
+	for item in items:
+		var ui: Control = object_preview.instantiate()
+		ui.resource = item
+		container.add_child(ui)
+	

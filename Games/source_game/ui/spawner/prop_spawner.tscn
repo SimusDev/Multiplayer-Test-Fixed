@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=3 uid="uid://4ej3ygj2srma"]
+
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="1_1fhlp"]
+[ext_resource type="Script" uid="uid://dstmj1js150i8" path="res://Games/source_game/ui/spawner/prop_spawner.gd" id="1_wi4bw"]
+[ext_resource type="PackedScene" uid="uid://buvjh2hd1vfys" path="res://Games/source_game/ui/spawner/object_preview.tscn" id="2_6x7ak"]
+[ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_wi4bw"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_6x7ak"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_5jgjh"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_n8odq"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_nmxke"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ts0eh"]
+font = ExtResource("4_5jgjh")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="prop_spawner" type="Control" node_paths=PackedStringArray("tree", "container")]
+custom_minimum_size = Vector2(910, 652)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -455.0
+offset_top = -326.0
+offset_right = 455.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wi4bw")
+tree = NodePath("content/Tree")
+object_preview = ExtResource("2_6x7ak")
+container = NodePath("content/ScrollContainer/GridContainer")
+
+[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_1fhlp")
+target = NodePath("..")
+input_action = "key.q"
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("2_wi4bw")
+TARGET_INPUT = NodePath("../head")
+TARGET_DRAG = NodePath("..")
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
+
+[node name="bg" parent="." instance=ExtResource("3_6x7ak")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("3_6x7ak")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00543478
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spawner Menu"
+label_settings = SubResource("LabelSettings_ts0eh")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("5_n8odq")
+font = ExtResource("4_5jgjh")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+metadata/_edit_use_anchors_ = true
+
+[node name="button_base" parent="head" instance=ExtResource("6_nmxke")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "X"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.178667
+anchor_right = 0.990234
+anchor_bottom = 0.989333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0616777
+anchor_right = 0.999966
+anchor_bottom = -0.00205592
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="Tree" type="Tree" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.272
+anchor_bottom = 1.0
+offset_left = 0.11328125
+offset_top = -0.49087524
+offset_right = 0.41552734
+offset_bottom = -0.045043945
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.27400002
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_left = -0.35673523
+offset_right = -0.112976074
+offset_bottom = 0.012023926
+
+[node name="GridContainer" type="GridContainer" parent="content/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[connection signal="item_selected" from="content/Tree" to="." method="_on_tree_item_selected"]

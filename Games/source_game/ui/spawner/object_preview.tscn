@@ -1,34 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpwshcxmrmtck"]
+[gd_scene load_steps=7 format=3 uid="uid://buvjh2hd1vfys"]
 
-[ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="1_bk2k7"]
-[ext_resource type="Script" uid="uid://b860dyqcu5nnr" path="res://Games/source_game/ui/prop_spawner/prop_preview.gd" id="1_lllin"]
-[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_etggr"]
-[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="2_qj1nm"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/prop_full_desc.tscn" id="3_v3o1p"]
-[ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="3_v7ylq"]
-
-[sub_resource type="Resource" id="Resource_v3o1p"]
-script = ExtResource("2_qj1nm")
-metadata/_custom_type_script = "uid://csp1614nihjb5"
+[ext_resource type="Script" uid="uid://dy74qr051tjer" path="res://Games/source_game/ui/spawner/object_preview.gd" id="1_20qep"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/prop_full_desc.tscn" id="3_s1383"]
+[ext_resource type="Texture2D" uid="uid://16yn654odn66" path="res://Games/source_game/props/doll/icon.png" id="4_ye00o"]
+[ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="5_d2a16"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="6_agxys"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v7ylq"]
-font = ExtResource("2_etggr")
+font = ExtResource("6_agxys")
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="prop_preview" type="Control"]
-custom_minimum_size = Vector2(60, 60)
+[node name="object_preview" type="Control"]
+custom_minimum_size = Vector2(100, 140)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1220.0
-offset_bottom = -660.0
+offset_right = -1180.0
+offset_bottom = -580.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lllin")
-prop_res = SubResource("Resource_v3o1p")
-prop_full_desc = ExtResource("3_v3o1p")
+script = ExtResource("1_20qep")
+prop_full_desc = ExtResource("3_s1383")
 
 [node name="bg_rect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -41,12 +35,12 @@ color = Color(0.301961, 0.301961, 0.301961, 1)
 
 [node name="icon" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_bk2k7")
+texture = ExtResource("4_ye00o")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -66,7 +60,7 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 flat = true
-script = ExtResource("3_v7ylq")
+script = ExtResource("5_d2a16")
 metadata/_custom_type_script = "uid://bh41tmls6agr1"
 metadata/_edit_use_anchors_ = true
 
@@ -85,11 +79,13 @@ color = Color(1, 1, 1, 0.0862745)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0166667
-anchor_top = 0.716667
+anchor_top = 0.86904734
 anchor_right = 0.983333
-anchor_bottom = 0.983333
+anchor_bottom = 0.98333305
 text = "doll"
 label_settings = SubResource("LabelSettings_v7ylq")
+horizontal_alignment = 1
+vertical_alignment = 1
 text_overrun_behavior = 3
 metadata/_edit_use_anchors_ = true
 

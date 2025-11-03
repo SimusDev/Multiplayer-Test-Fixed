@@ -14,7 +14,6 @@ class_name R_SourceWorldObject
 @export_group("ItemStack")
 @export var itemstack: SourceItemStackSettings = null : get = get_itemstack
 
-
 func get_itemstack() -> SourceItemStackSettings:
 	return itemstack
 
@@ -22,6 +21,7 @@ static var _references: Dictionary[String, R_SourceWorldObject] = {}
 static var _reference_list: Array[R_SourceWorldObject] = []
 
 var id: String = ""
+var _section_icon: Texture
 
 static var _prefab_references: Dictionary[PackedScene, R_SourceWorldObject] = {}
 
@@ -78,6 +78,8 @@ func register() -> void:
 	
 	itemstack.register()
 	
+	_section_icon = _load_section_icon()
+	
 	_registered()
 	
 	#SimusDev.console.write_info("object registered: %s" % id)
@@ -115,6 +117,12 @@ func get_section() -> String:
 	if custom_section:
 		return custom_section
 	return _get_section()
+
+func get_section_icon() -> Texture:
+	return _section_icon
+
+func _load_section_icon() -> Texture:
+	return load("res://Games/source_game/components/icons/item.png")
 
 func _get_section() -> String:
 	return "object"
