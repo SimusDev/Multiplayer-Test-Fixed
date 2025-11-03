@@ -21,19 +21,19 @@ func _on_attack():
 	ai.attack_current_target()
 
 func _process(delta: float) -> void:
-	if !is_on_floor():
-		velocity.y -= 10 * delta
-	
-	if is_instance_valid(state_machine._current_state):
-		if not state_machine._current_state.name == "attack":
-			if velocity: state_machine.switch_by_name("move")
-			else:
-				state_machine.switch_by_name("idle")
-		
-	
-	
-
 	set_tree_blend()
+	
+	if SD_Network.is_server():
+		if !is_on_floor():
+			velocity.y -= 10 * delta
+		
+		if is_instance_valid(state_machine._current_state):
+			if not state_machine._current_state.name == "attack":
+				if velocity:
+					state_machine.switch_by_name("move")
+				else:
+					state_machine.switch_by_name("idle")
+
 
 func set_tree_blend():
 	model.tree.set("parameters/state_machine/move/blend_position", Vector2(velocity.z, velocity.x).normalized())
