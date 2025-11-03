@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="PackedScene" uid="uid://h7yi20x5r44y" path="res://Games/source_game/ui/inventory/hotbar.tscn" id="2_xxxcs"]
 [ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_ltpmo"]
-[ext_resource type="PackedScene" uid="uid://dc5y124phqhmn" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.tscn" id="5_d3a31"]
+[ext_resource type="PackedScene" uid="uid://4ej3ygj2srma" path="res://Games/source_game/ui/spawner/prop_spawner.tscn" id="4_henmv"]
 [ext_resource type="PackedScene" uid="uid://dclxv5v2xeltv" path="res://Games/source_game/ui/inventory/inventory.tscn" id="7_henmv"]
 [ext_resource type="Texture2D" uid="uid://d4j3kgyo2i0nn" path="res://textures/icons/microphone.png" id="9_1ipc1"]
 
@@ -50,7 +50,7 @@ grow_vertical = 2
 texture = ExtResource("3_ltpmo")
 expand_mode = 1
 
-[node name="source_prop_spawner" parent="." instance=ExtResource("5_d3a31")]
+[node name="prop_spawner" parent="." instance=ExtResource("4_henmv")]
 visible = false
 layout_mode = 1
 

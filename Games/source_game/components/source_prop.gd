@@ -57,7 +57,8 @@ func _process(delta: float) -> void:
 	
 	if SD_Multiplayer.is_server():
 		if not scrape_sounds.is_empty():
-			handle_scrape_and_play_sound()
+			pass
+			#handle_scrape_and_play_sound()
 		
 		if is_drag and drag_target:
 				rigid_body.global_position = lerp(rigid_body.global_position, drag_target.global_position, 50 * delta)
