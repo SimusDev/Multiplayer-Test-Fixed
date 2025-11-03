@@ -86,29 +86,39 @@ func send_active_node_to_all(node: Object) -> void:
 func _recieve_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
 	
-	if !get_active_peer_and_his_nodes().has(sender_id):
-		get_active_peer_and_his_nodes()[sender_id] = []
+	#if !get_active_peer_and_his_nodes().has(sender_id):
+		#get_active_peer_and_his_nodes()[sender_id] = []
+	#
+	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
+	#
+	#if not nodes.has(node):
+		#nodes.append(node)
 	
-	var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	
-	if not nodes.has(node):
-		nodes.append(node)
-	
+	var object: Object = singleton.cache.deserialize_node_reference(node)
+	if object:
+		var net := SD_NetRegisteredNode.get_or_create(object)
+		net._inactive_for_peers.erase(sender_id)
 
 func delete_active_node_from_all(node: Object) -> void:
 	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
-@rpc("any_peer", "call_local", "reliable", 100)
+@rpc("any_peer", "call_local", "reliable", 101)
 func _delete_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
 	
-	if !get_active_peer_and_his_nodes().has(sender_id):
-		get_active_peer_and_his_nodes()[sender_id] = []
+	#if !get_active_peer_and_his_nodes().has(sender_id):
+		#get_active_peer_and_his_nodes()[sender_id] = []
+	#
+	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
+	#
+	#if nodes.has(node):
+		#nodes.erase(node)
 	
-	var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	
-	if nodes.has(node):
-		nodes.erase(node)
+	var object: Object = singleton.cache.deserialize_node_reference(node)
+	if object:
+		var net := SD_NetRegisteredNode.get_or_create(object)
+		if !net._inactive_for_peers.has(sender_id):
+			net._inactive_for_peers.append(sender_id)
 
 
 func get_registered_channels() -> PackedStringArray:
@@ -193,6 +203,11 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var method: String = callable.get_method()
 	
 	var node: Object = object
+	
+	var net := SD_NetRegisteredNode.get_or_create(node)
+	if net._inactive_for_peers.has(peer):
+		debug_print("failed to call function on object: %s, %s!, object is inactive for peer %s" % [str(node), method, str(peer)], SD_ConsoleCategories.ERROR)
+		return
 	
 	if !node:
 		debug_print("failed to call function on object: %s, %s!, object must inherit Node!" % [str(node), method])

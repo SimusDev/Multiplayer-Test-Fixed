@@ -8,14 +8,12 @@
 [sub_resource type="Resource" id="Resource_ue2rk"]
 script = ExtResource("1_ue2rk")
 name = &"aaah"
-animation = &""
 sound = ExtResource("2_b7rgq")
 metadata/_custom_type_script = "uid://uemp1u74tkca"
 
 [sub_resource type="Resource" id="Resource_m4k8q"]
 script = ExtResource("1_ue2rk")
 name = &"nya"
-animation = &""
 sound = ExtResource("3_obnpv")
 metadata/_custom_type_script = "uid://uemp1u74tkca"
 

@@ -11,6 +11,8 @@ signal uncached()
 
 var is_cached: bool = false
 
+var _inactive_for_peers: Array[int] = []
+
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
 	
