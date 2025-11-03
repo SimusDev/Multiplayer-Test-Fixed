@@ -17,6 +17,9 @@ var current_target:AI_Visible : set = set_current_target
 var target_rotation:Basis
 
 func _ready() -> void:
+	if !SD_Network.is_server():
+		return
+	
 	current_target_changed.connect(on_current_target_changed)
 	add_child(tick_timer)
 	tick_timer.wait_time = 1 / tick_rate
@@ -71,8 +74,7 @@ func chase_target():
 
 
 func stop_chase():
-	enemy.velocity.x = 0
-	enemy.velocity.z = 0
+	navigation_agent.target_position = enemy.global_position
 
 func attack():
 	var model: W_AnimatedModel3D = enemy.model
@@ -96,6 +98,7 @@ func _physics_process(delta: float) -> void:
 		chase_target()
 	else:
 		stop_chase()
+	
 	if enemy.global_position.distance_to(navigation_agent.target_position) < attack_range:
 		var state_machine:SD_NodeStateMachine = enemy.state_machine as SD_NodeStateMachine
 		if not state_machine._current_state.name == "attack":

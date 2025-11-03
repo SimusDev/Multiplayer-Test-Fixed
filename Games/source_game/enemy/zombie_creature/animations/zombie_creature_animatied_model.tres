@@ -90,11 +90,11 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [resource]
 graph_offset = Vector2(-2.72231, 137.783)
+nodes/output/position = Vector2(666.667, 200)
 nodes/attack/node = SubResource("AnimationNodeOneShot_jc2as")
 nodes/attack/position = Vector2(311.111, 288.889)
 nodes/attack_anim/node = SubResource("AnimationNodeAnimation_6w6xb")
 nodes/attack_anim/position = Vector2(44.4444, 400)
-nodes/output/position = Vector2(666.667, 200)
 nodes/state_machine/node = SubResource("AnimationNodeStateMachine_blkx5")
 nodes/state_machine/position = Vector2(0, 180)
-node_connections = [&"attack", 0, &"state_machine", &"attack", 1, &"attack_anim", &"output", 0, &"attack"]
+node_connections = [&"output", 0, &"attack", &"attack", 0, &"state_machine", &"attack", 1, &"attack_anim"]
