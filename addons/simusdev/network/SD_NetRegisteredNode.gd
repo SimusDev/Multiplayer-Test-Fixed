@@ -57,12 +57,16 @@ func _on_tree_entered() -> void:
 	last_path = path
 	SD_Network.singleton.cache.try_cache_node(reference)
 	
+	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	
 	if !is_cached:
 		await cached
 	
 	SD_Network.singleton.callables.send_active_node_to_all(reference)
 
 func _uncache(path: NodePath) -> void:
+	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	
 	if !is_cached:
 		await cached
 	

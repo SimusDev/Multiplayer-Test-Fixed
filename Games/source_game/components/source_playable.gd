@@ -13,6 +13,11 @@ signal _voice_active(value: bool)
 @export var voice_chat_input: String = "source.voice"
 @export var voice_chat_output: AudioStreamPlayer3D
 
+@export var debug_queue_free: bool = false : set = set_debug_queue_free
+
+func set_debug_queue_free(value: bool) -> void:
+	if debug_queue_free:
+		root.queue_free()
 
 var ui: PackedScene
 

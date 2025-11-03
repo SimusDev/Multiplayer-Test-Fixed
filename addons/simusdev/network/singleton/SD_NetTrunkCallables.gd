@@ -65,6 +65,11 @@ func _initialized() -> void:
 	
 	for c_name in channels:
 		register_channel(c_name)
+	
+	singleton.on_peer_disconnected.connect(_on_peer_disconnected)
+
+func _on_peer_disconnected(peer: int) -> void:
+	get_active_peer_and_his_nodes().erase(peer)
 
 func get_active_peer_and_his_nodes() -> Dictionary[int, Array]:
 	if singleton.custom_cache.has("active_peer_and_his_nodes"):
@@ -104,7 +109,6 @@ func _delete_node_from_peer(node: Variant) -> void:
 	
 	if nodes.has(node):
 		nodes.erase(node)
-	
 
 
 func get_registered_channels() -> PackedStringArray:
