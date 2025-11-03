@@ -17,6 +17,7 @@ var mp_player_spawner:SD_MPPlayerSpawner
 
 var _surfaces := SourceSurfaces.new()
 const GAME_PATH: String = "res://Games/source_game/"
+const SCENE_PATH:String = "res://Games/source_game/game.tscn"
 
 func _ready() -> void:
 	SD_Network.register_function(spawn_on_server)
