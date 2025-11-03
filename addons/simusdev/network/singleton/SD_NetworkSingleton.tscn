@@ -80,8 +80,9 @@ metadata/_custom_type_script = "uid://b53chxdtmx840"
 script = ExtResource("8_oycid")
 metadata/_custom_type_script = "uid://pfrh8umtg4j8"
 
-[node name="Sync" type="Node" parent="."]
+[node name="Sync" type="Node" parent="." node_paths=PackedStringArray("variables")]
 script = ExtResource("9_gb48q")
+variables = NodePath("../Vars")
 metadata/_custom_type_script = "uid://oxklms8j40rm"
 
 [node name="Vars" type="Node" parent="."]

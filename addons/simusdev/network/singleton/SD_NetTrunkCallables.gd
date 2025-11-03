@@ -142,10 +142,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var object: Object = callable.get_object()
 	var method: String = callable.get_method()
 	
-	var node: Node
-	
-	if object is Node:
-		node = object
+	var node: Object = object
 	
 	if !node:
 		debug_print("failed to call function on object: %s, %s!, object must inherit Node!" % [str(node), method])
@@ -188,6 +185,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		var first_array: Array = SD_Array.get_value_from_array(serialized_args, 0, []) as Array
 		if !first_array.is_empty():
 			packet_a.append(serialized_args)
+	
 	
 	##print(packet_a)
 	##print(var_to_bytes(packet_a).size())
@@ -276,7 +274,7 @@ func _recieve_call_from_local(from_peer: int, packet: Array, channel_id: int) ->
 	if packet.size() >= 3:
 		args = SD_NetworkDeserializer.parse(packet[2])
 	
-	var node: Node = singleton.cache.deserialize_node_reference(packet[0])
+	var node: Object = singleton.cache.deserialize_node_reference(packet[0])
 	
 	var remote_sender: SD_NetSender = SD_Network.remote_sender
 	remote_sender.id = from_peer
