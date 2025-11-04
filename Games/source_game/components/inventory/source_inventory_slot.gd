@@ -47,6 +47,9 @@ func update() -> void:
 	updated.emit()
 	get_inventory().slot_updated.emit(self)
 
+func update_for_viewmodel() -> void:
+	get_inventory().slot_updated_for_viewmodel.emit(self)
+
 func get_item() -> SourceItemStack:
 	return _item
 

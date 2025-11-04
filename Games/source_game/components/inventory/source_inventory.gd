@@ -20,7 +20,9 @@ signal initialized()
 var _is_full: bool = false
 
 signal slot_selected(slot: SourceInventorySlot)
+signal slot_deselected(slot: SourceInventorySlot)
 signal slot_updated(slot: SourceInventorySlot)
+signal slot_updated_for_viewmodel(slot: SourceInventorySlot)
 signal craft_queue_add(craft: R_SourceCraftQueue)
 signal craft_queue_remove(craft: R_SourceCraftQueue)
 
@@ -168,9 +170,11 @@ func _select_slot_server(slot: SourceInventorySlot) -> void:
 
 func _select_slot_local(slot: SourceInventorySlot) -> void:
 	if is_instance_valid(slot):
+		slot_deselected.emit(slot)
 		_selected_slot = slot
 		slot_selected.emit(_selected_slot)
 		_selected_slot.update()
+		_selected_slot.update_for_viewmodel()
 		debug_print("slot selected %s" % str(slot))
 
 func item_action_request(item: SourceItemStack, action: SourceItemAction) -> void:
