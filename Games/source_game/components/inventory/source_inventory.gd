@@ -260,7 +260,6 @@ func add_item(item: SourceItemStack) -> void:
 	SD_Nodes.fast_queue_free(item)
 	
 	var server: SourceItemStack = _add_item_net(serialized)
-	print(server.is_node_ready())
 	
 	net_caller.call_func_except_self(_add_item_net, [server.serialize()])
 	
