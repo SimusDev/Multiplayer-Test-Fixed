@@ -11,5 +11,5 @@ domain_warp_type = 1
 domain_warp_fractal_lacunarity = 9.68
 
 [resource]
-seamless = true
 noise = SubResource("FastNoiseLite_1obx4")
+seamless = true

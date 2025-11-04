@@ -15,6 +15,7 @@ var _mouse_entered: bool = false
 @export var item_binds: Dictionary[String, SourceItemAction] = {
 }
 @onready var quantity: Label = $quantity
+@onready var progress_bar: TextureProgressBar = $ProgressBar
 
 func _ready() -> void:
 	if not _created:
@@ -26,7 +27,32 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	
+	slot.item_added.connect(_on_item_removed_or_added.bind(false))
+	slot.item_removed.connect(_on_item_removed_or_added.bind(true))
 	
+	_on_item_removed_or_added(slot.get_item(), false)
+
+func _on_item_removed_or_added(the_item: SourceItemStack, removed: bool) -> void:
+	if is_instance_valid(the_item):
+		if removed:
+			the_item.durability_changed.disconnect(_update_durability)
+			the_item.max_durability_changed.disconnect(_update_durability)
+		else:
+			the_item.durability_changed.connect(_update_durability)
+			the_item.max_durability_changed.connect(_update_durability)
+	
+	_update_durability()
+
+func _update_durability() -> void:
+	var slot_item: SourceItemStack = slot.get_item()
+	progress_bar.visible = is_instance_valid(slot_item) and slot_item.get_max_durability() > 0
+	
+	if slot_item:
+		progress_bar.value = slot_item.get_durability()
+		progress_bar.max_value = slot_item.get_max_durability()
+		progress_bar.min_value = 0
+		
+		
 
 func _on_mouse_entered() -> void:
 	_mouse_entered = true
