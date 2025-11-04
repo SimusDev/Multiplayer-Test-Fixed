@@ -16,6 +16,9 @@ func _ready() -> void:
 	root.set_text(0, "root")
 	
 	for ref in R_SourceWorldObject.get_reference_list():
+		if !ref.is_visible():
+			continue
+		
 		if !_sections.has(ref.get_section()):
 			_sections[ref.get_section()] = ref.get_section_icon()
 		
@@ -24,8 +27,6 @@ func _ready() -> void:
 		
 		var items: Array[R_SourceWorldObject] = _objects[ref.get_section()]
 		items.append(ref)
-		
-	
 	
 	for section in _sections:
 		var item: TreeItem = tree.create_item(root)

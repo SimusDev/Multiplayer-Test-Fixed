@@ -4,7 +4,7 @@ class_name SourceItemStack
 
 #region VARS
 @export var _data: Dictionary = {
-	"q" : 1,
+	"quantity" : 1,
 }
 
 @export var object: R_SourceWorldObject
@@ -19,14 +19,22 @@ var _last_path: NodePath
 signal data_changed(key: Variant, value: Variant)
 signal updated()
 signal quantity_changed()
+signal durability_changed()
+signal max_durability_changed()
 #endregion
 
 #region DATA
 
 func _data_changed_(key: Variant, value: Variant) -> void:
 	match key:
-		"q":
+		"quantity":
 			quantity_changed.emit()
+			get_slot().update()
+		"durability":
+			durability_changed.emit()
+			get_slot().update()
+		"max_durability":
+			max_durability_changed.emit()
 			get_slot().update()
 
 func data_set_value(key: Variant, value: Variant) -> void:
@@ -51,10 +59,22 @@ func data_get_or_add(key: Variant, value: Variant) -> Variant:
 	return value
 
 func set_quantity(size: int) -> void:
-	data_set_value("q", size)
+	data_set_value("quantity", size)
 
 func get_quantity() -> int:
-	return data_get_or_add("q", 1)
+	return data_get_or_add("quantity", 1)
+
+func set_durability(value: float) -> void:
+	data_set_value("durability", value)
+
+func get_durability() -> float:
+	return data_get_or_add("durability", 0.0)
+
+func set_max_durability(value: float) -> void:
+	data_set_value("durability_max", value)
+
+func get_max_durability() -> float:
+	return data_get_or_add("durability_max", 0.0)
 
 #endregion
 
@@ -66,6 +86,17 @@ func _ready() -> void:
 		object = R_SourceWorldObject.get_placeholder()
 	
 	_item_registration()
+	
+
+func _init() -> void:
+	if SD_Network.is_server() and object:
+		if !_data.has("_init"):
+			_server_item_initialization()
+			_data.set("_init", true)
+
+func _server_item_initialization() -> void:
+	set_durability(object.get_itemstack().durability)
+	set_max_durability(object.get_itemstack().durability_max)
 
 func _enter_tree() -> void:
 	SD_Network.register_object(self)

@@ -6,6 +6,13 @@ var last_path: NodePath
 
 const CACHE_TIMEOUT: float = 5.0
 
+signal cached()
+signal uncached()
+
+var is_cached: bool = false
+
+var _inactive_for_peers: Array[int] = []
+
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
 	
@@ -51,20 +58,26 @@ func _on_tree_entered() -> void:
 	
 	last_path = path
 	SD_Network.singleton.cache.try_cache_node(reference)
+	
+	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	
+	if !is_cached:
+		await cached
+	
+	SD_Network.singleton.callables.send_active_node_to_all(reference)
 
 func _uncache(path: NodePath) -> void:
-	if !SD_Network.is_server():
-		return
+	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	
+	if !is_cached:
+		await cached
 	
 	SD_Network.singleton.cache.try_uncache_node(path)
+	
+	SD_Network.singleton.callables.delete_active_node_from_all(reference)
 
 func _on_tree_exited() -> void:
-	if !SD_Network.is_server():
-		return
-	
-	var path: NodePath = last_path
-	SD_Network.singleton.cache.try_uncache_node(path)
-	
+	_uncache(last_path)
 
 static func create(object: Object) -> SD_NetRegisteredNode:
 	return get_or_create(object)

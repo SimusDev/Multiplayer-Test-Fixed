@@ -48,6 +48,8 @@ var username: String = "player"
 
 var _cache: Dictionary[String, Variant] = {}
 
+var custom_cache: Dictionary = {}
+
 var _active: bool = false
 
 var _static: Array = [
