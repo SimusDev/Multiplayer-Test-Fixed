@@ -24,6 +24,8 @@ func _ready() -> void:
 		
 		tick_timer.start()
 
+func use() -> void:
+	super()
 
 func set_ignite(value:bool) -> void:
 	ignite = value
