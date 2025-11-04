@@ -188,8 +188,7 @@ func _serialize_instance(node: Node, data: Dictionary) -> void:
 	data.i = node.scene_file_path
 
 func _serialize_tags(node: Node, data: Dictionary) -> void:
-	if SD_NetTag.has_tags(node):
-		data.nt = SD_NetTag.serialize_tags(node)
+	pass
 
 func _deserialize_instance(data: Dictionary) -> Node:
 	var scene: PackedScene = load(data.i) as PackedScene
@@ -215,8 +214,7 @@ func _deserialize_authority(node: Node, data: Dictionary) -> void:
 			player.set_in(node)
 
 func _deserialize_tags(node: Node, data: Dictionary) -> void:
-	if data.has("nt"):
-		SD_NetTag.deserialize_tags(node, data.nt)
+	pass
 
 func deserialize(data: Dictionary) -> Dictionary:
 	var deserialized: Dictionary = {}

@@ -2,11 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_ekivk"]
 [ext_resource type="PackedScene" uid="uid://cxaois3c1hpmp" path="res://Games/source_game/items/gm_toolgun/gm_toolgun.tscn" id="2_duuqm"]
-[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_f5rn0"]
+[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/weapons/r_weapon_object.gd" id="3_f5rn0"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_nmg2y"]
 [ext_resource type="PackedScene" uid="uid://dh5c418tsjjkr" path="res://Games/source_game/items/gm_toolgun/model.tscn" id="5_vyk4h"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_fqxls"]
 [ext_resource type="PackedScene" uid="uid://6tldmvgwkf6b" path="res://Games/source_game/items/gm_toolgun/world.tscn" id="6_vyk4h"]
+
 
 [sub_resource type="Resource" id="Resource_ekivk"]
 script = ExtResource("6_fqxls")
