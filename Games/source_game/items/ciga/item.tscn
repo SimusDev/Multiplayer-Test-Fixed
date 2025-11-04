@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bbnjcf1woyeww"]
 
-[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_3tfki"]
+[ext_resource type="Script" uid="uid://bqktlse516rbu" path="res://Games/source_game/items/ciga/item.gd" id="1_6nsd7"]
 [ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_6ilh0"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="3_6nsd7"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_6ilh0"]
@@ -174,7 +174,7 @@ _data = {
 }
 
 [node name="ciga" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
-script = ExtResource("1_3tfki")
+script = ExtResource("1_6nsd7")
 resource = SubResource("Resource_ht808")
 model = NodePath("root/model")
 animation_player = NodePath("AnimationPlayer")
@@ -185,6 +185,9 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 
 [node name="model" parent="root" instance=ExtResource("3_6nsd7")]
 transform = Transform3D(1.5, 0, 0, 0, 0.6049308, -1.3726101, 0, 1.3726101, 0.6049308, -0.0688215, 0.0709618, 0.200762)
+
+[node name="progress" parent="root/model/ciga" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055, 0)
 
 [node name="right_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.599105, -0.108992, 0.271365, -0.290736, 0.155394, -0.579457, 0.0314816, -0.639076, -0.187178, 0.0629515, -0.0314144, 0.0630214)
