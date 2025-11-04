@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl4tin75tv8gq"]
+[gd_scene load_steps=10 format=3 uid="uid://dl4tin75tv8gq"]
 
 [ext_resource type="Script" uid="uid://chhx3y5tloktk" path="res://Games/source_game/ui/inventory/slot.gd" id="1_xan3g"]
 [ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_1obx4"]
@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://dv4aas07newsa" path="res://Games/source_game/components/item_actions/drop.gd" id="3_1ewkx"]
 [ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="3_7emnb"]
 [ext_resource type="Texture2D" uid="uid://t3ayfc8ah21o" path="res://sourcelike_interface/textures/ui_noise.tres" id="4_1ewkx"]
+[ext_resource type="PackedScene" uid="uid://dj4l236wvgtuy" path="res://Games/source_game/ui/inventory/item_progressbar.tscn" id="7_p2iye"]
 
 [sub_resource type="Resource" id="Resource_p2iye"]
 script = ExtResource("3_1ewkx")
-code = ""
 metadata/_custom_type_script = "uid://dv4aas07newsa"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1obx4"]
@@ -79,7 +79,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "1"
 horizontal_alignment = 2
-vertical_alignment = 2
+
+[node name="ProgressBar" parent="." instance=ExtResource("7_p2iye")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.88600004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.020004272
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="dropped" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_dropped"]
