@@ -66,7 +66,7 @@ func _on_slot_updated() -> void:
 	if slot.get_item():
 		icon.texture = slot.get_item().object.icon
 		quantity.text = str(slot.get_item().get_quantity())
-		quantity.visible = true
+		quantity.visible = slot.get_item().get_quantity() > 1
 
 static func create(parent: Node, inventory: SourceInventory, slot: SourceInventorySlot) -> void:
 	var scene: PackedScene = load(SCENEPATH)

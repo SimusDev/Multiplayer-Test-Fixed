@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://6y7jwwkqxir5" path="res://Games/source_game/items/ciga/icon.png" id="1_5m3um"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_7bc26"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_cpxsr"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_cpxsr"]
 [ext_resource type="PackedScene" uid="uid://d3hfo8yb0q8vi" path="res://Games/source_game/items/ciga/world_prefab.tscn" id="1_m8f1u"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_5m3um"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_5m3um"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_2pxrv"]
 [ext_resource type="PackedScene" uid="uid://bbnjcf1woyeww" path="res://Games/source_game/items/ciga/item.tscn" id="4_cpxsr"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_5m3um"]
@@ -12,26 +12,20 @@
 
 [sub_resource type="Resource" id="Resource_g5qg1"]
 script = ExtResource("2_5m3um")
-stackable = true
+stackable = false
 stack_size = 20
-pickable = true
-actions = Array[ExtResource("1_cpxsr")]([])
+durability = 100.0
+durability_max = 100.0
 metadata/_custom_type_script = "uid://by2u8yhp1402w"
 
 [sub_resource type="Resource" id="Resource_q0xnu"]
 script = ExtResource("5_5m3um")
 prefab = ExtResource("4_cpxsr")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_6cp6r"]
 script = ExtResource("5_5m3um")
 prefab = ExtResource("6_g5qg1")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_su7du"]
@@ -42,11 +36,8 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("1_7bc26")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_5m3um")
 name = "cigarette"
-description = ""
 prefab = ExtResource("1_m8f1u")
 viewmodel = SubResource("Resource_su7du")
 itemstack = SubResource("Resource_g5qg1")
