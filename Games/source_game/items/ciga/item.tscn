@@ -1,14 +1,54 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbnjcf1woyeww"]
+[gd_scene load_steps=19 format=3 uid="uid://bbnjcf1woyeww"]
 
 [ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_3tfki"]
 [ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_6ilh0"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="3_6nsd7"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_6ilh0"]
+[ext_resource type="Texture2D" uid="uid://47om1mn5vqe3" path="res://textures/smoke.png" id="4_6nsd7"]
 
 [sub_resource type="Resource" id="Resource_ht808"]
 script = ExtResource("2_6ilh0")
-type = 0
 metadata/_custom_type_script = "uid://db0ilk7abehmb"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6nsd7"]
+angle_min = -655.9
+angle_max = 640.60004
+initial_velocity_min = -0.049999997
+initial_velocity_max = -0.049999997
+gravity = Vector3(0, 0.08, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju52i"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.03137255)
+albedo_texture = ExtResource("4_6nsd7")
+
+[sub_resource type="SphereMesh" id="SphereMesh_p1aia"]
+material = SubResource("StandardMaterial3D_ju52i")
+radius = 0.02
+height = 0.04
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_ju52i"]
+material = SubResource("StandardMaterial3D_ju52i")
+radius = 0.02
+height = 0.04
+radial_segments = 12
+rings = 6
+
+[sub_resource type="SphereMesh" id="SphereMesh_vk1tx"]
+material = SubResource("StandardMaterial3D_ju52i")
+radius = 0.02
+height = 0.04
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_3ubjb"]
+material = SubResource("StandardMaterial3D_ju52i")
+radius = 0.02
+height = 0.04
+radial_segments = 4
+rings = 1
 
 [sub_resource type="Animation" id="Animation_p1aia"]
 length = 0.001
@@ -144,10 +184,21 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("3_6nsd7")]
-transform = Transform3D(1.5, 0, 0, 0, 0.604931, -1.37261, 0, 1.37261, 0.604931, -0.0688215, 0.0709618, 0.200762)
+transform = Transform3D(1.5, 0, 0, 0, 0.6049308, -1.3726101, 0, 1.3726101, 0.6049308, -0.0688215, 0.0709618, 0.200762)
 
 [node name="right_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.599105, -0.108992, 0.271365, -0.290736, 0.155394, -0.579457, 0.0314816, -0.639076, -0.187178, 0.0629515, -0.0314144, 0.0630214)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="root/model"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -0.03260939, -0.0010545701)
+amount = 300
+lifetime = 22.150000000000002
+process_material = SubResource("ParticleProcessMaterial_6nsd7")
+draw_passes = 4
+draw_pass_1 = SubResource("SphereMesh_p1aia")
+draw_pass_2 = SubResource("SphereMesh_ju52i")
+draw_pass_3 = SubResource("SphereMesh_vk1tx")
+draw_pass_4 = SubResource("SphereMesh_3ubjb")
 
 [node name="arms" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_6ilh0")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.118143, -0.174712, 0.599455)
@@ -187,4 +238,5 @@ libraries = {
 }
 autoplay = "animation"
 
+[editable path="root/model"]
 [editable path="root/arms"]

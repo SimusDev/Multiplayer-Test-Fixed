@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://brjf1n1ubpn8"]
+[gd_scene load_steps=6 format=3 uid="uid://brjf1n1ubpn8"]
 
 [ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="1_0b2ko"]
 
@@ -17,8 +17,16 @@ radius = 0.004
 section_length = 0.012
 curve = SubResource("Curve_wwhrl")
 
+[sub_resource type="BoxMesh" id="BoxMesh_0b2ko"]
+size = Vector3(0.025, 0.05, 0.025)
+
 [node name="model" type="Node3D"]
 
-[node name="ciga" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.999999, 8.74228e-08, 0, -8.74227e-08, -1, 0, 0, 0)
+[node name="ciga" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0)
 mesh = SubResource("TubeTrailMesh_nvn3t")
+
+[node name="progress" type="CSGMesh3D" parent="ciga"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05536263, 4.839955e-09)
+operation = 2
+mesh = SubResource("BoxMesh_0b2ko")
