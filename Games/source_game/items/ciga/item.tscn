@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbnjcf1woyeww"]
+[gd_scene load_steps=20 format=3 uid="uid://bbnjcf1woyeww"]
 
 [ext_resource type="Script" uid="uid://bqktlse516rbu" path="res://Games/source_game/items/ciga/item.gd" id="1_6nsd7"]
 [ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_6ilh0"]
@@ -105,9 +105,13 @@ tracks/1/keys = {
 "values": [Vector3(-0.460138, 0, 0), Vector3(1.15569, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vk1tx"]
+resource_name = "fire"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
 _data = {
 &"RESET": SubResource("Animation_p1aia"),
+&"fire": SubResource("Animation_vk1tx"),
 &"pick": SubResource("Animation_ju52i")
 }
 
