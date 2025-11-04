@@ -88,11 +88,6 @@ func _ready() -> void:
 	_item_registration()
 	
 
-func _init() -> void:
-	if SD_Network.is_server() and object:
-		if !_data.has("_init"):
-			_server_item_initialization()
-			_data.set("_init", true)
 
 func _server_item_initialization() -> void:
 	set_durability(object.get_itemstack().durability)
@@ -105,6 +100,11 @@ func _enter_tree() -> void:
 	_inventory = _slot.get_inventory()
 	
 	_slot._item = self
+	
+	if SD_Network.is_server() and object:
+		if !_data.has("_init"):
+			_server_item_initialization()
+			_data.set("_init", true)
 	
 	_slot.item_added.emit(self)
 	_slot.item_changed.emit(self)

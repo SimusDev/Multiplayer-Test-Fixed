@@ -259,14 +259,18 @@ func add_item(item: SourceItemStack) -> void:
 	var serialized: Variant = item.serialize()
 	SD_Nodes.fast_queue_free(item)
 	
-	net_caller.call_func(_add_item_net, [serialized])
+	var server: SourceItemStack = _add_item_net(serialized)
+	print(server.is_node_ready())
+	
+	net_caller.call_func_except_self(_add_item_net, [server.serialize()])
 	
 	sort_stackables(item.object)
 
-func _add_item_net(serialized: Variant) -> void:
+func _add_item_net(serialized: Variant) -> SourceItemStack:
 	var item := SourceItemStack.deserialize(serialized)
 	if get_free_slot():
 		get_free_slot().add_child(item)
+	return item
 
 func remove_item(item: SourceItemStack) -> void:
 	if not SD_Network.is_server():
