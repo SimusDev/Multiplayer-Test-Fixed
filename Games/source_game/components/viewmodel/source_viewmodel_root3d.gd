@@ -54,7 +54,8 @@ func _ready() -> void:
 	
 	
 	_slot_selected(inventory.get_selected_slot())
-	inventory.slot_selected.connect(_slot_selected)
+	inventory.slot_updated_for_viewmodel.connect(_slot_selected)
+
 
 func _slot_selected(slot: SourceInventorySlot) -> void:
 	if not slot:
