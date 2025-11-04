@@ -1,2 +1,0 @@
-extends WG_InventorySlot
-class_name SB_InventorySlot

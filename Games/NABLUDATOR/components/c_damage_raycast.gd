@@ -1,2 +1,0 @@
-extends RayCast3D
-class_name C_NabludatorDamageRayCast

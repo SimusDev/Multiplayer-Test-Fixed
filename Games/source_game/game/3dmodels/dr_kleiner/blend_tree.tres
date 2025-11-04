@@ -284,6 +284,7 @@ filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_Neck", "Skeleton3D
 
 [resource]
 graph_offset = Vector2(194.517, 112.912)
+nodes/output/position = Vector2(1320, 260)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_8pxhs")
 nodes/Animation/position = Vector2(560, 420)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_d2tvx")
@@ -300,5 +301,4 @@ nodes/look_dir/node = SubResource("AnimationNodeBlendSpace1D_8pxhs")
 nodes/look_dir/position = Vector2(60, 340)
 nodes/look_dir_add/node = SubResource("AnimationNodeAdd2_7de2l")
 nodes/look_dir_add/position = Vector2(280, 140)
-nodes/output/position = Vector2(1320, 260)
-node_connections = [&"TimeScale", 0, &"Animation", &"attack", 0, &"item_right_hand_blend", &"attack", 1, &"TimeScale", &"item_right_hand_blend", 0, &"look_dir_add", &"item_right_hand_blend", 1, &"item_right_hand_anim", &"look_dir_add", 0, &"StateMachine", &"look_dir_add", 1, &"look_dir", &"output", 0, &"attack"]
+node_connections = [&"output", 0, &"attack", &"TimeScale", 0, &"Animation", &"attack", 0, &"item_right_hand_blend", &"attack", 1, &"TimeScale", &"item_right_hand_blend", 0, &"look_dir_add", &"item_right_hand_blend", 1, &"item_right_hand_anim", &"look_dir_add", 0, &"StateMachine", &"look_dir_add", 1, &"look_dir"]

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="R_NabludatorItemActions" load_steps=3 format=3 uid="uid://iwpr1l02v10o"]
-
-[ext_resource type="PackedScene" uid="uid://bkrpmrhvuep3f" path="res://Games/NABLUDATOR/item_actions/weapon/actions.tscn" id="1_dxoo6"]
-[ext_resource type="Script" uid="uid://cn0vk76fwxiyd" path="res://Games/NABLUDATOR/components/r_item_actions.gd" id="1_uqrtf"]
-
-[resource]
-script = ExtResource("1_uqrtf")
-prefab = ExtResource("1_dxoo6")
-metadata/_custom_type_script = "uid://cn0vk76fwxiyd"

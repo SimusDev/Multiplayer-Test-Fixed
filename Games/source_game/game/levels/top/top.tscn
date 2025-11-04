@@ -1,12 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://0x6iyq3hynkw"]
+[gd_scene load_steps=18 format=3 uid="uid://0x6iyq3hynkw"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_wlyvx"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="2_75tu0"]
 [ext_resource type="Script" uid="uid://bh4s4yhsm0k3y" path="res://Games/source_game/components/r_source_level_settings.gd" id="2_iy1ax"]
 [ext_resource type="PackedScene" uid="uid://h1koq85d088" path="res://Games/source_game/props/loot_crate/loot_container.tscn" id="3_icxye"]
-[ext_resource type="Texture2D" uid="uid://c1w3jiyx0mt3e" path="res://Games/fnaf/maps/fnaf1_u/materialstileceilingtilea.png" id="3_iy1ax"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="4_bvbo4"]
-[ext_resource type="PackedScene" uid="uid://ukng37hy6731" path="res://Games/source_game/game/prefabs/light_cube.tscn" id="4_iy1ax"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/light_cube.tscn" id="4_iy1ax"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="5_pct34"]
 [ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="6_0exuu"]
 [ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="7_wcbuj"]
@@ -37,7 +36,6 @@ vertices = PackedVector3Array(-12, 5, -12, -12, 5, 12, 12, 5, 12, 12, 5, -12, -1
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(12, 8, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 9), PackedInt32Array(4, 5, 15), PackedInt32Array(16, 12, 13), PackedInt32Array(15, 16, 13), PackedInt32Array(13, 17, 15), PackedInt32Array(15, 17, 4)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpsqc"]
-albedo_texture = ExtResource("3_iy1ax")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_icxye"]

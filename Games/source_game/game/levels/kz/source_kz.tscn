@@ -1,10 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=23 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
-[ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="3_gr3v1"]
-[ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="4_lbcj0"]
-[ext_resource type="Texture2D" uid="uid://dnu1ufgaexkbx" path="res://Games/fnaf/maps/fnaf1_u/materialsconcreteconcretefloor005a.png" id="5_rnwnd"]
-[ext_resource type="Texture2D" uid="uid://ch2m35uhx7b4b" path="res://Games/fnaf/maps/fnaf1_u/materialsconcreteconcretefloor005a_normal.png" id="6_bge2v"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="9_17bi3"]
 [ext_resource type="Texture2D" uid="uid://c1vwcdcdvb74a" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/Milkyway.jpg" id="10_fj02r"]
@@ -12,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cecwdqjol0ckd" path="res://addons/sky_3d/assets/textures/noiseClouds.png" id="12_7byoa"]
 [ext_resource type="Texture2D" uid="uid://2r8ylu6rg5dp" path="res://addons/sky_3d/assets/thirdparty/textures/moon/MoonMap.png" id="13_6g07w"]
 [ext_resource type="Texture2D" uid="uid://djpfuyxkryegn" path="res://addons/sky_3d/assets/textures/noise.jpg" id="14_jn4gf"]
+[ext_resource type="Texture2D" uid="uid://bux4083eacafw" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="14_ntrv5"]
 [ext_resource type="Texture2D" uid="uid://bm7dot7t7u1q4" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/StarField.jpg" id="15_uyxp6"]
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="16_eejt7"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
@@ -47,7 +44,7 @@ shader_parameter/_moon_texture_flip_u = false
 shader_parameter/_moon_texture_flip_v = false
 shader_parameter/_moon_size = 0.07
 shader_parameter/_atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/_atm_moon_mie_intensity = 0.026123712062835685
+shader_parameter/_atm_moon_mie_intensity = 0.02612408757209777
 shader_parameter/_atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
 shader_parameter/_background_texture = ExtResource("10_fj02r")
 shader_parameter/_background_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
@@ -113,31 +110,12 @@ vertices = PackedVector3Array(-21.25, 0, -64.350006, -21.5, 0, -75.100006, -49.5
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 0, 1), PackedInt32Array(9, 1, 5), PackedInt32Array(5, 1, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 7), PackedInt32Array(7, 27, 6), PackedInt32Array(30, 29, 16), PackedInt32Array(16, 29, 15), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 21), PackedInt32Array(31, 20, 21), PackedInt32Array(29, 30, 35), PackedInt32Array(35, 32, 29), PackedInt32Array(29, 32, 33), PackedInt32Array(29, 33, 36)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
-albedo_texture = ExtResource("3_gr3v1")
+albedo_texture = ExtResource("14_ntrv5")
 metallic_specular = 0.16
 emission_operator = 1
-emission_texture = ExtResource("4_lbcj0")
 normal_enabled = true
 normal_scale = 1.5
-normal_texture = ExtResource("4_lbcj0")
 uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpuye"]
-albedo_texture = ExtResource("5_rnwnd")
-normal_enabled = true
-normal_scale = 1.5
-normal_texture = ExtResource("6_bge2v")
-backlight_enabled = true
-uv1_triplanar = true
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqep5"]
-albedo_texture = ExtResource("3_gr3v1")
-normal_enabled = true
-normal_scale = 1.5
-normal_texture = ExtResource("4_lbcj0")
-uv1_triplanar = true
-texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1g7y"]
 transparency = 1
@@ -222,19 +200,19 @@ material = SubResource("StandardMaterial3D_gr3v1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.9)
 use_collision = true
 size = Vector3(10, 1, 67.4)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="floor3" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
 size = Vector3(100, 1, 67.4)
-material = SubResource("StandardMaterial3D_eqep5")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="250units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 29.7)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/250units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -250,7 +228,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1, 0, 21.7)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/255units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -266,7 +244,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2, 0, 13.7)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/260units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -282,7 +260,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3, 0, 5.7)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/265units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -299,7 +277,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -2.3)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/270units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -315,7 +293,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -10.3)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/275units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -331,7 +309,7 @@ outline_size = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6, 0, -18.3)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_fpuye")
+material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/280units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)

@@ -1,2 +1,0 @@
-extends W_Inventory
-class_name F_Inventory
