@@ -1,14 +1,22 @@
 class_name EnemyAI_Vision extends Area3D
 
+@export var tickrate:float = 16.0
+
 var visible_targets:Array[AI_Visible]
 
-func _process(_delta: float) -> void:
+func _ready() -> void:
+	if SD_Network.is_server():
+		var tick_timer:Timer = Timer.new()
+		tick_timer.wait_time = 1.0 / tickrate
+		tick_timer.timeout.connect(tick)
+		
+		add_child(tick_timer)
+		tick_timer.start()
+
+func tick() -> void:
 	looking()
 
 func looking() -> void:
-	if !SD_Multiplayer.is_server():
-		return
-	
 	for visible_target in visible_targets:
 		visible_targets.erase(visible_target)
 	for area in get_overlapping_areas():

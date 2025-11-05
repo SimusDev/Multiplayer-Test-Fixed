@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=14 format=3 uid="uid://dtykfjpm6rs83"]
+
+[ext_resource type="Texture2D" uid="uid://b5qprmd6lovto" path="res://Games/source_game/textures/game_icon.png" id="1_1dhff"]
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_2c486"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="2_7bxgt"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_c3e4a"]
+[ext_resource type="PackedScene" uid="uid://d24d5v0f8mxvl" path="res://Games/source_game/items/scheme/item.tscn" id="3_1dhff"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_xfml1"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="4_ebn87"]
+[ext_resource type="PackedScene" uid="uid://blejrjmufdgq1" path="res://Games/source_game/items/scheme/prefab.tscn" id="5_ea8xv"]
+[ext_resource type="PackedScene" uid="uid://c0vemfqfldaqt" path="res://Games/source_game/items/scheme/model.tscn" id="7_ebn87"]
+
+[sub_resource type="Resource" id="Resource_nvcoe"]
+script = ExtResource("3_xfml1")
+stackable = false
+stack_size = 1
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_c3e4a"]
+script = ExtResource("4_ebn87")
+prefab = ExtResource("3_1dhff")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_xfml1"]
+script = ExtResource("4_ebn87")
+prefab = ExtResource("7_ebn87")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_il8ts"]
+script = ExtResource("2_7bxgt")
+view = SubResource("Resource_c3e4a")
+world = SubResource("Resource_xfml1")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_2c486")
+icon = ExtResource("1_1dhff")
+name = "Scheme"
+description = "nu sex)"
+prefab = ExtResource("5_ea8xv")
+viewmodel = SubResource("Resource_il8ts")
+itemstack = SubResource("Resource_nvcoe")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

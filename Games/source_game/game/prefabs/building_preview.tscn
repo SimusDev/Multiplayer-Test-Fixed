@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://jinoi4go4yhw"]
+[gd_scene load_steps=6 format=3 uid="uid://jinoi4go4yhw"]
 
 [ext_resource type="Script" uid="uid://b55g0yehx7c0h" path="res://Games/source_game/game/prefabs/building_preview.gd" id="1_svaxo"]
+[ext_resource type="Texture2D" uid="uid://cyj56486e1iyo" path="res://icon.png" id="2_svaxo"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="3_77oyn"]
-[ext_resource type="Texture2D" uid="uid://8vlv0q0tnu51" path="res://Games/source_game/textures/border.png" id="4_vjkoh"]
+[ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="4_svaxo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i0j3f"]
 font = ExtResource("3_77oyn")
@@ -29,15 +30,31 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.236753, 0.236753, 0.236753, 1)
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="SourceButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_svaxo")
+metadata/_custom_type_script = "uid://bh41tmls6agr1"
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.019999985
+anchor_right = 0.98
+anchor_bottom = 0.97999924
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_svaxo")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="label_name" type="Label" parent="."]
 layout_mode = 1
@@ -46,18 +63,21 @@ anchor_left = 0.04
 anchor_top = 0.04
 anchor_right = 0.97
 anchor_bottom = 0.21
-text = "source_foundation"
+text = "building"
 label_settings = SubResource("LabelSettings_i0j3f")
 text_overrun_behavior = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="border" type="TextureRect" parent="."]
-self_modulate = Color(0.598759, 0.598759, 0.598759, 1)
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_vjkoh")
-metadata/_edit_lock_ = true
+mouse_filter = 2
+border_color = Color(0.474858, 0.474858, 0.474858, 1)
+border_width = 2.0
+editor_only = false
+
+[connection signal="button_up" from="SourceButton" to="." method="_on_source_button_up"]

@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://vxsxva6he3uj"]
+
+[ext_resource type="Script" uid="uid://dejhn5twd6ysw" path="res://Games/source_game/game/prefabs/build_menu.gd" id="1_jh20q"]
+[ext_resource type="PackedScene" uid="uid://8ptruoke84sk" path="res://Games/source_game/game/prefabs/buildings_section.tscn" id="2_btwpr"]
+[ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="3_l8t28"]
+[ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="4_m82uj"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="5_odq7h"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="6_7pl0r"]
+[ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="7_fgsyr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jh20q"]
+font_size = 18
+
+[node name="build_menu" type="Control"]
+custom_minimum_size = Vector2(820, 600)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -300.0
+offset_right = 410.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jh20q")
+section_prefab = ExtResource("2_btwpr")
+metadata/_edit_horizontal_guides_ = [30.0, 375.0]
+metadata/_edit_vertical_guides_ = [512.0]
+
+[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_l8t28")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
+
+[node name="bg" parent="." instance=ExtResource("4_m82uj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="head" parent="." instance=ExtResource("4_m82uj")]
+self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="title" type="Label" parent="head"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027214637
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_odq7h")
+text = "Build menu"
+label_settings = SubResource("LabelSettings_jh20q")
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("6_7pl0r")
+font_size = 18
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[node name="button_base" parent="head" instance=ExtResource("7_fgsyr")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+label_text = "X"
+
+[node name="content" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00976563
+anchor_top = 0.061666667
+anchor_right = 0.990234
+anchor_bottom = 0.925
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="bg" type="ColorRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="border" type="ReferenceRect" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="tab_container" type="HBoxContainer" parent="content"]
+layout_mode = 0
+anchor_top = -0.0855264
+anchor_right = 1.0
+anchor_bottom = -0.00328948
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="content/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="head/button_base" to="." method="queue_free"]

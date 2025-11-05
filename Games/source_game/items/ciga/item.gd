@@ -28,7 +28,8 @@ func _ready() -> void:
 
 func use() -> void:
 	super()
-
+	
+	
 
 func set_ignite(value:bool) -> void:
 	ignite = value

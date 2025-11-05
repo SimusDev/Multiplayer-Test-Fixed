@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="R_SourceBuildings" load_steps=6 format=3 uid="uid://jj367ir8o3tx"]
+
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_8lrdg"]
+[ext_resource type="Resource" uid="uid://bl87k6r53jq71" path="res://Games/source_game/objects/buildings/automation/conveyor.tres" id="2_s70uf"]
+[ext_resource type="Resource" uid="uid://dfp868cagu7ig" path="res://Games/source_game/objects/buildings/automation/cube_spawner.tres" id="3_1p6st"]
+[ext_resource type="Resource" uid="uid://dastacydefuhl" path="res://Games/source_game/objects/buildings/automation/mechanical_arm.tres" id="4_twxs3"]
+[ext_resource type="Script" uid="uid://c4bxcrs7oiury" path="res://Games/source_game/components/r_source_buildings.gd" id="5_gh4q0"]
+
+[resource]
+script = ExtResource("5_gh4q0")
+list = Array[ExtResource("1_8lrdg")]([ExtResource("2_s70uf"), ExtResource("3_1p6st"), ExtResource("4_twxs3")])
+name = "Automation"
+metadata/_custom_type_script = "uid://c4bxcrs7oiury"

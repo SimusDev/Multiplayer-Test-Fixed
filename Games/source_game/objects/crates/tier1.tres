@@ -1,26 +1,21 @@
 [gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dgojnwogh6f5j"]
 
 [ext_resource type="Texture2D" uid="uid://bl0eh1kjpt2ua" path="res://Games/source_game/game/3dmodels/crates/tier1/old_crate_0.png" id="1_mc5nn"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_omav8"]
-[ext_resource type="Script" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_h75p1"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_omav8"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_h75p1"]
 [ext_resource type="PackedScene" uid="uid://djgta3wl2s2b0" path="res://Games/source_game/game/3dmodels/crates/tier1/crate_tier1.tscn" id="4_wpu73"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="5_hndwp"]
 
 [sub_resource type="Resource" id="Resource_ydhck"]
 script = ExtResource("3_h75p1")
-stackable = true
-stack_size = 64
 pickable = false
-actions = Array[ExtResource("2_omav8")]([])
 metadata/_custom_type_script = "uid://by2u8yhp1402w"
 
 [resource]
 script = ExtResource("5_hndwp")
-custom_section = ""
 custom_id = "crates"
 icon = ExtResource("1_mc5nn")
 name = "tier1"
-description = ""
 prefab = ExtResource("4_wpu73")
 itemstack = SubResource("Resource_ydhck")
 metadata/_custom_type_script = "uid://csp1614nihjb5"

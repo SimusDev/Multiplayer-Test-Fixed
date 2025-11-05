@@ -1,6 +1,5 @@
-class_name R_SourceBuildings extends Resource
+class_name R_SourceBuildings extends R_SourceWorldObject
 
 #VAPE NATION
 
-@export var _name:StringName = ""
-@export var buildings:Array[R_SourceBuilding]
+@export var list:Array[R_SourceBuilding]

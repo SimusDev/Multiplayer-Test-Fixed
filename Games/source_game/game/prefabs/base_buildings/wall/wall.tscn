@@ -1,16 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://vkn5wykomtyq"]
+[gd_scene load_steps=8 format=3 uid="uid://vkn5wykomtyq"]
 
-[ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="1_auanr"]
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_feq7x"]
-[ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="2_feq7x"]
 [ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="4_fywtf"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="5_uv2w3"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="6_o03sm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
-albedo_texture = ExtResource("1_auanr")
 normal_enabled = true
-normal_texture = ExtResource("2_feq7x")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_auanr"]

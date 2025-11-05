@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="R_SourceBuildings" load_steps=7 format=3 uid="uid://c24vqlvk2rvua"]
+
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_rta3e"]
+[ext_resource type="Resource" uid="uid://civ5bd7gdw6h6" path="res://Games/source_game/objects/buildings/source/source_foundation.tres" id="2_cd5cm"]
+[ext_resource type="Resource" uid="uid://bxbgf47dgu01f" path="res://Games/source_game/objects/buildings/source/source_wall.tres" id="3_xufjl"]
+[ext_resource type="Resource" uid="uid://cfo6pwwmf2uje" path="res://Games/source_game/objects/buildings/source/source_window_frame.tres" id="4_gxj3v"]
+[ext_resource type="Resource" uid="uid://dv040ge0xlbxx" path="res://Games/source_game/objects/buildings/source/light_cube.tres" id="5_7oor0"]
+[ext_resource type="Script" uid="uid://c4bxcrs7oiury" path="res://Games/source_game/components/r_source_buildings.gd" id="6_uxven"]
+
+[resource]
+script = ExtResource("6_uxven")
+list = Array[ExtResource("1_rta3e")]([ExtResource("2_cd5cm"), ExtResource("3_xufjl"), ExtResource("4_gxj3v"), ExtResource("5_7oor0")])
+name = "Buildings"
+metadata/_custom_type_script = "uid://c4bxcrs7oiury"

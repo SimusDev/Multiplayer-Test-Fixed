@@ -78,7 +78,7 @@ func stop_chase():
 
 func attack():
 	var model: W_AnimatedModel3D = enemy.model
-	model.tree.set("parameters/attack/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	model.tree.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	if !SD_Multiplayer.is_server():
 		return

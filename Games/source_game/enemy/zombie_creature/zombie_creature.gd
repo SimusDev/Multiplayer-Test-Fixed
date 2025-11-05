@@ -13,11 +13,9 @@ func _ready() -> void:
 	model.footstep.connect(_on_footstep)
 
 func _on_footstep():
-	print("sex fpootsyeep")
 	footsteps._do_footstep()
 
 func _on_attack():
-	print("sex attaffck")
 	ai.attack_current_target()
 
 func _process(delta: float) -> void:
@@ -28,18 +26,14 @@ func _process(delta: float) -> void:
 			velocity.y -= 10 * delta
 		
 		if is_instance_valid(state_machine._current_state):
-			if not state_machine._current_state.name == "attack":
-				if velocity:
-					state_machine.switch_by_name("move")
-				else:
-					state_machine.switch_by_name("idle")
+			if velocity:
+				state_machine.switch_by_name("move")
+			else:
+				state_machine.switch_by_name("idle")
 
 
 func set_tree_blend():
 	model.tree.set("parameters/state_machine/move/blend_position", Vector2(velocity.z, velocity.x).normalized())
 
 func _on_state_machine_state_enter(state: SD_State):
-	if state.name == "attack":
-		ai.attack()
-		return
 	model.tree.get("parameters/state_machine/playback").travel(state.name)

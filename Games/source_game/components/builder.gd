@@ -25,6 +25,8 @@ var ghost_model_offset:Vector3 = Vector3.ZERO
 var snapping:bool = false
 
 func _ready() -> void:
+	print("SEEEEEX:::::::: %s" % [allowed_buildings])
+	
 	item.on_use.connect(_on_item_use)
 	
 	SD_Network.register_object(self)
@@ -55,7 +57,7 @@ func build(_building:R_SourceBuilding, _transform:Transform3D, can_place:bool) -
 		
 
 func builded(building: R_SourceBuilding) -> void:
-	ui_SourceMessanger.send("builded: %s" % building.id)
+	ui_SourceMessanger.send("built: %s" % building.id)
 
 func pick_buildings(value:int) -> void:
 	if current_buildings_pos + value < allowed_buildings.size(): current_buildings_pos += value
@@ -63,8 +65,8 @@ func pick_buildings(value:int) -> void:
 		current_buildings_pos = 0
 	
 	var current_building_idx = 0
-	for x in buildings.buildings.size():
-		if buildings.buildings[x] == current_building:
+	for x in buildings.list.size():
+		if buildings.list[x] == current_building:
 			current_building_idx = x
 			break
 	
@@ -73,13 +75,13 @@ func pick_buildings(value:int) -> void:
 	SoundPlayer.play_global_audio(switch_buildings_sound)
 
 func pick_building(idx:int) -> void:
-	if idx > buildings.buildings.size()-1:
+	if idx > buildings.list.size()-1:
 		return
 	
-	current_building = buildings.buildings[idx]
+	current_building = buildings.list[idx]
 	
 	free_ghost_buildings()
-	add_ghost_building(buildings.buildings[idx].prefab.instantiate())
+	add_ghost_building(buildings.list[idx].prefab.instantiate())
 	
 	building_pick.emit(current_building)
 

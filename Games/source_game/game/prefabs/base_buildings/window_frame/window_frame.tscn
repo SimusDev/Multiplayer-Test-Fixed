@@ -1,17 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b81ai65qocesq"]
+[gd_scene load_steps=11 format=3 uid="uid://b81ai65qocesq"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_gwagn"]
-[ext_resource type="Texture2D" uid="uid://c7q8mx4pwmju1" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick.png" id="2_gxdfi"]
 [ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="2_hcyho"]
-[ext_resource type="Texture2D" uid="uid://cn8semo1lux23" path="res://Games/fnaf/maps/fnaf1_u/materialsfnaf1brick_bump.png" id="3_hcyho"]
 [ext_resource type="Texture2D" uid="uid://dji0t8nojjmxd" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_brickfloor001a.png" id="5_8mgcx"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="5_gxdfi"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="7_8mgcx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
-albedo_texture = ExtResource("2_gxdfi")
 normal_enabled = true
-normal_texture = ExtResource("3_hcyho")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_sv843"]

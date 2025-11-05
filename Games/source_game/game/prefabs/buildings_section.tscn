@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ptruoke84sk"]
+
+[ext_resource type="PackedScene" uid="uid://jinoi4go4yhw" path="res://Games/source_game/game/prefabs/building_preview.tscn" id="1_lfmbg"]
+[ext_resource type="Script" uid="uid://be4a63781g4mm" path="res://Games/source_game/game/prefabs/buildings_section.gd" id="1_skxjj"]
+
+[node name="section" type="Control"]
+custom_minimum_size = Vector2(650, 230)
+layout_mode = 3
+anchor_right = 0.5078125
+anchor_bottom = 0.31944445
+offset_right = -650.0
+offset_bottom = -230.0
+mouse_filter = 2
+script = ExtResource("1_skxjj")
+building_preview = ExtResource("1_lfmbg")
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+text = "Automation"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="building_preview" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview2" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview3" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview4" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview5" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview6" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview7" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview8" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview9" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="building_preview10" parent="ScrollContainer/GridContainer" instance=ExtResource("1_lfmbg")]
+layout_mode = 2
+
+[node name="border" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false

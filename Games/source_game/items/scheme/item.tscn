@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://d24d5v0f8mxvl"]
+
+[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_2smiw"]
+[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ghyab"]
+[ext_resource type="FontFile" uid="uid://bowbjk40qu8ld" path="res://fonts/Samson.ttf" id="3_386xv"]
+[ext_resource type="Script" uid="uid://cbd6lccran3ls" path="res://Games/source_game/items/scheme/build_scheme.gd" id="3_ghyab"]
+[ext_resource type="Script" uid="uid://dymofycad07xm" path="res://Games/source_game/components/mp_canvas_layer.gd" id="7_wvkc6"]
+[ext_resource type="PackedScene" uid="uid://vxsxva6he3uj" path="res://Games/source_game/game/prefabs/build_menu.tscn" id="8_p847l"]
+
+[sub_resource type="Resource" id="Resource_5pa0u"]
+script = ExtResource("2_ghyab")
+type = 1
+metadata/_custom_type_script = "uid://drk2kpbhybbiw"
+
+[sub_resource type="BoxMesh" id="BoxMesh_oef5t"]
+size = Vector3(0.5, 0.025, 0.375)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_386xv"]
+albedo_color = Color(0, 0.28235295, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_386xv"]
+font_size = 18
+
+[node name="scheme_item" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_2smiw")
+resource = SubResource("Resource_5pa0u")
+model = NodePath("model")
+metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="mesh" type="CSGMesh3D" parent="model"]
+mesh = SubResource("BoxMesh_oef5t")
+material = SubResource("StandardMaterial3D_386xv")
+
+[node name="Label3D" type="Label3D" parent="model/mesh"]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1.0000001, 0, -1.0000001, 2.9802322e-08, 0, 0.013, 0)
+pixel_size = 0.0024
+shaded = true
+texture_filter = 0
+text = "piska"
+font = ExtResource("3_386xv")
+
+[node name="BuildScheme" type="Node" parent="." node_paths=PackedStringArray("ui_interface_comp")]
+script = ExtResource("3_ghyab")
+ui_interface_comp = NodePath("../MP_CanvasLayer/build_menu/C_UIInterfaceComponent")
+
+[node name="MP_CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_wvkc6")
+
+[node name="build_menu" parent="MP_CanvasLayer" node_paths=PackedStringArray("build_scheme") instance=ExtResource("8_p847l")]
+anchors_preset = -1
+anchor_left = 0.1796875
+anchor_top = 0.025
+anchor_right = 0.8203125
+anchor_bottom = 0.85833335
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+build_scheme = NodePath("../../BuildScheme")
+metadata/_edit_use_anchors_ = true
+
+[node name="C_UIInterfaceComponent" parent="MP_CanvasLayer/build_menu" index="0"]
+input_action = "key.e"
+
+[node name="title" parent="MP_CanvasLayer/build_menu/head" index="0"]
+label_settings = SubResource("LabelSettings_386xv")
+
+[editable path="MP_CanvasLayer/build_menu"]

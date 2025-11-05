@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=34 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://ised7kw4idro" path="res://Games/source_game/game/prefabs/source_footsteps.tscn" id="8_3mc7r"]
 [ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="9_amac5"]
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ghdio"]
+[ext_resource type="Script" uid="uid://rk2typl4w3ca" path="res://Games/source_game/components/inventory/source_itemstack.gd" id="11_1yv11"]
+[ext_resource type="Resource" uid="uid://b123u6latr4pb" path="res://Games/source_game/objects/weapons/toolgun.tres" id="12_em5yj"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="13_y5oya"]
+[ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="14_hs1xq"]
 [ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="16_26rsp"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
@@ -97,15 +100,36 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
+[node name="SourceItemStack" type="Node" parent="SourceInventory/h1"]
+script = ExtResource("11_1yv11")
+_data = {
+"_init": true,
+"durability": 0.0,
+"durability_max": 0.0,
+"quantity": 1
+}
+object = ExtResource("12_em5yj")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
 [node name="h2" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
+[node name="SourceItemStack" type="Node" parent="SourceInventory/h2"]
+script = ExtResource("11_1yv11")
+object = ExtResource("20_abx2t")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
 [node name="h3" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="SourceItemStack" type="Node" parent="SourceInventory/h3"]
+script = ExtResource("11_1yv11")
+object = ExtResource("14_em5yj")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="h4" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
