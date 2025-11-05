@@ -1,10 +1,11 @@
 [gd_scene load_steps=20 format=3 uid="uid://bbnjcf1woyeww"]
 
 [ext_resource type="Script" uid="uid://bqktlse516rbu" path="res://Games/source_game/items/ciga/item.gd" id="1_6nsd7"]
-[ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/r_weapon.gd" id="2_6ilh0"]
+[ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/weapons/r_weapon.gd" id="2_6ilh0"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="3_6nsd7"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_6ilh0"]
 [ext_resource type="Texture2D" uid="uid://47om1mn5vqe3" path="res://textures/smoke.png" id="4_6nsd7"]
+
 
 [sub_resource type="Resource" id="Resource_ht808"]
 script = ExtResource("2_6ilh0")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c07b2wq1yl1tb" path="res://Games/source_game/items/axe/icon.png" id="1_eknev"]
 [ext_resource type="PackedScene" uid="uid://cmb7vfqcx4kcn" path="res://Games/source_game/items/axe/world.tscn" id="2_eknev"]
-[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/r_weapon_object.gd" id="3_2ghj0"]
+[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/weapons/r_weapon_object.gd" id="3_2ghj0"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_gb7oe"]
 [ext_resource type="PackedScene" uid="uid://dp4g8b6hojp73" path="res://Games/source_game/items/axe/axe.tscn" id="5_ii6dl"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_k01w2"]
