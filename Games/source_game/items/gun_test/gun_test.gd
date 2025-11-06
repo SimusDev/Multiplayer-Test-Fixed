@@ -41,7 +41,6 @@ func _ready() -> void:
 	reset_spread_timer.timeout.connect(reset_spread)
 
 func fire():
-	print("goida")
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
 	pre_event.weapon = self
@@ -93,7 +92,7 @@ func spawn_projectile() -> FirearmBullet:
 	
 	return new_bullet
 
-#sleep 1711270725 
+#sleep 17:11 27.07.25 #HAIIIII DONT SLEP 15:59 06.11.25
 
 func spawn_shell():
 	var new_bullet_shell:SourceBulletShell = SourceBulletShell.new()
