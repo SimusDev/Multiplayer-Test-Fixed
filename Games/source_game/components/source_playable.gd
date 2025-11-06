@@ -60,6 +60,7 @@ func _enter_tree() -> void:
 	input = SourceEntityInput.new()
 	input.root = root
 	input.name = "EntityInput"
+	input.set_multiplayer_authority(get_multiplayer_authority())
 	add_child(input)
 	
 	if !root.is_node_ready():
@@ -80,7 +81,6 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
 	SD_Components.append_to(root, self)
-	print("append to")
 	
 	if !root.is_node_ready():
 		await root.ready

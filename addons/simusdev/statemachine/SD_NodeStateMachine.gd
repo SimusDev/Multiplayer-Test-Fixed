@@ -67,6 +67,9 @@ func _on_child_state_transitioned(to_state: SD_State) -> void:
 
 
 func switch(to_state: SD_State) -> void:
+	if !to_state:
+		return
+	
 	if _current_state == to_state:
 		return
 	
