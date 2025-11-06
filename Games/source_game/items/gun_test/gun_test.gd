@@ -46,10 +46,20 @@ func _ready() -> void:
 		playable.input.action_just_pressed.connect(_on_action_just_pressed)
 	
 	gun_object = stack.object as R_WeaponProjectileObject
+	
+	SD_Network.register_functions([
+		_try_reload_net
+	])
 
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":
-		gun_object._try_reload(stack)
+		try_reload()
+
+func try_reload() -> void:
+	caller.call_func_on_server(_try_reload_net)
+
+func _try_reload_net() -> void:
+	gun_object._try_reload(stack)
 
 func use() -> void:
 	if stack.get_durability() <= 0:
@@ -91,6 +101,7 @@ func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()
 	new_bullet.bullet_resource = bullet_resource
 	new_bullet.can_bounce = can_bounce
+	new_bullet.ammo = gun_object.get_ammo_type(stack)
 	if is_instance_valid(SourcePlayer.instance): new_bullet.player = SourcePlayer.instance
 	bullet_marker.add_child(new_bullet)
 	new_bullet.top_level = true

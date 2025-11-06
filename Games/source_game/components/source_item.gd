@@ -29,7 +29,13 @@ var inventory: SourceInventory
 
 var playable: SourcePlayable
 
+var caller: SD_NetFunctionCaller
+
 func _ready() -> void:
+	caller = SD_NetFunctionCaller.new()
+	caller.name = "caller"
+	caller.default_channel = "source_item"
+	
 	stack = SD_Components.find_first(self, SourceItemStack)
 	if stack:
 		stack.item = self
@@ -43,7 +49,6 @@ func _ready() -> void:
 	)
 	
 	playable = SourcePlayable.find_above(self)
-	print("playable", playable)
 	if playable:
 		player = playable.root
 		interact_ray = SD_Components.find_first(player, SourceInteractRay)
@@ -75,13 +80,13 @@ func set_current(value:bool):
 	on_current_change.emit()
 func is_current(): return current
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority() and current:
 		if Input.is_action_pressed("fire"):
 			if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
 				if is_instance_valid(animation_player):
 					if not animation_player.is_playing():
-						SD_Network.call_func(use)
+						caller.call_func(use)
 #ZV EZ
 func use() -> void:
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
