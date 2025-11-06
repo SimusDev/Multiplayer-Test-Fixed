@@ -34,7 +34,9 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("lmb"):
 		if SimusDev.ui.get_active_interfaces().is_empty():
-			SD_Network.call_func_on_server(place, [building, ghost_building.global_transform, item.player])
+			if is_instance_valid(ghost_building):
+				if building:
+					SD_Network.call_func_on_server(place, [building, ghost_building.global_transform, item.player])
 	elif Input.is_action_just_pressed("rmb"):
 		open_ui()
 	elif Input.is_action_just_released("rmb"):

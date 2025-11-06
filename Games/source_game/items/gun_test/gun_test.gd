@@ -66,11 +66,6 @@ func use() -> void:
 	fire()
 	super()
 
-#func try_to_fire() -> void:
-	#if stack.get_durability() <= 0:
-		#return
-	#fire()
-
 
 func fire() -> void:
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
