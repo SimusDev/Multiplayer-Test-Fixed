@@ -16,7 +16,13 @@ var player: bool = false
 
 const RAY_POSITION: Vector3 = Vector3(0, 0, -3.0)
 
+signal selected(object: Object)
 signal interacted(object: Object)
+
+var _selected: Object
+
+func get_selected() -> Object:
+	return _selected
 
 func _ready() -> void:
 	target_position = RAY_POSITION
@@ -57,6 +63,13 @@ func _ready() -> void:
 	set_collision_mask_value(1, false)
 	for layer in LAYERS:
 		set_collision_mask_value(layer, true)
+
+func _physics_process(delta: float) -> void:
+	if get_collider() == _selected:
+		return
+	
+	_selected = get_collider()
+	selected.emit(_selected)
 
 func _input(event: InputEvent) -> void:
 	if not SD_Network.is_authority(self):

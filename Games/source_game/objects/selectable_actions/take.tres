@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ibcbimkelxjx"]
+
+[ext_resource type="Script" uid="uid://65ronsqnl2oh" path="res://Games/source_game/objects/selectable_actions/take.gd" id="1_ff6uy"]
+
+[resource]
+script = ExtResource("1_ff6uy")
+metadata/_custom_type_script = "uid://brok5egacb1fs"
