@@ -15,6 +15,8 @@ signal _voice_active(value: bool)
 
 @export var debug_queue_free: bool = false : set = set_debug_queue_free
 
+var input: SourceEntityInput
+
 func set_debug_queue_free(value: bool) -> void:
 	debug_queue_free = value
 	
@@ -50,10 +52,15 @@ static func find_above(node: Node) -> SourcePlayable:
 	return find_above(node.get_parent())
 
 func _enter_tree() -> void:
-	SD_Components.append_to(root, self)
+	
 	
 	if not root:
 		root = get_parent()
+	
+	input = SourceEntityInput.new()
+	input.root = root
+	input.name = "EntityInput"
+	add_child(input)
 	
 	if !root.is_node_ready():
 		await root.ready
@@ -72,6 +79,9 @@ func _exit_tree() -> void:
 	S_EventPlayerDespawned.as_event().publish()
 
 func _ready() -> void:
+	SD_Components.append_to(root, self)
+	print("append to")
+	
 	if !root.is_node_ready():
 		await root.ready
 	

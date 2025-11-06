@@ -56,3 +56,10 @@ static func get_time() -> float:
 
 func _time_set_local(value: float) -> void:
 	_sky.current_time = value
+
+
+func _on_synchronize_timeout() -> void:
+	if SD_Network.is_server():
+		return
+	
+	caller.call_func_on_server(_send)

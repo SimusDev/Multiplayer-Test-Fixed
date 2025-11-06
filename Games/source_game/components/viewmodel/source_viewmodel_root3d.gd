@@ -58,12 +58,12 @@ func _ready() -> void:
 			if SD_Network.is_authority(self):
 				local = self
 	
+	
 	if !inventory.is_initialized:
 		await inventory.initialized
 	
-
-	
-	
+	if !inventory.root.is_node_ready():
+		await inventory.root.ready
 	
 	_slot_selected(inventory.get_selected_slot())
 	inventory.slot_updated_for_viewmodel.connect(_slot_selected)

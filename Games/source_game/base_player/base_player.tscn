@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=34 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="27_y3hgg"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
-[ext_resource type="Script" uid="uid://08fge3u047sv" path="res://Games/source_game/components/entity_input.gd" id="30_i0lyu"]
 
 [sub_resource type="Gradient" id="Gradient_4d7pv"]
 colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
@@ -347,7 +346,6 @@ visible = false
 script = ExtResource("18_1yv11")
 authorative_visibility = true
 type = 0
-object = ExtResource("20_abx2t")
 inventory = NodePath("../../SourceInventory")
 placeholder = ExtResource("19_em5yj")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
@@ -402,11 +400,6 @@ nodes_to_hide = [NodePath("../SourceCamera/SourceViewModelRoot3D")]
 base = NodePath("../SourceCamera")
 cameras = [NodePath("../SourceCamera/cameras/1"), NodePath("../SourceCamera/cameras/2")]
 metadata/_custom_type_script = "uid://8ivv40tjuu7w"
-
-[node name="SourceEntityInput" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("30_i0lyu")
-root = NodePath("..")
-metadata/_custom_type_script = "uid://08fge3u047sv"
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]

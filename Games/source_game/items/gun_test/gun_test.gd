@@ -28,6 +28,8 @@ var reset_spread_timer:Timer = Timer.new()
 
 var spread_counter:float = 0.0
 
+var gun_object: R_WeaponProjectileObject
+
 func _ready() -> void:
 	super()
 	randomize()
@@ -39,10 +41,19 @@ func _ready() -> void:
 	reset_spread_timer.wait_time = reset_time
 	
 	reset_spread_timer.timeout.connect(reset_spread)
+	
+	if playable:
+		playable.input.action_just_pressed.connect(_on_action_just_pressed)
+	
+	gun_object = stack.object as R_WeaponProjectileObject
+
+func _on_action_just_pressed(action: StringName) -> void:
+	if action == "reload":
+		gun_object._try_reload(stack)
 
 func use() -> void:
 	if stack.get_durability() <= 0:
-		pass
+		return
 	
 	super()
 

@@ -6,3 +6,6 @@ func get_node_script() -> GDScript:
 
 func _get_section() -> String:
 	return "weapon"
+
+func _registered() -> void:
+	get_itemstack().stackable = false

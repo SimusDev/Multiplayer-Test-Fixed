@@ -258,10 +258,12 @@ func add_item(item: SourceItemStack) -> void:
 	var free_slot: SourceInventorySlot = get_free_slot()
 	if !free_slot:
 		debug_print("cant add item, inventory is full!")
+		SD_Nodes.fast_queue_free(item)
 		return
 	
 	var serialized: Variant = item.serialize()
-	SD_Nodes.fast_queue_free(item)
+	if !item.is_inside_tree() and !item.is_node_ready():
+		SD_Nodes.fast_queue_free(item)
 	
 	var server: SourceItemStack = _add_item_net(serialized)
 	

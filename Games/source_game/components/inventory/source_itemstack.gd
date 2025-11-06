@@ -30,15 +30,19 @@ func _data_changed_(key: Variant, value: Variant) -> void:
 	match key:
 		"quantity":
 			quantity_changed.emit()
-			get_slot().update()
+			if get_slot():
+				get_slot().update()
 			if value <= 0:
-				_inventory.remove_item(self)
+				if _inventory:
+					_inventory.remove_item(self)
 		"durability":
 			durability_changed.emit()
-			get_slot().update()
+			if get_slot():
+				get_slot().update()
 		"max_durability":
 			max_durability_changed.emit()
-			get_slot().update()
+			if get_slot():
+				get_slot().update()
 
 func data_set_value(key: Variant, value: Variant) -> void:
 	if SD_Network.is_server():

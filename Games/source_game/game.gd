@@ -60,23 +60,46 @@ func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
 		add_child(timer)
 		timer.start()
 
-func request_spawn(prop_res:R_SourceWorldObject):
-	SD_Network.call_func_on_server(spawn_on_server, [prop_res, SD_Multiplayer.get_unique_id()])
+func request_spawn(prop_res:R_SourceWorldObject, quantity: int = 1, inventory: bool = false):
+	SD_Network.call_func_on_server(spawn_on_server, [prop_res, quantity, inventory])
 
-func spawn_on_server(prop_res:R_SourceWorldObject, peer_id:int):
+func spawn_on_server(prop_res:R_SourceWorldObject, quantity: int = 1, inventory: bool = true):
 	if not is_instance_valid(SourceGame.instance):
 		return
 	
 	var new_prop = prop_res.prefab.instantiate()
 	prop_res.set_in(new_prop)
-	var player: Node = SD_NetworkPlayer.get_by_peer_id(peer_id)
+	var player: Node = SD_NetworkPlayer.get_by_peer_id(SD_Network.get_remote_sender_id())
 	if player:
 		var node = player.get_player_node()
 		if is_instance_valid(node):
+			if inventory:
+				var reference: SourceInventory = SourceInventory.find_above(node)
+				if reference:
+					if prop_res.get_itemstack().stackable:
+						var item: SourceItemStack = SourceItemStack.create_from_object(prop_res)
+						item.set_quantity(quantity)
+						reference.add_item(item)
+						return
+					else:
+						while quantity > 0:
+							var item: SourceItemStack = SourceItemStack.create_from_object(prop_res)
+							reference.add_item(item)
+							quantity -= 1
+						
+						return
+				
+			
 			var ray: SourceInteractRay = SD_Components.find_first(node, SourceInteractRay)
 			if ray:
-				instantiate_object_on_server(new_prop)
-				new_prop.global_position = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
+				var pos: int = 0
+				if quantity > 1:
+					pos = 2
+				
+				for i in quantity:
+					instantiate_object_on_server(new_prop)
+					new_prop.global_position = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
+					new_prop.global_position.y += pos * i
 		else:
 			instantiate_object_on_server(new_prop)
 			

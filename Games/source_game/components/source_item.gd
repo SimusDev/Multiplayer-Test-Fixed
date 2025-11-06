@@ -27,6 +27,8 @@ var stack: SourceItemStack
 var animated_model: W_AnimatedModel3D
 var inventory: SourceInventory
 
+var playable: SourcePlayable
+
 func _ready() -> void:
 	stack = SD_Components.find_first(self, SourceItemStack)
 	if stack:
@@ -40,12 +42,14 @@ func _ready() -> void:
 		]
 	)
 	
-	var playable: SourcePlayable = SourcePlayable.find_above(self)
+	playable = SourcePlayable.find_above(self)
+	print("playable", playable)
 	if playable:
 		player = playable.root
 		interact_ray = SD_Components.find_first(player, SourceInteractRay)
 		animated_model = W_AnimatedModel3D.find_in(playable.root)
 		inventory = SD_Components.find_first(playable.root, SourceInventory)
+		
 	
 	on_current_change.connect(_on_current_changed)
 	_on_current_changed()

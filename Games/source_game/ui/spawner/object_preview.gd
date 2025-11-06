@@ -9,6 +9,8 @@ extends Control
 @onready var name_label = $name
 @onready var full_desc_node = $full_desc_node
 
+var spawner: Control
+
 func _ready() -> void:
 	icon.texture = resource.icon
 	name_label.text = resource.name
@@ -17,7 +19,7 @@ func _on_source_button_pressed() -> void:
 	spawn_prop()
 
 func spawn_prop():
-	SourceGame.instance.request_spawn(resource)
+	SourceGame.instance.request_spawn(resource, spawner.get_quantity_line_edit(), spawner.is_inventory_checkbox())
 
 func _on_source_button_mouse_entered() -> void:
 	highlight.show()
