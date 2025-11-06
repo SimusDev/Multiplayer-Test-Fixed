@@ -83,6 +83,7 @@ func get_active_peer_and_his_nodes() -> Dictionary[int, Array]:
 	return dict
 
 func send_active_node_to_all(node: Object) -> void:
+	return
 	_recieve_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
 @rpc("any_peer", "call_local", "reliable", 100)
@@ -103,6 +104,7 @@ func _recieve_node_from_peer(node: Variant) -> void:
 		net._inactive_for_peers.erase(sender_id)
 
 func delete_active_node_from_all(node: Object) -> void:
+	return
 	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
 @rpc("any_peer", "call_local", "reliable", 101)

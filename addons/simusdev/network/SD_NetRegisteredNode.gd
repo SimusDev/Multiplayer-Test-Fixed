@@ -15,7 +15,7 @@ var _inactive_for_peers: PackedInt32Array = PackedInt32Array()
 
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
-	#_inactive_for_peers = _inactive_for_peers.duplicate()
+	_inactive_for_peers = _inactive_for_peers.duplicate()
 	
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
@@ -75,6 +75,7 @@ func _on_tree_entered() -> void:
 		await cached
 	
 	SD_Network.singleton.callables.send_active_node_to_all(reference)
+	
 
 func _uncache(path: NodePath) -> void:
 	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
