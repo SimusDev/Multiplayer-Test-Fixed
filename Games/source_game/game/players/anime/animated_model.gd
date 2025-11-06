@@ -14,6 +14,11 @@ var _body_playback: AnimationNodeStateMachinePlayback
 
 @export var inventory: SourceInventory
 
+@export var footsteps: SourceFootsteps
+
+func _do_footstep() -> void:
+	footsteps._do_footstep()
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -22,6 +27,7 @@ func _ready() -> void:
 	
 	if _movement:
 		_actor = _movement.actor
+		footsteps.player = _actor
 	
 	visible = !is_multiplayer_authority()
 	
@@ -55,7 +61,9 @@ func _physics_process(delta: float) -> void:
 	
 	set_tree_parameter("parameters/movement_sm/crouch/blend_position", blend_position)
 	
-	set_tree_parameter("parameters/movement_tscale/scale", actor_velocity.length() / 6.0)
+	var tscale: float = actor_velocity.length() / 6.0
+	
+	set_tree_parameter("parameters/movement_tscale/scale", tscale)
 	
 	
 

@@ -23,11 +23,15 @@ func _ready() -> void:
 	nickname.text = source_playable.network.get_username()
 	source_playable._voice_active.connect(_on_voice_active)
 	
-	print(player_health)
-	
 	if is_instance_valid(player_health):
 		update()
 		player_health.health_changed.connect(update)
+	
+	var event := S_EventPlayerUICreated.as_event()
+	event.playable = source_playable
+	event.ui = self
+	event.publish()
+	
 
 func _on_voice_active(value:bool) -> void:
 	voice_chat_label.visible = value

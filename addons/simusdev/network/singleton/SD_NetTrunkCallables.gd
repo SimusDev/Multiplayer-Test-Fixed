@@ -14,6 +14,9 @@ var _queue: Array[Dictionary] = []
 
 var _remote_sender_id: int = -1
 
+#signal on_active_node_recieve(node: Object, from_peer: int)
+#signal on_active_node_reject(node: Object, from_peer: int)
+
 func get_remote_sender_id() -> int:
 	return _remote_sender_id
 

@@ -38,16 +38,25 @@ func is_local() -> bool:
 	return self == get_local()
 
 static func find_above(node: Node) -> SourcePlayable:
+	if node is SourcePlayable:
+		return node
+	
 	if node is SourceGame:
 		return null
+		
 	var founded: SourcePlayable = SD_Components.find_first(node, SourcePlayable)
 	if founded:
 		return founded
 	return find_above(node.get_parent())
 
 func _enter_tree() -> void:
+	SD_Components.append_to(root, self)
+	
 	if not root:
 		root = get_parent()
+	
+	if !root.is_node_ready():
+		await root.ready
 	
 	if root is SourcePlayer:
 		S_EventPlayerSpawned.as_event().player = root
@@ -63,11 +72,16 @@ func _exit_tree() -> void:
 	S_EventPlayerDespawned.as_event().publish()
 
 func _ready() -> void:
-	SD_Components.append_to(root, self)
+	if !root.is_node_ready():
+		await root.ready
+	
 	health = SourceHealth.find_in(root)
 	inventory = SD_Components.find_first(root, SourceInventory)
 	
 	network = SD_NetworkPlayer.find_in(root)
+	
+	if !root.is_node_ready():
+		await root.ready
 	
 	if SD_Network.is_authority(self):
 		_local = self
@@ -103,7 +117,6 @@ func _input(event: InputEvent) -> void:
 
 func _initialize_ui() -> void:
 	var ui: PackedScene = load(SourceGame.GAME_PATH.path_join("player/ui/player_ui.tscn"))
-	await root.ready
 	var canvas: CanvasLayer = CanvasLayer.new()
 	canvas.name = "canvas"
 	var scene: PackedScene = ui

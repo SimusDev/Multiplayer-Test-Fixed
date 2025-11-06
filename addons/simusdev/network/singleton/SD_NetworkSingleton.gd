@@ -15,6 +15,7 @@ signal initialized()
 @export var synchronization: SD_NetTrunkSynchronization
 @export var variables: SD_NetTrunkVariables
 @export var rpc: SD_NetTrunkRpc
+@export var net_console: SD_NetTrunkConsole
 @export var info: Node
 
 var _dedicated_server: bool = false

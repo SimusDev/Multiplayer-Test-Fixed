@@ -10,6 +10,7 @@ class_name SourceItemStack
 @export var object: R_SourceWorldObject
 var _inventory: SourceInventory
 var _slot: SourceInventorySlot
+var item: SourceItem
 
 var _last_path: NodePath
 

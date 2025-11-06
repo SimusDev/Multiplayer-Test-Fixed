@@ -11,10 +11,14 @@ signal uncached()
 
 var is_cached: bool = false
 
-var _inactive_for_peers: Array[int] = []
+var _inactive_for_peers: PackedInt32Array = PackedInt32Array()
 
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
+	_inactive_for_peers = _inactive_for_peers.duplicate()
+	
+	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
+	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
 	
 	reference = object
 	
@@ -36,6 +40,12 @@ func initialize(object: Object) -> void:
 			return
 		
 		object.unregistered.connect(_on_net_resource_unregistered)
+
+func _on_peer_connected(peer: int) -> void:
+	_inactive_for_peers.append(peer)
+
+func _on_peer_disconnected(peer: int) -> void:
+	_inactive_for_peers.erase(peer)
 
 func _on_net_resource_unregistered() -> void:
 	_on_tree_exited()
