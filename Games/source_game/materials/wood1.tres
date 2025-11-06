@@ -1,0 +1,24 @@
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=13 format=3 uid="uid://bhh4gl08xajos"]
+
+[ext_resource type="Texture2D" uid="uid://bq2fs1q3h423m" path="res://textures/general/light_wood.jpeg" id="1_fcmg0"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="1_gyl2r"]
+[ext_resource type="AudioStream" uid="uid://ccnbxrrpecjcy" path="res://sounds/hl2/player/footsteps/woodpanel1.wav" id="1_mk1wm"]
+[ext_resource type="AudioStream" uid="uid://blcw0kklb4a8a" path="res://sounds/hl2/player/footsteps/woodpanel2.wav" id="2_frmmg"]
+[ext_resource type="AudioStream" uid="uid://duoxhrycjjo41" path="res://sounds/hl2/player/footsteps/woodpanel3.wav" id="3_vw12n"]
+[ext_resource type="AudioStream" uid="uid://c55bum61d7v80" path="res://sounds/hl2/player/footsteps/woodpanel4.wav" id="4_u3drk"]
+[ext_resource type="AudioStream" uid="uid://cacr82mbrc7mi" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard1.wav" id="5_b4li0"]
+[ext_resource type="AudioStream" uid="uid://bekbyds0fkq5i" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard2.wav" id="6_j2b2b"]
+[ext_resource type="AudioStream" uid="uid://yhscbmxh5viw" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard3.wav" id="7_xj1wu"]
+[ext_resource type="AudioStream" uid="uid://cf5aeonwhsbv7" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft1.wav" id="9_se4u5"]
+[ext_resource type="AudioStream" uid="uid://4m35oyvxxy2" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft2.wav" id="10_j6f38"]
+[ext_resource type="AudioStream" uid="uid://c715dfh3w2dj0" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft3.wav" id="11_tdro1"]
+
+[resource]
+albedo_texture = ExtResource("1_fcmg0")
+uv1_triplanar = true
+script = ExtResource("1_gyl2r")
+type = 1
+footsteps_audio = Array[AudioStream]([ExtResource("1_mk1wm"), ExtResource("2_frmmg"), ExtResource("3_vw12n"), ExtResource("4_u3drk")])
+soft_impact_audio = Array[AudioStream]([ExtResource("9_se4u5"), ExtResource("10_j6f38"), ExtResource("11_tdro1")])
+hard_impact_audio = Array[AudioStream]([ExtResource("5_b4li0"), ExtResource("6_j2b2b"), ExtResource("7_xj1wu")])
+metadata/_custom_type_script = "uid://dau2vuhctib65"

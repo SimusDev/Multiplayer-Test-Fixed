@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=13 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
+[ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
 [ext_resource type="Texture2D" uid="uid://85tx6torxqp4" path="res://addons/simusdev/Game/icons/ui_icon_exit.png" id="4_rnwnd"]
+[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
+[ext_resource type="Material" uid="uid://dbyrkd4pdsous" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
@@ -52,25 +55,19 @@ navigation_mesh = SubResource("NavigationMesh_17bi3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6)
 use_collision = true
 size = Vector3(10, 1, 13.2)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("4_bge2v")
 
 [node name="floor2" type="CSGBox3D" parent="NavigationRegion3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.9)
+material_override = ExtResource("5_fpuye")
 use_collision = true
 size = Vector3(10, 1, 67.4)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("4_bge2v")
 
-[node name="floor3" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-use_collision = true
-size = Vector3(100, 1, 67.4)
-material = SubResource("StandardMaterial3D_gr3v1")
-
-[node name="250units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 29.7)
+[node name="250units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 29.707401)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
 
 [node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/250units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
@@ -82,7 +79,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="255units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="2"]
+[node name="255units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1, 0, 21.7)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -98,7 +95,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="260units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="3"]
+[node name="260units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2, 0, 13.7)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -114,7 +111,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="265units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="4"]
+[node name="265units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3, 0, 5.7)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -131,7 +128,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="270units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="5"]
+[node name="270units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -2.3)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -147,7 +144,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="275units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="6"]
+[node name="275units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -10.3)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -163,7 +160,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="280units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="7"]
+[node name="280units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6, 0, -18.3)
 use_collision = true
 size = Vector3(8, 1, 8)
@@ -179,7 +176,14 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" index="2"]
+[node name="floor3" type="CSGBox3D" parent="NavigationRegion3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -41.9)
+material_override = ExtResource("8_eqep5")
+use_collision = true
+size = Vector3(100, 1, 67.4)
+material = ExtResource("4_bge2v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1, 2.7, -26.184)
 use_collision = true
 size = Vector3(1, 6.4, 7.3)
@@ -191,3 +195,24 @@ shadow_enabled = true
 omni_range = 10.0
 
 [node name="Environment" parent="." index="10" instance=ExtResource("6_rnwnd")]
+
+[node name="Sky3D" parent="Environment" index="0"]
+current_time = 12.0
+sky_contribution = 0.95
+
+[node name="SunLight" parent="Environment/Sky3D" index="0"]
+transform = Transform3D(0, -0.9993337, -0.03649939, 0.6307106, -0.028324187, 0.7755011, -0.77601814, -0.02302055, 0.6302903, -0.03649939, 0.7755011, 0.6302903)
+
+[node name="MoonLight" parent="Environment/Sky3D" index="1"]
+transform = Transform3D(0, -0.9863311, -0.16477583, -0.682185, 0.12048072, -0.7211852, 0.7311796, 0.1124076, -0.67286026, -0.16477582, -0.72118515, -0.6728602)
+
+[node name="SkyDome" parent="Environment/Sky3D" index="2"]
+sun_azimuth = -3.199437
+sun_altitude = -0.683288
+moon_azimuth = -6.043023
+moon_altitude = -2.376308
+
+[node name="TimeOfDay" parent="Environment/Sky3D" index="3"]
+current_time = 12.0
+
+[editable path="Environment"]

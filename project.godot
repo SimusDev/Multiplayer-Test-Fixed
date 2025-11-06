@@ -81,6 +81,7 @@ enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fa
 folder_colors={
 "res://Games/": "green",
 "res://Games/source_game/": "gray",
+"res://Games/source_game/materials/": "green",
 "res://addons/": "red",
 "res://game_components/": "orange",
 "res://sourcelike_interface/": "gray"

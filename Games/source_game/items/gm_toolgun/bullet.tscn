@@ -25,19 +25,18 @@ rings = 2
 [node name="firearm_bullet" instance=ExtResource("1_w6x0f")]
 max_distance = 5.0
 
-[node name="bullet9mm" parent="." index="0"]
-visible = false
-
 [node name="MeshInstance3D" parent="bullet9mm" index="0"]
 mesh = SubResource("CylinderMesh_g0v5r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, -1.74846e-08, -1, 0, 0.4, -4.37114e-08, 0, 0, -0.4)
+visible = false
 mesh = SubResource("CylinderMesh_w6x0f")
 script = ExtResource("2_dc46l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37115e-08, -1, 0, 1, -4.37115e-08, 0, 0, -0.4)
+visible = false
 light_color = Color(1, 1, 0.356863, 1)
 light_energy = 0.2
 shadow_enabled = true
