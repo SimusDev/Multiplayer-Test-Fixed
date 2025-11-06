@@ -31,6 +31,8 @@ func _data_changed_(key: Variant, value: Variant) -> void:
 		"quantity":
 			quantity_changed.emit()
 			get_slot().update()
+			if value <= 0:
+				_inventory.remove_item(self)
 		"durability":
 			durability_changed.emit()
 			get_slot().update()
@@ -88,6 +90,8 @@ func _ready() -> void:
 	
 	_item_registration()
 	
+	if object:
+		object._itemstack_instantiated(self)
 
 
 func _server_item_initialization() -> void:

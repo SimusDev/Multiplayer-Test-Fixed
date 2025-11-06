@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://c63k3uqvttm8e"]
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=14 format=3 uid="uid://c63k3uqvttm8e"]
 
+[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_dqv8v"]
 [ext_resource type="PackedScene" uid="uid://b25lkeicg8cfi" path="res://Games/source_game/items/ak_47/world.tscn" id="1_g5njn"]
 [ext_resource type="Texture2D" uid="uid://r6loyluk7glp" path="res://Games/source_game/items/ak_47/icon.png" id="1_migia"]
-[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/weapons/r_weapon_object.gd" id="1_vtwop"]
+[ext_resource type="Resource" uid="uid://bitb7epxi87xm" path="res://Games/source_game/objects/weapons/ammo/rifle.tres" id="2_bnjdn"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="2_wicmd"]
+[ext_resource type="Resource" uid="uid://dudoao428jxp6" path="res://Games/source_game/objects/weapons/ammo/explosion.tres" id="3_fwtb6"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="3_g5njn"]
+[ext_resource type="Script" uid="uid://d2g7gec3gvwpf" path="res://Games/source_game/components/weapons/r_weapon_projectile_object.gd" id="3_migia"]
 [ext_resource type="PackedScene" uid="uid://5hggub5g64d2" path="res://Games/source_game/items/ak_47/ak_47.tscn" id="4_x6b2s"]
 [ext_resource type="PackedScene" uid="uid://dri1yknwm20vx" path="res://Games/source_game/items/ak_47/view.tscn" id="6_x6b2s"]
 
@@ -27,7 +30,8 @@ world = SubResource("Resource_ke3q8")
 metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
-script = ExtResource("1_vtwop")
+script = ExtResource("3_migia")
+ammo = Array[ExtResource("1_dqv8v")]([ExtResource("2_bnjdn"), ExtResource("3_fwtb6")])
 icon = ExtResource("1_migia")
 description = "RATATATATATATA "
 prefab = ExtResource("1_g5njn")

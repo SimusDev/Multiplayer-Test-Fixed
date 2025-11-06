@@ -51,8 +51,12 @@ func _on_child_entered_tree(child: Node) -> void:
 	var object: R_SourceWorldObject = R_SourceWorldObject.find_in(child)
 	if object:
 		node_script = object.get_node_script()
+		
 	
 	if not source_object:
 		source_object = node_script.new()
 		source_object.name = "object" 
 		child.add_child(source_object)
+	
+	if object:
+		object._instantiated(child)
