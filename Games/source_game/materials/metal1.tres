@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=16 format=3 uid="uid://e6xxbhiy8jis"]
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=17 format=3 uid="uid://e6xxbhiy8jis"]
 
 [ext_resource type="AudioStream" uid="uid://l2g46586rrdg" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet1.wav" id="1_43kd4"]
-[ext_resource type="Texture2D" uid="uid://cy1ih020gv68t" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_metalwall031a.png" id="1_mhn1o"]
+[ext_resource type="Texture2D" uid="uid://dtmwlx74fxbd7" path="res://textures/general/metal1.jpeg" id="1_nbd35"]
 [ext_resource type="AudioStream" uid="uid://du8w5t2ek0huv" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet2.wav" id="2_mhn1o"]
 [ext_resource type="AudioStream" uid="uid://dpmidglg6uh15" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet3.wav" id="3_nbd35"]
 [ext_resource type="AudioStream" uid="uid://8cikkt6gcet8" path="res://sounds/hl2/physics/metal/metal_box_footstep1.wav" id="4_weblt"]
@@ -13,11 +13,18 @@
 [ext_resource type="AudioStream" uid="uid://bo6mg68nuow6l" path="res://sounds/hl2/physics/metal/metal_box_impact_hard3.wav" id="10_4jf0q"]
 [ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="11_joapv"]
 [ext_resource type="AudioStream" uid="uid://rykqjix4pl0r" path="res://sounds/hl2/physics/metal/metal_box_impact_soft1.wav" id="12_b5m4y"]
+[ext_resource type="Texture2D" uid="uid://blbo4t0lqggep" path="res://textures/general/metal1_normalmap.jpg" id="12_weblt"]
 [ext_resource type="AudioStream" uid="uid://cnoljt80w8ea3" path="res://sounds/hl2/physics/metal/metal_box_impact_soft2.wav" id="13_tbvun"]
 [ext_resource type="AudioStream" uid="uid://4kvpqa18cbjh" path="res://sounds/hl2/physics/metal/metal_box_impact_soft3.wav" id="14_p2nx2"]
 
 [resource]
-albedo_texture = ExtResource("1_mhn1o")
+albedo_texture = ExtResource("1_nbd35")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = ExtResource("1_nbd35")
+normal_enabled = true
+normal_scale = 0.4
+normal_texture = ExtResource("12_weblt")
 uv1_triplanar = true
 script = ExtResource("11_joapv")
 type = "metal"

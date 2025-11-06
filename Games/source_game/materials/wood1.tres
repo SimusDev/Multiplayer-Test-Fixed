@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=13 format=3 uid="uid://bhh4gl08xajos"]
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=14 format=3 uid="uid://bhh4gl08xajos"]
 
 [ext_resource type="Texture2D" uid="uid://bq2fs1q3h423m" path="res://textures/general/light_wood.jpeg" id="1_fcmg0"]
 [ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="1_gyl2r"]
@@ -9,12 +9,16 @@
 [ext_resource type="AudioStream" uid="uid://cacr82mbrc7mi" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard1.wav" id="5_b4li0"]
 [ext_resource type="AudioStream" uid="uid://bekbyds0fkq5i" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard2.wav" id="6_j2b2b"]
 [ext_resource type="AudioStream" uid="uid://yhscbmxh5viw" path="res://sounds/hl2/physics/wood/wood_solid_impact_hard3.wav" id="7_xj1wu"]
+[ext_resource type="Texture2D" uid="uid://dxgnkqcu61ugd" path="res://textures/general/light_wood_normal.jpg" id="9_35vge"]
 [ext_resource type="AudioStream" uid="uid://cf5aeonwhsbv7" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft1.wav" id="9_se4u5"]
 [ext_resource type="AudioStream" uid="uid://4m35oyvxxy2" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft2.wav" id="10_j6f38"]
 [ext_resource type="AudioStream" uid="uid://c715dfh3w2dj0" path="res://sounds/hl2/physics/wood/wood_solid_impact_soft3.wav" id="11_tdro1"]
 
 [resource]
 albedo_texture = ExtResource("1_fcmg0")
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource("9_35vge")
 uv1_triplanar = true
 script = ExtResource("1_gyl2r")
 type = "wood"

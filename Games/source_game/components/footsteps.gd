@@ -45,7 +45,6 @@ func on_detect_area_body_entered(_body) -> void:
 		if body is CSGBox3D:
 			if body.material is SourceMaterial:
 				current_surface = body.material.type
-				print(body.material.type)
 
 func get_surface_sounds() -> Array[AudioStream]:
 	return get(current_surface)

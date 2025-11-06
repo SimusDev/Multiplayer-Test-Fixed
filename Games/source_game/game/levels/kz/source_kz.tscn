@@ -182,22 +182,25 @@ omni_range = 10.0
 [node name="Environment" parent="." index="10" instance=ExtResource("6_rnwnd")]
 
 [node name="Sky3D" parent="Environment" index="0"]
-current_time = 12.0
+current_time = 16.5
+minutes_per_day = 120.0
 sky_contribution = 0.95
 
 [node name="SunLight" parent="Environment/Sky3D" index="0"]
-transform = Transform3D(0, -0.9993337, -0.03649939, 0.6307106, -0.028324187, 0.7755011, -0.77601814, -0.02302055, 0.6302903, -0.03649939, 0.7755011, 0.6302903)
+transform = Transform3D(0, -0.504939, -0.86315507, 0.91986626, -0.33855724, 0.19805335, -0.39223224, -0.7939872, 0.46447632, -0.86315507, 0.19805335, 0.46447632)
+light_color = Color(0.98792213, 0.7119429, 0.5736513, 1)
 
 [node name="MoonLight" parent="Environment/Sky3D" index="1"]
-transform = Transform3D(0, -0.9863311, -0.16477583, -0.682185, 0.12048072, -0.7211852, 0.7311796, 0.1124076, -0.67286026, -0.16477582, -0.72118515, -0.6728602)
+transform = Transform3D(0, -0.6540686, 0.7564353, -0.8615907, -0.38396934, -0.33200765, 0.5076037, -0.6517376, -0.5635394, 0.7564353, -0.33200765, -0.5635394)
 
 [node name="SkyDome" parent="Environment/Sky3D" index="2"]
-sun_azimuth = -3.199437
-sun_altitude = -0.683288
-moon_azimuth = -6.043023
-moon_altitude = -2.376308
+sun_azimuth = -4.2187166
+sun_altitude = -1.3714248
+moon_azimuth = -0.93050706
+moon_altitude = -1.9092275
 
 [node name="TimeOfDay" parent="Environment/Sky3D" index="3"]
-current_time = 12.0
+minutes_per_day = 120.0
+current_time = 16.5
 
 [editable path="Environment"]

@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=11 format=3 uid="uid://dbyrkd4pdsous"]
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=12 format=3 uid="uid://dbyrkd4pdsous"]
 
 [ext_resource type="Texture2D" uid="uid://catj88un445dd" path="res://textures/general/grass.jpg" id="1_xsof2"]
 [ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="2_wcwhx"]
@@ -10,9 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="7_c74ib"]
 [ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="8_wth4y"]
 [ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="9_g3qwh"]
+[ext_resource type="Texture2D" uid="uid://d3my8y4vik7f0" path="res://textures/general/grass_normalmap.jpg" id="10_o6l8k"]
 
 [resource]
 albedo_texture = ExtResource("1_xsof2")
+normal_enabled = true
+normal_scale = 0.35
+normal_texture = ExtResource("10_o6l8k")
 uv1_triplanar = true
 script = ExtResource("2_wcwhx")
 type = "grass"
