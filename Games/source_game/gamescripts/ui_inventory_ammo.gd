@@ -7,6 +7,8 @@ var scene: PackedScene
 var instance: Control
 
 func _ready() -> void:
+	return
+	
 	if SD_Network.is_dedicated_server():
 		return
 	

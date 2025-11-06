@@ -64,8 +64,8 @@ shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_intensity = 10.0
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.33182198, 0.33182198)
-shader_parameter/cirrus_position2 = Vector2(0.33182198, 0.33182198)
+shader_parameter/cirrus_position1 = Vector2(0.29717493, 0.29717493)
+shader_parameter/cirrus_position2 = Vector2(0.29717493, 0.29717493)
 shader_parameter/cirrus_day_color = Color(0.824, 0.875, 1, 1)
 shader_parameter/cirrus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
 shader_parameter/cirrus_night_color = Color(0.09, 0.094, 0.129, 1)
@@ -78,7 +78,7 @@ shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_intensity = 0.6
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(1.6588863, 1.6588863)
+shader_parameter/cumulus_position = Vector2(1.4855853, 1.4855853)
 shader_parameter/cumulus_texture = ExtResource("5_pym2y")
 shader_parameter/cumulus_day_color = Color(0.823529, 0.87451, 1, 1)
 shader_parameter/cumulus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
@@ -119,6 +119,7 @@ script = ExtResource("9_bxcrm")
 fog_enabled = false
 editor_time_enabled = false
 current_time = 10.0
+minutes_per_day = 40.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -144,9 +145,17 @@ wind_direction = 2.35619451204804
 script = ExtResource("11_18c2x")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
+minutes_per_day = 40.0
 current_time = 10.0
 
 [node name="SD_NetFunctionCaller" type="Node" parent="."]
 script = ExtResource("12_dnjjk")
 default_channel = "environment"
 metadata/_custom_type_script = "uid://b5dhc3onabatl"
+
+[node name="synchronize" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="synchronize" to="." method="_on_synchronize_timeout"]

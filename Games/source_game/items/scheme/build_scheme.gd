@@ -8,7 +8,6 @@ func _input(_event: InputEvent) -> void:
 	if not SD_Network.is_authority(self):
 		return
 	
-	
 	if Input.is_action_just_pressed("rmb"):
 		open_ui()
 	elif Input.is_action_just_released("rmb"):

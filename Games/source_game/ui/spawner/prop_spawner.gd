@@ -8,6 +8,17 @@ var _objects: Dictionary[String, Array] = {}
 @export var section_icon_max_width: int = 24
 @export var object_preview: PackedScene
 @export var container: Control
+@export var inventory_checkbox: CheckBox
+@export var quantity_line_edit: LineEdit
+
+func is_inventory_checkbox() -> bool:
+	return inventory_checkbox.button_pressed
+
+func get_quantity_line_edit() -> int:
+	var quantity: int = int(quantity_line_edit.text)
+	if quantity < 1:
+		quantity = 1
+	return quantity
 
 func _ready() -> void:
 	clear_objects()
@@ -45,5 +56,6 @@ func _on_tree_item_selected() -> void:
 	for item in items:
 		var ui: Control = object_preview.instantiate()
 		ui.resource = item
+		ui.spawner = self
 		container.add_child(ui)
 	

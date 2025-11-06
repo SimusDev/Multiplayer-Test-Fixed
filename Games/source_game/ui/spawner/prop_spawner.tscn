@@ -9,13 +9,13 @@
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_n8odq"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_nmxke"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ts0eh"]
+[sub_resource type="LabelSettings" id="LabelSettings_6x7ak"]
 font = ExtResource("4_5jgjh")
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="prop_spawner" type="Control" node_paths=PackedStringArray("tree", "container")]
+[node name="prop_spawner" type="Control" node_paths=PackedStringArray("tree", "container", "inventory_checkbox", "quantity_line_edit")]
 custom_minimum_size = Vector2(910, 652)
 layout_mode = 3
 anchors_preset = 8
@@ -33,6 +33,8 @@ script = ExtResource("1_wi4bw")
 tree = NodePath("content/Tree")
 object_preview = ExtResource("2_6x7ak")
 container = NodePath("content/ScrollContainer/GridContainer")
+inventory_checkbox = NodePath("content/inventory_checkbox")
+quantity_line_edit = NodePath("content/quanity")
 
 [node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_1fhlp")
@@ -76,7 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Spawner Menu"
-label_settings = SubResource("LabelSettings_ts0eh")
+label_settings = SubResource("LabelSettings_6x7ak")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_n8odq")
@@ -109,6 +111,35 @@ anchor_bottom = 0.989333
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="inventory_checkbox" type="CheckBox" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015000001
+anchor_top = -0.124000005
+anchor_right = 0.261
+anchor_bottom = -0.046000004
+offset_left = -0.270113
+offset_top = 0.049850464
+offset_right = 0.24221802
+offset_bottom = -0.17737961
+theme_override_font_sizes/font_size = 32
+text = "INVENTORY"
+
+[node name="quanity" type="LineEdit" parent="content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.268
+anchor_top = -0.126
+anchor_right = 0.527
+anchor_bottom = -0.048
+offset_left = -0.0033569336
+offset_top = 0.10695648
+offset_right = -0.08996582
+offset_bottom = -0.12027359
+theme_override_font_sizes/font_size = 32
+placeholder_text = "QUANTITY"
+alignment = 1
 
 [node name="border" type="ReferenceRect" parent="content"]
 layout_mode = 1
