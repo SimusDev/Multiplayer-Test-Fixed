@@ -159,3 +159,9 @@ func is_destroyable() -> bool:
 
 func get_node_script() -> GDScript:
 	return SourceObject
+
+func _instantiated(node: Node) -> void:
+	pass
+
+func _itemstack_instantiated(stack: SourceItemStack) -> void:
+	pass

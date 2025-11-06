@@ -183,7 +183,7 @@ graph_offset = Vector2(70, -31)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_neb1h"]
 
 [resource]
-graph_offset = Vector2(-341.504, 135.411)
+graph_offset = Vector2(-213.78575, 126.37092)
 nodes/output/position = Vector2(844.444, 133.333)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_neb1h")
 nodes/Add2/position = Vector2(533.333, 111.111)

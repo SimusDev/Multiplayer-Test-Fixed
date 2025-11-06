@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://b440aconnxv71"]
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=13 format=3 uid="uid://b440aconnxv71"]
 
 [ext_resource type="Texture2D" uid="uid://v5vf8ylsfpjt" path="res://Games/source_game/items/AA2308KM/icon.png" id="1_l8wlm"]
+[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_u64gf"]
 [ext_resource type="PackedScene" uid="uid://dsm8t234ot3lx" path="res://Games/source_game/items/AA2308KM/world.tscn" id="2_j2l07"]
-[ext_resource type="Script" uid="uid://fiotmdlqxei6" path="res://Games/source_game/components/weapons/r_weapon_object.gd" id="3_u64gf"]
+[ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="2_xnmxq"]
+[ext_resource type="Script" uid="uid://d2g7gec3gvwpf" path="res://Games/source_game/components/weapons/r_weapon_projectile_object.gd" id="3_l8wlm"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_sx4ob"]
 [ext_resource type="PackedScene" uid="uid://bokaet0mksmo3" path="res://Games/source_game/items/AA2308KM/aa_2308_km.tscn" id="5_5cwov"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_l8wlm"]
@@ -27,7 +29,9 @@ world = SubResource("Resource_u64gf")
 metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
-script = ExtResource("3_u64gf")
+script = ExtResource("3_l8wlm")
+max_ammo = 8
+ammo = Array[ExtResource("1_u64gf")]([ExtResource("2_xnmxq")])
 icon = ExtResource("1_l8wlm")
 description = "PEW PEW"
 prefab = ExtResource("2_j2l07")

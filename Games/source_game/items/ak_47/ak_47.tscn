@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dmei16iy8t5b7" path="res://Games/source_game/items/ak_47/sound/fire_0_meters.wav" id="2_4we86"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_36t2h"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_dnby3"]
-[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_source_item.gd" id="2_ttngd"]
 [ext_resource type="Texture2D" uid="uid://u5bct4tcrpgd" path="res://Games/source_game/game/3dmodels/ak_47/textures/AK_mat_baseColor.png" id="3_4we86"]
 [ext_resource type="PackedScene" uid="uid://da0tqvpik8x1f" path="res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn" id="3_cpfqa"]
 [ext_resource type="AudioStream" uid="uid://dioa2opbycskx" path="res://Games/source_game/items/ak_47/sound/fire_5_meters.wav" id="3_dnby3"]
@@ -20,8 +20,6 @@
 [sub_resource type="Resource" id="Resource_qx83c"]
 script = ExtResource("2_dnby3")
 damage = 55.0
-mass = 9.5
-bleed_value = 1.0
 metadata/_custom_type_script = "uid://4iri4kw12vgx"
 
 [sub_resource type="Resource" id="Resource_36t2h"]
@@ -531,7 +529,7 @@ skeleton = NodePath("")
 transform = Transform3D(-11.8364, 79.6843, 59.2479, -98.8951, -4.09718, -14.2466, -8.9248, -60.2796, 79.2889, -3.48138, -3.15396, -19.4263)
 
 [node name="right_hand_pos" type="Marker3D" parent="root"]
-transform = Transform3D(12.8561, 7.55239, 98.8821, -94.2095, 32.071, 9.7991, -30.9724, -94.4163, 11.2381, 2.80821, -9.4851, 24.6349)
+transform = Transform3D(12.856124, 7.5523906, 98.882095, -94.20951, 32.070995, 9.799104, -30.972382, -94.416306, 11.238135, 2.80821, -9.4851, 24.6349)
 
 [node name="bolt_action_sound" type="AudioStreamPlayer3D" parent="root"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)

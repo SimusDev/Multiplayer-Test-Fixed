@@ -29,6 +29,9 @@ var inventory: SourceInventory
 
 func _ready() -> void:
 	stack = SD_Components.find_first(self, SourceItemStack)
+	if stack:
+		stack.item = self
+	
 	current = true
 	SD_Network.register_object(self)
 	SD_Network.register_functions(

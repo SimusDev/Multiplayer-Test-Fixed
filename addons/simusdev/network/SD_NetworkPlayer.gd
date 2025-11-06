@@ -9,6 +9,38 @@ var _server_data: Dictionary = {}
 
 signal serverdata_changed(key: String, value: Variant)
 
+var _rights: PackedStringArray = []
+
+func _ready() -> void:
+	SD_Network.register_object(self)
+	#SD_Network.register_functions()
+	
+	process_mode = Node.PROCESS_MODE_DISABLED
+	#set_process_internal(false)
+	#set_physics_process_internal(false)
+	
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
+	
+	set_process_shortcut_input(false)
+	set_process_unhandled_input(false)
+	set_process_unhandled_key_input(false)
+	
+
+func set_rights(rights: PackedStringArray) -> void:
+	if SD_Network.is_server():
+		SD_Network.call_func(_set_rights_local, [rights])
+
+func _set_rights_local(rights: PackedStringArray) -> void:
+	_server_data.set("rights", rights)
+
+func get_rights() -> PackedStringArray:
+	return _server_data.get_or_add("rights", [] as PackedStringArray) as PackedStringArray
+
+func has_right(right: String) -> bool:
+	return get_rights().has(right)
+
 func serverdata_set_value(key: Variant, value: Variant) -> void:
 	if SD_Network.is_server():
 		SD_Network.call_func_on_server(_s_serverdata_set_value, [key, value])

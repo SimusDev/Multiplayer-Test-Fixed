@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_8opot")
-visible = true
 is_favorite = true
 scene_path = "uid://u3r0rjbc5tny"
 code = "source_game"

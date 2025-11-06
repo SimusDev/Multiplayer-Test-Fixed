@@ -21,5 +21,11 @@ cache = SubResource("Resource_me2gm")
 [resource]
 script = ExtResource("5")
 developer = "zxcvlxd and simusdev "
+game = Dictionary[String, Variant]({
+"minimize_feature": false,
+"minimize_feature_on_release": false,
+"mute_audio_when_minimized": true,
+"pause_when_minimized": false
+})
 network = SubResource("Resource_m7xkw")
 multiplayer = SubResource("Resource_2wia1")

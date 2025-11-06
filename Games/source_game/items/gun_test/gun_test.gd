@@ -40,7 +40,15 @@ func _ready() -> void:
 	
 	reset_spread_timer.timeout.connect(reset_spread)
 
+func use() -> void:
+	if stack.get_durability() <= 0:
+		pass
+	
+	super()
+
 func fire():
+	
+	#print("goida")
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
 	pre_event.weapon = self
@@ -58,6 +66,8 @@ func fire():
 	event.bullet = bullet
 	event.weapon = self
 	event.publish()
+	
+	stack.set_durability(stack.get_durability() - 1)
 
 func play_fire_sound():
 	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)

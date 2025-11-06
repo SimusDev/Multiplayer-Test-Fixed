@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=4 format=3 uid="uid://lvofy3rii0so"]
+
+[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_2gpvd"]
+[ext_resource type="Texture2D" uid="uid://cxubks1abq5y" path="res://Games/source_game/objects/weapons/ammo/pistol.png" id="1_45tmx"]
+[ext_resource type="PackedScene" uid="uid://8t1ci470aueq" path="res://Games/source_game/objects/weapons/ammo/ammo.tscn" id="1_ysl2x"]
+
+[resource]
+script = ExtResource("1_2gpvd")
+icon = ExtResource("1_45tmx")
+prefab = ExtResource("1_ysl2x")
+metadata/_custom_type_script = "uid://dnds3ahg2iktc"

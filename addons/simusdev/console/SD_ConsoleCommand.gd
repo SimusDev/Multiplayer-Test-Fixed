@@ -22,8 +22,25 @@ var _number_max_value: float = 0
 
 var _deinited: bool = false
 
+var _networked: bool = false
+var _server_authorative: bool = true
+
 signal updated()
 signal executed()
+
+func is_networked() -> bool:
+	return _networked
+
+func set_networked(value: bool = true, server_authorative: bool = true) -> SD_ConsoleCommand:
+	_networked = value
+	_server_authorative = server_authorative
+	
+	if value:
+		SD_Network.singleton.net_console.register_command(self)
+	else:
+		SD_Network.singleton.net_console.unregister_command(self)
+	
+	return self
 
 func get_console() -> SD_Console:
 	return _console
@@ -116,6 +133,9 @@ func execute(args: Array[String] = []) -> void:
 		set_value(value)
 	
 	executed.emit()
+	
+	if _networked:
+		SD_Network.singleton.net_console.execute_command(self, args, true)
 
 func is_private() -> bool:
 	return _private

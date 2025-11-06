@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=11 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://4ej3ygj2srma" path="res://Games/source_game/ui/spawner/prop_spawner.tscn" id="4_henmv"]
 [ext_resource type="PackedScene" uid="uid://dclxv5v2xeltv" path="res://Games/source_game/ui/inventory/inventory.tscn" id="7_henmv"]
 [ext_resource type="Texture2D" uid="uid://d4j3kgyo2i0nn" path="res://textures/icons/microphone.png" id="9_1ipc1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_henmv"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxxcs"]
 outline_size = 3
@@ -71,6 +74,24 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -410.0
+offset_top = -41.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "time"
+label_settings = SubResource("LabelSettings_henmv")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="nickname" type="Label" parent="."]
 layout_mode = 0
 anchor_left = 0.00703125
@@ -112,3 +133,9 @@ anchor_bottom = 1.04762
 texture = ExtResource("9_1ipc1")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="every_half_sec" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="every_half_sec" to="." method="_on_every_half_sec_timeout"]

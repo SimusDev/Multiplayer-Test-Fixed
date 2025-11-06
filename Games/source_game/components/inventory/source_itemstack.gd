@@ -10,6 +10,7 @@ class_name SourceItemStack
 @export var object: R_SourceWorldObject
 var _inventory: SourceInventory
 var _slot: SourceInventorySlot
+var item: SourceItem
 
 var _last_path: NodePath
 
@@ -30,6 +31,8 @@ func _data_changed_(key: Variant, value: Variant) -> void:
 		"quantity":
 			quantity_changed.emit()
 			get_slot().update()
+			if value <= 0:
+				_inventory.remove_item(self)
 		"durability":
 			durability_changed.emit()
 			get_slot().update()
@@ -87,6 +90,8 @@ func _ready() -> void:
 	
 	_item_registration()
 	
+	if object:
+		object._itemstack_instantiated(self)
 
 
 func _server_item_initialization() -> void:

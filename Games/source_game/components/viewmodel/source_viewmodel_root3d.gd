@@ -22,6 +22,10 @@ class_name SourceViewModelRoot3D
 @export var placeholder: R_SourceViewModel
 @export var view_node: Node = null
 
+signal on_update()
+
+static var local: SourceViewModelRoot3D
+
 func get_root_node() -> Node:
 	if root_node:
 		return root_node
@@ -49,8 +53,16 @@ func _ready() -> void:
 	if not inventory:
 		return
 	
+	if type == R_SourceViewModel.TYPE.VIEW:
+		if SourcePlayable.find_above(self) or root_node is SourcePlayer:
+			if SD_Network.is_authority(self):
+				local = self
+	
 	if !inventory.is_initialized:
 		await inventory.initialized
+	
+
+	
 	
 	
 	_slot_selected(inventory.get_selected_slot())
@@ -85,6 +97,8 @@ func update_viewmodel() -> void:
 	if not viewmodel:
 		if is_instance_valid(view_node):
 			SD_Nodes.fast_queue_free(view_node)
+			view_node = null
+			on_update.emit()
 		return
 	
 	var prefab: PackedScene = null
@@ -138,6 +152,8 @@ func update_viewmodel() -> void:
 	if Engine.is_editor_hint():
 		if get_tree():
 			view_node.owner = get_tree().edited_scene_root
+	
+	on_update.emit()
 
 func set_viewmodel(resource: R_SourceViewModel) -> void:
 	if !editor and Engine.is_editor_hint():
