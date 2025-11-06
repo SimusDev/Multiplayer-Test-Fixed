@@ -11,45 +11,23 @@
 script = ExtResource("3_oynvx")
 properties = PackedStringArray("rotation", "position")
 interpolation_enabled = true
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("..")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_eokyo"]
 script = ExtResource("3_oynvx")
 properties = PackedStringArray("rotation")
 interpolation_enabled = true
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("../SourceCamera")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_sqnm3"]
 script = ExtResource("3_oynvx")
 properties = PackedStringArray("velocity")
-interpolation_enabled = false
-interpolation_speed = 32.0
-float_snap = 0.0
 node_path = NodePath("..")
-channels = Array[String](["main"])
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 1
 sync = 0
-callmode = 1
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
 [sub_resource type="Resource" id="Resource_6p28h"]

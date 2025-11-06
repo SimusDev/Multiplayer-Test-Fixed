@@ -1,11 +1,23 @@
-[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=3 format=3 uid="uid://dbyrkd4pdsous"]
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=11 format=3 uid="uid://dbyrkd4pdsous"]
 
 [ext_resource type="Texture2D" uid="uid://catj88un445dd" path="res://textures/general/grass.jpg" id="1_xsof2"]
 [ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="2_wcwhx"]
+[ext_resource type="AudioStream" uid="uid://dr0btxfhdqy0j" path="res://sounds/hl2/physics/surfaces/sand_impact_bullet1.wav" id="2_y0bl4"]
+[ext_resource type="AudioStream" uid="uid://j7yob3t54nsw" path="res://sounds/hl2/physics/surfaces/sand_impact_bullet2.wav" id="3_o6l8k"]
+[ext_resource type="AudioStream" uid="uid://bqmfxyf8re1kk" path="res://sounds/hl2/physics/surfaces/sand_impact_bullet3.wav" id="4_8gqjd"]
+[ext_resource type="AudioStream" uid="uid://cpxm20uhhupmk" path="res://sounds/hl2/physics/surfaces/sand_impact_bullet4.wav" id="5_dnspk"]
+[ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="6_kayfi"]
+[ext_resource type="AudioStream" uid="uid://crcncqk51g4n4" path="res://sounds/hl2/player/footsteps/grass2.wav" id="7_c74ib"]
+[ext_resource type="AudioStream" uid="uid://crt8a5bvxb11o" path="res://sounds/hl2/player/footsteps/grass3.wav" id="8_wth4y"]
+[ext_resource type="AudioStream" uid="uid://bnqo3ov7nkks0" path="res://sounds/hl2/player/footsteps/grass4.wav" id="9_g3qwh"]
 
 [resource]
 albedo_texture = ExtResource("1_xsof2")
 uv1_triplanar = true
 script = ExtResource("2_wcwhx")
-type = 3
+type = "grass"
+footsteps_audio = Array[AudioStream]([ExtResource("6_kayfi"), ExtResource("7_c74ib"), ExtResource("8_wth4y"), ExtResource("9_g3qwh")])
+soft_impact_audio = Array[AudioStream]([ExtResource("2_y0bl4"), ExtResource("3_o6l8k"), ExtResource("4_8gqjd"), ExtResource("5_dnspk")])
+hard_impact_audio = Array[AudioStream]([ExtResource("2_y0bl4"), ExtResource("3_o6l8k"), ExtResource("4_8gqjd"), ExtResource("5_dnspk")])
+bullet_impact_audio = Array[AudioStream]([ExtResource("2_y0bl4"), ExtResource("3_o6l8k"), ExtResource("4_8gqjd"), ExtResource("5_dnspk")])
 metadata/_custom_type_script = "uid://dau2vuhctib65"

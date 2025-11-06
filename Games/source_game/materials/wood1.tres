@@ -17,7 +17,7 @@
 albedo_texture = ExtResource("1_fcmg0")
 uv1_triplanar = true
 script = ExtResource("1_gyl2r")
-type = 1
+type = "wood"
 footsteps_audio = Array[AudioStream]([ExtResource("1_mk1wm"), ExtResource("2_frmmg"), ExtResource("3_vw12n"), ExtResource("4_u3drk")])
 soft_impact_audio = Array[AudioStream]([ExtResource("9_se4u5"), ExtResource("10_j6f38"), ExtResource("11_tdro1")])
 hard_impact_audio = Array[AudioStream]([ExtResource("5_b4li0"), ExtResource("6_j2b2b"), ExtResource("7_xj1wu")])

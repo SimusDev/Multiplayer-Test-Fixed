@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceSound" load_steps=10 format=3 uid="uid://ci4xtloej0mbn"]
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=9 format=3 uid="uid://ci4xtloej0mbn"]
 
 [ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_r0yj0"]
 [ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_4l3bj"]
@@ -8,29 +8,24 @@
 
 [sub_resource type="Resource" id="Resource_knwtg"]
 script = ExtResource("2_4l3bj")
-max_distance = 5.0
+max_distance = 25.0
 streams = Array[AudioStream]([ExtResource("3_c11ct")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [sub_resource type="Resource" id="Resource_wptv8"]
 script = ExtResource("2_4l3bj")
-max_distance = 25.0
+max_distance = 280.0
 streams = Array[AudioStream]([ExtResource("4_guvlg")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [sub_resource type="Resource" id="Resource_yakuj"]
 script = ExtResource("2_4l3bj")
-max_distance = 50.0
-streams = Array[AudioStream]([ExtResource("4_guvlg")])
-metadata/_custom_type_script = "uid://us246ujqip05"
-
-[sub_resource type="Resource" id="Resource_oyg72"]
-script = ExtResource("2_4l3bj")
+min_distance_to_play = 50.0
 max_distance = 500.0
-streams = Array[AudioStream]([ExtResource("5_vtep1")])
+streams = Array[AudioStream]([ExtResource("4_guvlg"), ExtResource("5_vtep1")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [resource]
 script = ExtResource("1_r0yj0")
-sources = Array[ExtResource("2_4l3bj")]([SubResource("Resource_knwtg"), SubResource("Resource_wptv8"), SubResource("Resource_yakuj"), SubResource("Resource_oyg72")])
+sources = Array[ExtResource("2_4l3bj")]([SubResource("Resource_knwtg"), SubResource("Resource_wptv8"), SubResource("Resource_yakuj")])
 metadata/_custom_type_script = "uid://b4qsbiksbfk64"

@@ -9,7 +9,7 @@ enum MaterialTypes {
 	
 }
 
-@export var type:MaterialTypes
+@export var type:String
 @export var footsteps_audio:Array[AudioStream]
 @export var soft_impact_audio:Array[AudioStream]
 @export var hard_impact_audio:Array[AudioStream]

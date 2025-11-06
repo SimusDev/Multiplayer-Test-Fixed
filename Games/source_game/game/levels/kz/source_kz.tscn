@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=11 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
-[ext_resource type="Texture2D" uid="uid://85tx6torxqp4" path="res://addons/simusdev/Game/icons/ui_icon_exit.png" id="4_rnwnd"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
@@ -13,14 +12,6 @@
 [sub_resource type="NavigationMesh" id="NavigationMesh_17bi3"]
 vertices = PackedVector3Array(-21.25, 0, -64.350006, -21.5, 0, -75.100006, -49.5, 0, -75.100006, -49.5, 0, -8.600006, -20.5, 0, -8.600006, -12.25, 0, -64.850006, -12, 0, -62.600006, -5.5, 0, -62.600006, -5.5, 0, -75.100006, -21, 0, -64.850006, -4.5, 1, 4.399994, 4.5, 1, 4.399994, 4.75, 1, -8.350006, 4.75, 1, -75.100006, -4.5, 1, -75.100006, 5.75, 0, -28.850006, 16, 0, -28.600006, 16.25, 0, -30.350006, 5.75, 0, -75.100006, 18, 0, -30.350006, 18.25, 0, -28.600006, 49.5, 0, -28.850006, 49.5, 0, -75.100006, -19.5, 1, -8.600006, -12.25, 1, -8.600006, -13, 1, -63.850006, -20.25, 1, -63.850006, -11.25, 0, -8.600006, -5.5, 0, -8.600006, 5.75, 0, -23.350006, 16, 0, -23.600006, 18.25, 0, -22.100006, 17.25, 0, -21.850006, 17.25, 0, -8.600006, 49.5, 0, -8.600006, 16, 0, -22.100006, 5.75, 0, -8.600006)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 0, 1), PackedInt32Array(9, 1, 5), PackedInt32Array(5, 1, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 7), PackedInt32Array(7, 27, 6), PackedInt32Array(30, 29, 16), PackedInt32Array(16, 29, 15), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 21), PackedInt32Array(31, 20, 21), PackedInt32Array(29, 30, 35), PackedInt32Array(35, 32, 29), PackedInt32Array(29, 32, 33), PackedInt32Array(29, 33, 36)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
-albedo_texture = ExtResource("4_rnwnd")
-metallic_specular = 0.16
-emission_operator = 1
-normal_enabled = true
-normal_scale = 1.5
-uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1g7y"]
 transparency = 1
@@ -52,24 +43,25 @@ script = ExtResource("17_y1g7y")
 navigation_mesh = SubResource("NavigationMesh_17bi3")
 
 [node name="floor" type="CSGBox3D" parent="NavigationRegion3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.500002)
 use_collision = true
-size = Vector3(10, 1, 13.2)
+size = Vector3(10, 1, 69)
 material = ExtResource("4_bge2v")
 
-[node name="floor2" type="CSGBox3D" parent="NavigationRegion3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.9)
-material_override = ExtResource("5_fpuye")
+[node name="floor3" type="CSGBox3D" parent="NavigationRegion3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -41.9)
+material_override = ExtResource("8_eqep5")
 use_collision = true
-size = Vector3(10, 1, 67.4)
-material = ExtResource("4_bge2v")
+size = Vector3(100, 1, 67.4)
+material = ExtResource("8_eqep5")
 
-[node name="250units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 29.707401)
+[node name="250units" type="CSGBox3D" parent="NavigationRegion3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12.1926)
 use_collision = true
 size = Vector3(8, 1, 8)
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/250units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/250units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -79,13 +71,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="255units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1, 0, 21.7)
+[node name="255units" type="CSGBox3D" parent="NavigationRegion3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1, 0, -20.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/255units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/255units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -95,13 +87,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="260units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2, 0, 13.7)
+[node name="260units" type="CSGBox3D" parent="NavigationRegion3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2, 0, -28.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/260units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/260units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -111,13 +103,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="265units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3, 0, 5.7)
+[node name="265units" type="CSGBox3D" parent="NavigationRegion3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3, 0, -36.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/265units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/265units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -128,13 +120,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="270units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -2.3)
+[node name="270units" type="CSGBox3D" parent="NavigationRegion3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -44.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/270units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/270units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -144,13 +136,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="275units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -10.3)
+[node name="275units" type="CSGBox3D" parent="NavigationRegion3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -52.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/275units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/275units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -160,13 +152,13 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="280units" type="CSGBox3D" parent="NavigationRegion3D/floor2" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6, 0, -18.3)
+[node name="280units" type="CSGBox3D" parent="NavigationRegion3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6, 0, -60.2)
 use_collision = true
 size = Vector3(8, 1, 8)
-material = SubResource("StandardMaterial3D_gr3v1")
+material = ExtResource("5_fpuye")
 
-[node name="Label3D" type="Label3D" parent="NavigationRegion3D/floor2/280units" index="0"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/280units" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00217, 0, 0)
 pixel_size = 0.042
 shaded = true
@@ -176,14 +168,7 @@ font = ExtResource("8_17bi3")
 font_size = 20
 outline_size = 4
 
-[node name="floor3" type="CSGBox3D" parent="NavigationRegion3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -41.9)
-material_override = ExtResource("8_eqep5")
-use_collision = true
-size = Vector3(100, 1, 67.4)
-material = ExtResource("4_bge2v")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" index="3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1, 2.7, -26.184)
 use_collision = true
 size = Vector3(1, 6.4, 7.3)
