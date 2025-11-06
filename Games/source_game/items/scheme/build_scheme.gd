@@ -51,7 +51,8 @@ func _process(_delta: float) -> void:
 	update_ghost_building()
 
 func rotate_ghost_building() -> void:
-	ghost_building.rotation_degrees.y += 90
+	if is_instance_valid(ghost_building):
+		ghost_building.rotation_degrees.y += 90
 
 func can_place() -> bool:
 	var collider = item.player.interact_raycast.get_collider()
