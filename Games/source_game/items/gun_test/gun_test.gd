@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func use() -> void:
 	if stack.get_durability() <= 0:
-		return
+		pass
 	
 	super()
 
