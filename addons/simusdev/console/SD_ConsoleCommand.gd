@@ -31,7 +31,7 @@ signal executed()
 func is_networked() -> bool:
 	return _networked
 
-func set_networked(value: bool = true, server_authorative: bool = true) -> void:
+func set_networked(value: bool = true, server_authorative: bool = true) -> SD_ConsoleCommand:
 	_networked = value
 	_server_authorative = server_authorative
 	
@@ -40,6 +40,7 @@ func set_networked(value: bool = true, server_authorative: bool = true) -> void:
 	else:
 		SD_Network.singleton.net_console.unregister_command(self)
 	
+	return self
 
 func get_console() -> SD_Console:
 	return _console
