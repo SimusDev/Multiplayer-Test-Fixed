@@ -24,16 +24,24 @@ var total_distance:float = 0.0
 var player:Node3D
 
 var bullet_resource:R_SourceBullet
+var ammo: R_SourceAmmoObject
 
 var bounces_left:int = 1
 
 func _ready() -> void:
 	bullet_fly_direction = global_transform.basis.z
 	prev_pos = global_transform.origin
+	print(ammo)
 	get_tree().create_timer(life_time).timeout.connect(destroy)
 
 func destroy() -> void:
+	if SD_Network.is_server():
+		if ammo.explode:
+			
+			SourceExplosion.create_at(self).set_size(ammo.damage * 0.04).explode()
+		
 	queue_free()
+
 
 func _physics_process(delta: float) -> void:
 	var new_pos:Vector3 = global_transform.origin - (bullet_fly_direction * bullet_speed * delta)
@@ -92,6 +100,8 @@ func spawn_bullethole(result:Dictionary, hole:PackedScene, hole_life_time:float 
 func free_bullet(_bullet):
 	if is_instance_valid(_bullet):
 		_bullet.queue_free()
+	
+
 
 
 

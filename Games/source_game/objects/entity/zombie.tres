@@ -8,10 +8,6 @@
 [resource]
 script = ExtResource("3_ia3c0")
 ragdoll = ExtResource("3_idfex")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_ia3c0")
-name = ""
-description = ""
 prefab = ExtResource("1_jaaph")
 metadata/_custom_type_script = "uid://1rarld6gcrwq"
