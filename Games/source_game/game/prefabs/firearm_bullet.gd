@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	var query = PhysicsRayQueryParameters3D.create(prev_pos, new_pos)
 
 	query.collide_with_areas = true
-	query.set_collision_mask()
+	#query.set_collision_mask()
 
 	if is_instance_valid(player):
 		if is_hit:
