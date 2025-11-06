@@ -57,9 +57,9 @@ func use() -> void:
 	
 	super()
 
+
+
 func fire():
-	
-	#print("goida")
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
 	pre_event.weapon = self

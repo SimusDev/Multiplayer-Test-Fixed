@@ -10,6 +10,7 @@ signal current_target_changed
 @export var move_speed:float = 3.0
 @export var rotation_speed:float = 5.0
 @export var attack_range:float = 2.5
+
 @export var tick_rate:float = 32.0
 var tick_timer:Timer = Timer.new()
 
@@ -99,12 +100,12 @@ func _physics_process(delta: float) -> void:
 	
 	if is_instance_valid(current_target):
 		chase_target()
+		
+		if enemy.global_position.distance_to(current_target.global_position  ) < attack_range:
+			navigation_agent.target_position = enemy.global_position
+			var state_machine:SD_NodeStateMachine = enemy.state_machine as SD_NodeStateMachine
+			enemy.state_machine.switch_by_name("attack")
 	else:
 		stop_chase()
-	
-	if enemy.global_position.distance_to(navigation_agent.target_position) < attack_range:
-		var state_machine:SD_NodeStateMachine = enemy.state_machine as SD_NodeStateMachine
-		if not state_machine._current_state.name == "attack":
-			enemy.state_machine.switch_by_name("attack")
 	
 	enemy.move_and_slide()

@@ -9,14 +9,11 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	state_machine.state_enter.connect(_on_state_machine_state_enter)
-	model.attack.connect(_on_attack)
+	#model.attack.connect(_on_attack)
 	model.footstep.connect(_on_footstep)
 
 func _on_footstep():
 	footsteps._do_footstep()
-
-func _on_attack():
-	ai.attack_current_target()
 
 func _process(delta: float) -> void:
 	set_tree_blend()
@@ -26,10 +23,10 @@ func _process(delta: float) -> void:
 			velocity.y -= 10 * delta
 		
 		if is_instance_valid(state_machine._current_state):
-			if velocity:
+			if not velocity == Vector3.ZERO:
 				state_machine.switch_by_name("move")
-			else:
-				state_machine.switch_by_name("idle")
+			#else:
+				#state_machine.switch_by_name("idle")
 
 
 func set_tree_blend():

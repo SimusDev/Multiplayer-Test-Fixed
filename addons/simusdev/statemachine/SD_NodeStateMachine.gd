@@ -70,17 +70,20 @@ func switch(to_state: SD_State) -> void:
 	if _current_state == to_state:
 		return
 	
+	print("SEXSEXSEX %s" % [to_state.name])
+	
 	if to_state:
 		to_state.switch()
 
-func switch_by_name(state_name: String) -> SD_State:
+
+func switch_by_name(state_name: String) -> SD_State: 
 	var state: SD_State = get_state_by_name(state_name)
 	switch(state)
 	return state
 
 func get_state_by_name(state_name: String) -> SD_State:
 	return _states.get(state_name, null)
-
+	
 func _process(delta: float) -> void:
 	if _current_state:
 		_current_state._update(delta)
