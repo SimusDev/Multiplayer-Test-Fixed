@@ -20,6 +20,8 @@ var ghost_building:CSGMesh3D = null
 func _ready() -> void:
 	building_change.connect(on_building_change)
 	item.tree_exited.connect(remove_ghost_building)
+	SD_Network.register_object(self)
+	SD_Network.register_function(place)
 
 func set_building(to:R_SourceBuilding) -> void:
 	building = to
