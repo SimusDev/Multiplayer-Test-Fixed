@@ -190,11 +190,13 @@ func _action_request(item: SourceItemStack, action_class: SourceItemAction) -> v
 
 func _do_action_net(item: SourceItemStack, serialized: Variant) -> void:
 	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized)
-	action_class._action(item)
+	if action_class:
+		action_class._action(item)
 
 func _do_action_local(item: SourceItemStack, serialized: Variant) -> void:
 	var action_class: SourceItemAction = SourceNetwork.deserialize_resource(serialized)
-	action_class._action_local(item)
+	if action_class:
+		action_class._action_local(item)
 
 
 
