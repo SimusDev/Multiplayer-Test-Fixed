@@ -2,7 +2,9 @@ extends R_SourceWorldObject
 class_name R_SourceAmmoObject
 
 @export var damage: float = 10
+
 @export var explode: bool = false
+@export var explosion_damage:float = 40.0
 
 func get_node_script() -> GDScript:
 	return SourceProp

@@ -6,11 +6,8 @@
 
 [resource]
 script = ExtResource("2_7ufq7")
-pick_on_build = true
-custom_section = ""
-custom_id = ""
+type = 1
 icon = ExtResource("1_7ufq7")
 name = "source_wall"
-description = ""
 prefab = ExtResource("1_2oevw")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

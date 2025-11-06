@@ -25,8 +25,6 @@ var ghost_model_offset:Vector3 = Vector3.ZERO
 var snapping:bool = false
 
 func _ready() -> void:
-	print("SEEEEEX:::::::: %s" % [allowed_buildings])
-	
 	item.on_use.connect(_on_item_use)
 	
 	SD_Network.register_object(self)

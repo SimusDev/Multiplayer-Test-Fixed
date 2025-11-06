@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_mml6v")
+type = 2
 name = "source_foundation"
 prefab = ExtResource("1_56buv")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

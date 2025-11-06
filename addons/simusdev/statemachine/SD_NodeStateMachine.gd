@@ -70,8 +70,6 @@ func switch(to_state: SD_State) -> void:
 	if _current_state == to_state:
 		return
 	
-	print("SEXSEXSEX %s" % [to_state.name])
-	
 	if to_state:
 		to_state.switch()
 

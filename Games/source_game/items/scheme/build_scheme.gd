@@ -1,23 +1,123 @@
 class_name BuildScheme extends Node
 
-@export var ui_interface_comp:C_UIInterfaceComponent
+signal building_change
 
-var building:R_SourceBuilding
+@export var item:SourceItem
+
+@export var ui_interface_comp:C_UIInterfaceComponent
+@export_group("Materials")
+@export var correct_ghost_material:StandardMaterial3D
+@export var wrong_ghost_material:StandardMaterial3D
+@export_group("Settings")
+@export var ghost_section_name:String = "ghost_buildings"
+@export var buildings_section_name:String = "buildings"
+
+
+var building:R_SourceBuilding : set = set_building
+var ghost_building:CSGMesh3D = null
+
+
+func _ready() -> void:
+	building_change.connect(on_building_change)
+	item.tree_exited.connect(remove_ghost_building)
+
+func set_building(to:R_SourceBuilding) -> void:
+	building = to
+	building_change.emit()
+
 
 func _input(_event: InputEvent) -> void:
 	if not SD_Network.is_authority(self):
 		return
 	
-	if Input.is_action_just_pressed("rmb"):
+	if Input.is_action_just_pressed("lmb"):
+		if SimusDev.ui.get_active_interfaces().is_empty():
+			place()
+	elif Input.is_action_just_pressed("rmb"):
 		open_ui()
 	elif Input.is_action_just_released("rmb"):
 		close_ui()
+	elif Input.is_action_just_pressed("rotate_ghost_building"):
+		rotate_ghost_building()
 
 func _process(_delta: float) -> void:
-	if building:
-		$"../model/mesh/Label3D".text = building.name
+	if not SD_Network.is_authority(self):
+		return
+	
+	update_ghost_building()
+
+func rotate_ghost_building() -> void:
+	ghost_building.rotation_degrees.y += 90
+
+func can_place() -> bool:
+	var collider = item.player.interact_raycast.get_collider()
+	var collision_point = item.player.interact_raycast.get_collision_point()
+	
+	if collider is BuildSnapPoint:
+		if collider.busy:
+			return false
+			
+	
+	return true
+
+func on_building_change() -> void:
+	add_ghost_building()
+
+func remove_ghost_building() -> void:
+	if is_instance_valid(ghost_building):
+		ghost_building.queue_free()
+	ghost_building = null
+
+func add_ghost_building() -> void:
+	remove_ghost_building()
+	if not building:
+		return
+	
+	var section:SourceLevelSection3D = SourceLevelSection3D.get_by_name(buildings_section_name)
+	var new_building:SourceBuilding = building.prefab.instantiate()
+	ghost_building = new_building.model.duplicate()
+	
+	section.add_child(ghost_building)
+
+func update_ghost_building() -> void:
+	if not ghost_building or (not is_instance_valid(ghost_building)):
+		return
+	
+	var collider = item.player.interact_raycast.get_collider()
+	var collision_point = item.player.interact_raycast.get_collision_point()
+	
+	ghost_building.visible = not collider == null
+	
+	if can_place():
+		ghost_building.material = correct_ghost_material
 	else:
-		$"../model/mesh/Label3D".text = ""
+		ghost_building.material = wrong_ghost_material
+	
+	if collider:
+		if collider is BuildSnapPoint:
+			if not collider.busy:
+				if building.type in collider.allowed_types:
+					ghost_building.global_position = collider.point.global_position
+					return
+		ghost_building.global_position = collision_point
+
+
+func place() -> void:
+	if not ghost_building or (not is_instance_valid(ghost_building)):
+		return
+	
+	var collider = item.player.interact_raycast.get_collider()
+	
+	var section = SourceLevelSection3D.get_by_name(buildings_section_name)
+	var new_building:SourceBuilding = building.prefab.instantiate()
+	section.add_child(new_building)
+	
+	if collider:
+		if collider is BuildSnapPoint:
+			collider.set_object(new_building)
+			collider.busy = true
+	
+	new_building.global_transform = ghost_building.global_transform
 
 func open_ui() -> void:
 	ui_interface_comp.open()

@@ -26,6 +26,7 @@ var player:Node3D
 var bullet_resource:R_SourceBullet
 var ammo: R_SourceAmmoObject
 
+
 var bounces_left:int = 1
 
 func _ready() -> void:
@@ -35,11 +36,7 @@ func _ready() -> void:
 	get_tree().create_timer(life_time).timeout.connect(destroy)
 
 func destroy() -> void:
-	if SD_Network.is_server():
-		if ammo.explode:
-			
-			SourceExplosion.create_at(self).set_size(ammo.damage * 0.04).explode()
-		
+	
 	queue_free()
 
 
@@ -52,7 +49,10 @@ func _physics_process(delta: float) -> void:
 	global_transform.origin = new_pos
 	
 	var query = PhysicsRayQueryParameters3D.create(prev_pos, new_pos)
+
 	query.collide_with_areas = true
+	query.set_collision_mask()
+
 	if is_instance_valid(player):
 		if is_hit:
 			query.exclude = [self]
@@ -63,10 +63,19 @@ func _physics_process(delta: float) -> void:
 	if result:
 		is_hit = true
 		new_pos = result.position
+		
 		if result.collider.has_method("apply_damage"):
 			result.collider.apply_damage(bullet_resource.damage)
 			can_bounce = false
 		spawn_bullethole(result, decal_bullet_hole, 5)
+		if SD_Network.is_server():
+			if ammo.explode:
+				var explosion:SourceExplosion = SourceExplosion.create(result.position).set_size(ammo.damage * 0.04)
+				explosion.set_damage(ammo.explosion_damage)
+				explosion.explode()
+				destroy()
+				return
+		
 		if result.collider.is_in_group("penetrable"):
 			pass
 		else:

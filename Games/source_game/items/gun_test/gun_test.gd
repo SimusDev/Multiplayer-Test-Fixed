@@ -3,7 +3,7 @@ class_name SourceFireWeapon extends SourceItem
 
 @export_group("Settings")
 @export_subgroup("Audio")
-@export var audioplayers:Array[AudioStreamPlayer3D]
+@export var shoot_sound:R_SourceSound
 @export var audio_pitch_randomness:Vector2 = Vector2(1.0, 1.0)
 @export_subgroup("Bullet")
 @export var projectile:PackedScene
@@ -33,7 +33,6 @@ var gun_object: R_WeaponProjectileObject
 func _ready() -> void:
 	super()
 	randomize()
-	on_use.connect(fire)
 	
 	add_child(reset_spread_timer)
 	reset_spread_timer.autostart = false
@@ -64,12 +63,16 @@ func _try_reload_net() -> void:
 func use() -> void:
 	if stack.get_durability() <= 0:
 		return
-	
+	fire()
 	super()
 
+#func try_to_fire() -> void:
+	#if stack.get_durability() <= 0:
+		#return
+	#fire()
 
 
-func fire():
+func fire() -> void:
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
 	pre_event.weapon = self
@@ -92,10 +95,10 @@ func fire():
 
 func play_fire_sound():
 	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
-	for audioplayer in audioplayers:
-		audioplayer.pitch_scale = rand_pitch
-		audioplayer.play()
-
+	if shoot_sound:
+		var sound_instance = shoot_sound.try_play(self)
+		sound_instance.call_function_on_audio("set_pitch_scale", [rand_pitch])
+	
 
 func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()

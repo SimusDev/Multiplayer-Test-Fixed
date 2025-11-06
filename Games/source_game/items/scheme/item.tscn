@@ -41,8 +41,9 @@ texture_filter = 0
 text = "piska"
 font = ExtResource("3_386xv")
 
-[node name="BuildScheme" type="Node" parent="." node_paths=PackedStringArray("ui_interface_comp")]
+[node name="BuildScheme" type="Node" parent="." node_paths=PackedStringArray("item", "ui_interface_comp")]
 script = ExtResource("3_ghyab")
+item = NodePath("..")
 ui_interface_comp = NodePath("../MP_CanvasLayer/build_menu/C_UIInterfaceComponent")
 
 [node name="MP_CanvasLayer" type="CanvasLayer" parent="."]

@@ -22,6 +22,9 @@ func _on_destroy():
 	queue_free()
 
 func spawn_physical_particles():
+	if not particle or (not particle.can_instantiate()):
+		return
+	
 	for i in particles_amount:
 		var new_particle = particle.instantiate()
 		SourceLevelSection3D.get_by_name("physical_particles").add_child(new_particle)

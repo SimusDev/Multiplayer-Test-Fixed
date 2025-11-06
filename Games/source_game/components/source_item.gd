@@ -18,7 +18,7 @@ signal on_current_change
 @export var _reload:String = "reload"
 @export var _pick:String = "pick"
 
-var player:Node3D
+var player:SourceEntity
 var interact_ray:SourceInteractRay
 var current:bool = false : set = set_current, get = is_current
 
@@ -55,6 +55,8 @@ func _ready() -> void:
 		animated_model = W_AnimatedModel3D.find_in(playable.root)
 		inventory = SD_Components.find_first(playable.root, SourceInventory)
 		
+	if is_instance_valid(animation_player):
+		animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
 	
 	on_current_change.connect(_on_current_changed)
 	_on_current_changed()

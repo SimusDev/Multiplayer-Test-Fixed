@@ -6,11 +6,7 @@
 
 [resource]
 script = ExtResource("1_fl68q")
-pick_on_build = true
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_hwrel")
 name = "cube_spawner"
-description = ""
 prefab = ExtResource("2_ijlms")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"
