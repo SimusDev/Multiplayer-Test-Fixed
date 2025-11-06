@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=14 format=3 uid="uid://c63k3uqvttm8e"]
 
-[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_dqv8v"]
+[ext_resource type="Script" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_dqv8v"]
 [ext_resource type="PackedScene" uid="uid://b25lkeicg8cfi" path="res://Games/source_game/items/ak_47/world.tscn" id="1_g5njn"]
 [ext_resource type="Texture2D" uid="uid://r6loyluk7glp" path="res://Games/source_game/items/ak_47/icon.png" id="1_migia"]
 [ext_resource type="Resource" uid="uid://bitb7epxi87xm" path="res://Games/source_game/objects/weapons/ammo/rifle.tres" id="2_bnjdn"]

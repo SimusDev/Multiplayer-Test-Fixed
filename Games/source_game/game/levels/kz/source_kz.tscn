@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
+[ext_resource type="Texture2D" uid="uid://85tx6torxqp4" path="res://addons/simusdev/Game/icons/ui_icon_exit.png" id="4_rnwnd"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
-[ext_resource type="Texture2D" uid="uid://bux4083eacafw" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="14_ntrv5"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
@@ -12,7 +12,7 @@ vertices = PackedVector3Array(-21.25, 0, -64.350006, -21.5, 0, -75.100006, -49.5
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 0, 1), PackedInt32Array(9, 1, 5), PackedInt32Array(5, 1, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 7), PackedInt32Array(7, 27, 6), PackedInt32Array(30, 29, 16), PackedInt32Array(16, 29, 15), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 21), PackedInt32Array(31, 20, 21), PackedInt32Array(29, 30, 35), PackedInt32Array(35, 32, 29), PackedInt32Array(29, 32, 33), PackedInt32Array(29, 33, 36)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3v1"]
-albedo_texture = ExtResource("14_ntrv5")
+albedo_texture = ExtResource("4_rnwnd")
 metallic_specular = 0.16
 emission_operator = 1
 normal_enabled = true
