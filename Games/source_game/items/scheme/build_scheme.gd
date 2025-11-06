@@ -32,7 +32,7 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("lmb"):
 		if SimusDev.ui.get_active_interfaces().is_empty():
-			place()
+			SD_Network.call_func_on_server(place, [building, ghost_building.global_transform, item.player])
 	elif Input.is_action_just_pressed("rmb"):
 		open_ui()
 	elif Input.is_action_just_released("rmb"):
@@ -51,7 +51,6 @@ func rotate_ghost_building() -> void:
 
 func can_place() -> bool:
 	var collider = item.player.interact_raycast.get_collider()
-	var collision_point = item.player.interact_raycast.get_collision_point()
 	
 	if collider is BuildSnapPoint:
 		if collider.busy:
@@ -61,7 +60,8 @@ func can_place() -> bool:
 	return true
 
 func on_building_change() -> void:
-	add_ghost_building()
+	if SD_Network.is_authority(self):
+		add_ghost_building()
 
 func remove_ghost_building() -> void:
 	if is_instance_valid(ghost_building):
@@ -102,14 +102,11 @@ func update_ghost_building() -> void:
 		ghost_building.global_position = collision_point
 
 
-func place() -> void:
-	if not ghost_building or (not is_instance_valid(ghost_building)):
-		return
-	
-	var collider = item.player.interact_raycast.get_collider()
+func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEntity) -> void:
+	var collider = _player.interact_raycast.get_collider()
 	
 	var section = SourceLevelSection3D.get_by_name(buildings_section_name)
-	var new_building:SourceBuilding = building.prefab.instantiate()
+	var new_building:SourceBuilding = _building.prefab.instantiate()
 	section.add_child(new_building)
 	
 	if collider:
@@ -117,7 +114,7 @@ func place() -> void:
 			collider.set_object(new_building)
 			collider.busy = true
 	
-	new_building.global_transform = ghost_building.global_transform
+	new_building.global_transform = _transform
 
 func open_ui() -> void:
 	ui_interface_comp.open()
