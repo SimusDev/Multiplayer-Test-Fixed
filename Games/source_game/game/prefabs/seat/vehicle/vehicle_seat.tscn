@@ -11,8 +11,9 @@ material = ExtResource("3_qrdgl")
 
 [node name="vehicle_seat" type="Node3D"]
 
-[node name="VehicleSeat" type="Node" parent="." node_paths=PackedStringArray("interactable")]
+[node name="VehicleSeat" type="Node" parent="." node_paths=PackedStringArray("bind_point", "interactable")]
 script = ExtResource("1_thnad")
+bind_point = NodePath("../bind")
 interactable = NodePath("../SourceInteractable")
 
 [node name="SourceInteractable" type="Area3D" parent="."]
@@ -30,5 +31,5 @@ debug_fill = false
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_qrdgl")
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="bind" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

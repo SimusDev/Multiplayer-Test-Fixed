@@ -39,12 +39,18 @@ func _recieve(data:Dictionary, sidyn:Node3D) -> void:
 	set_movement_enabled(sidyn4ik, false)
 
 func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
-	seat(interact_ray.root)
+	if sidyn4ik == interact_ray.root:
+		dismount(sidyn4ik)
+	else:
+		seat(interact_ray.root)
 
 func seat(node:Node3D) -> void:
 	caller.call_func(set_movement_enabled, [node, false])
+	node.global_position = bind_point.global_position
 	#МЯЧИК УБИЦА ! КРОВ
-	
+
+func dismount(node:Node3D) -> void:
+	caller.call_func(set_movement_enabled, [node, true])
 
 func set_movement_enabled(node:Node3D, value:bool) -> void:
 	if not node:
@@ -52,4 +58,7 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 	
 	var movement:W_FPCSourceLikeMovement = SD_Components.find_first(node, W_FPCSourceLikeMovement)
 	if is_instance_valid(movement):
-		movement.enabled = value
+		if value:
+			movement.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			movement.process_mode = Node.PROCESS_MODE_DISABLED
