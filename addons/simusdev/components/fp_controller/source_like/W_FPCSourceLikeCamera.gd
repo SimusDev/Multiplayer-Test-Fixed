@@ -1,9 +1,13 @@
 extends W_FPCSourceLike
 class_name W_FPCSourceLikeCamera
 
-@export var body: Node3D
+@export var body: SourceEntity
 @export_group("References")
 @export var camera: Camera3D
+@export var viewmodel:SourceViewModelRoot3D
+
+@export_group("Viewmodel Settings")
+@export var sway_multiplier = 1
 
 @export_group("Camera Settings")
 @export var make_current_at_start: bool = true
@@ -25,6 +29,8 @@ class_name W_FPCSourceLikeCamera
 @export var key_right: String = "ui_right"
 @export var key_boost: String = "boost"
 @export var key_slowdown: String = "slowdown"
+
+var mouse_input:Vector2 = Vector2.ZERO
 
 static var _active_camera_list: Array[W_FPCSourceLikeCamera] = []
 
@@ -95,7 +101,15 @@ func _ready() -> void:
 		add_disable_priority()
 		return
 
+func viewmodel_sway(delta:float) -> void:
+	mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)
+	if viewmodel:
+		viewmodel.rotation.x = lerp(viewmodel.rotation.x, (mouse_input.y * 0.025) * sway_multiplier, 10 * delta)
+		viewmodel.rotation.y = lerp(viewmodel.rotation.y, (mouse_input.x * 0.025)  * sway_multiplier, 10 * delta)
+
 func _process(delta: float) -> void:
+	viewmodel_sway(delta)
+	
 	if is_can_free_move():
 		_handle_free_camera(delta)
 
@@ -145,6 +159,7 @@ func is_mouse_captured() -> bool:
 func is_can_free_move() -> bool:
 	return (not body) and camera.current
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
@@ -152,6 +167,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var sens: float = normalize_mouse_sensitivity(mouse_sensitivity)
 		var relative: Vector2 = event.relative
+		
+		mouse_input = relative * sens
 		
 		var y: float = deg_to_rad(-relative.x * sens)
 		var x: float = deg_to_rad(-relative.y * sens)

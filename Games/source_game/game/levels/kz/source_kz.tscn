@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=12 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
+[ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="3_eqep5"]
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
@@ -34,6 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -19.3888)
 
 [node name="tree5" parent="objects" index="4" instance=ExtResource("17_17bi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2048, -0.5, -22.9961)
+
+[node name="vehicle_seat" parent="objects" index="5" instance=ExtResource("3_eqep5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.170759, -18.534147)
 
 [node name="kz" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)

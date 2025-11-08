@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene load_steps=13 format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="PackedScene" uid="uid://dqm6pmfcnkn31" path="res://Games/source_game/player/ui/object_info.tscn" id="1_0xcfp"]
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="PackedScene" uid="uid://h7yi20x5r44y" path="res://Games/source_game/ui/inventory/hotbar.tscn" id="2_xxxcs"]
 [ext_resource type="Texture2D" uid="uid://c1h6bthefwbck" path="res://textures/crosshair.png" id="3_ltpmo"]
 [ext_resource type="PackedScene" uid="uid://4ej3ygj2srma" path="res://Games/source_game/ui/spawner/prop_spawner.tscn" id="4_henmv"]
+[ext_resource type="FontFile" uid="uid://bowbjk40qu8ld" path="res://fonts/Samson.ttf" id="4_xxxcs"]
 [ext_resource type="PackedScene" uid="uid://dclxv5v2xeltv" path="res://Games/source_game/ui/inventory/inventory.tscn" id="7_henmv"]
 [ext_resource type="Texture2D" uid="uid://d4j3kgyo2i0nn" path="res://textures/icons/microphone.png" id="9_1ipc1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jidd8"]
+font = ExtResource("4_xxxcs")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_henmv"]
 font_size = 32
@@ -53,11 +59,26 @@ grow_vertical = 2
 texture = ExtResource("3_ltpmo")
 expand_mode = 1
 
+[node name="interactable_info" type="Label" parent="crosshair"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -34.0
+anchor_top = -5.125
+anchor_right = 36.0
+anchor_bottom = -0.875
+grow_horizontal = 2
+grow_vertical = 2
+text = "sex"
+label_settings = SubResource("LabelSettings_jidd8")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="prop_spawner" parent="." instance=ExtResource("4_henmv")]
 visible = false
 layout_mode = 1
 
 [node name="Inventory" parent="." instance=ExtResource("7_henmv")]
+visible = false
 layout_mode = 1
 
 [node name="Hotbar" parent="." instance=ExtResource("2_xxxcs")]

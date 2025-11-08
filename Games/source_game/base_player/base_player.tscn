@@ -316,9 +316,10 @@ key_crouch = "crouch"
 camera = NodePath("../SourceCamera")
 movement = NodePath("../SourceMovement")
 
-[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
+[node name="SourceCamera" parent="." node_paths=PackedStringArray("body", "viewmodel") instance=ExtResource("13_y5oya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 body = NodePath("..")
+viewmodel = NodePath("SourceViewModelRoot3D")
 
 [node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera"]
 
@@ -341,6 +342,14 @@ collide_with_areas = true
 script = ExtResource("16_26rsp")
 root = NodePath("../..")
 
+[node name="cameras" type="Node3D" parent="SourceCamera"]
+
+[node name="1" type="Camera3D" parent="SourceCamera/cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="2" type="Camera3D" parent="SourceCamera/cameras"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3)
+
 [node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("inventory")]
 visible = false
 script = ExtResource("18_1yv11")
@@ -349,14 +358,6 @@ type = 0
 inventory = NodePath("../../SourceInventory")
 placeholder = ExtResource("19_em5yj")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
-
-[node name="cameras" type="Node3D" parent="SourceCamera"]
-
-[node name="1" type="Camera3D" parent="SourceCamera/cameras"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="2" type="Camera3D" parent="SourceCamera/cameras"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3)
 
 [node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2

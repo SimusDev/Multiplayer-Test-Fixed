@@ -14,7 +14,7 @@ signal building_change
 
 
 var building:R_SourceBuilding : set = set_building
-var ghost_building:CSGMesh3D = null
+var ghost_building:MeshInstance3D
 
 
 func _ready() -> void:
@@ -80,7 +80,7 @@ func add_ghost_building() -> void:
 	
 	var section:SourceLevelSection3D = SourceLevelSection3D.get_by_name(buildings_section_name)
 	var new_building:SourceBuilding = building.prefab.instantiate()
-	ghost_building = new_building.model.duplicate()
+	ghost_building = new_building.ghost_model.duplicate()
 	
 	section.add_child(ghost_building)
 
@@ -94,9 +94,11 @@ func update_ghost_building() -> void:
 	ghost_building.visible = not collider == null
 	
 	if can_place():
-		ghost_building.material = correct_ghost_material
+		for i in ghost_building.mesh.get_surface_count():
+			ghost_building.mesh.surface_set_material(i, correct_ghost_material)
 	else:
-		ghost_building.material = wrong_ghost_material
+		for i in ghost_building.mesh.get_surface_count():
+			ghost_building.mesh.surface_set_material(i, wrong_ghost_material)
 	
 	if collider:
 		if collider is BuildSnapPoint:

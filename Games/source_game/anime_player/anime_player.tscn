@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ly2hwdj87jl"]
+[gd_scene load_steps=19 format=3 uid="uid://d2ly2hwdj87jl"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://x8m3j5ylddy1" path="res://sounds/ah1.mp3" id="4_qpm12"]
 [ext_resource type="AudioStream" uid="uid://jf4by30wikhc" path="res://sounds/ah2.mp3" id="5_q40i1"]
 [ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="6_12bxj"]
-[ext_resource type="Script" uid="uid://dcq3rk7e60xye" path="res://Games/source_game/components/item_container.gd" id="10_hd5tf"]
 
 [sub_resource type="Resource" id="Resource_5fc14"]
 script = ExtResource("2_43l7g")
@@ -93,14 +92,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 [node name="flashlight" parent="SourceCamera" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.429595)
 
-[node name="SourceViewModelRoot3D" parent="SourceCamera" index="4" node_paths=PackedStringArray("root_node")]
-visible = true
-root_node = NodePath("../item_container")
-
-[node name="item_container" type="Node3D" parent="SourceCamera" index="5"]
-transform = Transform3D(0.9999984, 0, 0, 0, 1.0000035, 0, 0, 0, 1.0000007, 0, 0, 0)
-script = ExtResource("10_hd5tf")
-
 [node name="camera_crouch_pos" type="Node3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 
@@ -134,9 +125,6 @@ shape = SubResource("CapsuleShape3D_6ues7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50512695, 0)
 shape = SubResource("CapsuleShape3D_efwcb")
 disabled = true
-
-[node name="SourceCameraSwithcer" parent="." index="20" node_paths=PackedStringArray("nodes_to_hide")]
-nodes_to_hide = [NodePath("../SourceCamera/SourceViewModelRoot3D"), NodePath("../SourceCamera/item_container")]
 
 [node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target", "root") instance=ExtResource("2_6ues7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

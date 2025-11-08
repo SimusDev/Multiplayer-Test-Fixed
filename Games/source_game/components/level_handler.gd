@@ -44,8 +44,9 @@ func _ready() -> void:
 		game._spawner.synchronize_all()
 
 func check_level():
-	if SD_Network.is_server() and is_instance_valid(current_level.get_node("player_spawner")):
-		game.mp_player_spawner = current_level.get_node("player_spawner")
+	#if SD_Network.is_server() and is_instance_valid(current_level.get_node("player_spawner")):
+		#game.mp_player_spawner = current_level.get_node("player_spawner")
+	pass
 
 func _on_cmd_change_level_executed():
 	if not SD_Network.is_server():

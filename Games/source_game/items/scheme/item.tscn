@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d24d5v0f8mxvl"]
+[gd_scene load_steps=14 format=3 uid="uid://d24d5v0f8mxvl"]
 
 [ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_2smiw"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_ghyab"]
 [ext_resource type="FontFile" uid="uid://bowbjk40qu8ld" path="res://fonts/Samson.ttf" id="3_386xv"]
 [ext_resource type="Script" uid="uid://cbd6lccran3ls" path="res://Games/source_game/items/scheme/build_scheme.gd" id="3_ghyab"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="5_wvkc6"]
 [ext_resource type="Script" uid="uid://dymofycad07xm" path="res://Games/source_game/components/mp_canvas_layer.gd" id="7_wvkc6"]
 [ext_resource type="PackedScene" uid="uid://vxsxva6he3uj" path="res://Games/source_game/game/prefabs/build_menu.tscn" id="8_p847l"]
 
@@ -18,7 +19,21 @@ size = Vector3(0.5, 0.025, 0.375)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_386xv"]
 albedo_color = Color(0, 0.28235295, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_386xv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p847l"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0.49803922, 1, 0.49803922)
+script = ExtResource("5_wvkc6")
+metadata/_custom_type_script = "uid://dau2vuhctib65"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvkc6"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.49803922)
+script = ExtResource("5_wvkc6")
+metadata/_custom_type_script = "uid://dau2vuhctib65"
+
+[sub_resource type="LabelSettings" id="LabelSettings_b11wf"]
 font_size = 18
 
 [node name="scheme_item" type="Node3D" node_paths=PackedStringArray("model")]
@@ -45,6 +60,8 @@ font = ExtResource("3_386xv")
 script = ExtResource("3_ghyab")
 item = NodePath("..")
 ui_interface_comp = NodePath("../MP_CanvasLayer/build_menu/C_UIInterfaceComponent")
+correct_ghost_material = SubResource("StandardMaterial3D_p847l")
+wrong_ghost_material = SubResource("StandardMaterial3D_wvkc6")
 
 [node name="MP_CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("7_wvkc6")
@@ -66,6 +83,6 @@ metadata/_edit_use_anchors_ = true
 input_action = "key.e"
 
 [node name="title" parent="MP_CanvasLayer/build_menu/head" index="0"]
-label_settings = SubResource("LabelSettings_386xv")
+label_settings = SubResource("LabelSettings_b11wf")
 
 [editable path="MP_CanvasLayer/build_menu"]

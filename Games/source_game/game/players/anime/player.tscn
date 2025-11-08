@@ -63,9 +63,6 @@ crouch_camera_position = NodePath("../crouch_pos")
 [node name="SourceCamera" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
 
-[node name="SourceViewModelRoot3D" parent="SourceCamera" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171651, -0.172915, -0.348444)
-
 [node name="crouch_ray" type="RayCast3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536034, -0.054951)
 target_position = Vector3(0, 1, 0)

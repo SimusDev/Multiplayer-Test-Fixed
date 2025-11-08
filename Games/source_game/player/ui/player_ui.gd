@@ -14,6 +14,7 @@ static var instance:SourcePlayerUI = null : set = set_instance, get = get_instan
 @onready var health_label:Label = v_container.get_node("health")
 @onready var voice_chat_label:Label = v_container.get_node("voice_chat_label")
 @onready var time_label: Label = $time
+@onready var interactable_info:Label = $crosshair/interactable_info
 #endregion
 
 static func get_instance() -> SourcePlayerUI: return instance
@@ -23,6 +24,10 @@ func _ready() -> void:
 	set_instance(self)
 	nickname.text = source_playable.network.get_username()
 	source_playable._voice_active.connect(_on_voice_active)
+	
+	var player = source_playable.root
+	if player is SourceEntity:
+		player.interact_raycast.selected.connect(on_interactor_selected)
 	
 	if is_instance_valid(player_health):
 		update()
@@ -34,6 +39,20 @@ func _ready() -> void:
 	event.publish()
 	
 	_on_every_half_sec_timeout()
+
+func on_interactor_selected(object:Object) -> void:
+	if object == null:
+		interactable_info.hide()
+		return
+	
+	if object is SourceInteractable:
+		interactable_info.show()
+		
+		if object.info == "":
+			interactable_info.text = object.name
+			return
+		
+		interactable_info.text = object.info
 
 func _on_voice_active(value:bool) -> void:
 	voice_chat_label.visible = value

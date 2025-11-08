@@ -137,7 +137,6 @@ script = ExtResource("1_8mxnv")
 resource = SubResource("Resource_sf62v")
 model = NodePath("root/jagermester_model")
 animation_player = NodePath("AnimationPlayer")
-_fire = ""
 metadata/_custom_type_script = "uid://dj1vged070hd"
 
 [node name="root" type="Node3D" parent="."]
@@ -150,7 +149,7 @@ transform = Transform3D(-1.36983, 0.456479, 0.377976, -0.319359, 0.233327, -1.43
 
 [node name="arms" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("3_sbfnk")]
 transform = Transform3D(-0.761821, 0, 0.647788, 0, 1, 0, -0.647788, 0, -0.761821, -0.122718, 0, 0.502787)
-hands_ik = [NodePath("root/Skeleton3D/left_hand_ik")]
+hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="root/arms/root" index="0"]
 bones/6/rotation = Quaternion(0.115, -0.072, 0.075, 0.989)

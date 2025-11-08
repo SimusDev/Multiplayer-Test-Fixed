@@ -71,7 +71,7 @@
 [ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="69_q46ut"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcndt"]
-size = Vector3(0.8, 0.1, 0.8)
+size = Vector3(0.4, 0.1, 0.4)
 
 [node name="SourceFootsteps" type="AudioStreamPlayer3D" node_paths=PackedStringArray("detect_area")]
 script = ExtResource("1_tcndt")

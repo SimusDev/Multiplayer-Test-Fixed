@@ -2,6 +2,8 @@
 extends Area3D
 class_name SourceInteractable
 
+@export var info:String = ""
+
 const INTERACTABLE_LAYER: int = 4
 
 func _ready() -> void:

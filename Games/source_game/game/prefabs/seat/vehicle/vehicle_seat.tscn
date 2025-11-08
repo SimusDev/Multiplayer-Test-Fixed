@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://r53eearpwwj7"]
+
+[ext_resource type="Script" uid="uid://b2j80oewvs2sf" path="res://Games/source_game/components/vehicle_seat.gd" id="1_thnad"]
+[ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="2_1f8ho"]
+[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="3_qrdgl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1f8ho"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrdgl"]
+material = ExtResource("3_qrdgl")
+
+[node name="vehicle_seat" type="Node3D"]
+
+[node name="VehicleSeat" type="Node" parent="."]
+script = ExtResource("1_thnad")
+metadata/_custom_type_script = "uid://b2j80oewvs2sf"
+
+[node name="SourceInteractable" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+script = ExtResource("2_1f8ho")
+metadata/_custom_type_script = "uid://bkpx7tuo0vlho"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceInteractable"]
+shape = SubResource("BoxShape3D_1f8ho")
+debug_color = Color(1, 1, 1, 0.41960785)
+debug_fill = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qrdgl")
