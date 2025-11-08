@@ -32,9 +32,9 @@ func _ready() -> void:
 		caller.call_func_on_server(_send)
 		return
 	
-	
 	if is_instance_valid(interactable):
 		interactable.on_interacted.connect(on_interactable_interacted)
+	
 
 func _send() -> void:
 	var data:Dictionary = {}
@@ -43,6 +43,7 @@ func _send() -> void:
 
 func _recieve(data:Dictionary, sidyn:Node3D) -> void:
 	sidyn4ik = sidyn
+	set_remote_transform_path(sidyn)
 	set_movement_enabled(sidyn4ik, false)
 
 func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
@@ -56,7 +57,7 @@ func seat(node:Node3D) -> void:
 	if input:
 		input.action_just_pressed.connect(on_entity_action_just_pressed)
 	
-	remote_transform.remote_path = remote_transform.get_path_to(node)
+	caller.call_func(set_remote_transform_path, [node])
 	#МЯЧИК УБИЦА ! КРОВ
 
 
@@ -69,6 +70,13 @@ func dismount(node:Node3D) -> void:
 	var input:SourceEntityInput = SD_Components.find_first(node, SourceEntityInput)
 	if input:
 		input.action_just_pressed.disconnect(on_entity_action_just_pressed)
+
+func set_remote_transform_path(node:Node3D) -> void:
+	if not node:
+		remote_transform.remote_path = NodePath()
+		return
+	
+	remote_transform.remote_path = remote_transform.get_path_to(node)
 
 func on_entity_action_just_pressed(action:StringName) -> void:
 	if action == dismount_action_key:
@@ -89,4 +97,4 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 func _physics_process(delta: float) -> void:
 	
 	if SD_Network.is_server():
-		get_parent().position.z += 1 * delta
+		get_parent().position.z -= 0.1 * delta
