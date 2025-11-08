@@ -34,7 +34,7 @@ static func append_to(node: Node, component: Variant) -> void:
 		list.append(c_instance)
 
 static func find_first(node: Node, component: Script) -> Node:
-	return SD_Array.get_value_from_array(find_all(node, component), 0)
+	return find_all(node, component).get(0)
 
 static func find_random(node: Node, component: Script) -> Node:
 	return SD_Array.get_random_value_from_array(find_all(node, component))
@@ -42,7 +42,7 @@ static func find_random(node: Node, component: Script) -> Node:
 static func find_all(node: Node, component: Script) -> Array[Node]:
 	var result: Array[Node] = []
 	for c in get_list_from(node):
-		if get_base_script_from_node(c) == component:
+		if get_base_script_from_node(c) == component or c.get_script() == component:
 			SD_Array.append_to_array_no_repeat(result, c)
 	
 	for i in node.get_children():
