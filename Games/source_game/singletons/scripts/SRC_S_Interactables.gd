@@ -15,8 +15,6 @@ func _on_interact_event(event: S_EventInteract) -> void:
 		var playable: SourcePlayable = SD_Components.find_first(interactor, SourcePlayable) as SourcePlayable
 		if playable:
 			object.call("_source_interacted_by_player", playable)
-		
-	
 	
 	if not SD_Network.is_server():
 		return

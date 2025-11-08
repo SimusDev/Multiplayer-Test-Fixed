@@ -6,6 +6,8 @@ class_name SourceInteractable
 
 const INTERACTABLE_LAYER: int = 4
 
+signal on_interacted(ray: SourceInteractRay)
+
 func _ready() -> void:
 	monitoring = false
 	set_collision_layer_value(1, false)
@@ -16,5 +18,6 @@ func _ready() -> void:
 	
 	if Engine.is_editor_hint():
 		return
-	
-	
+
+func _source_interacted(ray: SourceInteractRay) -> void:
+	on_interacted.emit(ray)

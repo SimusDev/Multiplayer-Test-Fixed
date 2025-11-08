@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://r53eearpwwj7"]
 
-[ext_resource type="Script" uid="uid://b2j80oewvs2sf" path="res://Games/source_game/components/vehicle_seat.gd" id="1_thnad"]
+[ext_resource type="Script" path="res://Games/source_game/components/vehicle_seat.gd" id="1_thnad"]
 [ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="2_1f8ho"]
-[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="3_qrdgl"]
+[ext_resource type="Material" path="res://Games/source_game/materials/metal1.tres" id="3_qrdgl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1f8ho"]
 
@@ -13,7 +13,6 @@ material = ExtResource("3_qrdgl")
 
 [node name="VehicleSeat" type="Node" parent="."]
 script = ExtResource("1_thnad")
-metadata/_custom_type_script = "uid://b2j80oewvs2sf"
 
 [node name="SourceInteractable" type="Area3D" parent="."]
 collision_layer = 8

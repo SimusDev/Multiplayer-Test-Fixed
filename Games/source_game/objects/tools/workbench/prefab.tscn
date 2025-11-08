@@ -19,8 +19,8 @@ ui = ExtResource("2_qgym4")
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("1_hqe5t")
-surface = "concrete"
 rigid_body = NodePath("..")
+surface = "concrete"
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

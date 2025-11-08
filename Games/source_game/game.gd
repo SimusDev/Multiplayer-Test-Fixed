@@ -96,10 +96,13 @@ func spawn_on_server(prop_res:R_SourceWorldObject, quantity: int = 1, inventory:
 				if quantity > 1:
 					pos = 2
 				
-				for i in quantity:
+				var count: int = 0
+				while quantity > 0:
+					count += 1
 					instantiate_object_on_server(new_prop)
 					new_prop.global_position = ray.global_position + ray.target_position.rotated(Vector3(0, 1, 0), ray.global_rotation.y)
-					new_prop.global_position.y += pos * i
+					new_prop.global_position.y += pos * count
+					quantity -= 1
 		else:
 			instantiate_object_on_server(new_prop)
 			
