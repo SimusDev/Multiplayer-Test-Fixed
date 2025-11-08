@@ -139,3 +139,9 @@ static func is_object_registered(object: Object) -> bool:
 
 static func register_channel(name: String) -> void:
 	singleton.callables.register_channel(name)
+
+static func is_player(node: Node) -> bool:
+	return SD_NetworkPlayer.get_local().get_player_node() == node
+
+static func is_player_and_authority(node: Node) -> bool:
+	return SD_NetworkPlayer.get_local().get_player_node() == node and SD_Network.is_authority(node)
