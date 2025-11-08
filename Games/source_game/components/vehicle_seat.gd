@@ -87,4 +87,6 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	get_parent().position.z += 1 * delta
+	
+	if SD_Network.is_server():
+		get_parent().position.z += 1 * delta
