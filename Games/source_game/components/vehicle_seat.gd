@@ -53,23 +53,14 @@ func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
 func seat(node:Node3D) -> void:
 	sidyn4ik = node
 	caller.call_func(set_movement_enabled, [node, false])
-	var input:SourceEntityInput = SD_Components.find_first(node, SourceEntityInput)
-	if input:
-		input.action_just_pressed.connect(on_entity_action_just_pressed)
-	
 	caller.call_func(set_remote_transform_path, [node])
 	#МЯЧИК УБИЦА ! КРОВ
-
 
 func dismount(node:Node3D) -> void:
 	sidyn4ik = null
 	caller.call_func(set_movement_enabled, [node, true])
-	
-	remote_transform.remote_path = NodePath()
-	
-	var input:SourceEntityInput = SD_Components.find_first(node, SourceEntityInput)
-	if input:
-		input.action_just_pressed.disconnect(on_entity_action_just_pressed)
+	caller.call_func(set_remote_transform_path, [node, null])
+	#СЁКС
 
 func set_remote_transform_path(node:Node3D) -> void:
 	if not node:
@@ -78,13 +69,13 @@ func set_remote_transform_path(node:Node3D) -> void:
 	
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
-func on_entity_action_just_pressed(action:StringName) -> void:
-	if action == dismount_action_key:
-		dismount(sidyn4ik)
+func _input(event: InputEvent) -> void:
+	pass
 
 func set_movement_enabled(node:Node3D, value:bool) -> void:
 	if not node:
 		return
+	
 	
 	var movement:W_FPCSourceLikeMovement = SD_Components.find_first(node, W_FPCSourceLikeMovement)
 	if is_instance_valid(movement):
