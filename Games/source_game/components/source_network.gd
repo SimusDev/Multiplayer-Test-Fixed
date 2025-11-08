@@ -10,7 +10,8 @@ class_name SourceNetwork
 	"transform4",
 	CHANNEL_SPAWN,
 	CHANNEL_ITEMS,
-	CHANNEL_INVENTORY
+	CHANNEL_INVENTORY,
+	CHANNEL_INTERACTABLES
 ]
 
 const CHANNEL_ENTITY_POSITION: String = "entity_position"
@@ -18,6 +19,7 @@ const CHANNEL_PLAYER: String = "player"
 const CHANNEL_SPAWN: String = "spawn"
 const CHANNEL_ITEMS: String = "items"
 const CHANNEL_INVENTORY: String = "inventory"
+const CHANNEL_INTERACTABLES: String = "interactables"
 
 func _ready() -> void:
 	for channel in channels:

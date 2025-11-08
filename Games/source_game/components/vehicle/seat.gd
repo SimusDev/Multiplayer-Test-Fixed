@@ -1,6 +1,6 @@
 @icon("res://Games/source_game/components/vehicle/seat.png")
 extends RigidBody3D
-class_name SourceSeat
+class_name SourceSeatOld
 
 var _target: Node3D
 

@@ -127,6 +127,8 @@ func _ready() -> void:
 	_handle_input.append(key_crouch)
 	_handle_input.append(key_jump)
 	
+	SD_Components.append_to(actor, self)
+	
 	if server_authorative:
 		if SD_Multiplayer.is_server():
 			if !SD_Multiplayer.is_authority(self):
