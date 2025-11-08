@@ -3,6 +3,9 @@ extends SD_Object
 class_name SD_Components
 
 static func get_list_from(node: Node) -> Array[Node]:
+	if !is_instance_valid(node):
+		return [] as Array[Node]
+	
 	if node.has_meta("sd_components"):
 		return node.get_meta("sd_components") as Array[Node]
 	
@@ -11,6 +14,9 @@ static func get_list_from(node: Node) -> Array[Node]:
 	return components
 
 static func append_to(node: Node, component: Variant) -> void:
+	if not is_instance_valid(node):
+		return
+	
 	var list: Array[Node] = get_list_from(node)
 	
 	var script: Script
@@ -40,6 +46,9 @@ static func find_random(node: Node, component: Script) -> Node:
 	return SD_Array.get_random_value_from_array(find_all(node, component))
 
 static func find_all(node: Node, component: Script) -> Array[Node]:
+	if not is_instance_valid(node):
+		return [] as Array[Node]
+	
 	var result: Array[Node] = []
 	for c in get_list_from(node):
 		if get_base_script_from_node(c) == component or c.get_script() == component:
