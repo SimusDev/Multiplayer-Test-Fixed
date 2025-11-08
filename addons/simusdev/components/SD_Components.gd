@@ -40,7 +40,11 @@ static func append_to(node: Node, component: Variant) -> void:
 		list.append(c_instance)
 
 static func find_first(node: Node, component: Script) -> Node:
-	return find_all(node, component).get(0)
+	var array: Array[Node] = find_all(node, component)
+	if array.is_empty():
+		return null
+	
+	return array.get(0)
 
 static func find_random(node: Node, component: Script) -> Node:
 	return SD_Array.get_random_value_from_array(find_all(node, component))
