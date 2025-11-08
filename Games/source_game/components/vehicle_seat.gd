@@ -3,12 +3,16 @@ class_name SourceSeat extends Node
 
 @export var enabled:bool = true
 
+@export var dismount_action_key:StringName = "dismount"
+
 @export_group("References")
 @export var bind_point:Marker3D
 @export var interactable:SourceInteractable
 
 var sidyn4ik:Node3D
+
 var caller:SD_NetFunctionCaller
+var remote_transform:RemoteTransform3D
 
 func _ready() -> void:
 	SD_Network.register_object(self)
@@ -20,6 +24,9 @@ func _ready() -> void:
 	caller.default_channel = SourceNetwork.CHANNEL_INTERACTABLES
 	add_child(caller)
 	
+	remote_transform = RemoteTransform3D.new()
+	remote_transform.update_rotation = false
+	add_child(remote_transform)
 	
 	if not SD_Network.is_server():
 		caller.call_func_on_server(_send)
@@ -39,18 +46,33 @@ func _recieve(data:Dictionary, sidyn:Node3D) -> void:
 	set_movement_enabled(sidyn4ik, false)
 
 func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
-	if sidyn4ik == interact_ray.root:
-		dismount(sidyn4ik)
-	else:
-		seat(interact_ray.root)
+	seat(interact_ray.root)
+	
 
 func seat(node:Node3D) -> void:
+	sidyn4ik = node
 	caller.call_func(set_movement_enabled, [node, false])
-	node.global_position = bind_point.global_position
+	var input:SourceEntityInput = SD_Components.find_first(node, SourceEntityInput)
+	if input:
+		input.action_just_pressed.connect(on_entity_action_just_pressed)
+	
+	remote_transform.remote_path = remote_transform.get_path_to(node)
 	#МЯЧИК УБИЦА ! КРОВ
 
+
 func dismount(node:Node3D) -> void:
+	sidyn4ik = null
 	caller.call_func(set_movement_enabled, [node, true])
+	
+	remote_transform.remote_path = NodePath()
+	
+	var input:SourceEntityInput = SD_Components.find_first(node, SourceEntityInput)
+	if input:
+		input.action_just_pressed.disconnect(on_entity_action_just_pressed)
+
+func on_entity_action_just_pressed(action:StringName) -> void:
+	if action == dismount_action_key:
+		dismount(sidyn4ik)
 
 func set_movement_enabled(node:Node3D, value:bool) -> void:
 	if not node:
@@ -62,3 +84,7 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 			movement.process_mode = Node.PROCESS_MODE_INHERIT
 		else:
 			movement.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _physics_process(delta: float) -> void:
+	get_parent().position.z += 1 * delta
