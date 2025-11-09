@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_SourcePlayer" load_steps=4 format=3 uid="uid://cij3fidsq1an5"]
+
+[ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="1_c77us"]
+[ext_resource type="Texture2D" uid="uid://co8btxuwnhstk" path="res://Games/source_game/game/players/feddy/feddyicon.png" id="1_x636c"]
+[ext_resource type="PackedScene" uid="uid://ckg1yi8mooyyl" path="res://Games/source_game/game/players/feddy/player_feddy.tscn" id="2_c583b"]
+
+[resource]
+script = ExtResource("1_c77us")
+icon = ExtResource("1_x636c")
+prefab = ExtResource("2_c583b")
+metadata/_custom_type_script = "uid://cmevnham1hog4"

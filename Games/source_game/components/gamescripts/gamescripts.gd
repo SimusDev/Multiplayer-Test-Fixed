@@ -13,3 +13,7 @@ func _ready() -> void:
 		node.set_script(script)
 		node.name = file.replacen(SourceGame.GAME_PATH, "").validate_node_name()
 		add_child(node)
+	
+	for i in get_children():
+		if i.has_method("_start"):
+			i._start()
