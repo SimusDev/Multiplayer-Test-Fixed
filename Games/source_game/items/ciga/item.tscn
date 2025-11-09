@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_6ilh0"]
 [ext_resource type="Texture2D" uid="uid://47om1mn5vqe3" path="res://textures/smoke.png" id="4_6nsd7"]
 
-
 [sub_resource type="Resource" id="Resource_ht808"]
 script = ExtResource("2_6ilh0")
 metadata/_custom_type_script = "uid://db0ilk7abehmb"
@@ -78,6 +77,9 @@ tracks/1/keys = {
 "values": [Vector3(1.15569, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vk1tx"]
+resource_name = "fire"
+
 [sub_resource type="Animation" id="Animation_ju52i"]
 resource_name = "pick"
 length = 0.25
@@ -105,9 +107,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-0.460138, 0, 0), Vector3(1.15569, 0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_vk1tx"]
-resource_name = "fire"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
 _data = {
@@ -200,7 +199,7 @@ transform = Transform3D(-0.599105, -0.108992, 0.271365, -0.290736, 0.155394, -0.
 [node name="GPUParticles3D" type="GPUParticles3D" parent="root/model"]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -0.03260939, -0.0010545701)
 amount = 300
-lifetime = 22.150000000000002
+lifetime = 22.15
 process_material = SubResource("ParticleProcessMaterial_6nsd7")
 draw_passes = 4
 draw_pass_1 = SubResource("SphereMesh_p1aia")

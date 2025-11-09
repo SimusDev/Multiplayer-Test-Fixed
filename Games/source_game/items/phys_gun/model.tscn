@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://u6tplys2kpf1"]
+
+[ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="1_4d04u"]
+[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="2_q4mue"]
+
+[sub_resource type="Curve" id="Curve_0sxga"]
+_data = [Vector2(0.00072359294, 0.6664919), 0.0, 0.0, 0, 0, Vector2(0.897974, 0.49633485), 0.0, 0.0, 0, 0, Vector2(1, 0.2623194), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_p54kb"]
+radius = 0.045
+section_length = 0.035
+curve = SubResource("Curve_0sxga")
+
+[sub_resource type="Curve" id="Curve_js6bw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.062228665, 0.98411846), 1.7020893, 1.7020893, 0, 0, Vector2(0.9558611, 0.4623034), 1.6656959, 1.6656959, 0, 0, Vector2(1, 0.36020917), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_ktbg2"]
+radius = 0.12
+section_length = 0.095
+curve = SubResource("Curve_js6bw")
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_b6tvb"]
+radius = 0.075
+section_length = 0.015
+
+[node name="model" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8265308, 0.56289154, 0, -0.56289154, 0.8265308, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_p54kb")
+material = ExtResource("1_4d04u")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5735763, 0.8191515, 0, -0.8191515, 0.5735763, 0, 0.14373447, -0.10360652)
+mesh = SubResource("TubeTrailMesh_ktbg2")
+material = ExtResource("2_q4mue")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGMesh3D/CSGMesh3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.8626451e-09, 0, 1.8626451e-09, 1, 0, 0.22018263, -0.0028593205)
+operation = 2
+mesh = SubResource("TubeTrailMesh_b6tvb")
+material = ExtResource("2_q4mue")

@@ -2,6 +2,8 @@
 class_name SourceItem extends Node3D
 
 signal on_use
+signal use_pressed
+signal use_released
 signal on_current_change
 
 @export var resource:R_SourceItem
@@ -84,13 +86,21 @@ func is_current(): return current
 
 func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority() and current:
-		if Input.is_action_pressed("fire"):
-			if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
+		if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
+			if Input.is_action_just_pressed("fire"):
+				caller.call_func(use, ["item_use_pressed", use_pressed])
+			elif Input.is_action_just_released("fire"):
+				caller.call_func(use, ["item_use_released", use_released])
+			
+			elif Input.is_action_pressed("fire"):
 				if is_instance_valid(animation_player):
 					if not animation_player.is_playing():
 						caller.call_func(use)
-#ZV EZ
-func use() -> void:
+				else:
+					caller.call_func(use)
+		
+
+func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
 	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
 	event.item = self
 	event.source = player
@@ -100,10 +110,10 @@ func use() -> void:
 		if not is_inside_tree(): #v padlu
 			return
 		
-		if not _fire == "":
+		if animation_player and (not _fire == ""):
 			animation_player.play(_fire)
 		
-		on_use.emit()
+		use_signal.emit()
 		
-		var inv_event: SD_Event = inventory.event_get_or_create("item_use")
+		var inv_event: SD_Event = inventory.event_get_or_create(event_name)
 		inv_event.publish([self])

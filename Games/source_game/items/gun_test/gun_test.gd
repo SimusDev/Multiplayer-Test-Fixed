@@ -91,8 +91,9 @@ func fire() -> void:
 func play_fire_sound():
 	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
 	if shoot_sound:
-		var sound_instance = shoot_sound.try_play(self)
-		sound_instance.call_function_on_audio("set_pitch_scale", [rand_pitch])
+		var sound_instance:SourceSoundInstance = shoot_sound.try_play(self)
+		if is_instance_valid(sound_instance):
+			sound_instance.call_function_on_audio("set_pitch_scale", [rand_pitch])
 	
 
 func spawn_projectile() -> FirearmBullet:

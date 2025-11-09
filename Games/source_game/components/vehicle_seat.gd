@@ -82,6 +82,9 @@ func set_remote_transform_path(node:Node3D) -> void:
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
 func _input(_event: InputEvent) -> void:
+	if SimusDev.ui.has_active_interface():
+		return
+	
 	if Input.is_action_just_pressed(dismount_action_key):
 		dismount(sidyn4ik)
 
@@ -107,3 +110,4 @@ func _physics_process(delta: float) -> void:
 	
 	if SD_Network.is_server():
 		get_parent().position.z -= 0.1 * delta
+		get_parent().position.y -= 2 * delta

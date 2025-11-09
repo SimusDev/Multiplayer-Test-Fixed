@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dflrv8xgcg3q3"]
+
+[ext_resource type="PackedScene" uid="uid://u6tplys2kpf1" path="res://Games/source_game/items/phys_gun/model.tscn" id="1_bmcme"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_edoul"]
+size = Vector3(0.25726318, 0.26376954, 0.4411133)
+
+[node name="phys_gun_prefab" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_bmcme")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0027770996, 0.06303643, -0.1488854)
+shape = SubResource("BoxShape3D_edoul")
