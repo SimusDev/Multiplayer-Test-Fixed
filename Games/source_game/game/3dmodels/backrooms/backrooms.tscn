@@ -24,10 +24,11 @@ func _ready() -> void:
 
 func _on_update_timeout() -> void:
 	for player in SourcePlayable.get_list():
-		if player.get_global_position().y < global_y_trigger:
-			if !_players.has(player):
-				SD_Network.call_func(teleport, [player.root])
-				_players.append(player)
+		if is_instance_valid(player):
+			if player.get_global_position().y < global_y_trigger:
+				if !_players.has(player):
+					SD_Network.call_func(teleport, [player.root])
+					_players.append(player)
 
 func teleport(node: Node3D) -> void:
 	node.global_position = marker.global_position
