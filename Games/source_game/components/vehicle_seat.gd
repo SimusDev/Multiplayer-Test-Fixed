@@ -57,12 +57,14 @@ func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
 
 func seat(node:Node3D) -> void:
 	sidyn4ik = node
+	set_movement_enabled(node, false)
 	caller.call_func(set_movement_enabled, [node, false])
 	caller.call_func(set_remote_transform_path, [node])
 	#МЯЧИК УБИЦА ! КРОВ
 
 func dismount(node:Node3D) -> void:
 	sidyn4ik = null
+	set_movement_enabled(node, true)
 	caller.call_func(set_movement_enabled, [node, true])
 	caller.call_func(set_remote_transform_path, [null])
 	#СЁКС
