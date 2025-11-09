@@ -80,5 +80,5 @@ func _source_interacted(ray: SourceInteractRay) -> void:
 		_do_action_server(ray)
 		interacted_on_server.emit(ray)
 
-func _on_source_hitbox_interacted(ray: SourceInteractRay) -> void:
+func _on_source_interactable_on_interacted(ray: SourceInteractRay) -> void:
 	_source_interacted(ray)

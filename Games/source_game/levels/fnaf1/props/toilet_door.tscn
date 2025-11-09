@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=4 uid="uid://djmw20gjmgit5"]
+
+[ext_resource type="PackedScene" uid="uid://b31cfcfjwnbpk" path="res://Games/source_game/game/3dmodels/doors/door_base.tscn" id="1_n4pl1"]
+[ext_resource type="Texture2D" uid="uid://cf7hx3odpxn0l" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_dev_lowerwallmetal01d.png" id="2_cn6ff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18v6u"]
+resource_name = "materials/dev/dev_lowerwallmetal01d"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_cn6ff")
+roughness = 0.9
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_q2v6j"]
+_surfaces = [{
+"aabb": AABB(-25, -39.000004, -2, 50, 78.00001, 4),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABAADAAEAAAACAAUAAgADAAUAAAAGAAQABAAGAAMAAAAHAAYABwADAAYAAAAFAAcABwAFAAMA"),
+"name": "materials/dev/dev_lowerwallmetal01d",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAA/////wAAAAAAAAAAAAAAAP///////wAA//8AAAAAAAD//wAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6s7xy"]
+resource_name = "Untitled_func_door_rotating_8701_3327"
+_surfaces = [{
+"aabb": AABB(-25, -39.000004, -2, 50, 78.00001, 4),
+"attribute_data": PackedByteArray("/////5A7QWr/////oUAAAP////+QOwAA/////6FAQWr/////kDtBav////+hQAAA/////6FAQWr/////kDsAAP////+hwEFq////////AAD///////9Bav////+hwAAA/////6HAQWr///////8AAP////+hwAAA////////QWr/////ocCPyf///////xzE/////6HAHMT///////+Pyf////+hwI/J////////HMT///////+Pyf////+hwBzE"),
+"format": 34896613407,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_18v6u"),
+"name": "materials/dev/dev_lowerwallmetal01d",
+"primitive": 3,
+"uv_scale": Vector4(3.15625, 2.9362502, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAA////v/////8AAP+///8AAAAA/7//////////vwAAAAD//wCA////////AID//wAA//8AgAAA/////wCAAAAAAAAAAAD/////AAAAAAAA//8AAAAA//8AAAAAAAAAAAAA////P///AAAAAP8/AAAAAAAA/z///wAA////PwAA//////+//////wAA/7//////////vwAA//8AAP+//z//f/8//3//P/9//z//f/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///////f////3////9/////fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_q2v6j")
+
+[sub_resource type="Animation" id="Animation_6s7xy"]
+resource_name = "door"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cn6ff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ne07"]
+_data = {
+&"RESET": SubResource("Animation_cn6ff"),
+&"door": SubResource("Animation_6s7xy")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cn6ff"]
+size = Vector3(1.508606, 2.3584518, 0.121772766)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6s7xy"]
+size = Vector3(1.4973145, 2.3392944, 0.1867981)
+
+[node name="toilet_door" node_paths=PackedStringArray("shape") instance=ExtResource("1_n4pl1")]
+shape = NodePath("CollisionShape3D")
+animation_open = "door"
+animation_close = "door"
+play_animation_close_backwards = true
+
+[node name="root" type="Node3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="root" index="0"]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.7, 0, 0)
+mesh = SubResource("ArrayMesh_6s7xy")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_7ne07")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000579834, 0.0013542175, 0.0008277893)
+shape = SubResource("BoxShape3D_cn6ff")
+
+[node name="SourceHitboxCollisionShape3D" type="CollisionShape3D" parent="SourceInteractable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207031, 0.002105713, 0.0021514893)
+shape = SubResource("BoxShape3D_6s7xy")

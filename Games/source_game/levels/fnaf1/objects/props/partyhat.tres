@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_SourceProp" load_steps=3 format=3 uid="uid://kod5cygohgfv"]
+
+[ext_resource type="Script" uid="uid://bljdyrjeubrdg" path="res://Games/source_game/components/r_source_prop.gd" id="1_cwlrs"]
+[ext_resource type="PackedScene" uid="uid://cchhi2dmwuy53" path="res://Games/source_game/levels/fnaf1/props/partyhat.tscn" id="1_mrq4h"]
+
+[resource]
+script = ExtResource("1_cwlrs")
+prefab = ExtResource("1_mrq4h")
+metadata/_custom_type_script = "uid://bljdyrjeubrdg"

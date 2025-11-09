@@ -234,6 +234,9 @@ func pick_up(object: Object) -> void:
 	var target: Object = object
 	if object is SourceHitbox:
 		target = object.health.target
+	elif object is SourceInteractable:
+		target = object.root
+	
 	
 	if !is_instance_valid(target):
 		return

@@ -22,11 +22,12 @@ metadata/_custom_type_script = "uid://b2j80oewvs2sf"
 
 [node name="throne" parent="." instance=ExtResource("2_qrdgl")]
 
-[node name="SourceInteractable" type="Area3D" parent="."]
+[node name="SourceInteractable" type="Area3D" parent="." node_paths=PackedStringArray("root")]
 collision_layer = 8
 collision_mask = 8
 monitoring = false
 script = ExtResource("2_1f8ho")
+root = NodePath("..")
 metadata/_custom_type_script = "uid://bkpx7tuo0vlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceInteractable"]
@@ -41,3 +42,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, 0.3)
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, 0.02, 0, -0.02, -8.7422775e-10, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_qrdgl")
+
+[connection signal="on_interacted" from="SourceInteractable" to="SourceSeat" method="_on_source_interactable_on_interacted"]

@@ -7,6 +7,8 @@ class_name SourceEnvironment
 @onready var cmd_time_freeze: SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("time.freeze")
 
 @export var caller: SD_NetFunctionCaller
+@export var start_time: float = 12.0
+@export var start_minutes_per_day: float = 40
 
 static var instance: SourceEnvironment
 
@@ -31,6 +33,9 @@ func _ready() -> void:
 		_send_time,
 		
 	])
+	
+	_sky.current_time = start_time
+	_sky.minutes_per_day = start_minutes_per_day
 	
 	if SD_Network.is_server():
 		pass

@@ -34,7 +34,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	health.died.connect(__on_health_died)
+	if health:
+		health.died.connect(__on_health_died)
 
 func __on_health_died() -> void:
 	health_died.emit()
