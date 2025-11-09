@@ -16,6 +16,8 @@ signal interface_closed(node: Node)
 @export var input_just_press: bool = true
 @export var close_on_escape: bool = true
 @export var when_last_interface: bool = true
+@export var can_open: bool = true
+@export var can_close: bool = true
 
 @onready var _ui: SD_TrunkUI = SimusDev.ui
 
@@ -89,11 +91,12 @@ func _input(event: InputEvent) -> void:
 		if when_last_interface and _ui.get_last_interface() != target:
 			return
 		
-		if not when_last_interface:
-			return
+		#if not when_last_interface:
+			#return
+	
+	
 	
 	if input_just_press == false:
-		
 		if Input.is_action_just_pressed(input_action):
 			open()
 		elif Input.is_action_just_released(input_action):
@@ -128,6 +131,9 @@ func _on_interface_closed_(node: Node) -> void:
 		closed.emit()
 
 func open(interface: CanvasItem = target) -> void:
+	if !can_open:
+		return
+	
 	if not global:
 		_on_interface_opened_(interface)
 		return
@@ -135,6 +141,9 @@ func open(interface: CanvasItem = target) -> void:
 	_ui.open_interface(interface)
 
 func close(interface: CanvasItem = target) -> void:
+	if !can_close:
+		return
+	
 	if not global:
 		_on_interface_closed_(interface)
 		return

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dut1mioirppc3"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://048qk55irbbt"]
 
 [ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_2sskk"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_a5px8"]

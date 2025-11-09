@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dgojnwogh6f5j"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=7 format=3 uid="uid://dvyp7ym44oyg2"]
 
 [ext_resource type="Texture2D" uid="uid://bl0eh1kjpt2ua" path="res://Games/source_game/game/3dmodels/crates/tier1/old_crate_0.png" id="1_mc5nn"]
 [ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_omav8"]

@@ -26,6 +26,9 @@ signal slot_updated_for_viewmodel(slot: SourceInventorySlot)
 signal craft_queue_add(craft: R_SourceCraftQueue)
 signal craft_queue_remove(craft: R_SourceCraftQueue)
 
+signal inventory_opened(inventory: SourceInventory)
+signal inventory_closed(inventory: SourceInventory)
+
 var _craft_queue: Array[R_SourceCraftQueue] = []
 
 var ray: SourceInteractRay
@@ -68,6 +71,7 @@ func _ready() -> void:
 		_action_request,
 		_item_move_to_net,
 		_select_slot_server,
+		__request_open_or_close_inventory_net
 	])
 	
 	SD_Network.cache_functions([
@@ -362,6 +366,11 @@ func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void
 		#return
 	
 	#print(to_inv)
+	#print(get_opened_inventories())
+	#if not get_opened_inventories().has(to_inv):
+		#print("cant move item to another inventory slot, first, open the inventory.")
+		#debug_print("cant move item to another inventory slot, first, open the inventory.")
+		#return
 	
 	net_caller.call_func(_item_move_to_local, [item.get_path(), slot.get_path()])
 
@@ -371,3 +380,50 @@ func _item_move_to_local(item_path: NodePath, to_path: NodePath) -> void:
 	if item and to:
 		var to_inv: SourceInventory = to.get_inventory()
 		item.reparent(to)
+
+var _opened: Array[SourceInventory] = []
+
+func get_opened_inventories() -> Array[SourceInventory]:
+	return _opened
+
+func request_open_or_close_inventory(inventory: SourceInventory, open: bool = true) -> void:
+	net_caller.call_func_on_server(__request_open_or_close_inventory_net, [inventory, open])
+
+func __request_open_or_close_inventory_net(inventory: SourceInventory, open: bool) -> void:
+	if open:
+		open_inventory(inventory)
+	else:
+		close_inventory(inventory)
+
+func open_inventory(inventory: SourceInventory) -> void:
+	if !SD_Network.is_server() or !is_instance_valid(inventory):
+		return
+	
+	if inventory.private and inventory != self:
+		return
+	
+	net_caller.call_func(_net_open_or_close_inventory, [inventory, true])
+
+func close_inventory(inventory: SourceInventory) -> void:
+	if !SD_Network.is_server() or !is_instance_valid(inventory):
+		return
+	
+	net_caller.call_func(_net_open_or_close_inventory, [inventory, false])
+
+func _net_open_or_close_inventory(inventory: SourceInventory, opened: bool) -> void:
+	if !inventory:
+		return
+	
+	if opened:
+		if !_opened.has(inventory):
+			_opened.append(inventory)
+			inventory_opened.emit(inventory)
+			S_EventInventoryOpened.as_event().inventory = self
+			S_EventInventoryOpened.as_event().publish()
+	else:
+		if _opened.has(inventory):
+			_opened.erase(inventory)
+			inventory_closed.emit(inventory)
+			S_EventInventoryClosed.as_event().inventory = self
+			S_EventInventoryClosed.as_event().publish()
+			
