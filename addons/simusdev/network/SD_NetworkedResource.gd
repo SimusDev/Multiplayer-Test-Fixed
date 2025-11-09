@@ -10,6 +10,8 @@ static var _cached_instances: Dictionary[SD_NetworkedResource, StringName] = {}
 signal registered()
 signal unregistered()
 
+var is_registered: bool = false
+
 static func _cache_get_paths() -> Dictionary[StringName, int]:
 	if SD_Network.cache_get().has("n.r.p"):
 		return SD_Network.cache_get().get("n.r.p", {})
@@ -29,10 +31,15 @@ func serialize_reference() -> int:
 	return _cache_get_paths().get(net_id)
 
 static func deserialize_reference(ref: int) -> SD_NetworkedResource:
+	var founded: Variant = SD_NetworkedResource._cache_get_id().get(ref)
+	if founded != null:
+		find_from_global_net_id(founded)
 	return null
-	return find_from_global_net_id(SD_NetworkedResource._cache_get_id().get(ref))
 
 func register() -> void:
+	if registered:
+		return
+	
 	#SD_Network.register_object(self)
 	_cached_id[net_id] = self
 	_cached_instances[self] = net_id
@@ -45,6 +52,9 @@ func register() -> void:
 	_registered()
 
 func unregister() -> void:
+	if !registered:
+		return
+	
 	#SD_Network.unregister_object(self)
 	_cached_id.erase(net_id)
 	_cached_instances.erase(self)

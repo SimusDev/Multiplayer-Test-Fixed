@@ -83,7 +83,8 @@ func _uncache(path: NodePath) -> void:
 	SD_Network.singleton.callables.delete_active_node_from_all(reference)
 
 func _on_tree_exited() -> void:
-	_uncache(last_path)
+	if reference.is_queued_for_deletion():
+		_uncache(last_path)
 
 static func create(object: Object) -> SD_NetRegisteredNode:
 	return get_or_create(object)

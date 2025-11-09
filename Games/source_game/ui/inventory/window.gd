@@ -8,13 +8,10 @@ class_name ui_SourceInventoryWindow
 var _player: SourcePlayable
 var _inventory: SourceInventory
 
-func _ready() -> void:
-	_player = SourcePlayable.get_local()
-	
-	if player_inventory and is_instance_valid(_player):
-		var inv: SourceInventory = SD_Components.find_first(_player.root, SourceInventory)
-		set_inventory(inv)
+@export var interface: SD_UIInterfaceMenu
 
+func _ready() -> void:
+	pass
 
 func _update_all() -> void:
 	if not _inventory.is_initialized:
@@ -31,5 +28,26 @@ func _update_all() -> void:
 		ui_SourceSlot.create(container, _inventory, slot)
 
 func set_inventory(new: SourceInventory) -> void:
+	if _inventory == new:
+		return
+	
+	_player.inventory.inventory_closed.connect(_on_closed)
 	_inventory = new
 	_update_all()
+
+func _on_closed(the_closed: SourceInventory) -> void:
+	if the_closed == _inventory:
+		already_closed = true
+		$SD_UIInterfaceMenu.close()
+
+func _on_sd_ui_interface_menu_closed() -> void:
+	if already_closed:
+		return
+	
+	_player.inventory.request_open_or_close_inventory(_inventory, false)
+	already_closed = true
+
+func _on_tree_exited() -> void:
+	_player.inventory.request_open_or_close_inventory(_inventory, false)
+
+var already_closed: bool = false

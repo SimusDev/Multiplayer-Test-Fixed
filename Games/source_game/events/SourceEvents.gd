@@ -20,7 +20,9 @@ var _events: Dictionary[Script, S_Event] = {
 	S_EventDeathLocal: S_EventDeathLocal.new(),
 	S_EventPlayerSpawned: S_EventPlayerSpawned.new(),
 	S_EventPlayerDespawned: S_EventPlayerDespawned.new(),
-	S_EventPlayerUICreated: S_EventPlayerUICreated.new()
+	S_EventPlayerUICreated: S_EventPlayerUICreated.new(),
+	S_EventInventoryClosed: S_EventInventoryClosed.new(),
+	S_EventInventoryOpened: S_EventInventoryOpened.new(),
 }
 
 static func get_by_script(script: Script) -> S_Event:
