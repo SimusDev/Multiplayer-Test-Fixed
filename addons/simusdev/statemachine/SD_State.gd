@@ -10,6 +10,8 @@ var _state_machine: SD_NodeStateMachine
 signal transitioned()
 
 func _ready() -> void:
+	_state_machine = get_parent()
+	
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
 	])
@@ -29,11 +31,11 @@ static func create(state_id: String) -> SD_State:
 
 func switch() -> void:
 	if SD_Network.is_authority(_state_machine):
-		SD_Network.call_func_on_server(_switch_net, [], SD_Network.CALLMODE, _state_machine.network_channel)
+		SD_Network.call_func_on_server(_switch_net, [], SD_Network.CALLMODE.RELIABLE, _state_machine.network_channel)
 
 func _switch_net() -> void:
 	if _state_machine.get_multiplayer_authority() == SD_Network.get_remote_sender_id():
-		SD_Network.call_func(_switch_synchronized, [], SD_Network.CALLMODE, _state_machine.network_channel)
+		SD_Network.call_func(_switch_synchronized, [], SD_Network.CALLMODE.RELIABLE, _state_machine.network_channel)
 	
 
 func _switch_synchronized() -> void:

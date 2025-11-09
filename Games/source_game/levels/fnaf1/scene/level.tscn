@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbxaos0ee0p4e"]
+
+[ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_3q8n1"]
+[ext_resource type="PackedScene" uid="uid://ddt283ewsv8jb" path="res://Games/source_game/levels/fnaf1/scene/map.tscn" id="2_osid6"]
+[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="3_evy0v"]
+
+[node name="fnaf" instance=ExtResource("1_3q8n1")]
+
+[node name="map" parent="." index="0" instance=ExtResource("2_osid6")]
+
+[node name="Objects" parent="." index="1"]
+base_dir = "res://Games/source_game/levels/fnaf1"
+object_dirs = PackedStringArray("objects")
+
+[node name="SourceSpawnPoint" type="Node3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4721668, 3.785458, 36.73363)
+script = ExtResource("3_evy0v")
+spawn_point_name = "office"
+metadata/_custom_type_script = "uid://dxp3pky5254bi"
