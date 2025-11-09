@@ -214,7 +214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -498, -46.21612)
 global_y_trigger = -80.0
 
 [node name="devs" type="Sprite3D" parent="." index="12"]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 16.590397, 1.5610873, -26.198845)
+transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 16.590397, 1.5610873, -26.198845)
 texture = ExtResource("11_ae8mq")
 
 [editable path="Environment"]
