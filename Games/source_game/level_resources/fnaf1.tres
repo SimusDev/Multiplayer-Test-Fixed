@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://cfvi3ylns5lam"]
+
+[ext_resource type="PackedScene" uid="uid://dbxaos0ee0p4e" path="res://Games/source_game/levels/fnaf1/scene/level.tscn" id="1_l6rmo"]
+[ext_resource type="Script" path="res://Games/source_game/components/r_level.gd" id="1_sh34w"]
+
+[resource]
+script = ExtResource("1_sh34w")
+map_name = &"fnaf1"
+level_scene = ExtResource("1_l6rmo")

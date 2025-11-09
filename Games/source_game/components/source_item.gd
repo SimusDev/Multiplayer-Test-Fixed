@@ -60,7 +60,8 @@ func _ready() -> void:
 	SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
 	if is_instance_valid(animation_player):
 		animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
-
+		animation_player.play(_pick)
+	
 func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
