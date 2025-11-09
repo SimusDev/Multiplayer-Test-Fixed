@@ -35,8 +35,9 @@ func _ready() -> void:
 	
 	if level_at_start == "":
 		return
+	
 	if SD_Network.is_server():
-		load_level(level_at_start)
+		__load_level_async(level_at_start)
 	
 	check_level()
 	
@@ -52,29 +53,39 @@ func _on_cmd_change_level_executed():
 	if not SD_Network.is_server():
 		SimusDev.console.write_error("Only server can change level")
 		return
-	load_level(cmd_change_level.get_value_as_string())
+	load_level_async(cmd_change_level.get_value_as_string())
 
 func free_current_level():
 	SD_Nodes.clear_all_children(root_node)
 	current_level = null
 	_free_current_level.emit()
 
+var _loading_level: bool = false
+func load_level_async(level_name:StringName) -> void:
+	if _loading_level:
+		return
+	SD_Console.i().write_info("trying to load: %s..." % level_name)
+	WorkerThreadPool.add_task(__load_level_async.bind(level_name))
+	_loading_level = true
 
-func load_level(level_name:StringName) -> bool:
+func __load_level_async(level_name:StringName) -> bool:
 	var path:String = levels_folder_path + level_name + ".tres"
 	var level_res:R_SourceLevel = load(path)
 	if !level_res:
 		SimusDev.console.write_error("can't load map '%s' at path '%s'" % [level_name, path])
 		return false
 	
-	free_current_level()
+	free_current_level.call_deferred()
 	
 	var new_level_scene = level_res.level_scene.instantiate()
 	current_level = new_level_scene
-	root_node.add_child(new_level_scene)
+	root_node.add_child.call_deferred(new_level_scene)
 	_load_level.emit()
 	SimusDev.console.write_success("successfully loaded map " + "'%s'" % [level_name])
+	_loading_level = false
 	return true
+
+
 
 func _on_child_entered_tree(node: Node) -> void:
 	if !node.is_node_ready():
