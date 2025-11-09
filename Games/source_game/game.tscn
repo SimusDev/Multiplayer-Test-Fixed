@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=27 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
@@ -22,16 +22,6 @@
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
 [ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
-[sub_resource type="Resource" id="Resource_7hhbe"]
-script = ExtResource("19_dt7qg")
-code = "time.set"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
-[sub_resource type="Resource" id="Resource_wirdf"]
-script = ExtResource("19_dt7qg")
-code = "player.teleport"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
 [sub_resource type="Resource" id="Resource_dt7qg"]
 script = ExtResource("19_dt7qg")
 code = "sv_cheats"
@@ -42,17 +32,6 @@ metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 script = ExtResource("19_dt7qg")
 code = "noclip"
 value = "0"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
-[sub_resource type="Resource" id="Resource_fcmfk"]
-script = ExtResource("19_dt7qg")
-code = "time.freeze"
-value = "0"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
-[sub_resource type="Resource" id="Resource_ioj0b"]
-script = ExtResource("19_dt7qg")
-code = "player.kill"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_8dbco"]
@@ -131,7 +110,7 @@ metadata/_custom_type_script = "uid://brbjcyxkk7elj"
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
-commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_7hhbe"), SubResource("Resource_wirdf"), SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_fcmfk"), SubResource("Resource_ioj0b"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx")])
+commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [node name="decals" type="Node3D" parent="."]

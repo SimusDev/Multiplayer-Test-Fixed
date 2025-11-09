@@ -11,7 +11,8 @@ class_name SourceNetwork
 	CHANNEL_SPAWN,
 	CHANNEL_ITEMS,
 	CHANNEL_INVENTORY,
-	CHANNEL_INTERACTABLES
+	CHANNEL_INTERACTABLES,
+	CHANNEL_EFFECTS,
 ]
 
 const CHANNEL_ENTITY_POSITION: String = "entity_position"
@@ -20,6 +21,7 @@ const CHANNEL_SPAWN: String = "spawn"
 const CHANNEL_ITEMS: String = "items"
 const CHANNEL_INVENTORY: String = "inventory"
 const CHANNEL_INTERACTABLES: String = "interactables"
+const CHANNEL_EFFECTS: String = "effects"
 
 func _ready() -> void:
 	for channel in channels:

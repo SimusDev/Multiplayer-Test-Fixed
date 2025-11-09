@@ -13,6 +13,11 @@ var is_cached: bool = false
 
 var _inactive_for_peers: PackedInt32Array = PackedInt32Array()
 
+var net_id: int = -1
+
+static var references_by_net_id: Dictionary[int, SD_NetRegisteredNode] = {}
+static var references_by_path: Dictionary[NodePath, SD_NetRegisteredNode] = {}
+
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
 	_inactive_for_peers = _inactive_for_peers.duplicate()
@@ -83,8 +88,7 @@ func _uncache(path: NodePath) -> void:
 	SD_Network.singleton.callables.delete_active_node_from_all(reference)
 
 func _on_tree_exited() -> void:
-	if reference.is_queued_for_deletion():
-		_uncache(last_path)
+	_uncache(last_path)
 
 static func create(object: Object) -> SD_NetRegisteredNode:
 	return get_or_create(object)

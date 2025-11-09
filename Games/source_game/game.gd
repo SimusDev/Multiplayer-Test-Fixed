@@ -21,6 +21,9 @@ const SCENE_PATH:String = "res://Games/source_game/game.tscn"
 
 var test_peers: Array[int] = []
 
+static func is_cheats_enabled() -> bool:
+	return instance.sv_cheats
+
 func _physics_process(delta: float) -> void:
 	pass
 	
@@ -67,8 +70,7 @@ func spawn_on_server(prop_res:R_SourceWorldObject, quantity: int = 1, inventory:
 	if not is_instance_valid(SourceGame.instance):
 		return
 	
-	var new_prop = prop_res.prefab.instantiate()
-	prop_res.set_in(new_prop)
+	
 	var player: Node = SD_NetworkPlayer.get_by_peer_id(SD_Network.get_remote_sender_id())
 	if player:
 		var node = player.get_player_node()
@@ -88,7 +90,13 @@ func spawn_on_server(prop_res:R_SourceWorldObject, quantity: int = 1, inventory:
 							quantity -= 1
 						
 						return
-				
+			
+			
+			if !prop_res.prefab:
+				return
+			
+			var new_prop = prop_res.prefab.instantiate()
+			prop_res.set_in(new_prop)
 			
 			var ray: SourceInteractRay = SD_Components.find_first(node, SourceInteractRay)
 			if ray:
@@ -104,6 +112,12 @@ func spawn_on_server(prop_res:R_SourceWorldObject, quantity: int = 1, inventory:
 					new_prop.global_position.y += pos * count
 					quantity -= 1
 		else:
+			if !prop_res.prefab:
+				return
+			
+			var new_prop = prop_res.prefab.instantiate()
+			prop_res.set_in(new_prop)
+			
 			instantiate_object_on_server(new_prop)
 			
 

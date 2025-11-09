@@ -41,13 +41,6 @@ func register() -> void:
 		return
 	
 	#SD_Network.register_object(self)
-	_cached_id[net_id] = self
-	_cached_instances[self] = net_id
-	
-	var _c_by_id := _cache_get_id()
-	var _c_by_paths := _cache_get_paths()
-	_c_by_id[_c_by_id.size()] = net_id
-	_c_by_paths[net_id] = _c_by_id.size()
 	
 	_registered()
 
@@ -56,13 +49,6 @@ func unregister() -> void:
 		return
 	
 	#SD_Network.unregister_object(self)
-	_cached_id.erase(net_id)
-	_cached_instances.erase(self)
-	
-	var _c_by_id := _cache_get_id()
-	var _c_by_paths := _cache_get_paths()
-	_c_by_id.erase(_c_by_id.size())
-	_c_by_paths.erase(net_id)
 	
 	_unregistered()
 

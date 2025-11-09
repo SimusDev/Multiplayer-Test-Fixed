@@ -15,10 +15,10 @@ var target:Node3D :
 			
 			set_remote_transform_path(node)
 			
-			if is_instance_valid(node):
+			if is_instance_valid(node) and target is RigidBody3D:
 				node.gravity_scale = 0.0
 			else:
-				if target:
+				if target and target is RigidBody3D:
 					target.gravity_scale = 1.0
 			
 			target = node
@@ -38,18 +38,24 @@ func _ready() -> void:
 	tree_exited.connect(release_target)
 	
 	remote_transform = RemoteTransform3D.new()
-	item.add_child(remote_transform)
+	item.add_child.call_deferred(remote_transform)
 	remote_transform.position = remote_transform_position
 	
 
+func _exit_tree() -> void:
+	if is_instance_valid(remote_transform):
+		remote_transform.queue_free()
+
 func set_remote_transform_path(node:Node3D) -> void:
+	if not remote_transform.is_inside_tree():
+		await remote_transform.tree_entered
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
 func emit_laser() -> void:
 	pass
 
 func capture(body:Node3D) -> void:
-	if body is RigidBody3D:
+	if body is PhysicsBody3D:
 		target = body
 		print("CAPTURED: %s" % [body])
 

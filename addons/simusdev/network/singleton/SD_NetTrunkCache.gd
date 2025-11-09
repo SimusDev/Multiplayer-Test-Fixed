@@ -180,12 +180,29 @@ func try_cache_node(node: Object) -> void:
 	var net := SD_NetRegisteredNode.get_or_create(node)
 	var path: NodePath = net.last_path
 	
-	cache_by_path[path] = net_id
-	cache_by_id[net_id] = path
+	#cache_by_path[path] = net_id
+	#cache_by_id[net_id] = path
 	
 	_client_cache.rpc(net_id, path)
 	
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
+
+
+@rpc("any_peer", "reliable", "call_local")
+func _client_cache(net_id: int, path: NodePath) -> void:
+	get_cached_nodes_by_id()[net_id] = path
+	get_cached_nodes_by_path()[path] = net_id
+	
+	var node: Object = deserialize_node_reference(net_id)
+	if node:
+		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
+		net.net_id = net_id
+		net.references_by_path[path] = net
+		net.references_by_net_id[net_id] = net
+		net.is_cached = true
+		net.cached.emit()
+		debug_print("object cached: %s" % path, SD_ConsoleCategories.CATEGORY.INFO)
+
 
 func try_uncache_node(path: NodePath) -> void:
 	if not SD_Network.is_server():
@@ -197,34 +214,19 @@ func try_uncache_node(path: NodePath) -> void:
 	if net_id < 0:
 		return
 	
-	cache_by_id.erase(net_id)
-	cache_by_path.erase(path)
+	#cache_by_id.erase(net_id)
+	#cache_by_path.erase(path)
 	
 	_client_uncache.rpc(net_id, path)
-	
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 @rpc("any_peer", "reliable", "call_local")
-func _client_cache(net_id: int, path: NodePath) -> void:
-	if not SD_Network.is_server():
-		get_cached_nodes_by_id()[net_id] = path
-		get_cached_nodes_by_path()[path] = net_id
-	
-	var node: Object = deserialize_node_reference(path)
-	if node:
-		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
-		net.is_cached = true
-		net.cached.emit()
-		debug_print("object cached: %s" % path, SD_ConsoleCategories.CATEGORY.INFO)
-
-@rpc("any_peer", "reliable", "call_local")
 func _client_uncache(net_id: int, path: NodePath) -> void:
-	if not SD_Network.is_server():
-		get_cached_nodes_by_id().erase(net_id)
-		get_cached_nodes_by_path().erase(path)
+	get_cached_nodes_by_id().erase(net_id)
+	get_cached_nodes_by_path().erase(path)
 	
-	var node: Object = deserialize_node_reference(path)
+	var node: Object = deserialize_node_reference(net_id)
 	if node:
 		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
 		net.is_cached = false
@@ -250,7 +252,11 @@ func deserialize_node_reference(data: Variant) -> Object:
 		if founded:
 			return founded
 		
-		return get_node_or_null(get_cached_path_by_id(data))
+		founded = get_node_or_null(get_cached_path_by_id(data))
+		if founded:
+			return founded
+		
+		return SD_NetRegisteredNode.references_by_net_id.get(data)
 	
 	var founded: Object = get_node_or_null(data)
 	if founded:

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c2etbq7m6lbp4"]
+
+[ext_resource type="Script" uid="uid://bo6l8uwuapcje" path="res://Games/source_game/objects/effects/alcohol.gd" id="1_pudtl"]
+
+[resource]
+script = ExtResource("1_pudtl")
+metadata/_custom_type_script = "uid://cdf5sa4rq3vfp"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="R_SourceCurrency" load_steps=2 format=3 uid="uid://cqv3v1w2ad63a"]
+
+[ext_resource type="Script" uid="uid://hx8j3if7rax2" path="res://Games/source_game/components/currency/r_currency.gd" id="1_y8ed0"]
+
+[resource]
+script = ExtResource("1_y8ed0")
+symbol = &"$"
+metadata/_custom_type_script = "uid://hx8j3if7rax2"

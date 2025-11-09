@@ -37,6 +37,9 @@ var _events: Dictionary[String, SD_Event] = {}
 
 var net_caller: SD_NetFunctionCaller
 
+#//////////////////////////////////////////////////////////////
+var effects: SourceEffects
+
 func event_get_or_create(code: String) -> SD_Event:
 	if _events.has(code):
 		return _events[code]
@@ -82,6 +85,11 @@ func _ready() -> void:
 		root = get_parent()
 	
 	SD_Components.append_to(root, self)
+	
+	effects = SourceEffects.new()
+	effects.inventory = self
+	effects.name = "effects"
+	root.add_child.call_deferred(effects)
 	
 	if !root.is_node_ready():
 		await root.ready
@@ -272,10 +280,11 @@ func add_item(item: SourceItemStack) -> void:
 		SD_Nodes.fast_queue_free(item)
 	
 	var server: SourceItemStack = _add_item_net(serialized)
+	if is_instance_valid(server):
+		if !server.is_queued_for_deletion():
+			net_caller.call_func_except_self(_add_item_net, [server.serialize()])
 	
-	net_caller.call_func_except_self(_add_item_net, [server.serialize()])
-	
-	sort_stackables(item.object)
+		sort_stackables(item.object)
 
 func _add_item_net(serialized: Variant) -> SourceItemStack:
 	var item := SourceItemStack.deserialize(serialized)
