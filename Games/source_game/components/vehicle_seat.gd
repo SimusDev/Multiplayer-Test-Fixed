@@ -1,5 +1,5 @@
 @icon("res://Games/source_game/components/vehicle/seat.png")
-class_name SourceSeat extends Node
+class_name SourceSeat extends Node3D
 
 @export var enabled:bool = true
 
@@ -15,6 +15,8 @@ var caller:SD_NetFunctionCaller
 var remote_transform:RemoteTransform3D
 
 func _ready() -> void:
+	set_process_input(false)
+	
 	SD_Network.register_object(self)
 	SD_Network.register_function(_send)
 	SD_Network.register_function(_recieve)
@@ -25,8 +27,10 @@ func _ready() -> void:
 	add_child(caller)
 	
 	remote_transform = RemoteTransform3D.new()
+	remote_transform.use_global_coordinates = true
 	remote_transform.update_rotation = false
 	add_child(remote_transform)
+	remote_transform.global_position = bind_point.global_position
 	
 	if not SD_Network.is_server():
 		caller.call_func_on_server(_send)
@@ -59,7 +63,7 @@ func seat(node:Node3D) -> void:
 func dismount(node:Node3D) -> void:
 	sidyn4ik = null
 	caller.call_func(set_movement_enabled, [node, true])
-	caller.call_func(set_remote_transform_path, [node, null])
+	caller.call_func(set_remote_transform_path, [null])
 	#СЁКС
 
 func set_remote_transform_path(node:Node3D) -> void:
@@ -69,21 +73,25 @@ func set_remote_transform_path(node:Node3D) -> void:
 	
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
-func _input(event: InputEvent) -> void:
-	pass
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed(dismount_action_key):
+		dismount(sidyn4ik)
 
 func set_movement_enabled(node:Node3D, value:bool) -> void:
 	if not node:
 		return
 	
+	if SD_Network.is_player_and_authority(node):
+		set_process_input(not value)
 	
 	var movement:W_FPCSourceLikeMovement = SD_Components.find_first(node, W_FPCSourceLikeMovement)
 	if is_instance_valid(movement):
 		if value:
 			movement.process_mode = Node.PROCESS_MODE_INHERIT
 		else:
+			movement.state_machine.switch_by_name("sitting")
 			movement.process_mode = Node.PROCESS_MODE_DISABLED
-
+			movement.actor.velocity = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
 	

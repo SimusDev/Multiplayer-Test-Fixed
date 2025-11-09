@@ -8,18 +8,13 @@
 
 [sub_resource type="Resource" id="Resource_4h0tu"]
 script = ExtResource("3_ash3e")
-stackable = true
-stack_size = 64
 pickable = false
-actions = Array[ExtResource("2_adffk")]([])
 metadata/_custom_type_script = "uid://by2u8yhp1402w"
 
 [resource]
 script = ExtResource("1_v2vhd")
 custom_section = "seat"
-custom_id = ""
 icon = ExtResource("1_cfliu")
-name = ""
 description = "S.I.D.U.SH.K.A"
 prefab = ExtResource("2_mv1o7")
 itemstack = SubResource("Resource_4h0tu")

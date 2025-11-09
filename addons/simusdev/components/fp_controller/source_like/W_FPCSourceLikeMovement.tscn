@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://be7h2lkvpihn3"]
+[gd_scene load_steps=5 format=3 uid="uid://be7h2lkvpihn3"]
 
 [ext_resource type="Script" uid="uid://cih3akh6rok3w" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.gd" id="1_spdlb"]
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_2v68o"]
 [ext_resource type="Script" uid="uid://bu1m66ordltfp" path="res://addons/simusdev/components/fp_controller/source_like/states/idle.gd" id="3_2v68o"]
+[ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="4_rtvji"]
 
 [node name="W_FPCSourceLikeMovement" type="Node3D" node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_spdlb")
@@ -58,6 +59,11 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
 [node name="run" type="Node" parent="state_machine"]
 script = ExtResource("3_2v68o")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="sitting" type="Node" parent="state_machine"]
+process_mode = 4
+script = ExtResource("4_rtvji")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
 [connection signal="state_enter" from="state_machine" to="." method="_on_state_machine_state_enter"]

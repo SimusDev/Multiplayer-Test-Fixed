@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=8 format=3 uid="uid://x64etcqik38c"]
+
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_hef8i"]
+[ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="1_jvinl"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_ccomw"]
+[ext_resource type="PackedScene" uid="uid://oyyfpjeiwwni" path="res://Games/source_game/game/3dmodels/throne/scene.tscn" id="4_pfrae"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_yrfyt"]
+
+[sub_resource type="Resource" id="Resource_u7nwg"]
+script = ExtResource("5_yrfyt")
+prefab = ExtResource("4_pfrae")
+position = Vector3(0, 0, -0.27)
+scale = Vector3(0.3, 0.3, 0.3)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_2djtp"]
+script = ExtResource("3_ccomw")
+view = SubResource("Resource_u7nwg")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_hef8i")
+custom_section = "seat"
+prefab = ExtResource("1_jvinl")
+viewmodel = SubResource("Resource_2djtp")
+metadata/_custom_type_script = "uid://csp1614nihjb5"
