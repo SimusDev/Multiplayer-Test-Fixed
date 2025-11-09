@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=13 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="3_eqep5"]
-[ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
-[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
+[ext_resource type="Material" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
+[ext_resource type="Material" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
-[ext_resource type="Material" uid="uid://dbyrkd4pdsous" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
+[ext_resource type="Material" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
+[ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="10_qjves"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
@@ -206,5 +207,9 @@ moon_altitude = -1.9092275
 [node name="TimeOfDay" parent="Environment/Sky3D" index="3"]
 minutes_per_day = 120.0
 current_time = 16.5
+
+[node name="backrooms" parent="." index="11" instance=ExtResource("10_qjves")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -498, -46.21612)
+global_y_trigger = -80.0
 
 [editable path="Environment"]

@@ -9,6 +9,28 @@
 [sub_resource type="GDScript" id="GDScript_jfr02"]
 resource_name = "backrooms"
 script/source = "extends Node3D
+
+@export var global_y_trigger: float = 0.0
+@export var marker: Marker3D
+
+var _players: Array[SourcePlayable] = []
+
+func _ready() -> void:
+	SD_Network.register_object(self)
+	SD_Network.register_function(teleport)
+	
+	if SD_Network.is_server():
+		$update.start()
+
+func _on_update_timeout() -> void:
+	for player in SourcePlayable.get_list():
+		if player.get_global_position().y < global_y_trigger:
+			if !_players.has(player):
+				SD_Network.call_func(teleport, [player.root])
+				_players.append(player)
+
+func teleport(node: Node3D) -> void:
+	node.global_position = marker.global_position
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qimf"]
@@ -473,8 +495,9 @@ size = Vector3(31.9, 0.5, 29.4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr02"]
 size = Vector3(58.7437, 20.5649, 56.7843)
 
-[node name="backrooms" type="Node3D"]
+[node name="backrooms" type="Node3D" node_paths=PackedStringArray("marker")]
 script = SubResource("GDScript_jfr02")
+marker = NodePath("Marker3D")
 
 [node name="model" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0)
@@ -631,4 +654,12 @@ reverb_bus_amount = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348669, 2.67065, -0.0059824)
 shape = SubResource("BoxShape3D_jfr02")
 
+[node name="update" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4734604, 0)
+gizmo_extents = 2.0
+
 [connection signal="body_exited" from="is_in_backrooms_area" to="." method="_on_is_in_backrooms_area_body_exited"]
+[connection signal="timeout" from="update" to="." method="_on_update_timeout"]

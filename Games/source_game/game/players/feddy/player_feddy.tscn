@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckg1yi8mooyyl"]
+
+[ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_jrijn"]
+[ext_resource type="PackedScene" uid="uid://72h1o13nfmcw" path="res://Games/source_game/game/players/feddy/feddy.tscn" id="2_kkglw"]
+[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="2_m8wv2"]
+[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="3_a0svp"]
+
+[sub_resource type="Resource" id="Resource_7h4eu"]
+script = ExtResource("2_m8wv2")
+interpolation_enabled = true
+node_path = NodePath("..")
+channels = Array[String](["position", "rotation"])
+sync = 0
+metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
+
+[sub_resource type="Resource" id="Resource_yx2hv"]
+script = ExtResource("3_a0svp")
+_list = Array[ExtResource("2_m8wv2")]([SubResource("Resource_7h4eu")])
+metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkglw"]
+size = Vector3(1, 2.5390625, 0.598999)
+
+[node name="base_player" instance=ExtResource("1_jrijn")]
+
+[node name="SD_NetSynchronizer" parent="." index="1"]
+_data = SubResource("Resource_yx2hv")
+
+[node name="HideNodesWhenAuthority" parent="." index="2" node_paths=PackedStringArray("authority_true")]
+authority_true = [NodePath("../nickname"), NodePath("../feddy")]
+
+[node name="SourceMovement" parent="." index="9"]
+_move_speed = 11.0
+_sprint_speed = 20.0
+
+[node name="feddy" parent="." index="18" instance=ExtResource("2_kkglw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4106799, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11987305, -0.027160645)
+shape = SubResource("BoxShape3D_kkglw")
+
+[editable path="SourceMovement"]
+[editable path="SourceCamera"]
