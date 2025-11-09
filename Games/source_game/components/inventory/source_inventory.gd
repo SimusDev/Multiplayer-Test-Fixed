@@ -38,6 +38,7 @@ var _events: Dictionary[String, SD_Event] = {}
 var net_caller: SD_NetFunctionCaller
 
 #//////////////////////////////////////////////////////////////
+var player: SourcePlayable
 var effects: SourceEffects
 
 func event_get_or_create(code: String) -> SD_Event:
@@ -86,13 +87,16 @@ func _ready() -> void:
 	
 	SD_Components.append_to(root, self)
 	
+	if !root.is_node_ready():
+		await root.ready
+	
+	player = SourcePlayable.find_above(self)
+	
 	effects = SourceEffects.new()
 	effects.inventory = self
 	effects.name = "effects"
+	effects.player = player
 	root.add_child.call_deferred(effects)
-	
-	if !root.is_node_ready():
-		await root.ready
 	
 	if not SD_Network.is_server():
 		synchronize_all()

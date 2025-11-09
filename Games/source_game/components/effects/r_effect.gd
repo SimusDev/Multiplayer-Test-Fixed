@@ -14,7 +14,7 @@ func _get_section() -> String:
 	return "effects"
 
 func _start(instance: SourceEffectInstance) -> void:
-	pass
+	instance
 
 func _tick(instance: SourceEffectInstance, delta: float) -> void:
 	pass
@@ -23,4 +23,22 @@ func _physics_tick(instance: SourceEffectInstance, delta: float) -> void:
 	pass
 
 func _end(instance: SourceEffectInstance) -> void:
+	pass
+
+func _start_local(player: SourcePlayable, instance: SourceEffectInstance) -> void:
+	pass
+
+func _tick_local(player: SourcePlayable, instance: SourceEffectInstance, delta: float) -> void:
+	pass
+
+func _physics_tick_local(player: SourcePlayable, instance: SourceEffectInstance, delta: float) -> void:
+	pass
+
+func _tickrate_tick(instance: SourceEffectInstance, delta: float) -> void:
+	pass
+
+func _tickrate_tick_local(player: SourcePlayable, instance: SourceEffectInstance, delta: float) -> void:
+	pass
+
+func _end_local(player: SourcePlayable, instance: SourceEffectInstance) -> void:
 	pass

@@ -6,6 +6,8 @@ signal _voice_active(value: bool)
 
 @export var root: Node
 
+var ui: Control
+
 @export_group("UI")
 @export var ui_custom: PackedScene
 
@@ -23,8 +25,6 @@ func set_debug_queue_free(value: bool) -> void:
 	if debug_queue_free:
 		root.remove_child(self)
 		root.queue_free()
-
-var ui: PackedScene
 
 var health: SourceHealth
 var inventory: SourceInventory
@@ -56,8 +56,6 @@ static func find_above(node: Node) -> SourcePlayable:
 	return find_above(node.get_parent())
 
 func _enter_tree() -> void:
-	
-	
 	if not root:
 		root = get_parent()
 	
@@ -136,15 +134,16 @@ func _input(event: InputEvent) -> void:
 		_voice.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _initialize_ui() -> void:
-	var ui: PackedScene = load(SourceGame.GAME_PATH.path_join("player/ui/player_ui.tscn"))
+	var ui_scn: PackedScene = load(SourceGame.GAME_PATH.path_join("player/ui/player_ui.tscn"))
 	var canvas: CanvasLayer = CanvasLayer.new()
 	canvas.name = "canvas"
-	var scene: PackedScene = ui
+	var scene: PackedScene = ui_scn
 	
 	if ui_custom:
 		scene = ui_custom
 	
 	var instance: Node = scene.instantiate()
+	ui = instance
 	instance.name = "ui"
 	canvas.add_child(instance)
 	

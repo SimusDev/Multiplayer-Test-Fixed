@@ -6,6 +6,8 @@ var root: Node
 
 var _caller: SD_NetFunctionCaller
 
+var player: SourcePlayable
+
 func _ready() -> void:
 	SD_Components.append_to(inventory.root, self)
 	
@@ -19,6 +21,12 @@ func _ready() -> void:
 	
 	if !SD_Network.is_server():
 		_caller.call_func_on_server(_send)
+	
+	if !inventory.is_node_ready():
+		await inventory.ready
+	
+	player = inventory.player
+	
 
 func _send() -> void:
 	var data: Array = []
@@ -40,7 +48,8 @@ func give(effect: R_SourceEffect) -> SourceEffectInstance:
 	if effect.overlap:
 		var effects := get_effects_by(effect)
 		if !effects.is_empty():
-			effects[0].set_time(effect.timeout)
+			var cur_effet: SourceEffectInstance = effects[0]
+			cur_effet.set_time(cur_effet.get_time() + effect.timeout)
 			return
 	
 	var instance := SourceEffectInstance.new()

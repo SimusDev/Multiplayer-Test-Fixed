@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_pudtl")
+overlap = false
 metadata/_custom_type_script = "uid://cdf5sa4rq3vfp"
