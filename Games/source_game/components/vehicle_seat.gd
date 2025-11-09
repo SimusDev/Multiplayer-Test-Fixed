@@ -52,6 +52,10 @@ func _recieve(data:Dictionary, sidyn:Node3D) -> void:
 	set_movement_enabled(sidyn4ik, false)
 
 func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
+	print(sidyn4ik)
+	if sidyn4ik:
+		return
+	
 	seat(interact_ray.root)
 	
 
@@ -66,14 +70,14 @@ func dismount(node:Node3D) -> void:
 	set_movement_enabled(node, true)
 	caller.call_func(set_movement_enabled, [node, true])
 	caller.call_func(set_remote_transform_path, [null])
-	sidyn4ik = null
+	
 	#СЁКС
 
 func set_remote_transform_path(node:Node3D) -> void:
+	sidyn4ik = node
 	if not node:
 		remote_transform.remote_path = NodePath()
 		return
-	sidyn4ik = node
 	
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
