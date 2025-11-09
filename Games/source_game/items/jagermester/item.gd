@@ -2,7 +2,7 @@ extends SourceItem
 
 @export var effect_prefab:PackedScene
 
-func use() -> void:
+func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
 	super()
 	
 	#ItemStack durability -= - 100.0

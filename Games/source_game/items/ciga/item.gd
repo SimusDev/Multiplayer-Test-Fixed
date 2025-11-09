@@ -26,7 +26,7 @@ func _ready() -> void:
 		
 		tick_timer.start()
 
-func use() -> void:
+func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
 	super()
 	
 	

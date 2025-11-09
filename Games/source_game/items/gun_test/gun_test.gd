@@ -60,7 +60,7 @@ func try_reload() -> void:
 func _try_reload_net() -> void:
 	gun_object._try_reload(stack)
 
-func use() -> void:
+func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
 	if stack.get_durability() <= 0:
 		return
 	fire()

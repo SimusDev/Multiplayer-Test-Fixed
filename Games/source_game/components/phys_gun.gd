@@ -34,7 +34,7 @@ func _ready() -> void:
 		return
 	
 	item.use_pressed.connect(item_use_pressed)
-	item.use_release.connect(release_target)
+	item.use_released.connect(release_target)
 	tree_exited.connect(release_target)
 	
 	remote_transform = RemoteTransform3D.new()
