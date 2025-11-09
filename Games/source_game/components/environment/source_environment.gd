@@ -62,7 +62,7 @@ func _send() -> void:
 
 func _recieve(data: Dictionary) -> void:
 	_sky.current_time = data.time
-	_sky.game_time_enabled = data.freeze
+	_sky.game_time_enabled = !data.freeze
 
 static func time_set(value: float) -> void:
 	instance.caller.call_func(instance._time_set_local, [value])
