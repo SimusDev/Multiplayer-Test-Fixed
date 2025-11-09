@@ -63,16 +63,17 @@ func seat(node:Node3D) -> void:
 	#МЯЧИК УБИЦА ! КРОВ
 
 func dismount(node:Node3D) -> void:
-	sidyn4ik = null
 	set_movement_enabled(node, true)
 	caller.call_func(set_movement_enabled, [node, true])
 	caller.call_func(set_remote_transform_path, [null])
+	sidyn4ik = null
 	#СЁКС
 
 func set_remote_transform_path(node:Node3D) -> void:
 	if not node:
 		remote_transform.remote_path = NodePath()
 		return
+	sidyn4ik = node
 	
 	remote_transform.remote_path = remote_transform.get_path_to(node)
 
@@ -81,6 +82,8 @@ func _input(_event: InputEvent) -> void:
 		dismount(sidyn4ik)
 
 func set_movement_enabled(node:Node3D, value:bool) -> void:
+	print("Node %s: , value: %s" % [node, value])
+	
 	if not node:
 		return
 	
