@@ -28,10 +28,8 @@ func _ready() -> void:
 	add_child(caller)
 	
 	remote_transform = RemoteTransform3D.new()
-	remote_transform.use_global_coordinates = true
 	remote_transform.update_rotation = false
-	add_child(remote_transform)
-	remote_transform.global_position = bind_point.global_position
+	bind_point.add_child(remote_transform)
 	
 	if not SD_Network.is_server():
 		caller.call_func_on_server(_send)

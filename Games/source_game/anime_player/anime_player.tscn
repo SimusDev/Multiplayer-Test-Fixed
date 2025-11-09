@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2ly2hwdj87jl"]
+[gd_scene load_steps=18 format=3 uid="uid://d2ly2hwdj87jl"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="2_43l7g"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="3_efwcb"]
-[ext_resource type="Resource" uid="uid://10t06r1l7fda" path="res://Games/source_game/objects/scheme.tres" id="4_q40i1"]
 [ext_resource type="AudioStream" uid="uid://x8m3j5ylddy1" path="res://sounds/ah1.mp3" id="4_qpm12"]
 [ext_resource type="AudioStream" uid="uid://jf4by30wikhc" path="res://sounds/ah2.mp3" id="5_q40i1"]
 [ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="6_12bxj"]
@@ -70,8 +69,8 @@ _data = SubResource("Resource_q40i1")
 [node name="HideNodesWhenAuthority" parent="." index="2" node_paths=PackedStringArray("authority_true")]
 authority_true = [NodePath("../nickname"), null]
 
-[node name="SourceItemStack" parent="SourceInventory/h1" index="0"]
-object = ExtResource("4_q40i1")
+[node name="SourceInventory" parent="." index="6"]
+debug = false
 
 [node name="SourcePlayerPhysicsHandler" parent="." index="7"]
 grounding_sounds = Array[AudioStream]([null])
@@ -126,10 +125,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50512695, 0)
 shape = SubResource("CapsuleShape3D_efwcb")
 disabled = true
 
-[node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target", "root") instance=ExtResource("2_6ues7")]
+[node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 target = NodePath("..")
-root = NodePath("..")
 
 [editable path="SourceMovement"]
 [editable path="SourceCamera"]

@@ -52,7 +52,7 @@ func set_open(value:bool) -> void:
 	open = value
 	open_changed.emit()
 
-func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
+func use() -> void:
 	super()
 	if not SD_Network.is_authority(self):
 		return

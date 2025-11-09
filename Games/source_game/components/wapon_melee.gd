@@ -4,11 +4,11 @@ class_name SourceWeaponMelee extends SourceItem
 @export var strength:float = 25.0
 @export var bullethole:PackedScene
 
-func _ready() -> void:
+func using() -> void:
+	if not can_use():
+		return
 	super()
-	on_use.connect(_on_item_use)
-
-func _on_item_use():
+	animation_player.play(_fire)
 	if "model" in player:
 		if player.model:
 			player.model.set_tree_parameter("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
