@@ -60,12 +60,11 @@ func try_reload() -> void:
 func _try_reload_net() -> void:
 	gun_object._try_reload(stack)
 
-func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
-	if stack.get_durability() <= 0:
+func using() -> void:
+	if stack.get_durability() <= 0 or (not can_use()):
 		return
 	fire()
 	super()
-
 
 func fire() -> void:
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
@@ -94,7 +93,6 @@ func play_fire_sound():
 		var sound_instance:SourceSoundInstance = shoot_sound.try_play(self)
 		if is_instance_valid(sound_instance):
 			sound_instance.call_function_on_audio("set_pitch_scale", [rand_pitch])
-	
 
 func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()

@@ -1,10 +1,9 @@
 @icon("res://Games/source_game/components/icons/item.png")
 class_name SourceItem extends Node3D
 
-signal on_use
-signal use_pressed
-signal use_released
-signal on_current_change
+
+signal use_just_pressed
+signal use_just_released
 
 @export var resource:R_SourceItem
 @export var model:Node3D
@@ -22,7 +21,6 @@ signal on_current_change
 
 var player:SourceEntity
 var interact_ray:SourceInteractRay
-var current:bool = false : set = set_current, get = is_current
 
 var stack: SourceItemStack
 
@@ -33,6 +31,8 @@ var playable: SourcePlayable
 
 var caller: SD_NetFunctionCaller
 
+var use_hold:bool = false
+
 func _ready() -> void:
 	caller = SD_NetFunctionCaller.new()
 	caller.name = "caller"
@@ -42,11 +42,11 @@ func _ready() -> void:
 	if stack:
 		stack.item = self
 	
-	current = true
 	SD_Network.register_object(self)
 	SD_Network.register_functions(
 		[
 			use,
+			release
 		]
 	)
 	
@@ -56,64 +56,54 @@ func _ready() -> void:
 		interact_ray = SD_Components.find_first(player, SourceInteractRay)
 		animated_model = W_AnimatedModel3D.find_in(playable.root)
 		inventory = SD_Components.find_first(playable.root, SourceInventory)
-		
+	
+	SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
 	if is_instance_valid(animation_player):
 		animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
-	
-	on_current_change.connect(_on_current_changed)
-	_on_current_changed()
-
-func _on_current_changed():
-	if not is_instance_valid(animation_player):
-		return
-
-	self.visible = is_current()
-	if is_current():
-		self.hide()
-		SoundPlayer.play_global_audio_3d(global_position, pick_sound, "game")
-		if not _pick == "":
-			animation_player.play(_pick)
-		
-		self.show()                    #                |
-	#                                                       |
-		#какие то баги бл* рука дергается !!""!№!;!;________|
-
-
-func set_current(value:bool):
-	current = value
-	on_current_change.emit()
-func is_current(): return current
 
 func _physics_process(_delta: float) -> void:
-	if is_multiplayer_authority() and current:
+	if is_multiplayer_authority():
 		if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
-			if Input.is_action_just_pressed("fire"):
-				caller.call_func(use, ["item_use_pressed", use_pressed])
-			elif Input.is_action_just_released("fire"):
-				caller.call_func(use, ["item_use_released", use_released])
+			if use_hold:
+				using()
 			
-			elif Input.is_action_pressed("fire"):
-				if is_instance_valid(animation_player):
-					if not animation_player.is_playing():
-						caller.call_func(use)
-				else:
-					caller.call_func(use)
-		
+			if Input.is_action_just_pressed("fire"):
+				caller.call_func(use)
+			elif Input.is_action_just_released("fire"):
+				caller.call_func(release)
 
-func use(event_name:StringName = "item_use", use_signal:Signal = on_use) -> void:
-	var event := SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
+func can_use() -> bool:
+	if is_instance_valid(animation_player):
+		return not animation_player.is_playing()
+	return true
+
+
+func publish_event(event_name:StringName) -> S_EventItemUse:
+	var event:S_Event = SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse
 	event.item = self
 	event.source = player
 	
 	var event_status: bool = event.publish()
 	if event_status:
-		if not is_inside_tree(): #v padlu
-			return
+		if not is_inside_tree():
+			return event
 		
-		if animation_player and (not _fire == ""):
-			animation_player.play(_fire)
-		
-		use_signal.emit()
+		use_just_pressed.emit()
 		
 		var inv_event: SD_Event = inventory.event_get_or_create(event_name)
 		inv_event.publish([self])
+	return event
+
+func use() -> void:
+	use_hold = true
+	publish_event("item_use")
+	use_just_pressed.emit()
+
+func release() -> void:
+	use_hold = false
+	publish_event("item_release")
+	use_just_released.emit()
+
+func using() -> void:
+	#publish_event("item_using")
+	pass

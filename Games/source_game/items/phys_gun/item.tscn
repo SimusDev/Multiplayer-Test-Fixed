@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7pfl0xwpffa5"]
+[gd_scene load_steps=6 format=3 uid="uid://c7pfl0xwpffa5"]
 
 [ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_b6tvb"]
 [ext_resource type="Script" uid="uid://b3lwfytq17pdj" path="res://Games/source_game/components/phys_gun.gd" id="2_b6tvb"]
@@ -10,9 +10,6 @@ script = ExtResource("2_mddvp")
 type = 1
 metadata/_custom_type_script = "uid://drk2kpbhybbiw"
 
-[sub_resource type="BoxMesh" id="BoxMesh_kg2h7"]
-size = Vector3(0.1, 0.1, 0.1)
-
 [node name="phys_gun" type="Node3D" node_paths=PackedStringArray("model")]
 script = ExtResource("1_b6tvb")
 resource = SubResource("Resource_nybex")
@@ -22,13 +19,10 @@ metadata/_custom_type_script = "uid://dj1vged070hd"
 [node name="PhysGun" type="Node" parent="." node_paths=PackedStringArray("item")]
 script = ExtResource("2_b6tvb")
 item = NodePath("..")
+remote_transform_position = Vector3(0, 0, -2)
 metadata/_custom_type_script = "uid://b3lwfytq17pdj"
 
 [node name="model" parent="." instance=ExtResource("3_kg2h7")]
 
 [node name="start_point" type="Marker3D" parent="model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.35425785)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13401249, -0.51379645)
-mesh = SubResource("BoxMesh_kg2h7")
