@@ -68,7 +68,7 @@ func _update_interface() -> void:
 
 
 func _on_sd_ui_interface_menu_opened() -> void:
-	_player.inventory.open_inventory(_player.inventory)
+	_player.inventory.request_open_or_close_inventory(_player.inventory)
 
 func _on_sd_ui_interface_menu_closed() -> void:
 	var request: Array[SourceInventory] = _player.inventory.get_opened_inventories().duplicate()
