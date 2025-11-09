@@ -102,6 +102,8 @@ func unregister(node: Node) -> void:
 	_nodes.erase(node)
 
 func _on_child_entered_tree(node: Node) -> void:
+	node.name = node.name.validate_node_name()
+	
 	if not can_serialize(node):
 		return
 	
@@ -173,10 +175,9 @@ func _serialize_main(node: Node, data: Dictionary) -> void:
 	if "transform" in node:
 		data.t = node.transform
 	
-	data.p = get_path_to(node.get_parent())
-	
 	data.n = node.name.validate_node_name()
 	node.name = data.n
+	data.p = get_path_to(node.get_parent())
 
 func _deserialize_main(node: Node, data: Dictionary) -> void:
 	node.name = data.n

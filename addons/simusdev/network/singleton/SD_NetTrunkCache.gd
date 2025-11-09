@@ -187,6 +187,8 @@ func try_cache_node(node: Object) -> void:
 	
 	_client_cache.rpc(net_id, path)
 	
+	print("server: %s: " % [SD_Network.is_server()], path)
+	
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 
@@ -196,6 +198,7 @@ func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_path()[path] = net_id
 	
 	var node: Object = deserialize_node_reference(net_id)
+	print("server: %s, %s. " % [SD_Network.is_server(), path])
 	if node:
 		var net: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
 		net.net_id = net_id
