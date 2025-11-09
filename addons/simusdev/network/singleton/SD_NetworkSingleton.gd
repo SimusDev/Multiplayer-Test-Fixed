@@ -117,7 +117,7 @@ func get_unique_id() -> int:
 	return SERVER_ID
 
 func get_peers() -> PackedInt32Array:
-	if is_active():
+	if is_active() and multiplayer:
 		return multiplayer.get_peers()
 	return PackedInt32Array()
 

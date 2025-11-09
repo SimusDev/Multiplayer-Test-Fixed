@@ -32,6 +32,10 @@ var inventory: SourceInventory
 var network: SD_NetworkPlayer
 
 static var _local: SourcePlayable = null
+static var _list: Array[SourcePlayable] = []
+
+static func get_list() -> Array[SourcePlayable]:
+	return _list.duplicate()
 
 static func get_local() -> SourcePlayable:
 	return _local
@@ -71,6 +75,7 @@ func _enter_tree() -> void:
 	S_EventPlayerSpawned.as_event().root = root
 	S_EventPlayerSpawned.as_event().playable = self
 	S_EventPlayerSpawned.as_event().publish()
+	
 
 func _exit_tree() -> void:
 	if root is SourcePlayer:
@@ -78,8 +83,13 @@ func _exit_tree() -> void:
 	S_EventPlayerDespawned.as_event().root = root
 	S_EventPlayerDespawned.as_event().playable = self
 	S_EventPlayerDespawned.as_event().publish()
+	
+	if is_queued_for_deletion():
+		_list.erase(self)
 
 func _ready() -> void:
+	_list.append(self)
+	
 	SD_Components.append_to(root, self)
 	
 	if !root.is_node_ready():
@@ -139,3 +149,6 @@ func _initialize_ui() -> void:
 	canvas.add_child(instance)
 	
 	root.add_child(canvas)
+
+func get_global_position() -> Vector3:
+	return root.get_global_position()
