@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_pudtl")
 overlap = false
+timeout = 5.0
 metadata/_custom_type_script = "uid://cdf5sa4rq3vfp"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://u6tplys2kpf1"]
+[gd_scene load_steps=10 format=3 uid="uid://u6tplys2kpf1"]
 
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="1_4d04u"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="2_q4mue"]
+[ext_resource type="Material" uid="uid://dl7a8v2ko0a2f" path="res://Games/source_game/materials/metal2.tres" id="2_wh8ic"]
 
 [sub_resource type="Curve" id="Curve_0sxga"]
 _data = [Vector2(0.00072359294, 0.6664919), 0.0, 0.0, 0, 0, Vector2(0.897974, 0.49633485), 0.0, 0.0, 0, 0, Vector2(1, 0.2623194), 0.0, 0.0, 0, 0]
@@ -25,6 +26,9 @@ curve = SubResource("Curve_js6bw")
 radius = 0.075
 section_length = 0.015
 
+[sub_resource type="PrismMesh" id="PrismMesh_gjuof"]
+size = Vector3(0.06, 0.06, 0.06)
+
 [node name="model" type="Node3D"]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
@@ -35,10 +39,15 @@ material = ExtResource("1_4d04u")
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGMesh3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5735763, 0.8191515, 0, -0.8191515, 0.5735763, 0, 0.14373447, -0.10360652)
 mesh = SubResource("TubeTrailMesh_ktbg2")
-material = ExtResource("2_q4mue")
+material = ExtResource("2_wh8ic")
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGMesh3D/CSGMesh3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, -1.8626451e-09, 0, 1.8626451e-09, 1, 0, 0.22018263, -0.0028593205)
 operation = 2
 mesh = SubResource("TubeTrailMesh_b6tvb")
+material = ExtResource("2_q4mue")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8191515, -0.57357645, 0, 0.57357645, 0.8191515, 0, 0.32108092, -0.15943217)
+mesh = SubResource("PrismMesh_gjuof")
 material = ExtResource("2_q4mue")

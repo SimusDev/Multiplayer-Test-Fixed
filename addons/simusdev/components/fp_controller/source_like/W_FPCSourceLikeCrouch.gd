@@ -43,6 +43,8 @@ func _ready() -> void:
 	movement.crouched_status_changed.connect(_on_crouched_status_changed)
 	
 	_on_crouched_status_changed()
+	
+	SD_Components.append_to(movement.actor, self)
 
 func _on_crouched_status_changed() -> void:
 	if movement:

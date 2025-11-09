@@ -96,16 +96,15 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 		set_process_input(not value)
 	
 	var movement:W_FPCSourceLikeMovement = SD_Components.find_first(node, W_FPCSourceLikeMovement)
+	var movement_crouch:W_FPCSourceLikeCrouch = SD_Components.find_first(node, W_FPCSourceLikeCrouch)
 	if is_instance_valid(movement):
 		if value:
 			movement.process_mode = Node.PROCESS_MODE_INHERIT
+			movement_crouch.collision_crouch.process_mode = Node.PROCESS_MODE_INHERIT
+			movement_crouch.collision_normal.process_mode = Node.PROCESS_MODE_INHERIT
 		else:
 			movement.state_machine.switch_by_name("sitting")
 			movement.process_mode = Node.PROCESS_MODE_DISABLED
+			movement_crouch.collision_crouch.process_mode = Node.PROCESS_MODE_DISABLED
+			movement_crouch.collision_normal.process_mode = Node.PROCESS_MODE_DISABLED
 			movement.actor.velocity = Vector3.ZERO
-
-func _physics_process(delta: float) -> void:
-	
-	if SD_Network.is_server():
-		get_parent().position.z -= 0.1 * delta
-		get_parent().position.y -= 2 * delta

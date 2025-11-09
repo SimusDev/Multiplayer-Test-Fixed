@@ -11,16 +11,11 @@
 script = ExtResource("4_56jqq")
 prefab = ExtResource("3_f5xqc")
 position = Vector3(-0.25, 0, 0.045)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_3bbol"]
 script = ExtResource("4_56jqq")
 prefab = ExtResource("5_d2kxx")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_458ud"]
@@ -31,10 +26,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("1_tm5ny")
-custom_section = ""
-custom_id = ""
 name = "jagermester"
-description = ""
 prefab = ExtResource("1_f5xqc")
 viewmodel = SubResource("Resource_458ud")
 metadata/_custom_type_script = "uid://csp1614nihjb5"

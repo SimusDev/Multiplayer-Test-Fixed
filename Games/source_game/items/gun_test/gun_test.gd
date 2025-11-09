@@ -49,6 +49,9 @@ func _ready() -> void:
 	SD_Network.register_functions([
 		_try_reload_net
 	])
+	
+	if is_instance_valid(animation_player):
+		animation_player.play(_pick)
 
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":

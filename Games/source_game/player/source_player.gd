@@ -6,4 +6,3 @@ func _ready() -> void:
 	super()
 	if is_multiplayer_authority():
 		instance = self
-		

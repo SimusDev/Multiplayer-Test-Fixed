@@ -17,6 +17,8 @@ metadata/_custom_type_script = "uid://chuimtehu4j13"
 [sub_resource type="Resource" id="Resource_5mbqr"]
 script = ExtResource("5_5mbqr")
 prefab = ExtResource("4_cp6q8")
+position = Vector3(0, 0.18, 0)
+rotation = Vector3(1.355, -2.54, 0)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_cp6q8"]

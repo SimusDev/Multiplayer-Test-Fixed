@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://r53eearpwwj7"]
+[gd_scene load_steps=6 format=3 uid="uid://r53eearpwwj7"]
 
 [ext_resource type="Script" uid="uid://b2j80oewvs2sf" path="res://Games/source_game/components/vehicle_seat.gd" id="1_thnad"]
 [ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="2_1f8ho"]
 [ext_resource type="PackedScene" uid="uid://oyyfpjeiwwni" path="res://Games/source_game/game/3dmodels/throne/scene.tscn" id="2_qrdgl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1f8ho"]
+size = Vector3(1, 2.7813478, 0.80895996)
 
-[node name="vehicle_seat" type="Node3D"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qrdgl"]
+points = PackedVector3Array(38.511852, 11.024414, 91.61005, -0.0075416565, 12.810097, 72.51337, -38.511852, 11.024414, 91.61005, 38.511852, 6.154743, 91.61005, 23.568527, 4.790909, -48.70724, 20.801525, 6.1015015, -48.83098, 21.939995, 8.522003, -13.538555, -21.947535, 8.522003, -13.538555, -38.511852, 6.154743, 91.61005, -20.809067, 6.1015015, -48.83098, -23.576069, 4.790909, -48.70724, 27.519238, -29.030563, 13.848476, 23.568527, -23.714474, -48.70724, 20.801525, -25.025066, -48.83098, -27.526775, -29.030563, 13.848476, -23.576069, -23.714474, -48.70724, -20.809067, -25.025066, -48.83098, 21.939995, -27.445566, -13.538555, -21.947535, -27.445566, -13.538555)
+
+[node name="vehicle_seat" type="RigidBody3D"]
+mass = 15.0
+lock_rotation = true
 
 [node name="SourceSeat" type="Node3D" parent="." node_paths=PackedStringArray("bind_point", "interactable")]
 script = ExtResource("1_thnad")
@@ -24,9 +30,14 @@ script = ExtResource("2_1f8ho")
 metadata/_custom_type_script = "uid://bkpx7tuo0vlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40607905, 0.14569092)
 shape = SubResource("BoxShape3D_1f8ho")
 debug_color = Color(1, 1, 1, 0.41960785)
 debug_fill = false
 
 [node name="bind" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, 0.3)
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, 0.02, 0, -0.02, -8.7422775e-10, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_qrdgl")

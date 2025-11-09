@@ -1,0 +1,34 @@
+[gd_resource type="StandardMaterial3D" script_class="SourceMaterial" load_steps=17 format=3 uid="uid://dl7a8v2ko0a2f"]
+
+[ext_resource type="Texture2D" uid="uid://do2gu83iih5tk" path="res://textures/general/metal2.png" id="1_vc8vk"]
+[ext_resource type="AudioStream" uid="uid://l2g46586rrdg" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet1.wav" id="2_xwpw0"]
+[ext_resource type="AudioStream" uid="uid://du8w5t2ek0huv" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet2.wav" id="3_r363w"]
+[ext_resource type="AudioStream" uid="uid://dpmidglg6uh15" path="res://sounds/hl2/physics/metal/metal_box_impact_bullet3.wav" id="4_c7dw0"]
+[ext_resource type="AudioStream" uid="uid://8cikkt6gcet8" path="res://sounds/hl2/physics/metal/metal_box_footstep1.wav" id="5_p1qne"]
+[ext_resource type="AudioStream" uid="uid://dnh1ysga4yv1e" path="res://sounds/hl2/physics/metal/metal_box_footstep2.wav" id="6_rxcjb"]
+[ext_resource type="AudioStream" uid="uid://d0dsaya3wafai" path="res://sounds/hl2/physics/metal/metal_box_footstep3.wav" id="7_3an5n"]
+[ext_resource type="AudioStream" uid="uid://c6x1ijv3pa7mi" path="res://sounds/hl2/physics/metal/metal_box_footstep4.wav" id="8_yk5t2"]
+[ext_resource type="AudioStream" uid="uid://cetxocwwxbp1e" path="res://sounds/hl2/physics/metal/metal_box_impact_hard1.wav" id="9_6pp0r"]
+[ext_resource type="AudioStream" uid="uid://chtyw0n0m5dwv" path="res://sounds/hl2/physics/metal/metal_box_impact_hard2.wav" id="10_1y0xt"]
+[ext_resource type="AudioStream" uid="uid://bo6mg68nuow6l" path="res://sounds/hl2/physics/metal/metal_box_impact_hard3.wav" id="11_a0dsn"]
+[ext_resource type="Texture2D" uid="uid://blbo4t0lqggep" path="res://textures/general/metal1_normalmap.jpg" id="12_nqwpb"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="13_vhbry"]
+[ext_resource type="AudioStream" uid="uid://rykqjix4pl0r" path="res://sounds/hl2/physics/metal/metal_box_impact_soft1.wav" id="14_ibwaj"]
+[ext_resource type="AudioStream" uid="uid://cnoljt80w8ea3" path="res://sounds/hl2/physics/metal/metal_box_impact_soft2.wav" id="15_i02uo"]
+[ext_resource type="AudioStream" uid="uid://4kvpqa18cbjh" path="res://sounds/hl2/physics/metal/metal_box_impact_soft3.wav" id="16_tqd3m"]
+
+[resource]
+albedo_texture = ExtResource("1_vc8vk")
+metallic = 1.0
+metallic_specular = 1.0
+normal_scale = 0.4
+normal_texture = ExtResource("12_nqwpb")
+uv1_triplanar = true
+stencil_flags = 2
+script = ExtResource("13_vhbry")
+type = "metal"
+footsteps_audio = Array[AudioStream]([ExtResource("5_p1qne"), ExtResource("6_rxcjb"), ExtResource("7_3an5n"), ExtResource("8_yk5t2")])
+soft_impact_audio = Array[AudioStream]([ExtResource("14_ibwaj"), ExtResource("15_i02uo"), ExtResource("16_tqd3m")])
+hard_impact_audio = Array[AudioStream]([ExtResource("9_6pp0r"), ExtResource("10_1y0xt"), ExtResource("11_a0dsn")])
+bullet_impact_audio = Array[AudioStream]([ExtResource("2_xwpw0"), ExtResource("3_r363w"), ExtResource("4_c7dw0")])
+metadata/_custom_type_script = "uid://dau2vuhctib65"

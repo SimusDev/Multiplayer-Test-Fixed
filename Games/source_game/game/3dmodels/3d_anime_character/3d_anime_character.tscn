@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://d2luv1mr70rj7"]
 
 [ext_resource type="Texture2D" uid="uid://but3f7bqpfk0n" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_0.png" id="1_1a3la"]
-[ext_resource type="Texture2D" uid="uid://bs5nkxkok15yl" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_1.png" id="2_m5pq3"]
+[ext_resource type="Texture2D" uid="uid://c0q5gs3kl65rq" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_1.png" id="2_m5pq3"]
 [ext_resource type="Texture2D" uid="uid://blt6a0tcdfp0b" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_2.png" id="3_rwjlg"]
 [ext_resource type="Texture2D" uid="uid://clt4cc2ps2pwh" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_3.png" id="4_jnqbd"]
 [ext_resource type="Texture2D" uid="uid://py0gqhsqonfd" path="res://Games/source_game/game/3dmodels/3d_anime_character/model/3d_anime_character_4.png" id="5_b3wj4"]

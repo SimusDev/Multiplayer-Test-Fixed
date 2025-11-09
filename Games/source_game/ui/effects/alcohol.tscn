@@ -1,6 +1,57 @@
-[gd_scene format=3 uid="uid://b34cbygujtggj"]
+[gd_scene load_steps=3 format=3 uid="uid://b34cbygujtggj"]
+
+[sub_resource type="Shader" id="Shader_altvp"]
+code = "shader_type canvas_item;
+
+// Текстура экрана
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+// Параметры эффекта
+uniform float intensity : hint_range(0.0, 1.0) = 0.0;
+uniform float wobble_speed : hint_range(0.0, 5.0) = 2.0;
+uniform float wobble_amount : hint_range(0.0, 0.1) = 0.05;
+uniform float color_distortion : hint_range(0.0, 0.3) = 0.1;
+uniform float blur_amount : hint_range(0.0, 0.02) = 0.005;
+
+void fragment() {
+    // Базовое дрожание
+    vec2 wobble = vec2(
+        sin(TIME * wobble_speed + UV.y * 10.0) * wobble_amount,
+        cos(TIME * wobble_speed * 0.7 + UV.x * 8.0) * wobble_amount
+    ) * intensity;
+
+    // Искажение цветов (эффект хроматической аберрации)
+    float r = texture(SCREEN_TEXTURE, UV + wobble * 0.5 + vec2(color_distortion * intensity, 0.0)).r;
+    float g = texture(SCREEN_TEXTURE, UV + wobble * 0.3).g;
+    float b = texture(SCREEN_TEXTURE, UV + wobble * 0.5 - vec2(color_distortion * intensity, 0.0)).b;
+
+    // Небольшое размытие
+    vec4 blur_color = vec4(0.0);
+    float samples = 5.0;
+    for(float i = -samples; i <= samples; i++) {
+        for(float j = -samples; j <= samples; j++) {
+            vec2 blur_offset = vec2(i, j) * blur_amount * intensity;
+            blur_color += texture(SCREEN_TEXTURE, UV + wobble + blur_offset);
+        }
+    }
+    blur_color /= (samples * 2.0 + 1.0) * (samples * 2.0 + 1.0);
+
+    // Смешивание эффектов
+    vec4 final_color = mix(vec4(r, g, b, 1.0), blur_color, intensity * 0.3);
+
+    COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pks6o"]
+shader = SubResource("Shader_altvp")
+shader_parameter/intensity = 1.0
+shader_parameter/wobble_speed = 2.0
+shader_parameter/wobble_amount = 0.05
+shader_parameter/color_distortion = 0.0
+shader_parameter/blur_amount = 0.005
 
 [node name="Alcohol" type="ColorRect"]
+material = SubResource("ShaderMaterial_pks6o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
