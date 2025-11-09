@@ -64,6 +64,8 @@ func give(effect: R_SourceEffect) -> SourceEffectInstance:
 
 func _give_net(effect: Array) -> SourceEffectInstance:
 	var instance := SourceEffectInstance.deserialize(effect)
+	if !instance.is_inside_tree():
+		add_child(instance)
 	return instance
 
 func get_effects() -> Array[SourceEffectInstance]:

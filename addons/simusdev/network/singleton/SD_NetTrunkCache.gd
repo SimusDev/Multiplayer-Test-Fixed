@@ -183,12 +183,14 @@ func try_cache_node(node: Object) -> void:
 	#cache_by_path[path] = net_id
 	#cache_by_id[net_id] = path
 	
+	_client_cache(net_id, path)
+	
 	_client_cache.rpc(net_id, path)
 	
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 
-@rpc("any_peer", "reliable", "call_local")
+@rpc("reliable")
 func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
@@ -217,11 +219,12 @@ func try_uncache_node(path: NodePath) -> void:
 	#cache_by_id.erase(net_id)
 	#cache_by_path.erase(path)
 	
+	_client_uncache(net_id, path)
 	_client_uncache.rpc(net_id, path)
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-@rpc("any_peer", "reliable", "call_local")
+@rpc("reliable")
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id().erase(net_id)
 	get_cached_nodes_by_path().erase(path)
