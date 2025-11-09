@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvvyypo1k1sxb"]
+[gd_scene load_steps=13 format=3 uid="uid://cvvyypo1k1sxb"]
 
 [ext_resource type="Script" uid="uid://bxrvv5jxai4mk" path="res://Games/source_game/items/jagermester/item.gd" id="1_8mxnv"]
 [ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_8mxnv"]
+[ext_resource type="Resource" uid="uid://c2etbq7m6lbp4" path="res://Games/source_game/objects/effects/alcohol.tres" id="2_sf62v"]
 [ext_resource type="PackedScene" uid="uid://dxjtm8v72w5o0" path="res://Games/source_game/game/3dmodels/jagermester/model_prefab.tscn" id="2_wr1br"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="3_sbfnk"]
 
@@ -134,6 +135,7 @@ _data = {
 
 [node name="item" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
 script = ExtResource("1_8mxnv")
+effect = ExtResource("2_sf62v")
 resource = SubResource("Resource_sf62v")
 model = NodePath("root/jagermester_model")
 animation_player = NodePath("AnimationPlayer")

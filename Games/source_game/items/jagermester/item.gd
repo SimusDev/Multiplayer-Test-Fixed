@@ -1,9 +1,18 @@
 extends SourceItem
 
-@export var effect_prefab:PackedScene
+@export var effect:R_SourceEffect
+
+func _ready() -> void:
+	super()
+	animation_player.play(_pick)
+
+func use() -> void:
+	if animation_player.is_playing():
+		return
+	
+	super()
+	animation_player.play(_fire)
+	apply_effect()
 
 func apply_effect() -> void:
-	pass
-
-func start_effect_timer(base_duration:float = 60.0) -> void:
-	pass
+	inventory.effects.give(effect)
