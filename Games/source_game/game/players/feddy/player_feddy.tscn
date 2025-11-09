@@ -7,9 +7,9 @@
 
 [sub_resource type="Resource" id="Resource_7h4eu"]
 script = ExtResource("2_m8wv2")
+properties = PackedStringArray("position", "rotation")
 interpolation_enabled = true
 node_path = NodePath("..")
-channels = Array[String](["position", "rotation"])
 sync = 0
 metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
 
