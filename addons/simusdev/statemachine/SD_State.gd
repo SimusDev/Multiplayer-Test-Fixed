@@ -12,8 +12,12 @@ signal transitioned()
 func _ready() -> void:
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
-		_switch_synchronized,
 	])
+	
+	SD_Network.register_channel(_state_machine.network_channel)
+	
+	if SD_Network.is_server():
+		SD_Network.register_function(_switch_net)
 	
 	if Engine.is_editor_hint():
 		process_mode = Node.PROCESS_MODE_DISABLED
@@ -24,7 +28,13 @@ static func create(state_id: String) -> SD_State:
 	return state
 
 func switch() -> void:
-	SD_Network.call_func(_switch_synchronized)
+	if SD_Network.is_authority(_state_machine):
+		SD_Network.call_func_on_server(_switch_net, [], SD_Network.CALLMODE, _state_machine.network_channel)
+
+func _switch_net() -> void:
+	if _state_machine.get_multiplayer_authority() == SD_Network.get_remote_sender_id():
+		SD_Network.call_func(_switch_synchronized, [], SD_Network.CALLMODE, _state_machine.network_channel)
+	
 
 func _switch_synchronized() -> void:
 	transitioned.emit()

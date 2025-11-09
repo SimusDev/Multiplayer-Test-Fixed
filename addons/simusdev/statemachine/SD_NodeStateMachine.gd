@@ -3,6 +3,7 @@ extends Node
 class_name SD_NodeStateMachine
 
 @export var initial_state: SD_State
+@export var network_channel: String = "state_machine"
 
 var _states: Dictionary[String, SD_State] = {}
 var _current_state: SD_State
@@ -32,21 +33,20 @@ func _ready() -> void:
 			child._state_machine = self
 			child.transitioned.connect(_on_child_state_transitioned.bind(child))
 	
+	if initial_state:
+		_current_state = initial_state
+		_current_state._enter()
+	
 	if not SD_Network.is_server():
 		SD_Network.call_func_on_server(_send)
 		return
 	
 
-	if initial_state:
-		_current_state = initial_state
-		_current_state._enter()
-	
-
 func _send() -> void:
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [_current_state_name])
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [_current_state.get_index()])
 
-func _recieve(state_name: String) -> void:
-	switch_by_name(state_name)
+func _recieve(id: int) -> void:
+	(get_child(id) as SD_State)._switch_synchronized()
 
 func _on_child_state_transitioned(to_state: SD_State) -> void:
 	if to_state == _current_state:
@@ -75,7 +75,6 @@ func switch(to_state: SD_State) -> void:
 	
 	if to_state:
 		to_state.switch()
-
 
 func switch_by_name(state_name: String) -> SD_State: 
 	var state: SD_State = get_state_by_name(state_name)
