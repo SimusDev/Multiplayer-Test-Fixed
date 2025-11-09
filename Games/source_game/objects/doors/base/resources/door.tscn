@@ -1,15 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwi5fc647foql"]
+[gd_scene load_steps=13 format=3 uid="uid://dwi5fc647foql"]
 
 [ext_resource type="Script" uid="uid://but8dp85o0qlc" path="res://Games/source_game/objects/doors/base/resources/door.gd" id="1_1p3hy"]
+[ext_resource type="AudioStream" uid="uid://dy5nr5erojlto" path="res://sounds/props/door/close.ogg" id="2_3jdl1"]
+[ext_resource type="AudioStream" uid="uid://bkj6mctovvvsx" path="res://sounds/props/door/open.ogg" id="3_ih4nj"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="3_o5tix"]
 [ext_resource type="PackedScene" uid="uid://cp1tvhnv3vllg" path="res://Games/source_game/objects/doors/base/resources/scene.tscn" id="4_7803s"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="4_v8yoj"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3jdl1"]
+size = Vector3(1.1621742, 0.034683228, 0.10449219)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ih4nj"]
+size = Vector3(0.078751564, 2.4564857, 0.10449219)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh2jr"]
 size = Vector3(1.14948, 2.4516, 0.144836)
 
-[node name="Door" type="Node3D"]
+[sub_resource type="Animation" id="Animation_kh2jr"]
+resource_name = "door"
+length = 1.20833
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/Door_fbx/Object_2/RootNode/DoorFrame/Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.0333333, 1, 0, -0.00197181, 0, 0.999998, 0.0666667, 1, 0, -0.00681613, 0, 0.999977, 0.1, 1, 0, -0.0144475, 0, 0.999896, 0.133333, 1, 0, -0.0247795, 0, 0.999693, 0.166667, 1, 0, -0.0377243, 0, 0.999288, 0.2, 1, 0, -0.0539775, 0, 0.998542, 0.233333, 1, 0, -0.072572, 0, 0.997363, 0.266667, 1, 0, -0.0934083, 0, 0.995628, 0.3, 1, 0, -0.11638, 0, 0.993205, 0.333333, 1, 0, -0.141376, 0, 0.989956, 0.366667, 1, 0, -0.168882, 0, 0.985636, 0.4, 1, 0, -0.198072, 0, 0.980187, 0.433333, 1, 0, -0.228807, 0, 0.973472, 0.466667, 1, 0, -0.260938, 0, 0.965356, 0.5, 1, 0, -0.294307, 0, 0.955711, 0.533333, 1, 0, -0.32917, 0, 0.944271, 0.566667, 1, 0, -0.364838, 0, 0.931071, 0.6, 1, 0, -0.401098, 0, 0.916035, 0.633333, 1, 0, -0.437673, 0, 0.899134, 0.666667, 1, 0, -0.474232, 0, 0.8804, 0.766667, 1, 0, -0.579682, 0, 0.814843, 0.8, 1, 0, -0.612234, 0, 0.790676, 0.833333, 1, 0, -0.643086, 0, 0.765794, 0.866667, 1, 0, -0.671614, 0, 0.740901, 0.9, 1, 0, -0.697925, 0, 0.716171, 0.933333, 1, -8.65762e-17, -0.721918, -8.65762e-17, 0.691979, 0.966667, 1, -8.64744e-17, -0.743524, -8.64744e-17, 0.668709, 1, 1, -8.63041e-17, -0.7627, -8.63041e-17, 0.646752, 1.03333, 1, -8.60985e-17, -0.778704, -8.60985e-17, 0.627391, 1.06667, 1, -8.58775e-17, -0.792117, -8.58775e-17, 0.61037, 1.1, 1, -8.56641e-17, -0.802938, -8.56641e-17, 0.596063, 1.13333, 1, -8.54794e-17, -0.81116, -8.54794e-17, 0.584824, 1.16667, 1, -8.5342e-17, -0.816754, -8.5342e-17, 0.576986, 1.2, 1, -8.52925e-17, -0.818674, -8.52925e-17, 0.574259, 1.20833, 1, -8.528e-17, -0.819152, -8.528e-17, 0.573577)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jdl1"]
+_data = {
+&"door": SubResource("Animation_kh2jr")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhipy"]
+size = Vector3(1.0278931, 2.4140625, 0.12081909)
+
+[node name="Door" type="RigidBody3D" node_paths=PackedStringArray("animation_player", "audio_player", "shape")]
+lock_rotation = true
 script = ExtResource("1_1p3hy")
+animation_player = NodePath("Sketchfab_Scene/AnimationPlayer")
+audio_player = NodePath("AudioStreamPlayer3D")
+audio_close = ExtResource("2_3jdl1")
+audio_open = ExtResource("3_ih4nj")
+shape = NodePath("shape")
+animation_open = "door"
+animation_close = "door"
+play_animation_close_backwards = true
+
+[node name="1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0022182465, 0.007484436, -0.015835896)
+shape = SubResource("BoxShape3D_3jdl1")
+
+[node name="4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0022182465, 2.439697, -0.015835896)
+shape = SubResource("BoxShape3D_3jdl1")
+
+[node name="2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5439296, 1.2183857, -0.015835896)
+shape = SubResource("BoxShape3D_ih4nj")
+
+[node name="3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5477363, 1.2183857, -0.015835896)
+shape = SubResource("BoxShape3D_ih4nj")
 
 [node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_o5tix")
@@ -33,6 +85,18 @@ transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0, 0)
 
 [node name="Door" parent="Sketchfab_Scene/Sketchfab_model/Door_fbx/Object_2/RootNode/DoorFrame" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.8, 105, 2.21)
+
+[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_3jdl1")
+}
+speed_scale = 6.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0066833496, 1.2191546, -0.003768921)
+shape = SubResource("BoxShape3D_jhipy")
 
 [connection signal="interacted" from="SourceHitbox" to="." method="_on_source_hitbox_interacted"]
 
