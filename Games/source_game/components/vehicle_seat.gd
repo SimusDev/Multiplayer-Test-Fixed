@@ -21,6 +21,7 @@ func _ready() -> void:
 	SD_Network.register_function(_send)
 	SD_Network.register_function(_recieve)
 	SD_Network.register_function(set_movement_enabled)
+	SD_Network.register_function(set_remote_transform_path)
 	
 	caller = SD_NetFunctionCaller.new()
 	caller.default_channel = SourceNetwork.CHANNEL_INTERACTABLES
