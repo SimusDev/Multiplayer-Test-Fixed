@@ -15,6 +15,7 @@ func _ready() -> void:
 	SD_Network.register_object(self)
 	SD_Network.register_functions([
 		_switch_net,
+		_switch_synchronized,
 	])
 	
 	SD_Network.register_channel(_state_machine.network_channel)
