@@ -43,7 +43,8 @@ func _ready() -> void:
 	
 
 func _send() -> void:
-	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [_current_state.get_index()])
+	if is_instance_valid(_current_state):
+		SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve, [_current_state.get_index()], SD_Network.CALLMODE.RELIABLE, network_channel)
 
 func _recieve(id: int) -> void:
 	(get_child(id) as SD_State)._switch_synchronized()
