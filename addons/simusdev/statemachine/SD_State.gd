@@ -32,6 +32,7 @@ static func create(state_id: String) -> SD_State:
 
 func switch() -> void:
 	if SD_Network.is_authority(_state_machine):
+		_switch_net()
 		SD_Network.call_func_on_server(_switch_net, [], SD_Network.CALLMODE.RELIABLE, _state_machine.network_channel)
 
 func _switch_net() -> void:
