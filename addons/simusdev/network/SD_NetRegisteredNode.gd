@@ -18,9 +18,14 @@ var net_id: int = -1
 static var references_by_net_id: Dictionary[int, SD_NetRegisteredNode] = {}
 static var references_by_path: Dictionary[NodePath, SD_NetRegisteredNode] = {}
 
+signal activated_for_peer(peer: int)
+signal deactivated_for_peer(peer: int)
+
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
-	_inactive_for_peers = _inactive_for_peers.duplicate()
+	_inactive_for_peers = SD_Network.get_peers().duplicate()
+	_inactive_for_peers.erase(SD_Network.get_unique_id())
+	_inactive_for_peers.erase(SD_Network.SERVER_ID)
 	
 	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
 	
