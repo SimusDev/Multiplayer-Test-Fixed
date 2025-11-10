@@ -50,7 +50,6 @@ func _recieve(data:Dictionary, sidyn:Node3D) -> void:
 	set_movement_enabled(sidyn4ik, false)
 
 func on_interactable_interacted(interact_ray:SourceInteractRay) -> void:
-	print(sidyn4ik)
 	if sidyn4ik:
 		return
 	
@@ -108,3 +107,6 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 			movement_crouch.collision_crouch.process_mode = Node.PROCESS_MODE_DISABLED
 			movement_crouch.collision_normal.process_mode = Node.PROCESS_MODE_DISABLED
 			movement.actor.velocity = Vector3.ZERO
+
+func _on_source_interactable_on_interacted(ray: SourceInteractRay) -> void:
+	on_interactable_interacted(ray)

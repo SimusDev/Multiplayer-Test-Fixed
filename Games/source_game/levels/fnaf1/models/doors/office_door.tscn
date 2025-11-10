@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=4 uid="uid://5thoifwo4jvn"]
+
+[ext_resource type="Texture2D" uid="uid://b8hv7pcdpluy2" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_dev_measuregeneric01.png" id="1_vqbee"]
+[ext_resource type="Texture2D" uid="uid://bjuh3hl4p6quh" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_fnaf3_security_door.png" id="2_comsg"]
+[ext_resource type="Texture2D" uid="uid://b5a7ojdgej057" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_fnaf3_flat.png" id="3_m51a1"]
+[ext_resource type="Texture2D" uid="uid://b6sn2w28v84t3" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_fnaf1 black.png" id="4_qu8d5"]
+[ext_resource type="Texture2D" uid="uid://dbubnr7xvd07h" path="res://Games/source_game/levels/fnaf1/scene/textures/Untitled_freddydoor.png" id="5_kwjbx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48l1"]
+resource_name = "materials/dev/dev_measuregeneric01"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_vqbee")
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bax5n"]
+resource_name = "materials/fnaf3accurate_textures/fnaf3_security_door"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_comsg")
+roughness = 0.59400004
+normal_enabled = true
+normal_texture = ExtResource("3_m51a1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6v3fx"]
+resource_name = "materials/fnaf1 texture/fnaf1 black"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_qu8d5")
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj373"]
+resource_name = "materials/freddys/freddydoor"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_kwjbx")
+roughness = 0.9
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6xwtt"]
+_surfaces = [{
+"aabb": AABB(-2, 48, -32, 4, 1e-05, 64),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "materials/dev/dev_measuregeneric01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 96, 64),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "materials/fnaf3accurate_textures/fnaf3_security_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAAAAAAAAAAAAAAA//8AAAAAAAAAAP//AAD///////8AAP//AAAAAAAA//8AAP//AAD/////AAAAAA==")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 96, 64),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "materials/fnaf1 texture/fnaf1 black",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAD//wAA//8AAAAAAAD//wAA////////AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAA==")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 1e-05, 64),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "materials/freddys/freddydoor",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAAAAAAAAAAAA//8AAP//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nhjtp"]
+resource_name = "Untitled_func_door_3378_3264"
+_surfaces = [{
+"aabb": AABB(-2, 48, -32, 4, 1e-05, 64),
+"attribute_data": PackedByteArray("/////wAA/////////z//f///////P////////wAA/38="),
+"format": 34896613407,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_w48l1"),
+"name": "materials/dev/dev_measuregeneric01",
+"primitive": 3,
+"uv_scale": Vector4(0.5, 4, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 96, 64),
+"attribute_data": PackedByteArray("/////wAAAAD//////38VgP//////fwAA/////wAAFYD/////AAAAAP//////fxWA/////wAAFYD//////38AAA=="),
+"format": 34896613407,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_bax5n"),
+"name": "materials/fnaf3accurate_textures/fnaf3_security_door",
+"primitive": 3,
+"uv_scale": Vector4(2, 1.9975722, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAAAAAAAAAAAAAAA//8AAAAAAAAAAP//AAD/////////v///AAAAAP+///8AAP///7//////AAD/v/8//3//P/9//z//f/8//3//fwAA/38AAP9/AAD/fwAA")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 96, 64),
+"attribute_data": PackedByteArray("/////wAAAAD/////KwJXLf////8AAFct/////ysCAAD/////AAAAAP////8rAlct/////ysCAAD/////AABXLQ=="),
+"format": 34896613407,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_6v3fx"),
+"name": "materials/fnaf1 texture/fnaf1 black",
+"primitive": 3,
+"uv_scale": Vector4(1.84375, 2.1171875, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AID//wAA//8AgAAAAAD//wCA////////AIAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAP9/////f////3////9///////9/////f////3////9/")
+}, {
+"aabb": AABB(-2, -48, -32, 4, 1e-05, 64),
+"attribute_data": PackedByteArray("/////wAA/////////3/g+v//////f////////wAA4Po="),
+"format": 34896613407,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_vj373"),
+"name": "materials/freddys/freddydoor",
+"primitive": 3,
+"uv_scale": Vector4(2, 2.0833333, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//VNX//wAAAABU1QAAAAAAAFTV//8AAP//VNVUVVRVVFVUVVRVVFVUVVRV")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6xwtt")
+
+[node name="office_door" type="MeshInstance3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+mesh = SubResource("ArrayMesh_nhjtp")
+skeleton = NodePath("")

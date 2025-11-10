@@ -65,7 +65,8 @@ func load_level_async(level_name:StringName) -> void:
 	if _loading_level:
 		return
 	SD_Console.i().write_info("trying to load: %s..." % level_name)
-	WorkerThreadPool.add_task(__load_level_async.bind(level_name))
+	#WorkerThreadPool.add_task(__load_level_async.bind(level_name))
+	__load_level_async(level_name)
 	_loading_level = true
 
 func __load_level_async(level_name:StringName) -> bool:

@@ -1,19 +1,147 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbxaos0ee0p4e"]
+[gd_scene load_steps=9 format=3 uid="uid://dbxaos0ee0p4e"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_3q8n1"]
 [ext_resource type="PackedScene" uid="uid://ddt283ewsv8jb" path="res://Games/source_game/levels/fnaf1/scene/map.tscn" id="2_osid6"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="3_evy0v"]
+[ext_resource type="PackedScene" uid="uid://cchhi2dmwuy53" path="res://Games/source_game/levels/fnaf1/props/partyhat.tscn" id="3_woegu"]
+[ext_resource type="PackedScene" uid="uid://djmw20gjmgit5" path="res://Games/source_game/levels/fnaf1/props/toilet_door.tscn" id="5_j264q"]
+[ext_resource type="PackedScene" uid="uid://72h1o13nfmcw" path="res://Games/source_game/game/players/feddy/feddy.tscn" id="5_ja3yg"]
+[ext_resource type="Texture2D" uid="uid://dw716u2xnaaun" path="res://Games/source_game/game/textures/poshalko/devs.png" id="7_hm46q"]
+[ext_resource type="Script" uid="uid://omd1l2jsuw6u" path="res://Games/source_game/components/gamescripts/gamescripts.gd" id="8_u6m6i"]
 
 [node name="fnaf" instance=ExtResource("1_3q8n1")]
 
-[node name="map" parent="." index="0" instance=ExtResource("2_osid6")]
+[node name="gamescripts" type="Node" parent="." index="0"]
+script = ExtResource("8_u6m6i")
+path = "res://Games/source_game/levels/fnaf1/gamescripts"
+metadata/_custom_type_script = "uid://omd1l2jsuw6u"
 
-[node name="Objects" parent="." index="1"]
+[node name="gamecore" type="Node" parent="." index="1"]
+process_priority = 1
+script = ExtResource("8_u6m6i")
+path = "res://Games/source_game/levels/fnaf1/gamecore"
+metadata/_custom_type_script = "uid://omd1l2jsuw6u"
+
+[node name="map" parent="." index="2" instance=ExtResource("2_osid6")]
+
+[node name="Objects" parent="." index="3"]
 base_dir = "res://Games/source_game/levels/fnaf1"
 object_dirs = PackedStringArray("objects")
 
-[node name="SourceSpawnPoint" type="Node3D" parent="." index="10"]
+[node name="Partyhat" parent="objects" index="0" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0275228, 2.875752, 1.3550497)
+
+[node name="Partyhat2" parent="objects" index="1" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0275228, 2.875752, 2.7056177)
+
+[node name="Partyhat3" parent="objects" index="2" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0275228, 2.875752, 3.8881392)
+
+[node name="Partyhat4" parent="objects" index="3" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0275228, 2.875752, 5.099057)
+
+[node name="Partyhat5" parent="objects" index="4" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9437165, 2.875752, 1.3550497)
+
+[node name="Partyhat6" parent="objects" index="5" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9437165, 2.875752, 2.7056177)
+
+[node name="Partyhat7" parent="objects" index="6" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9437165, 2.875752, 3.8881392)
+
+[node name="Partyhat8" parent="objects" index="7" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9437165, 2.875752, 5.099057)
+
+[node name="Partyhat9" parent="objects" index="8" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7861876, 2.875752, 1.1522423)
+
+[node name="Partyhat10" parent="objects" index="9" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7861876, 2.875752, 2.5028102)
+
+[node name="Partyhat11" parent="objects" index="10" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7861876, 2.875752, 3.6853318)
+
+[node name="Partyhat12" parent="objects" index="11" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7861876, 2.875752, 4.89625)
+
+[node name="Partyhat13" parent="objects" index="12" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.870073, 2.875752, 7.5244384)
+
+[node name="Partyhat14" parent="objects" index="13" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.870073, 2.875752, 8.875007)
+
+[node name="Partyhat15" parent="objects" index="14" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.870073, 2.875752, 10.057528)
+
+[node name="Partyhat16" parent="objects" index="15" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.870073, 2.875752, 11.268446)
+
+[node name="Partyhat17" parent="objects" index="16" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145988, 2.875752, 7.838572)
+
+[node name="Partyhat18" parent="objects" index="17" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145988, 2.875752, 9.18914)
+
+[node name="Partyhat19" parent="objects" index="18" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145988, 2.875752, 10.371661)
+
+[node name="Partyhat20" parent="objects" index="19" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145988, 2.875752, 11.58258)
+
+[node name="Partyhat21" parent="objects" index="20" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.906389, 2.875752, 7.838572)
+
+[node name="Partyhat22" parent="objects" index="21" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.906389, 2.875752, 9.18914)
+
+[node name="Partyhat23" parent="objects" index="22" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.906389, 2.875752, 10.371661)
+
+[node name="Partyhat24" parent="objects" index="23" instance=ExtResource("3_woegu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.906389, 2.875752, 11.58258)
+
+[node name="SourceSpawnPoint" type="Node3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4721668, 3.785458, 36.73363)
 script = ExtResource("3_evy0v")
 spawn_point_name = "office"
 metadata/_custom_type_script = "uid://dxp3pky5254bi"
+
+[node name="Doors" type="Node3D" parent="." index="13"]
+
+[node name="feddy" parent="Doors" index="0" instance=ExtResource("5_ja3yg")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 28.366589, 1.6704731, 6.0048985)
+
+[node name="AudioStreamPlayer3D" parent="Doors/feddy" index="2"]
+max_distance = 3.0
+
+[node name="toilet_door" parent="Doors" index="1" instance=ExtResource("5_j264q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.176577, 3.5682263, 4.3748255)
+
+[node name="toilet_door2" parent="Doors" index="2" instance=ExtResource("5_j264q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.757309, 3.5682263, 4.3748255)
+
+[node name="toilet_door3" parent="Doors" index="3" instance=ExtResource("5_j264q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.353151, 3.5682263, 4.3748255)
+
+[node name="toilet_door4" parent="Doors" index="4" instance=ExtResource("5_j264q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 29.793507, 3.5682263, 9.055438)
+
+[node name="toilet_door5" parent="Doors" index="5" instance=ExtResource("5_j264q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 28.209867, 3.5682263, 9.052931)
+
+[node name="toilet_door6" parent="Doors" index="6" instance=ExtResource("5_j264q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 26.614698, 3.5682263, 9.052931)
+
+[node name="toilet_door7" parent="Doors" index="7" instance=ExtResource("5_j264q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 25.02525, 3.5682263, 9.052931)
+
+[node name="toilet_door8" parent="Doors" index="8" instance=ExtResource("5_j264q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 23.437586, 3.5682263, 9.052931)
+
+[node name="Other" type="Node3D" parent="." index="14"]
+
+[node name="devs" type="Sprite3D" parent="Other" index="0"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.301441, 4.51028, 31.44683)
+texture = ExtResource("7_hm46q")
+
+[editable path="Doors/feddy"]

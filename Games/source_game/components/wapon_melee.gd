@@ -29,8 +29,9 @@ func impact():
 			var direction = (collider.global_position - player.global_position).normalized()
 			collider.apply_impulse(direction * strength, interact_ray.get_collision_point() - collider.global_position)
 			if is_instance_valid(source_prop):
-				var sound_array:Array = SourceSurfaces.sounds[source_prop.surface]["impact"]["hard"]
-				SD_Network.call_func(SoundPlayer.play_global_audio_3d, [interact_ray.get_collision_point(), sound_array.pick_random()])
+				if source_prop.surface:
+					var sound_array:Array = SourceSurfaces.sounds[source_prop.surface]["impact"]["hard"]
+					SD_Network.call_func(SoundPlayer.play_global_audio_3d, [interact_ray.get_collision_point(), sound_array.pick_random()])
 		spawn_bullethole(collider, interact_ray.get_collision_point(), interact_ray.get_collision_normal(), bullethole)
 
 	var event := SourceEvents.get_by_script(S_EventWeaponMeleeImpact) as S_EventWeaponMeleeImpact

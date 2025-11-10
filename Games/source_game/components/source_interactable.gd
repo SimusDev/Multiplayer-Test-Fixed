@@ -2,6 +2,7 @@
 extends Area3D
 class_name SourceInteractable
 
+@export var root: Node
 @export var info:String = ""
 
 const INTERACTABLE_LAYER: int = 4
@@ -15,6 +16,9 @@ func _ready() -> void:
 	
 	set_collision_layer_value(INTERACTABLE_LAYER, true)
 	set_collision_mask_value(INTERACTABLE_LAYER, true)
+	
+	if !root:
+		root = get_parent()
 	
 	if Engine.is_editor_hint():
 		return
