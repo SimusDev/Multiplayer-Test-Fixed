@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=5 format=3 uid="uid://di7aycuke8jcw"]
+
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_c37yt"]
+[ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_tumgp"]
+[ext_resource type="AudioStream" uid="uid://dnep6x7rtfmat" path="res://Games/source_game/sounds/general/aaaaaa.mp3" id="3_tumgp"]
+
+[sub_resource type="Resource" id="Resource_dg6g1"]
+script = ExtResource("2_tumgp")
+streams = Array[AudioStream]([ExtResource("3_tumgp")])
+metadata/_custom_type_script = "uid://us246ujqip05"
+
+[resource]
+script = ExtResource("1_c37yt")
+creation_max_distance = 100.0
+sources = Array[ExtResource("2_tumgp")]([SubResource("Resource_dg6g1")])
+metadata/_custom_type_script = "uid://b4qsbiksbfk64"

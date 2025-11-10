@@ -1,14 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=23 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="3_eqep5"]
-[ext_resource type="Material" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
-[ext_resource type="Material" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
+[ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
+[ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
-[ext_resource type="Material" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
+[ext_resource type="Material" uid="uid://dbyrkd4pdsous" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="9_eymkd"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="10_qjves"]
+[ext_resource type="PackedScene" uid="uid://dwi5fc647foql" path="res://Games/source_game/objects/doors/base/resources/door.tscn" id="10_y1g7y"]
 [ext_resource type="Texture2D" uid="uid://dw716u2xnaaun" path="res://Games/source_game/game/textures/poshalko/devs.png" id="11_ae8mq"]
+[ext_resource type="PackedScene" uid="uid://1bg57awhhhul" path="res://Games/source_game/game/3dmodels/sex_bonnie/model.glb" id="14_17bi3"]
+[ext_resource type="AudioStream" uid="uid://b1sxex54x3lbo" path="res://Games/source_game/sounds/general/oni4an.mp3" id="15_fj02r"]
+[ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="16_u0ham"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
@@ -20,6 +25,18 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Arr
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7byoa"]
+material = ExtResource("9_eymkd")
+size = Vector3(10, 5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6g07w"]
+size = Vector3(9, 4, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jn4gf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyxp6"]
+size = Vector3(1.2, 2.5, 1)
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
 
@@ -185,6 +202,37 @@ light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
 
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.300001, 1.9999999, -42.4)
+mesh = SubResource("BoxMesh_7byoa")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="0"]
+operation = 2
+mesh = SubResource("BoxMesh_6g07w")
+material = ExtResource("5_fpuye")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.831045, 0, 0)
+operation = 2
+mesh = SubResource("BoxMesh_jn4gf")
+material = ExtResource("9_eymkd")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0010662, -0.78104174, 4.799999)
+operation = 2
+mesh = SubResource("BoxMesh_uyxp6")
+material = ExtResource("9_eymkd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/CSGMesh3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5609838, 0)
+light_indirect_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 6.924
+
+[node name="Door" parent="NavigationRegion3D/CSGMesh3D" index="4" instance=ExtResource("10_y1g7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.000002, -2, 4.9000015)
+
 [node name="Environment" parent="." index="10" instance=ExtResource("6_rnwnd")]
 
 [node name="Sky3D" parent="Environment" index="0"]
@@ -217,4 +265,28 @@ global_y_trigger = -80.0
 transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 16.590397, 1.5610873, -26.198845)
 texture = ExtResource("11_ae8mq")
 
+[node name="Sketchfab_Scene" parent="." index="13" instance=ExtResource("14_17bi3")]
+transform = Transform3D(1.88, 0, 0, 0, 1.88, 0, 0, 0, 1.88, 23.552734, 0.009584606, -41.031082)
+
+[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/Sketchfab_model_0_3/88f1083c6d42423c88c20a803f7d789a_fbx_1_4/RootNode_2_5/bonnie_qc_skeleton_11_6/Object_12_12_7/GLTF_created_0_8/GLTF_created_0" index="0"]
+bones/5/position = Vector3(-5.712597e-05, 2.706632, 3.7686472)
+bones/5/rotation = Quaternion(-0.16570105, 5.996638e-07, -1.4669688e-06, 0.986176)
+bones/5/scale = Vector3(1, 1.0000008, 1.0000002)
+bones/61/position = Vector3(4.2137494, 7.140483, -1.3098121)
+bones/61/rotation = Quaternion(0.51531833, 0.2901141, 0.7992091, -0.10745092)
+bones/61/scale = Vector3(1.0000004, 1, 1.0000006)
+bones/84/position = Vector3(-4.214533, 7.142654, -1.3435951)
+bones/84/rotation = Quaternion(-0.50166523, 0.2290306, 0.8341028, -0.012227195)
+bones/84/scale = Vector3(1.0000002, 0.99999976, 1.0000006)
+
+[node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sketchfab_Scene" index="1"]
+transform = Transform3D(0.5319149, 0, 0, 0, 0.5319149, 0, 0, 0, 0.5319149, 0, 0.9819546, 0)
+stream = ExtResource("15_fj02r")
+autoplay = true
+max_distance = 7.55
+parameters/looping = true
+script = ExtResource("16_u0ham")
+metadata/_custom_type_script = "uid://dcdd6kovrah03"
+
 [editable path="Environment"]
+[editable path="Sketchfab_Scene"]

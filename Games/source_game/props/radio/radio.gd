@@ -25,7 +25,8 @@ func _ready() -> void:
 	load_assets()
 	SD_Network.register_all_functions(self)
 	SD_Network.register_object(self)
-	if autoplay: audio_player.play()
+	if autoplay:
+		audio_player.play()
 
 	
 
