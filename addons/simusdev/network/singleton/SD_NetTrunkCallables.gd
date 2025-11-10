@@ -101,6 +101,7 @@ func _recieve_node_from_peer(node: Variant) -> void:
 	if object:
 		var net := SD_NetRegisteredNode.get_or_create(object)
 		net._inactive_for_peers.erase(sender_id)
+		net.activated_for_peer.emit(sender_id)
 
 func delete_active_node_from_all(node: Object) -> void:
 	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
@@ -122,6 +123,7 @@ func _delete_node_from_peer(node: Variant) -> void:
 		var net := SD_NetRegisteredNode.get_or_create(object)
 		if !net._inactive_for_peers.has(sender_id):
 			net._inactive_for_peers.append(sender_id)
+			net.deactivated_for_peer.emit(sender_id)
 
 
 func get_registered_channels() -> PackedStringArray:
