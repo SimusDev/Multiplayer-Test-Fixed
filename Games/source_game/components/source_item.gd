@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
 			if use_hold:
-				using()
+				caller.call_func(using)
 			
 			if Input.is_action_just_pressed("fire"):
 				caller.call_func(use)
