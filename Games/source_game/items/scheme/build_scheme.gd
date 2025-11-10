@@ -132,7 +132,6 @@ func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEnt
 			collider.busy = true
 	
 	new_building.global_transform = _transform
-	new_building.global_position -= _building.mesh_offset
 
 func open_ui() -> void:
 	ui_interface_comp.open()
