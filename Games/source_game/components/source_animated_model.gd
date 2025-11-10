@@ -35,6 +35,12 @@ func set_blend_tree() -> void:
 		var _property_path = "parameters/%s/%s/blend_position" % [state_machine_name, i]
 		tree.set(_property_path, target.get(state_machine_properties[i]))
 
+func play_tree_oneshot(anim_lib:StringName, anim_name:StringName) -> void:
+	var tree_root = (tree.tree_root as AnimationNodeBlendTree)
+	var animation_node:AnimationNodeAnimation = tree_root.get_node("AttackAnimation")
+	animation_node.animation = "%s/%s" % [anim_lib, anim_name]
+	
+	tree.set("parameters/OneShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
 
 func switch_state(state:SD_State) -> void:
 	if state.name in state_exceptions:

@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=3 format=3 uid="uid://civ5bd7gdw6h6"]
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://civ5bd7gdw6h6"]
 
 [ext_resource type="PackedScene" uid="uid://cq30mnl4ccb7e" path="res://Games/source_game/game/prefabs/base_buildings/foundation/foundation.tscn" id="1_56buv"]
+[ext_resource type="ArrayMesh" uid="uid://13y81ipac4n3" path="res://Games/source_game/objects/buildings/meshes/foundation.tres" id="1_jmo7m"]
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_mml6v"]
 
 [resource]
 script = ExtResource("1_mml6v")
 type = 2
+mesh = ExtResource("1_jmo7m")
+mesh_offset = Vector3(0, 0.5, 0)
 name = "source_foundation"
 prefab = ExtResource("1_56buv")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

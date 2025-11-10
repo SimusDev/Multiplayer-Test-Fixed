@@ -1,34 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://b81ai65qocesq"]
+[gd_scene load_steps=8 format=3 uid="uid://b81ai65qocesq"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_gwagn"]
 [ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="2_hcyho"]
-[ext_resource type="Texture2D" uid="uid://dji0t8nojjmxd" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_brickfloor001a.png" id="5_8mgcx"]
+[ext_resource type="ArrayMesh" uid="uid://4hw7xdib5vik" path="res://Games/source_game/objects/buildings/meshes/window_frame.tres" id="4_gxdfi"]
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="4_hcyho"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="5_gxdfi"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="7_8mgcx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
-normal_enabled = true
-uv1_triplanar = true
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gxdfi"]
+data = PackedVector3Array(-1.5, -1.5, -0.25, -1, -0.45, -0.25, -1.5, 1.5, -0.25, -1.5, -1.5, -0.25, 1, -0.45, -0.25, -1, -0.45, -0.25, -1.5, -1.5, -0.25, -1.5, 1.5, 0.25, -1.5, -1.5, 0.25, -1.5, -1.5, 0.25, -1.5, 1.5, 0.25, -1, -0.45, 0.25, -1.5, -1.5, -0.25, -1.5, -1.5, 0.25, 1.5, -1.5, 0.25, -1.5, -1.5, 0.25, -1, -0.45, 0.25, 1.5, -1.5, 0.25, -1.5, 1.5, -0.25, -1, -0.45, -0.25, -1, 1.05, -0.25, -1.5, -1.5, -0.25, -1.5, 1.5, -0.25, -1.5, 1.5, 0.25, -1.5, 1.5, -0.25, -1, 1.05, -0.25, 1.5, 1.5, -0.25, -1.5, 1.5, -0.25, 1.5, 1.5, -0.25, -1.5, 1.5, 0.25, -1.5, 1.5, 0.25, -1, 1.05, 0.25, -1, -0.45, 0.25, -1.5, 1.5, 0.25, 1, 1.05, 0.25, -1, 1.05, 0.25, -1.5, -1.5, -0.25, 1.5, -1.5, -0.25, 1, -0.45, -0.25, -1.5, -1.5, -0.25, 1.5, -1.5, 0.25, 1.5, -1.5, -0.25, 1.5, -1.5, -0.25, 1.5, 1.5, -0.25, 1, -0.45, -0.25, 1.5, -1.5, -0.25, 1.5, -1.5, 0.25, 1.5, 1.5, -0.25, 1.5, -1.5, 0.25, -1, -0.45, 0.25, 1, -0.45, 0.25, 1.5, -1.5, 0.25, 1, -0.45, 0.25, 1.5, 1.5, 0.25, 1.5, 1.5, -0.25, -1, 1.05, -0.25, 1, 1.05, -0.25, 1.5, 1.5, -0.25, 1, 1.05, -0.25, 1, -0.45, -0.25, -1.5, 1.5, 0.25, 1.5, 1.5, -0.25, 1.5, 1.5, 0.25, -1.5, 1.5, 0.25, 1.5, 1.5, 0.25, 1, 1.05, 0.25, 1.5, -1.5, 0.25, 1.5, 1.5, 0.25, 1.5, 1.5, -0.25, 1.5, 1.5, 0.25, 1, -0.45, 0.25, 1, 1.05, 0.25, -1, -0.45, 0.25, -1, -0.45, -0.25, 1, -0.45, 0.25, -1, -0.45, -0.25, -1, 1.05, 0.25, -1, 1.05, -0.25, -1, 1.05, 0.25, 1, 1.05, -0.25, -1, 1.05, -0.25, -1, -0.45, 0.25, -1, 1.05, 0.25, -1, -0.45, -0.25, 1, -0.45, -0.25, 1, -0.45, 0.25, -1, -0.45, -0.25, 1, -0.45, -0.25, 1, 1.05, -0.25, 1, -0.45, 0.25, -1, 1.05, 0.25, 1, 1.05, 0.25, 1, 1.05, -0.25, 1, -0.45, 0.25, 1, 1.05, -0.25, 1, 1.05, 0.25)
 
-[sub_resource type="BoxMesh" id="BoxMesh_sv843"]
-material = SubResource("StandardMaterial3D_fywtf")
-size = Vector3(3, 3, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6w0k5"]
-albedo_texture = ExtResource("5_8mgcx")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_37lr7"]
-material = SubResource("StandardMaterial3D_6w0k5")
-size = Vector3(2, 1.5, 0.5)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8mgcx"]
-data = PackedVector3Array(1, -0.225, -0.25, -1.5, -1.5, -0.25, 1.5, -1.5, -0.25, 1, 1.025, 0.25, 1.5, 1.5, 0.25, 1, -0.225, 0.25, 1.5, 1.5, 0.25, 1.5, 1.5, -0.25, 1.5, -1.5, 0.25, 1, 1.025, 0.25, -1.5, 1.5, 0.25, 1.5, 1.5, 0.25, 1.5, 1.5, -0.25, 1.5, 1.5, 0.25, -1.5, 1.5, 0.25, 1, -0.225, -0.25, 1.5, 1.5, -0.25, 1, 1.025, -0.25, 1, 1.025, -0.25, 1.5, 1.5, -0.25, -1, 1.025, -0.25, 1.5, -1.5, 0.25, 1, -0.225, 0.25, 1.5, 1.5, 0.25, 1, -0.225, 0.25, 1.5, -1.5, 0.25, -1, -0.225, 0.25, 1.5, -1.5, 0.25, 1.5, 1.5, -0.25, 1.5, -1.5, -0.25, 1, -0.225, -0.25, 1.5, -1.5, -0.25, 1.5, 1.5, -0.25, 1.5, -1.5, 0.25, 1.5, -1.5, -0.25, -1.5, -1.5, -0.25, -1.5, -1.5, -0.25, -1, -0.225, -0.25, -1.5, 1.5, -0.25, -1, 1.025, 0.25, -1.5, 1.5, 0.25, 1, 1.025, 0.25, -1, -0.225, 0.25, 1.5, -1.5, 0.25, -1.5, -1.5, 0.25, -1, -0.225, -0.25, -1.5, -1.5, -0.25, 1, -0.225, -0.25, -1.5, -1.5, -0.25, -1.5, 1.5, 0.25, -1.5, -1.5, 0.25, -1, -0.225, 0.25, -1.5, -1.5, 0.25, -1.5, 1.5, 0.25, -1.5, -1.5, 0.25, 1.5, -1.5, 0.25, -1.5, -1.5, -0.25, -1.5, 1.5, -0.25, -1.5, 1.5, 0.25, -1.5, -1.5, -0.25, -1, 1.025, -0.25, -1.5, 1.5, -0.25, -1, -0.225, -0.25, -1, 1.025, -0.25, 1.5, 1.5, -0.25, -1.5, 1.5, -0.25, -1.5, 1.5, 0.25, -1.5, 1.5, -0.25, 1.5, 1.5, -0.25, -1, -0.225, 0.25, -1.5, 1.5, 0.25, -1, 1.025, 0.25, -1, -0.225, 0.25, 1, -0.225, -0.25, 1, -0.225, 0.25, -1, -0.225, -0.25, -1, 1.025, 0.25, -1, 1.025, -0.25, -1, 1.025, 0.25, 1, 1.025, 0.25, -1, 1.025, -0.25, 1, 1.025, -0.25, -1, 1.025, -0.25, 1, 1.025, 0.25, 1, -0.225, 0.25, 1, -0.225, -0.25, 1, 1.025, -0.25, -1, -0.225, -0.25, -1, -0.225, 0.25, -1, 1.025, 0.25, 1, -0.225, 0.25, 1, 1.025, -0.25, 1, 1.025, 0.25, 1, -0.225, -0.25, -1, -0.225, 0.25, -1, -0.225, -0.25)
-
-[node name="window_frame" type="Node3D" node_paths=PackedStringArray("model", "health")]
+[node name="window_frame" type="Node3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_gwagn")
-model = NodePath("model")
-model_offset = Vector3(0, 1.5, 0)
 particle = ExtResource("2_hcyho")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
@@ -40,18 +23,14 @@ health = 500.0
 max_health = 500.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="model" type="CSGMesh3D" parent="."]
-mesh = SubResource("BoxMesh_sv843")
-
-[node name="frame" type="CSGMesh3D" parent="model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-operation = 2
-mesh = SubResource("BoxMesh_37lr7")
+[node name="model" type="MeshInstance3D" parent="."]
+material_override = ExtResource("4_hcyho")
+mesh = ExtResource("4_gxdfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_8mgcx")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_gxdfi")
 
 [node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
@@ -61,6 +40,5 @@ script = ExtResource("5_gxdfi")
 health = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
-transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_8mgcx")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
+shape = SubResource("ConcavePolygonShape3D_gxdfi")

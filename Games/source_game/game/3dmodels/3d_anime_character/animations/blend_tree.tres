@@ -1,4 +1,11 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=49 format=3 uid="uid://dnc3f3exehhod"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=52 format=3 uid="uid://dnc3f3exehhod"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8nyl6"]
+animation = &"animation_library/crouching_idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_lnlj2"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ufelt"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q1bk0"]
 animation = &"animation_library/floating"
@@ -163,7 +170,14 @@ transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(0, -103.99422)
 
 [resource]
+graph_offset = Vector2(-224.52145, 155.91196)
 nodes/output/position = Vector2(800, 66.6667)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_upo8v")
 nodes/StateMachine/position = Vector2(288.889, 66.6667)
-node_connections = [&"output", 0, &"StateMachine"]
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_ufelt")
+nodes/OneShot/position = Vector2(377.7778, 266.6667)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_lnlj2")
+nodes/Blend2/position = Vector2(577.7778, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_8nyl6")
+nodes/Animation/position = Vector2(44.444447, 311.1111)
+node_connections = [&"output", 0, &"Blend2", &"OneShot", 0, &"Animation", &"Blend2", 0, &"StateMachine", &"Blend2", 1, &"OneShot"]

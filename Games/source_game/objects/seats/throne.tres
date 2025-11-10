@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=8 format=3 uid="uid://dwlbtmw3n1lgt"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=11 format=3 uid="uid://dwlbtmw3n1lgt"]
 
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_hef8i"]
 [ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="1_jvinl"]

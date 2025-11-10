@@ -1,0 +1,15 @@
+[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://13y81ipac4n3"]
+
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="1_tvgxk"]
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-1.5, -0.5, -1.5, 3, 1, 3),
+"attribute_data": PackedByteArray("AACAPwAAAAAAAIA/AAAAP6uqKj8AAAA/q6qqPgAAAD+rqqo+AACAPwAAAAAAAIA/q6oqPwAAAD8AAIA/AAAAP6uqKj8AAIA/AAAAAAAAAD+rqqo+AAAAPwAAAAAAAIA/q6oqPwAAAD+rqio/AACAP6uqqj4AAIA/AAAAAAAAAACrqqo+AAAAAAAAAAAAAAA/AACAPwAAAD8AAIA/AACAP6uqKj8AAIA/q6oqPwAAAACrqio/AAAAP6uqqj4AAAA/q6qqPgAAAACrqqo+AAAAPwAAAAAAAAA/q6oqPwAAAAAAAIA/AAAAAKuqKj8AAAA/q6qqPgAAAD+rqio/AAAAP6uqqj4AAIA/q6qqPgAAAACrqio/AAAAAKuqqj4AAAA/"),
+"format": 34359738391,
+"material": ExtResource("1_tvgxk"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AADAvwAAAD8AAMC/AADAvwAAAL8AAMC/AADAPwAAAL8AAMC/AADAvwAAAD8AAMA/AADAvwAAAL8AAMA/AADAvwAAAL8AAMC/AADAvwAAAL8AAMA/AADAPwAAAL8AAMA/AADAvwAAAL8AAMC/AADAvwAAAD8AAMC/AADAvwAAAD8AAMA/AADAvwAAAL8AAMC/AADAvwAAAD8AAMA/AADAvwAAAD8AAMC/AADAPwAAAD8AAMC/AADAvwAAAD8AAMA/AADAPwAAAD8AAMA/AADAvwAAAL8AAMA/AADAPwAAAL8AAMA/AADAPwAAAL8AAMC/AADAvwAAAL8AAMC/AADAPwAAAD8AAMC/AADAPwAAAL8AAMC/AADAPwAAAL8AAMA/AADAPwAAAD8AAMA/AADAPwAAAL8AAMA/AADAvwAAAL8AAMA/AADAPwAAAD8AAMC/AADAvwAAAD8AAMC/AADAPwAAAL8AAMC/AADAPwAAAD8AAMA/AADAvwAAAD8AAMA/AADAPwAAAD8AAMC/AADAPwAAAD8AAMA/AADAPwAAAD8AAMC/AADAPwAAAL8AAMA//////wAA/7//////AAD/v/////8AAP+/AAD/f/9//78AAP9//3//vwAA/3//f/+//38AAP///7//fwAA////v/9/AAD///+/AAD/f/9//78AAP9//3//vwAA/3//f/+//3///wAA/7//f///AAD/v/9///8AAP+//3//f////7//f/9/////v/9//3////+//38AAP///7//fwAA////v/9/AAD///+/////f/////////9//////////3///////3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/////f/////////9//////////3//////")
+}]

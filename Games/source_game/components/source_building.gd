@@ -5,8 +5,6 @@ signal destroy
 var building_owner:SD_MultiplayerPlayer
 
 @export_group("Visual")
-@export var model:Node3D
-@export var model_offset:Vector3
 @export var particle:PackedScene
 @export var particles_amount:float = 8.0
 @export var particle_lifetime:float = 8.0

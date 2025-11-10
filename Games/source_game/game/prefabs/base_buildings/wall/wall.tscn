@@ -1,25 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://vkn5wykomtyq"]
+[gd_scene load_steps=7 format=3 uid="uid://vkn5wykomtyq"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_feq7x"]
 [ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="4_fywtf"]
+[ext_resource type="BoxMesh" uid="uid://bw4hitmohtrxc" path="res://Games/source_game/objects/buildings/meshes/wall.tres" id="4_uv2w3"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="5_uv2w3"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="6_o03sm"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fywtf"]
-normal_enabled = true
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_auanr"]
-material = SubResource("StandardMaterial3D_fywtf")
-size = Vector3(3, 3, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_feq7x"]
 size = Vector3(3, 3, 0.5)
 
-[node name="wall" type="Node3D" node_paths=PackedStringArray("model", "health")]
+[node name="wall" type="Node3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_feq7x")
-model = NodePath("mesh")
-model_offset = Vector3(0, 1.5, 0)
 particle = ExtResource("4_fywtf")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
@@ -32,7 +23,7 @@ max_health = 500.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
 [node name="mesh" type="CSGMesh3D" parent="."]
-mesh = SubResource("BoxMesh_auanr")
+mesh = ExtResource("4_uv2w3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

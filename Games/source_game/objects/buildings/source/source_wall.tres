@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://bxbgf47dgu01f"]
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=5 format=3 uid="uid://bxbgf47dgu01f"]
 
 [ext_resource type="PackedScene" uid="uid://vkn5wykomtyq" path="res://Games/source_game/game/prefabs/base_buildings/wall/wall.tscn" id="1_2oevw"]
+[ext_resource type="BoxMesh" uid="uid://bw4hitmohtrxc" path="res://Games/source_game/objects/buildings/meshes/wall.tres" id="1_4w2y5"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="1_7ufq7"]
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="2_7ufq7"]
 
 [resource]
 script = ExtResource("2_7ufq7")
 type = 1
+mesh = ExtResource("1_4w2y5")
+mesh_offset = Vector3(0, 1.5, 0)
 icon = ExtResource("1_7ufq7")
 name = "source_wall"
 prefab = ExtResource("1_2oevw")

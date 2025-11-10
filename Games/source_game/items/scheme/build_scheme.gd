@@ -79,10 +79,18 @@ func add_ghost_building() -> void:
 		return
 	
 	var section:SourceLevelSection3D = SourceLevelSection3D.get_by_name(buildings_section_name)
-	var new_building:SourceBuilding = building.prefab.instantiate()
-	ghost_building = new_building.ghost_model.duplicate()
+	
+	ghost_building = MeshInstance3D.new()
+	ghost_building.mesh = building.mesh.duplicate()
 	
 	section.add_child(ghost_building)
+
+func set_material(mesh_instance:MeshInstance3D, material:Material) -> void:
+	if not is_instance_valid(ghost_building):
+		return
+	
+	for i in mesh_instance.mesh.get_surface_count():
+		mesh_instance.mesh.surface_set_material(i, material)
 
 func update_ghost_building() -> void:
 	if not ghost_building or (not is_instance_valid(ghost_building)):
@@ -94,22 +102,24 @@ func update_ghost_building() -> void:
 	ghost_building.visible = not collider == null
 	
 	if can_place():
-		for i in ghost_building.mesh.get_surface_count():
-			ghost_building.mesh.surface_set_material(i, correct_ghost_material)
+		set_material(ghost_building, correct_ghost_material)
 	else:
-		for i in ghost_building.mesh.get_surface_count():
-			ghost_building.mesh.surface_set_material(i, wrong_ghost_material)
+		set_material(ghost_building, wrong_ghost_material)
 	
 	if collider:
 		if collider is BuildSnapPoint:
 			if not collider.busy:
 				if building.type in collider.allowed_types:
 					ghost_building.global_position = collider.point.global_position
+					#ghost_building.global_rotation = collider.point.rotation
 					return
-		ghost_building.global_position = collision_point
+		ghost_building.global_position = collision_point + building.mesh_offset
 
 
 func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEntity) -> void:
+	if not can_place():
+		return
+	
 	var collider = _player.interact_raycast.get_collider()
 	
 	var section = SourceLevelSection3D.get_by_name(buildings_section_name)
@@ -122,6 +132,7 @@ func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEnt
 			collider.busy = true
 	
 	new_building.global_transform = _transform
+	new_building.global_position -= _building.mesh_offset
 
 func open_ui() -> void:
 	ui_interface_comp.open()

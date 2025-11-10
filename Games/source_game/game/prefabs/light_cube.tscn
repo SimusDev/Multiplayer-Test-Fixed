@@ -1,24 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://ukng37hy6731"]
+[gd_scene load_steps=6 format=3 uid="uid://ukng37hy6731"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_s1t5v"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="2_d4ikq"]
+[ext_resource type="BoxMesh" uid="uid://dst27g7j8sfld" path="res://Games/source_game/objects/buildings/meshes/light_cube.tres" id="3_lynut"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="3_w4dxk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0eru"]
-shading_mode = 0
-texture_filter = 0
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c6gu2"]
+points = PackedVector3Array(-0.14999999, -0.14999993, -0.14999993, 0.14999308, 0.14999999, 0.14999999, 0.14999308, 0.14999999, -0.14999999, 0.14999308, -0.14999999, 0.14999999, -0.14999999, 0.14999993, 0.14999993, 0.14999308, -0.14999999, -0.14999999, -0.14999999, -0.14999993, 0.14999993, -0.14999999, 0.14999993, -0.14999993)
 
-[sub_resource type="BoxMesh" id="BoxMesh_s1t5v"]
-material = SubResource("StandardMaterial3D_g0eru")
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_g0eru"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[node name="SourceBuilding" type="Node3D" node_paths=PackedStringArray("model", "health")]
+[node name="SourceBuilding" type="Node3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_s1t5v")
-model = NodePath("light_cube")
-model_offset = Vector3(0, 0.25, 0)
 particles_amount = 0.0
 particle_lifetime = 0.0
 health = NodePath("SourceHealth")
@@ -31,16 +22,13 @@ health = 25.0
 max_health = 25.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="light_cube" type="CSGMesh3D" parent="."]
-mesh = SubResource("BoxMesh_s1t5v")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="light_cube"]
-shadow_enabled = true
+[node name="model" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_lynut")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_g0eru")
+shape = SubResource("ConvexPolygonShape3D_c6gu2")
 
 [node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
@@ -52,4 +40,7 @@ health = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
-shape = SubResource("BoxShape3D_g0eru")
+shape = SubResource("ConvexPolygonShape3D_c6gu2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+shadow_enabled = true

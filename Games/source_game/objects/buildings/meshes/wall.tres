@@ -1,0 +1,7 @@
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://bw4hitmohtrxc"]
+
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="1_8mkf8"]
+
+[resource]
+material = ExtResource("1_8mkf8")
+size = Vector3(3, 3, 0.5)

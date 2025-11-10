@@ -1,14 +1,12 @@
-[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=3 format=3 uid="uid://dv040ge0xlbxx"]
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://dv040ge0xlbxx"]
 
 [ext_resource type="PackedScene" uid="uid://ukng37hy6731" path="res://Games/source_game/game/prefabs/light_cube.tscn" id="1_7qkqn"]
+[ext_resource type="BoxMesh" uid="uid://dst27g7j8sfld" path="res://Games/source_game/objects/buildings/meshes/light_cube.tres" id="1_673t2"]
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_aj0w3"]
 
 [resource]
 script = ExtResource("1_aj0w3")
-pick_on_build = true
-custom_section = ""
-custom_id = ""
-name = ""
-description = ""
+mesh = ExtResource("1_673t2")
+mesh_offset = Vector3(0, 0.15, 0)
 prefab = ExtResource("1_7qkqn")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

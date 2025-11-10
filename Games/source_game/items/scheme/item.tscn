@@ -33,7 +33,7 @@ albedo_color = Color(1, 0, 0, 0.49803922)
 script = ExtResource("5_wvkc6")
 metadata/_custom_type_script = "uid://dau2vuhctib65"
 
-[sub_resource type="LabelSettings" id="LabelSettings_b11wf"]
+[sub_resource type="LabelSettings" id="LabelSettings_wvkc6"]
 font_size = 18
 
 [node name="scheme_item" type="Node3D" node_paths=PackedStringArray("model")]
@@ -83,6 +83,6 @@ metadata/_edit_use_anchors_ = true
 input_action = "key.e"
 
 [node name="title" parent="MP_CanvasLayer/build_menu/head" index="0"]
-label_settings = SubResource("LabelSettings_b11wf")
+label_settings = SubResource("LabelSettings_wvkc6")
 
 [editable path="MP_CanvasLayer/build_menu"]
