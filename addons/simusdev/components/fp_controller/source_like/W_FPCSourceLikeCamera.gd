@@ -15,7 +15,8 @@ class_name W_FPCSourceLikeCamera
 @export var camera_angle_max: float = 90
 
 @export_group("Mouse Settings")
-@export var mouse_sensitivity: float = 1.0
+const DEFAULT_SENSITIVITY: float = 1.0
+@export var mouse_sensitivity: float = DEFAULT_SENSITIVITY
 
 @export var _mouse_captured: bool = false
 
@@ -41,7 +42,7 @@ static var instance: W_FPCSourceLikeCamera
 static func get_local_sensitivity() -> float:
 	if instance:
 		return instance._sensitivity_cmd.get_value_as_float()
-	return 1.0
+	return DEFAULT_SENSITIVITY
 
 static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
 	return _active_camera_list
@@ -104,7 +105,7 @@ func _ready() -> void:
 	
 	if is_authority():
 		instance = self
-		_sensitivity_cmd = SD_ConsoleCommand.get_or_create("sensitivity", 1.0)
+		_sensitivity_cmd = SD_ConsoleCommand.get_or_create("sensitivity", DEFAULT_SENSITIVITY)
 		_sensitivity_cmd.executed.connect(_update_sensitivity)
 		_update_sensitivity()
 	
