@@ -36,6 +36,13 @@ static var _active_camera_list: Array[W_FPCSourceLikeCamera] = []
 
 @onready var _sensitivity_cmd: SD_ConsoleCommand
 
+static var instance: W_FPCSourceLikeCamera
+
+static func get_local_sensitivity() -> float:
+	if instance:
+		return instance._sensitivity_cmd.get_value_as_float()
+	return 1.0
+
 static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
 	return _active_camera_list
 
@@ -48,6 +55,8 @@ func _exit_tree() -> void:
 		var camera: W_FPCSourceLikeCamera = _active_camera_list[_active_camera_list.size() - 1]
 		if is_instance_valid(camera):
 			camera.make_current()
+	
+	
 
 func _enter_tree() -> void:
 	super()
@@ -94,6 +103,7 @@ func _ready() -> void:
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	
 	if is_authority():
+		instance = self
 		_sensitivity_cmd = SD_ConsoleCommand.get_or_create("sensitivity", 1.0)
 		_sensitivity_cmd.executed.connect(_update_sensitivity)
 		_update_sensitivity()
