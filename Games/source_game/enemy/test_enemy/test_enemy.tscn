@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bampe5eruc46u"]
+
+[ext_resource type="Script" uid="uid://cg3oxtsqciy6x" path="res://Games/source_game/enemy/test_enemy/test_enemy.gd" id="1_08fhy"]
+[ext_resource type="Script" uid="uid://uweixb42nruy" path="res://Games/source_game/components/ai/source_ai.gd" id="1_8vrdf"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="3_3yhr8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_08fhy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vrdf"]
+
+[node name="TestEnemy" type="CharacterBody3D"]
+script = ExtResource("1_08fhy")
+
+[node name="SourceAI" type="Node3D" parent="." node_paths=PackedStringArray("root", "_navigation_agent")]
+script = ExtResource("1_8vrdf")
+root = NodePath("..")
+_navigation_agent = NodePath("../NavigationAgent3D")
+metadata/_custom_type_script = "uid://uweixb42nruy"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_08fhy")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8vrdf")
+
+[node name="SourceHitbox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("3_3yhr8")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="collision" type="CollisionShape3D" parent="SourceHitbox"]
+shape = SubResource("CapsuleShape3D_8vrdf")

@@ -14,7 +14,6 @@ func _start() -> void:
 	])
 	
 	SD_Network.call_func_on_server(_send)
-	
 
 func _send() -> void:
 	var data: Dictionary = {}

@@ -64,12 +64,12 @@ func _try_reload_net() -> void:
 	gun_object._try_reload(stack)
 
 func using() -> void:
-	if stack.get_durability() <= 0 or (not can_use()):
-		return
 	fire()
-	super()
 
 func fire() -> void:
+	if stack.get_durability() <= 0 or (not can_use()):
+		return
+	
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player
 	pre_event.weapon = self
