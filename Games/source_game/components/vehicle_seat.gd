@@ -100,11 +100,15 @@ func set_movement_enabled(node:Node3D, value:bool) -> void:
 		if value:
 			movement.process_mode = Node.PROCESS_MODE_INHERIT
 			movement_crouch.collision_crouch.process_mode = Node.PROCESS_MODE_INHERIT
+			movement_crouch.collision_crouch.disabled = false
 			movement_crouch.collision_normal.process_mode = Node.PROCESS_MODE_INHERIT
+			movement_crouch.collision_normal.disabled = false
 		else:
 			movement.state_machine.switch_by_name("sitting")
 			movement.process_mode = Node.PROCESS_MODE_DISABLED
+			movement_crouch.collision_crouch.disabled = true
 			movement_crouch.collision_crouch.process_mode = Node.PROCESS_MODE_DISABLED
+			movement_crouch.collision_normal.disabled = true
 			movement_crouch.collision_normal.process_mode = Node.PROCESS_MODE_DISABLED
 			movement.actor.velocity = Vector3.ZERO
 

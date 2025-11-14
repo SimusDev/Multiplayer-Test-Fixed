@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=36 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ghdio"]
 [ext_resource type="Script" uid="uid://rk2typl4w3ca" path="res://Games/source_game/components/inventory/source_itemstack.gd" id="11_1yv11"]
 [ext_resource type="Resource" uid="uid://10t06r1l7fda" path="res://Games/source_game/objects/scheme.tres" id="12_em5yj"]
-[ext_resource type="Resource" uid="uid://d2h1x4rqqoixe" path="res://Games/source_game/objects/tools/phys_gun.tres" id="13_i0lyu"]
+[ext_resource type="Resource" uid="uid://dysa48588ffk5" path="res://Games/source_game/objects/tools/phys_gun.tres" id="13_i0lyu"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="13_y5oya"]
 [ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="14_hs1xq"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
+[ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="26_26rsp"]
 [ext_resource type="Script" uid="uid://8ivv40tjuu7w" path="res://Games/source_game/components/camera/source_camera_switcher.gd" id="26_y3hgg"]
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="27_y3hgg"]
@@ -358,6 +359,11 @@ type = 0
 inventory = NodePath("../../SourceInventory")
 placeholder = ExtResource("19_em5yj")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
+
+[node name="ViewModelSway" type="Node" parent="SourceCamera/SourceViewModelRoot3D" node_paths=PackedStringArray("viewmodel")]
+script = ExtResource("23_7nlxi")
+viewmodel = NodePath("..")
+metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 
 [node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
