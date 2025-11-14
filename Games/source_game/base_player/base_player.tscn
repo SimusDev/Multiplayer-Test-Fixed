@@ -317,10 +317,9 @@ key_crouch = "crouch"
 camera = NodePath("../SourceCamera")
 movement = NodePath("../SourceMovement")
 
-[node name="SourceCamera" parent="." node_paths=PackedStringArray("body", "viewmodel") instance=ExtResource("13_y5oya")]
+[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 body = NodePath("..")
-viewmodel = NodePath("SourceViewModelRoot3D")
 
 [node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera"]
 
@@ -363,6 +362,7 @@ metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 [node name="ViewModelSway" type="Node" parent="SourceCamera/SourceViewModelRoot3D" node_paths=PackedStringArray("viewmodel")]
 script = ExtResource("23_7nlxi")
 viewmodel = NodePath("..")
+sway_multiplier = 124124.0
 metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 
 [node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
