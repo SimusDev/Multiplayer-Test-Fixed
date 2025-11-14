@@ -1,10 +1,10 @@
 extends W_FPCSourceLike
 class_name W_FPCSourceLikeCamera
 
-@export var body: SourceEntity
+@export var body: CharacterBody3D
 @export_group("References")
 @export var camera: Camera3D
-@export var viewmodel:SourceViewModelRoot3D
+#@export var viewmodel:SourceViewModelRoot3D
 
 @export_group("Viewmodel Settings")
 @export var sway_multiplier = 1
@@ -102,13 +102,14 @@ func _ready() -> void:
 		return
 
 func viewmodel_sway(delta:float) -> void:
-	mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)
-	if viewmodel:
-		viewmodel.rotation.x = lerp(viewmodel.rotation.x, (mouse_input.y * 0.025) * sway_multiplier, 10 * delta)
-		viewmodel.rotation.y = lerp(viewmodel.rotation.y, (mouse_input.x * 0.025)  * sway_multiplier, 10 * delta)
+	pass
+	#mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)
+	#if viewmodel:
+		#viewmodel.rotation.x = lerp(viewmodel.rotation.x, (mouse_input.y * 0.025) * sway_multiplier, 10 * delta)
+		#viewmodel.rotation.y = lerp(viewmodel.rotation.y, (mouse_input.x * 0.025)  * sway_multiplier, 10 * delta)
 
 func _process(delta: float) -> void:
-	viewmodel_sway(delta)
+	#viewmodel_sway(delta)
 	
 	if is_can_free_move():
 		_handle_free_camera(delta)

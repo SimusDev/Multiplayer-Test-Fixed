@@ -65,13 +65,17 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		if SimusDev.ui.get_active_interfaces().is_empty() or always_can_use:
-			if use_hold:
-				caller.call_func(using)
-			
 			if Input.is_action_just_pressed("fire"):
 				caller.call_func(use)
 			elif Input.is_action_just_released("fire"):
 				caller.call_func(release)
+	
+	if use_hold:
+		using()
+	
+
+func using() -> void:
+	pass
 
 func can_use() -> bool:
 	if is_instance_valid(animation_player):
@@ -107,7 +111,3 @@ func release() -> void:
 	use_hold = false
 	publish_event("item_release")
 	use_just_released.emit()
-
-func using() -> void:
-	#publish_event("item_using")
-	pass

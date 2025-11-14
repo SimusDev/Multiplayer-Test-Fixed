@@ -14,7 +14,7 @@ static func string_to_variant(string: String, default_value: Variant = null) -> 
 static var __instantiate_class_script: String = "
 extends RefCounted
 
-func instantiate(name: String) -> Variant:
+func instantiate(_name: String) -> Variant:
 	return %s.new()
 
 "
