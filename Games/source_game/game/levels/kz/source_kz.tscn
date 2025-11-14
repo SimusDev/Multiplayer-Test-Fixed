@@ -204,6 +204,7 @@ omni_range = 10.0
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.300001, 1.9999999, -42.4)
+use_collision = true
 mesh = SubResource("BoxMesh_7byoa")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="0"]
