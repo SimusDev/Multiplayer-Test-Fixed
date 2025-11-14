@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=37 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="14_hs1xq"]
 [ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="16_26rsp"]
+[ext_resource type="Resource" uid="uid://dudoao428jxp6" path="res://Games/source_game/objects/weapons/ammo/explosion.tres" id="16_cjcqp"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
@@ -150,6 +151,14 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 [node name="1" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="SourceItemStack" type="Node" parent="SourceInventory/1"]
+script = ExtResource("11_1yv11")
+_data = {
+"quantity": 666
+}
+object = ExtResource("16_cjcqp")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="2" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
@@ -362,7 +371,6 @@ metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 [node name="ViewModelSway" type="Node" parent="SourceCamera/SourceViewModelRoot3D" node_paths=PackedStringArray("viewmodel")]
 script = ExtResource("23_7nlxi")
 viewmodel = NodePath("..")
-sway_multiplier = 124124.0
 metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 
 [node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]

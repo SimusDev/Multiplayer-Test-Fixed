@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=4 uid="uid://bokaet0mksmo3"]
+[gd_scene load_steps=42 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_1bs4f"]
+[ext_resource type="Resource" uid="uid://cgchclr584xn" path="res://Games/source_game/objects/sound/shoot/pistol.tres" id="2_ken8p"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="3_i202i"]
 [ext_resource type="Texture2D" uid="uid://eaneprmwbxyv" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_0.jpg" id="3_j3diw"]
 [ext_resource type="PackedScene" uid="uid://da0tqvpik8x1f" path="res://Games/source_game/game/prefabs/bullet_9_mm_shell.tscn" id="3_ken8p"]
@@ -9,15 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://drnbgvwkh28aa" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_1.png" id="4_nqkmu"]
 [ext_resource type="Texture2D" uid="uid://bno7kaua7m6xu" path="res://Games/source_game/game/3dmodels/aps_pistol/aps_pistol_2.jpg" id="5_tgxpf"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="7_s5rx7"]
-[ext_resource type="AudioStream" uid="uid://8vje25lejdqr" path="res://Games/source_game/items/AA2308KM/sound/fire2.wav" id="7_tgxpf"]
-[ext_resource type="AudioStream" uid="uid://dlsjv2vg1c1w5" path="res://Games/source_game/items/ak_47/sound/bolt_on.mp3" id="9_42m7w"]
-[ext_resource type="AudioStream" uid="uid://bgggoceupj88n" path="res://Games/source_game/items/ak_47/sound/bolt_off.mp3" id="10_ken8p"]
+[ext_resource type="AudioStream" uid="uid://cai1qnpt4mbu1" path="res://Games/source_game/sounds/general/bolt_action/pistol1.mp3" id="9_42m7w"]
+[ext_resource type="AudioStream" uid="uid://b771fhfyijgu4" path="res://Games/source_game/sounds/general/bolt_action/pistol2.mp3" id="10_ken8p"]
 
 [sub_resource type="Resource" id="Resource_42m7w"]
 script = ExtResource("3_i202i")
 damage = 18.0
-mass = 9.5
-bleed_value = 1.0
 metadata/_custom_type_script = "uid://4iri4kw12vgx"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngojl"]
@@ -594,20 +592,37 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("10_ken8p")
 }],
-"times": PackedFloat32Array(0.133333, 0.4)
+"times": PackedFloat32Array(0.1, 0.36666667)
 }
 tracks/5/use_blend = true
+
+[sub_resource type="Animation" id="Animation_42m7w"]
+resource_name = "no_ammo"
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.332599, 0, 2.51105e-08)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpbao"]
 _data = {
 &"RESET": SubResource("Animation_s5rx7"),
 &"fire": SubResource("Animation_k2044"),
+&"no_ammo": SubResource("Animation_42m7w"),
 &"pick": SubResource("Animation_j3diw")
 }
 
-[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("audioplayers", "shell_marker", "bullet_marker", "model", "animation_player")]
+[node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("shell_marker", "bullet_marker", "model", "animation_player")]
 script = ExtResource("1_k2044")
-audioplayers = [NodePath("audio")]
+shoot_sound = ExtResource("2_ken8p")
 audio_pitch_randomness = Vector2(0.98, 1.1)
 projectile = ExtResource("2_1bs4f")
 shell = ExtResource("3_ken8p")
@@ -699,23 +714,14 @@ mesh = SubResource("ArrayMesh_wrfrq")
 skeleton = NodePath("")
 
 [node name="left_hand_position" type="Marker3D" parent="model"]
-transform = Transform3D(0.145322, -0.088057, -0.985458, 0.984655, -0.0843974, 0.152745, -0.0966203, -0.992534, 0.0744409, -0.0491882, -0.455934, 0.70025)
+transform = Transform3D(0.14532164, -0.08805706, -0.9854581, 0.984655, -0.0843974, 0.15274476, -0.0966203, -0.99253386, 0.074441075, -0.0491882, -0.455934, 0.70025)
 
 [node name="right_hand_position" type="Marker3D" parent="model"]
 transform = Transform3D(-0.916936, 0.206384, 0.341516, -0.341554, 0.0365893, -0.939149, -0.206321, -0.977787, 0.0369414, 0.030525, -0.0251694, 0.199286)
 
 [node name="bolt_sound" type="AudioStreamPlayer3D" parent="model"]
+volume_db = -11.845
 pitch_scale = 1.4
-
-[node name="audio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("7_tgxpf")
-volume_db = 80.0
-unit_size = 25.0
-max_db = 6.0
-max_distance = 200.0
-max_polyphony = 5
-bus = &"game"
-doppler_tracking = 2
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
