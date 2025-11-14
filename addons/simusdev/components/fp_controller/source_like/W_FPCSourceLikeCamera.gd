@@ -34,6 +34,8 @@ var mouse_input:Vector2 = Vector2.ZERO
 
 static var _active_camera_list: Array[W_FPCSourceLikeCamera] = []
 
+@onready var _sensitivity_cmd: SD_ConsoleCommand
+
 static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
 	return _active_camera_list
 
@@ -49,7 +51,6 @@ func _exit_tree() -> void:
 
 func _enter_tree() -> void:
 	super()
-	
 
 func make_current() -> void:
 	if camera:
@@ -92,6 +93,11 @@ func _ready() -> void:
 	#console.visibility_changed.connect(_on_console_visibility_changed)
 	SimusDev.ui.interface_opened_or_closed.connect(_on_interface_opened_or_closed)
 	
+	if is_authority():
+		_sensitivity_cmd = SD_ConsoleCommand.get_or_create("sensitivity", 1.0)
+		_sensitivity_cmd.executed.connect(_update_sensitivity)
+		_update_sensitivity()
+	
 	if make_current_at_start:
 		if is_authority():
 			make_current()
@@ -100,6 +106,9 @@ func _ready() -> void:
 	if SimusDev.ui.has_active_interface():
 		add_disable_priority()
 		return
+
+func _update_sensitivity() -> void:
+	mouse_sensitivity = _sensitivity_cmd.get_value_as_float()
 
 func viewmodel_sway(delta:float) -> void:
 	pass
