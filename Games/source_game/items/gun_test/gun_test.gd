@@ -1,6 +1,8 @@
 class_name SourceFireWeapon extends SourceItem
 
 
+@export var no_ammo_anim:StringName = "no_ammo"
+
 @export_group("Settings")
 @export_subgroup("Audio")
 @export var shoot_sound:R_SourceSound
@@ -41,6 +43,8 @@ func _ready() -> void:
 	
 	reset_spread_timer.timeout.connect(reset_spread)
 	
+	stack.durability_changed.connect(on_durability_changed)
+	
 	if playable:
 		playable.input.action_just_pressed.connect(_on_action_just_pressed)
 	
@@ -56,6 +60,11 @@ func _ready() -> void:
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":
 		try_reload()
+
+func on_durability_changed() -> void:
+	if stack.get_durability() == 0:
+		play_animation(no_ammo_anim)
+	pass
 
 func try_reload() -> void:
 	caller.call_func_on_server(_try_reload_net)
@@ -90,9 +99,10 @@ func fire() -> void:
 	
 	stack.set_durability(stack.get_durability() - 1)
 
+
 func play_fire_sound():
-	var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
 	if shoot_sound:
+		var rand_pitch:float = randf_range(audio_pitch_randomness.x, audio_pitch_randomness.y)
 		var sound_instance:SourceSoundInstance = shoot_sound.try_play(self)
 		if is_instance_valid(sound_instance):
 			sound_instance.call_function_on_audio("set_pitch_scale", [rand_pitch])

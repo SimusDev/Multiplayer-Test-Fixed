@@ -5,11 +5,14 @@ class_name ViewModelSway extends Node
 var mouse_input:Vector2 = Vector2.ZERO
 
 func _input(event: InputEvent) -> void:
+	if not (SD_Network.is_authority(self)) and (not viewmodel.authorative_visibility):
+		return
+	
 	if SimusDev.ui.has_active_interface():
 		return
 	
 	if event is InputEventMouseMotion:
-		mouse_input = event.relative 
+		mouse_input = event.relative * W_FPCSourceLikeCamera.get_local_sensitivity() * 0.1
 
 func viewmodel_sway(delta:float) -> void:
 	mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)

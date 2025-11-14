@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=5 format=3 uid="uid://cgchclr584xn"]
+
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_c7m5u"]
+[ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_sxc73"]
+[ext_resource type="AudioStream" uid="uid://dtd8fal3e0fkb" path="res://Games/source_game/items/gun_test/sound/pistol_shot.wav" id="3_sxc73"]
+
+[sub_resource type="Resource" id="Resource_c7m5u"]
+script = ExtResource("2_sxc73")
+streams = Array[AudioStream]([ExtResource("3_sxc73")])
+metadata/_custom_type_script = "uid://us246ujqip05"
+
+[resource]
+script = ExtResource("1_c7m5u")
+creation_max_distance = 350.0
+sources = Array[ExtResource("2_sxc73")]([SubResource("Resource_c7m5u")])
+name = "pistol_shoot"
+metadata/_custom_type_script = "uid://b4qsbiksbfk64"

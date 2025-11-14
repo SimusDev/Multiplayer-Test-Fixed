@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://us246ujqip05"
 
 [sub_resource type="Resource" id="Resource_wptv8"]
 script = ExtResource("2_4l3bj")
+min_distance_to_play = 25.0
 max_distance = 280.0
 streams = Array[AudioStream]([ExtResource("4_guvlg")])
 metadata/_custom_type_script = "uid://us246ujqip05"
