@@ -4,4 +4,3 @@ class_name SD_NetSyncedProperty
 @export var properties: PackedStringArray
 @export var interpolation_enabled: bool = false
 @export var interpolation_speed: float = DEFAULT_TICKRATE
-@export var float_snap: float = 0.0

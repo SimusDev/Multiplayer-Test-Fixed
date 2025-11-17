@@ -45,6 +45,9 @@ func initialize() -> void:
 	SD_Network.register_function(_recieve_data)
 	SD_Network.register_function(_send_data_to_client)
 	
+	for channel in channels:
+		SD_Network.register_channel(channel)
+	
 	set_process(not SD_Network.is_server())
 	
 	for i in _roots:
@@ -63,7 +66,7 @@ func initialize() -> void:
 		
 		add_child(_timer)
 	else:
-		SD_Network.call_func_on_server(_send_data_to_client, [SD_Network.get_unique_id()])
+		SD_Network.call_func_on_server(_send_data_to_client, [], SD_Network.CALLMODE.RELIABLE, channels.pick_random())
 	
 	_initialized = true
 
@@ -127,8 +130,8 @@ func _on_timer_timeout() -> void:
 		_changed = false
 		_queue.clear()
 
-func _send_data_to_client(peer: int) -> void:
-	SD_Network.call_func_on(peer, _recieve_data, [_data])
+func _send_data_to_client() -> void:
+	SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _recieve_data, [_data], SD_Network.CALLMODE.RELIABLE, channels.pick_random())
 
 func _recieve_data(new: Dictionary) -> void:
 	_data.merge(new, true)
