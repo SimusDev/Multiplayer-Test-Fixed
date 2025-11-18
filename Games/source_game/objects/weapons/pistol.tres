@@ -31,6 +31,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("3_l8wlm")
+automatic = false
 max_ammo = 8
 ammo = Array[ExtResource("1_u64gf")]([ExtResource("2_xnmxq")])
 icon = ExtResource("1_l8wlm")

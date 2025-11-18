@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://bokaet0mksmo3"]
+[gd_scene load_steps=44 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_1bs4f"]
@@ -205,40 +205,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i202i")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_42m7w"]
-_surfaces = [{
-"aabb": AABB(-0.759376, -0.666049, -0.0861999, 0.32644, 0.023629, 0.207907),
-"format": 34896613377,
-"index_count": 216,
-"index_data": PackedByteArray("HAAQAB0ADwAQABwADwAeABAAHAAAAA8AAAAeAA8AAQAQAB4AAAABAB4AEAACAB0AEAABAAIAHAAdABIAEgAdABEAEQAdAAIAEgARAB8AHwARAAIAAwASAB8AHAASAAMAHwACAAMAAwAAABwAAgAEAAMABAAAAAMAAgABAAUABQAEAAIABgABAAAAAAAEAAYABwAFAAEABgAHAAEABAAIAAYABgAIABMAEwAJAAYABwAGAAkAEwAUAAkAFAATAAgABwAJABUAFAAVAAkABwAVACAAFQAMACAAIQAHACAAIQAgAAwABQAHACEAFQALAAwAFAALABUACwAhAAwAIgALABQAFAAIACIACwAXACEAIgAXAAsAIQAXABgAIgAYABcAIwAFACEAIQAYACMAIgAWABgAFgAiAAgAGAAOACMAFgAIACQACAAEACQAFgANABgAGAANAA4AGQAjAA4ADQAZAA4ABQAjABkADQAlABkAGQAKAAUAGQAlAAoACgAEAAUACgAbAAQAJAAEABsAGgAKACUAGgAlAA0ACgAaABsAGgAkABsAFgAaAA0AGgAWACQA"),
-"lods": [0.00760352, PackedByteArray("DwAQABEADwARABIADwABABAAEgARAAMADwASAAMAEAACABEAAwARAAIAEAABAAIAAwAAAA8AAAABAA8ABAAAAAMAAgAEAAMABgABAAAAAAAEAAYAAgABAAUABQAEAAIABgAHAAEABwAFAAEABAAIAAYABwAGAAkAEwAJAAYABgAIABMAEwAUAAkAFAATAAgAFAAVAAkABwAJABUABwAVAAwABQAHAAwAFAALABUAFQALAAwAFAAIABYAFgALABQACwAXAAwAFgAXAAsADAAXABgAFgAYABcADgAFAAwADAAYAA4ABQAOABkAGAANAA4ADQAZAA4AFgANABgAGQAKAAUAGQANAAoACgAEAAUAFgAaAA0AGgAKAA0AGgAWAAgACgAbAAQACgAaABsACAAEABsAGgAIABsA"), 0.0306551, PackedByteArray("AAABAAIAAAACAAMAAgAEAAMABAAAAAMAAgABAAUABQAEAAIABgABAAAAAAAEAAYABgAHAAEABwAFAAEABAAIAAYABwAGAAkACQAGAAgACgAIAAQACQAIAAoACgAEAAUABwAJAAsACgALAAkABwALAAwABQAHAAwACgANAAsACwANAAwADgAKAAUADgANAAoADgAFAAwADAANAA4A")],
-"name": "material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 38,
-"vertex_data": PackedByteArray("RwoAAAAAAABHCv//AAAAAEcK/////wAARwoAAP//AAAsoAAA//8AADun/////wAALKAAAAAAAAA7p///AAAAAPTNAAArYAAAO6edXQAAAAA7p51d//8AAJztnV3dHAAAnO3//90cAACc7Z1dIeMAAJzt//8h4wAAAgMAALkEAAAAAP//IhAAAAID//9F+wAAAAAAANzvAACxvwAAbR8AAMDGnV1tHwAAO8GdXQAAAAAD1Z1d058AAP//nV2MYgAA//+dXXKdAAA7wf////8AAMDGnV2R4AAAsb8AAJHgAAAAAAAAIhAAAAAA///c7wAAAgP//7kEAAACAwAARfsAADvB//8AAAAA/////4xiAAAD1Z1dK2AAAP////9ynQAA9M0AANOfAAA7wZ1d//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_f5qdp"]
-resource_name = "Sketchfab_Scene_defaultMaterial6"
-_surfaces = [{
-"aabb": AABB(-0.759376, -0.666049, -0.0861999, 0.32644, 0.023629, 0.207907),
-"attribute_data": PackedByteArray("F3qP/Bd6q/7bjav+242P/Gt4wfxreGv7AXBr+wFwwfzSYGv70mDB/GlYa/tpWMH8ciwfSXIsAkhDJMNLeBcfSXgXAkiBFrZDgR6fQYEeRTOBFi4xNa6v/j6/lPw1rpT8C8Cv/gvAWf2ENqaPDEmmj/VGp4ebOKeHDEl8oYQ2fKGAm5T8s5qv/omsr/6zmln9iayU/LEUzTYqAtZHsRTWRyoCzTYfCZkx+3qP/OB7q/72jKv+EYyP/Itqa/tIZmv7dnVr+11bwfy1G8A8FhpvQZcglDyXIFA4Fhp1M3UZLjEUKZhKFCm1S6cf4EzWGrVL1hqYSoECqUiGEwFJcAQ4M2oSODOENrKM4Uenotw2UKLge4/8EYyr/vt6q/72jI/8i2rB/Ehmwfx2dcH8XVtr+3UZtkO1GyQ4QyTgTKcfw0tVAwFJWRSpSLsNmTHqQZCFDEmyjKY9kIW0SFCirzenog=="),
-"format": 34896613399,
-"index_count": 216,
-"index_data": PackedByteArray("RAArAEUAKgArAEQARABFAC0AKgBGACsAAABGACoAAAABAEYALQBFACwALQAsAEcARwAsAAIARwACAAMASAAuAC8ABgAuAEgASAAvAEkABgBIAAcALwAJAEkAMAAGAAcALwAIAAkAMAAHAEoABAAwAEoABAAFADAACAAxAAkACABLADEAMQBLAAoAMQAKAAsAMgAzABIAMwBMABIAMwARAEwAMgASADQATQAyADQATQA0ADUATQA1ABMATQATADYANgATADcANgA3ABQAOAA5AAwAOAAMAA0AOQA4AA4AOQAOAE4AOgBOAA4AOgAOAE8AOwA6AE8AOwBPADwADwA7ADwADwA8ABAAFQAWABcAGAAWABUAGQAWABgAJwAmAFAAUAAmAD0AUAA+ACcAJwA+AFEAJQAmACcAJgAlACgAJQApACgAKAApAD8AKQAlAFIAUgAlAEAAGgAbAFMAUwAbAFQAUwBUABwAGwAaAB4AVQAaAFMAGgBVAEEAQQBVAB0AHwAeABoAQgAeAB8AHgBCAFYAQgAfAFcAQwBXAB8AIAAhACIAIQAgACMAIAAiACQA"),
-"lods": [0.00760352, PackedByteArray("KgArACwAKgABACsAAAABACoAKgAsAC0ALQAsAAMAAwAsAAIABwAuAC8ABgAuAAcAMAAGAAcABAAwAAcABAAFADAABwAvAAkALwAIAAkACAAxAAkAMQAIAAoAMQAKAAsAMgAzABIAMwARABIAMgASADQAMgA0ADUAMgA1ABMAMgATADYANgATADcANgA3ABQAOAA5AAwAOAAMAA0AOQA4AA4AOQAOADoAOwA6AA4AOwAOADwADwA7ADwADwA8ABAAFQAWABcAGAAWABUAGQAWABgAJwAmAD0APQA+ACcAJQAmACcAJgAlACgAJQApACgAKAApAD8AKQAlAEAAGgAbABwAHQAaABwAGgAdAEEAGwAaAB4AHwAeABoAQgAeAB8AQgAfAEMAIAAhACIAIQAgACMAIAAiACQA"), 0.0306551, PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcABgAIAAcABwAIAAkACQAIAAoACQAKAAsADAANAA4ADAAOAA8ADwAOABAAEQASABMAEQATABQAFQAWABcAGAAWABUAGQAWABgAGgAbABwAHQAaABwAGwAaAB4AHwAeABoAIAAhACIAIQAgACMAIAAiACQAJQAmACcAJgAlACgAJQApACgA")],
-"material": SubResource("StandardMaterial3D_ngojl"),
-"name": "material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 88,
-"vertex_data": PackedByteArray("RwoAAAAA/+9HCv//AAD/70cK//////+PRwoAAP///487p///AAD//zunnV0AAP//nO2dXd0c/9+c7f//3Rz/35ztnV0h4/+fnO3//yHj/587p51d//8AgDun/////wCAO6edXQAASOQsoAAAAABI5PTNAAArYLbKO6edXf//D6wsoAAA//8PrDunnV3///+/nO2dXSHj/7+c7Z1d3Rz/vzunnV0AAP+/Rwr/////AIAsoAAA//8AgEcKAAD//wCAO6f/////AIA7p51d//8AgDun/////1TVO6f//wAAVNWc7f//3RxU1Zzt//8h41TVRwr//wAAVNVHCv////9U1SygAAAAAP//O6f//wAA//9HCv//AAD//zunnV0AAP//RwoAAAAA//8soAAA//9U1UcKAAAAAFTVRwoAAP//VNUsoAAAAABU1fTNAAArYFTVAgMAALkE/98AAP//IhD/xwID//9F+/+fAAAAANzv/7f//51djGL/x///nV1ynf+3O8GdXQAA//c7wf//////hwPVnV3Tn/+/wMadXZHg/7///51dcp3/v///nV2MYv+/wMadXW0f/787wZ1dAAD/v7G/AABtHyjcwMadXW0fttUD1Z1d05+MwsDGnV2R4MS3sb8AAJHgS7ICAwAAuQRV1QAAAADc71PVsb8AAG0fVNWxvwAAkeBU1TvB/////1TVAAD//yIQVNUCA///RftV1QAAAAAiEP/HAAD//9zv/7cCA///uQT/3wIDAABF+/+f/////4xi/8f/////cp3/tzvB//8AAP/3O8GdXf///4c7wZ1d////vwPVnV0rYP+/A9WdXStgE8r0zQAA05/uwQAAAAAiEFTVAgMAAEX7U9X0zQAA059U1f////+MYlTVO8H//wAAVNX/////cp1U1QID//+5BFPVAAD//9zvVNX/f////3////9//v//f/7//3////9/////fwAA/38AAP9/AAD/fwAA/3////9///+7XZkvu12ZL7hh9jhcajxNXGo8TQAA/38AAACAAAD/fwAA/3//f///UID/f/9///81gP9/GoD/f1TVqipU1aoqVNWqKlTVqipU1aoqVNWqKgCA/v8AgP7//3///wGA/f//f///qipU1aoqVNWqKlTVqipU1aoqVNX/f////3////9//v//f////38AAP9/AAD/fwAA/38AAAAA/38AAP9/AAD/fwAA/38AAP9/AAD/f+leXTLjX6k0TWOrPOtl0EKrZ+tGqypV1aoqU9WqKlTVqipU1VTVqipU1aoqU9WpKv9/////f////3////9//v//fwAA/38AAP9/AAD/fwAAAAD/fwAA/3/WYTs5bmP5PKoqVNWpKlPVqipU1VTVqipU1aoqVNWqKlXVqypU1akq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_42m7w")
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_ken8p"]
 _surfaces = [{
 "aabb": AABB(-0.744916, -0.640306, -0.0686209, 0.38961, 1.0834, 0.172749),
@@ -272,6 +238,40 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ken8p")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_42m7w"]
+_surfaces = [{
+"aabb": AABB(-0.759376, -0.666049, -0.0861999, 0.32644, 0.023629, 0.207907),
+"format": 34896613377,
+"index_count": 216,
+"index_data": PackedByteArray("HAAQAB0ADwAQABwADwAeABAAHAAAAA8AAAAeAA8AAQAQAB4AAAABAB4AEAACAB0AEAABAAIAHAAdABIAEgAdABEAEQAdAAIAEgARAB8AHwARAAIAAwASAB8AHAASAAMAHwACAAMAAwAAABwAAgAEAAMABAAAAAMAAgABAAUABQAEAAIABgABAAAAAAAEAAYABwAFAAEABgAHAAEABAAIAAYABgAIABMAEwAJAAYABwAGAAkAEwAUAAkAFAATAAgABwAJABUAFAAVAAkABwAVACAAFQAMACAAIQAHACAAIQAgAAwABQAHACEAFQALAAwAFAALABUACwAhAAwAIgALABQAFAAIACIACwAXACEAIgAXAAsAIQAXABgAIgAYABcAIwAFACEAIQAYACMAIgAWABgAFgAiAAgAGAAOACMAFgAIACQACAAEACQAFgANABgAGAANAA4AGQAjAA4ADQAZAA4ABQAjABkADQAlABkAGQAKAAUAGQAlAAoACgAEAAUACgAbAAQAJAAEABsAGgAKACUAGgAlAA0ACgAaABsAGgAkABsAFgAaAA0AGgAWACQA"),
+"lods": [0.00760352, PackedByteArray("DwAQABEADwARABIADwABABAAEgARAAMADwASAAMAEAACABEAAwARAAIAEAABAAIAAwAAAA8AAAABAA8ABAAAAAMAAgAEAAMABgABAAAAAAAEAAYAAgABAAUABQAEAAIABgAHAAEABwAFAAEABAAIAAYABwAGAAkAEwAJAAYABgAIABMAEwAUAAkAFAATAAgAFAAVAAkABwAJABUABwAVAAwABQAHAAwAFAALABUAFQALAAwAFAAIABYAFgALABQACwAXAAwAFgAXAAsADAAXABgAFgAYABcADgAFAAwADAAYAA4ABQAOABkAGAANAA4ADQAZAA4AFgANABgAGQAKAAUAGQANAAoACgAEAAUAFgAaAA0AGgAKAA0AGgAWAAgACgAbAAQACgAaABsACAAEABsAGgAIABsA"), 0.0306551, PackedByteArray("AAABAAIAAAACAAMAAgAEAAMABAAAAAMAAgABAAUABQAEAAIABgABAAAAAAAEAAYABgAHAAEABwAFAAEABAAIAAYABwAGAAkACQAGAAgACgAIAAQACQAIAAoACgAEAAUABwAJAAsACgALAAkABwALAAwABQAHAAwACgANAAsACwANAAwADgAKAAUADgANAAoADgAFAAwADAANAA4A")],
+"name": "material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 38,
+"vertex_data": PackedByteArray("RwoAAAAAAABHCv//AAAAAEcK/////wAARwoAAP//AAAsoAAA//8AADun/////wAALKAAAAAAAAA7p///AAAAAPTNAAArYAAAO6edXQAAAAA7p51d//8AAJztnV3dHAAAnO3//90cAACc7Z1dIeMAAJzt//8h4wAAAgMAALkEAAAAAP//IhAAAAID//9F+wAAAAAAANzvAACxvwAAbR8AAMDGnV1tHwAAO8GdXQAAAAAD1Z1d058AAP//nV2MYgAA//+dXXKdAAA7wf////8AAMDGnV2R4AAAsb8AAJHgAAAAAAAAIhAAAAAA///c7wAAAgP//7kEAAACAwAARfsAADvB//8AAAAA/////4xiAAAD1Z1dK2AAAP////9ynQAA9M0AANOfAAA7wZ1d//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f5qdp"]
+resource_name = "Sketchfab_Scene_defaultMaterial6"
+_surfaces = [{
+"aabb": AABB(-0.759376, -0.666049, -0.0861999, 0.32644, 0.023629, 0.207907),
+"attribute_data": PackedByteArray("F3qP/Bd6q/7bjav+242P/Gt4wfxreGv7AXBr+wFwwfzSYGv70mDB/GlYa/tpWMH8ciwfSXIsAkhDJMNLeBcfSXgXAkiBFrZDgR6fQYEeRTOBFi4xNa6v/j6/lPw1rpT8C8Cv/gvAWf2ENqaPDEmmj/VGp4ebOKeHDEl8oYQ2fKGAm5T8s5qv/omsr/6zmln9iayU/LEUzTYqAtZHsRTWRyoCzTYfCZkx+3qP/OB7q/72jKv+EYyP/Itqa/tIZmv7dnVr+11bwfy1G8A8FhpvQZcglDyXIFA4Fhp1M3UZLjEUKZhKFCm1S6cf4EzWGrVL1hqYSoECqUiGEwFJcAQ4M2oSODOENrKM4Uenotw2UKLge4/8EYyr/vt6q/72jI/8i2rB/Ehmwfx2dcH8XVtr+3UZtkO1GyQ4QyTgTKcfw0tVAwFJWRSpSLsNmTHqQZCFDEmyjKY9kIW0SFCirzenog=="),
+"format": 34896613399,
+"index_count": 216,
+"index_data": PackedByteArray("RAArAEUAKgArAEQARABFAC0AKgBGACsAAABGACoAAAABAEYALQBFACwALQAsAEcARwAsAAIARwACAAMASAAuAC8ABgAuAEgASAAvAEkABgBIAAcALwAJAEkAMAAGAAcALwAIAAkAMAAHAEoABAAwAEoABAAFADAACAAxAAkACABLADEAMQBLAAoAMQAKAAsAMgAzABIAMwBMABIAMwARAEwAMgASADQATQAyADQATQA0ADUATQA1ABMATQATADYANgATADcANgA3ABQAOAA5AAwAOAAMAA0AOQA4AA4AOQAOAE4AOgBOAA4AOgAOAE8AOwA6AE8AOwBPADwADwA7ADwADwA8ABAAFQAWABcAGAAWABUAGQAWABgAJwAmAFAAUAAmAD0AUAA+ACcAJwA+AFEAJQAmACcAJgAlACgAJQApACgAKAApAD8AKQAlAFIAUgAlAEAAGgAbAFMAUwAbAFQAUwBUABwAGwAaAB4AVQAaAFMAGgBVAEEAQQBVAB0AHwAeABoAQgAeAB8AHgBCAFYAQgAfAFcAQwBXAB8AIAAhACIAIQAgACMAIAAiACQA"),
+"lods": [0.00760352, PackedByteArray("KgArACwAKgABACsAAAABACoAKgAsAC0ALQAsAAMAAwAsAAIABwAuAC8ABgAuAAcAMAAGAAcABAAwAAcABAAFADAABwAvAAkALwAIAAkACAAxAAkAMQAIAAoAMQAKAAsAMgAzABIAMwARABIAMgASADQAMgA0ADUAMgA1ABMAMgATADYANgATADcANgA3ABQAOAA5AAwAOAAMAA0AOQA4AA4AOQAOADoAOwA6AA4AOwAOADwADwA7ADwADwA8ABAAFQAWABcAGAAWABUAGQAWABgAJwAmAD0APQA+ACcAJQAmACcAJgAlACgAJQApACgAKAApAD8AKQAlAEAAGgAbABwAHQAaABwAGgAdAEEAGwAaAB4AHwAeABoAQgAeAB8AQgAfAEMAIAAhACIAIQAgACMAIAAiACQA"), 0.0306551, PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcABgAIAAcABwAIAAkACQAIAAoACQAKAAsADAANAA4ADAAOAA8ADwAOABAAEQASABMAEQATABQAFQAWABcAGAAWABUAGQAWABgAGgAbABwAHQAaABwAGwAaAB4AHwAeABoAIAAhACIAIQAgACMAIAAiACQAJQAmACcAJgAlACgAJQApACgA")],
+"material": SubResource("StandardMaterial3D_ngojl"),
+"name": "material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 88,
+"vertex_data": PackedByteArray("RwoAAAAA/+9HCv//AAD/70cK//////+PRwoAAP///487p///AAD//zunnV0AAP//nO2dXd0c/9+c7f//3Rz/35ztnV0h4/+fnO3//yHj/587p51d//8AgDun/////wCAO6edXQAASOQsoAAAAABI5PTNAAArYLbKO6edXf//D6wsoAAA//8PrDunnV3///+/nO2dXSHj/7+c7Z1d3Rz/vzunnV0AAP+/Rwr/////AIAsoAAA//8AgEcKAAD//wCAO6f/////AIA7p51d//8AgDun/////1TVO6f//wAAVNWc7f//3RxU1Zzt//8h41TVRwr//wAAVNVHCv////9U1SygAAAAAP//O6f//wAA//9HCv//AAD//zunnV0AAP//RwoAAAAA//8soAAA//9U1UcKAAAAAFTVRwoAAP//VNUsoAAAAABU1fTNAAArYFTVAgMAALkE/98AAP//IhD/xwID//9F+/+fAAAAANzv/7f//51djGL/x///nV1ynf+3O8GdXQAA//c7wf//////hwPVnV3Tn/+/wMadXZHg/7///51dcp3/v///nV2MYv+/wMadXW0f/787wZ1dAAD/v7G/AABtHyjcwMadXW0fttUD1Z1d05+MwsDGnV2R4MS3sb8AAJHgS7ICAwAAuQRV1QAAAADc71PVsb8AAG0fVNWxvwAAkeBU1TvB/////1TVAAD//yIQVNUCA///RftV1QAAAAAiEP/HAAD//9zv/7cCA///uQT/3wIDAABF+/+f/////4xi/8f/////cp3/tzvB//8AAP/3O8GdXf///4c7wZ1d////vwPVnV0rYP+/A9WdXStgE8r0zQAA05/uwQAAAAAiEFTVAgMAAEX7U9X0zQAA059U1f////+MYlTVO8H//wAAVNX/////cp1U1QID//+5BFPVAAD//9zvVNX/f////3////9//v//f/7//3////9/////fwAA/38AAP9/AAD/fwAA/3////9///+7XZkvu12ZL7hh9jhcajxNXGo8TQAA/38AAACAAAD/fwAA/3//f///UID/f/9///81gP9/GoD/f1TVqipU1aoqVNWqKlTVqipU1aoqVNWqKgCA/v8AgP7//3///wGA/f//f///qipU1aoqVNWqKlTVqipU1aoqVNX/f////3////9//v//f////38AAP9/AAD/fwAA/38AAAAA/38AAP9/AAD/fwAA/38AAP9/AAD/f+leXTLjX6k0TWOrPOtl0EKrZ+tGqypV1aoqU9WqKlTVqipU1VTVqipU1aoqU9WpKv9/////f////3////9//v//fwAA/38AAP9/AAD/fwAAAAD/fwAA/3/WYTs5bmP5PKoqVNWpKlPVqipU1VTVqipU1aoqVNWqKlXVqypU1akq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_42m7w")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ooh1s"]
 _surfaces = [{
@@ -474,7 +474,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_k2044"]
 resource_name = "fire"
-length = 0.15
+length = 0.1
 step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -483,10 +483,10 @@ tracks/0/path = NodePath("model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.02, 0.0333333, 0.13),
+"times": PackedFloat32Array(0.02, 0.0333333, 0.085),
 "transitions": PackedFloat32Array(1, 0.1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0.135), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.02, 0.05), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -495,10 +495,10 @@ tracks/1/path = NodePath("model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.055, 0.15),
+"times": PackedFloat32Array(0, 0.055, 0.09499999),
 "transitions": PackedFloat32Array(1, 0.1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.436332, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.14835298, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -507,10 +507,41 @@ tracks/2/path = NodePath("model/Sketchfab_model/Collada visual scene group/anima
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.005, 0.125, 0.14),
-"transitions": PackedFloat32Array(1, 0.105112, 1, 1),
+"times": PackedFloat32Array(0, 0.004999999),
+"transitions": PackedFloat32Array(1, 0.105112),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.332599, 0, 2.51105e-08), Vector3(-0.332599, 0, 2.51105e-08), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.332599, 0, 2.51105e-08)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"return_bolt"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_42m7w"]
+resource_name = "no_ammo"
+length = 0.001
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.332599, 0, 2.51105e-08)]
 }
 
 [sub_resource type="Animation" id="Animation_j3diw"]
@@ -596,28 +627,46 @@ tracks/5/keys = {
 }
 tracks/5/use_blend = true
 
-[sub_resource type="Animation" id="Animation_42m7w"]
-resource_name = "no_ammo"
+[sub_resource type="Animation" id="Animation_ken8p"]
+resource_name = "return_bolt"
+length = 0.05
 step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.05),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.332599, 0, 2.51105e-08)]
+"values": [Vector3(0, 2.84217e-14, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ooh1s"]
+resource_name = "reload"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpbao"]
 _data = {
 &"RESET": SubResource("Animation_s5rx7"),
 &"fire": SubResource("Animation_k2044"),
 &"no_ammo": SubResource("Animation_42m7w"),
-&"pick": SubResource("Animation_j3diw")
+&"pick": SubResource("Animation_j3diw"),
+&"reload": SubResource("Animation_ooh1s"),
+&"return_bolt": SubResource("Animation_ken8p")
 }
 
 [node name="aa_2308_km" type="Node3D" node_paths=PackedStringArray("shell_marker", "bullet_marker", "model", "animation_player")]
@@ -638,7 +687,7 @@ metadata/_custom_type_script = "uid://cfshg230xd28k"
 [node name="model" type="Node3D" parent="."]
 
 [node name="Sketchfab_model" type="Node3D" parent="model"]
-transform = Transform3D(1.09472e-08, 0, 0.145, 0, 0.145, 0, -0.145, 0, 1.09472e-08, 0, 0, 0.0125066)
+transform = Transform3D(1.0192217e-08, 0, 0.135, 0, 0.135, 0, -0.135, 0, 1.0192217e-08, 0, 0, 0.0125066)
 
 [node name="Collada visual scene group" type="Node3D" parent="model/Sketchfab_model"]
 
@@ -677,16 +726,17 @@ skeleton = NodePath("")
 mesh = SubResource("ArrayMesh_22lyd")
 skeleton = NodePath("")
 
-[node name="mag_pyatka_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="MAGAZ" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial6" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/mag_pyatka_low_1"]
-mesh = SubResource("ArrayMesh_f5qdp")
+[node name="defaultMaterial7" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ"]
+mesh = SubResource("ArrayMesh_aftf5")
 skeleton = NodePath("")
 
-[node name="mag1_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="mag_pyatka_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="defaultMaterial7" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/mag1_low_1"]
-mesh = SubResource("ArrayMesh_aftf5")
+[node name="defaultMaterial6" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ/mag_pyatka_low_1"]
+mesh = SubResource("ArrayMesh_f5qdp")
 skeleton = NodePath("")
 
 [node name="kurok_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
@@ -713,11 +763,11 @@ skeleton = NodePath("")
 mesh = SubResource("ArrayMesh_wrfrq")
 skeleton = NodePath("")
 
-[node name="left_hand_position" type="Marker3D" parent="model"]
-transform = Transform3D(0.14532164, -0.08805706, -0.9854581, 0.984655, -0.0843974, 0.15274476, -0.0966203, -0.99253386, 0.074441075, -0.0491882, -0.455934, 0.70025)
-
 [node name="right_hand_position" type="Marker3D" parent="model"]
-transform = Transform3D(-0.916936, 0.206384, 0.341516, -0.341554, 0.0365893, -0.939149, -0.206321, -0.977787, 0.0369414, 0.030525, -0.0251694, 0.199286)
+transform = Transform3D(-0.96597105, 0.18794458, 0.17769653, -0.14750779, 0.16403984, -0.97536224, -0.21246319, -0.9683846, -0.13073415, 0.02137659, -0.046117168, 0.19033535)
+
+[node name="left_hand_position" type="Marker3D" parent="model"]
+transform = Transform3D(0.14532164, -0.08805707, -0.9854583, 0.9846551, -0.084397405, 0.15274477, -0.0966203, -0.992534, 0.07444109, -0.0491882, -0.455934, 0.70025)
 
 [node name="bolt_sound" type="AudioStreamPlayer3D" parent="model"]
 volume_db = -11.845
@@ -740,26 +790,60 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.099
 hands_ik = [NodePath("root/Skeleton3D/right_hand_ik"), NodePath("root/Skeleton3D/left_hand_ik")]
 
 [node name="Skeleton3D" parent="arms/root" index="0"]
-bones/23/position = Vector3(-0.004, 0.007, -0.028)
-bones/23/rotation = Quaternion(-0.728, 0.611, -0.327, 0.682)
+bones/1/rotation = Quaternion(0.70710677, 8.4293674e-08, 8.429367e-08, 0.70710677)
+bones/2/rotation = Quaternion(0.779062, 0.026736699, -0.148549, 0.608507)
+bones/3/rotation = Quaternion(-0.09588697, -0.0016454787, 0.10229397, 0.9901207)
+bones/4/rotation = Quaternion(-0.011619998, -0.011502896, 0.018414794, 0.99969673)
+bones/5/rotation = Quaternion(0.037485182, 0.09323826, -0.0008752586, 0.9949376)
+bones/6/rotation = Quaternion(0.11505402, -0.07185868, 0.064652115, 0.98864514)
+bones/7/rotation = Quaternion(0.056671597, 0.012395299, 0.12097501, 0.99095905)
+bones/8/rotation = Quaternion(0.018245595, -0.0074995686, 0.46029487, 0.8875469)
+bones/9/rotation = Quaternion(-0.012486403, 0.0034969808, 0.2646541, 0.9642562)
+bones/11/rotation = Quaternion(0.021751506, 0.07936493, 0.18259002, 0.97973925)
+bones/12/rotation = Quaternion(-0.020931493, 0.002292619, 0.43898895, 0.8982458)
+bones/13/rotation = Quaternion(-0.0077387616, -0.0324115, 0.252228, 0.967094)
+bones/15/rotation = Quaternion(-0.014875397, -0.019934999, 0.27730492, 0.96045995)
+bones/16/rotation = Quaternion(-0.0076264865, 0.017833993, 0.42529985, 0.90484464)
+bones/17/rotation = Quaternion(0.025511403, -0.030459106, 0.25660205, 0.96570015)
+bones/18/rotation = Quaternion(3.46945e-18, 1.9259295e-34, 5.55112e-17, 1)
+bones/19/rotation = Quaternion(-0.101481006, 0.010362799, 0.24504602, 0.96413004)
+bones/20/rotation = Quaternion(0.026062313, 0.021287011, 0.25011012, 0.9676325)
+bones/21/rotation = Quaternion(0.0100425035, -0.022247806, 0.18316406, 0.9827794)
+bones/23/position = Vector3(-0.0040000007, 0.007, -0.028)
+bones/23/rotation = Quaternion(-0.38784644, 0.61102647, -0.10242879, 0.6824442)
+bones/24/rotation = Quaternion(-0.0096206395, 0.031932104, 0.253375, 0.9667931)
+bones/25/rotation = Quaternion(0.0082292985, 0.00045887099, 0.26411593, 0.9644558)
+bones/26/rotation = Quaternion(-1.5407399e-33, 2.77556e-17, 5.55112e-17, 1)
+bones/27/rotation = Quaternion(0.77906185, -0.026737494, 0.14855, 0.6085069)
+bones/28/rotation = Quaternion(-0.09588854, 0.0016456112, -0.10229504, 0.9901204)
+bones/29/rotation = Quaternion(-0.011619996, 0.011502996, -0.018414695, 0.99969673)
+bones/30/rotation = Quaternion(0.03748602, -0.09323855, 0.00087596534, 0.9949375)
 bones/31/position = Vector3(0.008, 0.064, 0.02)
-bones/31/rotation = Quaternion(0.115, 0.072, -0.21, 0.989)
-bones/32/rotation = Quaternion(-0.008, -0.012, -0.171, 0.966)
-bones/36/rotation = Quaternion(-0.043, -0.059, -0.363, 0.975)
-bones/37/rotation = Quaternion(-0.021, -0.002, -0.439, 0.628)
-bones/38/rotation = Quaternion(-0.008, 0.032, -0.252, 0.537)
+bones/31/rotation = Quaternion(0.115053795, 0.07185896, -0.06465226, 0.988645)
+bones/32/position = Vector3(0.004, 0.043, 0.012)
+bones/32/rotation = Quaternion(0.002, 0.088, -0.626, 0.991)
+bones/33/rotation = Quaternion(0.018, 0.032, -0.46, 0.888)
+bones/34/rotation = Quaternion(-0.012486404, -0.003497141, -0.2646541, 0.9642562)
+bones/36/position = Vector3(-0.015, 0.048, -0.015)
+bones/36/rotation = Quaternion(0.032, 0.001, -0.608, 0.98)
+bones/37/rotation = Quaternion(0.014, 0.018, -0.404, 0.898)
+bones/38/rotation = Quaternion(0.012, 0.022, -0.447, 0.967)
 bones/40/position = Vector3(-0.005, 0.122, -0.005)
-bones/40/rotation = Quaternion(0.05, 0.055, -0.217, 0.305)
-bones/41/rotation = Quaternion(-0.008, -0.018, -0.425, 1.01)
-bones/42/rotation = Quaternion(0.026, 0.03, -0.257, 0.711)
-bones/44/rotation = Quaternion(0.009, 0.185, -0.32, 0.964)
-bones/45/rotation = Quaternion(-0.029, -0.086, -0.1, 0.968)
-bones/46/rotation = Quaternion(-0.075, -0.133, -0.423, 0.983)
-bones/48/position = Vector3(0.004, 0.032, -0.008)
-bones/48/rotation = Quaternion(-0.833, -0.831, 0.102, 0.682)
+bones/40/rotation = Quaternion(0.065, 0.04, -0.582, 0.96)
+bones/41/rotation = Quaternion(0.017, 0.142, -0.415, 0.905)
+bones/42/rotation = Quaternion(0.086, 0.025, -0.552, 0.966)
+bones/44/rotation = Quaternion(0.014, -0.04, -0.21, 0.964)
+bones/45/rotation = Quaternion(-0.004, 0.209, -0.25, 0.968)
+bones/46/rotation = Quaternion(0.02, -0.148, -0.373, 0.983)
+bones/48/position = Vector3(0.0040000007, 0.032, -0.007999999)
+bones/48/rotation = Quaternion(-0.738, -0.591, 0.037, 0.682)
 bones/49/position = Vector3(0, 0.056, 0.01)
-bones/49/rotation = Quaternion(-0.09, -0.192, -0.348, 0.967)
-bones/50/rotation = Quaternion(0.023, -0.035, -0.414, 0.964)
+bones/49/rotation = Quaternion(0, -0.317, -0.463, 0.967)
+bones/50/rotation = Quaternion(0.008229343, -0.00045874753, -0.26411608, 0.96445566)
+bones/52/rotation = Quaternion(0.7071033, 0.70710325, 0.0022181512, -0.0022181505)
+bones/54/rotation = Quaternion(0.9990687, 0.010515295, -0.0059559876, -0.04142169)
+bones/56/rotation = Quaternion(-0.7071033, 0.70710325, 0.0022181512, 0.0022181505)
+bones/58/rotation = Quaternion(0.9990687, -0.010515295, 0.0059559876, -0.04142169)
 
 [node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1"]
 use_magnet = true

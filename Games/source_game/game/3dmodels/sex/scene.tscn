@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://8pg4c48h08bi"]
+
+[ext_resource type="PackedScene" uid="uid://bene2vuw62jb6" path="res://Games/source_game/game/3dmodels/sex/model.gltf" id="1_xdelx"]
+
+[node name="model" instance=ExtResource("1_xdelx")]

@@ -60,6 +60,7 @@ texture = ExtResource("3_ltpmo")
 expand_mode = 1
 
 [node name="interactable_info" type="Label" parent="crosshair"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -34.0

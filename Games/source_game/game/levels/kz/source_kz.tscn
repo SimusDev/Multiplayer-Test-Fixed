@@ -1,15 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=18 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
-[ext_resource type="PackedScene" uid="uid://r53eearpwwj7" path="res://Games/source_game/game/prefabs/seat/vehicle/vehicle_seat.tscn" id="3_eqep5"]
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
-[ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="6_rnwnd"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
 [ext_resource type="Material" uid="uid://dbyrkd4pdsous" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
-[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="9_eymkd"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="10_qjves"]
-[ext_resource type="PackedScene" uid="uid://dwi5fc647foql" path="res://Games/source_game/objects/doors/base/resources/door.tscn" id="10_y1g7y"]
 [ext_resource type="Texture2D" uid="uid://dw716u2xnaaun" path="res://Games/source_game/game/textures/poshalko/devs.png" id="11_ae8mq"]
 [ext_resource type="PackedScene" uid="uid://1bg57awhhhul" path="res://Games/source_game/game/3dmodels/sex_bonnie/model.glb" id="14_17bi3"]
 [ext_resource type="AudioStream" uid="uid://b1sxex54x3lbo" path="res://Games/source_game/sounds/general/oni4an.mp3" id="15_fj02r"]
@@ -26,17 +22,14 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7byoa"]
-material = ExtResource("9_eymkd")
-size = Vector3(10, 5, 10)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rg0aq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_6g07w"]
-size = Vector3(9, 4, 9)
+[sub_resource type="Sky" id="Sky_38ipe"]
+sky_material = SubResource("ProceduralSkyMaterial_rg0aq")
 
-[sub_resource type="BoxMesh" id="BoxMesh_jn4gf"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_uyxp6"]
-size = Vector3(1.2, 2.5, 1)
+[sub_resource type="Environment" id="Environment_fcbw8"]
+sky = SubResource("Sky_38ipe")
+tonemap_mode = 3
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
 
@@ -54,9 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -19.3888)
 
 [node name="tree5" parent="objects" index="4" instance=ExtResource("17_17bi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2048, -0.5, -22.9961)
-
-[node name="vehicle_seat" parent="objects" index="5" instance=ExtResource("3_eqep5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.170759, -18.534147)
 
 [node name="kz" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)
@@ -202,72 +192,19 @@ light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D" index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.300001, 1.9999999, -42.4)
-use_collision = true
-mesh = SubResource("BoxMesh_7byoa")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="0"]
-operation = 2
-mesh = SubResource("BoxMesh_6g07w")
-material = ExtResource("5_fpuye")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.831045, 0, 0)
-operation = 2
-mesh = SubResource("BoxMesh_jn4gf")
-material = ExtResource("9_eymkd")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="NavigationRegion3D/CSGMesh3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0010662, -0.78104174, 4.799999)
-operation = 2
-mesh = SubResource("BoxMesh_uyxp6")
-material = ExtResource("9_eymkd")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/CSGMesh3D" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5609838, 0)
-light_indirect_energy = 0.0
-shadow_enabled = true
-distance_fade_enabled = true
-omni_range = 6.924
-
-[node name="Door" parent="NavigationRegion3D/CSGMesh3D" index="4" instance=ExtResource("10_y1g7y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.000002, -2, 4.9000015)
-
-[node name="Environment" parent="." index="10" instance=ExtResource("6_rnwnd")]
-
-[node name="Sky3D" parent="Environment" index="0"]
-current_time = 16.5
-minutes_per_day = 120.0
-sky_contribution = 0.95
-
-[node name="SunLight" parent="Environment/Sky3D" index="0"]
-transform = Transform3D(0, -0.504939, -0.86315507, 0.91986626, -0.33855724, 0.19805335, -0.39223224, -0.7939872, 0.46447632, -0.86315507, 0.19805335, 0.46447632)
-light_color = Color(0.98792213, 0.7119429, 0.5736513, 1)
-
-[node name="MoonLight" parent="Environment/Sky3D" index="1"]
-transform = Transform3D(0, -0.6540686, 0.7564353, -0.8615907, -0.38396934, -0.33200765, 0.5076037, -0.6517376, -0.5635394, 0.7564353, -0.33200765, -0.5635394)
-
-[node name="SkyDome" parent="Environment/Sky3D" index="2"]
-sun_azimuth = -4.2187166
-sun_altitude = -1.3714248
-moon_azimuth = -0.93050706
-moon_altitude = -1.9092275
-
-[node name="TimeOfDay" parent="Environment/Sky3D" index="3"]
-minutes_per_day = 120.0
-current_time = 16.5
-
-[node name="backrooms" parent="." index="11" instance=ExtResource("10_qjves")]
+[node name="backrooms" parent="." index="10" instance=ExtResource("10_qjves")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -498, -46.21612)
 global_y_trigger = -80.0
 
-[node name="devs" type="Sprite3D" parent="." index="12"]
+[node name="devs" type="Sprite3D" parent="." index="11"]
 transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 16.590397, 1.5610873, -26.198845)
 texture = ExtResource("11_ae8mq")
 
-[node name="Sketchfab_Scene" parent="." index="13" instance=ExtResource("14_17bi3")]
-transform = Transform3D(1.88, 0, 0, 0, 1.88, 0, 0, 0, 1.88, 23.552734, 0.009584606, -41.031082)
+[node name="Sketchfab_Scene" parent="." index="12" instance=ExtResource("14_17bi3")]
+transform = Transform3D(1.88, 0, 0, 0, 1.88, 0, 0, 0, 1.88, 23.552734, 1.9328368, -41.031082)
+
+[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.3727125, 0.92794687, 0, -0.92794687, -0.3727125, 0, -1.0288826, 0)
 
 [node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/Sketchfab_model_0_3/88f1083c6d42423c88c20a803f7d789a_fbx_1_4/RootNode_2_5/bonnie_qc_skeleton_11_6/Object_12_12_7/GLTF_created_0_8/GLTF_created_0" index="0"]
 bones/5/position = Vector3(-5.712597e-05, 2.706632, 3.7686472)
@@ -279,9 +216,23 @@ bones/61/scale = Vector3(1.0000004, 1, 1.0000006)
 bones/84/position = Vector3(-4.214533, 7.142654, -1.3435951)
 bones/84/rotation = Quaternion(-0.50166523, 0.2290306, 0.8341028, -0.012227195)
 bones/84/scale = Vector3(1.0000002, 0.99999976, 1.0000006)
+bones/102/scale = Vector3(1.0000002, 0.99999976, 1.0000004)
+bones/105/scale = Vector3(1, 1.0000002, 1.0000005)
+bones/127/position = Vector3(-1.5287233e-05, 0.10173916, 0.53124404)
+bones/127/rotation = Quaternion(0.8846952, 1.5186836e-06, 2.2597226e-07, 0.46617)
+bones/127/scale = Vector3(1, 1, 1.0000002)
+bones/128/position = Vector3(2.6829329, 3.6221154, -0.62878776)
+bones/128/rotation = Quaternion(-0.16175508, 0.19914664, -0.5620261, 0.7863222)
+bones/128/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/138/position = Vector3(-2.6829119, 3.6220963, -0.6286968)
+bones/138/rotation = Quaternion(-0.1713099, -0.17862487, 0.5012146, 0.8291743)
+bones/138/scale = Vector3(1, 0.99999994, 1)
+bones/151/position = Vector3(-4.526433e-05, 0.25623047, -2.9951889e-06)
+bones/151/rotation = Quaternion(0.076761425, 0.05860229, 0.0122545585, 0.99525034)
+bones/151/scale = Vector3(1, 1, 1.0000001)
 
 [node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sketchfab_Scene" index="1"]
-transform = Transform3D(0.5319149, 0, 0, 0, 0.5319149, 0, 0, 0, 0.5319149, 0, 0.9819546, 0)
+transform = Transform3D(0.5319149, 0, 0, 0, 0.5319149, 0, 0, 0, 0.5319149, 0, 0.026734114, -0.3231907)
 stream = ExtResource("15_fj02r")
 autoplay = true
 max_distance = 7.55
@@ -289,5 +240,10 @@ parameters/looping = true
 script = ExtResource("16_u0ham")
 metadata/_custom_type_script = "uid://dcdd6kovrah03"
 
-[editable path="Environment"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="13"]
+environment = SubResource("Environment_fcbw8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="14"]
+transform = Transform3D(0.79925084, 0.5127734, -0.3134669, -0.20627598, 0.7239456, 0.65829533, 0.5644894, -0.4614824, 0.684387, 0, 2.9999852, 0)
+
 [editable path="Sketchfab_Scene"]

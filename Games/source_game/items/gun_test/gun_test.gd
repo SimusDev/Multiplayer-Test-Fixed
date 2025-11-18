@@ -2,6 +2,7 @@ class_name SourceFireWeapon extends SourceItem
 
 
 @export var no_ammo_anim:StringName = "no_ammo"
+@export var return_bolt_anim:StringName = "return_bolt"
 
 @export_group("Settings")
 @export_subgroup("Audio")
@@ -62,8 +63,6 @@ func _on_action_just_pressed(action: StringName) -> void:
 		try_reload()
 
 func on_durability_changed() -> void:
-	if stack.get_durability() == 0:
-		play_animation(no_ammo_anim)
 	pass
 
 func try_reload() -> void:
@@ -73,7 +72,14 @@ func _try_reload_net() -> void:
 	gun_object._try_reload(stack)
 
 func using() -> void:
-	fire()
+	super()
+	if gun_object.automatic:
+		fire()
+
+func use() -> void:
+	super()
+	if not gun_object.automatic:
+		fire()
 
 func fire() -> void:
 	if stack.get_durability() <= 0 or (not can_use()):
@@ -98,6 +104,20 @@ func fire() -> void:
 	event.publish()
 	
 	stack.set_durability(stack.get_durability() - 1)
+
+func return_bolt() -> void:
+	if stack.get_durability() == 0:
+		return
+	
+	var bolt_animation_player:AnimationPlayer = AnimationPlayer.new()
+	bolt_animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
+	var lib_name:StringName = animation_player.get_animation_library_list()[0]
+	bolt_animation_player.add_animation_library("lib", animation_player.get_animation_library(lib_name))
+	add_child(bolt_animation_player)
+	
+	print(bolt_animation_player.get_animation_library("lib").get_animation_list())
+	
+	bolt_animation_player.play("lib/%s" % return_bolt_anim)
 
 
 func play_fire_sound():

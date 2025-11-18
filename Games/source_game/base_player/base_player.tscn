@@ -103,7 +103,7 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SourceItemStack" type="Node" parent="SourceInventory/h1"]
+[node name="scheme" type="Node" parent="SourceInventory/h1"]
 script = ExtResource("11_1yv11")
 object = ExtResource("12_em5yj")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
@@ -113,7 +113,7 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SourceItemStack" type="Node" parent="SourceInventory/h2"]
+[node name="phys_gun" type="Node" parent="SourceInventory/h2"]
 script = ExtResource("11_1yv11")
 object = ExtResource("13_i0lyu")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
@@ -123,7 +123,7 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SourceItemStack" type="Node" parent="SourceInventory/h3"]
+[node name="ak47" type="Node" parent="SourceInventory/h3"]
 script = ExtResource("11_1yv11")
 object = ExtResource("20_abx2t")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
@@ -133,7 +133,7 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SourceItemStack" type="Node" parent="SourceInventory/h4"]
+[node name="crowbar" type="Node" parent="SourceInventory/h4"]
 script = ExtResource("11_1yv11")
 object = ExtResource("14_em5yj")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
@@ -152,7 +152,7 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="SourceItemStack" type="Node" parent="SourceInventory/1"]
+[node name="explosion_ammo" type="Node" parent="SourceInventory/1"]
 script = ExtResource("11_1yv11")
 _data = {
 "quantity": 666
