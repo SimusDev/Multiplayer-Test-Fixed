@@ -24,6 +24,9 @@ func _ready() -> void:
 	
 	spawner.register(root)
 	
+	if not SD_Network.singleton.is_active():
+		_on_player_connected(SD_NetworkPlayer.new())
+	
 	if SD_Network.is_server():
 		SD_Network.singleton.on_player_connected.connect(_on_player_connected)
 		SD_Network.singleton.on_player_disconnected.connect(_on_player_disconnected)
@@ -58,8 +61,8 @@ func _on_player_connected(player: SD_NetworkPlayer) -> void:
 	var instance: Node = prefab.instantiate()
 	player.set_in(instance)
 	instance.name = str(player.get_peer_id())
-	root.add_child(instance)
-	
+	root.add_child.call_deferred(instance)
+	await instance.tree_entered
 	_teleport_node(instance, pick_spawnpoint())
 
 func _on_player_disconnected(player: SD_NetworkPlayer) -> void:

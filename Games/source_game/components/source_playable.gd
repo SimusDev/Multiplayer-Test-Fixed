@@ -150,4 +150,6 @@ func _initialize_ui() -> void:
 	root.add_child(canvas)
 
 func get_global_position() -> Vector3:
-	return root.get_global_position()
+	if is_instance_valid(root):
+		return root.get_global_position()
+	return Vector3.ZERO

@@ -203,4 +203,3 @@ func _unhandled_input(event: InputEvent) -> void:
 				rotate_y(y)
 				var pitch: float = x
 				rotate_object_local(Vector3(1, 0, 0), pitch)
-		

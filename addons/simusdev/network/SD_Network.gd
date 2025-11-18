@@ -116,14 +116,14 @@ static func get_registered_variables(object: Object) -> Dictionary[String, Dicti
 static func is_variable_registered(node: Node, property: String) -> bool:
 	return singleton.variables.is_variable_registered(node, property)
 
-static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
-	return singleton.variables.var_sync_from(peer, node, properties, callmode, channel, options)
+static func var_sync_from(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from(peer, node, properties, callmode, channel)
 
-static func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> void:
-	singleton.variables.var_send_to(peer, node, properties, callmode, channel, options)
+static func var_send_to(peer: int, node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	singleton.variables.var_send_to(peer, node, properties, callmode, channel)
 
-static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT, options: Dictionary = {}) -> SD_NetSyncedVars:
-	return singleton.variables.var_sync_from_server(node, properties, callmode, channel, options)
+static func var_sync_from_server(node: Node, properties: PackedStringArray, callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> SD_NetSyncedVars:
+	return singleton.variables.var_sync_from_server(node, properties, callmode, channel)
 
 static func get_remote_sender_id() -> int:
 	return singleton.callables.get_remote_sender_id()

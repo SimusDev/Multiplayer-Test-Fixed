@@ -40,6 +40,9 @@ func set_data(new: SD_NetSyncProperties) -> void:
 	if new:
 		_data = new.duplicate()
 		_data._synchronizer = self
+		for p in new.get_list():
+			for channel in p.channels:
+				SD_Network.register_channel(channel)
 		_data._ready()
 		
 
@@ -80,12 +83,12 @@ func _update_channel(property: SD_NetSyncedProperty) -> void:
 
 func recieve_property_from(peer: int, property: SD_NetSyncedProperty) -> void:
 	_update_channel(property)
-	SD_Network.var_sync_from(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name, {"snap": property.float_snap})
+	SD_Network.var_sync_from(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name)
 
 #send property to
 func send_property_to(peer: int, property: SD_NetSyncedProperty) -> void:
 	_update_channel(property)
-	SD_Network.var_send_to(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name, {"snap": property.float_snap})
+	SD_Network.var_send_to(peer, get_node_or_null(property.node_path), property.properties, property.callmode, _channel_name)
 
 #send property
 func send_property(property: SD_NetSyncedProperty) -> void:
