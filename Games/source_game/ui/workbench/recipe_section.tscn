@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv1sg00go8f47"]
+
+[ext_resource type="Texture2D" uid="uid://t6cdxy4mqjav" path="res://Games/source_game/components/icons/knife.png" id="1_3uwx1"]
+
+[sub_resource type="GDScript" id="GDScript_3uwx1"]
+resource_name = "script"
+script/source = "extends Control
+
+signal pressed(_type:StringName)
+
+@export var type:StringName = &\"\"
+@export var icon:Texture = null
+
+@onready var label_section_name:Label = $section_name
+@onready var section_icon:TextureRect = $section_icon
+@onready var button:Button = $Button
+
+func _ready() -> void:
+	label_section_name.text = type
+	if icon:
+		section_icon.texture = icon
+
+
+func _on_button_pressed() -> void:
+	pressed.emit(type)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_bbgll"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="recipe_section" type="Control"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 3
+anchor_right = 0.1875
+anchor_bottom = 0.05555556
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3uwx1")
+metadata/_edit_use_anchors_ = true
+
+[node name="section_name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SECTION"
+label_settings = SubResource("LabelSettings_bbgll")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="section_icon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.0375
+anchor_right = 0.20416667
+anchor_bottom = 1.0
+texture = ExtResource("1_3uwx1")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="palka" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_top = 0.975
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 1, 1, 0.49803922)
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

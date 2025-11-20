@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="WorldMaterial" load_steps=13 format=3 uid="uid://eqrcyet3occ4"]
+
+[ext_resource type="Texture2D" uid="uid://djoaym10wt42w" path="res://Games/source_game/textures/world_material/wood.png" id="1_plvtm"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_nfcjf"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_eugbr"]
+[ext_resource type="PackedScene" uid="uid://b8m7h58mh0tgu" path="res://Games/source_game/game/world/materials/wood/wood_world_prefab.tscn" id="4_4mf3j"]
+[ext_resource type="Script" uid="uid://bm1xp38mc503u" path="res://Games/source_game/components/world_objects/material.gd" id="5_o8jho"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="6_4ofeh"]
+[ext_resource type="PackedScene" uid="uid://bcb7dblnhca5j" path="res://Games/source_game/game/world/materials/wood/model.tscn" id="7_3xeko"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="8_pnwh1"]
+
+[sub_resource type="Resource" id="Resource_s8104"]
+script = ExtResource("3_eugbr")
+stackable = false
+stack_size = 3
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_ulrn3"]
+script = ExtResource("8_pnwh1")
+prefab = ExtResource("7_3xeko")
+position = Vector3(0.2, -0.11, -0.4)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_5grhs"]
+script = ExtResource("8_pnwh1")
+prefab = ExtResource("7_3xeko")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_nxdtw"]
+script = ExtResource("6_4ofeh")
+view = SubResource("Resource_ulrn3")
+world = SubResource("Resource_5grhs")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("5_o8jho")
+icon = ExtResource("1_plvtm")
+name = "wood"
+prefab = ExtResource("4_4mf3j")
+viewmodel = SubResource("Resource_nxdtw")
+itemstack = SubResource("Resource_s8104")
+metadata/_custom_type_script = "uid://bm1xp38mc503u"

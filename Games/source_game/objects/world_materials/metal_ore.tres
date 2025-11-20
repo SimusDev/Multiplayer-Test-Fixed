@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="WorldMaterial" load_steps=13 format=3 uid="uid://cktucedk407cr"]
+
+[ext_resource type="Script" uid="uid://bm1xp38mc503u" path="res://Games/source_game/components/world_objects/material.gd" id="1_jblu0"]
+[ext_resource type="Texture2D" uid="uid://f8emg1765ykg" path="res://Games/source_game/textures/world_material/metal_ore.png" id="1_wis2b"]
+[ext_resource type="PackedScene" uid="uid://bfnk4w45ggcru" path="res://Games/source_game/game/world/materials/metal_ore/metal_ore_prefab.tscn" id="2_8iobw"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_quig3"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_rr0ts"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_iinq0"]
+[ext_resource type="PackedScene" uid="uid://yd47mivagk50" path="res://Games/source_game/game/world/materials/metal_ore/model.tscn" id="5_quig3"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_rr0ts"]
+
+[sub_resource type="Resource" id="Resource_6mihh"]
+script = ExtResource("3_rr0ts")
+stackable = false
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_rqu4x"]
+script = ExtResource("6_rr0ts")
+prefab = ExtResource("5_quig3")
+position = Vector3(0.2, -0.2, -0.4)
+scale = Vector3(0.5, 0.5, 0.5)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_8iobw"]
+script = ExtResource("6_rr0ts")
+prefab = ExtResource("5_quig3")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_myr58"]
+script = ExtResource("4_iinq0")
+view = SubResource("Resource_rqu4x")
+world = SubResource("Resource_8iobw")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_jblu0")
+icon = ExtResource("1_wis2b")
+prefab = ExtResource("2_8iobw")
+viewmodel = SubResource("Resource_myr58")
+itemstack = SubResource("Resource_6mihh")
+metadata/_custom_type_script = "uid://bm1xp38mc503u"

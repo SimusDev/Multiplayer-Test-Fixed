@@ -311,7 +311,7 @@ size = Vector3(0.207446, 0.830688, 0.203064)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xyry0"]
 size = Vector3(0.7, 1, 0.7)
 
-[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "hand_target_node", "drag_item_link_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "model", "health")]
+[node name="mechanical_arm" type="Node3D" node_paths=PackedStringArray("main_target_node", "hand_target_node", "drag_item_link_node", "area", "animation_player", "drop_target_node", "moving_audio_player", "health")]
 script = ExtResource("1_g833h")
 main_target_node = NodePath("main_target")
 hand_target_node = NodePath("main_target/target")
@@ -320,7 +320,6 @@ area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
 drop_target_node = NodePath("drop_point")
 moving_audio_player = NodePath("move_audio")
-model = NodePath("mechanical_arm")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
@@ -333,7 +332,7 @@ metadata/_custom_type_script = "uid://cr18fup83we2u"
 script = ExtResource("5_jjrxj")
 ik_nodes = [NodePath("../mechanical_arm/root/Armature/Skeleton3D/main_ik"), NodePath("../mechanical_arm/root/Armature/Skeleton3D/left_claw_ik"), NodePath("../mechanical_arm/root/Armature/Skeleton3D/right_claw_ik")]
 
-[node name="mechanical_arm" type="CSGMesh3D" parent="."]
+[node name="mechanical_arm" type="Node3D" parent="."]
 
 [node name="root" type="Node3D" parent="mechanical_arm"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
@@ -448,7 +447,7 @@ bones/14/rotation = Quaternion(0, 0, 0, 1)
 bones/14/scale = Vector3(1, 1, 1)
 
 [node name="Claw 2" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, -8.9407e-08, 3.55271e-14, 8.9407e-08, 1, 7.81597e-14, -5.68434e-14, -7.10543e-14, 1, 1.29333, 15.9648, 1.86274e-09)
+transform = Transform3D(0.9999999, -8.9406974e-08, 3.5527137e-14, 8.940696e-08, 0.9999999, 7.81597e-14, -5.684342e-14, -7.1054274e-14, 1, 1.2933263, 15.964803, 1.8627373e-09)
 bone_name = "Claw 2"
 bone_idx = 7
 
@@ -457,7 +456,7 @@ mesh = SubResource("ArrayMesh_ln7fh")
 skeleton = NodePath("")
 
 [node name="Claw 1" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 8.9407e-08, -4.9738e-14, -8.9407e-08, 1, 7.10543e-15, 4.9738e-14, -7.10543e-15, 1, -1.29333, 15.9648, 4.19111e-09)
+transform = Transform3D(0.9999999, 8.940698e-08, -4.973799e-14, -8.940695e-08, 0.9999999, 7.1054274e-15, 4.973799e-14, -7.1054274e-15, 1, -1.2933269, 15.964803, 4.1911057e-09)
 bone_name = "Claw 1"
 bone_idx = 10
 
@@ -466,7 +465,7 @@ mesh = SubResource("ArrayMesh_xe6tq")
 skeleton = NodePath("")
 
 [node name="Wrist" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26197e-08, 14.2727, 3.25963e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26197e-08, 14.272691, 3.25963e-08)
 bone_name = "Wrist"
 bone_idx = 11
 
@@ -475,7 +474,7 @@ mesh = SubResource("ArrayMesh_7joe3")
 skeleton = NodePath("")
 
 [node name="Arm 2" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58325e-08, 9.45841, 1.98167e-05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58325e-08, 9.4584055, 1.98167e-05)
 bone_name = "Arm 2"
 bone_idx = 12
 
@@ -484,7 +483,7 @@ mesh = SubResource("ArrayMesh_ijgf5")
 skeleton = NodePath("")
 
 [node name="Arm 1" type="BoneAttachment3D" parent="mechanical_arm/root/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07698e-08, 5.10971, 4.63729e-10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07698e-08, 5.109706, 4.63729e-10)
 bone_name = "Arm 1"
 bone_idx = 13
 
@@ -600,7 +599,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.7)
 shape = SubResource("BoxShape3D_xyry0")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.00383485, 0.0498527, 1.42436e-10, -0.0498527, -0.00383485, 1.85169e-09, 1.85716e-09, 2.66454e-15, 0.05, 0, 0.800687, 0)
+transform = Transform3D(-0.0038348497, 0.04985272, 1.424362e-10, -0.04985272, -0.0038348497, 1.8516934e-09, 1.8571636e-09, 2.6645353e-15, 0.05, 0, 0.8006873, 0)
 bone_name = "Bone.005"
 bone_idx = 5
 use_external_skeleton = true

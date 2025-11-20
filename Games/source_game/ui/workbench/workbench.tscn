@@ -1,11 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm52o7468o6nf"]
+[gd_scene load_steps=11 format=3 uid="uid://cm52o7468o6nf"]
 
 [ext_resource type="Script" uid="uid://phxd5yffiw6b" path="res://Games/source_game/ui/workbench/workbench.gd" id="1_fsj2l"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_k3h36"]
 [ext_resource type="Script" uid="uid://duex25jaq1mj4" path="res://addons/simusdev/ui/SD_UIControlSearch.gd" id="2_gtlks"]
 [ext_resource type="PackedScene" uid="uid://co4llpj8e58n1" path="res://Games/source_game/ui/workbench/recipe.tscn" id="3_1mlqn"]
+[ext_resource type="PackedScene" uid="uid://cv1sg00go8f47" path="res://Games/source_game/ui/workbench/recipe_section.tscn" id="3_ssjsg"]
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="5_wpkqy"]
+[ext_resource type="PackedScene" uid="uid://bui65ebrebo7t" path="res://Games/source_game/ui/workbench/recipe_sections.tscn" id="6_n4sk1"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="7_tjrou"]
 
-[node name="Workbench" type="Control" node_paths=PackedStringArray("container")]
+[sub_resource type="LabelSettings" id="LabelSettings_tjrou"]
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e88mv"]
+font_size = 18
+
+[node name="Workbench" type="Control" node_paths=PackedStringArray("types_container", "recipe_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,12 +25,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsj2l")
-scene = ExtResource("3_1mlqn")
-container = NodePath("ScrollContainer/CenterContainer/VBoxContainer")
+recipe_scene = ExtResource("3_1mlqn")
+type_scene = ExtResource("3_ssjsg")
+types_container = NodePath("sections/content/ScrollContainer/HBoxContainer")
+recipe_container = NodePath("list/content/ScrollContainer/VBoxContainer")
 
 [node name="SD_UIControlSearch" type="Node" parent="." node_paths=PackedStringArray("line_edit")]
 script = ExtResource("2_gtlks")
-line_edit = NodePath("../LineEdit")
+line_edit = NodePath("../list/LineEdit")
 metadata/_custom_type_script = "uid://duex25jaq1mj4"
 
 [node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
@@ -45,19 +59,95 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(430, 49)
+[node name="list" parent="." instance=ExtResource("5_wpkqy")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -215.0
-offset_top = -62.0
-offset_right = 215.0
-offset_bottom = -13.0
+anchors_preset = -1
+anchor_left = 0.24453124
+anchor_top = 0.079166666
+anchor_right = 0.753125
+anchor_bottom = 0.6375
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_UIInterfaceMenu" parent="list" index="0"]
+center_at_start = false
+input_action = "close_interface"
+
+[node name="SE_UIControlDrag" parent="list" index="1"]
+drag_enabled = false
+
+[node name="head" parent="list" index="3"]
+anchor_bottom = 0.08457711
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="title" parent="list/head" index="0"]
+anchor_left = 0.008733625
+offset_left = 0.0
+text = "Recipes"
+label_settings = SubResource("LabelSettings_tjrou")
+metadata/_edit_use_anchors_ = true
+
+[node name="content" parent="list" index="4"]
+anchor_top = 0.22139303
+
+[node name="ScrollContainer" type="ScrollContainer" parent="list/content" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015666984
+anchor_top = 0.044211812
+anchor_right = 0.9843331
+anchor_bottom = 0.9557887
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="GridContainer" parent="list/content/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="ColorRect" type="ColorRect" parent="list/content/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="list/content/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="list"]
+custom_minimum_size = Vector2(430, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00055997237
+anchor_top = -0.62435246
+anchor_right = 0.6731204
+anchor_bottom = -0.5497256
+offset_left = 6.364542
+offset_top = 298.9897
+offset_right = 6.3645325
+offset_bottom = 298.9897
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("7_tjrou")
 placeholder_text = "SEARCH"
 alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sections" parent="." instance=ExtResource("6_n4sk1")]
+layout_mode = 1
+anchor_left = 0.04765625
+anchor_top = 0.079166666
+anchor_right = 0.24140625
+anchor_bottom = 0.8055556
+
+[node name="title" parent="sections/head" index="0"]
+label_settings = SubResource("LabelSettings_e88mv")
+
+[connection signal="pressed" from="sections/content/recipe_section2/Button" to="." method="update_list"]
+
+[editable path="list"]
+[editable path="sections"]
+[editable path="sections/content/recipe_section2"]

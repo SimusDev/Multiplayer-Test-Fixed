@@ -1,10 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=40 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
 [ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="2_3mc7r"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_qw2b4"]
-[ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="2_y3hgg"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="3_2hdmp"]
 [ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="3_bcxex"]
 [ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="4_gssfp"]
@@ -17,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ghdio"]
 [ext_resource type="Script" uid="uid://rk2typl4w3ca" path="res://Games/source_game/components/inventory/source_itemstack.gd" id="11_1yv11"]
 [ext_resource type="Resource" uid="uid://10t06r1l7fda" path="res://Games/source_game/objects/scheme.tres" id="12_em5yj"]
+[ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="13_epik1"]
 [ext_resource type="Resource" uid="uid://dysa48588ffk5" path="res://Games/source_game/objects/tools/phys_gun.tres" id="13_i0lyu"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="13_y5oya"]
 [ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
@@ -24,7 +24,10 @@
 [ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="16_26rsp"]
 [ext_resource type="Resource" uid="uid://dudoao428jxp6" path="res://Games/source_game/objects/weapons/ammo/explosion.tres" id="16_cjcqp"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
+[ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="18_r8tpl"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
+[ext_resource type="Script" uid="uid://bl4rgbcjjmaxn" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
+[ext_resource type="Texture2D" uid="uid://cabl400ro4med" path="res://Games/source_game/textures/ui_cloth.png" id="20_50wvo"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
 [ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="26_26rsp"]
@@ -52,14 +55,12 @@ color_ramp = SubResource("Gradient_4d7pv")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
 
-[node name="base_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast", "footsteps_component")]
+[node name="base_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast")]
 script = ExtResource("1_26rsp")
 health = NodePath("SourceHealth")
-take_damage_assets = Array[AudioStream]([ExtResource("2_y3hgg")])
 movement = NodePath("SourceMovement")
 camera = NodePath("SourceCamera")
 interact_raycast = NodePath("SourceCamera/interactor")
-footsteps_component = NodePath("SourceFootsteps")
 
 [node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_qw2b4")
@@ -103,9 +104,9 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="scheme" type="Node" parent="SourceInventory/h1"]
+[node name="ak47" type="Node" parent="SourceInventory/h1"]
 script = ExtResource("11_1yv11")
-object = ExtResource("12_em5yj")
+object = ExtResource("20_abx2t")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="h2" type="Node" parent="SourceInventory"]
@@ -113,9 +114,9 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="phys_gun" type="Node" parent="SourceInventory/h2"]
+[node name="pistol" type="Node" parent="SourceInventory/h2"]
 script = ExtResource("11_1yv11")
-object = ExtResource("13_i0lyu")
+object = ExtResource("13_epik1")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="h3" type="Node" parent="SourceInventory"]
@@ -123,9 +124,9 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="ak47" type="Node" parent="SourceInventory/h3"]
+[node name="phys_gun" type="Node" parent="SourceInventory/h3"]
 script = ExtResource("11_1yv11")
-object = ExtResource("20_abx2t")
+object = ExtResource("13_i0lyu")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="h4" type="Node" parent="SourceInventory"]
@@ -148,6 +149,11 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
+[node name="scheme" type="Node" parent="SourceInventory/h6"]
+script = ExtResource("11_1yv11")
+object = ExtResource("12_em5yj")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
+
 [node name="1" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
@@ -163,6 +169,14 @@ metadata/_custom_type_script = "uid://rk2typl4w3ca"
 [node name="2" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+
+[node name="pistol_ammo" type="Node" parent="SourceInventory/2"]
+script = ExtResource("11_1yv11")
+_data = {
+"quantity": 780
+}
+object = ExtResource("18_r8tpl")
+metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="3" type="Node" parent="SourceInventory"]
 script = ExtResource("7_xpejh")
@@ -269,36 +283,44 @@ script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
 [node name="29" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="30" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="31" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="32" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="33" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="34" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="35" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="36" type="Node" parent="SourceInventory"]
-script = ExtResource("7_xpejh")
-metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
+script = ExtResource("19_r8tpl")
+texture = ExtResource("20_50wvo")
+metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_3mc7r")

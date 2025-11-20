@@ -33,11 +33,11 @@ func bind_remove(key: String) -> void:
 
 func update(from_text: String = "") -> void:
 	for bind in binds:
-		var control: Control = binds.get(bind, null) as Control
-		if is_instance_valid(control):
-			if from_text.is_empty():
-				control.visible = true
-			else:
-				control.visible = bind.findn(from_text) > -1
-	
+			var control: Control = binds.get(bind, null) as Control
+			if is_instance_valid(control):
+				if from_text.is_empty():
+					control.visible = true
+				else:
+					control.visible = bind.findn(from_text) > -1
+		
 	updated.emit(from_text)

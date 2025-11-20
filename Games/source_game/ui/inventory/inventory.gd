@@ -64,11 +64,11 @@ func _update_interface() -> void:
 		$SD_UIInterfaceMenu.close()
 	else:
 		$SD_UIInterfaceMenu.open()
-	
 
 
 func _on_sd_ui_interface_menu_opened() -> void:
 	_player.inventory.request_open_or_close_inventory(_player.inventory)
+	play_audio(audio_open)
 
 func _on_sd_ui_interface_menu_closed() -> void:
 	var request: Array[SourceInventory] = _player.inventory.get_opened_inventories().duplicate()
@@ -78,7 +78,7 @@ func _on_sd_ui_interface_menu_closed() -> void:
 		request.erase(request[0])
 
 	_player.inventory.request_open_or_close_inventory(_player.inventory, false)
-
+	play_audio(audio_close)
 
 func play_audio(stream: AudioStream) -> void:
 	sound.stream = stream
@@ -98,6 +98,7 @@ static func open_inventory(inventory: SourceInventory) -> void:
 	instance.container_window.set_inventory(inventory)
 	instance.container_window.show()
 	open()
+
 
 static func set_visibility(value: bool) -> void:
 	if value:

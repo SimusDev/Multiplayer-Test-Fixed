@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://2hhclbjkpl47"]
+
+[ext_resource type="PackedScene" uid="uid://ci3scrprvm788" path="res://Games/source_game/game/world/materials/wood_plank/model.tscn" id="1_or4dd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6vfij"]
+size = Vector3(0.3, 0.1, 1)
+
+[node name="wood_plank_world_prefab" type="RigidBody3D"]
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("1_or4dd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6vfij")

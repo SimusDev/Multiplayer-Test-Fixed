@@ -8,6 +8,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_llgnl"]
 font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Popup" type="Control"]
 layout_mode = 3

@@ -1,19 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://co4llpj8e58n1"]
+[gd_scene load_steps=9 format=3 uid="uid://co4llpj8e58n1"]
 
 [ext_resource type="Script" uid="uid://cy4mpk2yp2p0q" path="res://Games/source_game/ui/workbench/recipe.gd" id="1_6x077"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="2_4ptyv"]
-[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="3_t17os"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_v4hdv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4ptyv"]
-font = ExtResource("3_t17os")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5mk8"]
+bg_color = Color(0.12857622, 0.12857625, 0.12857616, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65319675, 0.6531968, 0.6531964, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ptyv"]
+bg_color = Color(0.33887845, 0.3388785, 0.33887842, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65319675, 0.6531968, 0.6531964, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17os"]
+bg_color = Color(0.1487379, 0.1487379, 0.1487379, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65319675, 0.6531968, 0.6531964, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4hdv"]
+bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0.49803922)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65319675, 0.6531968, 0.6531964, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5mk8"]
+font_size = 11
 
 [node name="Recipe" type="Control"]
-custom_minimum_size = Vector2(358, 101)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 358.0
-offset_bottom = 101.0
+offset_right = 80.0
+offset_bottom = 80.0
 mouse_filter = 2
 script = ExtResource("1_6x077")
 metadata/_edit_vertical_guides_ = [100.0]
@@ -25,34 +56,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_k5mk8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ptyv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t17os")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v4hdv")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 100.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_4ptyv")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="SD_Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.279
+anchor_top = 0.04
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.117996
+anchor_bottom = 0.21
 grow_horizontal = 2
 grow_vertical = 2
 text = "object"
-label_settings = SubResource("LabelSettings_4ptyv")
+label_settings = SubResource("LabelSettings_k5mk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("4_v4hdv")
-font = ExtResource("3_t17os")
+font_size = 11
 localization_enabled = true
 localization_key = "object"
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

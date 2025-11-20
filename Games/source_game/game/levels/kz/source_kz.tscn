@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=19 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
+[ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="3_38ipe"]
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
@@ -23,11 +24,16 @@ shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rg0aq"]
+sky_top_color = Color(0.3963497, 0.5137252, 0.7626536, 1)
+sky_horizon_color = Color(0.45724297, 0.6501435, 1, 1)
+ground_bottom_color = Color(0.3963497, 0.5137252, 0.7626536, 1)
+ground_horizon_color = Color(0.45724297, 0.6501435, 1, 1)
 
 [sub_resource type="Sky" id="Sky_38ipe"]
 sky_material = SubResource("ProceduralSkyMaterial_rg0aq")
 
 [sub_resource type="Environment" id="Environment_fcbw8"]
+background_mode = 2
 sky = SubResource("Sky_38ipe")
 tonemap_mode = 3
 
@@ -48,9 +54,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -19.3888)
 [node name="tree5" parent="objects" index="4" instance=ExtResource("17_17bi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2048, -0.5, -22.9961)
 
+[node name="workbench" parent="objects" index="5" instance=ExtResource("3_38ipe")]
+transform = Transform3D(0.7887945, 0, 0.614657, 0, 1, 0, -0.614657, 0, 0.7887945, -15.143978, 1.1323876, -32.95397)
+
 [node name="kz" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)
 script = ExtResource("17_y1g7y")
+
+[node name="Marker3D" type="Marker3D" parent="kz" index="0"]
 
 [node name="NavigationRegion3D" parent="." index="9"]
 navigation_mesh = SubResource("NavigationMesh_17bi3")
@@ -245,5 +256,6 @@ environment = SubResource("Environment_fcbw8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="14"]
 transform = Transform3D(0.79925084, 0.5127734, -0.3134669, -0.20627598, 0.7239456, 0.65829533, 0.5644894, -0.4614824, 0.684387, 0, 2.9999852, 0)
+shadow_enabled = true
 
 [editable path="Sketchfab_Scene"]

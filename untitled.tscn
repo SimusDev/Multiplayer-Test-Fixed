@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqs06yt2oos0"]
+
+[ext_resource type="ArrayMesh" uid="uid://bxd4bisrys6xl" path="res://Games/source_game/objects/buildings/meshes/mechanical_arm.tres" id="1_wdqp8"]
+
+[node name="Untitled" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, -1.7114266e-07, -7.480883e-15, 0, -2.1855696e-07, 5.0000005, -1.7114263e-07, -5.0000005, -2.1855696e-07, 2.6309863e-09, 0.7136345, -2.4426672e-08)
+mesh = ExtResource("1_wdqp8")
+skeleton = NodePath("")

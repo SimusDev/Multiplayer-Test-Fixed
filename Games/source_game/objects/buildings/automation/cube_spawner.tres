@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://dfp868cagu7ig"]
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=5 format=3 uid="uid://dfp868cagu7ig"]
 
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_fl68q"]
 [ext_resource type="Texture2D" uid="uid://1iyybqe410mv" path="res://sourcelike_interface/gmod_bg_placeholder.png" id="1_hwrel"]
 [ext_resource type="PackedScene" uid="uid://dj0l7n2o5b715" path="res://Games/source_game/game/prefabs/base_buildings/cube_spawner/cube_spawner.tscn" id="2_ijlms"]
+[ext_resource type="ArrayMesh" uid="uid://css776w548dhe" path="res://Games/source_game/objects/buildings/meshes/cube_spawner.tres" id="2_q21aq"]
 
 [resource]
 script = ExtResource("1_fl68q")
+mesh = ExtResource("2_q21aq")
 icon = ExtResource("1_hwrel")
 name = "cube_spawner"
 prefab = ExtResource("2_ijlms")

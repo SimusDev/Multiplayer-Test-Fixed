@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="WorldMaterial" load_steps=13 format=3 uid="uid://chj0oifjqs5os"]
+
+[ext_resource type="Texture2D" uid="uid://be6ma70y3hfk8" path="res://Games/source_game/textures/world_material/wood_planks.png" id="1_q1krq"]
+[ext_resource type="PackedScene" uid="uid://2hhclbjkpl47" path="res://Games/source_game/game/world/materials/wood_plank/wood_plank_world_prefab.tscn" id="2_dyv2y"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_n3it5"]
+[ext_resource type="Script" uid="uid://bm1xp38mc503u" path="res://Games/source_game/components/world_objects/material.gd" id="3_n3it5"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_v6o2m"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_v6o2m"]
+[ext_resource type="PackedScene" uid="uid://ci3scrprvm788" path="res://Games/source_game/game/world/materials/wood_plank/model.tscn" id="5_gufln"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_8e1pl"]
+
+[sub_resource type="Resource" id="Resource_gufln"]
+script = ExtResource("3_v6o2m")
+stackable = false
+stack_size = 3
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_u2f0m"]
+script = ExtResource("6_8e1pl")
+prefab = ExtResource("5_gufln")
+position = Vector3(0.2, -0.11, -0.4)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_8fou0"]
+script = ExtResource("6_8e1pl")
+prefab = ExtResource("5_gufln")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_usq7e"]
+script = ExtResource("4_v6o2m")
+view = SubResource("Resource_u2f0m")
+world = SubResource("Resource_8fou0")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("3_n3it5")
+icon = ExtResource("1_q1krq")
+name = "wood_planks"
+prefab = ExtResource("2_dyv2y")
+viewmodel = SubResource("Resource_usq7e")
+itemstack = SubResource("Resource_gufln")
+metadata/_custom_type_script = "uid://bm1xp38mc503u"

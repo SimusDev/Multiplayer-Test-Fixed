@@ -28,16 +28,15 @@ func _request_(inventory: SourceInventory, recipe_id: String) -> void:
 		SimusDev.console.write_error("recipe not found!: %s, %s" % [str(inventory.root), recipe_id])
 		return
 	
-	if recipe.can_craft(inventory).is_empty():
+	if not recipe.can_craft(inventory):
 		SimusDev.console.write_info("cant craft!: %s, %s" % [str(inventory.root), recipe_id])
 		return
 	
-	for input in recipe.input:
-		input
+		
 	
 	_create_item(recipe, inventory)
-	
 	return
+	
 	if recipe.time == 0.0:
 		_create_item(recipe, inventory)
 	else:
@@ -45,11 +44,17 @@ func _request_(inventory: SourceInventory, recipe_id: String) -> void:
 			SD_Network.call_func_on(SD_Network.get_remote_sender_id(), _queue_create, [inventory, recipe_id, SD_Network.get_remote_sender_id()])
 		_queue_create(inventory, recipe_id, SD_Network.get_remote_sender_id())
 
-func _take_craft_items(_recipe:R_SourceRecipe, _inventory:SourceInventory):
-	pass
-	#for input_item in _recipe.input:
-		#for x in input_item.quantity:
-			#SD_Nodes.fast_queue_free(input_item)
+func _take_craft_items(recipe:R_SourceRecipe, inventory:SourceInventory):
+	for input_item in recipe.input:
+		var remaining = input_item.quantity
+		var stacks: Array[SourceItemStack] = inventory.get_items_by_object(input_item.source)
+		for stack in stacks:
+			if remaining <= 0:
+				break
+				
+			var take_amount = min(remaining, stack.get_quantity())
+			stack.set_quantity(stack.get_quantity() - take_amount)
+			remaining -= take_amount
 
 func _create_item(recipe: R_SourceRecipe, inventory: SourceInventory) -> void:
 	var itemstack := SourceItemStack.create_from_object(recipe.output.source)

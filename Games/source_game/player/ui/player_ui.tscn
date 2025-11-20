@@ -79,7 +79,6 @@ visible = false
 layout_mode = 1
 
 [node name="Inventory" parent="." instance=ExtResource("7_henmv")]
-visible = false
 layout_mode = 1
 
 [node name="Hotbar" parent="." instance=ExtResource("2_xxxcs")]

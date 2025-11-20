@@ -7,23 +7,16 @@
 
 [sub_resource type="Resource" id="Resource_e2ckj"]
 script = ExtResource("1_7kly6")
-quantity = 1
 metadata/_custom_type_script = "uid://82oo1iuaxrch"
 
 [sub_resource type="Resource" id="Resource_ap3qb"]
 script = ExtResource("2_e2ckj")
 source = ExtResource("3_obaku")
-quantity = 1
 metadata/_custom_type_script = "uid://3bq4bc82j34c"
 
 [resource]
 script = ExtResource("2_cyiah")
-visible = true
-time = 0.0
+type = "materials"
 input = Array[ExtResource("1_7kly6")]([SubResource("Resource_e2ckj")])
 output = SubResource("Resource_ap3qb")
-custom_section = ""
-custom_id = ""
-name = ""
-description = ""
 metadata/_custom_type_script = "uid://b7iaay778gprw"

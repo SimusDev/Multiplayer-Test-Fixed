@@ -14,8 +14,9 @@ var _mouse_entered: bool = false
 
 @export var item_binds: Dictionary[String, SourceItemAction] = {
 }
-@onready var quantity: Label = $quantity
-@onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var quantity: Label = $icon/quantity
+@onready var progress_bar: TextureProgressBar = $icon/ProgressBar
+@onready var type_icon:TextureRect = $Panel/type_icon
 
 func _ready() -> void:
 	if not _created:
@@ -31,6 +32,12 @@ func _ready() -> void:
 	slot.item_removed.connect(_on_item_removed_or_added.bind(true))
 	
 	_on_item_removed_or_added(slot.get_item(), false)
+	
+	inventory.inventory_closed.connect(on_inventory_closed)
+	
+	if slot.texture:
+		type_icon.visible = (slot is SourceInventoryClothSlot)
+		type_icon.texture = slot.texture
 
 func _on_item_removed_or_added(the_item: SourceItemStack, removed: bool) -> void:
 	if is_instance_valid(the_item):
@@ -101,3 +108,12 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
 				show_actions()
+
+func on_inventory_closed(_inv=null) -> void:
+	$SD_UIDragAndDrop.drag_stop()
+
+func _on_sd_ui_drag_and_drop_drag_started() -> void:
+	icon.hide()
+
+func _on_sd_ui_drag_and_drop_drag_stopped() -> void:
+	icon.show()

@@ -74,7 +74,7 @@ project/assembly_name="Multiplayer-Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/godotfgd/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
 [file_customization]
 
@@ -82,7 +82,8 @@ folder_colors={
 "res://Games/": "green",
 "res://Games/source_game/": "gray",
 "res://Games/source_game/materials/": "orange",
-"res://Games/source_game/objects/": "green",
+"res://Games/source_game/objects/": "yellow",
+"res://Games/source_game/recipes/": "teal",
 "res://addons/": "red",
 "res://game_components/": "orange",
 "res://sourcelike_interface/": "gray"
