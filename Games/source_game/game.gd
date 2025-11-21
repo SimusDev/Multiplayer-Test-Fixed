@@ -49,6 +49,19 @@ func _ready() -> void:
 	instance = self
 	
 	send_welcome_message()
+	
+	SD_Network.register_rpc_any_peer(_test_rpc_)
+	SD_Network.register_function(_test_rpc_)
+
+func _on_timer_timeout() -> void:
+	if SD_Network.is_server():
+		return
+	
+	SD_Network.call_func_on_server(_test_rpc_)
+
+func _test_rpc_() -> void:
+	return
+	print('hello from : %s' % multiplayer.get_remote_sender_id())
 
 func _on_peer_connected(_peer_id:int):
 	#level_handler.check_level()

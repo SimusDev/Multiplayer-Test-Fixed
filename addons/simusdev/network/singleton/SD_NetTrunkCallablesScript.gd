@@ -23,7 +23,7 @@ func _generate_code() -> void:
 func _recieve_call_from_rpc_reliable0(serialized: Variant) -> void:
 	var from_peer: int = multiplayer.get_remote_sender_id()
 	var channel: int = 0
-
+	
 	get_parent()._recieve_call_from_local(from_peer, serialized, channel)
 
 @rpc("any_peer", "call_remote", "unreliable", 0)

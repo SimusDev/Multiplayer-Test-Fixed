@@ -50,8 +50,12 @@ func _ready() -> void:
 		set_process(false)
 		return
 	
-	SD_Network.register_object(self)
-	SD_Network.register_function(_process_audio)
+	#SD_Network.register_object(self)
+	#SD_Network.register_function(_process_audio)
+	
+	SD_Network.register_rpc_any_peer(_process_audio, 
+	MultiplayerPeer.TRANSFER_MODE_UNRELIABLE_ORDERED, 
+	SourceNetwork.CHANNEL_PLAYER)
 	
 	_configure_bus()
 	
@@ -88,7 +92,7 @@ func _process(delta: float) -> void:
 		
 		if max_amp > input_volume_threshold:
 			#_process_audio.rpc(data, sr)
-			SD_Network.call_func_except_self(_process_audio, [data, sr], callmode, channel)
+			SD_Network.call_rpc_except_self(_process_audio, [data, sr])
 
 func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
