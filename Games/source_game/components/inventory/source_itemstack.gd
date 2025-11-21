@@ -122,9 +122,12 @@ func _enter_tree() -> void:
 	_slot.update()
 	_slot.update_for_viewmodel()
 	
+	get_inventory().item_added.emit(self)
+	
 	_last_path = get_path()
 
 func _exit_tree() -> void:
+	get_inventory().item_removed.emit(self)
 	_slot._item = null
 	_slot.item_removed.emit(self)
 	_slot.item_changed.emit(self)
