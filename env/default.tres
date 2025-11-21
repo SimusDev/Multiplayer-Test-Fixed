@@ -1,117 +1,21 @@
-[gd_resource type="Environment" load_steps=11 format=3 uid="uid://b71yn6wfk8lop"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://b71yn6wfk8lop"]
 
-[ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="1_kd6k1"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwyu6"]
+sky_top_color = Color(0.29124856, 0.4306456, 0.8335343, 1)
+sky_horizon_color = Color(0.543376, 0.6436353, 0.92458624, 1)
+ground_bottom_color = Color(0.4024827, 0.5270523, 0.8933539, 1)
+ground_horizon_color = Color(0.543376, 0.6436353, 0.92458624, 1)
+ground_curve = 0.08282131
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c0cx3"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5bd3w"]
-noise = SubResource("FastNoiseLite_c0cx3")
-seamless = true
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hyota"]
-load_path = "res://.godot/imported/noiseClouds.png-07511094ef8b72a49cc860b35c60d0fd.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sbxyg"]
-load_path = "res://.godot/imported/MoonMap.png-81d542c3fafff4e5b235a177af6f3221.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_htkl6"]
-load_path = "res://.godot/imported/noise.jpg-b47d5d36d9abfdaec2a09c140a78ba24.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rljcs"]
-load_path = "res://.godot/imported/StarField.jpg-9d224e20fcbe8fdc7ff5028dae269839.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_air0k"]
-load_path = "res://.godot/imported/Milkyway.jpg-a06044e407cf6953ab6e46a2f0f17f3a.s3tc.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmp8j"]
-shader = ExtResource("1_kd6k1")
-shader_parameter/sky_visible = true
-shader_parameter/color_correction = Vector2(0, 1)
-shader_parameter/ground_color = Color(0.3, 0.3, 0.3, 1)
-shader_parameter/horizon_offset = 0.0
-shader_parameter/atm_darkness = 0.5
-shader_parameter/atm_sun_intensity = 18.0
-shader_parameter/atm_day_tint = Color(0.807843, 0.909804, 1, 1)
-shader_parameter/atm_horizon_light_tint = Color(0.980392, 0.635294, 0.462745, 1)
-shader_parameter/atm_night_tint = Color(0, 0, 0, 0)
-shader_parameter/atm_level_params = Vector3(1, 0, 0)
-shader_parameter/atm_thickness = 0.7
-shader_parameter/atm_beta_ray = Vector3(5.804544e-06, 1.3562913e-05, 3.311258e-05)
-shader_parameter/atm_beta_mie = Vector3(3.038e-08, 3.038e-08, 3.038e-08)
-shader_parameter/sun_disk_color = Color(0.996094, 0.541334, 0.140076, 1)
-shader_parameter/sun_disk_intensity = 30.0
-shader_parameter/sun_disk_size = 0.02
-shader_parameter/atm_sun_mie_tint = Color(1, 1, 1, 1)
-shader_parameter/atm_sun_mie_intensity = 1.0
-shader_parameter/atm_sun_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
-shader_parameter/moon_color = Color(1, 1, 1, 1)
-shader_parameter/moon_texture = SubResource("CompressedTexture2D_sbxyg")
-shader_parameter/moon_texture_alignment = Vector3(7, 1.4, 4.8)
-shader_parameter/moon_texture_flip_u = false
-shader_parameter/moon_texture_flip_v = false
-shader_parameter/moon_size = 0.07
-shader_parameter/atm_moon_mie_tint = Color(0.137255, 0.184314, 0.292196, 1)
-shader_parameter/atm_moon_mie_intensity = 0.0
-shader_parameter/atm_moon_partial_mie_phase = Vector3(0.36, 1.64, 1.6)
-shader_parameter/starmap_color = Color(0.709804, 0.709804, 0.709804, 0.854902)
-shader_parameter/starmap_texture = SubResource("CompressedTexture2D_air0k")
-shader_parameter/starmap_flip_u = false
-shader_parameter/starmap_flip_v = false
-shader_parameter/starmap_alignment = Vector3(2.68288, -0.25891, 0.40101)
-shader_parameter/star_rotation_offset = 9.38899
-shader_parameter/star_rotation = -10.693393150058652
-shader_parameter/star_tilt = -1.291543646475804
-shader_parameter/star_field_color = Color(1, 1, 1, 1)
-shader_parameter/star_field_texture = SubResource("CompressedTexture2D_rljcs")
-shader_parameter/star_scintillation = 0.75
-shader_parameter/star_scintillation_speed = 0.01
-shader_parameter/noise_tex = SubResource("CompressedTexture2D_htkl6")
-shader_parameter/cirrus_visible = true
-shader_parameter/cirrus_coverage = 0.5
-shader_parameter/cirrus_thickness = 1.7
-shader_parameter/cirrus_absorption = 2.0
-shader_parameter/cirrus_sky_tint_fade = 0.5
-shader_parameter/cirrus_intensity = 10.0
-shader_parameter/cirrus_size = 1.0
-shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.15691222, 0.15691222)
-shader_parameter/cirrus_position2 = Vector2(0.15691222, 0.15691222)
-shader_parameter/cirrus_day_color = Color(0.824, 0.875, 1, 1)
-shader_parameter/cirrus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
-shader_parameter/cirrus_night_color = Color(0.09, 0.094, 0.129, 1)
-shader_parameter/cirrus_texture = SubResource("NoiseTexture2D_5bd3w")
-shader_parameter/cumulus_visible = true
-shader_parameter/cumulus_coverage = 0.55
-shader_parameter/cumulus_thickness = 0.0243
-shader_parameter/cumulus_absorption = 2.0
-shader_parameter/cumulus_noise_freq = 2.7
-shader_parameter/cumulus_sky_tint_fade = 0.0
-shader_parameter/cumulus_intensity = 0.6
-shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(0.78444695, 0.78444695)
-shader_parameter/cumulus_texture = SubResource("CompressedTexture2D_hyota")
-shader_parameter/cumulus_day_color = Color(0.823529, 0.87451, 1, 1)
-shader_parameter/cumulus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
-shader_parameter/cumulus_night_color = Color(0.090196, 0.094118, 0.129412, 1)
-shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
-shader_parameter/cumulus_mie_intensity = 1.0
-shader_parameter/show_azimuthal_grid = false
-shader_parameter/azimuthal_grid_color = Color(0.87058824, 0.72156864, 0.5294118, 1)
-shader_parameter/azimuthal_grid_rotation_offset = 0.03
-shader_parameter/show_equatorial_grid = false
-shader_parameter/equatorial_grid_color = Color(0, 0.75, 1, 1)
-shader_parameter/equatorial_grid_rotation_offset = 0.03
-shader_parameter/moon_matrix = Basis(0, -0.7608911, 0.64887965, -0.8089094, 0.38149795, 0.4473532, -0.58793336, -0.5248849, -0.615492)
-
-[sub_resource type="Sky" id="Sky_stp7j"]
-sky_material = SubResource("ShaderMaterial_fmp8j")
+[sub_resource type="Sky" id="Sky_kd6k1"]
+sky_material = SubResource("ProceduralSkyMaterial_bwyu6")
 
 [resource]
 background_mode = 2
-sky = SubResource("Sky_stp7j")
+sky = SubResource("Sky_kd6k1")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.95
+ambient_light_sky_contribution = 0.5
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0

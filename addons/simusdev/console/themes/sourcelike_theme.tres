@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bwhd45id04skj"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bwhd45id04skj"]
 
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_hkwob"]
 [ext_resource type="StyleBox" uid="uid://bih71ovdh4sr8" path="res://sourcelike_interface/styles/button_disabled.tres" id="2_42ix0"]
@@ -6,6 +6,14 @@
 [ext_resource type="StyleBox" uid="uid://dbtwgaapo00ne" path="res://sourcelike_interface/styles/panel_default.tres" id="4_43bsm"]
 [ext_resource type="StyleBox" uid="uid://cswud3l4slgjt" path="res://sourcelike_interface/styles/line_edit_default.tres" id="5_5dkx3"]
 [ext_resource type="StyleBox" uid="uid://dtcs86ygjtp7d" path="res://sourcelike_interface/styles/line_edit_disabled.tres" id="6_qs0sw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypmx3"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ej0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7h4"]
+bg_color = Color(0.7176741, 0.7176741, 0.7176742, 1)
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
@@ -40,3 +48,6 @@ LineEdit/styles/focus = ExtResource("5_5dkx3")
 LineEdit/styles/normal = ExtResource("5_5dkx3")
 LineEdit/styles/read_only = ExtResource("6_qs0sw")
 Panel/styles/panel = ExtResource("4_43bsm")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_ypmx3")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_75ej0")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_tl7h4")

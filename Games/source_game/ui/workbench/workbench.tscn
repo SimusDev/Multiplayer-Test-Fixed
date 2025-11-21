@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cm52o7468o6nf"]
+[gd_scene load_steps=14 format=3 uid="uid://cm52o7468o6nf"]
 
 [ext_resource type="Script" uid="uid://phxd5yffiw6b" path="res://Games/source_game/ui/workbench/workbench.gd" id="1_fsj2l"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_k3h36"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="5_wpkqy"]
 [ext_resource type="PackedScene" uid="uid://bui65ebrebo7t" path="res://Games/source_game/ui/workbench/recipe_sections.tscn" id="6_n4sk1"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="7_tjrou"]
+[ext_resource type="Texture2D" uid="uid://co5cosk3gdhvg" path="res://Games/source_game/game/3dmodels/sex_bonnie/model_0.png" id="9_2s0b1"]
+[ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="10_uxrij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tjrou"]
 font_size = 18
@@ -17,18 +19,27 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_e88mv"]
 font_size = 18
 
-[node name="Workbench" type="Control" node_paths=PackedStringArray("types_container", "recipe_container")]
+[sub_resource type="LabelSettings" id="LabelSettings_2s0b1"]
+font_size = 18
+
+[node name="Workbench" type="Control" node_paths=PackedStringArray("recipe_container", "types_container", "craft_btn", "recipe_icon", "recipe_name", "recipe_desc", "craft_input")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_tjrou")
 script = ExtResource("1_fsj2l")
 recipe_scene = ExtResource("3_1mlqn")
-type_scene = ExtResource("3_ssjsg")
-types_container = NodePath("sections/content/ScrollContainer/HBoxContainer")
 recipe_container = NodePath("list/content/ScrollContainer/VBoxContainer")
+type_scene = ExtResource("3_ssjsg")
+types_container = NodePath("list/sections/content/ScrollContainer/HBoxContainer")
+craft_btn = NodePath("list/current/content/craft_btn")
+recipe_icon = NodePath("list/current/content/icon")
+recipe_name = NodePath("list/current/content/icon/name")
+recipe_desc = NodePath("list/current/content/desc")
+craft_input = NodePath("list/current/content/ScrollContainer/craft_input")
 
 [node name="SD_UIControlSearch" type="Node" parent="." node_paths=PackedStringArray("line_edit")]
 script = ExtResource("2_gtlks")
@@ -136,18 +147,175 @@ placeholder_text = "SEARCH"
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="sections" parent="." instance=ExtResource("6_n4sk1")]
+[node name="sections" parent="list" instance=ExtResource("6_n4sk1")]
 layout_mode = 1
-anchor_left = 0.04765625
-anchor_top = 0.079166666
-anchor_right = 0.24140625
-anchor_bottom = 0.8055556
+anchor_left = -0.3870968
+anchor_right = -0.013824885
+anchor_bottom = 1.300995
 
-[node name="title" parent="sections/head" index="0"]
+[node name="title" parent="list/sections/head" index="0"]
 label_settings = SubResource("LabelSettings_e88mv")
 
-[connection signal="pressed" from="sections/content/recipe_section2/Button" to="." method="update_list"]
+[node name="content" parent="list/sections" index="4"]
+anchor_left = 0.02016129
+anchor_top = 0.009560229
+anchor_right = 0.9798387
+anchor_bottom = 0.9904398
+
+[node name="current" parent="list" instance=ExtResource("5_wpkqy")]
+layout_mode = 0
+anchor_top = 1.0074627
+anchor_right = 1.0
+anchor_bottom = 1.300995
+offset_top = -3.0517578e-05
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_UIInterfaceMenu" parent="list/current" index="0"]
+center_at_start = false
+
+[node name="SE_UIControlDrag" parent="list/current" index="1"]
+drag_enabled = false
+
+[node name="head" parent="list/current" index="3"]
+visible = false
+
+[node name="title" parent="list/current/head" index="0"]
+label_settings = SubResource("LabelSettings_2s0b1")
+
+[node name="content" parent="list/current" index="4"]
+anchor_top = 0.05000005
+anchor_bottom = 0.95762724
+
+[node name="border2" type="ReferenceRect" parent="list/current/content" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.64258
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="icon" type="TextureRect" parent="list/current/content" index="3"]
+layout_mode = 0
+anchor_left = 0.007833492
+anchor_top = 0.046685338
+anchor_right = 0.13316937
+anchor_bottom = 0.79365075
+texture = ExtResource("9_2s0b1")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="list/current/content/icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="name" type="Label" parent="list/current/content/icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0044677733
+anchor_top = 1.0262501
+anchor_right = 3.8455322
+anchor_bottom = 1.22625
+text = "weapon.ak47"
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="list/current/content/icon/name"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="desc" type="Label" parent="list/current/content" index="4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13887618
+anchor_top = 0.0476191
+anchor_right = 0.4898166
+anchor_bottom = 0.7945845
+offset_right = 3.0517578e-05
+theme_override_constants/line_spacing = -1
+text = "description sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex sex "
+autowrap_mode = 3
+text_overrun_behavior = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="border" type="ReferenceRect" parent="list/current/content/desc"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="list/current/content" index="5"]
+layout_mode = 0
+offset_left = 328.64258
+offset_top = 5.100006
+offset_right = 482.64258
+offset_bottom = 103.100006
+
+[node name="craft_input" type="Label" parent="list/current/content/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "recipe inputseeeeeeexxxx
+23 piska
+vladis
+canek
+asdasd
+asdasd"
+
+[node name="border" type="ReferenceRect" parent="list/current/content/ScrollContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(154, 98)
+layout_mode = 2
+mouse_filter = 2
+border_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width = 0.8
+editor_only = false
+
+[node name="craft_btn" type="Button" parent="list/current/content" index="6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.768689
+anchor_top = 0.7945845
+anchor_right = 0.8783579
+anchor_bottom = 0.9626517
+text = "craft"
+script = ExtResource("10_uxrij")
+label_text = "craft"
+metadata/_custom_type_script = "uid://bh41tmls6agr1"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="list/sections/content/recipe_section2/Button" to="." method="update_list"]
 
 [editable path="list"]
-[editable path="sections"]
-[editable path="sections/content/recipe_section2"]
+[editable path="list/sections"]
+[editable path="list/sections/content/recipe_section2"]
+[editable path="list/current"]

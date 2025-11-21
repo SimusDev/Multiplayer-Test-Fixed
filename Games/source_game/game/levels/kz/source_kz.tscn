@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=17 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="3_38ipe"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="10_qjves"]
 [ext_resource type="Texture2D" uid="uid://dw716u2xnaaun" path="res://Games/source_game/game/textures/poshalko/devs.png" id="11_ae8mq"]
 [ext_resource type="PackedScene" uid="uid://1bg57awhhhul" path="res://Games/source_game/game/3dmodels/sex_bonnie/model.glb" id="14_17bi3"]
+[ext_resource type="Environment" uid="uid://b71yn6wfk8lop" path="res://env/default.tres" id="14_fcbw8"]
 [ext_resource type="AudioStream" uid="uid://b1sxex54x3lbo" path="res://Games/source_game/sounds/general/oni4an.mp3" id="15_fj02r"]
 [ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="16_u0ham"]
 [ext_resource type="PackedScene" uid="uid://dwmp7x75o8kny" path="res://Games/source_game/mineables/birch_tree.tscn" id="17_17bi3"]
@@ -22,20 +23,6 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Arr
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rg0aq"]
-sky_top_color = Color(0.3963497, 0.5137252, 0.7626536, 1)
-sky_horizon_color = Color(0.45724297, 0.6501435, 1, 1)
-ground_bottom_color = Color(0.3963497, 0.5137252, 0.7626536, 1)
-ground_horizon_color = Color(0.45724297, 0.6501435, 1, 1)
-
-[sub_resource type="Sky" id="Sky_38ipe"]
-sky_material = SubResource("ProceduralSkyMaterial_rg0aq")
-
-[sub_resource type="Environment" id="Environment_fcbw8"]
-background_mode = 2
-sky = SubResource("Sky_38ipe")
-tonemap_mode = 3
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
 
@@ -252,7 +239,7 @@ script = ExtResource("16_u0ham")
 metadata/_custom_type_script = "uid://dcdd6kovrah03"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="13"]
-environment = SubResource("Environment_fcbw8")
+environment = ExtResource("14_fcbw8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="14"]
 transform = Transform3D(0.79925084, 0.5127734, -0.3134669, -0.20627598, 0.7239456, 0.65829533, 0.5644894, -0.4614824, 0.684387, 0, 2.9999852, 0)

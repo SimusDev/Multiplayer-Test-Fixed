@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://co4llpj8e58n1"]
 
-[ext_resource type="Script" uid="uid://cy4mpk2yp2p0q" path="res://Games/source_game/ui/workbench/recipe.gd" id="1_6x077"]
 [ext_resource type="Texture2D" uid="uid://3hfnveuexlvu" path="res://textures/icons/flag_ru.png" id="2_4ptyv"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="4_v4hdv"]
 
@@ -36,38 +35,43 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.65319675, 0.6531968, 0.6531964, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_k5mk8"]
+[sub_resource type="GDScript" id="GDScript_t2e78"]
+resource_name = "script"
+script/source = "@tool
+extends SourceButton
+
+@export var recipe:R_SourceRecipe
+
+func _ready() -> void:
+	$icon.texture = recipe.output.source.icon
+	$name.text = recipe.output.source.name
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_v4hdv"]
 font_size = 11
 
-[node name="Recipe" type="Control"]
+[node name="recipe" type="Button"]
 custom_minimum_size = Vector2(80, 80)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 80.0
-offset_bottom = 80.0
-mouse_filter = 2
-script = ExtResource("1_6x077")
-metadata/_edit_vertical_guides_ = [100.0]
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 0.0625
+anchor_bottom = 0.11111111
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k5mk8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4ptyv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_t17os")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_v4hdv")
+script = SubResource("GDScript_t2e78")
+metadata/_custom_type_script = "uid://bh41tmls6agr1"
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="icon" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.2
+anchor_top = 0.2125
 anchor_right = 0.95
-anchor_bottom = 0.95
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -76,16 +80,16 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="SD_Label" type="Label" parent="."]
+[node name="name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.04
+anchor_top = 0.05
 anchor_right = 1.0
-anchor_bottom = 0.21
+anchor_bottom = 0.21999988
 grow_horizontal = 2
 grow_vertical = 2
 text = "object"
-label_settings = SubResource("LabelSettings_k5mk8")
+label_settings = SubResource("LabelSettings_v4hdv")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -95,5 +99,3 @@ localization_enabled = true
 localization_key = "object"
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
