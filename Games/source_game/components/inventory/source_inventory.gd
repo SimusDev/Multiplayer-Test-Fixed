@@ -19,6 +19,8 @@ signal initialized()
 
 var _is_full: bool = false
 
+signal item_added(item: SourceItemStack)
+signal item_removed(item: SourceItemStack)
 signal slot_selected(slot: SourceInventorySlot)
 signal slot_deselected(slot: SourceInventorySlot)
 signal slot_updated(slot: SourceInventorySlot)
