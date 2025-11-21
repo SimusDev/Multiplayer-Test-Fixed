@@ -1,7 +1,7 @@
 class_name R_SourceBuilding extends R_SourceWorldObject
 
 enum Types {
-	General = 0,
+	General,
 	Wall,
 	Foundation,
 	Ceiling
@@ -12,6 +12,8 @@ enum Types {
 @export_group("Mesh")
 @export var mesh:Mesh
 @export var mesh_offset:Vector3 = Vector3.ZERO
+@export var mesh_rotation:Vector3 = Vector3.ZERO
+@export var mesh_scale:Vector3 = Vector3.ZERO
 
 func _get_section() -> String:
 	return "buildings"

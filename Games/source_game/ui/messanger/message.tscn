@@ -1,13 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl8qlh3ghcoy4"]
+[gd_scene load_steps=10 format=3 uid="uid://dl8qlh3ghcoy4"]
 
 [ext_resource type="Script" uid="uid://cqtx6udj5dodt" path="res://Games/source_game/ui/messanger/message.gd" id="1_w2pnj"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_djb21"]
 [ext_resource type="Texture2D" uid="uid://b786c466xeoxc" path="res://addons/simusdev/textures/godot.png" id="3_f82hs"]
-[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="4_2u47v"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_mi2f8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nqee6"]
-font = ExtResource("4_2u47v")
+[sub_resource type="LabelSettings" id="LabelSettings_f82hs"]
+
+[sub_resource type="Animation" id="Animation_f82hs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_djb21"]
 resource_name = "in"
@@ -23,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_f82hs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2u47v"]
@@ -118,12 +116,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MESSAGE"
-label_settings = SubResource("LabelSettings_nqee6")
+label_settings = SubResource("LabelSettings_f82hs")
 vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 script = ExtResource("5_mi2f8")
-font = ExtResource("4_2u47v")
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -10,16 +10,12 @@
 [sub_resource type="Resource" id="Resource_nmqc8"]
 script = ExtResource("5_y5iy3")
 mesh = ExtResource("5_nmqc8")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
 scale = Vector3(0.034, 0.06, 0.14)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_a3ajg"]
 script = ExtResource("5_y5iy3")
 mesh = ExtResource("5_nmqc8")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 0, 0)
 scale = Vector3(0.034, 0.06, 0.14)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
@@ -31,8 +27,6 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("1_ha8r3")
-custom_section = ""
-custom_id = ""
 icon = ExtResource("1_m1nl0")
 name = "metrudev's brick"
 description = "place of ownership is metrudev

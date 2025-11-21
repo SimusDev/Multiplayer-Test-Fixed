@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cak6qde6n5xop"]
+[gd_resource type="AnimationLibrary" load_steps=10 format=3 uid="uid://cak6qde6n5xop"]
 
 [ext_resource type="Animation" uid="uid://b6iupdgn1855v" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/slow_run.res" id="1_4jt5r"]
 [ext_resource type="Animation" uid="uid://rkhdu3kx8mh5" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/idle.res" id="2_mr3ub"]
@@ -7,9 +7,13 @@
 [ext_resource type="Animation" uid="uid://8vt78f0e1ekk" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/floating.res" id="5_r0mpu"]
 [ext_resource type="Animation" uid="uid://de5a84som3xpn" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/crouched_walking.res" id="6_r0mpu"]
 [ext_resource type="Animation" uid="uid://c4s0qghqo54o2" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/crouching_idle.res" id="7_v4rjp"]
+[ext_resource type="Animation" uid="uid://btv5vxit4ds55" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/crouched_strafe_right.res" id="8_cea1o"]
+[ext_resource type="Animation" uid="uid://cmeefx4spsd81" path="res://Games/source_game/game/3dmodels/3d_anime_character/animations/crouched_strafe_left.res" id="9_qt10a"]
 
 [resource]
 _data = {
+&"crouched_strafe_left": ExtResource("9_qt10a"),
+&"crouched_strafe_right": ExtResource("8_cea1o"),
 &"crouched_walking": ExtResource("6_r0mpu"),
 &"crouching_idle": ExtResource("7_v4rjp"),
 &"floating": ExtResource("5_r0mpu"),

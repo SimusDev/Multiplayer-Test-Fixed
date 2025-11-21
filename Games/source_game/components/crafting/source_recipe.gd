@@ -1,15 +1,35 @@
 extends R_SourceWorldObject
 class_name R_SourceRecipe
 
+
 @export var visible: bool = true : get = is_visible
 @export var time: float = 0.0
 @export var input: Array[R_SourceRecipeInput] = []
 @export var output: R_SourceRecipeOutput
 
+@export var custom_type:String
+@export var custom_type_icon:Texture
+
 static var _list: Array[R_SourceRecipe] = []
 
 static func get_list() -> Array[R_SourceRecipe]:
 	return _list
+
+func _get_type() -> String:
+	return "general"
+
+func get_type() -> String:
+	if custom_type:
+		return custom_type
+	return _get_type()
+
+func _get_type_icon() -> Texture:
+	return load("res://Games/source_game/components/icons/knife.png")
+
+func get_type_icon() -> Texture:
+	if custom_type_icon:
+		return custom_type_icon
+	return _get_type_icon()
 
 func is_visible() -> bool:
 	return visible
@@ -26,18 +46,18 @@ func _registered() -> void:
 func _unregistered() -> void:
 	_list.erase(self)
 
-func can_craft(inventory: SourceInventory) -> Array[SourceItemStack]:
+func can_craft(inventory: SourceInventory) -> bool: #Array[SourceItemStack]:
 	var status: int = 0
-	var result: Array[SourceItemStack] = []
-	for i in input:
+	#var result: Array[SourceItemStack] = []
+	for i:R_SourceRecipeInput in input:
 		var items: Array[SourceItemStack] = inventory.get_items_by_object(i.source)
 		var quantity: int = 0
-		for item in items:
+		for item:SourceItemStack in items:
 			quantity += item.get_quantity()
 		
 		if quantity >= i.quantity:
 			status += 1
-			result.append_array(items)
+			#result.append_array(items)
 		
-	
-	return result
+	print("Status: %s, input_size: %s" % [status, input.size()] )
+	return status >= input.size()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddd0epmcwelof"]
+[gd_scene load_steps=12 format=3 uid="uid://ddd0epmcwelof"]
 
 [ext_resource type="Script" uid="uid://bfaipcx37nytw" path="res://interface/chat/chat_interface.gd" id="1_rru54"]
 [ext_resource type="PackedScene" uid="uid://dd0a6oh3fnwk3" path="res://interface/chat/message.tscn" id="2_upsdc"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="4_upsdc"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="6_4n2ll"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="6_383sf"]
-[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="7_6jw8o"]
 [ext_resource type="FontFile" uid="uid://bxdxqu2e31ua5" path="res://addons/simusdev/fonts/default_stalker_font.ttf" id="8_owk0r"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="8_pi1nf"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="9_pfc8b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_owk0r"]
+[sub_resource type="LabelSettings" id="LabelSettings_6jw8o"]
 font = ExtResource("6_4n2ll")
 font_size = 18
 outline_size = 3
@@ -70,7 +69,6 @@ alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="chat" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 19.0
 offset_top = 471.0
@@ -116,7 +114,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Game chat"
-label_settings = SubResource("LabelSettings_owk0r")
+label_settings = SubResource("LabelSettings_6jw8o")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("8_pi1nf")
@@ -187,10 +185,9 @@ anchor_bottom = 0.751479
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("6_4n2ll")
-theme_override_fonts/mono_font = ExtResource("7_6jw8o")
-theme_override_fonts/italics_font = ExtResource("6_4n2ll")
-theme_override_fonts/bold_italics_font = ExtResource("8_owk0r")
 theme_override_fonts/bold_font = ExtResource("8_owk0r")
+theme_override_fonts/bold_italics_font = ExtResource("8_owk0r")
+theme_override_fonts/italics_font = ExtResource("6_4n2ll")
 metadata/_edit_use_anchors_ = true
 
 [node name="LineEdit" type="LineEdit" parent="chat/content"]
@@ -200,17 +197,17 @@ anchor_left = 0.00796813
 anchor_top = 0.828402
 anchor_right = 1.00199
 anchor_bottom = 0.982249
-theme_override_colors/caret_color = Color(0.118581, 0.118581, 0.118581, 1)
-theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.498039)
+theme_override_colors/caret_color = Color(0.118581, 0.118581, 0.118581, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_4n2ll")
-theme_override_styles/focus = SubResource("StyleBoxFlat_2u5yh")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_2u5yh")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2u5yh")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_2u5yh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2u5yh")
 placeholder_text = "ENTER MESSAGE HERE..."
 caret_blink = true
 metadata/_edit_use_anchors_ = true

@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=4 format=3 uid="uid://dastacydefuhl"]
+[gd_resource type="Resource" script_class="R_SourceBuilding" load_steps=5 format=3 uid="uid://dastacydefuhl"]
 
 [ext_resource type="Texture2D" uid="uid://dx5awebwl5113" path="res://Games/source_game/player/hands/fp_arms_0.png" id="1_hq1cj"]
 [ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="1_kgcmf"]
+[ext_resource type="ArrayMesh" uid="uid://bxd4bisrys6xl" path="res://Games/source_game/objects/buildings/meshes/mechanical_arm.tres" id="2_esj3d"]
 [ext_resource type="PackedScene" uid="uid://biigr8b8gl74p" path="res://Games/source_game/game/prefabs/base_buildings/mechanocal_arm/mechanical_arm.tscn" id="2_kct8b"]
 
 [resource]
 script = ExtResource("1_kgcmf")
 pick_on_build = false
-custom_section = ""
-custom_id = ""
+mesh = ExtResource("2_esj3d")
+mesh_scale = Vector3(5, 5, 5)
 icon = ExtResource("1_hq1cj")
 name = "mechanical_arm"
-description = ""
 prefab = ExtResource("2_kct8b")
 metadata/_custom_type_script = "uid://cwcmpqixyglaj"

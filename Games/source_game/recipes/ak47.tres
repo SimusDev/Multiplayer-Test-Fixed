@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="R_SourceRecipeWeapon" load_steps=10 format=3 uid="uid://fwq7hbfry4b6"]
+
+[ext_resource type="Script" uid="uid://82oo1iuaxrch" path="res://Games/source_game/components/crafting/source_recipe_input.gd" id="1_450md"]
+[ext_resource type="Script" uid="uid://hth1vs6022f6" path="res://Games/source_game/components/world_objects/r_recipe_weapon.gd" id="2_450md"]
+[ext_resource type="Resource" uid="uid://chj0oifjqs5os" path="res://Games/source_game/objects/world_materials/wood_plank.tres" id="2_aeh30"]
+[ext_resource type="Script" uid="uid://3bq4bc82j34c" path="res://Games/source_game/components/crafting/source_recipe_output.gd" id="3_cn8tk"]
+[ext_resource type="Resource" uid="uid://v723xxtfkn52" path="res://Games/source_game/objects/world_materials/metal.tres" id="3_hg0ve"]
+[ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="4_3oeco"]
+
+[sub_resource type="Resource" id="Resource_aeh30"]
+script = ExtResource("1_450md")
+source = ExtResource("2_aeh30")
+quantity = 2
+metadata/_custom_type_script = "uid://82oo1iuaxrch"
+
+[sub_resource type="Resource" id="Resource_cn8tk"]
+script = ExtResource("1_450md")
+source = ExtResource("3_hg0ve")
+quantity = 7
+metadata/_custom_type_script = "uid://82oo1iuaxrch"
+
+[sub_resource type="Resource" id="Resource_3oeco"]
+script = ExtResource("3_cn8tk")
+source = ExtResource("4_3oeco")
+metadata/_custom_type_script = "uid://3bq4bc82j34c"
+
+[resource]
+script = ExtResource("2_450md")
+input = Array[ExtResource("1_450md")]([SubResource("Resource_aeh30"), SubResource("Resource_cn8tk")])
+output = SubResource("Resource_3oeco")
+metadata/_custom_type_script = "uid://hth1vs6022f6"

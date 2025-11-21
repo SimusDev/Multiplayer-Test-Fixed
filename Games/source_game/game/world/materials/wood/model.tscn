@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcb7dblnhca5j"]
+
+[ext_resource type="Texture2D" uid="uid://djoaym10wt42w" path="res://Games/source_game/textures/world_material/wood.png" id="1_38khj"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="2_mqwwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4jy4"]
+albedo_texture = ExtResource("1_38khj")
+uv1_scale = Vector3(6.175, 6.175, 6.175)
+uv1_triplanar = true
+script = ExtResource("2_mqwwl")
+type = "wood"
+metadata/_custom_type_script = "uid://dau2vuhctib65"
+
+[sub_resource type="BoxMesh" id="BoxMesh_uow5q"]
+material = SubResource("StandardMaterial3D_x4jy4")
+size = Vector3(0.3, 0.1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_uow5q")

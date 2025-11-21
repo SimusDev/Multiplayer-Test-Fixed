@@ -1,6 +1,8 @@
 extends R_WeaponObject
 class_name R_WeaponProjectileObject
 
+@export var automatic:bool = true
+
 @export var max_ammo: int = 30
 @export var damage_multiplier: float = 1.0
 @export var ammo: Array[R_SourceAmmoObject] = []

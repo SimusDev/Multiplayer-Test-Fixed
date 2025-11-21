@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv4gp3llc467h"]
+
+[ext_resource type="Texture2D" uid="uid://2p3mulflreo4" path="res://Games/source_game/textures/world_material/metal.png" id="1_10hmk"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="2_lvs0v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdmfy"]
+albedo_texture = ExtResource("1_10hmk")
+uv1_scale = Vector3(5.5, 5.5, 5.5)
+uv1_triplanar = true
+script = ExtResource("2_lvs0v")
+type = "metal"
+metadata/_custom_type_script = "uid://dau2vuhctib65"
+
+[sub_resource type="BoxMesh" id="BoxMesh_2y8ni"]
+material = SubResource("StandardMaterial3D_mdmfy")
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_2y8ni")

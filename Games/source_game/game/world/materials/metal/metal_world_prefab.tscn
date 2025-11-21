@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckkmoigunofrl"]
+
+[ext_resource type="PackedScene" uid="uid://bv4gp3llc467h" path="res://Games/source_game/game/world/materials/metal/model.tscn" id="1_i0dpq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwp8l"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="metal_world_prefab" type="RigidBody3D"]
+mass = 5.0
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("1_i0dpq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wwp8l")

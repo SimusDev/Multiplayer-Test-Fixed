@@ -77,7 +77,7 @@ func update_progressbar() -> void:
 	if is_instance_valid(_loader):
 		bar.value = _loader.get_loading_percents()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_progressbar()
 
 func _on_server_disconnected() -> void:

@@ -1,20 +1,12 @@
 class_name SourceEntity extends CharacterBody3D
 
-@export_group("Health")
 @export var health:C_HealthComponent
-@export var take_damage_assets:Array[AudioStream]
-
-@export_group("Controls")
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 
 @onready var chat := chat_interface.instance
 
-@export_group("Other")
-@export var model:SourceAnimatedModel
 @export var interact_raycast:SourceInteractRay
-@export var footsteps_component:SourceFootsteps
-@export var flashlight:SourceFlashlight
 
 @export var object: R_SourcePlayer
 
@@ -26,6 +18,15 @@ var blend_position:Vector2 = Vector2.ZERO
 var head_x:float = 0.0
 var head_y:float = 0.0
 
+#region STATS
+var additional_armor:float = 0.0
+var additional_max_health:float = 0.0
+var additional_movespeed:float = 0.0
+var additional_melee_damage:float = 0.0
+
+var movespeed_multiplier:float = 1.0
+#endregion STATS
+
 static func get_list() -> Array[SourcePlayer]:
 	return _list
 
@@ -36,9 +37,6 @@ func _exit_tree() -> void:
 	_list.erase(self)
 
 func _ready() -> void:
-	if is_instance_valid(model):
-		model.footstep.connect(footsteps_component._do_footstep)
-
 	chat.c_ui_interface.closed.connect( func(): movement.input_enabled = true )
 	chat.c_ui_interface.opened.connect( func(): movement.input_enabled = false )
 

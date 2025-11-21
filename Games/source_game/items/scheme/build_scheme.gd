@@ -81,6 +81,7 @@ func add_ghost_building() -> void:
 	var section:SourceLevelSection3D = SourceLevelSection3D.get_by_name(buildings_section_name)
 	
 	ghost_building = MeshInstance3D.new()
+	#if building.mesh:
 	ghost_building.mesh = building.mesh.duplicate()
 	
 	section.add_child(ghost_building)
@@ -89,11 +90,12 @@ func set_material(mesh_instance:MeshInstance3D, material:Material) -> void:
 	if not is_instance_valid(ghost_building):
 		return
 	
-	for i in mesh_instance.mesh.get_surface_count():
-		mesh_instance.mesh.surface_set_material(i, material)
+	var mesh = mesh_instance.mesh
+	for i in mesh.get_surface_count():
+		mesh.surface_set_material(i, material)
 
 func update_ghost_building() -> void:
-	if not ghost_building or (not is_instance_valid(ghost_building)):
+	if not is_instance_valid(ghost_building):
 		return
 	
 	var collider = item.player.interact_raycast.get_collider()
@@ -113,7 +115,10 @@ func update_ghost_building() -> void:
 					ghost_building.global_position = collider.point.global_position
 					#ghost_building.global_rotation = collider.point.rotation
 					return
+		
 		ghost_building.global_position = collision_point + building.mesh_offset
+		#ghost_building.global_rotation = building.mesh_rotation
+		#ghost_building.scale += building.mesh_scale
 
 
 func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEntity) -> void:

@@ -82,9 +82,10 @@ func can_use() -> bool:
 		return not animation_player.is_playing()
 	return true
 
-func play_animation(anim_name:StringName) -> void:
+func play_animation(anim_name:StringName, ignore_playing:bool = true) -> void:
 	if is_instance_valid(animation_player) and animation_player.has_animation(anim_name):
-		animation_player.play(anim_name)
+		if not animation_player.is_playing() or ignore_playing:
+			animation_player.play(anim_name)
 
 func publish_event(event_name:StringName) -> S_EventItemUse:
 	var event:S_Event = SourceEvents.get_by_script(S_EventItemUse) as S_EventItemUse

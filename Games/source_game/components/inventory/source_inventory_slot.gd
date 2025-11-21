@@ -4,6 +4,7 @@ class_name SourceInventorySlot
 
 var _inventory: SourceInventory
 
+@export var texture:Texture
 @export var selectable: bool = false
 @export var _data: Dictionary = {}
 

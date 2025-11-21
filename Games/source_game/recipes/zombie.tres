@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="R_SourceRecipeEntity" load_steps=8 format=3 uid="uid://65385uyjlh5b"]
+
+[ext_resource type="Script" uid="uid://82oo1iuaxrch" path="res://Games/source_game/components/crafting/source_recipe_input.gd" id="1_16co2"]
+[ext_resource type="Resource" uid="uid://c3ye4j7ajwc25" path="res://Games/source_game/props/doll/doll_prop.tres" id="2_bxtx4"]
+[ext_resource type="Script" uid="uid://bef86cacbh46q" path="res://Games/source_game/components/world_objects/r_recipe_entity.gd" id="2_grj4o"]
+[ext_resource type="Script" uid="uid://3bq4bc82j34c" path="res://Games/source_game/components/crafting/source_recipe_output.gd" id="3_5plrg"]
+[ext_resource type="Resource" uid="uid://ghhtgd7bsx2l" path="res://Games/source_game/objects/entity/zombie.tres" id="4_8miip"]
+
+[sub_resource type="Resource" id="Resource_cma7s"]
+script = ExtResource("1_16co2")
+source = ExtResource("2_bxtx4")
+quantity = 5
+metadata/_custom_type_script = "uid://82oo1iuaxrch"
+
+[sub_resource type="Resource" id="Resource_ybi4l"]
+script = ExtResource("3_5plrg")
+source = ExtResource("4_8miip")
+metadata/_custom_type_script = "uid://3bq4bc82j34c"
+
+[resource]
+script = ExtResource("2_grj4o")
+input = Array[ExtResource("1_16co2")]([SubResource("Resource_cma7s")])
+output = SubResource("Resource_ybi4l")
+metadata/_custom_type_script = "uid://bef86cacbh46q"
