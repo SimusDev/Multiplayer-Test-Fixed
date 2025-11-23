@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bene2vuw62jb6"
-path="res://.godot/imported/model.gltf-7eef70f6e594ffb15087442a74b594c3.scn"
+valid=false
 
 [deps]
 
 source_file="res://Games/source_game/game/3dmodels/sex/model.gltf"
-dest_files=["res://.godot/imported/model.gltf-7eef70f6e594ffb15087442a74b594c3.scn"]
 
 [params]
 

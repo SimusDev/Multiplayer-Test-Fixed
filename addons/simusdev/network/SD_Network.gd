@@ -145,3 +145,30 @@ static func is_player(node: Node) -> bool:
 
 static func is_player_and_authority(node: Node) -> bool:
 	return SD_NetworkPlayer.get_local().get_player_node() == node and SD_Network.is_authority(node)
+
+static func register_rpc(callable: Callable, 
+rpc_mode: MultiplayerAPI.RPCMode = MultiplayerAPI.RPCMode.RPC_MODE_AUTHORITY,
+transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
+channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	singleton.rpc.register_rpc(callable, rpc_mode, transfer_mode, channel)
+
+static func register_rpc_any_peer(callable: Callable, transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	register_rpc(callable, MultiplayerAPI.RPC_MODE_ANY_PEER, transfer_mode, channel)
+
+static func register_rpc_authority(callable: Callable, transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE, channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT) -> void:
+	register_rpc(callable, MultiplayerAPI.RPC_MODE_AUTHORITY, transfer_mode, channel)
+
+static func unregister_rpc(callable: Callable) -> void:
+	singleton.rpc.unregister_rpc(callable)
+
+static func call_rpc(callable: Callable, args: Array = []) -> void:
+	singleton.rpc.call_rpc(callable, args)
+
+static func call_rpc_except_self(callable: Callable, args: Array = []) -> void:
+	singleton.rpc.call_rpc_except_self(callable, args)
+
+static func call_rpc_on(peer: int, callable: Callable, args: Array = []) -> void:
+	singleton.rpc.call_rpc_on(peer, callable, args)
+
+static func call_rpc_on_server(callable: Callable, args: Array = []) -> void:
+	singleton.rpc.call_rpc_on_server(callable, args)
