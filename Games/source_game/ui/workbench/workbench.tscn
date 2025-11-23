@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm52o7468o6nf"]
+[gd_scene load_steps=15 format=3 uid="uid://cm52o7468o6nf"]
 
 [ext_resource type="Script" uid="uid://phxd5yffiw6b" path="res://Games/source_game/ui/workbench/workbench.gd" id="1_fsj2l"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_k3h36"]
@@ -9,17 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://bui65ebrebo7t" path="res://Games/source_game/ui/workbench/recipe_sections.tscn" id="6_n4sk1"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="7_tjrou"]
 [ext_resource type="Texture2D" uid="uid://co5cosk3gdhvg" path="res://Games/source_game/game/3dmodels/sex_bonnie/model_0.png" id="9_2s0b1"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="10_88efk"]
 [ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="10_uxrij"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_tjrou"]
+[sub_resource type="LabelSettings" id="LabelSettings_2s0b1"]
 font_size = 18
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_e88mv"]
+[sub_resource type="LabelSettings" id="LabelSettings_uxrij"]
 font_size = 18
 
-[sub_resource type="LabelSettings" id="LabelSettings_2s0b1"]
+[sub_resource type="LabelSettings" id="LabelSettings_88efk"]
 font_size = 18
 
 [node name="Workbench" type="Control" node_paths=PackedStringArray("recipe_container", "types_container", "craft_btn", "recipe_icon", "recipe_name", "recipe_desc", "craft_input")]
@@ -39,7 +40,7 @@ craft_btn = NodePath("list/current/content/craft_btn")
 recipe_icon = NodePath("list/current/content/icon")
 recipe_name = NodePath("list/current/content/icon/name")
 recipe_desc = NodePath("list/current/content/desc")
-craft_input = NodePath("list/current/content/ScrollContainer/craft_input")
+craft_input = NodePath("list/current/content/RichTextLabel")
 
 [node name="SD_UIControlSearch" type="Node" parent="." node_paths=PackedStringArray("line_edit")]
 script = ExtResource("2_gtlks")
@@ -50,7 +51,6 @@ metadata/_custom_type_script = "uid://duex25jaq1mj4"
 script = ExtResource("1_k3h36")
 target = NodePath("..")
 open_at_start = true
-input_action = "close_interface"
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -99,7 +99,7 @@ metadata/_edit_use_anchors_ = true
 anchor_left = 0.008733625
 offset_left = 0.0
 text = "Recipes"
-label_settings = SubResource("LabelSettings_tjrou")
+label_settings = SubResource("LabelSettings_2s0b1")
 metadata/_edit_use_anchors_ = true
 
 [node name="content" parent="list" index="4"]
@@ -154,7 +154,7 @@ anchor_right = -0.013824885
 anchor_bottom = 1.300995
 
 [node name="title" parent="list/sections/head" index="0"]
-label_settings = SubResource("LabelSettings_e88mv")
+label_settings = SubResource("LabelSettings_uxrij")
 
 [node name="content" parent="list/sections" index="4"]
 anchor_left = 0.02016129
@@ -182,7 +182,7 @@ drag_enabled = false
 visible = false
 
 [node name="title" parent="list/current/head" index="0"]
-label_settings = SubResource("LabelSettings_2s0b1")
+label_settings = SubResource("LabelSettings_88efk")
 
 [node name="content" parent="list/current" index="4"]
 anchor_top = 0.05000005
@@ -273,28 +273,25 @@ border_color = Color(0.309804, 0.309804, 0.309804, 1)
 border_width = 0.8
 editor_only = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="list/current/content" index="5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="list/current/content" index="5"]
 layout_mode = 0
-offset_left = 328.64258
+offset_left = 327.64258
 offset_top = 5.100006
-offset_right = 482.64258
+offset_right = 484.64258
 offset_bottom = 103.100006
-
-[node name="craft_input" type="Label" parent="list/current/content/ScrollContainer"]
-layout_mode = 2
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 11
-text = "recipe inputseeeeeeexxxx
-23 piska
-vladis
-canek
-asdasd
-asdasd"
+theme_override_fonts/normal_font = ExtResource("10_88efk")
+bbcode_enabled = true
+text = "[color=gray]sdasdw[/color]"
 
-[node name="border" type="ReferenceRect" parent="list/current/content/ScrollContainer"]
+[node name="border" type="ReferenceRect" parent="list/current/content/RichTextLabel"]
 show_behind_parent = true
-custom_minimum_size = Vector2(154, 98)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 border_color = Color(0.309804, 0.309804, 0.309804, 1)
 border_width = 0.8

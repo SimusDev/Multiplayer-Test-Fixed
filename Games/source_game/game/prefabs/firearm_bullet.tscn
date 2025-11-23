@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://vhdvo7kim26k"]
+[gd_scene load_steps=8 format=3 uid="uid://vhdvo7kim26k"]
 
 [ext_resource type="Script" uid="uid://n5glk1jbjxsm" path="res://Games/source_game/game/prefabs/firearm_bullet.gd" id="1_fe7gp"]
 [ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_i6lau"]
 [ext_resource type="AudioStream" uid="uid://c4eknx0p4sewd" path="res://sounds/ricochet.mp3" id="3_tiyib"]
 [ext_resource type="AudioStream" uid="uid://c8eqv2kpxs2hv" path="res://sounds/ricochet2.mp3" id="4_j7c8p"]
-[ext_resource type="AudioStream" uid="uid://cf2adtiajawbv" path="res://sounds/sine_wave.wav" id="5_fe7gp"]
 
 [sub_resource type="Curve" id="Curve_tiyib"]
 _data = [Vector2(0, 0.00855124), 0.0, 0.0, 0, 0, Vector2(0.21056442, 0.031238914), 0.0, 0.0, 0, 0, Vector2(0.4746744, 0.065270305), 0.0, 0.0, 0, 0, Vector2(0.9232997, 0.099301696), 0.0, 0.0, 0, 0, Vector2(1, 0.00855124), -0.25285694, 0.0, 0, 0]
@@ -23,19 +22,16 @@ radius = 0.25
 section_length = 0.25
 curve = SubResource("Curve_tiyib")
 
-[node name="firearm_bullet" type="Node3D"]
+[node name="firearm_bullet" type="Node3D" node_paths=PackedStringArray("muzzle")]
 script = ExtResource("1_fe7gp")
+muzzle = NodePath("root")
 decal_bullet_hole = ExtResource("2_i6lau")
 ricochet_assets = Array[AudioStream]([ExtResource("3_tiyib"), ExtResource("4_j7c8p")])
 
-[node name="muzzle" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, -1.7310342e-22, 0, -0.59999996)
+[node name="root" type="Node3D" parent="."]
+transform = Transform3D(0.065, 0, 0, 0, 0.065, 0, 0, 0, 0.065, 0, 0, 0)
+
+[node name="muzzle" type="MeshInstance3D" parent="root"]
+transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.509958e-07, 1, 4.371139e-08, 0, 0, -0.625)
 mesh = SubResource("TubeTrailMesh_yx6b0")
 skeleton = NodePath("")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_fe7gp")
-attenuation_model = 1
-autoplay = true
-max_distance = 4.4
-doppler_tracking = 2

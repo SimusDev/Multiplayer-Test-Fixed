@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bokaet0mksmo3"]
+[gd_scene load_steps=46 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_1bs4f"]
@@ -414,7 +414,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model:position")
+tracks/0/path = NodePath("root/model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -426,7 +426,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("model:rotation")
+tracks/1/path = NodePath("root/model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -438,7 +438,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/2/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -450,7 +450,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1:position")
+tracks/3/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -462,7 +462,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("model/left_hand_position:position")
+tracks/4/path = NodePath("root/model/left_hand_position:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -470,6 +470,58 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.0491882, -0.455934, 0.70025)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("root:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("root:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4d7eq"]
+resource_name = "aim"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.203, 0.05, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_k2044"]
@@ -479,7 +531,7 @@ step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model:position")
+tracks/0/path = NodePath("root/model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -491,7 +543,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("model:rotation")
+tracks/1/path = NodePath("root/model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -503,7 +555,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/2/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -527,6 +579,33 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_qsatj"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_42m7w"]
 resource_name = "no_ammo"
 length = 0.001
@@ -534,7 +613,7 @@ step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/0/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -550,7 +629,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model:position")
+tracks/0/path = NodePath("root/model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -562,7 +641,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("model:rotation")
+tracks/1/path = NodePath("root/model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -574,7 +653,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("model/left_hand_position:position")
+tracks/2/path = NodePath("root/model/left_hand_position:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -586,7 +665,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("model/left_hand_position:rotation")
+tracks/3/path = NodePath("root/model/left_hand_position:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -598,7 +677,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1:position")
+tracks/4/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -610,7 +689,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("model/bolt_sound")
+tracks/5/path = NodePath("root/model/bolt_sound")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -627,6 +706,9 @@ tracks/5/keys = {
 }
 tracks/5/use_blend = true
 
+[sub_resource type="Animation" id="Animation_ooh1s"]
+resource_name = "reload"
+
 [sub_resource type="Animation" id="Animation_ken8p"]
 resource_name = "return_bolt"
 length = 0.05
@@ -634,7 +716,7 @@ step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:rotation")
+tracks/0/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -646,7 +728,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/1/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -656,13 +738,12 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ooh1s"]
-resource_name = "reload"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpbao"]
 _data = {
 &"RESET": SubResource("Animation_s5rx7"),
+&"aim": SubResource("Animation_4d7eq"),
 &"fire": SubResource("Animation_k2044"),
+&"idle": SubResource("Animation_qsatj"),
 &"no_ammo": SubResource("Animation_42m7w"),
 &"pick": SubResource("Animation_j3diw"),
 &"reload": SubResource("Animation_ooh1s"),
@@ -677,113 +758,115 @@ projectile = ExtResource("2_1bs4f")
 shell = ExtResource("3_ken8p")
 bullet_resource = SubResource("Resource_42m7w")
 shell_force = 1.08
-shell_marker = NodePath("shell_marker")
-bullet_marker = NodePath("bullet_marker")
+shell_marker = NodePath("root/shell_marker")
+bullet_marker = NodePath("root/bullet_marker")
 resource = ExtResource("3_nqkmu")
-model = NodePath("model")
+model = NodePath("root/model")
 animation_player = NodePath("animation_player")
 metadata/_custom_type_script = "uid://cfshg230xd28k"
 
-[node name="model" type="Node3D" parent="."]
+[node name="root" type="Node3D" parent="."]
 
-[node name="Sketchfab_model" type="Node3D" parent="model"]
+[node name="model" type="Node3D" parent="root"]
+
+[node name="Sketchfab_model" type="Node3D" parent="root/model"]
 transform = Transform3D(1.0192217e-08, 0, 0.135, 0, 0.135, 0, -0.135, 0, 1.0192217e-08, 0, 0, 0.0125066)
 
-[node name="Collada visual scene group" type="Node3D" parent="model/Sketchfab_model"]
+[node name="Collada visual scene group" type="Node3D" parent="root/model/Sketchfab_model"]
 
-[node name="animated_parts" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="animated_parts" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0, 0)
 
-[node name="slide_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts"]
+[node name="slide_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts"]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="defaultMaterial" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1"]
+[node name="defaultMaterial" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts/slide_low_1"]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0dxdx")
 skeleton = NodePath("")
 
-[node name="selector_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts"]
+[node name="selector_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts"]
 
-[node name="defaultMaterial2" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts/selector_low_1"]
+[node name="defaultMaterial2" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts/selector_low_1"]
 mesh = SubResource("ArrayMesh_6tkbs")
 skeleton = NodePath("")
 
-[node name="podavatel_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts"]
+[node name="podavatel_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts"]
 
-[node name="defaultMaterial3" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts/podavatel_low_1"]
+[node name="defaultMaterial3" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts/podavatel_low_1"]
 mesh = SubResource("ArrayMesh_o7o7w")
 skeleton = NodePath("")
 
-[node name="parts_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts"]
+[node name="parts_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts"]
 
-[node name="defaultMaterial4" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/animated_parts/parts_low_1"]
+[node name="defaultMaterial4" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/animated_parts/parts_low_1"]
 mesh = SubResource("ArrayMesh_31e55")
 skeleton = NodePath("")
 
-[node name="parts2_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="parts2_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial5" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/parts2_low_1"]
+[node name="defaultMaterial5" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/parts2_low_1"]
 mesh = SubResource("ArrayMesh_22lyd")
 skeleton = NodePath("")
 
-[node name="MAGAZ" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="MAGAZ" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial7" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ"]
+[node name="defaultMaterial7" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/MAGAZ"]
 mesh = SubResource("ArrayMesh_aftf5")
 skeleton = NodePath("")
 
-[node name="mag_pyatka_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ"]
+[node name="mag_pyatka_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group/MAGAZ"]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="defaultMaterial6" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/MAGAZ/mag_pyatka_low_1"]
+[node name="defaultMaterial6" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/MAGAZ/mag_pyatka_low_1"]
 mesh = SubResource("ArrayMesh_f5qdp")
 skeleton = NodePath("")
 
-[node name="kurok_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="kurok_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial8" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/kurok_low_1"]
+[node name="defaultMaterial8" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/kurok_low_1"]
 mesh = SubResource("ArrayMesh_6ed4f")
 skeleton = NodePath("")
 
-[node name="grip_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="grip_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial9" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/grip_low_1"]
+[node name="defaultMaterial9" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/grip_low_1"]
 mesh = SubResource("ArrayMesh_evi6q")
 skeleton = NodePath("")
 
-[node name="body_low_1" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="body_low_1" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial10" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/body_low_1"]
+[node name="defaultMaterial10" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/body_low_1"]
 mesh = SubResource("ArrayMesh_in6ts")
 skeleton = NodePath("")
 
-[node name="barrel_low_1_001" type="Node3D" parent="model/Sketchfab_model/Collada visual scene group"]
+[node name="barrel_low_1_001" type="Node3D" parent="root/model/Sketchfab_model/Collada visual scene group"]
 
-[node name="defaultMaterial11" type="MeshInstance3D" parent="model/Sketchfab_model/Collada visual scene group/barrel_low_1_001"]
+[node name="defaultMaterial11" type="MeshInstance3D" parent="root/model/Sketchfab_model/Collada visual scene group/barrel_low_1_001"]
 mesh = SubResource("ArrayMesh_wrfrq")
 skeleton = NodePath("")
 
-[node name="right_hand_position" type="Marker3D" parent="model"]
+[node name="right_hand_position" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.96597105, 0.18794458, 0.17769653, -0.14750779, 0.16403984, -0.97536224, -0.21246319, -0.9683846, -0.13073415, 0.02137659, -0.046117168, 0.19033535)
 
-[node name="left_hand_position" type="Marker3D" parent="model"]
-transform = Transform3D(0.14532164, -0.08805707, -0.9854583, 0.9846551, -0.084397405, 0.15274477, -0.0966203, -0.992534, 0.07444109, -0.0491882, -0.455934, 0.70025)
+[node name="left_hand_position" type="Marker3D" parent="root/model"]
+transform = Transform3D(0.14532165, -0.08805708, -0.9854583, 0.984655, -0.084397405, 0.1527448, -0.0966203, -0.992534, 0.07444109, -0.0491882, -0.455934, 0.70025)
 
-[node name="bolt_sound" type="AudioStreamPlayer3D" parent="model"]
+[node name="bolt_sound" type="AudioStreamPlayer3D" parent="root/model"]
 volume_db = -11.845
 pitch_scale = 1.4
+
+[node name="bullet_marker" type="Marker3D" parent="root"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021832823, 0.07, -0.125)
+gizmo_extents = 10.0
+
+[node name="shell_marker" type="Marker3D" parent="root"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0455825, 0.11445053, 0.0299821)
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hpbao")
 }
-
-[node name="shell_marker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0455825, 0.132955, 0.0299821)
-
-[node name="bullet_marker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00800499, 0.0931646, -0.170959)
-gizmo_extents = 10.0
 
 [node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("7_s5rx7")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0999229, -0.113516, 0.648828)
@@ -847,9 +930,12 @@ bones/58/rotation = Quaternion(0.9990687, -0.010515295, 0.0059559876, -0.0414216
 
 [node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1"]
 use_magnet = true
-target_node = NodePath("../../../../model/left_hand_position")
+target_node = NodePath("../../../../root/model/left_hand_position")
 
 [node name="right_hand_ik" parent="arms/root/Skeleton3D" index="2"]
-target_node = NodePath("../../../../model/right_hand_position")
+target_node = NodePath("../../../../root/model/right_hand_position")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.15, 0.5)
 
 [editable path="arms"]

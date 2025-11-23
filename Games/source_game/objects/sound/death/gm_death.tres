@@ -6,18 +6,11 @@
 
 [sub_resource type="Resource" id="Resource_vjix7"]
 script = ExtResource("2_mh6rc")
-min_distance_to_play = 0.0
-max_distance_to_play = 0.0
 max_distance = 50.0
 streams = Array[AudioStream]([ExtResource("3_mh6rc")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [resource]
 script = ExtResource("1_8o55o")
-creation_max_distance = 500.0
 sources = Array[ExtResource("2_mh6rc")]([SubResource("Resource_vjix7")])
-custom_section = ""
-custom_id = ""
-name = ""
-description = ""
 metadata/_custom_type_script = "uid://b4qsbiksbfk64"

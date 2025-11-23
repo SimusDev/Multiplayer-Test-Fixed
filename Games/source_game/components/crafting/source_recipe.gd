@@ -59,5 +59,4 @@ func can_craft(inventory: SourceInventory) -> bool: #Array[SourceItemStack]:
 			status += 1
 			#result.append_array(items)
 		
-	print("Status: %s, input_size: %s" % [status, input.size()] )
 	return status >= input.size()

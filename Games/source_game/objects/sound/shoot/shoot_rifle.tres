@@ -8,21 +8,23 @@
 
 [sub_resource type="Resource" id="Resource_knwtg"]
 script = ExtResource("2_4l3bj")
-max_distance = 25.0
+max_distance = 100.0
 streams = Array[AudioStream]([ExtResource("3_c11ct")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [sub_resource type="Resource" id="Resource_wptv8"]
 script = ExtResource("2_4l3bj")
 min_distance_to_play = 25.0
-max_distance = 280.0
+max_distance_to_play = 700.0
+max_distance = 500.0
 streams = Array[AudioStream]([ExtResource("4_guvlg")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 
 [sub_resource type="Resource" id="Resource_yakuj"]
 script = ExtResource("2_4l3bj")
 min_distance_to_play = 50.0
-max_distance = 500.0
+max_distance_to_play = 1200.0
+max_distance = 1000.0
 streams = Array[AudioStream]([ExtResource("4_guvlg"), ExtResource("5_vtep1")])
 metadata/_custom_type_script = "uid://us246ujqip05"
 

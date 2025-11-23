@@ -294,6 +294,7 @@ func add_item(item: SourceItemStack) -> void:
 			net_caller.call_func_except_self(_add_item_net, [server.serialize()])
 	
 		sort_stackables(item.object)
+	item_added.emit()
 
 func _add_item_net(serialized: Variant) -> SourceItemStack:
 	var item := SourceItemStack.deserialize(serialized)
@@ -307,6 +308,7 @@ func remove_item(item: SourceItemStack) -> void:
 	
 	if get_items().has(item):
 		net_caller.call_func(_remove_item_net, [item])
+	item_removed.emit()
 
 func _remove_item_net(item: SourceItemStack) -> void:
 	if is_instance_valid(item):

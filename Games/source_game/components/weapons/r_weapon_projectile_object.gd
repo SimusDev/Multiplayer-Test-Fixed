@@ -7,6 +7,8 @@ class_name R_WeaponProjectileObject
 @export var damage_multiplier: float = 1.0
 @export var ammo: Array[R_SourceAmmoObject] = []
 
+@export var sound:R_SourceSound
+
 func get_node_script() -> GDScript:
 	return SourceProp
 

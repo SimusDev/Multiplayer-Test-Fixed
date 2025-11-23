@@ -55,7 +55,7 @@ color_ramp = SubResource("Gradient_4d7pv")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
 
-[node name="base_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast")]
+[node name="base_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast") groups=["penetrable"]]
 script = ExtResource("1_26rsp")
 health = NodePath("SourceHealth")
 movement = NodePath("SourceMovement")

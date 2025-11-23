@@ -11,7 +11,7 @@ signal current_recipe_changed()
 @export var recipe_icon:TextureRect
 @export var recipe_name:Label
 @export var recipe_desc:Label
-@export var craft_input:Label
+@export var craft_input:RichTextLabel
 
 @onready var sd_ui_control_search: SD_UIControlSearch = $SD_UIControlSearch
 
@@ -32,7 +32,10 @@ func _ready() -> void:
 	update_list(&"general")
 	update_types()
 	
-	inventory = SD_Components.find_first(SourcePlayable.get_local(), SourceInventory)
+	inventory = SD_Components.find_first(SourcePlayable.get_local().root, SourceInventory)
+	inventory.item_added.connect(inv_changed)
+	inventory.item_removed.connect(inv_changed)
+	
 	craft_btn.pressed.connect(craft)
 	$list/current/content.visible = not (current_recipe == null)
 
@@ -41,6 +44,10 @@ func craft() -> void:
 		return
 	
 	inventory.craft(current_recipe)
+
+func inv_changed() -> void:
+	update_craft_btn()
+	update_recipe_input()
 
 func clear(sex:Control) -> void:
 	for node in sex.get_children():
@@ -92,11 +99,18 @@ func recipe_full_upd() -> void:
 	update_recipe_icon()
 	update_recipe_desc()
 	update_recipe_name()
-	print(current_recipe)
+	update_craft_btn()
+
 
 #region UPD_INPUT
 func add_craft_input(text:String="") -> void:
-	craft_input.text += "%s\n" % [text]
+	if not is_instance_valid(inventory):
+		return
+	
+	if current_recipe.can_craft(inventory):
+		craft_input.append_text("[color=white]%s[/color]" % [text])
+	else:
+		craft_input.append_text("[color=gray]%s[/color]" % [text])
 
 func update_recipe_input() -> void:
 	if not current_recipe:

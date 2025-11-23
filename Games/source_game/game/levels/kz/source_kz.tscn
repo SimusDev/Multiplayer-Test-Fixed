@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://biexdapt3c1te"]
+[gd_scene load_steps=20 format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
 [ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="3_38ipe"]
@@ -6,7 +6,9 @@
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
 [ext_resource type="Material" uid="uid://dbyrkd4pdsous" path="res://Games/source_game/materials/grass1.tres" id="8_eqep5"]
+[ext_resource type="Texture2D" uid="uid://df75fqicckl4m" path="res://Games/source_game/game/levels/counter-strike/cs_militia/assets/Untitled_milwall006_96.png" id="9_eymkd"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="10_qjves"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="10_y1g7y"]
 [ext_resource type="Texture2D" uid="uid://dw716u2xnaaun" path="res://Games/source_game/game/textures/poshalko/devs.png" id="11_ae8mq"]
 [ext_resource type="PackedScene" uid="uid://1bg57awhhhul" path="res://Games/source_game/game/3dmodels/sex_bonnie/model.glb" id="14_17bi3"]
 [ext_resource type="Environment" uid="uid://b71yn6wfk8lop" path="res://env/default.tres" id="14_fcbw8"]
@@ -16,13 +18,19 @@
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="17_y1g7y"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_17bi3"]
-vertices = PackedVector3Array(-21.25, 0, -64.350006, -21.5, 0, -75.100006, -49.5, 0, -75.100006, -49.5, 0, -8.600006, -20.5, 0, -8.600006, -12.25, 0, -64.850006, -12, 0, -62.600006, -5.5, 0, -62.600006, -5.5, 0, -75.100006, -21, 0, -64.850006, -4.5, 1, 4.399994, 4.5, 1, 4.399994, 4.75, 1, -8.350006, 4.75, 1, -75.100006, -4.5, 1, -75.100006, 5.75, 0, -28.850006, 16, 0, -28.600006, 16.25, 0, -30.350006, 5.75, 0, -75.100006, 18, 0, -30.350006, 18.25, 0, -28.600006, 49.5, 0, -28.850006, 49.5, 0, -75.100006, -19.5, 1, -8.600006, -12.25, 1, -8.600006, -13, 1, -63.850006, -20.25, 1, -63.850006, -11.25, 0, -8.600006, -5.5, 0, -8.600006, 5.75, 0, -23.350006, 16, 0, -23.600006, 18.25, 0, -22.100006, 17.25, 0, -21.850006, 17.25, 0, -8.600006, 49.5, 0, -8.600006, 16, 0, -22.100006, 5.75, 0, -8.600006)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 0, 1), PackedInt32Array(9, 1, 5), PackedInt32Array(5, 1, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 7), PackedInt32Array(7, 27, 6), PackedInt32Array(30, 29, 16), PackedInt32Array(16, 29, 15), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 21), PackedInt32Array(31, 20, 21), PackedInt32Array(29, 30, 35), PackedInt32Array(35, 32, 29), PackedInt32Array(29, 32, 33), PackedInt32Array(29, 33, 36)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1g7y"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.266667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_17bi3"]
+albedo_texture = ExtResource("9_eymkd")
+uv1_scale = Vector3(0.465, -0.445, 0.465)
+uv1_triplanar = true
+script = ExtResource("10_y1g7y")
+type = "metal"
+metadata/_custom_type_script = "uid://dau2vuhctib65"
 
 [node name="kz" instance=ExtResource("1_c8ni6")]
 
@@ -189,6 +197,45 @@ material = SubResource("StandardMaterial3D_y1g7y")
 light_energy = 1.889
 shadow_enabled = true
 omni_range = 10.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.138462, 1.5, -19.3)
+use_collision = true
+radius = 3.5
+material = ExtResource("5_fpuye")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCylinder3D" index="0"]
+operation = 2
+radius = 3.4
+material = SubResource("StandardMaterial3D_17bi3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.647972, 0.713251, -23.288406)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.397058, 0.9710635, -22.741451)
+use_collision = true
+size = Vector3(1, 1.515625, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.382383, 1.1975851, -22.741451)
+use_collision = true
+size = Vector3(1, 2.213379, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.647972, 0.713251, -22.066193)
+use_collision = true
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.397058, 0.9710635, -21.519238)
+use_collision = true
+size = Vector3(1, 1.515625, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.382383, 1.1975851, -21.519238)
+use_collision = true
+size = Vector3(1, 2.213379, 1)
 
 [node name="backrooms" parent="." index="10" instance=ExtResource("10_qjves")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -498, -46.21612)

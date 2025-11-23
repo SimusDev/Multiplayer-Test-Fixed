@@ -1,8 +1,10 @@
 class_name SourceFireWeapon extends SourceItem
 
+signal is_aim_changed
 
-@export var no_ammo_anim:StringName = "no_ammo"
-@export var return_bolt_anim:StringName = "return_bolt"
+@export var aim_anim:StringName = &"aim"
+@export var no_ammo_anim:StringName = &"no_ammo"
+@export var return_bolt_anim:StringName = &"return_bolt"
 
 @export_group("Settings")
 @export_subgroup("Audio")
@@ -28,7 +30,7 @@ var spread_multiplier:float = 1.0
 @export var shell_marker:Node3D
 @export var bullet_marker:Node3D
 var reset_spread_timer:Timer = Timer.new()
-
+var is_aim:bool = false : set = set_aim
 var spread_counter:float = 0.0
 
 var gun_object: R_WeaponProjectileObject
@@ -58,6 +60,15 @@ func _ready() -> void:
 	if is_instance_valid(animation_player):
 		animation_player.play(_pick)
 
+func set_aim(value:bool) -> void:
+	is_aim = value
+	is_aim_changed.emit()
+	
+	if value:
+		create_animation_player().play("lib/%s" % [aim_anim])
+	else:
+		create_animation_player().play_backwards("lib/%s" % [aim_anim])
+
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":
 		try_reload()
@@ -70,6 +81,13 @@ func try_reload() -> void:
 
 func _try_reload_net() -> void:
 	gun_object._try_reload(stack)
+
+func alt_use() -> void:
+	super()
+	is_aim = true
+func alt_release() -> void:
+	super()
+	is_aim = false
 
 func using() -> void:
 	super()
@@ -105,6 +123,8 @@ func fire() -> void:
 	
 	stack.set_durability(stack.get_durability() - 1)
 
+
+
 func return_bolt() -> void:
 	if stack.get_durability() == 0:
 		return
@@ -130,27 +150,14 @@ func play_fire_sound():
 func spawn_projectile() -> FirearmBullet:
 	var new_bullet:FirearmBullet = projectile.instantiate()
 	new_bullet.bullet_resource = bullet_resource
-	new_bullet.can_bounce = can_bounce
 	new_bullet.ammo = gun_object.get_ammo_type(stack)
-	if is_instance_valid(SourcePlayer.instance): new_bullet.player = SourcePlayer.instance
-	bullet_marker.add_child(new_bullet)
-	new_bullet.top_level = true
+	new_bullet.player = inventory.player.root
+	SourceLevelSection3D.get_by_name("local_objects").add_child(new_bullet)
+	new_bullet.global_rotation = bullet_marker.global_rotation
+	new_bullet.global_position = bullet_marker.global_position
+	new_bullet.initialized = true
 	reset_spread_timer.start(0)
 	
-	if is_instance_valid(SourcePlayer.instance):
-		if SourcePlayer.instance.movement.is_crouched: spread_multiplier = 0.5
-		elif SourcePlayer.instance.movement.is_sprinting: spread_multiplier = 2.0
-		elif not SourcePlayer.instance.is_on_floor(): spread_multiplier = 4.0
-		else:
-			spread_multiplier = 1.0
-	
-	spread_counter += 0.01
-	spread_random.x = randf_range(-1.0, 1.0) * spread_multiplier
-	spread_random.y = randf_range(-1.0, 1.0) * spread_multiplier
-	
-	new_bullet.global_position = bullet_marker.global_position
-	new_bullet.global_position.z += (spread_random * spread_counter).y
-	new_bullet.global_position.y += (spread_random * spread_counter).x
 	
 	return new_bullet
 
@@ -159,7 +166,7 @@ func spawn_projectile() -> FirearmBullet:
 func spawn_shell():
 	var new_bullet_shell:SourceBulletShell = SourceBulletShell.new()
 	new_bullet_shell.model = shell
-	SourceGame.instance.add_child(new_bullet_shell)
+	SourceLevelSection3D.get_by_name("local_objects").add_child(new_bullet_shell)
 	new_bullet_shell.global_position = shell_marker.global_position
 	new_bullet_shell.global_rotation_degrees = shell_marker.global_rotation_degrees
 	

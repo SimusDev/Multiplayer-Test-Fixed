@@ -59,9 +59,7 @@ height = 1.5
 radius = 0.205
 height = 1.0
 
-[node name="anime2" node_paths=PackedStringArray("model", "flashlight") instance=ExtResource("1_pyl8t")]
-model = NodePath("SourceAnimatedModel")
-flashlight = NodePath("SourceCamera/flashlight")
+[node name="anime2" instance=ExtResource("1_pyl8t")]
 
 [node name="SD_NetSynchronizer" parent="." index="1"]
 _data = SubResource("Resource_q40i1")
@@ -97,15 +95,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="camera_crouch_pos" type="Node3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 
+[node name="hitbox_body" parent="." index="13"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.717864, 0)
 shape = SubResource("CylinderShape3D_efwcb")
 debug_color = Color(0, 1, 0, 1)
 
+[node name="hitbox_legs" parent="." index="14"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+damage_multiplier = 0.4
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226172, 0)
 shape = SubResource("CylinderShape3D_5fc14")
 debug_color = Color(0, 0, 1, 1)
+
+[node name="hitbox_head" parent="." index="15"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20768, 0)
