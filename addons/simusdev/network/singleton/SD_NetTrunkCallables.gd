@@ -22,6 +22,7 @@ func get_remote_sender_id() -> int:
 
 func register_function(callable: Callable, options: Dictionary = {}) -> void:
 	var object: Object = callable.get_object()
+	SD_Network.register_object(object)
 	singleton.cache.cache_method(callable)
 	get_registered_functions(object).set(callable.get_method(), options)
 	
@@ -211,7 +212,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	
 	var net := SD_NetRegisteredNode.get_or_create(node)
 	if net._inactive_for_peers.has(peer):
-		debug_print("failed to call function on object: %s, %s!, object is inactive for peer %s" % [str(node), method, str(peer)], SD_ConsoleCategories.ERROR)
+		debug_print("cant call function on object: %s, %s., object is inactive for peer %s" % [str(node), method, str(peer)], SD_ConsoleCategories.WARNING)
 		return
 	
 	if !node:
