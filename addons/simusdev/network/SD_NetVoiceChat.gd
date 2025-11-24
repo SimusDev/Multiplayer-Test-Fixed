@@ -30,8 +30,8 @@ var _output_player : Node
 var _input_configured : bool = false
 var _output_configured : bool = false
 
-@export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
-@export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
+@export var transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_UNRELIABLE_ORDERED
+@export var channel: String = "voice_chat"
 
 func set_input_device(device_name : String) -> void:
 	AudioServer.input_device = device_name
@@ -53,9 +53,11 @@ func _ready() -> void:
 	#SD_Network.register_object(self)
 	#SD_Network.register_function(_process_audio)
 	
+	SD_Network.register_channel(channel)
+	
 	SD_Network.register_rpc_any_peer(_process_audio, 
 	MultiplayerPeer.TRANSFER_MODE_UNRELIABLE_ORDERED, 
-	SourceNetwork.CHANNEL_PLAYER)
+	channel)
 	
 	_configure_bus()
 	

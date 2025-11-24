@@ -37,7 +37,7 @@ static func deserialize_reference(ref: int) -> SD_NetworkedResource:
 	return null
 
 func register() -> void:
-	if registered:
+	if is_registered:
 		return
 	
 	#SD_Network.register_object(self)
@@ -45,7 +45,7 @@ func register() -> void:
 	_registered()
 
 func unregister() -> void:
-	if !registered:
+	if !is_registered:
 		return
 	
 	#SD_Network.unregister_object(self)

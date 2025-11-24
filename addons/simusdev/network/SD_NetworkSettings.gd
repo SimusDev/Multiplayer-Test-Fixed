@@ -19,6 +19,7 @@ var serializer_min_bytes_to_compress: int = 500
 @export var dedicated_server_scene: PackedScene
 @export var debug: bool = false
 @export var debug_callables: bool = true
+@export var debug_rpc: bool = true
 @export var debug_vars: bool = true
 @export var debug_cache: bool = true
 @export var cache: SD_NetworkCacheSettings = SD_NetworkCacheSettings.new()

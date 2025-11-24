@@ -23,6 +23,7 @@ var _peer: PacketPeer
 
 const SERVER_ID: int = 1
 
+signal on_inactive_object_update_request()
 signal on_connected_to_server()
 signal on_connection_failed()
 signal on_handshake_begin()
@@ -214,16 +215,16 @@ func debug_print(text, category: int = 0) -> void:
 		var t: String = "[Network] %s" % str(text)
 		console.write(t, category)
 
-func register_object(object: Object) -> void:
+func register_object(object: Object) -> SD_NetRegisteredNode:
 	if is_object_registered(object):
-		return
+		return SD_NetRegisteredNode.get_or_create(object)
 	
-	if object is Node:
-		if not object.is_inside_tree():
-			await object.tree_entered
+	#if object is Node:
+		#if not object.is_inside_tree():
+			#await object.tree_entered
 	
 	object.set_meta("_networked", true)
-	SD_NetRegisteredNode.create(object)
+	return SD_NetRegisteredNode.create(object)
 
 func is_object_registered(object: Object) -> bool:
 	if is_instance_valid(object):
@@ -233,3 +234,6 @@ func is_object_registered(object: Object) -> bool:
 func unregister_object(object: Object) -> void:
 	if is_object_registered(object):
 		object.remove_meta("_networked")
+
+func request_update_inactive_objects() -> void:
+	on_inactive_object_update_request.emit()

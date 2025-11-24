@@ -27,6 +27,8 @@ func initialize(object: Object) -> void:
 	_inactive_for_peers.erase(SD_Network.get_unique_id())
 	_inactive_for_peers.erase(SD_Network.SERVER_ID)
 	
+	SD_Network.singleton.on_inactive_object_update_request.connect(_on_inactive_object_update_request)
+	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
 	
 	reference = object
@@ -52,6 +54,13 @@ func initialize(object: Object) -> void:
 
 func _on_peer_disconnected(peer: int) -> void:
 	_inactive_for_peers.erase(peer)
+
+func _on_peer_connected(peer: int) -> void:
+	if not _inactive_for_peers.has(peer):
+		_inactive_for_peers.append(peer)
+
+func _on_inactive_object_update_request() -> void:
+	_on_tree_entered()
 
 func _on_net_resource_unregistered() -> void:
 	_on_tree_exited()

@@ -145,9 +145,13 @@ func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionar
 		var data: Dictionary = players[peer_id]
 		_receive_player_from_server(data)
 	
+	singleton.request_update_inactive_objects()
+	
 	singleton.on_connected_to_server.emit()
 	
 	singleton.on_handshake_success.emit(SD_NetSuccess.create("connected to server!"))
+	
+	
 
 @rpc("reliable", "any_peer")
 func _terminate_client_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, message: String = "") -> void:

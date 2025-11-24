@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbag3jovgula2"
 path.s3tc="res://.godot/imported/ui_icon_arrow.png-4b49a8109cfe538f48b15ec10a8de03d.s3tc.ctex"
-path.etc2="res://.godot/imported/ui_icon_arrow.png-4b49a8109cfe538f48b15ec10a8de03d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/simusdev/Game/icons/ui_icon_arrow.png"
-dest_files=["res://.godot/imported/ui_icon_arrow.png-4b49a8109cfe538f48b15ec10a8de03d.s3tc.ctex", "res://.godot/imported/ui_icon_arrow.png-4b49a8109cfe538f48b15ec10a8de03d.etc2.ctex"]
+dest_files=["res://.godot/imported/ui_icon_arrow.png-4b49a8109cfe538f48b15ec10a8de03d.s3tc.ctex"]
 
 [params]
 

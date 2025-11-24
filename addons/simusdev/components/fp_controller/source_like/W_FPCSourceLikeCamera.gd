@@ -94,7 +94,6 @@ func _enabled_status_changed() -> void:
 
 func _ready() -> void:
 	SD_Network.register_object(self)
-	SD_Components.append_to(body, self)
 	if not is_authority():
 		add_disable_priority()
 		return

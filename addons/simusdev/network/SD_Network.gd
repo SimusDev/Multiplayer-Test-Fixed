@@ -128,8 +128,8 @@ static func var_sync_from_server(node: Node, properties: PackedStringArray, call
 static func get_remote_sender_id() -> int:
 	return singleton.callables.get_remote_sender_id()
 
-static func register_object(node: Object) -> void:
-	singleton.register_object(node)
+static func register_object(node: Object) -> SD_NetRegisteredNode:
+	return singleton.register_object(node)
 
 static func unregister_object(node: Object) -> void:
 	singleton.unregister_object(node)
