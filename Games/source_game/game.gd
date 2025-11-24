@@ -4,7 +4,7 @@ signal prop_spawned
 
 static var instance:SourceGame = null
 
-var sv_cheats:bool = false : set = set_sv_cheats
+var sv_cheats:bool = true : set = set_sv_cheats
 var mp_player_spawner:SD_MPPlayerSpawner
 
 @export var level_handler:SourceLevelHandler
@@ -15,7 +15,6 @@ var mp_player_spawner:SD_MPPlayerSpawner
 @export var _singleton_pack: PackedScene
 @export var _spawner: SourceNetworkSpawner
 
-var _surfaces := SourceSurfaces.new()
 const GAME_PATH: String = "res://Games/source_game/"
 const SCENE_PATH:String = "res://Games/source_game/game.tscn"
 
@@ -24,34 +23,24 @@ var test_peers: Array[int] = []
 static func is_cheats_enabled() -> bool:
 	return instance.sv_cheats
 
-func _physics_process(delta: float) -> void:
-	pass
-	
-	#for i in test_peers:
-		#if SD_Network.get_unique_id() == i:
-			#var yo : bool = true
 
 func _ready() -> void:
-	#for i in 4000:
-		#test_peers.append(SD_Random.get_rint_range(0, 9_000_000))
-	#
-	
 	SD_Network.register_function(spawn_on_server)
 	SD_Network.register_function(clear_objects)
 	SD_Network.register_object(self)
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
-
-	#level_handler._load_level.connect(level_handler.check_level)
 
 	var s_pack = _singleton_pack.instantiate()
 	add_child(s_pack)
 
 	instance = self
 	
-	send_welcome_message()
 	
 	SD_Network.register_rpc_any_peer(_test_rpc_)
 	SD_Network.register_function(_test_rpc_)
+
+	if SD_Network.is_authority(self):
+		send_welcome_message()
 
 func _on_timer_timeout() -> void:
 	if SD_Network.is_server():
@@ -64,7 +53,6 @@ func _test_rpc_() -> void:
 	print('hello from : %s' % multiplayer.get_remote_sender_id())
 
 func _on_peer_connected(_peer_id:int):
-	#level_handler.check_level()
 	pass
 
 func start_respawn_timer(_for:SD_MultiplayerPlayer, sec:float = 7.8):
@@ -160,26 +148,9 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 		return
 	
 	match command.get_code():
-			
-		#"time.set":
-			#if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
-				#SimusDev.console.write_error("command expected 1 arguments")
-				#return
-			#var value = command.get_value_as_float()
-			#SD_Multiplayer.sync_call_function(SourceGame.instance, set_time, [value])
-		
-		#"time.freeze":
-			#if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
-				#SimusDev.console.write_error("command expected 1 arguments")
-				#return
-			#var value = command.get_value_as_bool()
-			#SD_Multiplayer.sync_call_function(SourceGame.instance, set_time_freeze, [value])
-		
 		"player.teleport":
 			if command.get_arguments().size() < 4 or command.get_arguments().size() > 4:
 				SimusDev.console.write_error("command expected 4 arguments")
-				return
-			if command.get_arguments().size() < 4:
 				return
 			
 			var args:Array[String] = command.get_arguments()
@@ -207,7 +178,7 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 				SimusDev.console.write_error("expected 1 arguments")
 				return
 			
-			SD_Multiplayer.sync_call_function_on_server(self, find_and_kill_player, [command.get_value_as_string()])
+			SD_Network.call_func_on_server(find_and_kill_player, [command.get_value_as_string()])
 		
 		"level.spawn":
 			var obj: R_SourceWorldObject = R_SourceWorldObject.get_by_id(command.get_value_as_string())
@@ -236,34 +207,27 @@ func clear_objects() -> void:
 	else:
 		SimusDev.console.write_error("sv_cheats == false! blin.")
 
-func find_player(nickname:String) -> SD_MultiplayerPlayer:
-	var picked_player:SD_MultiplayerPlayer = null
-	for p:SD_MultiplayerPlayer in SD_Multiplayer.get_connected_players():
-		if p.get_username() == nickname:
-			picked_player = p
+func find_player(nickname:String) -> SD_NetworkPlayer:
+	var picked_player:SD_NetworkPlayer = null
+	for player:SD_NetworkPlayer in SD_Network.get_connected_players():
+		if player.get_nickname() == nickname:
+			picked_player = player
 			break
 	return picked_player
 
 func find_and_kill_player(nickname:String):
-	if !find_player(nickname): return
-	
-	var player = find_player(nickname).get_player_node() as SourcePlayer
+	var player:Node = find_player(nickname).get_player_node()
 	if is_instance_valid(player):
-		player.health.kill()
+		if player is SourcePlayer:
+			player.health.kill()
 
 func teleport_player(player:Node3D, position:Vector3):
-	if !is_instance_valid(player): return
+	if !is_instance_valid(player):
+		return
+	
 	player.global_position = position
 	SimusDev.console.write_info(str(player) + " position: " + str(position))
 
-#func set_time(value:float):
-	#map.sky_3d.current_time = value
-	#SimusDev.console.write_info("current_time: " + str(value))
-#
-#func set_time_freeze(value:bool):
-	#map.sky_3d.enable_game_time = !value
-	#SimusDev.console.write_info("time.freeze: " + str(value))
-#
 func set_sv_cheats(value:bool) -> void:
 	sv_cheats = value
 	SimusDev.console.write_info("sv_cheats: " + str(value))

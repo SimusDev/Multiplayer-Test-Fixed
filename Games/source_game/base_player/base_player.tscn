@@ -422,6 +422,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 authority_node = NodePath("..")
 
 [node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target", "target_health_component")]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("29_em5yj")
 target = NodePath("..")
 target_health_component = NodePath("../SourceHealth")

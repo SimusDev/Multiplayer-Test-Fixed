@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://grx8xcps0x4p"]
+[gd_scene load_steps=3 format=3 uid="uid://grx8xcps0x4p"]
 
 [ext_resource type="Texture2D" uid="uid://i8meuapjopmp" path="res://Games/source_game/decals/bullet_hole/bullet_hole.png" id="1_b20k8"]
+[ext_resource type="Texture2D" uid="uid://cqob5b4gdxnvs" path="res://Games/source_game/decals/bullet_hole/bullet_hole_ambient.png" id="3_otq51"]
 
 [node name="bullethole" type="Node3D"]
 
@@ -8,3 +9,4 @@
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 size = Vector3(0.05, 0.05, 0.05)
 texture_albedo = ExtResource("1_b20k8")
+texture_orm = ExtResource("3_otq51")

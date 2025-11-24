@@ -90,6 +90,10 @@ shape = SubResource("BoxShape3D_an3tc")
 [node name="nickname" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40819, 0)
 
+[node name="AI_Visible" parent="." index="20"]
+collision_layer = 16
+collision_mask = 16
+
 [node name="SourceEmotions" type="Node" parent="." index="21" node_paths=PackedStringArray("root")]
 script = ExtResource("5_mitkl")
 root = NodePath("..")

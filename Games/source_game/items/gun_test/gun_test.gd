@@ -58,6 +58,7 @@ func _ready() -> void:
 	])
 	
 	if is_instance_valid(animation_player):
+		animation_player.animation_finished.connect(on_animation_finished)
 		animation_player.play(_pick)
 
 func set_aim(value:bool) -> void:
@@ -69,9 +70,13 @@ func set_aim(value:bool) -> void:
 	else:
 		create_animation_player().play_backwards("lib/%s" % [aim_anim])
 
+func on_animation_finished(anim_name:StringName) -> void:
+	anim_name
+
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":
 		try_reload()
+		#animation_player.play(_reload)
 
 func on_durability_changed() -> void:
 	pass
@@ -85,6 +90,7 @@ func _try_reload_net() -> void:
 func alt_use() -> void:
 	super()
 	is_aim = true
+
 func alt_release() -> void:
 	super()
 	is_aim = false
@@ -110,16 +116,12 @@ func fire() -> void:
 	if pre_event.publish() == false:
 		return
 	
-	var bullet: FirearmBullet = spawn_projectile()
+	SD_Network.call_func_on_server(spawn_projectile)
+	
 	spawn_shell()
 	animation_player.play(_fire)
 	play_fire_sound()
 	
-	var event: S_EventGunFire = S_EventGunFire.get_by_script(S_EventGunFire) as S_EventGunFire
-	event.source = player
-	event.bullet = bullet
-	event.weapon = self
-	event.publish()
 	
 	stack.set_durability(stack.get_durability() - 1)
 
@@ -135,7 +137,6 @@ func return_bolt() -> void:
 	bolt_animation_player.add_animation_library("lib", animation_player.get_animation_library(lib_name))
 	add_child(bolt_animation_player)
 	
-	print(bolt_animation_player.get_animation_library("lib").get_animation_list())
 	
 	bolt_animation_player.play("lib/%s" % return_bolt_anim)
 
@@ -152,12 +153,17 @@ func spawn_projectile() -> FirearmBullet:
 	new_bullet.bullet_resource = bullet_resource
 	new_bullet.ammo = gun_object.get_ammo_type(stack)
 	new_bullet.player = inventory.player.root
+	new_bullet.prev_pos = bullet_marker.global_position
 	SourceLevelSection3D.get_by_name("local_objects").add_child(new_bullet)
 	new_bullet.global_rotation = bullet_marker.global_rotation
 	new_bullet.global_position = bullet_marker.global_position
-	new_bullet.initialized = true
 	reset_spread_timer.start(0)
 	
+	var event: S_EventGunFire = S_EventGunFire.get_by_script(S_EventGunFire) as S_EventGunFire
+	event.source = player
+	event.bullet = new_bullet
+	event.weapon = self
+	event.publish()
 	
 	return new_bullet
 

@@ -12,6 +12,7 @@ _placeholder_stream = ExtResource("2_w6w53")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
 fixed_size = true
+texture_filter = 0
 texture = ExtResource("2_l27qt")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

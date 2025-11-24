@@ -36,10 +36,11 @@ func _ready() -> void:
 	
 	if health:
 		health.died.connect(__on_health_died)
+	
+	SD_Components.append_to(health.target, self)
 
 func __on_health_died() -> void:
 	health_died.emit()
 
 func apply_damage(points: float) -> void:
 	health.apply_damage(points * damage_multiplier)
-	print("Sex")

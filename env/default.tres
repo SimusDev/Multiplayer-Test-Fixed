@@ -1,18 +1,10 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://b71yn6wfk8lop"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://b71yn6wfk8lop"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwyu6"]
-sky_top_color = Color(0.29124856, 0.4306456, 0.8335343, 1)
-sky_horizon_color = Color(0.543376, 0.6436353, 0.92458624, 1)
-ground_bottom_color = Color(0.4024827, 0.5270523, 0.8933539, 1)
-ground_horizon_color = Color(0.543376, 0.6436353, 0.92458624, 1)
-ground_curve = 0.08282131
-
-[sub_resource type="Sky" id="Sky_kd6k1"]
-sky_material = SubResource("ProceduralSkyMaterial_bwyu6")
+[ext_resource type="Sky" uid="uid://djx338cmyvob8" path="res://addons/flowing-sky/templates/sky.tres" id="1_kd6k1"]
 
 [resource]
 background_mode = 2
-sky = SubResource("Sky_kd6k1")
+sky = ExtResource("1_kd6k1")
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0

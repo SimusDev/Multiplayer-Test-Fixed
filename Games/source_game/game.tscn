@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene load_steps=29 format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
@@ -20,34 +20,51 @@
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_dt7qg"]
+resource_name = "sv_cheats"
 script = ExtResource("19_dt7qg")
 code = "sv_cheats"
 value = "0"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_ij05y"]
+resource_name = "noclip"
 script = ExtResource("19_dt7qg")
 code = "noclip"
 value = "0"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_8dbco"]
+resource_name = "level.spawn"
 script = ExtResource("19_dt7qg")
 code = "level.spawn"
 value = "object.radio_prop"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_tn3t5"]
+resource_name = "level.clear"
 script = ExtResource("19_dt7qg")
 code = "level.clear"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_ha5cx"]
+resource_name = "game.help"
 script = ExtResource("19_dt7qg")
 code = "game.help"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_rwrbd"]
+resource_name = "player.kill"
+script = ExtResource("19_dt7qg")
+code = "player.kill"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_dvgr3"]
+resource_name = "player.teleport"
+script = ExtResource("19_dt7qg")
+code = "player.teleport"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="source_game" type="Node" node_paths=PackedStringArray("level_handler", "_spawner")]
@@ -110,7 +127,7 @@ metadata/_custom_type_script = "uid://brbjcyxkk7elj"
 
 [node name="game_commands" type="Node" parent="."]
 script = ExtResource("18_wirdf")
-commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx")])
+commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx"), SubResource("Resource_rwrbd"), SubResource("Resource_dvgr3")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [node name="decals" type="Node3D" parent="."]
