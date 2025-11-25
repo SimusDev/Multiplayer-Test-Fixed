@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://canroxh0qvh4q"]
+
+[ext_resource type="Texture2D" uid="uid://xrd3x5ps3n1i" path="res://textures/lobby/bg.jpg" id="1_7xaqr"]
+[ext_resource type="Script" uid="uid://dau2vuhctib65" path="res://Games/source_game/components/r_source_material.gd" id="2_tgtxs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs3uj"]
+albedo_texture = ExtResource("1_7xaqr")
+script = ExtResource("2_tgtxs")
+metadata/_custom_type_script = "uid://dau2vuhctib65"
+
+[sub_resource type="BoxMesh" id="BoxMesh_ms3yh"]
+material = SubResource("StandardMaterial3D_qs3uj")
+size = Vector3(0.125, 0.17, 0.145)
+
+[node name="model" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ms3yh")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://jd1cq7lf7cl2"]
+
+[ext_resource type="PackedScene" uid="uid://canroxh0qvh4q" path="res://Games/source_game/game/cloth/almaZ_boot/model.tscn" id="1_mk6hs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6344f"]
+size = Vector3(0.125, 0.17, 0.145)
+
+[node name="world_prefab" type="RigidBody3D"]
+mass = 5.0
+
+[node name="model" parent="." instance=ExtResource("1_mk6hs")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6344f")
+
+[editable path="model"]
