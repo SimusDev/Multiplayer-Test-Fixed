@@ -15,7 +15,7 @@ var initialized:bool = false
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	
+	SD_Components.append_to(target, self)
 	initialize()
 
 func initialize() -> void:

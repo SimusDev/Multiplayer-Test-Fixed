@@ -1,7 +1,7 @@
 class_name SourceFootsteps extends AudioStreamPlayer3D
 
 @export var player:CharacterBody3D
-@export var detect_area:Area3D
+@export var raycast:RayCast3D
 
 @export_group("Assets")
 @export_subgroup("Grass")
@@ -30,38 +30,49 @@ class_name SourceFootsteps extends AudioStreamPlayer3D
 @export var wade:Array[AudioStream] = []
 @export var slosh:Array[AudioStream] = []
 
-@export_category("Settings")
-@export var current_surface:String = "tile"
 
 func _ready() -> void:
-	if is_instance_valid(detect_area):
-		detect_area.body_entered.connect(on_detect_area_body_entered)
+	SD_Components.append_to(player, self)
+	var player_model:SourceAnimatedModel = SD_Components.find_first(player, SourceAnimatedModel)
+	if is_instance_valid(player_model):
+		player_model.footstep.connect(_do_footstep)
 	
-	if is_instance_valid(player):
-		SD_Components.append_to(player, self)
-
-func on_detect_area_body_entered(_body) -> void:
-	for body in detect_area.get_overlapping_bodies():
-		if body is CSGBox3D:
-			if body.material is SourceMaterial:
-				current_surface = body.material.type
-		if body is MeshInstance3D:
-			var material:StandardMaterial3D = body.get_active_material()
-			print(material)
-			if material is SourceMaterial:
-				current_surface = material.type
+func detect_surface() -> String:
+	var collider = raycast.get_collider()
+	if collider is Node3D:
+		var groups:Array[StringName] = collider.get_groups()
+		if groups.is_empty():
+			return ""
+		
+		for group:String in groups:
+			if group.contains("material."):
+				var splitted:PackedStringArray = group.split("material.")
+				splitted.remove_at(0)
+				var result:String = ""
+				for packed_string in splitted:
+					result += packed_string
+				print(result)
+				return result
+		
+	return ""
 
 func get_surface_sounds() -> Array[AudioStream]:
-	return get(current_surface)
+	var surface = detect_surface()
+	if surface:
+		return get(surface)
+	
+	return []
 
 func _do_footstep():
+	var surface:String = detect_surface()
+	print(surface)
 	if is_instance_valid(player):
-		if !get(current_surface) or !player.is_on_floor() or !player.velocity:
+		if !get(surface) or !player.is_on_floor() or !player.velocity:
 			return
 
 		randomize()
-		var rand_idx = randi()% (get(current_surface).size())
-		stream = get(current_surface)[rand_idx]
+		var rand_idx = randi() % (get(surface).size())
+		stream = get(surface)[rand_idx]
 		
 
 		play()

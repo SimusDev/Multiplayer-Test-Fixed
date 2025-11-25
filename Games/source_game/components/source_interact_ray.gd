@@ -9,6 +9,7 @@ const LAYERS: PackedInt32Array = [
 ]
 
 @export var root: Node
+@export var exceptions:Array[Node3D]
 var player: bool = false
 @export var input: StringName = "source.interact"
 
@@ -26,6 +27,9 @@ func get_selected() -> Object:
 
 func _ready() -> void:
 	target_position = RAY_POSITION
+	
+	for exception in exceptions:
+		add_exception(exception)
 	
 	if not root:
 		root = get_parent()

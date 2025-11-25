@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cdarxs3qjb3uc" path="res://Games/source_game/components/crafting/recipe_object.gd" id="1_cap4b"]
 [ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="2_ck7by"]
 [ext_resource type="Texture2D" uid="uid://k88be7ll153x" path="res://addons/kenney_prototype_textures/light/texture_06.png" id="2_mbfr0"]
-[ext_resource type="FontFile" uid="uid://csd848psgx6vc" path="res://addons/gamedev_assistant/dock/fonts/FiraCode-Regular.woff2" id="5_faxup"]
+[ext_resource type="FontFile" uid="uid://bowbjk40qu8ld" path="res://fonts/Samson.ttf" id="4_f6fyb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tl671"]
 albedo_texture = ExtResource("2_mbfr0")
@@ -17,7 +17,7 @@ size = Vector3(0.4, 0.01, 0.3)
 points = PackedVector3Array(-0.2, -0.005, -0.1, -0.2, 0.005, -0.1, 0.2, -0.005, -0.1, -0.2, -0.005, 0.1, -0.2, 0.005, 0.1, 0.2, 0.005, -0.1, 0.2, -0.005, 0.1, 0.2, 0.005, 0.1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gbxgd"]
-font = ExtResource("5_faxup")
+font = ExtResource("4_f6fyb")
 font_size = 48
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mbfr0"]
@@ -36,8 +36,8 @@ shape = SubResource("ConvexPolygonShape3D_cap4b")
 
 [node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
 script = ExtResource("2_ck7by")
-surface = "body"
 rigid_body = NodePath("..")
+surface = "body"
 metadata/_custom_type_script = "uid://d2inw684rgrh8"
 
 [node name="SubViewportContainer" type="SubViewport" parent="."]

@@ -9,16 +9,12 @@ signal hard_grounded
 @export var max_safe_fall_speed: float = 10.0
 @export var base_fall_damage:float = 8.0
 
-@export var grounding_sounds:Array[AudioStream]
-@export var hard_grounding_sounds:Array[AudioStream]
-
 @onready var footsteps_component:SourceFootsteps = SD_Components.find_first(player, SourceFootsteps)
 
 var was_on_floor:bool = false
 var last_velocity:Vector3
 
 func _ready() -> void:
-	grounding_sounds = footsteps_component.get(footsteps_component.current_surface)
 	grounded.connect(_on_grounded)
 	hard_grounded.connect(_on_hard_grounded)
 
@@ -43,16 +39,13 @@ func _handle_grounding():
 		was_on_floor = false
 
 func _on_grounded():
-	var grounding_sound:AudioStream = null
 	var fall_speed:float = -last_velocity.y
 	
 	if fall_speed > max_safe_fall_speed:
 		hard_grounded.emit()
-		grounding_sound = hard_grounding_sounds.pick_random()
-	else:
-		grounding_sound = footsteps_component.get_surface_sounds().pick_random()
 	
-	SoundPlayer.play_global_audio_3d(player.global_position, grounding_sound)
+	if not footsteps_component.get_surface_sounds().is_empty():
+		SoundPlayer.play_global_audio_3d(player.global_position, footsteps_component.get_surface_sounds().pick_random())
 
 
 func _on_hard_grounded():

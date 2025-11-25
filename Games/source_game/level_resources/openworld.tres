@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_SourceLevel" load_steps=3 format=3 uid="uid://bmhdncdmmneb1"]
+
+[ext_resource type="PackedScene" uid="uid://dntfex5wfixvn" path="res://Games/source_game/game/levels/openworld/level.tscn" id="1_pousn"]
+[ext_resource type="Script" uid="uid://dfp4ypn40rblh" path="res://Games/source_game/components/r_level.gd" id="2_y6ik2"]
+
+[resource]
+script = ExtResource("2_y6ik2")
+map_name = &"openworld"
+level_scene = ExtResource("1_pousn")
+metadata/_custom_type_script = "uid://dfp4ypn40rblh"

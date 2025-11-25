@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://ised7kw4idro"]
+[gd_scene load_steps=70 format=3 uid="uid://ised7kw4idro"]
 
 [ext_resource type="Script" uid="uid://cwxie087rytl0" path="res://Games/source_game/components/footsteps.gd" id="1_tcndt"]
 [ext_resource type="AudioStream" uid="uid://dey6rj80c53i4" path="res://sounds/hl2/player/footsteps/grass1.wav" id="2_2col1"]
@@ -70,12 +70,9 @@
 [ext_resource type="AudioStream" uid="uid://ckfxtydxaxm0m" path="res://sounds/hl2/player/footsteps/slosh3.wav" id="68_g8fos"]
 [ext_resource type="AudioStream" uid="uid://bb1542hx45j4a" path="res://sounds/hl2/player/footsteps/slosh4.wav" id="69_q46ut"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tcndt"]
-size = Vector3(0.4, 0.1, 0.4)
-
-[node name="SourceFootsteps" type="AudioStreamPlayer3D" node_paths=PackedStringArray("detect_area")]
+[node name="SourceFootsteps" type="AudioStreamPlayer3D" node_paths=PackedStringArray("raycast")]
 script = ExtResource("1_tcndt")
-detect_area = NodePath("Area3D")
+raycast = NodePath("RayCast3D")
 grass = Array[AudioStream]([ExtResource("2_2col1"), ExtResource("3_tvtk7"), ExtResource("4_2dhun"), ExtResource("5_fj084")])
 gravel = Array[AudioStream]([ExtResource("6_ea37x"), ExtResource("7_irtto"), ExtResource("8_4qdd1"), ExtResource("9_0t81t")])
 dirt = Array[AudioStream]([ExtResource("10_w13j1"), ExtResource("11_0ffur"), ExtResource("12_pu470"), ExtResource("13_88sl6")])
@@ -94,9 +91,6 @@ wade = Array[AudioStream]([ExtResource("58_ojw6v"), ExtResource("59_73egv"), Ext
 slosh = Array[AudioStream]([ExtResource("66_hu0si"), ExtResource("67_rh1hm"), ExtResource("68_g8fos"), ExtResource("69_q46ut")])
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 0.45, -2.9802322e-08)
-shape = SubResource("BoxShape3D_tcndt")
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+collision_mask = 32
