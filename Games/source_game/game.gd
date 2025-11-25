@@ -25,9 +25,14 @@ static func is_cheats_enabled() -> bool:
 
 
 func _ready() -> void:
-	SD_Network.register_function(spawn_on_server)
-	SD_Network.register_function(clear_objects)
 	SD_Network.register_object(self)
+	SD_Network.register_functions([
+		spawn_on_server,
+		teleport_player,
+		clear_objects,
+		find_and_kill_player
+		])
+	
 	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 
 	var s_pack = _singleton_pack.instantiate()
@@ -175,11 +180,12 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 			SimusDev.console.write_error("cant noclip yet. :(")
 
 		"player.kill":
-			if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
-				SimusDev.console.write_error("expected 1 arguments")
-				return
+			if is_cheats_enabled() or SD_Network.is_server():
+				if command.get_arguments().size() < 1 or command.get_arguments().size() > 1:
+					SimusDev.console.write_error("expected 1 arguments")
+					return
 			
-			SD_Network.call_func_on_server(find_and_kill_player, [command.get_value_as_string()])
+				SD_Network.call_func_on_server(find_and_kill_player, [command.get_value_as_string()])
 		
 		"level.spawn":
 			var obj: R_SourceWorldObject = R_SourceWorldObject.get_by_id(command.get_value_as_string())
