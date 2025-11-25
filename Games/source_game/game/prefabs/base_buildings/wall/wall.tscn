@@ -1,13 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://vkn5wykomtyq"]
+[gd_scene load_steps=11 format=4 uid="uid://vkn5wykomtyq"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_feq7x"]
 [ext_resource type="PackedScene" uid="uid://c3kfrfj8fldjp" path="res://Games/source_game/props/metrudev's_brick/brick.tscn" id="4_fywtf"]
-[ext_resource type="BoxMesh" uid="uid://bw4hitmohtrxc" path="res://Games/source_game/objects/buildings/meshes/wall.tres" id="4_uv2w3"]
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="4_uv2w3"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="5_uv2w3"]
+[ext_resource type="Script" uid="uid://dks1ecwbmrkaj" path="res://Games/source_game/components/build_snap_point.gd" id="6_g0xtm"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="6_o03sm"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o03sm"]
+_surfaces = [{
+"aabb": AABB(-1.5, -1.5, -0.25, 3, 3, 0.5),
+"attribute_data": PackedByteArray("AACAPwAAAAAAAIA/AAAAP6uqKj8AAAA/q6qqPgAAAD+rqqo+AACAPwAAAAAAAIA/q6oqPwAAAD8AAIA/AAAAP6uqKj8AAIA/AAAAAAAAAD+rqqo+AAAAPwAAAAAAAIA/q6oqPwAAAD+rqio/AACAP6uqqj4AAIA/AAAAAAAAAACrqqo+AAAAAAAAAAAAAAA/AACAPwAAAD8AAIA/AACAP6uqKj8AAIA/q6oqPwAAAACrqio/AAAAP6uqqj4AAAA/q6qqPgAAAACrqqo+AAAAPwAAAAAAAAA/q6oqPwAAAAAAAIA/AAAAAKuqKj8AAAA/q6qqPgAAAD+rqio/AAAAP6uqqj4AAIA/q6qqPgAAAACrqio/AAAAAKuqqj4AAAA/"),
+"format": 34359738391,
+"material": ExtResource("4_uv2w3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AADAvwAAwD8AAIC+AADAvwAAwL8AAIC+AADAPwAAwL8AAIC+AADAvwAAwD8AAIA+AADAvwAAwL8AAIA+AADAvwAAwL8AAIC+AADAvwAAwL8AAIA+AADAPwAAwL8AAIA+AADAvwAAwL8AAIC+AADAvwAAwD8AAIC+AADAvwAAwD8AAIA+AADAvwAAwL8AAIC+AADAvwAAwD8AAIA+AADAvwAAwD8AAIC+AADAPwAAwD8AAIC+AADAvwAAwD8AAIA+AADAPwAAwD8AAIA+AADAvwAAwL8AAIA+AADAPwAAwL8AAIA+AADAPwAAwL8AAIC+AADAvwAAwL8AAIC+AADAPwAAwD8AAIC+AADAPwAAwL8AAIC+AADAPwAAwL8AAIA+AADAPwAAwD8AAIA+AADAPwAAwL8AAIA+AADAvwAAwL8AAIA+AADAPwAAwD8AAIC+AADAvwAAwD8AAIC+AADAPwAAwL8AAIC+AADAPwAAwD8AAIA+AADAvwAAwD8AAIA+AADAPwAAwD8AAIC+AADAPwAAwD8AAIA+AADAPwAAwD8AAIC+AADAPwAAwL8AAIA+/////wAA/7//////AAD/v/////8AAP+/AAD/f/9//78AAP9//3//vwAA/3//f/+//38AAP///7//fwAA////v/9/AAD///+/AAD/f/9//78AAP9//3//vwAA/3//f/+//3///wAA/7//f///AAD/v/9///8AAP+//3//f////7//f/9/////v/9//3////+//38AAP///7//fwAA////v/9/AAD///+/////f/////////9//////////3///////3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/////f/////////9//////////3//////")
+}]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_feq7x"]
 size = Vector3(3, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o03sm"]
+size = Vector3(0.1, 3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0xtm"]
+size = Vector3(1, 0.2, 0.1)
 
 [node name="wall" type="Node3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_feq7x")
@@ -22,10 +41,10 @@ health = 500.0
 max_health = 500.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="mesh" type="CSGMesh3D" parent="."]
-mesh = ExtResource("4_uv2w3")
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_o03sm")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["material.concrete"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_feq7x")
@@ -41,3 +60,78 @@ metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 shape = SubResource("BoxShape3D_feq7x")
+
+[node name="wall_points" type="Node3D" parent="."]
+
+[node name="BuildSnapPoint" type="Area3D" parent="wall_points" node_paths=PackedStringArray("point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("6_g0xtm")
+point = NodePath("Marker3D")
+allowed_types = Array[int]([1])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_points/BuildSnapPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4901161e-08)
+shape = SubResource("BoxShape3D_o03sm")
+debug_color = Color(1, 0.4509804, 0, 0.7764706)
+
+[node name="Marker3D" type="Marker3D" parent="wall_points/BuildSnapPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="BuildSnapPoint2" type="Area3D" parent="wall_points" node_paths=PackedStringArray("point")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0, 0)
+script = ExtResource("6_g0xtm")
+point = NodePath("Marker3D")
+allowed_types = Array[int]([1])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_points/BuildSnapPoint2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4901161e-08)
+shape = SubResource("BoxShape3D_o03sm")
+debug_color = Color(1, 0.4509804, 0, 0.7764706)
+
+[node name="Marker3D" type="Marker3D" parent="wall_points/BuildSnapPoint2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="BuildSnapPoint3" type="Area3D" parent="wall_points" node_paths=PackedStringArray("point")]
+transform = Transform3D(4.371139e-08, 1, 3.821371e-15, 1, -4.371139e-08, 8.742278e-08, 8.742278e-08, 0, -1, 0, 1.5, 0)
+script = ExtResource("6_g0xtm")
+point = NodePath("Marker3D")
+allowed_types = Array[int]([1])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_points/BuildSnapPoint3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4901161e-08)
+shape = SubResource("BoxShape3D_o03sm")
+debug_color = Color(1, 0.4509804, 0, 0.7764706)
+
+[node name="Marker3D" type="Marker3D" parent="wall_points/BuildSnapPoint3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="ceiling_points" type="Node3D" parent="."]
+
+[node name="BuildSnapPoint" type="Area3D" parent="ceiling_points" node_paths=PackedStringArray("point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -0.25)
+script = ExtResource("6_g0xtm")
+point = NodePath("Marker3D")
+allowed_types = Array[int]([3])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="Marker3D" type="Marker3D" parent="ceiling_points/BuildSnapPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling_points/BuildSnapPoint"]
+shape = SubResource("BoxShape3D_g0xtm")
+
+[node name="BuildSnapPoint2" type="Area3D" parent="ceiling_points" node_paths=PackedStringArray("point")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 1.4, 0.25)
+script = ExtResource("6_g0xtm")
+point = NodePath("Marker3D")
+allowed_types = Array[int]([3])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="Marker3D" type="Marker3D" parent="ceiling_points/BuildSnapPoint2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling_points/BuildSnapPoint2"]
+shape = SubResource("BoxShape3D_g0xtm")

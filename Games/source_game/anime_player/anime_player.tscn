@@ -1,12 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2ly2hwdj87jl"]
+[gd_scene load_steps=15 format=3 uid="uid://d2ly2hwdj87jl"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
 [ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="2_43l7g"]
 [ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="3_efwcb"]
-[ext_resource type="AudioStream" uid="uid://x8m3j5ylddy1" path="res://sounds/ah1.mp3" id="4_qpm12"]
-[ext_resource type="AudioStream" uid="uid://jf4by30wikhc" path="res://sounds/ah2.mp3" id="5_q40i1"]
-[ext_resource type="AudioStream" uid="uid://bpodns4ahtel5" path="res://sounds/ah3.mp3" id="6_12bxj"]
 
 [sub_resource type="Resource" id="Resource_5fc14"]
 script = ExtResource("2_43l7g")
@@ -69,10 +66,6 @@ authority_true = [NodePath("../nickname"), null]
 
 [node name="SourceInventory" parent="." index="6"]
 debug = false
-
-[node name="SourcePlayerPhysicsHandler" parent="." index="7"]
-grounding_sounds = Array[AudioStream]([null])
-hard_grounding_sounds = Array[AudioStream]([ExtResource("4_qpm12"), ExtResource("5_q40i1"), ExtResource("6_12bxj")])
 
 [node name="SourceMovement" parent="." index="9"]
 _sprint_speed = 5.0

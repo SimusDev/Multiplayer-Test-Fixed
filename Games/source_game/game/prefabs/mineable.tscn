@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://s7t4cwbajc0c"]
+
+[ext_resource type="Script" uid="uid://d2ip56q60ir56" path="res://Games/source_game/components/source_mineable.gd" id="1_58tvy"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="5_f0gbu"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="6_yjtcm"]
+
+[node name="mineable" type="StaticBody3D"]
+
+[node name="SourceMineable" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("1_58tvy")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://d2ip56q60ir56"
+
+[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_f0gbu")
+target = NodePath("")
+destroy_target_on_death = true
+metadata/_custom_type_script = "uid://cr18fup83we2u"
+
+[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("6_yjtcm")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"

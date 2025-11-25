@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://bokaet0mksmo3"]
+[gd_scene load_steps=48 format=4 uid="uid://bokaet0mksmo3"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_k2044"]
 [ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="2_1bs4f"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="7_s5rx7"]
 [ext_resource type="AudioStream" uid="uid://cai1qnpt4mbu1" path="res://Games/source_game/sounds/general/bolt_action/pistol1.mp3" id="9_42m7w"]
 [ext_resource type="AudioStream" uid="uid://b771fhfyijgu4" path="res://Games/source_game/sounds/general/bolt_action/pistol2.mp3" id="10_ken8p"]
+[ext_resource type="AudioStream" uid="uid://cw0vjmxfdfxs1" path="res://Games/source_game/sounds/general/clip_action/remove_1.mp3" id="12_4d7eq"]
+[ext_resource type="AudioStream" uid="uid://dpp4v88vacy6s" path="res://Games/source_game/sounds/general/clip_action/insert_1.mp3" id="13_qsatj"]
 
 [sub_resource type="Resource" id="Resource_42m7w"]
 script = ExtResource("3_i202i")
@@ -726,7 +728,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("root/model/bolt_sound")
+tracks/5/path = NodePath("root/bolt_sound")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -745,6 +747,7 @@ tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ooh1s"]
 resource_name = "reload"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -752,10 +755,10 @@ tracks/0/path = NodePath("root/model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.1, 0.2, 0.33333334, 0.7, 0.8333333, 0.93333334),
-"transitions": PackedFloat32Array(1, 1, 0.5, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.1, 0.23333333, 0.43333334, 0.7, 0.8333333, 0.96666664, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 0.5, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.035, 0), Vector3(0, 0.035, 0), Vector3(0, -0.030732665, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.05, 0.002, 0), Vector3(0, 0.0017681494, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.035, 0), Vector3(0, 0.035, 0), Vector3(0, -0.030732665, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.05, 0.002, 0), Vector3(0, 0.0017681494, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -764,10 +767,10 @@ tracks/1/path = NodePath("root/model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.43333334, 0.73333335, 0.8666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.6, 0.73333335, 0.8666667, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, -2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.19198622), Vector3(-0.09599311, 0, -0.4712389), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.18849556, -0.010471975, 0.10297442), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.19198622), Vector3(-0.09599311, 0, -0.4712389), Vector3(-0.17453292, 0.02617994, 0.14835298), Vector3(0, 0, 0), Vector3(-0.18849556, -0.010471975, 0.10297442), Vector3(0.061086524, 0.034906585, -0.1134464), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -800,10 +803,10 @@ tracks/4/path = NodePath("root/model/left_hand_position:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8017354, 1),
+"times": PackedFloat32Array(0, 0.43333334, 0.8017354, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.145, -0.524, 0.541), Vector3(2.0418316e-05, -0.3762539, 0.11378393), Vector3(-0.020499907, -0.09861233, 0.15584171), Vector3(-0.145, -0.524, 0.541)]
+"values": [Vector3(-0.145, -0.524, 0.541), Vector3(0, -0.701, 0.114), Vector3(-0.020499907, -0.09861233, 0.15584171), Vector3(-0.145, -0.524, 0.541)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -812,10 +815,70 @@ tracks/5/path = NodePath("root/model/left_hand_position:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.8017354, 0.8029613),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.23333335, 0.8017354, 0.8029613),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.4358582, 1.2468867, -1.7704052), Vector3(0.4358582, 1.2468867, -1.7704052), Vector3(0.41667646, 1.482442, -1.7524946)]
+"values": [Vector3(0.4358582, 1.2468867, -1.7704052), Vector3(0.4358582, 1.2468867, -1.7704052), Vector3(0.4358582, 1.2468867, -1.7704052), Vector3(0.41667646, 1.482442, -1.7524946)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("root/model/Sketchfab_model/Collada visual scene group/animated_parts:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("root/bolt_sound")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_ken8p")
+}],
+"times": PackedFloat32Array(0.8)
+}
+tracks/7/use_blend = true
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("root/magaz_sound")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_4d7eq")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_qsatj")
+}],
+"times": PackedFloat32Array(0.2, 0.7)
+}
+tracks/8/use_blend = true
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"try_reload"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ken8p"]
@@ -961,11 +1024,7 @@ skeleton = NodePath("")
 transform = Transform3D(-0.96597105, 0.18794458, 0.17769653, -0.14750779, 0.16403984, -0.97536224, -0.21246319, -0.9683846, -0.13073415, 0.02137659, -0.046117168, 0.19033535)
 
 [node name="left_hand_position" type="Marker3D" parent="root/model"]
-transform = Transform3D(-0.3995538, -0.010112506, 0.91665393, -0.88475406, -0.25746047, -0.3884896, 0.23993063, -0.9662364, 0.09392221, -0.0491882, -0.455934, 0.70025)
-
-[node name="bolt_sound" type="AudioStreamPlayer3D" parent="root/model"]
-volume_db = -11.845
-pitch_scale = 1.4
+transform = Transform3D(-0.3995538, -0.010112506, 0.91665393, -0.884754, -0.25746047, -0.3884896, 0.23993061, -0.9662364, 0.09392221, -0.0491882, -0.455934, 0.70025)
 
 [node name="bullet_marker" type="Marker3D" parent="root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021832823, 0.07, -0.125)
@@ -974,10 +1033,22 @@ gizmo_extents = 10.0
 [node name="shell_marker" type="Marker3D" parent="root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0455825, 0.11445053, 0.0299821)
 
+[node name="bolt_sound" type="AudioStreamPlayer3D" parent="root"]
+transform = Transform3D(0.5333673, -0.8165582, 0.22079882, 0, 0.26102737, 0.9653314, -0.8458838, -0.5148762, 0.13922346, 0.066787, -0.428571, 0.186265)
+unit_size = 1.0
+pitch_scale = 1.4
+max_distance = 5.0
+
+[node name="magaz_sound" type="AudioStreamPlayer3D" parent="root"]
+unit_size = 1.0
+max_distance = 5.0
+
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hpbao")
 }
+
+[node name="idle_animation" type="AnimationPlayer" parent="."]
 
 [node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("7_s5rx7")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0999229, -0.113516, 0.648828)

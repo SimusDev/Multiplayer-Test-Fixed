@@ -95,6 +95,22 @@ props=""
 penetrable=""
 foundation_grid=""
 wall_grid=""
+material.dirt=""
+material.concrete=""
+material.duct=""
+material.grass=""
+material.gravel=""
+material.ladder=""
+material.chainlink=""
+material.metal=""
+material.metalgrate=""
+material.mud=""
+material.sand=""
+material.slosh=""
+material.tile=""
+material.wade=""
+material.wood=""
+material.woodpanel=""
 
 [gui]
 
@@ -452,6 +468,7 @@ alt_fire={
 3d_physics/layer_3="Projectiles"
 3d_physics/layer_4="Interactables"
 3d_physics/layer_5="AI_Areas"
+3d_physics/layer_6="Footstep detectable"
 
 [physics]
 

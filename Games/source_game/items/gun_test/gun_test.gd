@@ -75,8 +75,10 @@ func on_animation_finished(anim_name:StringName) -> void:
 
 func _on_action_just_pressed(action: StringName) -> void:
 	if action == "reload":
-		try_reload()
-		#animation_player.play(_reload)
+		if animation_player.has_animation(_reload):
+			play_animation(_reload)
+		else:
+			try_reload()
 
 func on_durability_changed() -> void:
 	pass

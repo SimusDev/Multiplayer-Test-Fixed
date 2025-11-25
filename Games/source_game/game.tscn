@@ -108,7 +108,7 @@ script = ExtResource("8_aahtd")
 game = NodePath("..")
 root_node = NodePath("../map_holder")
 levels_folder_path = "res://Games/source_game/level_resources/"
-level_at_start = "kz"
+level_at_start = "openworld"
 
 [node name="C_SourceObjectHandler" type="Node" parent="."]
 script = ExtResource("3_aahtd")

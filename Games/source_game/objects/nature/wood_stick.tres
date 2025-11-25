@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=2 format=3 uid="uid://bengyuprlfj0b"]
+
+[ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_h0eea"]
+
+[resource]
+script = ExtResource("1_h0eea")
+metadata/_custom_type_script = "uid://csp1614nihjb5"

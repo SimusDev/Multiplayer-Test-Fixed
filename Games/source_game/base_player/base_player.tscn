@@ -1,12 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=38 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
 [ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="2_3mc7r"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_qw2b4"]
 [ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="3_2hdmp"]
-[ext_resource type="AudioStream" uid="uid://d2j0ymbs8ryj6" path="res://sounds/hl2/player/pl_fallpain1.wav" id="3_bcxex"]
-[ext_resource type="AudioStream" uid="uid://cn4u64pdo4sq1" path="res://sounds/hl2/player/pl_fallpain3.wav" id="4_gssfp"]
 [ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="5_ghdio"]
 [ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="6_abx2t"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="7_qdiq6"]
@@ -326,7 +324,6 @@ metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 script = ExtResource("2_3mc7r")
 player = NodePath("..")
 max_safe_fall_speed = 15.0
-hard_grounding_sounds = Array[AudioStream]([ExtResource("3_bcxex"), ExtResource("4_gssfp")])
 metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
 [node name="SourceFootsteps" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_3mc7r")]
@@ -365,13 +362,14 @@ script = ExtResource("14_hs1xq")
 [node name="light" type="SpotLight3D" parent="SourceCamera/flashlight"]
 shadow_enabled = true
 
-[node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root")]
+[node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root", "exceptions")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.394588)
 target_position = Vector3(0, 0, -3)
 collision_mask = 11
 collide_with_areas = true
 script = ExtResource("16_26rsp")
 root = NodePath("../..")
+exceptions = [NodePath("../../hitbox_body"), NodePath("../../hitbox_legs"), NodePath("../../hitbox_head"), NodePath("../.."), NodePath("../../AI_Visible")]
 
 [node name="cameras" type="Node3D" parent="SourceCamera"]
 
@@ -382,7 +380,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3)
 
 [node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("inventory")]
-visible = false
 script = ExtResource("18_1yv11")
 authorative_visibility = true
 type = 0

@@ -148,6 +148,7 @@ func _on_console_executed(command: SD_ConsoleCommand) -> void:
 		return
 	
 	match command.get_code():
+		
 		"player.teleport":
 			if command.get_arguments().size() < 4 or command.get_arguments().size() > 4:
 				SimusDev.console.write_error("command expected 4 arguments")
