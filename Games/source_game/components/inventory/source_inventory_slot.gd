@@ -63,6 +63,7 @@ func get_inventory() -> SourceInventory:
 func serialize() -> Dictionary:
 	var data: Dictionary = {}
 	data.c = (get_script() as GDScript).get_global_name()
+	print(data.c)
 	data.d = _data
 	data.i = null
 	
@@ -82,7 +83,7 @@ static func deserialize(data: Dictionary) -> SourceInventorySlot:
 	if not data is Dictionary:
 		return null
 	
-	var slot: SourceInventorySlot = SD_Variables.instantiate_class(data.c) as SourceInventorySlot
+	var slot: SourceInventorySlot = SD_Variables.instantiate_class(data.c)
 	var item: SourceItemStack = SourceItemStack.deserialize(data.i)
 	slot._data = data.d
 	slot.name = data.n
