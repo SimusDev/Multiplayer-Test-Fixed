@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
 [ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="18_r8tpl"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
-[ext_resource type="Script" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
+[ext_resource type="Script" uid="uid://bl4rgbcjjmaxn" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
 [ext_resource type="Texture2D" uid="uid://cabl400ro4med" path="res://Games/source_game/textures/ui_cloth.png" id="20_50wvo"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
 [ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
