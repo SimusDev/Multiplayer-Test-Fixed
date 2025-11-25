@@ -67,7 +67,8 @@ func _update_interface() -> void:
 
 
 func _on_sd_ui_interface_menu_opened() -> void:
-	_player.inventory.request_open_or_close_inventory(_player.inventory)
+	for i in SD_Components.find_all(_player.root, SourceInventory):
+		_player.inventory.request_open_or_close_inventory(i)
 	play_audio(audio_open)
 
 func _on_sd_ui_interface_menu_closed() -> void:

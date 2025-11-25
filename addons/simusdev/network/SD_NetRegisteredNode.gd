@@ -78,6 +78,9 @@ static func get_or_create(object: Object, allow_inactive = true) -> SD_NetRegist
 	return reg
 
 func _on_tree_entered() -> void:
+	if not is_instance_valid(reference):
+		return
+	
 	var path: NodePath = NodePath(reference.get_path())
 	
 	if reference is SD_NetworkedResource:

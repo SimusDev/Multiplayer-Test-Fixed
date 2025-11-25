@@ -379,6 +379,9 @@ func _item_move_to_net(item: SourceItemStack, slot: SourceInventorySlot) -> void
 		debug_print("item can moved only in empty slot!")
 		return
 	
+	if !slot.can_move_item_to_this(item):
+		return
+	
 	var to_inv: SourceInventory = slot.get_inventory()
 	
 	#if to_inv == self:
@@ -419,8 +422,8 @@ func open_inventory(inventory: SourceInventory) -> void:
 	if !SD_Network.is_server() or !is_instance_valid(inventory):
 		return
 	
-	if inventory.private and inventory != self:
-		return
+	#if inventory.private and inventory != self:
+		#return
 	
 	net_caller.call_func(_net_open_or_close_inventory, [inventory, true])
 
