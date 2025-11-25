@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://brjf1n1ubpn8"]
+[gd_scene load_steps=10 format=3 uid="uid://brjf1n1ubpn8"]
 
 [ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="1_0b2ko"]
 
@@ -17,7 +17,28 @@ radius = 0.004
 section_length = 0.012
 curve = SubResource("Curve_wwhrl")
 
+[sub_resource type="Gradient" id="Gradient_0b2ko"]
+colors = PackedColorArray(0, 0, 0, 1, 0.33887845, 0.3388785, 0.33887845, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iibmg"]
+noise_type = 2
+frequency = 0.05
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tpfqw"]
+noise = SubResource("FastNoiseLite_iibmg")
+color_ramp = SubResource("Gradient_0b2ko")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0g0y"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.19607843, 0.011764706, 1)
+emission_texture = SubResource("NoiseTexture2D_tpfqw")
+texture_filter = 0
+
 [sub_resource type="BoxMesh" id="BoxMesh_0b2ko"]
+material = SubResource("StandardMaterial3D_h0g0y")
 size = Vector3(0.025, 0.05, 0.025)
 
 [node name="model" type="Node3D"]
@@ -27,6 +48,6 @@ transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0
 mesh = SubResource("TubeTrailMesh_nvn3t")
 
 [node name="progress" type="CSGMesh3D" parent="ciga"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05536263, 4.839955e-09)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05637738, 4.9286673e-09)
 operation = 2
 mesh = SubResource("BoxMesh_0b2ko")
