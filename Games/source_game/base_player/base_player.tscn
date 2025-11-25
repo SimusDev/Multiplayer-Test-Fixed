@@ -106,7 +106,6 @@ metadata/_custom_type_script = "uid://cfi3ck311echs"
 [node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("6_abx2t")
 root = NodePath("..")
-debug = true
 private = true
 metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
@@ -293,35 +292,34 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="29" type="Node" parent="SourceInventory"]
+[node name="InventoryClothes" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("6_abx2t")
+root = NodePath("../SourceInventory/3")
+private = true
+initial_slots = 0
+metadata/_custom_type_script = "uid://vgml0sp3idxv"
+
+[node name="1" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="30" type="Node" parent="SourceInventory"]
+[node name="2" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="31" type="Node" parent="SourceInventory"]
+[node name="3" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="32" type="Node" parent="SourceInventory"]
+[node name="4" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="33" type="Node" parent="SourceInventory"]
+[node name="5" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="34" type="Node" parent="SourceInventory"]
-script = ExtResource("19_r8tpl")
-texture = ExtResource("20_50wvo")
-
-[node name="35" type="Node" parent="SourceInventory"]
-script = ExtResource("19_r8tpl")
-texture = ExtResource("20_50wvo")
-
-[node name="36" type="Node" parent="SourceInventory"]
+[node name="6" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 

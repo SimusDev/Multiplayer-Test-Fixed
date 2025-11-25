@@ -76,6 +76,9 @@ func serialize() -> Dictionary:
 	_serialize_custom(data)
 	return data
 
+func can_move_item_to_this(item: SourceItemStack) -> bool:
+	return true
+
 func _serialize_custom(data: Dictionary) -> void:
 	pass
 
