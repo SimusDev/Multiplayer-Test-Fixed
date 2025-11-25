@@ -2,6 +2,43 @@
 extends SD_Object
 class_name SD_Variables
 
+static var _stream_peer_buffer: StreamPeerBuffer = StreamPeerBuffer.new()
+
+static func serialize_unsigned_int(integer: Variant) -> Variant:
+	if integer is int:
+		_stream_peer_buffer.clear()
+		if integer <= 255:
+			_stream_peer_buffer.put_u8(integer)
+			return _stream_peer_buffer.data_array
+			
+		if integer <= 65_535:
+			_stream_peer_buffer.put_u16(integer)
+			return _stream_peer_buffer.data_array
+			
+		if integer <= 4_294_967_295:
+			_stream_peer_buffer.put_u32(integer)
+			return _stream_peer_buffer.data_array
+			
+		if integer <= 18_446_744_073_709_554_61:
+			_stream_peer_buffer.put_u64(integer)
+			return _stream_peer_buffer.data_array
+		
+	return integer
+
+static func deserialize_unsigned_int(integer: Variant) -> Variant:
+	if integer is PackedByteArray:
+		_stream_peer_buffer.data_array = integer
+		match integer.size():
+			1:
+				return _stream_peer_buffer.get_u8()
+			2:
+				return _stream_peer_buffer.get_u16()
+			4:
+				return _stream_peer_buffer.get_u32()
+			8:
+				return _stream_peer_buffer.get_u64()
+	return integer
+
 static func variant_to_string(variant: Variant) -> String:
 	return var_to_str(variant)
 

@@ -8,7 +8,7 @@ static func clear_all_children(node: Node) -> void:
 
 static func fast_queue_free(node: Node) -> void:
 	if node.is_inside_tree():
-		node.get_parent().remove_child(node)
 		node.queue_free()
+		node.get_parent().remove_child(node)
 	else:
 		node.queue_free()

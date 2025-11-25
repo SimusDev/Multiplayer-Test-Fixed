@@ -59,9 +59,6 @@ var _static: Array = [
 ]
 
 func set_active(value: bool) -> void:
-	if _active == value:
-		return
-	
 	_active = value
 	on_active_status_changed.emit(_active)
 
@@ -178,6 +175,8 @@ func _ready() -> void:
 		server.create(settings.dedicated_server_port, settings.dedicated_server_max_clients)
 	
 	initialized.emit()
+	
+	SimusDev.on_network_setup.emit()
 
 func _on_connected_to_server() -> void:
 	players._on_connected_to_server()
@@ -215,16 +214,16 @@ func debug_print(text, category: int = 0) -> void:
 		var t: String = "[Network] %s" % str(text)
 		console.write(t, category)
 
-func register_object(object: Object) -> SD_NetRegisteredNode:
+func register_object(object: Object, allow_inactive: bool = true) -> SD_NetRegisteredNode:
 	if is_object_registered(object):
-		return SD_NetRegisteredNode.get_or_create(object)
+		return SD_NetRegisteredNode.get_or_create(object, allow_inactive)
 	
 	#if object is Node:
 		#if not object.is_inside_tree():
 			#await object.tree_entered
 	
 	object.set_meta("_networked", true)
-	return SD_NetRegisteredNode.create(object)
+	return SD_NetRegisteredNode.create(object, allow_inactive)
 
 func is_object_registered(object: Object) -> bool:
 	if is_instance_valid(object):

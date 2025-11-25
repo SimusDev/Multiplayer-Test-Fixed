@@ -42,6 +42,9 @@ func deserialize_input_map(id: int) -> StringName:
 	return _cached_input_map_id.get(id)
 
 func cache_resource(resource: Resource) -> void:
+	if !resource:
+		return
+	
 	var path: String = resource.resource_path
 	if path.is_empty():
 		debug_print("cant cache resource without path: %s" % str(resource), SD_ConsoleCategories.ERROR)
@@ -141,6 +144,8 @@ func serialize_method(callable: Callable) -> Variant:
 	return callable.get_method()
 
 func deserialize_method(serialized: Variant) -> Variant:
+	serialized = SD_Variables.deserialize_unsigned_int(serialized)
+	
 	if serialized is int:
 		return get_cached_methods().get(serialized)
 	return serialized
@@ -252,6 +257,7 @@ func serialize_node_reference(node: Object) -> Variant:
 	return id
 
 func deserialize_node_reference(data: Variant) -> Object:
+	
 	if data is int:
 		var founded: Object = SD_NetworkedResource.deserialize_reference(data)
 		

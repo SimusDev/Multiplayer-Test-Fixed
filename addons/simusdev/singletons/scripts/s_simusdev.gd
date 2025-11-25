@@ -32,6 +32,8 @@ var network: SD_NetworkSingleton
 signal process(delta: float)
 signal physics_process(delta: float)
 
+signal on_network_setup()
+
 var _autoload_classes = [
 	SD_Random.new(),
 	SD_Platforms.new(),

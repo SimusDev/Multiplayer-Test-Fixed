@@ -73,7 +73,7 @@ func _update(property: SD_NetSyncedProperty, delta: float) -> void:
 	if from_server and (not SD_Network.is_server()):
 		return
 	
-	if tick >= property.get_tickrate_in_seconds():
+	if tick >= property.get_tickrate_in_seconds() or property.tickrate == 0.0:
 		
 		if property.sync_mode == property.SYNC_MODE.ON_CHANGE:
 			_hook_on_change(property, delta)

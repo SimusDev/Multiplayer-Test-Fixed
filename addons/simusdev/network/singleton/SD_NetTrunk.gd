@@ -9,8 +9,13 @@ func _ready() -> void:
 	console = SimusDev.console
 	
 	await singleton.initialized
-	singleton.register_object(self)
+	singleton.on_connected_to_server.connect(_connected_to_the_server)
+	singleton.register_object(self, false)
 	_initialized()
+	
+
+func _connected_to_the_server() -> void:
+	pass
 
 func _initialized() -> void:
 	pass
