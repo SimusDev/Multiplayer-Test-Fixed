@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://85tx6torxqp4"
 path.s3tc="res://.godot/imported/ui_icon_exit.png-75123e7d9ee62e6c42202842b8798c82.s3tc.ctex"
+path.etc2="res://.godot/imported/ui_icon_exit.png-75123e7d9ee62e6c42202842b8798c82.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/simusdev/Game/icons/ui_icon_exit.png"
-dest_files=["res://.godot/imported/ui_icon_exit.png-75123e7d9ee62e6c42202842b8798c82.s3tc.ctex"]
+dest_files=["res://.godot/imported/ui_icon_exit.png-75123e7d9ee62e6c42202842b8798c82.s3tc.ctex", "res://.godot/imported/ui_icon_exit.png-75123e7d9ee62e6c42202842b8798c82.etc2.ctex"]
 
 [params]
 
