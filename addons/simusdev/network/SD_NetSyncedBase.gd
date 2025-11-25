@@ -20,8 +20,6 @@ enum SYNC {
 	FROM_SERVER,
 }
 
-
-
 @export var tickrate: float = DEFAULT_TICKRATE
 @export var tickrate_mode: TICKRATE_MODE
 @export var sync_mode: SYNC_MODE = SYNC_MODE.ON_CHANGE

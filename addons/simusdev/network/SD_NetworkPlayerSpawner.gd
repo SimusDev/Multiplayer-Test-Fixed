@@ -33,6 +33,9 @@ func _ready() -> void:
 		for p in SD_Network.get_connected_players():
 			_on_player_connected(p)
 	
+	if !spawner.is_node_ready():
+		await spawner.ready
+	
 	spawner.synchronize_all()
 
 func pick_prefab() -> PackedScene:

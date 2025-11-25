@@ -252,6 +252,8 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		singleton.cache.serialize_method(callable),
 	]
 	
+	
+	
 	if serialized_args is Array:
 		var first_array: Array = SD_Array.get_value_from_array(serialized_args, 0, []) as Array
 		if !first_array.is_empty():
@@ -271,6 +273,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	_call_func_on_queue(peer, packet_a, channel_id, callmode)
 	
 	singleton.cache.cache_method(callable)
+	
 	
 	#var debug: bool = false
 	#if !debug:
@@ -306,20 +309,16 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	#
 	#
 
-
 func _call_func_on_queue(peer: int, packet: Variant, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
 	match callmode:
 		SD_Network.CALLMODE.RELIABLE:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_reliable%s" % str(channel_id))
-			function.rpc_id(peer, packet)
+			multiplayer.rpc(peer, _script, "_r_rpc_r%s" % str(channel_id), packet)
 			
 		SD_Network.CALLMODE.UNRELIABLE:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable%s" % str(channel_id))
-			function.rpc_id(peer, packet)
+			multiplayer.rpc(peer, _script, "_r_rpc_u%s" % str(channel_id), packet)
 			
 		SD_Network.CALLMODE.UNRELIABLE_ORDERED:
-			var function: Callable = Callable(_script, "_recieve_call_from_rpc_unreliable_ordered%s" % str(channel_id))
-			function.rpc_id(peer, packet)
+			multiplayer.rpc(peer, _script, "_r_rpc_uo%s" % str(channel_id), packet)
 			
 
 func call_func(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:
@@ -335,17 +334,16 @@ func call_func_except_self(callable: Callable, args: Array = [], callmode: SD_Ne
 func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:
 	call_func_on(singleton.SERVER_ID, callable, args, callmode, channel)
 
-func _recieve_call_from_local(from_peer: int, packet: Array, channel_id: int) -> void:
-	var method: String = singleton.cache.deserialize_method(packet[1])
+func _recieve_call_from_local(from_peer: int, channel_id: int, s_object: Variant, s_method: Variant, s_args: Array = []) -> void:
+	var method: String = singleton.cache.deserialize_method(s_method)
 	if method.is_empty():
-		debug_print("BUG? remote call method %s from %s failed, method cache not found!" % [str(packet[1]), str(from_peer)], SD_ConsoleCategories.ERROR)
+		debug_print("BUG? remote call method %s from %s failed, method cache not found!" % [str(s_method), str(from_peer)], SD_ConsoleCategories.ERROR)
 		return
 	
-	var args: Array = []
-	if packet.size() >= 3:
-		args = SD_NetworkDeserializer.parse(packet[2])
 	
-	var node: Object = singleton.cache.deserialize_node_reference(packet[0])
+	var args: Array = SD_NetworkDeserializer.parse(s_args)
+	
+	var node: Object = singleton.cache.deserialize_node_reference(s_object)
 	
 	var remote_sender: SD_NetSender = SD_Network.remote_sender
 	remote_sender.id = from_peer
@@ -354,7 +352,7 @@ func _recieve_call_from_local(from_peer: int, packet: Array, channel_id: int) ->
 	remote_sender.channel_id = get_channel_by_name(remote_sender.channel)
 	
 	if not node:
-		debug_print("[server: %s] failed to call method: %s, node is null! %s" % [str(SD_Network.is_server()), method, str(packet[0])], SD_ConsoleCategories.ERROR)
+		debug_print("[server: %s] failed to call method: %s, node is null! %s" % [str(SD_Network.is_server()), method, str(s_object)], SD_ConsoleCategories.ERROR)
 		return
 	
 	

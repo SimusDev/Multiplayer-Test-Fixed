@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_pocwr"]
 [ext_resource type="PackedScene" uid="uid://b61lprpvlhi8c" path="res://addons/simusdev/console/prefabs/ui_console_interface.tscn" id="3_aifyg"]
 
-[node name="ui_console_new" type="Node" node_paths=PackedStringArray("menu")]
+[node name="ui_console_new" type="Node" unique_id=721000444 node_paths=PackedStringArray("menu")]
 script = ExtResource("1_8w1gu")
 menu = NodePath("SD_UIInterfaceMenu")
 _toolbar_popups = Dictionary[String, PackedScene]({
@@ -13,7 +13,7 @@ _toolbar_popups = Dictionary[String, PackedScene]({
 "tools": ExtResource("2_aifyg")
 })
 
-[node name="fade" type="ColorRect" parent="."]
+[node name="fade" type="ColorRect" parent="." unique_id=1351022542]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,12 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.85)
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SD_UIInterfaceMenu" type="Node" parent="." unique_id=569578910 node_paths=PackedStringArray("target")]
 script = ExtResource("2_pocwr")
 target = NodePath("../ui_console_interface")
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
-[node name="ui_console_interface" parent="." instance=ExtResource("3_aifyg")]
+[node name="ui_console_interface" parent="." unique_id=1241725302 instance=ExtResource("3_aifyg")]
 
 [connection signal="closed" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_closed"]
 [connection signal="opened" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_opened"]

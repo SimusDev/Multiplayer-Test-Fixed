@@ -9,7 +9,17 @@ extends Control
 
 signal toolbutton_pressed(button: Button)
 
+func _network_active_status_changed(status: bool) -> void:
+	$LineEdit.placeholder_text = SD_Network.singleton.info.name
+
 func _ready() -> void:
+	SimusDev.on_network_setup.connect(
+		func():
+			SD_Network.singleton.on_active_status_changed.connect(_network_active_status_changed)
+			_network_active_status_changed(true)
+	)
+
+	
 	_tips.initialize(_base)
 	
 	size = SimusDev.get_settings().console.get("size", size)

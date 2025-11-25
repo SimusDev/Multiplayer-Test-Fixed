@@ -15,6 +15,8 @@ var _inactive_for_peers: PackedInt32Array = PackedInt32Array()
 
 var net_id: int = -1
 
+var allow_inactive: bool = true
+
 static var references_by_net_id: Dictionary[int, SD_NetRegisteredNode] = {}
 static var references_by_path: Dictionary[NodePath, SD_NetRegisteredNode] = {}
 
@@ -23,13 +25,14 @@ signal deactivated_for_peer(peer: int)
 
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
-	_inactive_for_peers = SD_Network.get_peers().duplicate()
-	_inactive_for_peers.erase(SD_Network.get_unique_id())
-	_inactive_for_peers.erase(SD_Network.SERVER_ID)
 	
-	SD_Network.singleton.on_inactive_object_update_request.connect(_on_inactive_object_update_request)
-	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
-	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
+	if allow_inactive:
+		_inactive_for_peers = SD_Network.get_peers().duplicate()
+		_inactive_for_peers.erase(SD_Network.get_unique_id())
+		_inactive_for_peers.erase(SD_Network.SERVER_ID)
+		SD_Network.singleton.on_inactive_object_update_request.connect(_on_inactive_object_update_request)
+		SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
+		SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
 	
 	reference = object
 	
@@ -65,11 +68,12 @@ func _on_inactive_object_update_request() -> void:
 func _on_net_resource_unregistered() -> void:
 	_on_tree_exited()
 
-static func get_or_create(object: Object) -> SD_NetRegisteredNode:
+static func get_or_create(object: Object, allow_inactive = true) -> SD_NetRegisteredNode:
 	if object.has_meta("SD_NetRegisteredNode"):
 		return object.get_meta("SD_NetRegisteredNode")
 	
 	var reg := SD_NetRegisteredNode.new()
+	reg.allow_inactive = allow_inactive
 	reg.initialize(object)
 	return reg
 
@@ -89,7 +93,8 @@ func _on_tree_entered() -> void:
 	if !is_cached:
 		await cached
 	
-	SD_Network.singleton.callables.send_active_node_to_all(reference)
+	if allow_inactive:
+		SD_Network.singleton.callables.send_active_node_to_all(reference)
 
 func _uncache(path: NodePath) -> void:
 	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
@@ -99,10 +104,11 @@ func _uncache(path: NodePath) -> void:
 	
 	SD_Network.singleton.cache.try_uncache_node(path)
 	
-	SD_Network.singleton.callables.delete_active_node_from_all(reference)
+	if allow_inactive:
+		SD_Network.singleton.callables.delete_active_node_from_all(reference)
 
 func _on_tree_exited() -> void:
 	_uncache(last_path)
 
-static func create(object: Object) -> SD_NetRegisteredNode:
-	return get_or_create(object)
+static func create(object: Object, allow_inactive: bool = true) -> SD_NetRegisteredNode:
+	return get_or_create(object, allow_inactive)

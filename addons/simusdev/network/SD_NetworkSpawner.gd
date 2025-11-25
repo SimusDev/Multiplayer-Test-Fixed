@@ -11,7 +11,7 @@ var _nodes: Array[Node] = []
 
 @export var server_wait_process_frame: bool = true
 
-@export var channel: String = SD_NetTrunkCallables.CHANNEL_DEFAULT
+@export var channel: String = "spawner"
 @export var callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE
 
 @export var compression: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_GZIP
@@ -22,6 +22,12 @@ signal despawned(node: Node, last_path: NodePath)
 func debug_print(text, category: int = 0) -> void:
 	if debug:
 		SimusDev.console.write("[NetworkSpawner] %s: %s" % [str(self), str(text)])
+
+func register_exception(node: Node) -> void:
+	node.set_meta("network_spawner.exception", true)
+
+func is_node_excepted(node: Node) -> bool:
+	return node.has_meta("network_spawner.exception")
 
 func _ready() -> void:
 	SD_Network.register_object(self)
@@ -116,7 +122,7 @@ func _on_child_entered_tree(node: Node) -> void:
 	SD_Network.call_func(spawn, [serialize(node)], callmode, channel)
 
 func _on_child_exited_tree(node: Node) -> void:
-	if is_instance_valid(node):
+	if can_serialize(node):
 		SD_Network.call_func(despawn, [get_path_to(node)], callmode, channel)
 
 func spawn(data: Dictionary) -> void:
@@ -158,6 +164,9 @@ func can_serialize(node: Node) -> bool:
 	if node is SD_NetworkSpawner:
 		return false
 	
+	if is_node_excepted(node):
+		return false
+	
 	return not node.scene_file_path.is_empty()
 
 func serialize(node: Node) -> Dictionary:
@@ -168,6 +177,7 @@ func serialize(node: Node) -> Dictionary:
 	_serialize_authority(node, data)
 	_serialize_tags(node, data)
 	_serialize_custom(node, data)
+	_serialize_global(node, data)
 	
 	return data
 
@@ -224,6 +234,7 @@ func deserialize(data: Dictionary) -> Dictionary:
 	_deserialize_authority(node, data)
 	_deserialize_tags(node, data)
 	_deserialize_custom(node, data)
+	_deserialize_global(node, data)
 	deserialized.node = node
 	deserialized.data = data
 	return deserialized
@@ -232,4 +243,10 @@ func _serialize_custom(node: Node, data: Dictionary) -> void:
 	pass
 
 func _deserialize_custom(node: Node, data: Dictionary) -> void:
+	pass
+
+static func _serialize_global(object: Object, data: Dictionary) -> void:
+	pass
+
+static func _deserialize_global(object: Object, data: Dictionary) -> void:
 	pass
