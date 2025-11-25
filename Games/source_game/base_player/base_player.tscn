@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
 [ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="2_3mc7r"]
 [ext_resource type="Script" uid="uid://cotoo7b7sohgn" path="res://addons/simusdev/network/SD_NetworkObject.gd" id="2_qw2b4"]
-[ext_resource type="Script" uid="uid://blbs0u7qkn6if" path="res://addons/simusdev/network/SD_NetSynchronizer.gd" id="3_2hdmp"]
+[ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="3_1frjd"]
 [ext_resource type="Script" uid="uid://cfi3ck311echs" path="res://Games/source_game/components/inventory/source_inventory_slot_switcher.gd" id="5_ghdio"]
 [ext_resource type="Script" uid="uid://vgml0sp3idxv" path="res://Games/source_game/components/inventory/source_inventory.gd" id="6_abx2t"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="7_qdiq6"]
@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
 [ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="18_r8tpl"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
-[ext_resource type="Script" uid="uid://bl4rgbcjjmaxn" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
+[ext_resource type="Script" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
 [ext_resource type="Texture2D" uid="uid://cabl400ro4med" path="res://Games/source_game/textures/ui_cloth.png" id="20_50wvo"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
 [ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
@@ -66,9 +66,22 @@ root = NodePath("..")
 recursive_register = false
 metadata/_custom_type_script = "uid://cotoo7b7sohgn"
 
-[node name="SD_NetSynchronizer" type="Node" parent="."]
-script = ExtResource("3_2hdmp")
-metadata/_custom_type_script = "uid://blbs0u7qkn6if"
+[node name="PositionSync" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_1frjd")
+node = NodePath("..")
+interpolation = true
+synchronize = Dictionary[StringName, bool]({
+&"position": true,
+&"rotation": true,
+&"scale": true,
+&"velocity": true
+})
+channel = &"position"
+tickrate = 32.0
+transfer_mode = 0
+allow_serialize = false
+_editor_initialize = true
+metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
 [node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true")]
 script = ExtResource("28_1yv11")
@@ -283,42 +296,34 @@ metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 [node name="29" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="30" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="31" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="32" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="33" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="34" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="35" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="36" type="Node" parent="SourceInventory"]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
-metadata/_custom_type_script = "uid://bl4rgbcjjmaxn"
 
 [node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_3mc7r")
@@ -348,6 +353,22 @@ movement = NodePath("../SourceMovement")
 [node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 body = NodePath("..")
+
+[node name="PositionSync" type="Node" parent="SourceCamera" node_paths=PackedStringArray("node")]
+script = ExtResource("3_1frjd")
+node = NodePath("..")
+interpolation = true
+synchronize = Dictionary[StringName, bool]({
+&"position": true,
+&"rotation": true,
+&"scale": true
+})
+channel = &"position"
+tickrate = 32.0
+transfer_mode = 0
+allow_serialize = false
+_editor_initialize = true
+metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
 [node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera"]
 
