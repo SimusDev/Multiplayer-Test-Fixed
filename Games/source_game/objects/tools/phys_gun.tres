@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=11 format=3 uid="uid://dysa48588ffk5"]
 
+[ext_resource type="Texture2D" uid="uid://wvbghph8kmk7" path="res://addons/simusdev/components/fp_controller/source/icon.png" id="1_cp6q8"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_q1h0a"]
 [ext_resource type="PackedScene" uid="uid://dflrv8xgcg3q3" path="res://Games/source_game/items/phys_gun/prefab.tscn" id="2_odp6n"]
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="3_odp6n"]
 [ext_resource type="PackedScene" uid="uid://u6tplys2kpf1" path="res://Games/source_game/items/phys_gun/model.tscn" id="4_cp6q8"]
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_5mbqr"]
 [ext_resource type="PackedScene" uid="uid://c7pfl0xwpffa5" path="res://Games/source_game/items/phys_gun/item.tscn" id="5_cp6q8"]
-
-[sub_resource type="Resource" id="Resource_i2exi"]
-metadata/__load_path__ = "res://addons/gamedev_assistant/dock/icons/plus.png"
 
 [sub_resource type="Resource" id="Resource_odp6n"]
 script = ExtResource("5_5mbqr")
@@ -32,7 +30,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 [resource]
 script = ExtResource("1_q1h0a")
 custom_section = "tools"
-icon = SubResource("Resource_i2exi")
+icon = ExtResource("1_cp6q8")
 prefab = ExtResource("2_odp6n")
 viewmodel = SubResource("Resource_cp6q8")
 metadata/_custom_type_script = "uid://csp1614nihjb5"

@@ -1,0 +1,1 @@
+class_name R_WeaponClip extends R_SourceWorldObject

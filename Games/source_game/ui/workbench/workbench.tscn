@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cm52o7468o6nf"]
+[gd_scene load_steps=13 format=3 uid="uid://cm52o7468o6nf"]
 
 [ext_resource type="Script" uid="uid://phxd5yffiw6b" path="res://Games/source_game/ui/workbench/workbench.gd" id="1_fsj2l"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_k3h36"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="5_wpkqy"]
 [ext_resource type="PackedScene" uid="uid://bui65ebrebo7t" path="res://Games/source_game/ui/workbench/recipe_sections.tscn" id="6_n4sk1"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="7_tjrou"]
-[ext_resource type="Texture2D" uid="uid://co5cosk3gdhvg" path="res://Games/source_game/game/3dmodels/sex_bonnie/model_0.png" id="9_2s0b1"]
-[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="10_88efk"]
 [ext_resource type="Script" uid="uid://bh41tmls6agr1" path="res://sourcelike_interface/buttons/base/button_base.gd" id="10_uxrij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2s0b1"]
@@ -207,7 +205,6 @@ anchor_left = 0.007833492
 anchor_top = 0.046685338
 anchor_right = 0.13316937
 anchor_bottom = 0.79365075
-texture = ExtResource("9_2s0b1")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -275,14 +272,14 @@ editor_only = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="list/current/content" index="5"]
 layout_mode = 0
-offset_left = 327.64258
-offset_top = 5.100006
-offset_right = 484.64258
-offset_bottom = 103.100006
+anchor_left = 0.5133171
+anchor_top = 0.0476191
+anchor_right = 0.7592888
+anchor_bottom = 0.9626517
 theme_override_constants/outline_size = 3
-theme_override_fonts/normal_font = ExtResource("10_88efk")
 bbcode_enabled = true
 text = "[color=gray]sdasdw[/color]"
+metadata/_edit_use_anchors_ = true
 
 [node name="border" type="ReferenceRect" parent="list/current/content/RichTextLabel"]
 show_behind_parent = true

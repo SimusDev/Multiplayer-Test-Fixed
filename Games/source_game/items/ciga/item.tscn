@@ -1,14 +1,83 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbnjcf1woyeww"]
+[gd_scene load_steps=22 format=3 uid="uid://bbnjcf1woyeww"]
 
 [ext_resource type="Script" uid="uid://bqktlse516rbu" path="res://Games/source_game/items/ciga/item.gd" id="1_6nsd7"]
-[ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/weapons/r_weapon.gd" id="2_6ilh0"]
+[ext_resource type="Script" uid="uid://ci5nlu115tb7c" path="res://Games/source_game/components/animation/item_animator.gd" id="2_p1aia"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="3_6nsd7"]
+[ext_resource type="Script" uid="uid://j2pbtfls3jgk" path="res://Games/source_game/components/animation/r_animation_hook.gd" id="3_vk1tx"]
+[ext_resource type="Script" uid="uid://bo60r48iiqye6" path="res://Games/source_game/components/animation/r_animation_hook_signal.gd" id="4_3ubjb"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_6ilh0"]
 [ext_resource type="Texture2D" uid="uid://47om1mn5vqe3" path="res://textures/smoke.png" id="4_6nsd7"]
 
-[sub_resource type="Resource" id="Resource_ht808"]
-script = ExtResource("2_6ilh0")
-metadata/_custom_type_script = "uid://db0ilk7abehmb"
+[sub_resource type="Resource" id="Resource_hscma"]
+script = ExtResource("4_3ubjb")
+name = &"event_pick"
+animation = &"pick"
+metadata/_custom_type_script = "uid://bo60r48iiqye6"
+
+[sub_resource type="Animation" id="Animation_p1aia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.001, 0.071, 0.201)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.15569, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vk1tx"]
+resource_name = "fire"
+
+[sub_resource type="Animation" id="Animation_ju52i"]
+resource_name = "pick"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.225),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.069, -0.407, -0.201), Vector3(0.001, 0.011, -0.411)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.460138, 0, 0), Vector3(0.710349, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
+_data = {
+&"RESET": SubResource("Animation_p1aia"),
+&"fire": SubResource("Animation_vk1tx"),
+&"pick": SubResource("Animation_ju52i")
+}
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6nsd7"]
 angle_min = -655.9
@@ -49,71 +118,6 @@ radius = 0.02
 height = 0.04
 radial_segments = 4
 rings = 1
-
-[sub_resource type="Animation" id="Animation_p1aia"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.0688215, 0.0709618, 0.200762)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.15569, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vk1tx"]
-resource_name = "fire"
-
-[sub_resource type="Animation" id="Animation_ju52i"]
-resource_name = "pick"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.225),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(-0.0688215, -0.407024, 0.200762), Vector3(-0.0688215, 0.0709618, 0.200762)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(-0.460138, 0, 0), Vector3(1.15569, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vk1tx"]
-_data = {
-&"RESET": SubResource("Animation_p1aia"),
-&"fire": SubResource("Animation_vk1tx"),
-&"pick": SubResource("Animation_ju52i")
-}
 
 [sub_resource type="Animation" id="Animation_6nsd7"]
 length = 0.001
@@ -177,18 +181,27 @@ _data = {
 &"animation": SubResource("Animation_6ilh0")
 }
 
-[node name="ciga" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
+[node name="ciga" type="Node3D"]
 script = ExtResource("1_6nsd7")
-resource = SubResource("Resource_ht808")
-model = NodePath("root/model")
-animation_player = NodePath("AnimationPlayer")
-_fire = ""
 metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="SourceItemAnimator" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_p1aia")
+hooks = Array[ExtResource("3_vk1tx")]([SubResource("Resource_hscma")])
+player = NodePath("AnimationPlayer")
+initialized = true
+metadata/_custom_type_script = "uid://ci5nlu115tb7c"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceItemAnimator"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_vk1tx")
+}
 
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("3_6nsd7")]
-transform = Transform3D(1.5, 0, 0, 0, 0.6049308, -1.3726101, 0, 1.3726101, 0.6049308, -0.0688215, 0.0709618, 0.200762)
+transform = Transform3D(1.5000001, 0, 0, 0, 0.6049308, -1.3726101, 0, 1.3726101, 0.6049308, 0.001, 0.071, 0.201)
 
 [node name="progress" parent="root/model/ciga" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055, 0)
@@ -208,7 +221,6 @@ draw_pass_3 = SubResource("SphereMesh_vk1tx")
 draw_pass_4 = SubResource("SphereMesh_3ubjb")
 
 [node name="arms" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_6ilh0")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.118143, -0.174712, 0.599455)
 hands_ik = [NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="root" parent="root/arms" index="0"]
@@ -234,16 +246,14 @@ target_node = NodePath("")
 [node name="right_hand_ik" parent="root/arms/root/Skeleton3D" index="2"]
 target_node = NodePath("../../../../model/right_hand")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vk1tx")
-}
-
 [node name="idle_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ju52i")
 }
 autoplay = "animation"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144, 0.162, -0.056)
 
 [editable path="root/model"]
 [editable path="root/arms"]

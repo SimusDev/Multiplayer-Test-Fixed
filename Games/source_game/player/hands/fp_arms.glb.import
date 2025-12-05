@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fovjyaj3kejp"
+uid="uid://d1l788kl4mgow"
 path="res://.godot/imported/fp_arms.glb-23773d13b8044682ee4471fa4de91e51.scn"
 
 [deps]
@@ -37,6 +37,14 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
-gltf/naming_version=1
+_subresources={
+"materials": {
+"material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Games/source_game/player/hands/material.tres",
+"use_external/path": "uid://cvl67xgvy1eyy"
+}
+}
+}
+gltf/naming_version=2
 gltf/embedded_image_handling=1

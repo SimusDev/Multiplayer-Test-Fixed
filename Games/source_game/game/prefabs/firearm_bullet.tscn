@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_i6lau"]
 
 [sub_resource type="Curve" id="Curve_tiyib"]
-_data = [Vector2(0, 0.00855124), 0.0, 0.0, 0, 0, Vector2(0.21056442, 0.031238914), 0.0, 0.0, 0, 0, Vector2(0.4746744, 0.065270305), 0.0, 0.0, 0, 0, Vector2(0.9232997, 0.099301696), 0.0, 0.0, 0, 0, Vector2(1, 0.00855124), -0.25285694, 0.0, 0, 0]
+_data = [Vector2(0, 0.00855124), 0.0, 0.0, 0, 0, Vector2(0.21056442, 0.031238914), 0.0, 0.0, 0, 0, Vector2(0.4746744, 0.065270305), 0.0, 0.0, 0, 0, Vector2(0.959102, 0.058988094), -0.5504981, -0.5504981, 0, 0, Vector2(1, 0.00855124), -1.64416, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7c8p"]
 albedo_color = Color(1, 0.78528535, 0.70392454, 1)
 emission_enabled = true
-emission = Color(0.972549, 0.7529412, 0, 1)
-emission_energy_multiplier = 4.11
+emission = Color(1, 0.49803922, 0, 1)
+emission_energy_multiplier = 5.0
 ao_light_affect = 1.0
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_yx6b0"]

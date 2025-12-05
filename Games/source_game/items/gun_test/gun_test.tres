@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="R_SourceItem" load_steps=2 format=3 uid="uid://mtxqwmtv8gfl"]
-
-[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="1_kt3ji"]
-
-[resource]
-script = ExtResource("1_kt3ji")
-type = 1
-metadata/_custom_type_script = "uid://drk2kpbhybbiw"

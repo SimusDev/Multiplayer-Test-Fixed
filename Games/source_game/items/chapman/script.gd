@@ -51,14 +51,3 @@ func is_open() -> bool:
 func set_open(value:bool) -> void:
 	open = value
 	open_changed.emit()
-
-func use() -> void:
-	super()
-	if not SD_Network.is_authority(self):
-		return
-	
-	if not is_open():
-		custom_animation_player.play(_open_anim)
-		set_open(true)
-	elif cigi > 0:
-		animation_player.play(_take_anim)

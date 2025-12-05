@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=18 format=3 uid="uid://cdykkat3axjp2"]
+
+[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_11e70"]
+[ext_resource type="Script" uid="uid://d2g7gec3gvwpf" path="res://Games/source_game/components/weapons/r_weapon_projectile_object.gd" id="2_1ip6e"]
+[ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="2_6n6u1"]
+[ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="3_63rnj"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="3_ff81g"]
+[ext_resource type="Texture2D" uid="uid://c2cmrhio7n2jc" path="res://Games/source_game/game/weapon/makarov/icon.png" id="3_i5w2c"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="4_i5w2c"]
+[ext_resource type="PackedScene" uid="uid://cy5fy4j16qcce" path="res://Games/source_game/game/weapon/makarov/world_prefab.tscn" id="5_sjfdm"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="8_lajwn"]
+[ext_resource type="PackedScene" uid="uid://b8u6me3cfg7au" path="res://Games/source_game/game/weapon/makarov/makarov.tscn" id="9_3a3gw"]
+[ext_resource type="Resource" uid="uid://7m8sq22bvvg8" path="res://Games/source_game/objects/sound/shoot/shoot_makarov.tres" id="9_sjfdm"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="10_6h41l"]
+[ext_resource type="PackedScene" uid="uid://4lnu15jppqhr" path="res://Games/source_game/game/weapon/makarov/model.tscn" id="11_tktxv"]
+
+[sub_resource type="Resource" id="Resource_y5a6k"]
+script = ExtResource("4_i5w2c")
+stackable = false
+stack_size = 1
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_w82ur"]
+script = ExtResource("10_6h41l")
+prefab = ExtResource("9_3a3gw")
+position = Vector3(0.165, -0.159, -0.443)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_lgue4"]
+script = ExtResource("10_6h41l")
+prefab = ExtResource("11_tktxv")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_ror87"]
+script = ExtResource("8_lajwn")
+view = SubResource("Resource_w82ur")
+world = SubResource("Resource_lgue4")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("2_1ip6e")
+max_ammo = 8
+ammo = Array[ExtResource("1_11e70")]([ExtResource("2_6n6u1")])
+projectile = ExtResource("3_63rnj")
+sound = ExtResource("9_sjfdm")
+use_cooldown = 0.15
+icon = ExtResource("3_i5w2c")
+prefab = ExtResource("5_sjfdm")
+viewmodel = SubResource("Resource_ror87")
+itemstack = SubResource("Resource_y5a6k")
+metadata/_custom_type_script = "uid://d2g7gec3gvwpf"

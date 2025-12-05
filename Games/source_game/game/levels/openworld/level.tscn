@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1k6u3srkbh58" path="res://textures/general/grass/grass1_normal.png" id="3_ish3x"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="4_ish3x"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="5_00rp6"]
-[ext_resource type="Environment" uid="uid://b71yn6wfk8lop" path="res://env/default.tres" id="6_ovl06"]
+[ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="7_ovl06"]
 
 [sub_resource type="Gradient" id="Gradient_ish3x"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -105,11 +105,12 @@ script = ExtResource("4_ish3x")
 spawn_point_name = "sex"
 metadata/_custom_type_script = "uid://dxp3pky5254bi"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="10"]
-environment = ExtResource("6_ovl06")
+[node name="SourceAnimatedModel" parent="." index="10" instance=ExtResource("5_00rp6")]
+transform = Transform3D(-0.54466826, 0, -0.8386516, 0, 1, 0, 0.8386516, 0, -0.54466826, 13.488718, 0.07452288, -4.168002)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" index="0"]
-transform = Transform3D(0.3437203, -0.7579711, 0.5543793, 0.873039, 0.4753865, 0.108676404, -0.34591806, 0.44664055, 0.82513815, 0, 7.920328, 0)
-shadow_enabled = true
+[node name="Environment" parent="." index="11" instance=ExtResource("7_ovl06")]
 
-[node name="SourceAnimatedModel" parent="." index="11" instance=ExtResource("5_00rp6")]
+[node name="Sky3D" parent="Environment" index="0"]
+sky_contribution = 0.9
+
+[editable path="Environment"]

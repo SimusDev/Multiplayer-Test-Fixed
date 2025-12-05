@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy5fy4j16qcce"]
+
+[ext_resource type="PackedScene" uid="uid://4lnu15jppqhr" path="res://Games/source_game/game/weapon/makarov/model.tscn" id="1_y0mo2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_isfcy"]
+size = Vector3(0.06274414, 0.18658447, 0.24326172)
+
+[node name="world_prefab" type="RigidBody3D"]
+mass = 1.5
+
+[node name="makarov_model" parent="." instance=ExtResource("1_y0mo2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002319336, -0.009429932, -0.0025878996)
+shape = SubResource("BoxShape3D_isfcy")
