@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bthsxm1w8xjds"]
 
-[ext_resource type="Script" path="res://addons/skeletal_animation_player/sap_dock.gd" id="1_mbw7b"]
+[ext_resource type="Script" uid="uid://cagaw7x4yt50d" path="res://addons/skeletal_animation_player/sap_dock.gd" id="1_mbw7b"]
 
 [node name="SkeletalAnimationControl" type="Control"]
 layout_mode = 3

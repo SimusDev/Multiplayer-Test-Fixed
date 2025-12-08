@@ -252,11 +252,12 @@ func _on_create_reset():
 
 func _selection_changed():
 	if _get_selected_sap():
-		add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
+		if dock and not dock.get_parent():
+			add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
 	else:
-		remove_control_from_docks(dock)
-		
-		
+		if dock and dock.get_parent():
+			remove_control_from_docks(dock)
+
 func _get_bone_by_name(bp_list: Array[BonePose], name: String):
 	for b in bp_list:
 		if b.bone_name.to_lower() == name.to_lower():
@@ -319,5 +320,8 @@ func _process(delta):
 
 func _exit_tree():
 	remove_custom_type("SkeletalAnimationPlayer")
-	remove_control_from_docks(dock)
-	dock.free()
+	if dock and dock.get_parent():
+		remove_control_from_docks(dock)
+	
+	if dock:
+		dock.free()

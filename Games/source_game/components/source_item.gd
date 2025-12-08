@@ -71,9 +71,6 @@ func _input(_event: InputEvent) -> void:
 		is_using_alt = false
 		return
 	
-	if Input.is_action_just_pressed("item.inspect"):
-		event_inspect.emit()
-	
 	if Input.is_action_just_pressed("item.use"):
 		request_press()
 	elif Input.is_action_just_released("item.use"):

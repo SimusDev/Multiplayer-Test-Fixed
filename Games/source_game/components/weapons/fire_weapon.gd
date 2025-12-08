@@ -13,6 +13,8 @@ signal event_aim_end
 var weapon: R_WeaponProjectileObject
 var clip:SourceItemStack
 
+var is_aim:bool = false
+
 func _ready() -> void:
 	super()
 	randomize()
@@ -29,11 +31,15 @@ func _input(event: InputEvent) -> void:
 	super(event)
 	if Input.is_action_just_pressed("weapon.reload"):
 		event_reload.emit()
-
+	elif Input.is_action_just_pressed("item.inspect"):
+		if not is_aim:
+			event_inspect.emit()
 
 func _pressed_alt() -> void:
+	is_aim = true
 	event_aim_start.emit()
 func _released_alt() -> void:
+	is_aim = false
 	event_aim_end.emit()
 
 func _process(_delta: float) -> void:

@@ -5,6 +5,8 @@ var target: Object
 var animator: SourceItemAnimator
 
 @export var animations: Array[StringName]
+
+@export var apply_randomly:bool = false
 @export var play_backwards:bool = false
 @export var play_instant: bool = true
 
@@ -30,7 +32,7 @@ func apply(idx:int = 0) -> void:
 		animator.player.play(animation)
 
 func apply_random() -> void:
-	apply(randi_range(0, animations.size()))
+	apply(randi_range(0, animations.size()-1))
 
 static func initialize_from(array: Array[R_AnimationHook], _animator: SourceItemAnimator, _target: Object) -> void:
 	if Engine.is_editor_hint():

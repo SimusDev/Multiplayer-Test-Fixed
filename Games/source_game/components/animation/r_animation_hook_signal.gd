@@ -4,6 +4,10 @@ class_name R_AnimationHookSignal
 @export var name: StringName
 
 func init() -> void:
+	if self.apply_randomly:
+		target.connect(name, apply_random)
+		return
+	
 	target.connect(name, apply)
 
 static func create(signal_name: String, animation_names: Array[StringName] = []) -> R_AnimationHookSignal:
