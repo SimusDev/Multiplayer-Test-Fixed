@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene load_steps=38 format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -32,25 +32,10 @@
 [ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="26_26rsp"]
 [ext_resource type="Script" uid="uid://8ivv40tjuu7w" path="res://Games/source_game/components/camera/source_camera_switcher.gd" id="26_y3hgg"]
+[ext_resource type="Texture2D" uid="uid://ducea7ghqyhxn" path="res://textures/flashlight_albedo.png" id="27_50wvo"]
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/prefabs/nickname/base_prefab.tscn" id="27_y3hgg"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
-
-[sub_resource type="Gradient" id="Gradient_4d7pv"]
-colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_krprw"]
-frequency = 0.0628
-domain_warp_amplitude = 29.365
-domain_warp_frequency = 22.375
-domain_warp_fractal_type = 2
-domain_warp_fractal_octaves = 10
-domain_warp_fractal_lacunarity = 10.83
-domain_warp_fractal_gain = 10.845
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0lyu"]
-noise = SubResource("FastNoiseLite_krprw")
-color_ramp = SubResource("Gradient_4d7pv")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
@@ -375,13 +360,14 @@ metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
 [node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
-light_projector = SubResource("NoiseTexture2D_i0lyu")
+light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 spot_range = 7.82003
 spot_angle = 31.8552
 script = ExtResource("14_hs1xq")
 
 [node name="light" type="SpotLight3D" parent="SourceCamera/flashlight"]
+light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 
 [node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root", "exceptions")]

@@ -16,37 +16,31 @@
 [sub_resource type="Resource" id="Resource_def0m"]
 script = ExtResource("4_ooh1s")
 name = &"event_fire"
-animation = &"fire"
 
 [sub_resource type="Resource" id="Resource_0gqj3"]
 script = ExtResource("4_ooh1s")
 name = &"event_reload"
-animation = &"reload"
 play_instant = false
 
 [sub_resource type="Resource" id="Resource_w074w"]
 script = ExtResource("4_ooh1s")
 name = &"event_inspect"
-animation = &"inspect"
 play_instant = false
 
 [sub_resource type="Resource" id="Resource_dlmlp"]
 script = ExtResource("4_ooh1s")
 name = &"event_pick"
-animation = &"pick"
 metadata/_custom_type_script = "uid://bo60r48iiqye6"
 
 [sub_resource type="Resource" id="Resource_4d7eq"]
 script = ExtResource("4_ooh1s")
 name = &"event_aim_start"
-animation = &"start_aim"
 play_instant = false
 metadata/_custom_type_script = "uid://bo60r48iiqye6"
 
 [sub_resource type="Resource" id="Resource_qsatj"]
 script = ExtResource("4_ooh1s")
 name = &"event_aim_end"
-animation = &"start_aim"
 play_backwards = true
 play_instant = false
 metadata/_custom_type_script = "uid://bo60r48iiqye6"
@@ -565,6 +559,35 @@ tracks/9/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_tdaq0"]
+resource_name = "end_aim"
+length = 0.2
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.025, 0.18),
+"transitions": PackedFloat32Array(-2.6, 1),
+"update": 0,
+"values": [Vector3(-0.203, 0.06, 0.1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.14, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.15707964), Vector3(0, 0, -0.061086524), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_k2044"]
 resource_name = "fire"
 length = 0.1
@@ -918,35 +941,6 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("root:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.14, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.15707964), Vector3(0, 0, -0.061086524), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_tdaq0"]
-resource_name = "end_aim"
-length = 0.2
-step = 0.005
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("root/model:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.025, 0.18),
-"transitions": PackedFloat32Array(-2.6, 1),
-"update": 0,
-"values": [Vector3(-0.203, 0.06, 0.1), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("root/model:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {

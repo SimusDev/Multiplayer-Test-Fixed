@@ -3,7 +3,7 @@ class_name SourceItemAnimator extends Node
 
 @export var _reset: bool = false : set = reset
 
-@export var hooks: Array[R_AnimationHook] = []
+@export var hooks: Array[R_AnimationHook] #= []
 @export var player: AnimationPlayer
 var item: SourceItem
 

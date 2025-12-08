@@ -4,16 +4,22 @@ class_name R_AnimationHook
 var target: Object
 var animator: SourceItemAnimator
 
-@export var animation: StringName
+@export var animations: Array[StringName]
 @export var play_backwards:bool = false
 @export var play_instant: bool = true
 
 func init() -> void:
 	pass
 
-func apply() -> void:
-	if not animator.player.has_animation(animation):
+func apply(idx:int = 0) -> void:
+	if animations.is_empty():
 		return
+	
+	var animation = animations[idx]
+	
+	if not animation or not animator.player.has_animation(animation):
+		return
+	
 	if animator.player.is_playing() and (not play_instant):
 		return
 	
@@ -22,6 +28,9 @@ func apply() -> void:
 		animator.player.play_backwards(animation)
 	else:
 		animator.player.play(animation)
+
+func apply_random() -> void:
+	apply(randi_range(0, animations.size()))
 
 static func initialize_from(array: Array[R_AnimationHook], _animator: SourceItemAnimator, _target: Object) -> void:
 	if Engine.is_editor_hint():
