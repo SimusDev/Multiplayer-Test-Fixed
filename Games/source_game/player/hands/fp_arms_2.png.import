@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc3d1wgga1sqy"
+uid="uid://dphqq6q8j7u13"
 path.s3tc="res://.godot/imported/fp_arms_2.png-bee174ef50386d0e93d8818e19520422.s3tc.ctex"
 path.etc2="res://.godot/imported/fp_arms_2.png-bee174ef50386d0e93d8818e19520422.etc2.ctex"
 metadata={
@@ -10,7 +10,7 @@ metadata={
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a3e9007be8c6a8fe5a9b53f02482146e"
+"md5": "e760d5ac9efd96f35ce502b69c331c85"
 }
 
 [deps]
@@ -30,8 +30,8 @@ compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://Games/source_game/player/hands/fp_arms_2.png"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

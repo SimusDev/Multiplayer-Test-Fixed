@@ -42,8 +42,6 @@ func _ready() -> void:
 		return
 	
 	item.ready.connect(_item_ready)
-	item.use_just_pressed.connect(item_use_pressed)
-	item.use_just_released.connect(release_target)
 	tree_exited.connect(release_target)
 
 func _item_ready() -> void:

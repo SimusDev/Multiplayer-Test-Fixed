@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=6 format=3 uid="uid://7m8sq22bvvg8"]
+
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_j4hsk"]
+[ext_resource type="Texture2D" uid="uid://4x51hbmje0si" path="res://addons/simusdev/icons/AudioStreamWAV.svg" id="1_so0qb"]
+[ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_so0qb"]
+[ext_resource type="AudioStream" uid="uid://bn86lj0tqwvwq" path="res://Games/source_game/game/weapon/makarov/sound/fire_0.mp3" id="4_0518m"]
+
+[sub_resource type="Resource" id="Resource_v4hfn"]
+script = ExtResource("2_so0qb")
+streams = Array[AudioStream]([ExtResource("4_0518m")])
+metadata/_custom_type_script = "uid://us246ujqip05"
+
+[resource]
+script = ExtResource("1_j4hsk")
+creation_max_distance = 800.0
+sources = Array[ExtResource("2_so0qb")]([SubResource("Resource_v4hfn")])
+icon = ExtResource("1_so0qb")
+metadata/_custom_type_script = "uid://b4qsbiksbfk64"

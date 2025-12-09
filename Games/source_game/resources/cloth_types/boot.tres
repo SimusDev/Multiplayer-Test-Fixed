@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="R_ClothType" load_steps=2 format=3 uid="uid://ffwmd6drjqk8"]
+
+[ext_resource type="Script" uid="uid://b7vv10tn2fuet" path="res://Games/source_game/components/r_cloth_type.gd" id="1_jxgt2"]
+
+[resource]
+script = ExtResource("1_jxgt2")
+metadata/_custom_type_script = "uid://b7vv10tn2fuet"

@@ -11,6 +11,7 @@ func _exit_tree() -> void:
 	if SD_Network.is_server():
 		for world_obj in resource.drop:
 			var reference: C_SourceWorldObjectReference = world_obj.create().instantiate()
+			print(reference)
 			var rand_pos:Vector3 = Vector3(
 				randf_range(-spawn_radius, spawn_radius),
 				1,

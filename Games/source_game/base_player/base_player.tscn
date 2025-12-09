@@ -14,41 +14,28 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="10_ghdio"]
 [ext_resource type="Script" uid="uid://rk2typl4w3ca" path="res://Games/source_game/components/inventory/source_itemstack.gd" id="11_1yv11"]
 [ext_resource type="Resource" uid="uid://10t06r1l7fda" path="res://Games/source_game/objects/scheme.tres" id="12_em5yj"]
-[ext_resource type="Resource" uid="uid://b440aconnxv71" path="res://Games/source_game/objects/weapons/pistol.tres" id="13_epik1"]
+[ext_resource type="Resource" uid="uid://cdykkat3axjp2" path="res://Games/source_game/objects/weapons/makarov.tres" id="12_r8tpl"]
 [ext_resource type="Resource" uid="uid://dysa48588ffk5" path="res://Games/source_game/objects/tools/phys_gun.tres" id="13_i0lyu"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="13_y5oya"]
-[ext_resource type="Resource" uid="uid://dleahb87yliqi" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
+[ext_resource type="Resource" uid="uid://8kvqolwemh77" path="res://Games/source_game/objects/weapons/crowbar.tres" id="14_em5yj"]
 [ext_resource type="Script" uid="uid://cenjpicpn4nxj" path="res://Games/source_game/components/flashlight.gd" id="14_hs1xq"]
 [ext_resource type="Script" uid="uid://nede851wojx1" path="res://Games/source_game/components/source_interact_ray.gd" id="16_26rsp"]
 [ext_resource type="Resource" uid="uid://dudoao428jxp6" path="res://Games/source_game/objects/weapons/ammo/explosion.tres" id="16_cjcqp"]
 [ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="18_1yv11"]
 [ext_resource type="Resource" uid="uid://lvofy3rii0so" path="res://Games/source_game/objects/weapons/ammo/pistol.tres" id="18_r8tpl"]
+[ext_resource type="Script" uid="uid://b7vv10tn2fuet" path="res://Games/source_game/components/r_cloth_type.gd" id="19_50wvo"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="19_em5yj"]
 [ext_resource type="Script" uid="uid://bl4rgbcjjmaxn" path="res://Games/source_game/components/source_invenory_cloth_slot.gd" id="19_r8tpl"]
 [ext_resource type="Texture2D" uid="uid://cabl400ro4med" path="res://Games/source_game/textures/ui_cloth.png" id="20_50wvo"]
 [ext_resource type="Resource" uid="uid://c63k3uqvttm8e" path="res://Games/source_game/objects/weapons/ak47.tres" id="20_abx2t"]
+[ext_resource type="Resource" uid="uid://ffwmd6drjqk8" path="res://Games/source_game/resources/cloth_types/boot.tres" id="20_cmvf1"]
 [ext_resource type="Script" uid="uid://cb4a114wnl7nf" path="res://Games/source_game/components/node_sway.gd" id="23_7nlxi"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="26_26rsp"]
 [ext_resource type="Script" uid="uid://8ivv40tjuu7w" path="res://Games/source_game/components/camera/source_camera_switcher.gd" id="26_y3hgg"]
-[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="27_y3hgg"]
+[ext_resource type="Texture2D" uid="uid://ducea7ghqyhxn" path="res://textures/flashlight_albedo.png" id="27_50wvo"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/prefabs/nickname/base_prefab.tscn" id="27_y3hgg"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
-
-[sub_resource type="Gradient" id="Gradient_4d7pv"]
-colors = PackedColorArray(0.9392, 0.936161, 0.904957, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_krprw"]
-frequency = 0.0628
-domain_warp_amplitude = 29.365
-domain_warp_frequency = 22.375
-domain_warp_fractal_type = 2
-domain_warp_fractal_octaves = 10
-domain_warp_fractal_lacunarity = 10.83
-domain_warp_fractal_gain = 10.845
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0lyu"]
-noise = SubResource("FastNoiseLite_krprw")
-color_ramp = SubResource("Gradient_4d7pv")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
@@ -124,9 +111,9 @@ script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="pistol" type="Node" parent="SourceInventory/h2"]
+[node name="makarov" type="Node" parent="SourceInventory/h2"]
 script = ExtResource("11_1yv11")
-object = ExtResource("13_epik1")
+object = ExtResource("12_r8tpl")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
 [node name="h3" type="Node" parent="SourceInventory"]
@@ -301,6 +288,7 @@ metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
 [node name="1" type="Node" parent="InventoryClothes"]
 script = ExtResource("19_r8tpl")
+allowed_types = Array[ExtResource("19_50wvo")]([ExtResource("20_cmvf1")])
 texture = ExtResource("20_50wvo")
 
 [node name="2" type="Node" parent="InventoryClothes"]
@@ -372,13 +360,14 @@ metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
 [node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
-light_projector = SubResource("NoiseTexture2D_i0lyu")
+light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 spot_range = 7.82003
 spot_angle = 31.8552
 script = ExtResource("14_hs1xq")
 
 [node name="light" type="SpotLight3D" parent="SourceCamera/flashlight"]
+light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 
 [node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root", "exceptions")]

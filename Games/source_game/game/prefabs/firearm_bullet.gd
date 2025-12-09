@@ -1,4 +1,4 @@
-class_name FirearmBullet extends Node3D
+class_name SourceProjectile extends Node3D
 
 @export_group("Settings")
 @export var bullet_speed:float = 245.0
@@ -22,7 +22,6 @@ var current_velocity:Vector3
 
 var player:Node3D
 
-var bullet_resource:R_SourceBullet
 var ammo: R_SourceAmmoObject
 
 var bounces_left:int = 1
@@ -35,13 +34,9 @@ func _ready() -> void:
 		_destroy_local
 	])
 	
-	if player is SourcePlayer:
-		bullet_fly_direction = -player.camera.global_transform.basis.z.normalized()
-	
 	current_velocity = bullet_fly_direction * bullet_speed
-	#prev_pos = global_position
-	
 	get_tree().create_timer(life_time).timeout.connect(_destroy_local)
+
 
 func _destroy_local() -> void:
 	queue_free()
@@ -103,7 +98,7 @@ func _physics_process(delta: float) -> void:
 
 func _handle_collision(collider:Node3D, hit_position:Vector3) -> void:
 	if collider.has_method("apply_damage"):
-		collider.apply_damage(bullet_resource.damage)
+		collider.apply_damage(ammo.damage)
 	
 	if ammo and ammo.explode:
 		var explosion:SourceExplosion = SourceExplosion.create(hit_position).set_size(ammo.damage * 0.04)
@@ -139,10 +134,9 @@ func _spawn_bullethole_local(result:Dictionary, hole:PackedScene, hole_life_time
 func _spawn_bullethole_net(result:Dictionary, hole:PackedScene, hole_life_time:float = 60.0) -> void:
 	SD_Network.call_func(_spawn_bullethole_local, [result, hole, hole_life_time])
 
-func initialize(fire_direction: Vector3, player_ref: Node3D, bullet_res: R_SourceBullet, ammo_res: R_SourceAmmoObject) -> void:
-	bullet_fly_direction = fire_direction.normalized()
-	player = player_ref
-	bullet_resource = bullet_res
-	ammo = ammo_res
-	current_velocity = bullet_fly_direction * bullet_speed
-	initialized = true
+#func initialize(fire_direction: Vector3, player_ref: Node3D, bullet_res: R_SourceBullet, ammo_res: R_SourceAmmoObject) -> void:
+	#bullet_fly_direction = fire_direction.normalized()
+	#player = player_ref
+	#ammo = ammo_res
+	#current_velocity = bullet_fly_direction * bullet_speed
+	#initialized = true

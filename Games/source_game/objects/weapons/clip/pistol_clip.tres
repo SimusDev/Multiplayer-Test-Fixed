@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="R_WeaponClip" load_steps=6 format=3 uid="uid://idwl0mqdwini"]
+
+[ext_resource type="Texture2D" uid="uid://bwretx2xncvqb" path="res://addons/simusdev/icons/Groups.svg" id="1_jr3hl"]
+[ext_resource type="Script" uid="uid://dhuttpsptdd8y" path="res://Games/source_game/components/weapons/r_weapon_clip.gd" id="1_shjt1"]
+[ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_8na38"]
+[ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="3_dbvjo"]
+
+[sub_resource type="Resource" id="Resource_p50ip"]
+script = ExtResource("3_dbvjo")
+stackable = false
+metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[resource]
+script = ExtResource("1_shjt1")
+icon = ExtResource("1_jr3hl")
+name = "pistol_clip"
+itemstack = SubResource("Resource_p50ip")
+metadata/_custom_type_script = "uid://dhuttpsptdd8y"

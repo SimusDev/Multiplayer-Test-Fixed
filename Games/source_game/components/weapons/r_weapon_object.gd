@@ -1,4 +1,4 @@
-extends R_SourceWorldObject
+extends R_SourceItem
 class_name R_WeaponObject
 
 func get_node_script() -> GDScript:

@@ -1,16 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8johsvy2nf65"]
+[gd_scene load_steps=11 format=3 uid="uid://b8johsvy2nf65"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_j0kei"]
-[ext_resource type="Material" uid="uid://fahxl71di7ib" path="res://Games/source_game/materials/tilefloor.tres" id="2_uw1bk"]
-[ext_resource type="Material" uid="uid://dbe2iqxylg2ce" path="res://Games/source_game/materials/tile.tres" id="4_t23ke"]
+[ext_resource type="Material" uid="uid://dbvy164pwip3j" path="res://Games/source_game/materials/brick1.tres" id="2_t23ke"]
+[ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="4_td5tc"]
 [ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="5_qx70r"]
-[ext_resource type="PackedScene" uid="uid://db4fx6ubuqfms" path="res://Games/fnaf/models/props/desklamp/desk_lamp.tscn" id="5_td5tc"]
-
-[sub_resource type="Environment" id="Environment_qx70r"]
-background_mode = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_td5tc"]
-material = ExtResource("2_uw1bk")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wkdcu"]
@@ -30,68 +25,66 @@ material = SubResource("StandardMaterial3D_wkdcu")
 
 [node name="source" instance=ExtResource("1_j0kei")]
 
-[node name="env" type="WorldEnvironment" parent="." index="0"]
-environment = SubResource("Environment_qx70r")
-
-[node name="room1" type="Node3D" parent="." index="9"]
+[node name="room1" type="Node3D" parent="." index="8"]
 
 [node name="floor" type="CSGMesh3D" parent="room1" index="0"]
 use_collision = true
 mesh = SubResource("BoxMesh_td5tc")
+material = ExtResource("2_t23ke")
 
 [node name="ceiling" type="CSGMesh3D" parent="room1" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_wkdcu")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall1" type="CSGMesh3D" parent="room1" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room1/wall1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room1" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 4.9)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room1/wall2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall3" type="CSGMesh3D" parent="room1" index="4"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room1/wall3" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall4" type="CSGMesh3D" parent="room1" index="5"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room1/wall4" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="reverb_area" type="Area3D" parent="room1" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -103,48 +96,49 @@ reverb_bus_uniformity = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room1/reverb_area" index="0"]
 shape = SubResource("BoxShape3D_t23ke")
 
-[node name="room2" type="Node3D" parent="." index="10"]
+[node name="room2" type="Node3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
 [node name="floor" type="CSGMesh3D" parent="room2" index="0"]
 use_collision = true
 mesh = SubResource("BoxMesh_td5tc")
+material = ExtResource("2_t23ke")
 
 [node name="ceiling" type="CSGMesh3D" parent="room2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_wkdcu")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall1" type="CSGMesh3D" parent="room2" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room2" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 4.9)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall3" type="CSGMesh3D" parent="room2" index="4"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room2/wall3" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall4" type="CSGMesh3D" parent="room2" index="5"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="reverb_area" type="Area3D" parent="room2" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -156,48 +150,49 @@ reverb_bus_uniformity = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room2/reverb_area" index="0"]
 shape = SubResource("BoxShape3D_t23ke")
 
-[node name="room5" type="Node3D" parent="." index="11"]
+[node name="room5" type="Node3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 
 [node name="floor" type="CSGMesh3D" parent="room5" index="0"]
 use_collision = true
 mesh = SubResource("BoxMesh_td5tc")
+material = ExtResource("2_t23ke")
 
 [node name="ceiling" type="CSGMesh3D" parent="room5" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_wkdcu")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall1" type="CSGMesh3D" parent="room5" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room5" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 4.9)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall3" type="CSGMesh3D" parent="room5" index="4"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall4" type="CSGMesh3D" parent="room5" index="5"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room5/wall4" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="reverb_area" type="Area3D" parent="room5" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -209,48 +204,49 @@ reverb_bus_uniformity = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room5/reverb_area" index="0"]
 shape = SubResource("BoxShape3D_t23ke")
 
-[node name="room3" type="Node3D" parent="." index="12"]
+[node name="room3" type="Node3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.9)
 
 [node name="floor" type="CSGMesh3D" parent="room3" index="0"]
 use_collision = true
 mesh = SubResource("BoxMesh_td5tc")
+material = ExtResource("2_t23ke")
 
 [node name="ceiling" type="CSGMesh3D" parent="room3" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_wkdcu")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall1" type="CSGMesh3D" parent="room3" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room3/wall1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room3" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 4.9)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall3" type="CSGMesh3D" parent="room3" index="4"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall4" type="CSGMesh3D" parent="room3" index="5"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="reverb_area" type="Area3D" parent="room3" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -262,54 +258,55 @@ reverb_bus_uniformity = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room3/reverb_area" index="0"]
 shape = SubResource("BoxShape3D_t23ke")
 
-[node name="room4" type="Node3D" parent="." index="13"]
+[node name="room4" type="Node3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.9)
 
 [node name="floor" type="CSGMesh3D" parent="room4" index="0"]
 use_collision = true
 mesh = SubResource("BoxMesh_td5tc")
+material = ExtResource("2_t23ke")
 
 [node name="ceiling" type="CSGMesh3D" parent="room4" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_wkdcu")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall1" type="CSGMesh3D" parent="room4" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, -5)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room4/wall1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall2" type="CSGMesh3D" parent="room4" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 4.9)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="room4/wall2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 operation = 2
 size = Vector3(2, 3, 1)
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall3" type="CSGMesh3D" parent="room4" index="4"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="wall4" type="CSGMesh3D" parent="room4" index="5"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -4.5, 2.9, -0.0999999)
 use_collision = true
 mesh = SubResource("BoxMesh_qx70r")
-material = ExtResource("4_t23ke")
+material = ExtResource("2_t23ke")
 
 [node name="reverb_area" type="Area3D" parent="room4" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -321,12 +318,9 @@ reverb_bus_uniformity = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room4/reverb_area" index="0"]
 shape = SubResource("BoxShape3D_t23ke")
 
-[node name="lights" type="Node3D" parent="." index="14"]
+[node name="lights" type="Node3D" parent="." index="13"]
 
-[node name="desk_lamp" parent="lights" index="0" instance=ExtResource("5_td5tc")]
-transform = Transform3D(-0.321866, -0.34901, 0.0147893, 0.087646, -0.0612178, 0.462813, -0.33815, 0.316337, 0.105881, -2.74852, 0.733781, 13.4152)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lights" index="1"]
+[node name="OmniLight3D" type="OmniLight3D" parent="lights" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03313, 0)
 shadow_enabled = true
 omni_range = 735.152
@@ -336,7 +330,7 @@ omni_attenuation = 3.27
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_a851j")
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="lights" index="2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="lights" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7, 0.933133, 0)
 light_energy = 49.255
 shadow_enabled = true
@@ -346,6 +340,8 @@ omni_attenuation = 3.27
 [node name="MeshInstance3D" type="MeshInstance3D" parent="lights/OmniLight3D2" index="0"]
 mesh = SubResource("BoxMesh_a851j")
 
-[node name="main" type="Node3D" parent="." index="15"]
+[node name="main" type="Node3D" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85786, 0)
 script = ExtResource("5_qx70r")
+
+[node name="Environment" parent="." index="16" instance=ExtResource("4_td5tc")]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=14 format=3 uid="uid://c63k3uqvttm8e"]
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=16 format=3 uid="uid://c63k3uqvttm8e"]
 
 [ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_dqv8v"]
 [ext_resource type="PackedScene" uid="uid://b25lkeicg8cfi" path="res://Games/source_game/items/ak_47/world.tscn" id="1_g5njn"]
@@ -9,20 +9,22 @@
 [ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="3_g5njn"]
 [ext_resource type="Script" uid="uid://d2g7gec3gvwpf" path="res://Games/source_game/components/weapons/r_weapon_projectile_object.gd" id="3_migia"]
 [ext_resource type="PackedScene" uid="uid://5hggub5g64d2" path="res://Games/source_game/items/ak_47/ak_47.tscn" id="4_x6b2s"]
+[ext_resource type="PackedScene" uid="uid://vhdvo7kim26k" path="res://Games/source_game/game/prefabs/firearm_bullet.tscn" id="6_bnjdn"]
 [ext_resource type="PackedScene" uid="uid://dri1yknwm20vx" path="res://Games/source_game/items/ak_47/view.tscn" id="6_x6b2s"]
+[ext_resource type="Resource" uid="uid://ci4xtloej0mbn" path="res://Games/source_game/objects/sound/shoot/shoot_rifle.tres" id="8_fwtb6"]
 
 [sub_resource type="Resource" id="Resource_wicmd"]
 script = ExtResource("3_g5njn")
 prefab = ExtResource("4_x6b2s")
-position = Vector3(0.3, -0.2, -0.225)
-rotation = Vector3(0.005, 0.005, 0)
+position = Vector3(0.194, -0.23, -0.273)
+rotation = Vector3(-0.125, -0.104, 0)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_ke3q8"]
 script = ExtResource("3_g5njn")
 prefab = ExtResource("6_x6b2s")
-position = Vector3(0.253311, 0.305708, 0.0014056)
-rotation = Vector3(1.54434, -0.639765, -2.2032)
+rotation = Vector3(-93.7, -40, 180)
+scale = Vector3(0.5, 0.5, 0.5)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_vtwop"]
@@ -34,6 +36,9 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 [resource]
 script = ExtResource("3_migia")
 ammo = Array[ExtResource("1_dqv8v")]([ExtResource("2_bnjdn"), ExtResource("3_fwtb6")])
+projectile = ExtResource("6_bnjdn")
+sound = ExtResource("8_fwtb6")
+use_cooldown = 0.1
 icon = ExtResource("1_migia")
 description = "RATATATATATATA "
 prefab = ExtResource("1_g5njn")

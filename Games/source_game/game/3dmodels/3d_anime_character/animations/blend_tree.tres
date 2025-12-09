@@ -191,7 +191,6 @@ transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(0, -103.99422)
 
 [resource]
-graph_offset = Vector2(-182.21056, -97.635635)
 nodes/output/position = Vector2(800, 66.6667)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_upo8v")
 nodes/StateMachine/position = Vector2(288.889, 66.6667)

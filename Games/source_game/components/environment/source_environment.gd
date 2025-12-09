@@ -85,7 +85,6 @@ static func get_time() -> float:
 	return instance._sky.current_time
 
 
-
 func _on_synchronize_timeout() -> void:
 	if SD_Network.is_server():
 		return

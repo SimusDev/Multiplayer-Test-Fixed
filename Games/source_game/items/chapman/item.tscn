@@ -1,27 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2wfwjmh2otja"]
+[gd_scene load_steps=21 format=3 uid="uid://d2wfwjmh2otja"]
 
 [ext_resource type="Script" uid="uid://cw06te5flrvc8" path="res://Games/source_game/items/chapman/script.gd" id="1_r1srf"]
 [ext_resource type="PackedScene" uid="uid://bwqd0wh870xaq" path="res://Games/source_game/items/chapman/model.tscn" id="2_6uvnu"]
-[ext_resource type="Script" uid="uid://drk2kpbhybbiw" path="res://Games/source_game/components/r_source_item.gd" id="2_r1srf"]
 [ext_resource type="Resource" uid="uid://djajmfmy48554" path="res://Games/source_game/objects/items/ciga.tres" id="2_s1mbr"]
 [ext_resource type="PackedScene" uid="uid://brjf1n1ubpn8" path="res://Games/source_game/items/ciga/model.tscn" id="2_wpe6k"]
+[ext_resource type="Script" uid="uid://ci5nlu115tb7c" path="res://Games/source_game/components/animation/item_animator.gd" id="4_020dk"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="4_r1srf"]
+[ext_resource type="Script" uid="uid://j2pbtfls3jgk" path="res://Games/source_game/components/animation/r_animation_hook.gd" id="5_2jem8"]
 [ext_resource type="Texture2D" uid="uid://dsjyy2vsoaif7" path="res://Games/source_game/items/ciga/texture.png" id="5_ouw1w"]
+[ext_resource type="Script" uid="uid://bo60r48iiqye6" path="res://Games/source_game/components/animation/r_animation_hook_signal.gd" id="6_3ctdj"]
 
-[sub_resource type="Resource" id="Resource_ouw1w"]
-script = ExtResource("2_r1srf")
-type = 0
-metadata/_custom_type_script = "uid://drk2kpbhybbiw"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouw1w"]
-albedo_texture = ExtResource("5_ouw1w")
-uv1_scale = Vector3(1, 1.7, 1)
-texture_filter = 0
-
-[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_s1mbr"]
-material = SubResource("StandardMaterial3D_ouw1w")
-radius = 0.004
-section_length = 0.012
+[sub_resource type="Resource" id="Resource_hu5a1"]
+script = ExtResource("6_3ctdj")
+name = &"event_pick"
+animation = &"pick"
+metadata/_custom_type_script = "uid://bo60r48iiqye6"
 
 [sub_resource type="Animation" id="Animation_ouw1w"]
 length = 0.001
@@ -163,7 +156,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.166667),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.371, 0.1, 0.103)]
+"values": [Vector3(-0.433061, -0.261447, 0.286211), Vector3(-0.111, 0.03, -0.428)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -175,7 +168,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.158825, -2.56563, 0.0314158)]
+"values": [Vector3(-0.423533, -2.71018, 0.999134), Vector3(0.15882497, -2.2514746, 0.03141593)]
 }
 
 [sub_resource type="Animation" id="Animation_020dk"]
@@ -227,6 +220,16 @@ _data = {
 &"pick": SubResource("Animation_r1srf"),
 &"take": SubResource("Animation_020dk")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouw1w"]
+albedo_texture = ExtResource("5_ouw1w")
+uv1_scale = Vector3(1, 1.7, 1)
+texture_filter = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_s1mbr"]
+material = SubResource("StandardMaterial3D_ouw1w")
+radius = 0.004
+section_length = 0.012
 
 [sub_resource type="Animation" id="Animation_s1mbr"]
 length = 0.001
@@ -290,22 +293,31 @@ _data = {
 &"animation": SubResource("Animation_wpe6k")
 }
 
-[node name="chapman" type="Node3D" node_paths=PackedStringArray("cigi_node_parent", "custom_animation_player", "model", "animation_player")]
+[node name="chapman" type="Node3D" node_paths=PackedStringArray("cigi_node_parent", "custom_animation_player")]
 script = ExtResource("1_r1srf")
 ciga_world_resource = ExtResource("2_s1mbr")
 ciga_model_prefab = ExtResource("2_wpe6k")
 cigi_node_parent = NodePath("root/model/cigi")
-custom_animation_player = NodePath("AnimationPlayer")
-resource = SubResource("Resource_ouw1w")
-model = NodePath("root/model")
-animation_player = NodePath("AnimationPlayer")
-_fire = ""
+custom_animation_player = NodePath("SourceItemAnimator/AnimationPlayer")
 metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="SourceItemAnimator" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_020dk")
+hooks = Array[ExtResource("5_2jem8")]([SubResource("Resource_hu5a1")])
+player = NodePath("AnimationPlayer")
+initialized = true
+metadata/_custom_type_script = "uid://ci5nlu115tb7c"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceItemAnimator"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wpe6k")
+}
 
 [node name="root" type="Node3D" parent="."]
 
 [node name="model" parent="root" instance=ExtResource("2_6uvnu")]
-transform = Transform3D(-1.26145, -0.089631, -0.806682, 0.0465233, 1.48039, -0.237237, 0.810317, -0.224526, -1.24217, -0.371, 0.1, 0.118)
+transform = Transform3D(-1.2614502, -0.08963101, -0.806682, 0.046523303, 1.4803902, -0.23723736, 0.8103172, -0.22452648, -1.2421702, -0.371, 0.1, 0.118)
 
 [node name="left_hand" type="Marker3D" parent="root/model"]
 transform = Transform3D(-0.213917, -0.608106, -0.169974, 0.00519395, 0.177763, -0.64251, 0.631392, -0.207491, -0.0523019, 0.0386197, -0.0290015, 0.0481784)
@@ -320,7 +332,7 @@ mesh = SubResource("TubeTrailMesh_s1mbr")
 [node name="arms2" parent="root" node_paths=PackedStringArray("hands_ik") instance=ExtResource("4_r1srf")]
 process_priority = 9
 process_physics_priority = 9
-transform = Transform3D(-0.980877, 0.00389462, 0.194589, 0.00389462, 0.999993, -0.000382584, -0.194589, 0.000382584, -0.980885, -0.551614, -0.086284, 0.434057)
+transform = Transform3D(-0.980877, 0.00389462, 0.194589, 0.00389462, 0.999993, -0.000382584, -0.194589, 0.000382584, -0.980885, 0, 0, 0)
 hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
 
 [node name="Skeleton3D" parent="root/arms2/root" index="0"]
@@ -346,18 +358,16 @@ target_node = NodePath("../../../../model/left_hand")
 target_node = NodePath("../../../../../right_hand")
 
 [node name="right_hand" type="Marker3D" parent="."]
-transform = Transform3D(-0.833223, -0.332424, 0.441851, -0.548513, 0.396049, -0.736395, 0.069801, -0.855943, -0.512337, -0.215256, -0.461485, 0.386324)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wpe6k")
-}
+transform = Transform3D(-0.83322304, -0.33242434, 0.44185126, -0.54851294, 0.39604908, -0.7363951, 0.06980101, -0.85594267, -0.51233655, -0.215256, -0.461485, 0.386324)
 
 [node name="idle_anim" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_fsyhf")
 }
 autoplay = "animation"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.18, 0)
 
 [editable path="root/model"]
 [editable path="root/arms2"]

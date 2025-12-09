@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy3ifoeuavlkv"]
+
+[ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/components/weapons/fire_weapon.gd" id="1_3ltqa"]
+
+[node name="weapon" type="Node3D"]
+script = ExtResource("1_3ltqa")
+metadata/_custom_type_script = "uid://cfshg230xd28k"
+
+[node name="root" type="Node3D" parent="."]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://ysxisklibopo"]
+
+[ext_resource type="Script" uid="uid://ddorrr4rh5ny8" path="res://Games/source_game/components/animation/weapon_animator.gd" id="1_ah0am"]
+[ext_resource type="Script" uid="uid://j2pbtfls3jgk" path="res://Games/source_game/components/animation/r_animation_hook.gd" id="2_m6icl"]
+[ext_resource type="Script" uid="uid://bo60r48iiqye6" path="res://Games/source_game/components/animation/r_animation_hook_signal.gd" id="3_wcn6y"]
+
+[sub_resource type="Resource" id="Resource_def0m"]
+script = ExtResource("3_wcn6y")
+name = &"event_fire"
+
+[sub_resource type="Resource" id="Resource_0gqj3"]
+script = ExtResource("3_wcn6y")
+name = &"event_reload"
+play_instant = false
+
+[sub_resource type="Resource" id="Resource_w074w"]
+script = ExtResource("3_wcn6y")
+name = &"event_inspect"
+play_instant = false
+
+[sub_resource type="Resource" id="Resource_dlmlp"]
+script = ExtResource("3_wcn6y")
+name = &"event_pick"
+play_instant = false
+metadata/_custom_type_script = "uid://bo60r48iiqye6"
+
+[node name="SourceWeaponAnimator" type="Node"]
+script = ExtResource("1_ah0am")
+hooks = Array[ExtResource("2_m6icl")]([SubResource("Resource_def0m"), SubResource("Resource_0gqj3"), SubResource("Resource_w074w"), SubResource("Resource_dlmlp")])
+initialized = true
+metadata/_custom_type_script = "uid://ddorrr4rh5ny8"

@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://by2u8yhp1402w"
 [sub_resource type="Resource" id="Resource_rm0ir"]
 script = ExtResource("5_v4tpx")
 prefab = ExtResource("4_0188h")
-position = Vector3(0.25, -0.25, -0.45)
+position = Vector3(-0.13, -0.18, 0.075)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_7rp5u"]

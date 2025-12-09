@@ -1,9 +1,3 @@
-class_name R_SourceItem extends Resource
+class_name R_SourceItem extends R_SourceWorldObject
 
-enum TYPES {
-	MELEE = 0,
-	RANGE = 1
-}
-
-@export_category("Settings")
-@export var type:TYPES
+@export var use_cooldown:float = 1.0

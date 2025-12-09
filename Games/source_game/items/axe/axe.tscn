@@ -1,18 +1,29 @@
-[gd_scene load_steps=16 format=4 uid="uid://dp4g8b6hojp73"]
+[gd_scene load_steps=20 format=4 uid="uid://dp4g8b6hojp73"]
 
-[ext_resource type="Texture2D" uid="uid://d0vh5chljv7ef" path="res://Games/source_game/game/axe/textures/Material__16_baseColor.jpeg" id="1_otb7f"]
-[ext_resource type="Script" path="res://Games/source_game/components/wapon_melee.gd" id="1_wo4ef"]
+[ext_resource type="Texture2D" uid="uid://d0vh5chljv7ef" path="res://Games/source_game/game/3dmodels/axe/textures/Material__16_baseColor.jpeg" id="1_otb7f"]
+[ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/components/wapon_melee.gd" id="1_wo4ef"]
 [ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_1mg5u"]
-[ext_resource type="Script" uid="uid://db0ilk7abehmb" path="res://Games/source_game/components/weapons/r_weapon.gd" id="2_ady2o"]
-[ext_resource type="Texture2D" uid="uid://b5kfgvy4txxr5" path="res://Games/source_game/game/axe/textures/Material__16_metallicRoughness.png" id="2_hgh6j"]
-[ext_resource type="Texture2D" uid="uid://cggutdt353g27" path="res://Games/source_game/game/axe/textures/Material__16_normal.jpeg" id="3_wo4ef"]
+[ext_resource type="Texture2D" uid="uid://b5kfgvy4txxr5" path="res://Games/source_game/game/3dmodels/axe/textures/Material__16_metallicRoughness.png" id="2_hgh6j"]
+[ext_resource type="Script" uid="uid://co0qhpkab8k1f" path="res://Games/source_game/components/weapons/r_weapon_melee_object.gd" id="3_6yfu1"]
+[ext_resource type="Texture2D" uid="uid://cggutdt353g27" path="res://Games/source_game/game/3dmodels/axe/textures/Material__16_normal.jpeg" id="3_wo4ef"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_x1ie7"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="5_wenmn"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="6_ady2o"]
 
+[sub_resource type="Resource" id="Resource_3gvr0"]
+script = ExtResource("5_wenmn")
+prefab = null
+metadata/_custom_type_script = "uid://chuimtehu4j13"
 
-[sub_resource type="Resource" id="Resource_1mg5u"]
-script = ExtResource("2_ady2o")
-type = 0
-metadata/_custom_type_script = "uid://db0ilk7abehmb"
+[sub_resource type="Resource" id="Resource_3dxyb"]
+script = ExtResource("4_x1ie7")
+view = SubResource("Resource_3gvr0")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[sub_resource type="Resource" id="Resource_upy0y"]
+script = ExtResource("3_6yfu1")
+viewmodel = SubResource("Resource_3dxyb")
+metadata/_custom_type_script = "uid://co0qhpkab8k1f"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ady2o"]
 resource_name = "Material__16"
@@ -166,13 +177,11 @@ _data = {
 &"pick": SubResource("Animation_ady2o")
 }
 
-[node name="axe" type="Node3D" node_paths=PackedStringArray("model", "animation_player")]
+[node name="axe" type="Node3D"]
 script = ExtResource("1_wo4ef")
 damage = 18.0
 bullethole = ExtResource("2_1mg5u")
-resource = SubResource("Resource_1mg5u")
-model = NodePath("root/root2")
-animation_player = NodePath("AnimationPlayer")
+object = SubResource("Resource_upy0y")
 metadata/_custom_type_script = "uid://bigqs2v4dchuh"
 
 [node name="root" type="Node3D" parent="."]

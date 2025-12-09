@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx5awebwl5113"
+uid="uid://benrcv81u4cfg"
 path.s3tc="res://.godot/imported/fp_arms_0.png-77e0d7dad68b3f081ed5013a931159de.s3tc.ctex"
 path.etc2="res://.godot/imported/fp_arms_0.png-77e0d7dad68b3f081ed5013a931159de.etc2.ctex"
 metadata={
@@ -10,7 +10,7 @@ metadata={
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9d429ff265996bd46301015c82003e72"
+"md5": "0c5097c516299b534ffb1add1b5cf153"
 }
 
 [deps]

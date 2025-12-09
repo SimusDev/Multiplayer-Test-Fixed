@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="7_ilpss"]
 [ext_resource type="Script" uid="uid://dvv35phe3qh7s" path="res://Games/source_game/components/physics_handler.gd" id="7_suq2s"]
 [ext_resource type="AudioStream" uid="uid://p0185rphsnhs" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet3.wav" id="7_x0g0d"]
-[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/nickname/base_prefab.tscn" id="8_0gjdh"]
+[ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/prefabs/nickname/base_prefab.tscn" id="8_0gjdh"]
 [ext_resource type="AudioStream" uid="uid://cvi2jhn54tf6i" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet4.wav" id="8_qmy00"]
 [ext_resource type="AudioStream" uid="uid://dfqj03ejkksu4" path="res://sounds/hl2/physics/flesh/flesh_impact_bullet5.wav" id="9_j431o"]
 [ext_resource type="Script" uid="uid://c1pb3wkc3cqi7" path="res://Games/source_game/components/interact_raycast.gd" id="9_kou6u"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://b5x2sct5a26u8" path="res://cheat/cheatcommands.tscn" id="100_4d7pv"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="105_u7p5y"]
 [ext_resource type="Script" uid="uid://cjkp4qdncq7w7" path="res://addons/simusdev/scene_saver/SD_SceneSaverInstance.gd" id="109_3qhl4"]
+
 
 [sub_resource type="Resource" id="Resource_7lynq"]
 script = ExtResource("13_3yygh")

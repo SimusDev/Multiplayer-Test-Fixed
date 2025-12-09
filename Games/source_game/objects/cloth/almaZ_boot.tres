@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="R_Cloth" load_steps=10 format=3 uid="uid://o6uvucokjb4l"]
+
+[ext_resource type="PackedScene" uid="uid://jd1cq7lf7cl2" path="res://Games/source_game/game/cloth/almaZ_boot/world_prefab.tscn" id="1_0hwl2"]
+[ext_resource type="Script" uid="uid://bqy6ni0xvohrt" path="res://Games/source_game/components/r_cloth.gd" id="1_3pp10"]
+[ext_resource type="Resource" uid="uid://ffwmd6drjqk8" path="res://Games/source_game/resources/cloth_types/boot.tres" id="2_uig74"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="4_u0wfx"]
+[ext_resource type="PackedScene" uid="uid://canroxh0qvh4q" path="res://Games/source_game/game/cloth/almaZ_boot/model.tscn" id="5_jll5i"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_ro4kp"]
+
+[sub_resource type="Resource" id="Resource_1l48l"]
+script = ExtResource("6_ro4kp")
+prefab = ExtResource("5_jll5i")
+position = Vector3(0.2, -0.15, -0.4)
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_nn0uu"]
+script = ExtResource("6_ro4kp")
+prefab = ExtResource("5_jll5i")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_en1pq"]
+script = ExtResource("4_u0wfx")
+view = SubResource("Resource_1l48l")
+world = SubResource("Resource_nn0uu")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
+
+[resource]
+script = ExtResource("1_3pp10")
+type = ExtResource("2_uig74")
+prefab = ExtResource("1_0hwl2")
+viewmodel = SubResource("Resource_en1pq")
+metadata/_custom_type_script = "uid://bqy6ni0xvohrt"

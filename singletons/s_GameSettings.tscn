@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://ce4bjw3dtkcvj"]
+
+[ext_resource type="Script" uid="uid://v441ek6nuwbx" path="res://singletons/s_game_settings.gd" id="1_habyj"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="2_wqmpx"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_6ef8t"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_m70gf"]
+
+[sub_resource type="Resource" id="Resource_4t3hd"]
+resource_name = "soft_shadow_filter_quality"
+script = ExtResource("3_6ef8t")
+code = "graphics.soft_shadow_filter_quality"
+value = "0"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_habyj"]
+resource_name = "motion_blur_intensity"
+script = ExtResource("3_6ef8t")
+code = "graphics.motion_blur_intensity"
+value = "0.0"
+number_max_value = 1.0
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_wqmpx"]
+resource_name = "motion_blur_quality"
+script = ExtResource("3_6ef8t")
+code = "graphics.motion_blur_quality"
+value = "1"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="GameSettings" type="Node"]
+script = ExtResource("1_habyj")
+
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
+script = ExtResource("2_wqmpx")
+commands = Array[ExtResource("3_6ef8t")]([SubResource("Resource_4t3hd"), SubResource("Resource_habyj"), SubResource("Resource_wqmpx")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="command_executed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=4 uid="uid://cxaois3c1hpmp"]
 
-[ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/items/gun_test/gun_test.gd" id="1_6udmt"]
+[ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/components/weapons/fire_weapon.gd" id="1_6udmt"]
 [ext_resource type="PackedScene" uid="uid://s76u5krgs1jm" path="res://Games/source_game/items/gm_toolgun/bullet.tscn" id="2_5ubcn"]
 [ext_resource type="Script" uid="uid://4iri4kw12vgx" path="res://Games/source_game/components/r_source_bullet.gd" id="2_5uyei"]
 [ext_resource type="Texture2D" uid="uid://dpaq2fdv6syjo" path="res://Games/source_game/game/3dmodels/gm_toolgun/textures/toolgun_baseColor.png" id="3_5mjy5"]

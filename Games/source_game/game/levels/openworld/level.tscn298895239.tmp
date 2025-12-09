@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://dntfex5wfixvn"]
+
+[ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_v5tuj"]
+[ext_resource type="Texture2D" uid="uid://bglulose6qdii" path="res://textures/general/grass/grass1.png" id="2_v5tuj"]
+[ext_resource type="PackedScene" uid="uid://dx7fw36narv82" path="res://Games/source_game/game/3dmodels/dead_tree1/scene.tscn" id="3_6vtv3"]
+[ext_resource type="Texture2D" uid="uid://b1k6u3srkbh58" path="res://textures/general/grass/grass1_normal.png" id="3_ish3x"]
+[ext_resource type="Script" uid="uid://dxp3pky5254bi" path="res://Games/source_game/components/spawnpoint.gd" id="4_ish3x"]
+[ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="5_00rp6"]
+[ext_resource type="PackedScene" uid="uid://ddlbe4psx5fju" path="res://Games/source_game/components/environment/source_environment.tscn" id="7_ovl06"]
+
+[sub_resource type="Gradient" id="Gradient_ish3x"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_00rp6"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6vtv3"]
+noise = SubResource("FastNoiseLite_00rp6")
+color_ramp = SubResource("Gradient_ish3x")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_ovl06"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_6vtv3"),
+&"projection_threshold": 0.8
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs00v"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_v5tuj")
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_s5db2"]
+generated_type = 1
+height_offset = 0.5
+density = 4.4
+material_override = SubResource("StandardMaterial3D_xs00v")
+generated_faces = 3
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_tbw1r"]
+name = "grass1"
+albedo_texture = ExtResource("2_v5tuj")
+normal_texture = ExtResource("3_ish3x")
+uv_scale = 2.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_ddxcj"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_s5db2")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_tbw1r")])
+
+[node name="openworld" instance=ExtResource("1_v5tuj")]
+
+[node name="dead_tree" parent="objects" index="0" instance=ExtResource("3_6vtv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.962752)
+
+[node name="dead_tree2" parent="objects" index="1" instance=ExtResource("3_6vtv3")]
+transform = Transform3D(0.9051389, 0, -0.42511588, 0, 1, 0, 0.42511588, 0, 0.9051389, -1.8640206, 0, 3.6397212)
+
+[node name="dead_tree3" parent="objects" index="2" instance=ExtResource("3_6vtv3")]
+transform = Transform3D(-0.15038085, 0, -0.98862815, 0, 1, 0, 0.98862815, 0, -0.15038085, -1.8640206, 0, 1.8357036)
+
+[node name="Terrain3D" type="Terrain3D" parent="NavigationRegion3D" index="0" groups=["material.dirt"]]
+data_directory = "res://Games/source_game/game/levels/openworld/data/"
+material = SubResource("Terrain3DMaterial_ovl06")
+assets = SubResource("Terrain3DAssets_ddxcj")
+collision_priority = 2.0
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="SourceSpawnPoint" type="Node3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4172702, 0)
+script = ExtResource("4_ish3x")
+spawn_point_name = "sex"
+metadata/_custom_type_script = "uid://dxp3pky5254bi"
+
+[node name="SourceAnimatedModel" parent="." index="10" instance=ExtResource("5_00rp6")]
+transform = Transform3D(-0.54466826, 0, -0.8386516, 0, 1, 0, 0.8386516, 0, -0.54466826, 13.488718, 0.07452288, -4.168002)
+
+[node name="Environment" parent="." index="11" instance=ExtResource("7_ovl06")]
