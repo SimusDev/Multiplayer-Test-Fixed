@@ -3,9 +3,6 @@ class_name SD_NetTrunkCallables
 
 @export var _script: SD_NetTrunkCallablesScript
 
-var _disallowed: Dictionary[String, Array] = {}
-var _disallowed_nodes: Array[String] = []
-
 const CHANNEL_DEFAULT: String = "main"
 
 var max_channels: int = 0
@@ -61,6 +58,7 @@ func debug_print(text, category: int = 0) -> void:
 		singleton.debug_print(t, category)
 
 func _initialized() -> void:
+	#singleton.api.peer_packet.connect(_on_api_peer_packet)
 	max_channels = _script.max_channels
 	
 	var channels: PackedStringArray = singleton.settings.get_channels()
@@ -71,6 +69,8 @@ func _initialized() -> void:
 		register_channel(c_name)
 	
 	singleton.on_peer_disconnected.connect(_on_peer_disconnected)
+	
+	
 
 func _on_peer_disconnected(peer: int) -> void:
 	get_active_peer_and_his_nodes().erase(peer)
@@ -86,18 +86,9 @@ func get_active_peer_and_his_nodes() -> Dictionary[int, Array]:
 func send_active_node_to_all(node: Object) -> void:
 	_recieve_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
-@rpc("any_peer", "call_local", "reliable", 100)
+@rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
 func _recieve_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
-	
-	#if !get_active_peer_and_his_nodes().has(sender_id):
-		#get_active_peer_and_his_nodes()[sender_id] = []
-	#
-	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	#
-	#if not nodes.has(node):
-		#nodes.append(node)
-	
 	var object: Object = singleton.cache.deserialize_node_reference(node)
 	if object:
 		var net := SD_NetRegisteredNode.get_or_create(object)
@@ -105,20 +96,12 @@ func _recieve_node_from_peer(node: Variant) -> void:
 		net.activated_for_peer.emit(sender_id)
 
 func delete_active_node_from_all(node: Object) -> void:
-	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
+	if is_inside_tree():
+		_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
-@rpc("any_peer", "call_local", "reliable", 101)
+@rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
 func _delete_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
-	
-	#if !get_active_peer_and_his_nodes().has(sender_id):
-		#get_active_peer_and_his_nodes()[sender_id] = []
-	#
-	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	#
-	#if nodes.has(node):
-		#nodes.erase(node)
-	
 	var object: Object = singleton.cache.deserialize_node_reference(node)
 	if object:
 		var net := SD_NetRegisteredNode.get_or_create(object)
@@ -141,7 +124,7 @@ func register_channel(channel_name: String) -> void:
 	
 	_register_channel_rpc.rpc(channel_name)
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.CHANNEL)
 func _register_channel_rpc(channel_name: String) -> void:
 	var channels: PackedStringArray = get_registered_channels()
 	if channels.has(channel_name):
@@ -173,20 +156,6 @@ func get_cached_nodes() -> Array[String]:
 func get_cached_resources() -> Array[String]:
 	return singleton.get_cached_resources()
 
-func disallow_func(callable: Callable) -> void:
-	var object: Object = callable.get_object()
-	var method: String = callable.get_method()
-	
-	if !object:
-		return
-	
-	var array: Array = (_disallowed.get_or_add(_find_base_class(object), []) as Array)
-	SD_Array.append_to_array_no_repeat(array, method)
-	
-
-func disallow_node(node: Node) -> void:
-	SD_Array.append_to_array_no_repeat(_disallowed_nodes, _find_base_class(node))
-
 func _find_base_class(object: Object) -> String:
 	if not object.get_script():
 		return object.get_class()
@@ -211,6 +180,7 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 	var node: Object = object
 	
 	var net := SD_NetRegisteredNode.get_or_create(node)
+	
 	if net._inactive_for_peers.has(peer):
 		debug_print("cant call function on object: %s, %s., object is inactive for peer %s" % [str(node), method, str(peer)], SD_ConsoleCategories.WARNING)
 		return
@@ -239,8 +209,6 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		callable.callv(args)
 		return
 	
-	var base_class: String = _find_base_class(node)
-	
 	if channel_id > max_channels - 1:
 		debug_print("cant call func(%s) on channel %s, because id is greater than max channels: %s" % [method, channel, max_channels], SD_ConsoleCategories.CATEGORY.ERROR)
 		return
@@ -252,64 +220,16 @@ func call_func_on(peer: int, callable: Callable, args: Array = [], callmode: SD_
 		singleton.cache.serialize_method(callable),
 	]
 	
-	
-	
 	if serialized_args is Array:
 		var first_array: Array = SD_Array.get_value_from_array(serialized_args, 0, []) as Array
 		if !first_array.is_empty():
 			packet_a.append(serialized_args)
 	
-	
-	##print(packet_a)
-	##print(var_to_bytes(packet_a).size())
-	#
-	#if packet_a.size() == 2:
-		#if packet_a[0] is int and packet_a[1] is int:
-			#var pbt: PackedInt32Array = PackedInt32Array([1_000_000, 1_000_000])
-			#print(pbt)
-			#print(var_to_bytes(pbt).size())
-			##packet_a = PackedByteArray(packet_a)
-	
 	_call_func_on_queue(peer, packet_a, channel_id, callmode)
 	
 	singleton.cache.cache_method(callable)
-	
-	
-	#var debug: bool = false
-	#if !debug:
-		#return
-	#
-	#var pbytes: PackedByteArray = var_to_bytes(packet_a)
-	#if pbytes.size() >= 100:
-		#return
-	#
-	#if packet_a[0] is int and packet_a[1] is int:
-		#var ser_bytes: PackedByteArray = PackedByteArray(packet_a)
-		#var testt: PackedByteArray = PackedByteArray()
-		#testt.resize(0)
-		#print(var_to_bytes(ser_bytes).size())
-		#print(var_to_bytes(testt).size())
-	#
-	#
-	#return
-	#print(packet_a)
-	#
-	#print("full packet: ", var_to_bytes(packet_a).size())
-	##print("node: ", var_to_bytes(packet_a[0]).size())
-	##print("method: ", var_to_bytes(packet_a[1]).size())
-	##print("args: ", var_to_bytes(packet_a[2]).size())
-	#
-	#var bytes: PackedByteArray = var_to_bytes(packet_a)
-	#var compressed: PackedByteArray = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
-	#print("uncompressed: ", bytes.size())
-	#print("compressed", compressed.size())
-	##var array: PackedByteArray = PackedByteArray([1_000_000, 1_000])
-	##print("packedbytearray test: ", var_to_bytes(array).size())
-	#
-	#
-	#
 
-func _call_func_on_queue(peer: int, packet: Variant, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
+func _call_func_on_queue(peer: int, packet: Array, channel_id: int, callmode: SD_Network.CALLMODE) -> void:
 	match callmode:
 		SD_Network.CALLMODE.RELIABLE:
 			multiplayer.rpc(peer, _script, "_r_rpc_r%s" % str(channel_id), packet)
@@ -320,6 +240,40 @@ func _call_func_on_queue(peer: int, packet: Variant, channel_id: int, callmode: 
 		SD_Network.CALLMODE.UNRELIABLE_ORDERED:
 			multiplayer.rpc(peer, _script, "_r_rpc_uo%s" % str(channel_id), packet)
 			
+
+func _recieve_call_from_local(from_peer: int, channel_id: int, s_object: Variant, s_method: Variant, s_args: Array = []) -> void:
+	var method: String = singleton.cache.deserialize_method(s_method)
+	var args: Array = SD_NetworkDeserializer.parse(s_args)
+	var node: Object = singleton.cache.deserialize_node_reference(s_object)
+	
+	var remote_sender: SD_NetSender = SD_Network.remote_sender
+	remote_sender.id = from_peer
+	remote_sender.player = SD_NetworkPlayer.get_by_peer_id(from_peer)
+	remote_sender.channel = get_channel_by_id(channel_id)
+	remote_sender.channel_id = get_channel_by_name(remote_sender.channel)
+	
+	if not node:
+		debug_print("[server: %s] failed to call method: %s, node is null! %s" % [str(SD_Network.is_server()), method, str(s_object)], SD_ConsoleCategories.ERROR)
+		return
+	
+	if node:
+		var callable: Callable = Callable(node, method)
+		if from_peer == SD_Network.SERVER_ID:
+			callable.callv(args)
+			return
+		
+		if !singleton.is_object_registered(node):
+			debug_print("failed to call function on unregistered object: %s, %s!, object must be registered!, use SD_Network.register_object()" % [str(node), method], SD_ConsoleCategories.ERROR)
+			return
+		
+		_remote_sender_id = from_peer
+		
+		if not is_function_registered(callable):
+			debug_print("failed to call unregistered function from peer %s: %s, %s!, maybe trying to cheat -_- ???" % [str(from_peer), str(node), method], SD_ConsoleCategories.CATEGORY.WARNING)
+			return
+		
+		node.callv(method, args)
+		
 
 func call_func(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:
 	call_func_on(singleton.get_unique_id(), callable, args, callmode)
@@ -333,53 +287,3 @@ func call_func_except_self(callable: Callable, args: Array = [], callmode: SD_Ne
 
 func call_func_on_server(callable: Callable, args: Array = [], callmode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL_DEFAULT) -> void:
 	call_func_on(singleton.SERVER_ID, callable, args, callmode, channel)
-
-func _recieve_call_from_local(from_peer: int, channel_id: int, s_object: Variant, s_method: Variant, s_args: Array = []) -> void:
-	var method: String = singleton.cache.deserialize_method(s_method)
-	if method.is_empty():
-		debug_print("BUG? remote call method %s from %s failed, method cache not found!" % [str(s_method), str(from_peer)], SD_ConsoleCategories.ERROR)
-		return
-	
-	
-	var args: Array = SD_NetworkDeserializer.parse(s_args)
-	
-	var node: Object = singleton.cache.deserialize_node_reference(s_object)
-	
-	var remote_sender: SD_NetSender = SD_Network.remote_sender
-	remote_sender.id = from_peer
-	remote_sender.player = SD_NetworkPlayer.get_by_peer_id(from_peer)
-	remote_sender.channel = get_channel_by_id(channel_id)
-	remote_sender.channel_id = get_channel_by_name(remote_sender.channel)
-	
-	if not node:
-		debug_print("[server: %s] failed to call method: %s, node is null! %s" % [str(SD_Network.is_server()), method, str(s_object)], SD_ConsoleCategories.ERROR)
-		return
-	
-	
-	
-	if node:
-		if !singleton.is_object_registered(node):
-			debug_print("failed to call function on unregistered object: %s, %s!, object must be registered!, use SD_Network.register_object()" % [str(node), method], SD_ConsoleCategories.ERROR)
-			return
-		
-		_remote_sender_id = from_peer
-		var callable: Callable = Callable(node, method)
-		if from_peer == SD_Network.SERVER_ID:
-			callable.callv(args)
-			return
-		
-		if not is_function_registered(callable):
-			debug_print("failed to call unregistered function from peer %s: %s, %s!, maybe trying to cheat -_- ???" % [str(from_peer), str(node), method], SD_ConsoleCategories.CATEGORY.WARNING)
-			return
-		
-		var base_class: String = _find_base_class(node)
-		
-		if _disallowed.has(base_class) or _disallowed_nodes.has(base_class):
-			var methods: Array = _disallowed[base_class]
-			if methods.has(method):
-				debug_print("peer(%s) tried call disallowed function: %s, %s, maybe trying to cheat -_- ???" % [str(from_peer), base_class, method], SD_ConsoleCategories.CATEGORY.WARNING)
-				return
-		
-		
-		node.callv(method, args)
-		

@@ -15,7 +15,7 @@ signal max_health_changed()
 
 @export_group("Network")
 @export var transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE
-@export var channel: StringName = SD_NetTrunkCallables.CHANNEL_DEFAULT
+@export var channel: StringName = "health"
 @export var server_authorative: bool = true
 
 var _last_health: float = 100.0
@@ -28,8 +28,6 @@ func _ready() -> void:
 			target = owner
 		else:
 			target = get_parent()
-	
-	
 	
 	if not Engine.is_editor_hint():
 		SD_Network.register_channel(channel)

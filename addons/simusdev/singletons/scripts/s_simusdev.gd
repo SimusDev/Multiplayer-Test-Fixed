@@ -26,6 +26,8 @@ var ui := SD_TrunkUI.new()
 var cursor := SD_TrunkCursor.new()
 var popups := SD_TrunkPopups.new()
 
+var gamestate := SD_GameState.new()
+
 var multiplayerAPI: SD_MultiplayerSingleton
 var network: SD_NetworkSingleton
 
@@ -79,6 +81,9 @@ func _ready() -> void:
 	ui._ready()
 	cursor._ready()
 	popups._ready()
+	
+	gamestate.name = "GameState"
+	add_child(gamestate)
 	
 	_initialize_commands()
 	

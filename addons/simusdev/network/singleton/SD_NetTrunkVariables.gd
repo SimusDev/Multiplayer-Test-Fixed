@@ -3,29 +3,23 @@ class_name SD_NetTrunkVariables
 
 var _recieve_callbacks: Dictionary[String, Array] = {}
 
-var SNAP_VARIABLE_TYPES: Dictionary[int, Callable] = {
-	TYPE_FLOAT: _snap_float,
-	TYPE_VECTOR2: _snap_vector2,
-	TYPE_VECTOR3: _snap_vector3,
-	
-}
-
-func _snap_float(v: int, step: float) -> int:
-	return snapped(v, step)
-
-func _snap_vector2(v: Vector2, step: float) -> Vector2:
-	return snapped(v, Vector2(step, step))
-
-func _snap_vector3(v: Vector3, step: float) -> Vector3:
-	return snapped(v, Vector3(step, step, step))
+const CHANNEL: String = "vars"
+const CHANNEL_UNIMPORTANT: String = "vars_u"
 
 func _initialized() -> void:
+	SD_Network.register_channel(CHANNEL)
+	SD_Network.register_channel(CHANNEL_UNIMPORTANT)
+	
 	SD_Network.register_function(_recieve_var)
 	SD_Network.register_function(var_send_to)
 	SD_Network.register_function(_var_send_to)
 	
 	for variable in _initial_cached_variables:
 		singleton.cache.cache_variable(variable)
+	
+	SD_Network.register_function(_replicate_send)
+	
+	singleton.cache.cache_method(_replicate_recieve)
 
 var _method_queue: Array[Dictionary] = []
 
@@ -83,7 +77,9 @@ func _on_callback_recieve_node_tree_exited(node: Node) -> void:
 		_recieve_callbacks.erase(str(node.get_path()))
 
 func register_variable(node: Node, property: String, options: Dictionary = {}) -> void:
+	singleton.cache.cache_variable(property)
 	get_registered_variables(node).set(property, options)
+	
 
 func register_all_variables(node: Node) -> void:
 	var to_register: Array[String] = []
@@ -165,14 +161,6 @@ func _var_send_to(peer: int, node_net_id: int, properties: PackedStringArray, ca
 	var parsed: Dictionary = {}
 	for p_name in properties:
 		var p_value: Variant = node.get(p_name)
-		
-		if options.has("snap"):
-			var snap: float = options.get("snap", 0.0) as float
-			if snap > 0.0:
-				var type: int = typeof(p_value)
-				if type in SNAP_VARIABLE_TYPES:
-					p_value = SNAP_VARIABLE_TYPES[type].call(p_value, snap)
-			
 		parsed[p_name] = p_value
 	
 	SD_Network.call_func_on(peer, _recieve_var, [SD_Network.get_unique_id(), node_net_id, parsed], callmode, channel)
@@ -217,3 +205,30 @@ func _recieve_var(from: int, node_net_id: int, properties: Dictionary) -> void:
 func debug_print(text, category: int = 0) -> void:
 	if singleton.settings.debug_vars:
 		singleton.debug_print("[Variables] %s" % str(text), category)
+
+func replicate(object: Object, vars: PackedStringArray, mode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = CHANNEL) -> void:
+	for p in vars:
+		register_variable(object, p)
+	
+	var var_array: Array = []
+	for p in vars:
+		var_array.append(singleton.cache.serialize_var(p))
+	
+	SD_Network.call_func_on_server(_replicate_send, [object, var_array], mode, channel)
+	
+
+func _replicate_send(object: Object, vars: Array) -> void:
+	var sender: SD_NetSender = SD_Network.remote_sender
+	var deserialized: Array = []
+	for p in vars:
+		deserialized.append(singleton.cache.deserialize_var(p))
+	
+	var result: Dictionary = {}
+	
+	for p in deserialized:
+		result[singleton.cache.serialize_var(p)] = SD_NetworkSerializer.parse(object.get(p))
+		
+	SD_Network.call_func_on(sender.id, _replicate_recieve, [object, result], sender.callmode, sender.channel)
+
+func _replicate_recieve(object: Object, result: Dictionary) -> void:
+	print(result)

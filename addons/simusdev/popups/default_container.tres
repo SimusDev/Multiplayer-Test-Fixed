@@ -6,5 +6,4 @@
 [resource]
 script = ExtResource("1_1ka3e")
 content_behind = Array[PackedScene]([ExtResource("1_p4qfj")])
-content_front = Array[PackedScene]([])
 metadata/_custom_type_script = "uid://7pcjhosfggyf"

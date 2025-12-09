@@ -17,6 +17,13 @@ static var remote_sender: SD_NetSender = SD_NetSender.new()
 func _init(net: SD_NetworkSingleton) -> void:
 	singleton = net
 
+static func parse_callmode_into_transfer_mode(callmode: CALLMODE) -> MultiplayerPeer.TransferMode:
+	if callmode == CALLMODE.RELIABLE:
+		return MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE
+	elif callmode == CALLMODE.UNRELIABLE:
+		return MultiplayerPeer.TransferMode.TRANSFER_MODE_UNRELIABLE
+	return MultiplayerPeer.TransferMode.TRANSFER_MODE_UNRELIABLE_ORDERED
+
 static func is_authority(node: Node) -> bool:
 	return node.get_multiplayer_authority() == get_unique_id()
 
@@ -172,3 +179,6 @@ static func call_rpc_on(peer: int, callable: Callable, args: Array = []) -> void
 
 static func call_rpc_on_server(callable: Callable, args: Array = []) -> void:
 	singleton.rpc.call_rpc_on_server(callable, args)
+
+static func replicate_vars(object: Object, vars: PackedStringArray, mode: SD_Network.CALLMODE = SD_Network.CALLMODE.RELIABLE, channel: String = SD_NetTrunkVariables.CHANNEL) -> void:
+	singleton.variables.replicate(object, vars, mode, channel)

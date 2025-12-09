@@ -4,10 +4,6 @@ class_name W_FPCSourceLikeCamera
 @export var body: CharacterBody3D
 @export_group("References")
 @export var camera: Camera3D
-#@export var viewmodel:SourceViewModelRoot3D
-
-@export_group("Viewmodel Settings")
-@export var sway_multiplier = 1
 
 @export_group("Camera Settings")
 @export var make_current_at_start: bool = true
@@ -50,7 +46,8 @@ static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
 func _exit_tree() -> void:
 	super()
 	
-	enabled = false
+	if is_authority():
+		enabled = false
 	
 	if !_active_camera_list.is_empty():
 		var camera: W_FPCSourceLikeCamera = _active_camera_list[_active_camera_list.size() - 1]
@@ -61,6 +58,9 @@ func _exit_tree() -> void:
 
 func _enter_tree() -> void:
 	super()
+	
+	if is_authority():
+		enabled = true
 
 func make_current() -> void:
 	if camera:
@@ -73,6 +73,7 @@ func set_current(value: bool) -> void:
 		enabled = true
 
 func _enabled_status_changed() -> void:
+	
 	if enabled:
 		
 		for i in get_instance_list():
@@ -91,9 +92,13 @@ func _enabled_status_changed() -> void:
 	
 	if is_authority():
 		set_mouse_captured(enabled)
+	
+	
 
 func _ready() -> void:
 	SD_Network.register_object(self)
+	
+	SD_Components.append_to(body, self)
 	if not is_authority():
 		add_disable_priority()
 		return

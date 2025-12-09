@@ -1,6 +1,8 @@
 extends SD_NetTrunk
 class_name SD_NetTrunkRpc
 
+
+
 func register_rpc(callable: Callable, 
 rpc_mode: MultiplayerAPI.RPCMode = MultiplayerAPI.RPCMode.RPC_MODE_AUTHORITY,
 transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,

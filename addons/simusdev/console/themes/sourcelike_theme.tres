@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bwhd45id04skj"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bwhd45id04skj"]
 
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_hkwob"]
 [ext_resource type="StyleBox" uid="uid://bih71ovdh4sr8" path="res://sourcelike_interface/styles/button_disabled.tres" id="2_42ix0"]
 [ext_resource type="StyleBox" uid="uid://bpkki4oi1j23s" path="res://sourcelike_interface/styles/panel.tres" id="3_0lpiu"]
 [ext_resource type="StyleBox" uid="uid://dbtwgaapo00ne" path="res://sourcelike_interface/styles/panel_default.tres" id="4_43bsm"]
@@ -33,6 +34,7 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_hkwob")
 Button/styles/disabled = ExtResource("2_42ix0")
 Button/styles/focus = ExtResource("3_0lpiu")
 Button/styles/hover = ExtResource("3_0lpiu")
@@ -40,6 +42,8 @@ Button/styles/normal = ExtResource("3_0lpiu")
 Button/styles/pressed = ExtResource("4_43bsm")
 Label/constants/outline_size = 4
 Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_hkwob")
+LineEdit/fonts/font = ExtResource("1_hkwob")
 LineEdit/styles/focus = ExtResource("5_5dkx3")
 LineEdit/styles/normal = ExtResource("5_5dkx3")
 LineEdit/styles/read_only = ExtResource("6_qs0sw")

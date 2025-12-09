@@ -196,13 +196,13 @@ func _deserialize_main(node: Node, data: Dictionary) -> void:
 	node.add_child(spawned)
 
 func _serialize_instance(node: Node, data: Dictionary) -> void:
-	data.i = node.scene_file_path
+	data.i = SD_NetworkSerializer.parse(load(node.scene_file_path))
 
 func _serialize_tags(node: Node, data: Dictionary) -> void:
 	pass
 
 func _deserialize_instance(data: Dictionary) -> Node:
-	var scene: PackedScene = load(data.i) as PackedScene
+	var scene: PackedScene = SD_NetworkDeserializer.parse(data.i)
 	var node: Node = null
 	if scene:
 		node = scene.instantiate()

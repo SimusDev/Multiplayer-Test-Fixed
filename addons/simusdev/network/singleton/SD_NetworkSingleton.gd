@@ -1,6 +1,15 @@
 extends Node
 class_name SD_NetworkSingleton
 
+enum CHANNEL {
+	PLAYERS = 73,
+	NODE,
+	METHOD,
+	CHANNEL,
+	RESOURCE,
+}
+
+
 @onready var console: SD_TrunkConsole = SimusDev.console
 
 var settings: SD_NetworkSettings
@@ -20,6 +29,8 @@ signal initialized()
 
 var _dedicated_server: bool = false
 var _peer: PacketPeer
+
+var api: SceneMultiplayer
 
 const SERVER_ID: int = 1
 
@@ -158,7 +169,8 @@ func _ready() -> void:
 	_s_network_deserializer._compression = settings.serializer_compression
 	_s_network_deserializer._min_bytes_to_compress = settings.serializer_min_bytes_to_compress
 	
-	get_tree().set_multiplayer(SceneMultiplayer.new())
+	api = SceneMultiplayer.new()
+	get_tree().set_multiplayer(api)
 	#multiplayer.allow_object_decoding = true
 	get_tree().multiplayer_poll = not settings.custom_poll
 	multiplayer.connected_to_server.connect(_on_connected_to_server)

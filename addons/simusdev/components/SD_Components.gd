@@ -76,10 +76,20 @@ static func get_base_script_from_node(node: Node) -> Script:
 	return get_base_script(node.get_script())
 
 static func node_find_above_by_script(from: Node, script: Script) -> Node:
-	if from.get_script() == script:
+	if get_base_script_from_node(from) == script:
 		return from
 	
 	if from == SimusDev.get_tree().root:
 		return null
 	
 	return node_find_above_by_script(from.get_parent(), script)
+
+static func node_find_above_by_component(from: Node, component: Script) -> Node:
+	var founded = find_first(from, component)
+	if founded:
+		return founded
+	
+	if from == SimusDev.get_tree().root:
+		return null
+	
+	return node_find_above_by_component(from.get_parent(), component)

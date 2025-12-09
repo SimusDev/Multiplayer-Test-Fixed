@@ -1,21 +1,10 @@
 extends SD_NetTrunk
 class_name SD_NetTrunkCache
 
-enum TYPE {
-	RESOURCE,
-	METHOD,
-	NODE,
-}
-
-const CHANNELS: Dictionary[int, int] = {
-	TYPE.RESOURCE: 100,
-	TYPE.METHOD : 101,
-	TYPE.NODE : 102,
-	
-}
-
 var _cached_input_map_string: Dictionary[StringName, int] = {}
 var _cached_input_map_id: Dictionary[int, StringName] = {}
+
+var _stream_peer_buffer: StreamPeerBuffer = StreamPeerBuffer.new()
 
 func _initialized() -> void:
 	singleton.on_active_status_changed.connect(_on_active_status_changed)
@@ -57,7 +46,7 @@ func cache_resource(resource: Resource) -> void:
 	
 	_cache_resource_rpc.rpc(path)
 
-@rpc("call_local", "any_peer", "reliable", CHANNELS[TYPE.RESOURCE])
+@rpc("call_local", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.RESOURCE)
 func _cache_resource_rpc(path: String) -> void:
 	SD_Network.get_cached_resources().append(path)
 	debug_print("resource cached: %s" % path)
@@ -112,7 +101,7 @@ func cache_method(method: Callable) -> void:
 	_cache_method_rpc.rpc(m_name)
 
 
-@rpc("call_local", "any_peer", "reliable")
+@rpc("call_local", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.METHOD)
 func _cache_method_rpc(method_name: String) -> void:
 	if SD_Network.is_server():
 		return
@@ -130,12 +119,23 @@ func cache_variable(variable: String) -> void:
 	
 	_cache_variable_rpc.rpc(variable)
 
-@rpc("call_local", "any_peer", "reliable")
+@rpc("call_local", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.METHOD)
 func _cache_variable_rpc(variable: String) -> void:
 	if SD_Network.is_server():
 		return
 	
 	get_cached_variables().append(variable)
+
+func serialize_var(variable: String) -> Variant:
+	var id: int = get_cached_variables().find(variable)
+	if id > -1:
+		return id
+	return variable
+
+func deserialize_var(serialized: Variant) -> Variant:
+	if serialized is int:
+		return get_cached_variables().get(serialized)
+	return serialized
 
 func serialize_method(callable: Callable) -> Variant:
 	var id: int = get_cached_methods().find(callable.get_method())
@@ -144,8 +144,6 @@ func serialize_method(callable: Callable) -> Variant:
 	return callable.get_method()
 
 func deserialize_method(serialized: Variant) -> Variant:
-	serialized = SD_Variables.deserialize_unsigned_int(serialized)
-	
 	if serialized is int:
 		return get_cached_methods().get(serialized)
 	return serialized
@@ -180,7 +178,7 @@ func try_cache_node(node: Object) -> void:
 	
 	var net_id: int = node.get_instance_id()
 	if node is SD_NetworkedResource:
-		net_id = SD_NetworkedResource._cached_instances.size() * -1
+		net_id = (SD_NetworkedResource._cached_instances.size() + 1) * -1
 	
 	var net := SD_NetRegisteredNode.get_or_create(node)
 	var path: NodePath = net.last_path
@@ -197,7 +195,7 @@ func try_cache_node(node: Object) -> void:
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 
-@rpc("reliable")
+@rpc("reliable", "authority", "call_remote", SD_NetworkSingleton.CHANNEL.NODE)
 func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
@@ -227,12 +225,13 @@ func try_uncache_node(path: NodePath) -> void:
 	#cache_by_id.erase(net_id)
 	#cache_by_path.erase(path)
 	
-	_client_uncache(net_id, path)
-	_client_uncache.rpc(net_id, path)
+	if is_inside_tree():
+		_client_uncache(net_id, path)
+		_client_uncache.rpc(net_id, path)
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-@rpc("reliable")
+@rpc("reliable", "authority", "call_remote", SD_NetworkSingleton.CHANNEL.NODE)
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id().erase(net_id)
 	get_cached_nodes_by_path().erase(path)
@@ -250,6 +249,9 @@ func debug_print(text, category: int = 0) -> void:
 
 func serialize_node_reference(node: Object) -> Variant:
 	var reg: SD_NetRegisteredNode = SD_NetRegisteredNode.get_or_create(node)
+	if reg.is_cached:
+		return reg.net_id
+	
 	var path: NodePath = reg.last_path
 	var id: int = get_cached_id_by_path(path)
 	if id < 0:
@@ -257,7 +259,6 @@ func serialize_node_reference(node: Object) -> Variant:
 	return id
 
 func deserialize_node_reference(data: Variant) -> Object:
-	
 	if data is int:
 		var founded: Object = SD_NetworkedResource.deserialize_reference(data)
 		

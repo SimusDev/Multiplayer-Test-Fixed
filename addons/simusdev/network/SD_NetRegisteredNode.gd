@@ -91,10 +91,13 @@ func _on_tree_entered() -> void:
 	last_path = path
 	SD_Network.singleton.cache.try_cache_node(reference)
 	
-	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	var founded_id: int = SD_Network.singleton.cache.get_cached_id_by_path(last_path)
+	is_cached = founded_id > -1
 	
 	if !is_cached:
 		await cached
+	
+	net_id = SD_Network.singleton.cache.get_cached_id_by_path(last_path)
 	
 	if allow_inactive:
 		SD_Network.singleton.callables.send_active_node_to_all(reference)

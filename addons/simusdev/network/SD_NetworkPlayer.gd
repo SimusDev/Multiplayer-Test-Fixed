@@ -11,6 +11,9 @@ signal serverdata_changed(key: String, value: Variant)
 
 var _rights: PackedStringArray = []
 
+signal on_connected()
+signal on_disconnected()
+
 func _ready() -> void:
 	SD_Network.register_object(self)
 	#SD_Network.register_functions()

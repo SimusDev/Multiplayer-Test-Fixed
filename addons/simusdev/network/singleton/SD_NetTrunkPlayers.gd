@@ -22,6 +22,7 @@ func _destroy_player(peer: int) -> void:
 		var player: SD_NetworkPlayer = _connected[peer]
 		var p_name: String = player.get_username()
 		on_disconnected.emit(player)
+		player.on_disconnected.emit()
 		singleton.on_player_disconnected.emit(player)
 		player.queue_free()
 	
@@ -38,7 +39,7 @@ func _on_connected_to_server() -> void:
 	net_player.data.set("_username", singleton.username)
 	_recieve_player_from_client_and_send_anwser.rpc_id(singleton.SERVER_ID, SD_NetworkSerializer.parse(net_player), singleton.get_game_info())
 
-@rpc("call_remote", "any_peer", "reliable")
+@rpc("call_remote", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	if not resource:
 		resource = SD_NetPlayerResource.new()
@@ -56,6 +57,7 @@ func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	player.set_multiplayer_authority(resource.peer_id)
 	add_child(player)
 	on_connected.emit(player)
+	player.on_connected.emit()
 	
 	singleton.on_player_connected.emit(player)
 	
@@ -63,7 +65,7 @@ func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	
 	return player
 
-@rpc("call_remote", "any_peer", "reliable")
+@rpc("call_remote", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _recieve_player_from_client_and_send_anwser(parsed: Variant, game_info: Dictionary) -> void:
 	if singleton.is_server():
 		
@@ -121,7 +123,7 @@ func _recieve_player_from_client_and_send_anwser(parsed: Variant, game_info: Dic
 		var custom_cache_bytes: PackedByteArray = SD_Variables.compress_gzip(singleton.custom_cache)
 		_receive_players_from_server_and_connect.rpc_id(resource.peer_id, send, cache_bytes, custom_cache_bytes)
 
-@rpc("call_remote", "any_peer", "reliable")
+@rpc("call_remote", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _receive_player_from_server(data: Dictionary) -> void:
 	var net := SD_NetPlayerResource.new()
 	net.peer_id = data.peer_id
@@ -129,7 +131,7 @@ func _receive_player_from_server(data: Dictionary) -> void:
 	net.server_data = data.server_data
 	_recieve_player(net)
 
-@rpc("call_remote", "any_peer", "reliable")
+@rpc("call_remote", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionary], cache_bytes: PackedByteArray, custom_cache_bytes: PackedByteArray) -> void:
 	singleton.on_handshake_begin.emit()
 	
@@ -153,7 +155,7 @@ func _receive_players_from_server_and_connect(players: Dictionary[int, Dictionar
 	
 	
 
-@rpc("reliable", "any_peer")
+@rpc("reliable", "any_peer", "call_remote", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _terminate_client_connection(error: int = SD_NetConnectionErrors.ERRORS.DEFAULT, message: String = "") -> void:
 	if SD_Network.is_server():
 		return
