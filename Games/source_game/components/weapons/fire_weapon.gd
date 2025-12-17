@@ -36,11 +36,13 @@ func _input(event: InputEvent) -> void:
 			event_inspect.emit()
 
 func _pressed_alt() -> void:
-	is_aim = true
-	event_aim_start.emit()
+	if not is_aim:
+		is_aim = true
+		event_aim_start.emit()
 func _released_alt() -> void:
-	is_aim = false
-	event_aim_end.emit()
+	if is_aim:
+		is_aim = false
+		event_aim_end.emit()
 
 func _process(_delta: float) -> void:
 	if is_using:

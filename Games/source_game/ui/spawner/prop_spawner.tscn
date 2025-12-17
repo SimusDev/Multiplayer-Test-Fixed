@@ -5,12 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://buvjh2hd1vfys" path="res://Games/source_game/ui/spawner/object_preview.tscn" id="2_6x7ak"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_wi4bw"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_6x7ak"]
-[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_5jgjh"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_n8odq"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_nmxke"]
+[ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="9_5jgjh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6x7ak"]
-font = ExtResource("4_5jgjh")
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -59,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="head" parent="." instance=ExtResource("3_6x7ak")]
-self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -77,12 +76,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Spawner Menu"
+text = "Spawn"
 label_settings = SubResource("LabelSettings_6x7ak")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_n8odq")
-font = ExtResource("4_5jgjh")
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -123,6 +121,7 @@ offset_left = -0.270113
 offset_top = 0.049850464
 offset_right = 0.24221802
 offset_bottom = -0.17737961
+theme = ExtResource("9_5jgjh")
 theme_override_font_sizes/font_size = 32
 text = "INVENTORY"
 
@@ -137,6 +136,7 @@ offset_left = -0.0033569336
 offset_top = 0.10695648
 offset_right = -0.08996582
 offset_bottom = -0.12027359
+theme = ExtResource("9_5jgjh")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "QUANTITY"
 alignment = 1

@@ -1,19 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckpemnnfs6bi3"]
+[gd_scene load_steps=6 format=3 uid="uid://ckpemnnfs6bi3"]
 
 [ext_resource type="Script" uid="uid://bswl4pql3jdtf" path="res://Games/source_game/ui/inventory/window.gd" id="1_va7wf"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_r0vmh"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="3_shyxp"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="4_h8asj"]
 
+[sub_resource type="GDScript" id="GDScript_h8asj"]
+resource_name = "script"
+script/source = "extends Label
+
+@onready var window: ui_SourceInventoryWindow = $\"../..\"
+@onready var title: Label = $\".\"
+
+func _ready() -> void:
+	if SD_Network.is_authority(self):
+		var format:String = \"Inventory (%s)\" % [ SD_NetworkPlayer. get_by_peer_id(window._player.multiplayer.get_unique_id() ).get_username()  ]
+		title.text = format
+"
+
 [node name="Window" type="Control" node_paths=PackedStringArray("container", "interface")]
 custom_minimum_size = Vector2(600, 503)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 600.0
-offset_bottom = 503.0
+anchor_right = 0.46875
+anchor_bottom = 0.69861114
+offset_bottom = -3.0517578e-05
 script = ExtResource("1_va7wf")
 container = NodePath("CenterContainer/GridContainer")
 interface = NodePath("SD_UIInterfaceMenu")
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_h8asj")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+script = ExtResource("3_shyxp")
+TARGET_INPUT = NodePath("..")
+TARGET_DRAG = NodePath("..")
+zoom_enabled = true
+metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
 [node name="panel_default" parent="." instance=ExtResource("2_r0vmh")]
 layout_mode = 1
@@ -25,29 +51,54 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
-script = ExtResource("3_shyxp")
-TARGET_INPUT = NodePath("..")
-TARGET_DRAG = NodePath("..")
-zoom_enabled = true
-metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(580, 462.5)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.016666668
+anchor_top = 0.06461233
+anchor_right = 0.98333335
+anchor_bottom = 0.98409545
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
+mouse_filter = 0
 columns = 6
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("4_h8asj")
-target = NodePath("..")
-metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 263.5
+offset_right = 300.0
+offset_bottom = 263.5
+
+[node name="panel_default2" parent="." instance=ExtResource("2_r0vmh")]
+self_modulate = Color(0.0997565, 0.099756576, 0.09975655, 0.9607843)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.04771372
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="Label" parent="panel_default2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008333334
+anchor_top = 0.125
+anchor_right = 0.98833334
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Inventory (username)"
+script = SubResource("GDScript_h8asj")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="closed" from="SD_UIInterfaceMenu" to="." method="_on_sd_ui_interface_menu_closed"]

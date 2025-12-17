@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=4 format=3 uid="uid://bitb7epxi87xm"]
+[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=6 format=3 uid="uid://bitb7epxi87xm"]
 
 [ext_resource type="Texture2D" uid="uid://c6ayjnrd35irg" path="res://Games/source_game/objects/weapons/ammo/rifle.png" id="1_cjy0x"]
+[ext_resource type="AudioStream" uid="uid://r64ruhsd5r2g" path="res://Games/source_game/sounds/ui/inventory/ammo_drag_start.mp3" id="1_ln0n7"]
 [ext_resource type="PackedScene" uid="uid://8t1ci470aueq" path="res://Games/source_game/objects/weapons/ammo/ammo.tscn" id="1_m6tsy"]
 [ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_y75oj"]
+[ext_resource type="AudioStream" uid="uid://dulvqp7e6qryi" path="res://Games/source_game/sounds/ui/inventory/ammo_drag_stop.mp3" id="2_6ec1w"]
 
 [resource]
 script = ExtResource("1_y75oj")
 damage = 25.0
 icon = ExtResource("1_cjy0x")
 prefab = ExtResource("1_m6tsy")
+drag_start_sound = ExtResource("1_ln0n7")
+drag_stop_sound = ExtResource("2_6ec1w")
 metadata/_custom_type_script = "uid://dnds3ahg2iktc"

@@ -17,6 +17,7 @@ var _mouse_entered: bool = false
 @onready var quantity: Label = $icon/quantity
 @onready var progress_bar: TextureProgressBar = $icon/ProgressBar
 @onready var type_icon:TextureRect = $Panel/type_icon
+@onready var audio: AudioStreamPlayer = $audio
 
 func _ready() -> void:
 	if not _created:
@@ -88,6 +89,7 @@ func _on_sd_ui_drag_and_drop_dropped(draggable: Control, at: Control) -> void:
 		var drop_slot: SourceInventorySlot = at.slot
 		if slot.get_item():
 			slot.get_item().move_to(drop_slot)
+			_update_durability()
 			
 
 func show_actions() -> void:
@@ -103,6 +105,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if slot.get_item():
 				slot.get_item().action_request(action)
 
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -113,7 +116,17 @@ func on_inventory_closed(_inv=null) -> void:
 	$SD_UIDragAndDrop.drag_stop()
 
 func _on_sd_ui_drag_and_drop_drag_started() -> void:
+	if slot._item:
+		if slot._item.object:
+			if slot._item.object.drag_start_sound:
+				audio.stream = slot._item.object.drag_start_sound
+				audio.play()
 	icon.hide()
 
 func _on_sd_ui_drag_and_drop_drag_stopped() -> void:
+	if slot._item:
+		if slot._item.object:
+			if slot._item.object.drag_stop_sound:
+				audio.stream = slot._item.object.drag_stop_sound
+				audio.play()
 	icon.show()
