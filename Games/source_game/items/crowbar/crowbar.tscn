@@ -152,6 +152,7 @@ libraries = {
 }
 
 [node name="model" parent="." instance=ExtResource("4_b6hyk")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="Sketchfab_model" parent="model" index="0"]
 transform = Transform3D(-0.0245746, 0.0172073, 7.52155e-10, 0, -1.31134e-09, 0.03, 0.0172073, 0.0245746, 1.07419e-09, 0, 0, 0)
@@ -162,9 +163,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255082, -0.787723, 0.54776
 [node name="right_hand" type="Marker3D" parent="model"]
 transform = Transform3D(-0.999766, -0.00335422, -0.0213611, 0.0192302, 0.313776, -0.949302, 0.0098868, -0.949491, -0.313638, 0.0285779, -0.0318516, 0.0645551)
 
-[node name="arms" parent="." node_paths=PackedStringArray("hands_ik") instance=ExtResource("5_4tykw")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.2, -0.160337, 0.4)
-hands_ik = [NodePath("root/Skeleton3D/left_hand_ik"), NodePath("root/Skeleton3D/right_hand_ik")]
+[node name="arms" parent="." instance=ExtResource("5_4tykw")]
+transform = Transform3D(-0.8969577, 0, -0.44211635, 0, 1, 0, 0.44211635, 0, -0.8969577, 0, 0, 0.11356686)
 
 [node name="Skeleton3D" parent="arms/root" index="0"]
 bones/31/position = Vector3(0.003, 0.064, 0.02)

@@ -13,6 +13,9 @@ class_name R_SourceWorldObject
 
 @export_group("ItemStack")
 @export var itemstack: SourceItemStackSettings = null : get = get_itemstack
+@export var drag_start_sound:AudioStream
+@export var drag_stop_sound:AudioStream
+
 
 func get_itemstack() -> SourceItemStackSettings:
 	return itemstack

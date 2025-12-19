@@ -8,8 +8,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_llgnl"]
 font_size = 18
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Popup" type="Control"]
 layout_mode = 3
@@ -44,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="head" parent="." instance=ExtResource("2_73qqt")]
-self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

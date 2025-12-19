@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=4 format=3 uid="uid://dudoao428jxp6"]
+[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=6 format=3 uid="uid://dudoao428jxp6"]
 
+[ext_resource type="AudioStream" uid="uid://r64ruhsd5r2g" path="res://Games/source_game/sounds/ui/inventory/ammo_drag_start.mp3" id="1_118st"]
 [ext_resource type="Texture2D" uid="uid://yaoo6y5qg7j" path="res://Games/source_game/objects/weapons/ammo/explosion.png" id="1_bxees"]
 [ext_resource type="PackedScene" uid="uid://8t1ci470aueq" path="res://Games/source_game/objects/weapons/ammo/ammo.tscn" id="1_kmfy8"]
-[ext_resource type="Script" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_vkmq3"]
+[ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_vkmq3"]
+[ext_resource type="AudioStream" uid="uid://dulvqp7e6qryi" path="res://Games/source_game/sounds/ui/inventory/ammo_drag_stop.mp3" id="2_gic7c"]
 
 [resource]
 script = ExtResource("1_vkmq3")
@@ -10,3 +12,5 @@ damage = 25.0
 explode = true
 icon = ExtResource("1_bxees")
 prefab = ExtResource("1_kmfy8")
+drag_start_sound = ExtResource("1_118st")
+drag_stop_sound = ExtResource("2_gic7c")

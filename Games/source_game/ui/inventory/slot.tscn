@@ -18,15 +18,15 @@ bg_color = Color(0.0981428, 0.0961011, 0.0838655, 0.898039)
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 70.0
-offset_bottom = 70.0
+anchor_right = 0.0546875
+anchor_bottom = 0.097222224
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_xan3g")
 item_binds = Dictionary[String, ExtResource("2_1obx4")]({
 "source.quick_drop": SubResource("Resource_p2iye")
 })
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -76,14 +76,15 @@ stretch_mode = 5
 [node name="ProgressBar" parent="icon" instance=ExtResource("7_p2iye")]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.88600004
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.020004272
+anchor_left = 0.014285714
+anchor_top = 0.9285714
+anchor_right = 0.98571426
+anchor_bottom = 0.98571426
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="quantity" type="Label" parent="icon"]
 layout_mode = 1
@@ -102,6 +103,9 @@ draggable_node = NodePath("../icon")
 drop_node = NodePath("..")
 preview_node = NodePath("../icon")
 metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+bus = &"interface"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="drag_started" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_drag_started"]

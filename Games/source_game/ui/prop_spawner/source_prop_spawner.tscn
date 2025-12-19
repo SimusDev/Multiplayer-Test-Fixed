@@ -1,15 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc5y124phqhmn"]
+[gd_scene load_steps=8 format=3 uid="uid://dc5y124phqhmn"]
 
 [ext_resource type="Script" uid="uid://jd67dxpvw1rk" path="res://Games/source_game/ui/prop_spawner/source_prop_spawner.gd" id="1_3t34p"]
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="1_fn5aq"]
 [ext_resource type="Script" uid="uid://bxycsjbmhbgx6" path="res://addons/simusdev/ui/SD_UIControlDrag.gd" id="2_5sxsk"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="3_ompjo"]
-[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="4_0wb3c"]
 [ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="5_3t34p"]
 [ext_resource type="PackedScene" uid="uid://bljjnlsmf83ub" path="res://sourcelike_interface/buttons/base/button_base.tscn" id="6_i8cvj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5sxsk"]
-font = ExtResource("4_0wb3c")
+[sub_resource type="LabelSettings" id="LabelSettings_0wb3c"]
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -52,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="head" parent="." instance=ExtResource("3_ompjo")]
-self_modulate = Color(0.408329, 0.408329, 0.40833, 1)
+self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -70,12 +68,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Spawner Menu"
-label_settings = SubResource("LabelSettings_5sxsk")
+text = "Spawn"
+label_settings = SubResource("LabelSettings_0wb3c")
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("5_3t34p")
-font = ExtResource("4_0wb3c")
 font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
