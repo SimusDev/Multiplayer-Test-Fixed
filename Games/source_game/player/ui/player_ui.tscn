@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cq0fecxbg4nlf"]
+[gd_scene format=3 uid="uid://cq0fecxbg4nlf"]
 
 [ext_resource type="Script" uid="uid://coclj5gbfqqtp" path="res://Games/source_game/player/ui/player_ui.gd" id="1_s4dgn"]
 [ext_resource type="PackedScene" uid="uid://h7yi20x5r44y" path="res://Games/source_game/ui/inventory/hotbar.tscn" id="2_xxxcs"]
@@ -26,7 +26,7 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="player_ui" type="Control"]
+[node name="player_ui" type="Control" unique_id=1438538883]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +36,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_s4dgn")
 
-[node name="crosshair" type="TextureRect" parent="."]
+[node name="crosshair" type="TextureRect" parent="." unique_id=1430113149]
 self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
 anchors_preset = 8
@@ -53,7 +53,7 @@ grow_vertical = 2
 texture = ExtResource("3_ltpmo")
 expand_mode = 1
 
-[node name="interactable_info" type="Label" parent="crosshair"]
+[node name="interactable_info" type="Label" parent="crosshair" unique_id=1647097955]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -68,14 +68,14 @@ label_settings = SubResource("LabelSettings_jidd8")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="prop_spawner" parent="." instance=ExtResource("4_henmv")]
+[node name="prop_spawner" parent="." unique_id=1273659032 instance=ExtResource("4_henmv")]
 visible = false
 layout_mode = 1
 
-[node name="Inventory" parent="." instance=ExtResource("7_henmv")]
+[node name="Inventory" parent="." unique_id=963246277 instance=ExtResource("7_henmv")]
 layout_mode = 1
 
-[node name="Hotbar" parent="." instance=ExtResource("2_xxxcs")]
+[node name="Hotbar" parent="." unique_id=1969097367 instance=ExtResource("2_xxxcs")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -89,7 +89,8 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="time" type="Label" parent="."]
+[node name="time" type="Label" parent="." unique_id=792371698]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -107,7 +108,7 @@ label_settings = SubResource("LabelSettings_henmv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="nickname" type="Label" parent="."]
+[node name="nickname" type="Label" parent="." unique_id=556847525]
 layout_mode = 0
 anchor_left = 0.00703125
 anchor_top = 0.825
@@ -117,7 +118,7 @@ text = "nickname"
 label_settings = SubResource("LabelSettings_xxxcs")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="nickname"]
+[node name="VBoxContainer" type="VBoxContainer" parent="nickname" unique_id=1399726535]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0465116
@@ -127,19 +128,19 @@ anchor_bottom = 7.41176
 offset_right = -1.52588e-05
 metadata/_edit_use_anchors_ = true
 
-[node name="health" type="Label" parent="nickname/VBoxContainer"]
+[node name="health" type="Label" parent="nickname/VBoxContainer" unique_id=436571407]
 layout_mode = 2
 text = "health: 35"
 label_settings = SubResource("LabelSettings_1ipc1")
 metadata/_edit_use_anchors_ = true
 
-[node name="voice_chat_label" type="Label" parent="nickname/VBoxContainer"]
+[node name="voice_chat_label" type="Label" parent="nickname/VBoxContainer" unique_id=1761374308]
 visible = false
 layout_mode = 2
 text = "voice active"
 label_settings = SubResource("LabelSettings_1ipc1")
 
-[node name="icon" type="TextureRect" parent="nickname/VBoxContainer/voice_chat_label"]
+[node name="icon" type="TextureRect" parent="nickname/VBoxContainer/voice_chat_label" unique_id=1546642803]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.740741
@@ -149,7 +150,7 @@ texture = ExtResource("9_1ipc1")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="every_half_sec" type="Timer" parent="."]
+[node name="every_half_sec" type="Timer" parent="." unique_id=1143024456]
 wait_time = 0.1
 autostart = true
 

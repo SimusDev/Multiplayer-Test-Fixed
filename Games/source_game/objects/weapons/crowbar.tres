@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponMeleeObject" load_steps=13 format=3 uid="uid://8kvqolwemh77"]
+[gd_resource type="Resource" script_class="R_WeaponMeleeObject" format=3 uid="uid://8kvqolwemh77"]
 
 [ext_resource type="Texture2D" uid="uid://ctiweaurl6pvj" path="res://Games/source_game/items/crowbar/icon.png" id="1_0ge6h"]
 [ext_resource type="Script" uid="uid://co0qhpkab8k1f" path="res://Games/source_game/components/weapons/r_weapon_melee_object.gd" id="1_i8tk8"]

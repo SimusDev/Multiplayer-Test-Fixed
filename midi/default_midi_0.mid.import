@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://cwjms4bpsxwtr"
+path="res://.godot/imported/default_midi_0.mid-e4354d356c1673c26a2de3f6fbb57982.res"
+
+[deps]
+
+source_file="res://midi/default_midi_0.mid"
+dest_files=["res://.godot/imported/default_midi_0.mid-e4354d356c1673c26a2de3f6fbb57982.res"]
+
+[params]
+

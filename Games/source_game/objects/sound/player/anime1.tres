@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceSound" load_steps=7 format=3 uid="uid://w33s2d6tj8yk"]
+[gd_resource type="Resource" script_class="R_SourceSound" format=3 uid="uid://w33s2d6tj8yk"]
 
 [ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_74fnr"]
 [ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_ajj7x"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=11 format=3 uid="uid://dysa48588ffk5"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" format=3 uid="uid://dysa48588ffk5"]
 
 [ext_resource type="Texture2D" uid="uid://wvbghph8kmk7" path="res://addons/simusdev/components/fp_controller/source/icon.png" id="1_cp6q8"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_q1h0a"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://h7yi20x5r44y"]
+[gd_scene format=3 uid="uid://h7yi20x5r44y"]
 
 [ext_resource type="Script" uid="uid://7243ttgdvdqg" path="res://Games/source_game/ui/inventory/hotbar.gd" id="1_m2vfp"]
 
-[node name="Hotbar" type="Control" node_paths=PackedStringArray("_container")]
+[node name="Hotbar" type="Control" unique_id=1012851606 node_paths=PackedStringArray("_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 596.0
@@ -11,7 +11,7 @@ mouse_filter = 2
 script = ExtResource("1_m2vfp")
 _container = NodePath("CenterContainer/VBoxContainer")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1397376306]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1936636181]
 layout_mode = 2
 alignment = 1

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=18 format=3 uid="uid://cdykkat3axjp2"]
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" format=3 uid="uid://cdykkat3axjp2"]
 
 [ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_11e70"]
 [ext_resource type="Script" uid="uid://d2g7gec3gvwpf" path="res://Games/source_game/components/weapons/r_weapon_projectile_object.gd" id="2_1ip6e"]
@@ -41,6 +41,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 script = ExtResource("2_1ip6e")
 max_ammo = 8
 ammo = Array[ExtResource("1_11e70")]([ExtResource("2_6n6u1")])
+recoil = Vector3(0.8, 0.4, 0)
 projectile = ExtResource("3_63rnj")
 sound = ExtResource("9_sjfdm")
 use_cooldown = 0.15
