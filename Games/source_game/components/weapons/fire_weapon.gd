@@ -40,6 +40,7 @@ func _try_reload_net() -> void:
 func _input(event: InputEvent) -> void:
 	super(event)
 	if Input.is_action_just_pressed("weapon.reload"):
+		
 		event_reload.emit()
 	elif Input.is_action_just_pressed("item.inspect"):
 		if not is_aim:
