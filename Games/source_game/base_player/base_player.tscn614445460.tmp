@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/prefabs/nickname/base_prefab.tscn" id="27_y3hgg"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
-[ext_resource type="Script" uid="uid://c1n2k4cmom6rn" path="res://Games/source_game/camera_shake.gd" id="37_cmvf1"]
+[ext_resource type="Script" uid="uid://c1n2k4cmom6rn" path="res://Games/source_game/components/weapons/recoil.gd" id="37_cmvf1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
@@ -340,10 +340,10 @@ movement = NodePath("../SourceMovement")
 [node name="CameraShake" type="Node3D" parent="." unique_id=1864489592 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 script = ExtResource("37_cmvf1")
-player = NodePath("..")
 recoil = Vector3(0.8, 0.4, 0)
 snappiness = 2.0
 returnSpeed = 10.0
+player = NodePath("..")
 metadata/_custom_type_script = "uid://c1n2k4cmom6rn"
 
 [node name="SourceCamera" parent="CameraShake" unique_id=1969548237 node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
