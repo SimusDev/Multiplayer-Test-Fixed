@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=14 format=3 uid="uid://10t06r1l7fda"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" format=3 uid="uid://10t06r1l7fda"]
 
 [ext_resource type="Texture2D" uid="uid://b5qprmd6lovto" path="res://Games/source_game/textures/game_icon.png" id="1_1dhff"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_2c486"]
