@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://pget1lr5sl1h"]
+[gd_scene load_steps=0 format=3 uid="uid://pget1lr5sl1h"]
 
 [ext_resource type="Script" uid="uid://cbc1lgwx2ffqk" path="res://singletons/s_midi_player.gd" id="1_02m6r"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_pogmx"]

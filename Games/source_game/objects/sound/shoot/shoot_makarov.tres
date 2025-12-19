@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceSound" format=3 uid="uid://7m8sq22bvvg8"]
+[gd_resource type="Resource" script_class="R_SourceSound" load_steps=6 format=3 uid="uid://7m8sq22bvvg8"]
 
 [ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_j4hsk"]
 [ext_resource type="Texture2D" uid="uid://4x51hbmje0si" path="res://addons/simusdev/icons/AudioStreamWAV.svg" id="1_so0qb"]
