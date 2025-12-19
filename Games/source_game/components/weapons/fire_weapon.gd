@@ -13,6 +13,7 @@ signal event_aim_end
 var weapon: R_WeaponProjectileObject
 var clip:SourceItemStack
 
+var camera_shake:CameraShake 
 var is_aim:bool = false
 
 func _ready() -> void:
@@ -20,6 +21,8 @@ func _ready() -> void:
 	randomize()
 	
 	weapon = stack.object as R_WeaponProjectileObject
+	camera_shake = SD_Components.find_first(player, CameraShake)
+	event_fire.connect(camera_shake.apply)
 
 func try_reload() -> void:
 	network.call_func_on_server(_try_reload_net)
@@ -56,8 +59,11 @@ func fire() -> void:
 		return
 	if not has_ammo():
 		return
+	camera_shake.set_recoil(weapon.recoil)
+	
 	cooldown_timer.start()
 	event_fire.emit()
+	
 	
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
 	pre_event.source = player

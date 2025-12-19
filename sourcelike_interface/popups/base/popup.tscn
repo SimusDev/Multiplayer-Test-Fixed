@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dikf5wpxs1m1o"]
+[gd_scene format=3 uid="uid://dikf5wpxs1m1o"]
 
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_5mkl5"]
 [ext_resource type="PackedScene" uid="uid://boxyfhle2aj0x" path="res://sourcelike_interface/panel/panel_default.tscn" id="2_73qqt"]
@@ -9,7 +9,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_llgnl"]
 font_size = 18
 
-[node name="Popup" type="Control"]
+[node name="Popup" type="Control" unique_id=1235421495]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 512.0
@@ -18,41 +18,37 @@ mouse_filter = 2
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SD_UIInterfaceMenu" type="Node" parent="." unique_id=64084734 node_paths=PackedStringArray("target")]
 script = ExtResource("2_5mkl5")
 target = NodePath("..")
 open_at_start = true
 center_at_start = true
 metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
 
-[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+[node name="SE_UIControlDrag" type="Node" parent="." unique_id=887245181 node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_llgnl")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[node name="bg" parent="." instance=ExtResource("2_73qqt")]
+[node name="bg" parent="." unique_id=2043768228 instance=ExtResource("2_73qqt")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="head" parent="." instance=ExtResource("2_73qqt")]
+[node name="head" parent="." unique_id=1040973370 instance=ExtResource("2_73qqt")]
 self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
-anchors_preset = -1
 anchor_right = 1.0
-offset_right = 0.0
-offset_bottom = 30.0
+anchor_bottom = 0.088
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 
-[node name="title" type="Label" parent="head"]
+[node name="title" type="Label" parent="head" unique_id=972353455]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -70,7 +66,7 @@ script = ExtResource("3_i1ise")
 font_size = 18
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 
-[node name="button_base" parent="head" instance=ExtResource("5_5mkl5")]
+[node name="button_base" parent="head" unique_id=160098946 instance=ExtResource("5_5mkl5")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.918
@@ -83,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 label_text = "X"
 
-[node name="content" type="Control" parent="."]
+[node name="content" type="Control" parent="." unique_id=1836094363]
 layout_mode = 1
 anchor_left = 0.00976563
 anchor_top = 0.178667
@@ -93,7 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="border" type="ReferenceRect" parent="content"]
+[node name="border" type="ReferenceRect" parent="content" unique_id=1165191240]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,12 +101,20 @@ border_color = Color(0.309804, 0.309804, 0.309804, 1)
 border_width = 0.8
 editor_only = false
 
-[node name="tab_container" type="HBoxContainer" parent="content"]
+[node name="tab_container" type="HBoxContainer" parent="content" unique_id=1478589180]
 layout_mode = 0
 anchor_top = -0.0855264
 anchor_right = 1.0
 anchor_bottom = -0.00328948
 theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="content_group" type="Label" parent="content" unique_id=756453295]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.07236888
+anchor_right = 1.0000004
+anchor_bottom = -0.016447783
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="head/button_base" to="." method="queue_free"]

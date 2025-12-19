@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4ej3ygj2srma"]
+[gd_scene format=3 uid="uid://4ej3ygj2srma"]
 
 [ext_resource type="Script" uid="uid://bo71k1b4qy1g0" path="res://scripts/ui/C_UIInterfaceComponent.gd" id="1_1fhlp"]
 [ext_resource type="Script" uid="uid://dstmj1js150i8" path="res://Games/source_game/ui/spawner/prop_spawner.gd" id="1_wi4bw"]
@@ -14,7 +14,7 @@ font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="prop_spawner" type="Control" node_paths=PackedStringArray("tree", "container", "inventory_checkbox", "quantity_line_edit")]
+[node name="prop_spawner" type="Control" unique_id=1705308391 node_paths=PackedStringArray("tree", "container", "inventory_checkbox", "quantity_line_edit")]
 custom_minimum_size = Vector2(910, 652)
 layout_mode = 3
 anchors_preset = 8
@@ -35,40 +35,36 @@ container = NodePath("content/ScrollContainer/GridContainer")
 inventory_checkbox = NodePath("content/inventory_checkbox")
 quantity_line_edit = NodePath("content/quanity")
 
-[node name="C_UIInterfaceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="C_UIInterfaceComponent" type="Node" parent="." unique_id=744647542 node_paths=PackedStringArray("target")]
 script = ExtResource("1_1fhlp")
 target = NodePath("..")
 input_action = "key.q"
 metadata/_custom_type_script = "uid://bo71k1b4qy1g0"
 
-[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+[node name="SE_UIControlDrag" type="Node" parent="." unique_id=684884750 node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_wi4bw")
 TARGET_INPUT = NodePath("../head")
 TARGET_DRAG = NodePath("..")
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[node name="bg" parent="." instance=ExtResource("3_6x7ak")]
+[node name="bg" parent="." unique_id=520526249 instance=ExtResource("3_6x7ak")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="head" parent="." instance=ExtResource("3_6x7ak")]
+[node name="head" parent="." unique_id=348518377 instance=ExtResource("3_6x7ak")]
 self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
-anchors_preset = -1
 anchor_right = 1.0
-offset_right = 0.0
-offset_bottom = 30.0
+anchor_bottom = 0.05214724
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 
-[node name="title" type="Label" parent="head"]
+[node name="title" type="Label" parent="head" unique_id=718105962]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00543478
@@ -87,20 +83,20 @@ outline_color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
 metadata/_edit_use_anchors_ = true
 
-[node name="button_base" parent="head" instance=ExtResource("6_nmxke")]
+[node name="button_base" parent="head" unique_id=1425359111 instance=ExtResource("6_nmxke")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.918
+anchor_left = 0.96373624
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.0160217
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 label_text = "X"
+metadata/_edit_use_anchors_ = true
 
-[node name="content" type="Control" parent="."]
+[node name="content" type="Control" parent="." unique_id=1835487574]
 layout_mode = 1
 anchor_left = 0.00976563
 anchor_top = 0.178667
@@ -110,38 +106,38 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="inventory_checkbox" type="CheckBox" parent="content"]
+[node name="inventory_checkbox" type="CheckBox" parent="content" unique_id=1671690986]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.015000001
 anchor_top = -0.124000005
-anchor_right = 0.261
-anchor_bottom = -0.046000004
+anchor_right = 0.25500003
+anchor_bottom = -0.067
 offset_left = -0.270113
 offset_top = 0.049850464
-offset_right = 0.24221802
-offset_bottom = -0.17737961
+offset_right = -0.4044342
+offset_bottom = -0.07774353
 theme = ExtResource("9_5jgjh")
-theme_override_font_sizes/font_size = 32
-text = "INVENTORY"
+theme_override_font_sizes/font_size = 22
+text = "inventory"
 
-[node name="quanity" type="LineEdit" parent="content"]
+[node name="quanity" type="LineEdit" parent="content" unique_id=230926510]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.268
 anchor_top = -0.126
 anchor_right = 0.527
-anchor_bottom = -0.048
+anchor_bottom = -0.067
 offset_left = -0.0033569336
 offset_top = 0.10695648
 offset_right = -0.08996582
-offset_bottom = -0.12027359
+offset_bottom = -0.07774353
 theme = ExtResource("9_5jgjh")
-theme_override_font_sizes/font_size = 32
-placeholder_text = "QUANTITY"
+theme_override_font_sizes/font_size = 22
+placeholder_text = "quantity"
 alignment = 1
 
-[node name="border" type="ReferenceRect" parent="content"]
+[node name="border" type="ReferenceRect" parent="content" unique_id=1027519724]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,7 +149,7 @@ border_color = Color(0.309804, 0.309804, 0.309804, 1)
 border_width = 0.8
 editor_only = false
 
-[node name="tab_container" type="HBoxContainer" parent="content"]
+[node name="tab_container" type="HBoxContainer" parent="content" unique_id=2144327401]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.0616777
@@ -162,7 +158,7 @@ anchor_bottom = -0.00205592
 theme_override_constants/separation = -1
 metadata/_edit_use_anchors_ = true
 
-[node name="Tree" type="Tree" parent="content"]
+[node name="Tree" type="Tree" parent="content" unique_id=1030269227]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.272
@@ -172,7 +168,7 @@ offset_top = -0.49087524
 offset_right = 0.41552734
 offset_bottom = -0.045043945
 
-[node name="ScrollContainer" type="ScrollContainer" parent="content"]
+[node name="ScrollContainer" type="ScrollContainer" parent="content" unique_id=89823968]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.27400002
@@ -182,7 +178,7 @@ offset_left = -0.35673523
 offset_right = -0.112976074
 offset_bottom = 0.012023926
 
-[node name="GridContainer" type="GridContainer" parent="content/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="content/ScrollContainer" unique_id=67984819]
 layout_mode = 2
 columns = 6
 

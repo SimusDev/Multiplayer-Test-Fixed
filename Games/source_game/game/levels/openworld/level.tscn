@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dntfex5wfixvn"]
+[gd_scene format=3 uid="uid://dntfex5wfixvn"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_v5tuj"]
 [ext_resource type="Texture2D" uid="uid://bglulose6qdii" path="res://textures/general/grass/grass1.png" id="2_v5tuj"]
@@ -79,18 +79,18 @@ uv_scale = 2.0
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_s5db2")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_tbw1r")])
 
-[node name="openworld" instance=ExtResource("1_v5tuj")]
+[node name="openworld" unique_id=1585409729 instance=ExtResource("1_v5tuj")]
 
-[node name="dead_tree" parent="objects" index="0" instance=ExtResource("3_6vtv3")]
+[node name="dead_tree" parent="objects" index="0" unique_id=507254253 instance=ExtResource("3_6vtv3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.962752)
 
-[node name="dead_tree2" parent="objects" index="1" instance=ExtResource("3_6vtv3")]
+[node name="dead_tree2" parent="objects" index="1" unique_id=1797584863 instance=ExtResource("3_6vtv3")]
 transform = Transform3D(0.9051389, 0, -0.42511588, 0, 1, 0, 0.42511588, 0, 0.9051389, -1.8640206, 0, 3.6397212)
 
-[node name="dead_tree3" parent="objects" index="2" instance=ExtResource("3_6vtv3")]
+[node name="dead_tree3" parent="objects" index="2" unique_id=225889169 instance=ExtResource("3_6vtv3")]
 transform = Transform3D(-0.15038085, 0, -0.98862815, 0, 1, 0, 0.98862815, 0, -0.15038085, -1.8640206, 0, 1.8357036)
 
-[node name="Terrain3D" type="Terrain3D" parent="NavigationRegion3D" index="0" groups=["material.dirt"]]
+[node name="Terrain3D" type="Terrain3D" parent="NavigationRegion3D" index="0" unique_id=1531167746 groups=["material.dirt"]]
 data_directory = "res://Games/source_game/game/levels/openworld/data/"
 material = SubResource("Terrain3DMaterial_ovl06")
 assets = SubResource("Terrain3DAssets_ddxcj")
@@ -98,12 +98,15 @@ collision_priority = 2.0
 top_level = true
 metadata/_edit_lock_ = true
 
-[node name="SourceSpawnPoint" type="Node3D" parent="." index="9"]
+[node name="SourceSpawnPoint" type="Node3D" parent="." index="9" unique_id=274034516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4172702, 0)
 script = ExtResource("4_ish3x")
 spawn_point_name = "sex"
 metadata/_custom_type_script = "uid://dxp3pky5254bi"
 
-[node name="Environment" parent="." index="10" instance=ExtResource("7_ovl06")]
+[node name="Environment" parent="." index="10" unique_id=276924360 instance=ExtResource("7_ovl06")]
+
+[node name="Sky3D" parent="Environment" index="0" unique_id=1103076613]
+sky_contribution = 0.69
 
 [editable path="Environment"]

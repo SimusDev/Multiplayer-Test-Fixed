@@ -38,12 +38,16 @@ Shortcuts/density_decrement=Object(Shortcut,"resource_local_to_scene":false,"res
 ],"script":null)
 
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Multiplayer-Test"
 config/version="dev005b"
 run/main_scene="uid://c31uhxfwryhme"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://cyj56486e1iyo"
 
 [audio]
@@ -53,7 +57,7 @@ driver/enable_input=true
 
 [autoload]
 
-SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
+SimusDev="*uid://dnpa241s8gwqq"
 SceneChanger="*res://singletons/s_SceneChanger.tscn"
 SyncedData="*res://singletons/s_SyncedData.tscn"
 Maps="*res://singletons/s_Maps.tscn"
@@ -63,6 +67,7 @@ GameSaver="*res://singletons/s_GameSaver.gd"
 GameSettings="*res://singletons/s_GameSettings.tscn"
 SoundPlayer="*res://singletons/s_SoundPlayer.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+MidiSingleton="*uid://pget1lr5sl1h"
 
 [display]
 
@@ -75,7 +80,7 @@ project/assembly_name="Multiplayer-Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/flowing-sky/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/skeletal_animation_player/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/flowing-sky/plugin.cfg", "res://addons/midi/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/skeletal_animation_player/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 
@@ -497,12 +502,12 @@ textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
 reflections/sky_reflections/roughness_layers=32
 textures/default_filters/use_nearest_mipmap_filter=true
+scaling_3d/mode=1
 scaling_3d/mode.ios=1
 scaling_3d/mode.macos=1
 textures/decals/filter=0
 textures/light_projectors/filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
-environment/defaults/default_environment="uid://b71yn6wfk8lop"
 
 [shader_globals]
 

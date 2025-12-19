@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://pget1lr5sl1h"]
+
+[ext_resource type="Script" uid="uid://cbc1lgwx2ffqk" path="res://singletons/s_midi_player.gd" id="1_02m6r"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="3_pogmx"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="4_bwgt5"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="5_fotqu"]
+
+[sub_resource type="Resource" id="Resource_07sp2"]
+resource_name = "midi.dir_midi_files"
+script = ExtResource("4_bwgt5")
+code = "midi.dir_midi"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_pogmx"]
+resource_name = "midi.play_track"
+script = ExtResource("4_bwgt5")
+code = "midi.play_track"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_bwgt5"]
+resource_name = "midi.stop_track"
+script = ExtResource("4_bwgt5")
+code = "midi.stop_track"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_fotqu"]
+resource_name = "midi.add_track"
+script = ExtResource("4_bwgt5")
+code = "midi.add_track"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_vgol1"]
+resource_name = "midi.remove_track"
+script = ExtResource("4_bwgt5")
+code = "midi.remove_track"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_oskdo"]
+resource_name = "midi.midi_base_path"
+script = ExtResource("4_bwgt5")
+code = "midi.base_path"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_28ug7"]
+resource_name = "midi.dir_soundfont"
+script = ExtResource("4_bwgt5")
+code = "midi.dir_soundfont"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_3plyh"]
+resource_name = "midi.sf_base_path"
+script = ExtResource("4_bwgt5")
+code = "midi.sf_base_path"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_jxy5r"]
+resource_name = "midi.tracks"
+script = ExtResource("4_bwgt5")
+code = "midi.tracks"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="S_MidiPlayer" type="Node" unique_id=340542303 node_paths=PackedStringArray("players")]
+script = ExtResource("1_02m6r")
+players = NodePath("Players")
+
+[node name="ConsoleCommands" type="Node" parent="." unique_id=1554894142]
+script = ExtResource("3_pogmx")
+commands = Array[ExtResource("4_bwgt5")]([SubResource("Resource_07sp2"), SubResource("Resource_pogmx"), SubResource("Resource_bwgt5"), SubResource("Resource_fotqu"), SubResource("Resource_vgol1"), SubResource("Resource_oskdo"), SubResource("Resource_28ug7"), SubResource("Resource_3plyh"), SubResource("Resource_jxy5r")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[node name="Players" type="Node" parent="." unique_id=1122229630]
+
+[connection signal="on_executed" from="ConsoleCommands" to="." method="_on_console_commands_on_executed"]

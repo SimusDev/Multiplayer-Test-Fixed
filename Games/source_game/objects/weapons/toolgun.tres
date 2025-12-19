@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://b123u6latr4pb"]
+[gd_resource type="Resource" script_class="R_WeaponObject" format=3 uid="uid://b123u6latr4pb"]
 
 [ext_resource type="Texture2D" uid="uid://2fhsod4kvln7" path="res://Games/source_game/components/icons/source_item.png" id="1_ekivk"]
 [ext_resource type="PackedScene" uid="uid://cxaois3c1hpmp" path="res://Games/source_game/items/gm_toolgun/gm_toolgun.tscn" id="2_duuqm"]

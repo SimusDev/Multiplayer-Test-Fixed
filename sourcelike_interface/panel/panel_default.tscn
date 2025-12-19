@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://boxyfhle2aj0x"]
+[gd_scene format=3 uid="uid://boxyfhle2aj0x"]
 
 [ext_resource type="PackedScene" uid="uid://rh1ejxw8p0h5" path="res://sourcelike_interface/panel/panel.tscn" id="1_026q3"]
 
-[node name="panel_default" instance=ExtResource("1_026q3")]
+[node name="panel_default" unique_id=1303158863 instance=ExtResource("1_026q3")]
 self_modulate = Color(0.21668398, 0.21668398, 0.21668398, 0.9607843)
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.08888889
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true

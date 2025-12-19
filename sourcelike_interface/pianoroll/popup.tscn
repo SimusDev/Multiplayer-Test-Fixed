@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://sjnggr3280rb"]
+
+[ext_resource type="PackedScene" uid="uid://dikf5wpxs1m1o" path="res://sourcelike_interface/popups/base/popup.tscn" id="1_l3skm"]
+
+[sub_resource type="GDScript" id="GDScript_mg5ls"]
+resource_name = "script"
+script/source = "extends Control
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3skm"]
+font_size = 18
+
+[node name="Popup" unique_id=1235421495 instance=ExtResource("1_l3skm")]
+anchors_preset = -1
+anchor_right = 0.75
+anchor_bottom = 0.75
+offset_right = 0.0
+offset_bottom = 0.0
+script = SubResource("GDScript_mg5ls")
+metadata/_edit_use_anchors_ = true
+
+[node name="head" parent="." index="3" unique_id=1040973370]
+anchor_bottom = 0.043055557
+
+[node name="title" parent="head" index="0" unique_id=972353455]
+text = "Pianoroll"
+label_settings = SubResource("LabelSettings_l3skm")
+
+[node name="button_base" parent="head" index="1" unique_id=160098946]
+anchor_left = 0.9625
+offset_left = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="content" parent="." index="4" unique_id=1836094363]
+anchor_top = 0.07962963
+
+[node name="tab_container" parent="content" index="1" unique_id=1478589180]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = -0.040713307
+
+[node name="content_group" parent="content" index="2" unique_id=756453295]
+visible = false
+anchor_left = -0.0003984111
+anchor_top = -0.040713307
+anchor_right = 0.9996019
+anchor_bottom = -0.006106996
+text = "sex"

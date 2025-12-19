@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponProjectileObject" load_steps=16 format=3 uid="uid://c63k3uqvttm8e"]
+[gd_resource type="Resource" script_class="R_WeaponProjectileObject" format=3 uid="uid://c63k3uqvttm8e"]
 
 [ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_dqv8v"]
 [ext_resource type="PackedScene" uid="uid://b25lkeicg8cfi" path="res://Games/source_game/items/ak_47/world.tscn" id="1_g5njn"]
@@ -36,6 +36,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 [resource]
 script = ExtResource("3_migia")
 ammo = Array[ExtResource("1_dqv8v")]([ExtResource("2_bnjdn"), ExtResource("3_fwtb6")])
+recoil = Vector3(0.8, 0.4, 0)
 projectile = ExtResource("6_bnjdn")
 sound = ExtResource("8_fwtb6")
 use_cooldown = 0.1

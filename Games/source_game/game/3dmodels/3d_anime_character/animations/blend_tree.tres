@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=55 format=3 uid="uid://dnc3f3exehhod"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dnc3f3exehhod"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8nyl6"]
 animation = &"animation_library/crouching_idle"

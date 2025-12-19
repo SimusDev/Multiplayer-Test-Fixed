@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://27kpi31p3gfe"]
+[gd_scene format=3 uid="uid://27kpi31p3gfe"]
 
 [ext_resource type="Script" uid="uid://cheivlw1ou2mq" path="res://Games/source_game/components/source_playable.gd" id="1_5m5ro"]
 [ext_resource type="Script" uid="uid://cxewafgubxktk" path="res://Games/source_game/player/source_player.gd" id="1_26rsp"]
@@ -36,24 +36,25 @@
 [ext_resource type="PackedScene" uid="uid://dkfq8wyb1c8t3" path="res://Games/source_game/game/prefabs/nickname/base_prefab.tscn" id="27_y3hgg"]
 [ext_resource type="Script" uid="uid://cw3mdxfqpbunh" path="res://game_components/HideNodesWhenAuthority.gd" id="28_1yv11"]
 [ext_resource type="Script" uid="uid://4q60q717rxsh" path="res://Games/source_game/components/ai_visible.gd" id="29_em5yj"]
+[ext_resource type="Script" uid="uid://c1n2k4cmom6rn" path="res://Games/source_game/components/weapons/recoil.gd" id="37_cmvf1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i0lyu"]
 radius = 0.335526
 
-[node name="base_player" type="CharacterBody3D" node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast") groups=["penetrable"]]
+[node name="base_player" type="CharacterBody3D" unique_id=1855855691 node_paths=PackedStringArray("health", "movement", "camera", "interact_raycast") groups=["penetrable"]]
 script = ExtResource("1_26rsp")
 health = NodePath("SourceHealth")
 movement = NodePath("SourceMovement")
-camera = NodePath("SourceCamera")
-interact_raycast = NodePath("SourceCamera/interactor")
+camera = NodePath("CameraShake/SourceCamera")
+interact_raycast = NodePath("CameraShake/SourceCamera/interactor")
 
-[node name="SD_NetworkObject" type="Node" parent="." node_paths=PackedStringArray("root")]
+[node name="SD_NetworkObject" type="Node" parent="." unique_id=1713034703 node_paths=PackedStringArray("root")]
 script = ExtResource("2_qw2b4")
 root = NodePath("..")
 recursive_register = false
 metadata/_custom_type_script = "uid://cotoo7b7sohgn"
 
-[node name="PositionSync" type="Node" parent="." node_paths=PackedStringArray("node")]
+[node name="PositionSync" type="Node" parent="." unique_id=119516206 node_paths=PackedStringArray("node")]
 script = ExtResource("3_1frjd")
 node = NodePath("..")
 interpolation = true
@@ -70,92 +71,92 @@ allow_serialize = false
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
-[node name="HideNodesWhenAuthority" type="Node" parent="." node_paths=PackedStringArray("authority_true")]
+[node name="HideNodesWhenAuthority" type="Node" parent="." unique_id=298092745 node_paths=PackedStringArray("authority_true")]
 script = ExtResource("28_1yv11")
 hide_at_start = true
 authority_true = [NodePath("../nickname")]
 
-[node name="SourcePlayable" type="Node" parent="." node_paths=PackedStringArray("root", "voice_chat_output")]
+[node name="SourcePlayable" type="Node" parent="." unique_id=139141347 node_paths=PackedStringArray("root", "voice_chat_output")]
 script = ExtResource("1_5m5ro")
 root = NodePath("..")
-voice_chat_output = NodePath("../SourceCamera/voice")
+voice_chat_output = NodePath("../CameraShake/SourceCamera/voice")
 
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SourceHealth" type="Node" parent="." unique_id=910315830 node_paths=PackedStringArray("target")]
 script = ExtResource("7_qdiq6")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="SourceInventorySlotSwitcher" type="Node" parent="." node_paths=PackedStringArray("inventory")]
+[node name="SourceInventorySlotSwitcher" type="Node" parent="." unique_id=1589679715 node_paths=PackedStringArray("inventory")]
 script = ExtResource("5_ghdio")
 inventory = NodePath("../SourceInventory")
 metadata/_custom_type_script = "uid://cfi3ck311echs"
 
-[node name="SourceInventory" type="Node" parent="." node_paths=PackedStringArray("root")]
+[node name="SourceInventory" type="Node" parent="." unique_id=398171355 node_paths=PackedStringArray("root")]
 script = ExtResource("6_abx2t")
 root = NodePath("..")
 private = true
 metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
-[node name="h1" type="Node" parent="SourceInventory"]
+[node name="h1" type="Node" parent="SourceInventory" unique_id=1771250435]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="ak47" type="Node" parent="SourceInventory/h1"]
+[node name="ak47" type="Node" parent="SourceInventory/h1" unique_id=462865115]
 script = ExtResource("11_1yv11")
 object = ExtResource("20_abx2t")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="h2" type="Node" parent="SourceInventory"]
+[node name="h2" type="Node" parent="SourceInventory" unique_id=35435548]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="makarov" type="Node" parent="SourceInventory/h2"]
+[node name="makarov" type="Node" parent="SourceInventory/h2" unique_id=62726787]
 script = ExtResource("11_1yv11")
 object = ExtResource("12_r8tpl")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="h3" type="Node" parent="SourceInventory"]
+[node name="h3" type="Node" parent="SourceInventory" unique_id=2013378369]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="phys_gun" type="Node" parent="SourceInventory/h3"]
+[node name="phys_gun" type="Node" parent="SourceInventory/h3" unique_id=2015981379]
 script = ExtResource("11_1yv11")
 object = ExtResource("13_i0lyu")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="h4" type="Node" parent="SourceInventory"]
+[node name="h4" type="Node" parent="SourceInventory" unique_id=1524865906]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="crowbar" type="Node" parent="SourceInventory/h4"]
+[node name="crowbar" type="Node" parent="SourceInventory/h4" unique_id=2104184418]
 script = ExtResource("11_1yv11")
 object = ExtResource("14_em5yj")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="h5" type="Node" parent="SourceInventory"]
+[node name="h5" type="Node" parent="SourceInventory" unique_id=654011926]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="h6" type="Node" parent="SourceInventory"]
+[node name="h6" type="Node" parent="SourceInventory" unique_id=1925628630]
 script = ExtResource("7_xpejh")
 selectable = true
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="scheme" type="Node" parent="SourceInventory/h6"]
+[node name="scheme" type="Node" parent="SourceInventory/h6" unique_id=1145777607]
 script = ExtResource("11_1yv11")
 object = ExtResource("12_em5yj")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="1" type="Node" parent="SourceInventory"]
+[node name="1" type="Node" parent="SourceInventory" unique_id=1155499348]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="explosion_ammo" type="Node" parent="SourceInventory/1"]
+[node name="explosion_ammo" type="Node" parent="SourceInventory/1" unique_id=781913220]
 script = ExtResource("11_1yv11")
 _data = {
 "quantity": 666
@@ -163,11 +164,11 @@ _data = {
 object = ExtResource("16_cjcqp")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="2" type="Node" parent="SourceInventory"]
+[node name="2" type="Node" parent="SourceInventory" unique_id=523724291]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="pistol_ammo" type="Node" parent="SourceInventory/2"]
+[node name="pistol_ammo" type="Node" parent="SourceInventory/2" unique_id=36144340]
 script = ExtResource("11_1yv11")
 _data = {
 "quantity": 780
@@ -175,152 +176,152 @@ _data = {
 object = ExtResource("18_r8tpl")
 metadata/_custom_type_script = "uid://rk2typl4w3ca"
 
-[node name="3" type="Node" parent="SourceInventory"]
+[node name="3" type="Node" parent="SourceInventory" unique_id=170079937]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="4" type="Node" parent="SourceInventory"]
+[node name="4" type="Node" parent="SourceInventory" unique_id=1796693543]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="5" type="Node" parent="SourceInventory"]
+[node name="5" type="Node" parent="SourceInventory" unique_id=1609703322]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="6" type="Node" parent="SourceInventory"]
+[node name="6" type="Node" parent="SourceInventory" unique_id=2143507117]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="7" type="Node" parent="SourceInventory"]
+[node name="7" type="Node" parent="SourceInventory" unique_id=1495618529]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="8" type="Node" parent="SourceInventory"]
+[node name="8" type="Node" parent="SourceInventory" unique_id=508520267]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="9" type="Node" parent="SourceInventory"]
+[node name="9" type="Node" parent="SourceInventory" unique_id=509547410]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="10" type="Node" parent="SourceInventory"]
+[node name="10" type="Node" parent="SourceInventory" unique_id=1747420546]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="11" type="Node" parent="SourceInventory"]
+[node name="11" type="Node" parent="SourceInventory" unique_id=524608802]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="12" type="Node" parent="SourceInventory"]
+[node name="12" type="Node" parent="SourceInventory" unique_id=1649361333]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="13" type="Node" parent="SourceInventory"]
+[node name="13" type="Node" parent="SourceInventory" unique_id=1425109167]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="14" type="Node" parent="SourceInventory"]
+[node name="14" type="Node" parent="SourceInventory" unique_id=943076853]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="15" type="Node" parent="SourceInventory"]
+[node name="15" type="Node" parent="SourceInventory" unique_id=1342565855]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="16" type="Node" parent="SourceInventory"]
+[node name="16" type="Node" parent="SourceInventory" unique_id=1513728818]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="17" type="Node" parent="SourceInventory"]
+[node name="17" type="Node" parent="SourceInventory" unique_id=1131603931]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="18" type="Node" parent="SourceInventory"]
+[node name="18" type="Node" parent="SourceInventory" unique_id=2086503977]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="19" type="Node" parent="SourceInventory"]
+[node name="19" type="Node" parent="SourceInventory" unique_id=614342051]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="20" type="Node" parent="SourceInventory"]
+[node name="20" type="Node" parent="SourceInventory" unique_id=23838954]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="21" type="Node" parent="SourceInventory"]
+[node name="21" type="Node" parent="SourceInventory" unique_id=1343772733]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="22" type="Node" parent="SourceInventory"]
+[node name="22" type="Node" parent="SourceInventory" unique_id=844861599]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="23" type="Node" parent="SourceInventory"]
+[node name="23" type="Node" parent="SourceInventory" unique_id=816742561]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="24" type="Node" parent="SourceInventory"]
+[node name="24" type="Node" parent="SourceInventory" unique_id=271831320]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="25" type="Node" parent="SourceInventory"]
+[node name="25" type="Node" parent="SourceInventory" unique_id=1370091428]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="26" type="Node" parent="SourceInventory"]
+[node name="26" type="Node" parent="SourceInventory" unique_id=473068820]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="27" type="Node" parent="SourceInventory"]
+[node name="27" type="Node" parent="SourceInventory" unique_id=1076405253]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="28" type="Node" parent="SourceInventory"]
+[node name="28" type="Node" parent="SourceInventory" unique_id=682756591]
 script = ExtResource("7_xpejh")
 metadata/_custom_type_script = "uid://bwp1cvwjkhvwt"
 
-[node name="InventoryClothes" type="Node" parent="." node_paths=PackedStringArray("root")]
+[node name="InventoryClothes" type="Node" parent="." unique_id=2059258497 node_paths=PackedStringArray("root")]
 script = ExtResource("6_abx2t")
 root = NodePath("../SourceInventory/3")
 private = true
 initial_slots = 0
 metadata/_custom_type_script = "uid://vgml0sp3idxv"
 
-[node name="1" type="Node" parent="InventoryClothes"]
+[node name="1" type="Node" parent="InventoryClothes" unique_id=737337569]
 script = ExtResource("19_r8tpl")
 allowed_types = Array[ExtResource("19_50wvo")]([ExtResource("20_cmvf1")])
 texture = ExtResource("20_50wvo")
 
-[node name="2" type="Node" parent="InventoryClothes"]
+[node name="2" type="Node" parent="InventoryClothes" unique_id=858668710]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="3" type="Node" parent="InventoryClothes"]
+[node name="3" type="Node" parent="InventoryClothes" unique_id=1626628831]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="4" type="Node" parent="InventoryClothes"]
+[node name="4" type="Node" parent="InventoryClothes" unique_id=1169273789]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="5" type="Node" parent="InventoryClothes"]
+[node name="5" type="Node" parent="InventoryClothes" unique_id=1247114345]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="6" type="Node" parent="InventoryClothes"]
+[node name="6" type="Node" parent="InventoryClothes" unique_id=1415656922]
 script = ExtResource("19_r8tpl")
 texture = ExtResource("20_50wvo")
 
-[node name="SourcePlayerPhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="SourcePlayerPhysicsHandler" type="Node" parent="." unique_id=1168236033 node_paths=PackedStringArray("player")]
 script = ExtResource("2_3mc7r")
 player = NodePath("..")
 max_safe_fall_speed = 15.0
 metadata/_custom_type_script = "uid://dvv35phe3qh7s"
 
-[node name="SourceFootsteps" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_3mc7r")]
+[node name="SourceFootsteps" parent="." unique_id=267213533 node_paths=PackedStringArray("player") instance=ExtResource("8_3mc7r")]
 player = NodePath("..")
 
-[node name="SourceMovement" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_amac5")]
+[node name="SourceMovement" parent="." unique_id=865871166 node_paths=PackedStringArray("actor") instance=ExtResource("9_amac5")]
 actor = NodePath("..")
 _move_speed = 5.0
 _crouch_speed = 2.5
@@ -332,15 +333,23 @@ key_jump = "jump"
 key_sprint = "sprint"
 key_crouch = "crouch"
 
-[node name="SourceCrouch" parent="." node_paths=PackedStringArray("camera", "movement") instance=ExtResource("10_ghdio")]
-camera = NodePath("../SourceCamera")
+[node name="SourceCrouch" parent="." unique_id=1101867363 node_paths=PackedStringArray("camera", "movement") instance=ExtResource("10_ghdio")]
+camera = NodePath("../CameraShake/SourceCamera")
 movement = NodePath("../SourceMovement")
 
-[node name="SourceCamera" parent="." node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
+[node name="CameraShake" type="Node3D" parent="." unique_id=1864489592 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-body = NodePath("..")
+script = ExtResource("37_cmvf1")
+player = NodePath("..")
+recoil = Vector3(0.8, 0.4, 0)
+snappiness = 2.0
+returnSpeed = 10.0
+metadata/_custom_type_script = "uid://c1n2k4cmom6rn"
 
-[node name="PositionSync" type="Node" parent="SourceCamera" node_paths=PackedStringArray("node")]
+[node name="SourceCamera" parent="CameraShake" unique_id=1969548237 node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
+body = NodePath("../..")
+
+[node name="PositionSync" type="Node" parent="CameraShake/SourceCamera" unique_id=537184214 node_paths=PackedStringArray("node")]
 script = ExtResource("3_1frjd")
 node = NodePath("..")
 interpolation = true
@@ -356,9 +365,9 @@ allow_serialize = false
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
-[node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera"]
+[node name="voice" type="AudioStreamPlayer3D" parent="CameraShake/SourceCamera" unique_id=1596485228]
 
-[node name="flashlight" type="SpotLight3D" parent="SourceCamera"]
+[node name="flashlight" type="SpotLight3D" parent="CameraShake/SourceCamera" unique_id=1043984270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
 light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
@@ -366,55 +375,55 @@ spot_range = 7.82003
 spot_angle = 31.8552
 script = ExtResource("14_hs1xq")
 
-[node name="light" type="SpotLight3D" parent="SourceCamera/flashlight"]
+[node name="light" type="SpotLight3D" parent="CameraShake/SourceCamera/flashlight" unique_id=1698985627]
 light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 
-[node name="interactor" type="RayCast3D" parent="SourceCamera" node_paths=PackedStringArray("root", "exceptions")]
+[node name="interactor" type="RayCast3D" parent="CameraShake/SourceCamera" unique_id=791307133 node_paths=PackedStringArray("root", "exceptions")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.394588)
 target_position = Vector3(0, 0, -3)
 collision_mask = 11
 collide_with_areas = true
 script = ExtResource("16_26rsp")
-root = NodePath("../..")
-exceptions = [NodePath("../../hitbox_body"), NodePath("../../hitbox_legs"), NodePath("../../hitbox_head"), NodePath("../.."), NodePath("../../AI_Visible")]
+root = NodePath("../../..")
+exceptions = [NodePath("../../../hitbox_body"), NodePath("../../../hitbox_legs"), NodePath("../../../hitbox_head"), NodePath("../../.."), NodePath("../../../AI_Visible")]
 
-[node name="cameras" type="Node3D" parent="SourceCamera"]
+[node name="cameras" type="Node3D" parent="CameraShake/SourceCamera" unique_id=1299554578]
 
-[node name="1" type="Camera3D" parent="SourceCamera/cameras"]
+[node name="1" type="Camera3D" parent="CameraShake/SourceCamera/cameras" unique_id=343129356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="2" type="Camera3D" parent="SourceCamera/cameras"]
+[node name="2" type="Camera3D" parent="CameraShake/SourceCamera/cameras" unique_id=25119445]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3)
 
-[node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera" node_paths=PackedStringArray("inventory")]
+[node name="SourceViewModelRoot3D" type="Node3D" parent="CameraShake/SourceCamera" unique_id=2088033593 node_paths=PackedStringArray("inventory")]
 script = ExtResource("18_1yv11")
 authorative_visibility = true
 type = 0
-inventory = NodePath("../../SourceInventory")
+inventory = NodePath("../../../SourceInventory")
 placeholder = ExtResource("19_em5yj")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
-[node name="ViewModelSway" type="Node" parent="SourceCamera/SourceViewModelRoot3D" node_paths=PackedStringArray("viewmodel")]
+[node name="ViewModelSway" type="Node" parent="CameraShake/SourceCamera/SourceViewModelRoot3D" unique_id=937964717 node_paths=PackedStringArray("viewmodel")]
 script = ExtResource("23_7nlxi")
 viewmodel = NodePath("..")
 metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 
-[node name="hitbox_body" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+[node name="hitbox_body" type="Area3D" parent="." unique_id=1358480324 node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("26_26rsp")
 health = NodePath("../SourceHealth")
 
-[node name="hitbox_legs" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+[node name="hitbox_legs" type="Area3D" parent="." unique_id=247879102 node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("26_26rsp")
 health = NodePath("../SourceHealth")
 
-[node name="hitbox_head" type="Area3D" parent="." node_paths=PackedStringArray("health") groups=["penetrable"]]
+[node name="hitbox_head" type="Area3D" parent="." unique_id=1894736178 node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
 collision_mask = 2
 monitoring = false
@@ -422,11 +431,11 @@ script = ExtResource("26_26rsp")
 health = NodePath("../SourceHealth")
 damage_multiplier = 2.0
 
-[node name="nickname" parent="." node_paths=PackedStringArray("authority_node") instance=ExtResource("27_y3hgg")]
+[node name="nickname" parent="." unique_id=2050492904 node_paths=PackedStringArray("authority_node") instance=ExtResource("27_y3hgg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 authority_node = NodePath("..")
 
-[node name="AI_Visible" type="Area3D" parent="." node_paths=PackedStringArray("target", "target_health_component")]
+[node name="AI_Visible" type="Area3D" parent="." unique_id=806906378 node_paths=PackedStringArray("target", "target_health_component")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("29_em5yj")
@@ -434,16 +443,16 @@ target = NodePath("..")
 target_health_component = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://4q60q717rxsh"
 
-[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible"]
+[node name="collision_normal" type="CollisionShape3D" parent="AI_Visible" unique_id=1386005798]
 shape = SubResource("CapsuleShape3D_i0lyu")
 debug_color = Color(0.341176, 0.486275, 1, 0)
 
-[node name="SourceCameraSwithcer" type="Node" parent="." node_paths=PackedStringArray("nodes_to_hide", "base", "cameras")]
+[node name="SourceCameraSwithcer" type="Node" parent="." unique_id=1268936670 node_paths=PackedStringArray("nodes_to_hide", "base", "cameras")]
 script = ExtResource("26_y3hgg")
-nodes_to_hide = [NodePath("../SourceCamera/SourceViewModelRoot3D")]
-base = NodePath("../SourceCamera")
-cameras = [NodePath("../SourceCamera/cameras/1"), NodePath("../SourceCamera/cameras/2")]
+nodes_to_hide = [NodePath("../CameraShake/SourceCamera/SourceViewModelRoot3D")]
+base = NodePath("../CameraShake/SourceCamera")
+cameras = [NodePath("../CameraShake/SourceCamera/cameras/1"), NodePath("../CameraShake/SourceCamera/cameras/2")]
 metadata/_custom_type_script = "uid://8ivv40tjuu7w"
 
 [editable path="SourceMovement"]
-[editable path="SourceCamera"]
+[editable path="CameraShake/SourceCamera"]

@@ -7,6 +7,8 @@ class_name R_WeaponProjectileObject
 @export var damage_multiplier: float = 1.0
 @export var ammo: Array[R_SourceAmmoObject] = []
 
+@export var recoil:Vector3 = Vector3.ZERO
+
 @export var projectile:PackedScene
 @export var sound:R_SourceSound
 

@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://cfd4w1yo6hdwm"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://cfd4w1yo6hdwm"]
 
 [ext_resource type="Texture2D" uid="uid://4omp4imfyu10" path="res://addons/kenney_prototype_textures/dark/texture_06.png" id="1_7gbuq"]
 

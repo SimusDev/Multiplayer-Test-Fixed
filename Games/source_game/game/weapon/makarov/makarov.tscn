@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8u6me3cfg7au"]
+[gd_scene format=3 uid="uid://b8u6me3cfg7au"]
 
 [ext_resource type="PackedScene" uid="uid://dy3ifoeuavlkv" path="res://Games/source_game/game/weapon/base/scene.tscn" id="1_hy0ic"]
 [ext_resource type="Script" uid="uid://ddorrr4rh5ny8" path="res://Games/source_game/components/animation/weapon_animator.gd" id="2_lan7q"]
@@ -1348,50 +1348,47 @@ _data = {
 &"RESET": SubResource("Animation_1xym1")
 }
 
-[node name="weapon" node_paths=PackedStringArray("bullet_point") instance=ExtResource("1_hy0ic")]
+[node name="weapon" unique_id=764726295 node_paths=PackedStringArray("bullet_point") instance=ExtResource("1_hy0ic")]
 bullet_point = NodePath("root/makarov_model/bullet_marker")
 
-[node name="SourceWeaponAnimator" type="Node" parent="." index="0" node_paths=PackedStringArray("player")]
+[node name="SourceWeaponAnimator" type="Node" parent="." index="0" unique_id=514293528 node_paths=PackedStringArray("player")]
 script = ExtResource("2_lan7q")
 hooks = Array[ExtResource("3_8dopu")]([SubResource("Resource_rfpxa"), SubResource("Resource_2jcng"), SubResource("Resource_mfegr"), SubResource("Resource_xvdqm")])
-player = NodePath("../AnimationPlayer")
+player = NodePath("AnimationPlayer")
 initialized = true
 metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 
-[node name="AimAnimator" type="Node" parent="." index="1" node_paths=PackedStringArray("player")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceWeaponAnimator" index="0" unique_id=708522391]
+root_node = NodePath("../..")
+callback_mode_process = 0
+libraries/ = ExtResource("5_02pmo")
+
+[node name="AimAnimator" type="Node" parent="." index="1" unique_id=939240441 node_paths=PackedStringArray("player")]
 script = ExtResource("2_lan7q")
 hooks = Array[ExtResource("3_8dopu")]([SubResource("Resource_lan7q"), SubResource("Resource_8gbyc")])
 player = NodePath("AnimationPlayer")
 initialized = true
 metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AimAnimator" index="0"]
-libraries = {
-&"": SubResource("AnimationLibrary_8dopu")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AimAnimator" index="0" unique_id=1498045346]
+libraries/ = SubResource("AnimationLibrary_8dopu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-callback_mode_process = 0
-libraries = {
-&"": ExtResource("5_02pmo")
-}
-
-[node name="makarov_model" parent="root" index="0" instance=ExtResource("2_mlokg")]
+[node name="makarov_model" parent="root" index="0" unique_id=1176399384 instance=ExtResource("2_mlokg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 
 [node name="animated_parts" parent="root/makarov_model/root/makarov sketchfab_fbx/RootNode" index="15"]
 transform = Transform3D(0.9999999, 0, -2.3283064e-10, 3.7252903e-09, 1, -5.16593e-09, 0, 2.2555469e-09, 0.99999994, 0, 0, 0)
 
-[node name="bullet_marker" type="Marker3D" parent="root/makarov_model" index="1"]
+[node name="bullet_marker" type="Marker3D" parent="root/makarov_model" index="1" unique_id=757430330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.063337944, -0.12592766)
 
-[node name="left_hand_pos" type="Marker3D" parent="root/makarov_model" index="2"]
-transform = Transform3D(-0.90141445, 0.07969791, 0.42555925, -0.4290457, -0.032600023, -0.90269476, -0.05806963, -0.9962856, 0.06358021, -0.028491916, -0.06970416, 0.16405071)
+[node name="left_hand_pos" type="Marker3D" parent="root/makarov_model" index="2" unique_id=1097993132]
+transform = Transform3D(-0.90141445, 0.07969789, 0.42555925, -0.4290457, -0.032600015, -0.90269476, -0.05806963, -0.9962854, 0.06358021, -0.028491916, -0.06970416, 0.16405071)
 
-[node name="right_hand_pos" type="Marker3D" parent="root/makarov_model" index="3"]
+[node name="right_hand_pos" type="Marker3D" parent="root/makarov_model" index="3" unique_id=1393137904]
 transform = Transform3D(-0.9989218, -0.015600663, 0.043724965, -0.045191634, 0.111133404, -0.9927776, 0.01062867, -0.9936838, -0.11171853, 0.027080923, -0.047711402, 0.14691332)
 
-[node name="arms" parent="root" index="1" instance=ExtResource("4_jcurs")]
+[node name="arms" parent="root" index="1" unique_id=1613092911 instance=ExtResource("4_jcurs")]
 transform = Transform3D(-0.9999862, 0.002874668, -0.0043762648, -0.00043986525, 0.78673077, 0.6172957, 0.005217464, 0.61728907, -0.78671885, -0.11739935, -0.02471979, 0.48754084)
 
 [node name="Skeleton3D" parent="root/arms/root" index="0"]
@@ -1573,20 +1570,18 @@ target_node = NodePath("../../../../makarov_model/left_hand_pos")
 [node name="right_hand_ik" parent="root/arms/root/Skeleton3D" index="2"]
 target_node = NodePath("../../../../makarov_model/right_hand_pos")
 
-[node name="1" type="AudioStreamPlayer3D" parent="root" index="2"]
+[node name="1" type="AudioStreamPlayer3D" parent="root" index="2" unique_id=1335421296]
 transform = Transform3D(0.9972508, 0.064397596, -0.036658276, -0.06417546, 0.99791265, 0.0072055724, 0.037045777, -0.0048332005, 0.9993019, -0.0005780333, -0.0009239621, -0.045797)
 
-[node name="SkeletalAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-libraries = {
-&"": SubResource("AnimationLibrary_7a4te")
-}
-autoplay = "RESET"
+[node name="SkeletalAnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=158652623]
+libraries/ = SubResource("AnimationLibrary_7a4te")
+autoplay = &"RESET"
 script = ExtResource("5_1xym1")
 skeleton_path = NodePath("../root/arms/root/Skeleton3D")
 IK_playing = true
 metadata/_custom_type_script = "uid://xtad4kl5og07"
 
-[node name="Camera3D" type="Camera3D" parent="." index="5"]
+[node name="Camera3D" type="Camera3D" parent="." index="4" unique_id=166523296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165, 0.159, 0.443)
 
 [editable path="root/makarov_model"]

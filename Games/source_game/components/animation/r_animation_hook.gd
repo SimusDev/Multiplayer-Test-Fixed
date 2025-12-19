@@ -25,7 +25,7 @@ func apply(idx:int = 0) -> void:
 	if animator.player.is_playing() and (not play_instant):
 		return
 	
-	animator.player.stop()
+	#animator.player.stop()
 	if play_backwards:
 		animator.player.play_backwards(animation)
 	else:

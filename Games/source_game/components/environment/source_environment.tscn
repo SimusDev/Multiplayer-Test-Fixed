@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddlbe4psx5fju"]
+[gd_scene format=3 uid="uid://ddlbe4psx5fju"]
 
 [ext_resource type="Script" uid="uid://usrody2npftj" path="res://Games/source_game/components/environment/source_environment.gd" id="1_b8xed"]
 [ext_resource type="Environment" uid="uid://b71yn6wfk8lop" path="res://env/default.tres" id="2_3n4xh"]
@@ -9,12 +9,12 @@
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ao32c"]
 
-[node name="Environment" type="Node3D" node_paths=PackedStringArray("_sky", "caller")]
+[node name="Environment" type="Node3D" unique_id=1929378285 node_paths=PackedStringArray("_sky", "caller")]
 script = ExtResource("1_b8xed")
 _sky = NodePath("Sky3D")
 caller = NodePath("SD_NetFunctionCaller")
 
-[node name="Sky3D" type="WorldEnvironment" parent="."]
+[node name="Sky3D" type="WorldEnvironment" parent="." unique_id=1103076613]
 environment = ExtResource("2_3n4xh")
 camera_attributes = SubResource("CameraAttributesPractical_ao32c")
 script = ExtResource("9_dskhl")
@@ -22,17 +22,17 @@ editor_time_enabled = false
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
-[node name="SunLight" type="DirectionalLight3D" parent="Sky3D"]
+[node name="SunLight" type="DirectionalLight3D" parent="Sky3D" unique_id=1606719123]
 transform = Transform3D(0, -0.6232519, 0.7820211, 0.8144464, 0.45375896, 0.36163497, -0.58023876, 0.63691425, 0.5076053, 0.7820211, 0.36163497, 0.5076053)
 light_color = Color(0.9944654, 0.8679998, 0.8046286, 1)
 shadow_enabled = true
 
-[node name="MoonLight" type="DirectionalLight3D" parent="Sky3D"]
+[node name="MoonLight" type="DirectionalLight3D" parent="Sky3D" unique_id=880949496]
 transform = Transform3D(0, -0.7182224, -0.69581366, -0.84267056, 0.3746466, -0.3867121, 0.5384295, 0.5863417, -0.60522485, -0.69581366, -0.3867121, -0.60522485)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
-[node name="SkyDome" type="Node" parent="Sky3D"]
+[node name="SkyDome" type="Node" parent="Sky3D" unique_id=155276121]
 script = ExtResource("10_18c2x")
 sun_azimuth = -2.1465344
 sun_altitude = -1.2007754
@@ -40,18 +40,18 @@ moon_azimuth = -5.4282713
 moon_altitude = -1.96786
 wind_direction = 2.35619451204804
 
-[node name="TimeOfDay" type="Node" parent="Sky3D"]
+[node name="TimeOfDay" type="Node" parent="Sky3D" unique_id=1869377306]
 script = ExtResource("11_dn3ud")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
 day = 4
 
-[node name="SD_NetFunctionCaller" type="Node" parent="."]
+[node name="SD_NetFunctionCaller" type="Node" parent="." unique_id=1738921152]
 script = ExtResource("12_dnjjk")
 default_channel = "environment"
 metadata/_custom_type_script = "uid://b5dhc3onabatl"
 
-[node name="synchronize" type="Timer" parent="."]
+[node name="synchronize" type="Timer" parent="." unique_id=233080469]
 wait_time = 10.0
 one_shot = true
 autostart = true
