@@ -20,6 +20,13 @@ func _ready() -> void:
 	super()
 	randomize()
 	
+	SD_Network.register_functions
+	(
+		[
+			_try_reload_net
+		]
+	)
+	
 	weapon = stack.object as R_WeaponProjectileObject
 	camera_shake = SD_Components.find_first(player, CameraShake)
 	event_fire.connect(camera_shake.apply)
