@@ -47,7 +47,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Multiplayer-Test"
 config/version="dev005b"
 run/main_scene="uid://c31uhxfwryhme"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://cyj56486e1iyo"
 
 [audio]
@@ -57,7 +57,7 @@ driver/enable_input=true
 
 [autoload]
 
-SimusDev="*uid://dnpa241s8gwqq"
+SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
 SceneChanger="*res://singletons/s_SceneChanger.tscn"
 SyncedData="*res://singletons/s_SyncedData.tscn"
 Maps="*res://singletons/s_Maps.tscn"
@@ -508,6 +508,7 @@ scaling_3d/mode.macos=1
 textures/decals/filter=0
 textures/light_projectors/filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
+environment/defaults/default_environment="uid://b71yn6wfk8lop"
 
 [shader_globals]
 

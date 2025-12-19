@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceViewModel" format=3 uid="uid://b6wfetw8s3ti6"]
+[gd_resource type="Resource" script_class="R_SourceViewModel" load_steps=6 format=3 uid="uid://b6wfetw8s3ti6"]
 
 [ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="1_4k38a"]
 [ext_resource type="PackedScene" uid="uid://7mptmrpb1qvm" path="res://Games/source_game/components/viewmodel/default_view.tscn" id="2_q1a82"]
