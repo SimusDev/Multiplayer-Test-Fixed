@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crc5q81krdogr"]
+[gd_scene format=3 uid="uid://crc5q81krdogr"]
 
 [ext_resource type="Script" uid="uid://bn6uo3scs7onc" path="res://Games/source_game/ui/character_select/character_select.gd" id="1_2ucuu"]
 [ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_gqi34"]
@@ -10,14 +10,17 @@
 shader = ExtResource("3_6pm5p")
 shader_parameter/lod = 2.0
 
-[node name="CharacterSelect" type="CanvasLayer" node_paths=PackedStringArray("container", "container_spawn")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsg7p"]
+bg_color = Color(0, 0, 0, 0.64705884)
+
+[node name="CharacterSelect" type="CanvasLayer" unique_id=794258448 node_paths=PackedStringArray("container", "container_spawn")]
 script = ExtResource("1_2ucuu")
 container = NodePath("root/ScrollContainer/CenterContainer/GridContainer")
 container_spawn = NodePath("root/desc/ScrollContainer/CenterContainer/GridContainer")
 slot = ExtResource("2_hypjj")
 spawn = ExtResource("3_vsg7p")
 
-[node name="blur" type="ColorRect" parent="."]
+[node name="blur" type="ColorRect" parent="." unique_id=1780016628]
 material = SubResource("ShaderMaterial_vsg7p")
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="root" type="Control" parent="."]
+[node name="root" type="Control" parent="." unique_id=2053808755]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="desc" type="Control" parent="root"]
+[node name="desc" type="Control" parent="root" unique_id=733554379]
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 1.0
@@ -41,44 +44,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="root/desc"]
+[node name="ScrollContainer" type="ScrollContainer" parent="root/desc" unique_id=860578168]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.4421875
+anchor_top = 0.6125
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vsg7p")
+metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="root/desc/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="root/desc/ScrollContainer" unique_id=1996020491]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="VBoxContainer" parent="root/desc/ScrollContainer/CenterContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="root/desc/ScrollContainer/CenterContainer" unique_id=144808196]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="root"]
+[node name="ScrollContainer" type="ScrollContainer" parent="root" unique_id=1692671207]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.5
+anchor_top = 0.614
+anchor_right = 0.42100003
 anchor_bottom = 1.0
+offset_top = -0.08001709
+offset_right = 0.11993408
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vsg7p")
 
-[node name="CenterContainer" type="CenterContainer" parent="root/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="root/ScrollContainer" unique_id=1598426493]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="root/ScrollContainer/CenterContainer"]
+[node name="GridContainer" type="GridContainer" parent="root/ScrollContainer/CenterContainer" unique_id=1712285721]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
 
-[node name="SD_UIInterfaceMenu" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="Label" type="Label" parent="." unique_id=453018871]
+anchors_preset = -1
+anchor_left = 0.0046875
+anchor_top = 0.5888889
+anchor_right = 0.08046875
+anchor_bottom = 0.6125
+text = "Character"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="." unique_id=578999708]
+anchors_preset = -1
+anchor_left = 0.72578126
+anchor_top = 0.5888889
+anchor_right = 0.8015625
+anchor_bottom = 0.6125
+text = "Spawn"
+metadata/_edit_use_anchors_ = true
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." unique_id=1018530126 node_paths=PackedStringArray("target")]
 script = ExtResource("2_gqi34")
 target = NodePath("../root")
 open_at_start = true

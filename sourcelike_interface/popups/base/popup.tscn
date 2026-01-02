@@ -11,9 +11,9 @@ font_size = 18
 
 [node name="Popup" type="Control" unique_id=1235421495]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 512.0
-offset_bottom = 375.0
+anchor_right = 0.4
+anchor_bottom = 0.521
+offset_bottom = -0.120025635
 mouse_filter = 2
 metadata/_edit_horizontal_guides_ = [30.0, 375.0]
 metadata/_edit_vertical_guides_ = [512.0]
@@ -43,7 +43,8 @@ grow_vertical = 2
 self_modulate = Color(0.07388901, 0.073889025, 0.073888995, 1)
 layout_mode = 1
 anchor_right = 1.0
-anchor_bottom = 0.088
+anchor_bottom = 0.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0

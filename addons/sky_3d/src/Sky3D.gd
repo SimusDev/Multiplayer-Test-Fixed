@@ -307,7 +307,7 @@ func _start_sky_contrib_tween(daytime: bool = is_day()) -> void:
 
 
 ## Maximum strength of Moon DirectionalLight, visible at night. Alias for [member SkyDome.moon_light_energy].
-@export_range(0, 16, 0.005) var moon_energy: float = 0.3 :
+@export_range(0, 16, 0.005) var moon_energy: float = 0.025 :
 	set(value):
 		if sky:
 			sky.moon_light_energy = value

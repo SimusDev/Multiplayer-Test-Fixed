@@ -20,8 +20,7 @@ func _ready() -> void:
 	super()
 	randomize()
 	
-	SD_Network.register_functions
-	(
+	SD_Network.register_functions(
 		[
 			_try_reload_net
 		]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8ub3oro62esl"]
+[gd_scene format=3 uid="uid://b8ub3oro62esl"]
 
 [ext_resource type="Script" uid="uid://c6lssb7epmsfx" path="res://Games/source_game/ui/character_select/slot.gd" id="1_glkrx"]
 [ext_resource type="Theme" uid="uid://bwhd45id04skj" path="res://addons/simusdev/console/themes/sourcelike_theme.tres" id="1_reo1j"]
 [ext_resource type="Texture2D" uid="uid://b4y2r4w6vfs0g" path="res://Games/source_game/objects/players/source/icon.png" id="2_cj8mr"]
 
-[node name="Slot" type="Control"]
+[node name="Slot" type="Control" unique_id=1957601342]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 0
@@ -13,7 +13,7 @@ offset_bottom = 128.0
 theme = ExtResource("1_reo1j")
 script = ExtResource("1_glkrx")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1266513292]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,13 +21,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=364743386]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0234375
-anchor_top = 0.0234375
-anchor_right = 0.976563
-anchor_bottom = 0.976563
+anchor_left = 0.015625
+anchor_top = 0.015625
+anchor_right = 0.984375
+anchor_bottom = 0.984375
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

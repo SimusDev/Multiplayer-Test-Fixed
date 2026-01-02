@@ -1,36 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2ly2hwdj87jl"]
+[gd_scene format=3 uid="uid://d2ly2hwdj87jl"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_pyl8t"]
 [ext_resource type="PackedScene" uid="uid://nueoq0reyoop" path="res://Games/source_game/game/3dmodels/3d_anime_character/animated_model.tscn" id="2_6ues7"]
-[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="2_43l7g"]
-[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="3_efwcb"]
-
-[sub_resource type="Resource" id="Resource_5fc14"]
-script = ExtResource("2_43l7g")
-properties = PackedStringArray("transform")
-interpolation_enabled = true
-node_path = NodePath("..")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_gwj6c"]
-script = ExtResource("2_43l7g")
-properties = PackedStringArray("rotation")
-node_path = NodePath("../SourceCamera")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_qpm12"]
-script = ExtResource("2_43l7g")
-properties = PackedStringArray("velocity")
-node_path = NodePath("..")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_q40i1"]
-script = ExtResource("3_efwcb")
-_list = Array[ExtResource("2_43l7g")]([SubResource("Resource_5fc14"), SubResource("Resource_gwj6c"), SubResource("Resource_qpm12")])
-metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_efwcb"]
 height = 0.580811
@@ -44,10 +15,6 @@ radius = 0.21582
 height = 0.366938
 radius = 0.163574
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5fc14"]
-radius = 0.335526
-height = 2.81533
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ues7"]
 radius = 0.205
 height = 1.5
@@ -56,82 +23,73 @@ height = 1.5
 radius = 0.205
 height = 1.0
 
-[node name="anime2" instance=ExtResource("1_pyl8t")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5fc14"]
+radius = 0.335526
+height = 2.81533
 
-[node name="SD_NetSynchronizer" parent="." index="1"]
-_data = SubResource("Resource_q40i1")
+[node name="anime2" unique_id=593912937 instance=ExtResource("1_pyl8t")]
 
-[node name="HideNodesWhenAuthority" parent="." index="2" node_paths=PackedStringArray("authority_true")]
+[node name="HideNodesWhenAuthority" parent="." index="2" unique_id=298092745 node_paths=PackedStringArray("authority_true")]
 authority_true = [NodePath("../nickname"), null]
 
-[node name="SourceInventory" parent="." index="6"]
-debug = false
-
-[node name="SourceMovement" parent="." index="9"]
+[node name="SourceMovement" parent="." index="10" unique_id=865871166]
 _sprint_speed = 5.0
 _crouch_sprint_speed = 2.5
 
-[node name="SourceCrouch" parent="." index="10" node_paths=PackedStringArray("collision_normal", "collision_crouch", "crouch_camera_position")]
+[node name="SourceCrouch" parent="." index="11" unique_id=1101867363 node_paths=PackedStringArray("collision_normal", "collision_crouch", "crouch_camera_position")]
 collision_normal = NodePath("../collision_normal")
 collision_crouch = NodePath("../collision_crouched")
-crouch_camera_position = NodePath("../camera_crouch_pos")
+crouch_camera_position = NodePath("../CameraShake/camera_crouch_pos")
 
-[node name="SourceCamera" parent="." index="11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+[node name="CameraShake" parent="." index="12" unique_id=1864489592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="flashlight" parent="SourceCamera" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.429595)
+[node name="camera_crouch_pos" type="Node3D" parent="CameraShake" index="1" unique_id=313965854]
 
-[node name="interactor" parent="SourceCamera" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="camera_crouch_pos" type="Node3D" parent="." index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
-
-[node name="hitbox_body" parent="." index="13"]
+[node name="hitbox_body" parent="." index="13" unique_id=1358480324]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0" unique_id=104191897]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.717864, 0)
 shape = SubResource("CylinderShape3D_efwcb")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="hitbox_legs" parent="." index="14"]
+[node name="hitbox_legs" parent="." index="14" unique_id=247879102]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 damage_multiplier = 0.4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" index="0" unique_id=1977001766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226172, 0)
 shape = SubResource("CylinderShape3D_5fc14")
 debug_color = Color(0, 0, 1, 1)
 
-[node name="hitbox_head" parent="." index="15"]
+[node name="hitbox_head" parent="." index="15" unique_id=1894736178]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0" unique_id=29631327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20768, 0)
 shape = SubResource("CylinderShape3D_gwj6c")
 debug_color = Color(0.807843, 0.00392157, 0.988235, 1)
 
-[node name="nickname" parent="." index="16"]
+[node name="nickname" parent="." index="16" unique_id=2050492904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="collision_normal" parent="AI_Visible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026482, 0, 0)
-shape = SubResource("CapsuleShape3D_5fc14")
-
-[node name="collision_normal" type="CollisionShape3D" parent="." index="18"]
+[node name="collision_normal" type="CollisionShape3D" parent="." index="17" unique_id=617999708]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_6ues7")
 
-[node name="collision_crouched" type="CollisionShape3D" parent="." index="19"]
+[node name="collision_crouched" type="CollisionShape3D" parent="." index="18" unique_id=411743155]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50512695, 0)
 shape = SubResource("CapsuleShape3D_efwcb")
 disabled = true
 
-[node name="SourceAnimatedModel" parent="." index="21" node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
+[node name="collision_normal" parent="AI_Visible" parent_id_path=PackedInt32Array(806906378) index="0" unique_id=1386005798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026482, 0, 0)
+shape = SubResource("CapsuleShape3D_5fc14")
+
+[node name="SourceAnimatedModel" parent="." index="20" unique_id=304911168 node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 target = NodePath("..")
 
 [editable path="SourceMovement"]
-[editable path="SourceCamera"]
+[editable path="CameraShake/SourceCamera"]

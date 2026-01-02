@@ -1,0 +1,24 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://b70xthvesq8rn"]
+
+[ext_resource type="Animation" uid="uid://tbeeufvxbpjw" path="res://Games/source_game/game/3dmodels/skeleton/animations/idle.anim" id="1_fqhff"]
+[ext_resource type="Animation" uid="uid://baqhqli6fkm51" path="res://Games/source_game/game/3dmodels/skeleton/animations/crouched_idle.anim" id="1_k1dlv"]
+[ext_resource type="Animation" uid="uid://bwejxu8m02kcy" path="res://Games/source_game/game/3dmodels/skeleton/animations/run.anim" id="2_i6h8e"]
+[ext_resource type="Animation" uid="uid://cqnkhm17o5kti" path="res://Games/source_game/game/3dmodels/skeleton/animations/crouched_walk.anim" id="2_vso4i"]
+[ext_resource type="Animation" uid="uid://c6d31j8nxp5h8" path="res://Games/source_game/game/3dmodels/skeleton/animations/run_left_strafe.anim" id="3_wohwm"]
+[ext_resource type="Animation" uid="uid://cpnafk8gwttc1" path="res://Games/source_game/game/3dmodels/skeleton/animations/run_right_strafe.anim" id="4_6d7sw"]
+[ext_resource type="Animation" uid="uid://bvjehxsn5v23k" path="res://Games/source_game/game/3dmodels/skeleton/animations/walk.anim" id="7_2dc2k"]
+[ext_resource type="Animation" uid="uid://dqsi7o6vo3mw" path="res://Games/source_game/game/3dmodels/skeleton/animations/walk_left_strafe.anim" id="8_o0gm6"]
+[ext_resource type="Animation" uid="uid://dkvf7ikgbdmcj" path="res://Games/source_game/game/3dmodels/skeleton/animations/walk_right_strafe.anim" id="9_ird5p"]
+
+[resource]
+_data = {
+&"crouched_idle": ExtResource("1_k1dlv"),
+&"crouched_walk": ExtResource("2_vso4i"),
+&"idle": ExtResource("1_fqhff"),
+&"run": ExtResource("2_i6h8e"),
+&"run_left_strafe": ExtResource("3_wohwm"),
+&"run_right_strafe": ExtResource("4_6d7sw"),
+&"walk": ExtResource("7_2dc2k"),
+&"walk_left_strafe": ExtResource("8_o0gm6"),
+&"walk_right_strafe": ExtResource("9_ird5p")
+}

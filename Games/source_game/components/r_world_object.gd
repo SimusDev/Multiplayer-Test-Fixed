@@ -16,17 +16,16 @@ class_name R_SourceWorldObject
 @export var drag_start_sound:AudioStream
 @export var drag_stop_sound:AudioStream
 
-
-func get_itemstack() -> SourceItemStackSettings:
-	return itemstack
-
-static var _references: Dictionary[String, R_SourceWorldObject] = {}
-static var _reference_list: Array[R_SourceWorldObject] = []
-
 var id: String = ""
 var _section_icon: Texture
 
+
+static var _references: Dictionary[String, R_SourceWorldObject] = {}
+static var _reference_list: Array[R_SourceWorldObject] = []
 static var _prefab_references: Dictionary[PackedScene, R_SourceWorldObject] = {}
+
+func get_itemstack() -> SourceItemStackSettings:
+	return itemstack
 
 func get_cached_id() -> int:
 	return _reference_list.find(self)

@@ -33,6 +33,62 @@ name = &"event_inspect"
 animations = Array[StringName]([&"anim_lib/inspect"])
 play_instant = false
 
+[sub_resource type="Animation" id="Animation_8dopu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("root/makarov_model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.007539049, 0.007824168, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root/makarov_model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.05473426, 0.0009222776, -0.036289252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root/makarov_model/left_hand_pos:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.28538954, -0.20424607, 0.15654406)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root/makarov_model/left_hand_pos:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.2211033, 2.805844, -0.28379413)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8gbyc"]
+_data = {
+&"RESET": SubResource("Animation_8dopu")
+}
+
 [sub_resource type="Resource" id="Resource_lan7q"]
 script = ExtResource("4_8gbyc")
 name = &"event_aim_start"
@@ -1361,6 +1417,7 @@ metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SourceWeaponAnimator" index="0" unique_id=708522391]
 root_node = NodePath("../..")
 callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_8gbyc")
 libraries/anim_lib = ExtResource("5_02pmo")
 
 [node name="AimAnimator" type="Node" parent="." index="1" unique_id=939240441 node_paths=PackedStringArray("player")]
@@ -1375,7 +1432,7 @@ callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_8dopu")
 
 [node name="makarov_model" parent="root" index="0" unique_id=1176399384 instance=ExtResource("2_mlokg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+transform = Transform3D(0.9993429, 0.036230855, 0.0009208962, -0.03622695, 0.9978452, 0.054706924, 0.0010631668, -0.05470436, 0.99850184, 0.007539049, 0.007824168, 0)
 
 [node name="animated_parts" parent="root/makarov_model/root/makarov sketchfab_fbx/RootNode" index="15"]
 transform = Transform3D(0.9999999, 0, -2.3283064e-10, 3.7252903e-09, 1, -5.16593e-09, 0, 2.2555469e-09, 0.99999994, 0, 0, 0)
@@ -1384,10 +1441,10 @@ transform = Transform3D(0.9999999, 0, -2.3283064e-10, 3.7252903e-09, 1, -5.16593
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.063337944, -0.12592766)
 
 [node name="left_hand_pos" type="Marker3D" parent="root/makarov_model" index="2" unique_id=1097993132]
-transform = Transform3D(-0.90141445, 0.079697885, 0.42555925, -0.4290457, -0.032600015, -0.90269476, -0.05806963, -0.9962853, 0.06358021, -0.028491916, -0.06970416, 0.16405071)
+transform = Transform3D(-0.99306667, 0.032788057, 0.11288158, -0.095930584, 0.3289046, -0.9394778, -0.067931004, -0.94379246, -0.3234794, -0.28538954, -0.20424607, 0.15654406)
 
 [node name="right_hand_pos" type="Marker3D" parent="root/makarov_model" index="3" unique_id=1393137904]
-transform = Transform3D(-0.9989218, -0.0156006925, 0.043724965, -0.04519164, 0.111133404, -0.9927776, 0.0106287, -0.9936838, -0.11171853, 0.027080923, -0.047711402, 0.14691332)
+transform = Transform3D(-0.9989218, -0.015600663, 0.043724965, -0.045191634, 0.111133404, -0.9927776, 0.01062867, -0.9936838, -0.11171853, 0.027080923, -0.047711402, 0.14691332)
 
 [node name="arms" parent="root" index="1" unique_id=1613092911 instance=ExtResource("4_jcurs")]
 transform = Transform3D(-0.9999862, 0.002874668, -0.0043762648, -0.00043986525, 0.78673077, 0.6172957, 0.005217464, 0.61728907, -0.78671885, -0.11739935, -0.02471979, 0.48754084)
@@ -1547,7 +1604,7 @@ bones/51/rotation = Quaternion(-2.220446e-16, -1.4901161e-08, 1.4901161e-08, 1)
 bones/52/rotation = Quaternion(0.7071032, 0.7071034, 0.0022181552, -0.0022181568)
 bones/52/scale = Vector3(0.9999994, 0.99999976, 0.99999917)
 bones/53/position = Vector3(0, 0.159118, 0)
-bones/53/rotation = Quaternion(-5.551116e-17, -9.762e-40, 9.4412325e-15, 1)
+bones/53/rotation = Quaternion(-5.551116e-17, 0, 9.4412325e-15, 1)
 bones/53/scale = Vector3(1, 0.9999999, 1)
 bones/54/rotation = Quaternion(0.9990687, 0.01051528, -0.0059560006, -0.041421726)
 bones/54/scale = Vector3(1.0000011, 0.9999999, 1.0000125)
@@ -1557,7 +1614,7 @@ bones/55/scale = Vector3(0.9999999, 1.0000002, 1.0000002)
 bones/56/rotation = Quaternion(-0.7071032, 0.7071034, 0.0022181552, 0.0022181568)
 bones/56/scale = Vector3(0.9999994, 0.99999976, 0.99999917)
 bones/57/position = Vector3(0, 0.159118, 0)
-bones/57/rotation = Quaternion(-5.551116e-17, 9.762e-40, -9.4412325e-15, 1)
+bones/57/rotation = Quaternion(-5.551116e-17, 0, -9.4412325e-15, 1)
 bones/57/scale = Vector3(1, 0.9999999, 1)
 bones/58/rotation = Quaternion(0.9990687, -0.01051528, 0.0059560006, -0.041421726)
 bones/58/scale = Vector3(1.0000011, 0.9999999, 1.0000125)

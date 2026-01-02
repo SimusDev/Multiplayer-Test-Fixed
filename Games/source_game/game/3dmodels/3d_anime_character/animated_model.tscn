@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nueoq0reyoop"]
+[gd_scene format=3 uid="uid://nueoq0reyoop"]
 
 [ext_resource type="Script" uid="uid://bo8uwskkur08r" path="res://Games/source_game/components/source_animated_model.gd" id="1_c40mx"]
 [ext_resource type="PackedScene" uid="uid://d2luv1mr70rj7" path="res://Games/source_game/game/3dmodels/3d_anime_character/3d_anime_character.tscn" id="2_tkxnu"]
@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://b123u6latr4pb" path="res://Games/source_game/objects/weapons/toolgun.tres" id="6_yt864"]
 [ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="7_upo8v"]
 
-[node name="SourceAnimatedModel" type="Node3D" node_paths=PackedStringArray("root", "model", "tree", "player", "skeleton")]
+[node name="SourceAnimatedModel" type="Node3D" unique_id=20565624 node_paths=PackedStringArray("root", "model", "tree", "player", "skeleton")]
 script = ExtResource("1_c40mx")
 state_machine_properties = Dictionary[String, String]({
 "crouched_run": "blend_position",
@@ -26,78 +26,78 @@ player = NodePath("AnimationPlayer")
 skeleton = NodePath("model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D")
 metadata/_custom_type_script = "uid://pf622qfdiljm"
 
-[node name="model3d" parent="." instance=ExtResource("2_tkxnu")]
+[node name="model3d" parent="." unique_id=559215435 instance=ExtResource("2_tkxnu")]
 
 [node name="Sketchfab_model" parent="model3d" index="0"]
-transform = Transform3D(0.72883916, -0.05369432, 0.6825768, 0.00019528618, -0.99690175, -0.07862935, 0.68468535, 0.057441283, -0.7265723, -0.05234944, -0.060471307, 0.050596457)
+transform = Transform3D(0.99136573, 0.027197093, -0.12827614, 0.106019475, -0.74191564, 0.6620567, -0.0771642, -0.66993815, -0.738395, 0.030991847, -0.2428951, -0.56267977)
 
 [node name="GLTF_SceneRootNode" parent="model3d/Sketchfab_model/root" index="0"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0" index="1"]
-bones/2/rotation = Quaternion(0.08672203, 0.06802113, -0.013844488, 0.9938113)
-bones/3/rotation = Quaternion(0.13038015, 0.13528946, -0.026316214, 0.9818377)
-bones/4/rotation = Quaternion(0.6978144, 0.43419194, 0.4701683, -0.32167408)
-bones/5/rotation = Quaternion(-0.32208338, -0.18317278, 0.11521879, 0.92164785)
-bones/7/rotation = Quaternion(-0.23113507, -0.012351475, -0.3399788, 0.9115035)
-bones/9/rotation = Quaternion(0.12652813, 0.19241853, -0.11519942, 0.96627885)
-bones/10/rotation = Quaternion(-0.17152888, -0.018753553, 0.2979108, 0.93886924)
-bones/11/rotation = Quaternion(-0.30568558, -0.0023010485, 0.15061867, 0.94014096)
-bones/12/rotation = Quaternion(1.7967185e-08, 0.025497288, -2.2700984e-08, 0.99967486)
-bones/13/rotation = Quaternion(-0.16656531, -0.02550738, 0.25651315, 0.9517386)
-bones/14/rotation = Quaternion(-0.24071781, -0.005405102, 0.1380118, 0.9607178)
-bones/15/rotation = Quaternion(4.466964e-08, 0.046675995, -1.396984e-08, 0.9989101)
-bones/16/rotation = Quaternion(-0.074980356, -0.007798746, 0.14072874, 0.98717403)
-bones/17/rotation = Quaternion(-0.16700292, 0.002290568, 0.09299477, 0.9815584)
-bones/18/rotation = Quaternion(-6.1379936e-08, 0.04105758, 1.7229468e-08, 0.9991568)
-bones/19/rotation = Quaternion(-0.07274885, -0.043001603, -0.029079325, 0.99599844)
-bones/20/rotation = Quaternion(-0.11598955, 0.0085555315, 0.08469789, 0.9895957)
-bones/21/rotation = Quaternion(-1.4934527e-08, 0.019381301, 6.992195e-08, 0.9998122)
-bones/22/rotation = Quaternion(-0.3606668, -0.07125026, 0.050717775, 0.92858523)
-bones/23/rotation = Quaternion(0.005808983, 0.15957786, -0.0047248597, 0.987157)
-bones/27/rotation = Quaternion(0.042398136, -0.0027283535, 0.00040870756, 0.99909705)
-bones/28/rotation = Quaternion(-0.026708703, -0.0027131091, 0.00050022354, 0.99963945)
+bones/2/rotation = Quaternion(0.10756816, -0.0037038112, -0.020559147, 0.99397826)
+bones/3/rotation = Quaternion(0.17125924, 0.006291935, -0.025313884, 0.9848807)
+bones/4/rotation = Quaternion(0.7142605, 0.42849433, 0.4683362, -0.294764)
+bones/5/rotation = Quaternion(-0.2601994, -0.054930605, -0.3007902, 0.91586256)
+bones/7/rotation = Quaternion(-0.403157, 0.012525866, -0.5328633, 0.74388456)
+bones/9/rotation = Quaternion(0.06961218, 0.5521639, -0.07273949, 0.8276341)
+bones/10/rotation = Quaternion(-0.09528589, -0.11731639, 0.36375308, 0.91915244)
+bones/11/rotation = Quaternion(-0.36420092, 0.01970542, 0.20730832, 0.9077404)
+bones/12/rotation = Quaternion(-1.668503e-08, 0.025497267, 1.8742865e-08, 0.99967486)
+bones/13/rotation = Quaternion(-0.14212774, -0.04011977, 0.20288701, 0.96800166)
+bones/14/rotation = Quaternion(-0.3188072, 0.009903806, 0.20459701, 0.925421)
+bones/15/rotation = Quaternion(-1.1127721e-10, 0.046676103, 2.165325e-08, 0.99891007)
+bones/16/rotation = Quaternion(-0.09699627, -0.0092291, 0.054551616, 0.99374586)
+bones/17/rotation = Quaternion(-0.2919767, -0.002436765, 0.17911962, 0.9394998)
+bones/18/rotation = Quaternion(-1.1526967e-08, 0.041057643, 1.17579475e-08, 0.9991568)
+bones/19/rotation = Quaternion(-0.08520022, 0.029819809, -0.030323746, 0.9954558)
+bones/20/rotation = Quaternion(-0.25341642, 0.0054366332, 0.18016157, 0.950417)
+bones/21/rotation = Quaternion(-1.0445458e-08, 0.019381326, 4.3102773e-08, 0.9998122)
+bones/22/rotation = Quaternion(-0.30737302, -0.0008902962, -0.10218617, 0.94608617)
+bones/23/rotation = Quaternion(0.19295314, 0.1260658, 0.1717654, 0.9577961)
+bones/27/rotation = Quaternion(0.027662303, -0.0058601, -0.0038698863, 0.99959266)
+bones/28/rotation = Quaternion(-0.041443713, -0.0059869993, -0.003670602, 0.99911624)
 bones/29/rotation = Quaternion(0.9767286, 0.1340484, 0.13404873, -0.100315556)
 bones/32/rotation = Quaternion(0.9886718, -0.02834697, -0.028347805, -0.14464144)
 bones/43/rotation = Quaternion(0.9893355, 0.064022996, 0.06402311, -0.114094816)
 bones/46/rotation = Quaternion(0.9893355, -0.064022996, -0.06402311, -0.114094816)
 bones/49/rotation = Quaternion(0.036933485, 0.70643145, 0.70643157, -0.023343517)
-bones/50/rotation = Quaternion(-0.039383058, 0.7126541, 0.69997656, 0.02461462)
+bones/50/rotation = Quaternion(-0.038990475, 0.72296476, 0.68916076, 0.02931101)
 bones/51/rotation = Quaternion(0.9659515, 0.16900618, 0.16900651, -0.09905341)
 bones/52/rotation = Quaternion(0.9659515, -0.16900618, -0.16900651, -0.09905341)
-bones/53/rotation = Quaternion(0.6700892, -0.44012365, -0.5289502, -0.27835864)
-bones/54/rotation = Quaternion(-0.17641756, 0.182727, -0.30264688, 0.9186363)
-bones/56/rotation = Quaternion(-0.24468969, 0.090927586, 0.25990465, 0.9296821)
-bones/58/rotation = Quaternion(-0.13642783, -0.10871489, 0.03304367, 0.9841121)
-bones/59/rotation = Quaternion(-0.13983627, 0.0061636744, -0.19051345, 0.9716545)
-bones/60/rotation = Quaternion(-0.343149, 0.0026014254, -0.1525303, 0.9268099)
-bones/61/rotation = Quaternion(9.827595e-09, -0.025498101, -6.245682e-08, 0.9996749)
-bones/62/rotation = Quaternion(-0.13702032, 0.014596738, -0.16068444, 0.9773398)
-bones/63/rotation = Quaternion(-0.28380135, 0.005437573, -0.15639596, 0.94602734)
-bones/64/rotation = Quaternion(2.6475423e-08, -0.04667609, 1.071021e-08, 0.9989101)
-bones/65/rotation = Quaternion(-0.093845464, 0.030584538, -0.08452467, 0.9915207)
-bones/66/rotation = Quaternion(-0.23258448, -0.0026395218, -0.1325866, 0.9634928)
-bones/67/rotation = Quaternion(-5.8685497e-08, -0.041057535, -1.7462298e-08, 0.9991568)
-bones/68/rotation = Quaternion(-0.043254387, 0.037125736, -0.035834055, 0.9977308)
-bones/69/rotation = Quaternion(-0.12331829, -0.00929964, -0.09208668, 0.9880416)
-bones/70/rotation = Quaternion(2.3033396e-08, -0.019381285, 2.1376763e-08, 0.9998122)
-bones/71/rotation = Quaternion(-0.30866617, 0.07341295, 0.05882982, 0.94650674)
+bones/53/rotation = Quaternion(0.6079549, -0.35776797, -0.67921776, -0.20262362)
+bones/54/rotation = Quaternion(-0.10588765, 0.31050876, 0.2782637, 0.9027411)
+bones/56/rotation = Quaternion(-0.22068672, 0.01755808, 0.32047486, 0.9210239)
+bones/58/rotation = Quaternion(0.39736307, -0.40667656, 0.4159281, 0.7097327)
+bones/59/rotation = Quaternion(0.051231287, -0.0009127009, -0.2997488, 0.9526411)
+bones/60/rotation = Quaternion(-0.18426354, 0.008491222, -0.058261998, 0.9811119)
+bones/61/rotation = Quaternion(6.327853e-08, -0.025498142, -1.4551915e-08, 0.9996749)
+bones/62/rotation = Quaternion(-0.0014831296, 0.018376276, -0.13973609, 0.99001724)
+bones/63/rotation = Quaternion(-0.14759251, 0.0038394234, -0.077213965, 0.98602223)
+bones/64/rotation = Quaternion(1.9299708e-08, -0.04667611, 1.14087015e-08, 0.9989101)
+bones/65/rotation = Quaternion(-0.02835926, 0.030602632, -0.02768015, 0.99874574)
+bones/66/rotation = Quaternion(-0.1331433, 0.0022200826, -0.0799875, 0.98786134)
+bones/67/rotation = Quaternion(2.912997e-08, -0.04105758, -3.608875e-08, 0.9991568)
+bones/68/rotation = Quaternion(-0.0604484, 0.042190064, 0.063617945, 0.9952481)
+bones/69/rotation = Quaternion(-0.0821101, -0.008123028, -0.07103969, 0.99405503)
+bones/70/rotation = Quaternion(4.1024727e-08, -0.019381328, -8.614734e-09, 0.9998122)
+bones/71/rotation = Quaternion(-0.28546423, 0.23626679, 0.30690202, 0.8766409)
 bones/75/rotation = Quaternion(0.73903275, -0.45397937, -0.4855897, -0.10925176)
 bones/78/rotation = Quaternion(0.7390329, 0.45397896, 0.48559016, -0.10925109)
 bones/81/rotation = Quaternion(0.5796356, 0.4887926, 0.48571151, -0.4349582)
 bones/87/rotation = Quaternion(0.8432667, 0.24634552, -0.45777813, -0.13658148)
 bones/94/rotation = Quaternion(0.57963526, -0.48879305, -0.48571116, -0.43495882)
 bones/100/rotation = Quaternion(0.8432667, -0.24634552, 0.45777813, -0.13658148)
-bones/107/rotation = Quaternion(0.96663475, 0.091111146, -0.088641874, 0.22239333)
+bones/107/rotation = Quaternion(0.61107755, 0.19902213, -0.20717229, 0.7376002)
 bones/107/scale = Vector3(1.0001271, 1.0000004, 1.000021)
-bones/108/rotation = Quaternion(0.32803342, 0.13237157, 0.015029229, 0.9352251)
-bones/109/rotation = Quaternion(-0.67764556, -0.080942206, 0.09325709, 0.7249469)
-bones/110/rotation = Quaternion(-0.12231535, 0.092008665, 0.023048224, 0.9879485)
-bones/111/rotation = Quaternion(0.98304635, -0.116740406, 0.1362641, 0.03773188)
+bones/108/rotation = Quaternion(0.9112489, -0.021016672, -0.061978098, 0.40662324)
+bones/109/rotation = Quaternion(-0.8110241, 0.108169876, 0.2846439, 0.4995167)
+bones/110/rotation = Quaternion(-0.36902392, 0.065445796, 0.014025182, 0.9270068)
+bones/111/rotation = Quaternion(0.6002735, -0.029631274, 0.0986533, 0.7931338)
 bones/111/scale = Vector3(0.99989086, 0.99999994, 0.9999834)
-bones/112/rotation = Quaternion(0.32154894, 0.060879663, 0.04202529, 0.9439989)
-bones/113/rotation = Quaternion(-0.7576718, 0.12765624, -0.15889993, 0.6199906)
-bones/114/rotation = Quaternion(-0.11853877, -0.062312722, 0.0045322943, 0.99098194)
+bones/112/rotation = Quaternion(0.94072235, -0.018122617, -0.015139668, 0.33835462)
+bones/113/rotation = Quaternion(-0.8623512, 0.021441007, 0.005516742, 0.5058263)
+bones/114/rotation = Quaternion(-0.40326804, -0.07230538, -0.009530555, 0.9121711)
 bones/115/rotation = Quaternion(0.98071074, 0.1375394, 0.13753925, -0.019295925)
 bones/130/scale = Vector3(1, 1, 0.99847263)
 bones/155/rotation = Quaternion(0.9807109, -0.13753854, -0.13753925, -0.019295804)
@@ -110,14 +110,147 @@ bones/175/rotation = Quaternion(0.99510145, 0.0696543, 0.069654465, -0.008352512
 bones/175/scale = Vector3(0.9999831, 0.9999995, 0.99999994)
 bones/180/rotation = Quaternion(0.9854925, 0.11943671, 0.1194371, -0.01655755)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
-root_node = NodePath("../model3d")
-libraries = {
-&"animation_library": ExtResource("3_vw4kn")
-}
+[node name="tail" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="5"]
+settings/0/joints/0/bone_name = "Tail_02_141"
+settings/0/joints/1/bone_name = "Tail_03_140"
+settings/0/joints/2/bone_name = "Tail_04_139"
+settings/0/joints/3/bone_name = "Tail_05_138"
+settings/0/joints/4/bone_name = "Tail_06_137"
+settings/0/joints/5/bone_name = "Tail_07_136"
+settings/0/joints/6/bone_name = "Tail_08_135"
+settings/0/joints/7/bone_name = "Tail_09_134"
+settings/0/joints/8/bone_name = "Tail_10_133"
+settings/0/joints/9/bone_name = "Tail_011_132"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="skirt0" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="6"]
+settings/0/joints/0/bone_name = "Skirt_0_0_117"
+settings/0/joints/1/bone_name = "Skirt_1_0_116"
+settings/0/joints/2/bone_name = "Skirt_2_0_115"
+settings/0/joints/3/bone_name = "Skirt_3_0_114"
+settings/0/joints/4/bone_name = "Skirt_4_0_113"
+
+[node name="skirt1" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="7"]
+settings/0/joints/0/bone_name = "Skirt_0_1_122"
+settings/0/joints/1/bone_name = "Skirt_1_1_121"
+settings/0/joints/2/bone_name = "Skirt_2_1_120"
+settings/0/joints/3/bone_name = "Skirt_3_1_119"
+settings/0/joints/4/bone_name = "Skirt_4_1_118"
+
+[node name="skirt2" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="8"]
+settings/0/joints/0/bone_name = "Skirt_0_2_127"
+settings/0/joints/1/bone_name = "Skirt_1_2_126"
+settings/0/joints/2/bone_name = "Skirt_2_2_125"
+settings/0/joints/3/bone_name = "Skirt_3_2_124"
+settings/0/joints/4/bone_name = "Skirt_4_2_123"
+
+[node name="skirt3" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="9"]
+settings/0/joints/0/bone_name = "Skirt_1_2_126"
+settings/0/joints/1/bone_name = "Skirt_2_2_125"
+settings/0/joints/2/bone_name = "Skirt_3_2_124"
+settings/0/joints/3/bone_name = "Skirt_4_2_123"
+
+[node name="skirt4" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="10"]
+settings/0/joints/0/bone_name = "Skirt_0_3_142"
+settings/0/joints/1/bone_name = "Skirt_1_3_131"
+settings/0/joints/2/bone_name = "Skirt_2_3_130"
+settings/0/joints/3/bone_name = "Skirt_3_3_129"
+settings/0/joints/4/bone_name = "Skirt_4_3_128"
+
+[node name="skirt5" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="11"]
+settings/0/joints/0/bone_name = "Skirt_0_4_147"
+settings/0/joints/1/bone_name = "Skirt_1_4_146"
+settings/0/joints/2/bone_name = "Skirt_2_4_145"
+settings/0/joints/3/bone_name = "Skirt_3_4_144"
+settings/0/joints/4/bone_name = "Skirt_4_4_143"
+
+[node name="skirt6" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="12"]
+settings/0/joints/0/bone_name = "Skirt_0_5_152"
+settings/0/joints/1/bone_name = "Skirt_1_5_151"
+settings/0/joints/2/bone_name = "Skirt_2_5_150"
+settings/0/joints/3/bone_name = "Skirt_3_5_149"
+settings/0/joints/4/bone_name = "Skirt_4_5_148"
+
+[node name="skirt7" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="13"]
+settings/0/joints/0/bone_name = "Skirt_0_6_157"
+settings/0/joints/1/bone_name = "Skirt_1_6_156"
+settings/0/joints/2/bone_name = "Skirt_2_6_155"
+settings/0/joints/3/bone_name = "Skirt_3_6_154"
+settings/0/joints/4/bone_name = "Skirt_4_6_153"
+
+[node name="skirt8" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="14"]
+settings/0/joints/0/bone_name = "Skirt_0_7_162"
+settings/0/joints/1/bone_name = "Skirt_1_7_161"
+settings/0/joints/2/bone_name = "Skirt_2_7_160"
+settings/0/joints/3/bone_name = "Skirt_3_7_159"
+settings/0/joints/4/bone_name = "Skirt_4_7_158"
+
+[node name="skirt9" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="15"]
+settings/0/joints/0/bone_name = "Skirt_0_8_167"
+settings/0/joints/1/bone_name = "Skirt_1_8_166"
+settings/0/joints/2/bone_name = "Skirt_2_8_165"
+settings/0/joints/3/bone_name = "Skirt_3_8_164"
+settings/0/joints/4/bone_name = "Skirt_4_8_163"
+
+[node name="skirt10" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="16"]
+settings/0/joints/0/bone_name = "Skirt_0_9_172"
+settings/0/joints/1/bone_name = "Skirt_1_9_171"
+settings/0/joints/2/bone_name = "Skirt_2_9_170"
+settings/0/joints/3/bone_name = "Skirt_3_9_169"
+settings/0/joints/4/bone_name = "Skirt_4_9_168"
+
+[node name="skirt11" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="17"]
+settings/0/joints/0/bone_name = "Skirt_0_11_182"
+settings/0/joints/1/bone_name = "Skirt_1_11_181"
+settings/0/joints/2/bone_name = "Skirt_2_11_180"
+settings/0/joints/3/bone_name = "Skirt_3_11_179"
+settings/0/joints/4/bone_name = "Skirt_4_11_178"
+
+[node name="skirt12" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="18"]
+settings/0/joints/0/bone_name = "Skirt_0_10_177"
+settings/0/joints/1/bone_name = "Skirt_1_10_176"
+settings/0/joints/2/bone_name = "Skirt_2_10_175"
+settings/0/joints/3/bone_name = "Skirt_3_10_174"
+settings/0/joints/4/bone_name = "Skirt_4_10_173"
+
+[node name="hair1" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="19"]
+settings/0/joints/0/bone_name = "Hair_Side01_R_36"
+settings/0/joints/1/bone_name = "Hair_Side02_R_35"
+settings/0/joints/2/bone_name = "Hair_Side03_R_34"
+settings/0/joints/3/bone_name = "Hair_Side04_R_33"
+
+[node name="hair2" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="20"]
+settings/0/joints/0/bone_name = "Hair_Side01_L_32"
+settings/0/joints/1/bone_name = "Hair_Side02_L_31"
+settings/0/joints/2/bone_name = "Hair_Side03_L_30"
+settings/0/joints/3/bone_name = "Hair_Side04_L_29"
+
+[node name="wing1" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="21"]
+settings/0/joints/0/bone_name = "Wing02_L_90"
+settings/0/joints/1/bone_name = "Wing03_L_89"
+settings/0/joints/2/bone_name = "Wing04_L_88"
+settings/0/joints/3/bone_name = "Wing05_L_87"
+settings/0/joints/4/bone_name = "Wing06_L_86"
+settings/0/joints/5/bone_name = "Wing07_L_85"
+settings/0/joints/6/bone_name = "Wing07_03_01_L_84"
+settings/0/joints/7/bone_name = "Wing07_03_02_L_83"
+settings/0/joints/8/bone_name = "Wing07_03_03_L_82"
+
+[node name="wing2" parent="model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D" index="22"]
+settings/0/joints/0/bone_name = "Wing02_R_103"
+settings/0/joints/1/bone_name = "Wing03_R_102"
+settings/0/joints/2/bone_name = "Wing04_R_101"
+settings/0/joints/3/bone_name = "Wing05_R_100"
+settings/0/joints/4/bone_name = "Wing06_R_99"
+settings/0/joints/5/bone_name = "Wing07_R_98"
+settings/0/joints/6/bone_name = "Wing07_03_01_R_97"
+settings/0/joints/7/bone_name = "Wing07_03_02_R_96"
+settings/0/joints/8/bone_name = "Wing07_03_03_R_95"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=605313388]
+root_node = NodePath("../model3d")
+libraries/animation_library = ExtResource("3_vw4kn")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=833273890]
 root_node = NodePath("../model3d")
 tree_root = ExtResource("4_tkxnu")
 anim_player = NodePath("../AnimationPlayer")
@@ -128,14 +261,14 @@ parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 parameters/Blend2/blend_amount = 0.0
 
-[node name="viewmodel" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.61717963, -0.38482562, -0.68629384, -0.4269901, -0.89643353, 0.11866828, -0.66088516, 0.2198014, -0.71757865, -0.23949242, 0.75040907, -0.12365845)
+[node name="viewmodel" type="BoneAttachment3D" parent="." unique_id=21845995]
+transform = Transform3D(-0.914108, 0.051036775, -0.40224716, -0.40214983, 0.012603253, 0.9154862, 0.051793948, 0.99861664, 0.009001404, -0.11656652, 0.1735147, 0.2561127)
 bone_name = "Right wrist_64"
 bone_idx = 58
 use_external_skeleton = true
 external_skeleton = NodePath("../model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0/Skeleton3D")
 
-[node name="SourceViewModelRoot3D" type="Node3D" parent="viewmodel"]
+[node name="SourceViewModelRoot3D" type="Node3D" parent="viewmodel" unique_id=494176562]
 script = ExtResource("5_k2651")
 object = ExtResource("6_yt864")
 placeholder = ExtResource("7_upo8v")

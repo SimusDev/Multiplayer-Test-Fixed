@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="R_SourceSound" format=3 uid="uid://cnk5x7vfacf7h"]
+
+[ext_resource type="Script" uid="uid://b4qsbiksbfk64" path="res://Games/source_game/components/sound/r_source_sound.gd" id="1_xhin5"]
+[ext_resource type="Script" uid="uid://us246ujqip05" path="res://Games/source_game/components/sound/r_source_sound_source.gd" id="2_na6v2"]
+[ext_resource type="AudioStream" uid="uid://dpfpac5i4xlbu" path="res://Games/source_game/game/audio/skeleton/hurt_0.mp3" id="3_rsbvq"]
+[ext_resource type="AudioStream" uid="uid://bm5ihi3m8hhuh" path="res://Games/source_game/game/audio/skeleton/hurt_1.mp3" id="4_kigmi"]
+[ext_resource type="AudioStream" uid="uid://o1pexixkyoxx" path="res://Games/source_game/game/audio/skeleton/hurt_2.mp3" id="5_j5iwo"]
+[ext_resource type="AudioStream" uid="uid://dyxjsn6fukjwf" path="res://Games/source_game/game/audio/skeleton/hurt_3.mp3" id="6_tocdh"]
+
+[sub_resource type="Resource" id="Resource_b65ab"]
+script = ExtResource("2_na6v2")
+streams = Array[AudioStream]([ExtResource("3_rsbvq"), ExtResource("4_kigmi"), ExtResource("5_j5iwo"), ExtResource("6_tocdh")])
+metadata/_custom_type_script = "uid://us246ujqip05"
+
+[resource]
+script = ExtResource("1_xhin5")
+sources = Array[ExtResource("2_na6v2")]([SubResource("Resource_b65ab")])
+name = "skeleton_hurt"
+metadata/_custom_type_script = "uid://b4qsbiksbfk64"

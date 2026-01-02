@@ -1,11 +1,33 @@
-[gd_scene load_steps=12 format=3 uid="uid://5hggub5g64d2"]
+[gd_scene format=3 uid="uid://5hggub5g64d2"]
 
 [ext_resource type="Script" uid="uid://cfshg230xd28k" path="res://Games/source_game/components/weapons/fire_weapon.gd" id="1_e7di0"]
-[ext_resource type="PackedScene" uid="uid://ysxisklibopo" path="res://Games/source_game/game/prefabs/source_weapon_animator.tscn" id="2_4we86"]
+[ext_resource type="Script" uid="uid://ddorrr4rh5ny8" path="res://Games/source_game/components/animation/weapon_animator.gd" id="2_4we86"]
+[ext_resource type="Script" uid="uid://j2pbtfls3jgk" path="res://Games/source_game/components/animation/r_animation_hook.gd" id="3_shxlq"]
+[ext_resource type="Script" uid="uid://bo60r48iiqye6" path="res://Games/source_game/components/animation/r_animation_hook_signal.gd" id="4_dnby3"]
 [ext_resource type="PackedScene" uid="uid://1kfy1fgqg3mn" path="res://Games/source_game/game/3dmodels/weathered_ak47/model.tscn" id="5_e7di0"]
 [ext_resource type="AudioStream" uid="uid://bmi824dvxet4m" path="res://Games/source_game/sounds/general/bolt_action/bolt1.mp3" id="11_6g6ym"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="11_qx83c"]
 [ext_resource type="AudioStream" uid="uid://dkxopnqpfmu10" path="res://Games/source_game/sounds/general/bolt_action/bolt2.mp3" id="12_brxap"]
+
+[sub_resource type="Resource" id="Resource_qx83c"]
+script = ExtResource("4_dnby3")
+name = &"event_pick"
+animations = Array[StringName]([&"pick"])
+
+[sub_resource type="Resource" id="Resource_36t2h"]
+script = ExtResource("4_dnby3")
+name = &"event_fire"
+animations = Array[StringName]([&"fire"])
+
+[sub_resource type="Resource" id="Resource_6g6ym"]
+script = ExtResource("4_dnby3")
+name = &"event_reload"
+animations = Array[StringName]([&"reload"])
+
+[sub_resource type="Resource" id="Resource_brxap"]
+script = ExtResource("4_dnby3")
+name = &"event_inspect"
+animations = Array[StringName]([&"inspect"])
 
 [sub_resource type="Animation" id="Animation_shxlq"]
 length = 0.001
@@ -72,6 +94,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_qx83c"]
 resource_name = "fire"
+length = 0.2
 step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -80,10 +103,10 @@ tracks/0/path = NodePath("root/model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.015000001, 0.096),
+"times": PackedFloat32Array(0, 0.059, 0.132),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.013338566), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.044), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -218,44 +241,46 @@ _data = {
 &"reload": SubResource("Animation_e7di0")
 }
 
-[node name="ak_47" type="Node3D" node_paths=PackedStringArray("shell_point", "bullet_point")]
+[node name="ak_47" type="Node3D" unique_id=1160116667 node_paths=PackedStringArray("shell_point", "bullet_point")]
 script = ExtResource("1_e7di0")
 shell_point = NodePath("root/model/shell_marker")
 bullet_point = NodePath("root/model/bullet_marker")
 metadata/_custom_type_script = "uid://cfshg230xd28k"
 
-[node name="SourceWeaponAnimator" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_4we86")]
+[node name="SourceWeaponAnimator" type="Node" parent="." unique_id=471993913 node_paths=PackedStringArray("player")]
+script = ExtResource("2_4we86")
+hooks = Array[ExtResource("3_shxlq")]([SubResource("Resource_qx83c"), SubResource("Resource_36t2h"), SubResource("Resource_6g6ym"), SubResource("Resource_brxap")])
 player = NodePath("AnimationPlayer")
+initialized = true
+metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceWeaponAnimator"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceWeaponAnimator" unique_id=978646821]
 root_node = NodePath("../..")
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_6g6ym")
-}
+libraries/ = SubResource("AnimationLibrary_6g6ym")
 
-[node name="pick_sound" type="AudioStreamPlayer3D" parent="."]
+[node name="pick_sound" type="AudioStreamPlayer3D" parent="." unique_id=357164629]
 
-[node name="root" type="Node3D" parent="."]
+[node name="root" type="Node3D" parent="." unique_id=933944993]
 
-[node name="model" parent="root" instance=ExtResource("5_e7di0")]
+[node name="model" parent="root" unique_id=918823126 instance=ExtResource("5_e7di0")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="left_hand_pos" type="Marker3D" parent="root/model"]
+[node name="left_hand_pos" type="Marker3D" parent="root/model" unique_id=1111787750]
 transform = Transform3D(-0.058153376, 0.7956316, 0.6029834, -0.99817336, -0.03644429, -0.048178405, -0.016356954, -0.60468394, 0.7962983, -0.044, 0.007, -0.094)
 
-[node name="right_hand_pos" type="Marker3D" parent="root/model"]
+[node name="right_hand_pos" type="Marker3D" parent="root/model" unique_id=1877609861]
 transform = Transform3D(-0.89582014, 0.42454585, 0.13140613, -0.12520035, 0.042621747, -0.9912152, -0.42641646, -0.90440464, 0.01497184, 0, -0.07, 0.295)
 
-[node name="bolt_action_sound" type="AudioStreamPlayer3D" parent="root/model"]
+[node name="bolt_action_sound" type="AudioStreamPlayer3D" parent="root/model" unique_id=1372437211]
 
-[node name="shell_marker" type="Marker3D" parent="root/model"]
+[node name="shell_marker" type="Marker3D" parent="root/model" unique_id=1298753186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053575464, 0.10830115, 0.0113992095)
 
-[node name="bullet_marker" type="Marker3D" parent="root/model"]
+[node name="bullet_marker" type="Marker3D" parent="root/model" unique_id=1924312359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00037979474, 0.06605339, -0.64784056)
 
-[node name="arms" parent="root" instance=ExtResource("11_qx83c")]
+[node name="arms" parent="root" unique_id=1862910361 instance=ExtResource("11_qx83c")]
 transform = Transform3D(-0.73885524, 0, 0.6738641, 0, 1, 0, -0.6738641, 0, -0.73885524, -0.0676661, -0.18907958, 0.44920823)
 
 [node name="Skeleton3D" parent="root/arms/root" index="0"]

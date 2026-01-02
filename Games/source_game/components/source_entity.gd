@@ -4,6 +4,7 @@ class_name SourceEntity extends CharacterBody3D
 @export var movement:W_FPCSourceLikeMovement
 @export var camera:W_FPCSourceLikeCamera
 
+
 @onready var chat := chat_interface.instance
 
 @export var interact_raycast:SourceInteractRay

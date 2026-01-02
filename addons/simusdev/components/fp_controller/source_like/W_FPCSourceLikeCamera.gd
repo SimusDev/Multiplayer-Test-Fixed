@@ -126,13 +126,6 @@ func _ready() -> void:
 func _update_sensitivity() -> void:
 	mouse_sensitivity = _sensitivity_cmd.get_value_as_float()
 
-func viewmodel_sway(delta:float) -> void:
-	pass
-	#mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)
-	#if viewmodel:
-		#viewmodel.rotation.x = lerp(viewmodel.rotation.x, (mouse_input.y * 0.025) * sway_multiplier, 10 * delta)
-		#viewmodel.rotation.y = lerp(viewmodel.rotation.y, (mouse_input.x * 0.025)  * sway_multiplier, 10 * delta)
-
 func _process(delta: float) -> void:
 	#viewmodel_sway(delta)
 	

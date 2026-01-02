@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c77l07m3uyu28"]
+
+[ext_resource type="Script" uid="uid://bo8uwskkur08r" path="res://Games/source_game/components/source_animated_model.gd" id="1_jmnt0"]
+[ext_resource type="PackedScene" uid="uid://bpee0363gcskb" path="res://Games/source_game/game/3dmodels/skeleton/skeleton.fbx" id="2_huy8b"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://d4jhfqvtnh1a1" path="res://Games/source_game/game/3dmodels/skeleton/blend_tree.tres" id="3_7xhu2"]
+[ext_resource type="AnimationLibrary" uid="uid://b70xthvesq8rn" path="res://Games/source_game/game/3dmodels/skeleton/animation_library.tres" id="3_huy8b"]
+
+[node name="SourceAnimatedModel" type="Node3D" unique_id=1747977976 node_paths=PackedStringArray("root", "model", "tree", "player", "skeleton")]
+script = ExtResource("1_jmnt0")
+state_machine_properties = Dictionary[String, String]({
+"crouched_walk": "blend_position",
+"run": "blend_position",
+"walk": "blend_position"
+})
+root = NodePath("..")
+model_scene = ExtResource("2_huy8b")
+library = ExtResource("3_huy8b")
+blend_tree = ExtResource("3_7xhu2")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/rig/Skeleton3D")
+metadata/_custom_type_script = "uid://bo8uwskkur08r"
+
+[node name="model3d" parent="." unique_id=1944621090 instance=ExtResource("2_huy8b")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=61129438]
+root_node = NodePath("../model3d")
+libraries/animated_model = ExtResource("3_huy8b")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=771976099]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("3_7xhu2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/crouched_idle/blend_position = Vector2(0, 0)
+parameters/StateMachine/run/blend_position = Vector2(0, 0)
+parameters/StateMachine/walk/blend_position = Vector2(0.004651189, 0.010050297)

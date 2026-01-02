@@ -380,7 +380,7 @@ light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 
 [node name="interactor" type="RayCast3D" parent="CameraShake/SourceCamera" unique_id=791307133 node_paths=PackedStringArray("root", "exceptions")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.394588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0054120123)
 target_position = Vector3(0, 0, -3)
 collision_mask = 11
 collide_with_areas = true

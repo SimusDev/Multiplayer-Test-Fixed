@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://qhs1e0evqd01"]
+
+[ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_d13lm"]
+[ext_resource type="PackedScene" uid="uid://c77l07m3uyu28" path="res://Games/source_game/game/3dmodels/skeleton/animated_model.tscn" id="2_5f2gq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5f2gq"]
+radius = 0.29296875
+height = 1.7036133
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3gvvl"]
+radius = 0.29296875
+height = 1.1525879
+
+[node name="base_player" unique_id=1855855691 instance=ExtResource("1_d13lm")]
+
+[node name="SourceCrouch" parent="." index="11" unique_id=1101867363 node_paths=PackedStringArray("collision_normal", "collision_crouch")]
+collision_normal = NodePath("../collision_normal")
+collision_crouch = NodePath("../collision_crouch")
+
+[node name="CameraShake" parent="." index="12" unique_id=1864489592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5999999, 0)
+
+[node name="nickname" parent="." index="16" unique_id=2050492904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="SourceAnimatedModel" parent="." index="19" unique_id=1747977976 node_paths=PackedStringArray("target") instance=ExtResource("2_5f2gq")]
+target = NodePath("..")
+
+[node name="collision_normal" type="CollisionShape3D" parent="." index="20" unique_id=1605212713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85180664, 0)
+shape = SubResource("CapsuleShape3D_5f2gq")
+
+[node name="collision_crouch" type="CollisionShape3D" parent="." index="21" unique_id=225651281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57629395, 0)
+shape = SubResource("CapsuleShape3D_3gvvl")
+
+[editable path="SourceMovement"]
+[editable path="CameraShake/SourceCamera"]
+[editable path="SourceAnimatedModel"]

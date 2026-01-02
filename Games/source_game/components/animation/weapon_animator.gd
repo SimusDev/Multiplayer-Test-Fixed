@@ -9,3 +9,4 @@ func _begin_reset() -> void:
 	hooks.append(R_AnimationHookSignal.create("event_inspect", [&"inspect"]))
 	
 	
+	
