@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_dt7qg"]
 resource_name = "sv_cheats"
@@ -135,11 +135,6 @@ metadata/_custom_type_script = "uid://38osx81mny15"
 [node name="spawner" type="Node" parent="decals" node_paths=PackedStringArray("_detect_roots")]
 script = ExtResource("6_s8025")
 _detect_roots = [NodePath("..")]
-APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
-"CharacterBody3D": PackedStringArray("transform"),
-"Node2D": PackedStringArray("transform"),
-"Node3D": PackedStringArray("transform")
-})
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
 [node name="backrooms_trigger" type="Node3D" parent="."]
