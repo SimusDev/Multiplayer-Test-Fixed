@@ -125,8 +125,17 @@ func _on_child_exited_tree(node: Node) -> void:
 	if can_serialize(node):
 		SD_Network.call_func(despawn, [get_path_to(node)], callmode, channel)
 
+var _deferred_spawns: Dictionary[Node, Array] = {}
+
 func spawn(data: Dictionary) -> void:
 	if SD_Network.is_server():
+		return
+	
+	var node_name: String = data.n
+	var root: Node = get_node(data.p)
+	var deferred_spawn_array: Array = _deferred_spawns.get_or_add(root, [])
+	
+	if node_name in deferred_spawn_array:
 		return
 	
 	var deserialized: Dictionary = deserialize(data)
@@ -135,13 +144,14 @@ func spawn(data: Dictionary) -> void:
 	
 	debug_print("spawning... %s" % [str(deserialized.node)], SD_ConsoleCategories.INFO)
 	
-	var root: Node = get_node(new_data.p)
-	if root:
-		root.add_child.call_deferred(node)
-		node.tree_entered.connect(
-			func():
-				spawned.emit(node, new_data)
-		)
+	deferred_spawn_array.append(node_name)
+	
+	root.add_child.call_deferred(node)
+	node.tree_entered.connect(
+		func():
+			deferred_spawn_array.erase(node_name)
+			spawned.emit(node, new_data)
+	)
 	
 
 func despawn(path: NodePath) -> void:

@@ -95,31 +95,27 @@ func _ready() -> void:
 	if _instance == null:
 		_instance = self
 	
-	SD_Network.singleton.on_connected_to_server.connect(_on_connected_to_server)
-	SD_Network.singleton.on_connection_failed.connect(_on_connection_failed)
-	SD_Network.singleton.on_server_disconnected.connect(_on_server_disconnected)
-	
-	SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
-	SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
-	
-	#multiplayer.connected_to_server.connect(_on_connected_to_server)
-	#multiplayer.connection_failed.connect(_on_connection_failed)
-	#multiplayer.server_disconnected.connect(_on_server_disconnected)
-	
-	
-	var commands: Array[SD_ConsoleCommand] = [
-		console.create_command("connect"),
-		console.create_command("disconnect"),
-	]
-	
-	for cmd in commands:
-		cmd.executed.connect(_on_command_executed.bind(cmd))
-	
-	if settings.dedicated_server:
-		create_server(settings.dedicated_server_port, true)
-		if settings.dedicated_server_scene:
-			get_tree().change_scene_to_packed.call_deferred(settings.dedicated_server_scene)
+	if !Engine.is_editor_hint():
 		
+		SD_Network.singleton.on_connected_to_server.connect(_on_connected_to_server)
+		SD_Network.singleton.on_connection_failed.connect(_on_connection_failed)
+		SD_Network.singleton.on_server_disconnected.connect(_on_server_disconnected)
+		
+		SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
+		SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
+	
+		var commands: Array[SD_ConsoleCommand] = [
+			console.create_command("connect"),
+			console.create_command("disconnect"),
+		]
+		
+		for cmd in commands:
+			cmd.executed.connect(_on_command_executed.bind(cmd))
+		
+		if settings.dedicated_server:
+			create_server(settings.dedicated_server_port, true)
+			if settings.dedicated_server_scene:
+				get_tree().change_scene_to_packed.call_deferred(settings.dedicated_server_scene)
 
 func _on_command_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():

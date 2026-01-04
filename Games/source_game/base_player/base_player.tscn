@@ -45,8 +45,8 @@ radius = 0.335526
 script = ExtResource("1_26rsp")
 health = NodePath("SourceHealth")
 movement = NodePath("SourceMovement")
-camera = NodePath("CameraShake/SourceCamera")
-interact_raycast = NodePath("CameraShake/SourceCamera/interactor")
+camera = NodePath("SourceCamera")
+interact_raycast = NodePath("SourceCamera/interactor")
 
 [node name="SD_NetworkObject" type="Node" parent="." unique_id=1713034703 node_paths=PackedStringArray("root")]
 script = ExtResource("2_qw2b4")
@@ -79,7 +79,7 @@ authority_true = [NodePath("../nickname")]
 [node name="SourcePlayable" type="Node" parent="." unique_id=139141347 node_paths=PackedStringArray("root", "voice_chat_output")]
 script = ExtResource("1_5m5ro")
 root = NodePath("..")
-voice_chat_output = NodePath("../CameraShake/SourceCamera/voice")
+voice_chat_output = NodePath("../SourceCamera/voice")
 
 [node name="SourceHealth" type="Node" parent="." unique_id=910315830 node_paths=PackedStringArray("target")]
 script = ExtResource("7_qdiq6")
@@ -334,22 +334,35 @@ key_sprint = "sprint"
 key_crouch = "crouch"
 
 [node name="SourceCrouch" parent="." unique_id=1101867363 node_paths=PackedStringArray("camera", "movement") instance=ExtResource("10_ghdio")]
-camera = NodePath("../CameraShake/SourceCamera")
+camera = NodePath("../SourceCamera")
 movement = NodePath("../SourceMovement")
 
-[node name="CameraShake" type="Node3D" parent="." unique_id=1864489592 node_paths=PackedStringArray("player")]
+[node name="SourceCamera" parent="." unique_id=1969548237 node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+body = NodePath("..")
+
+[node name="CameraShake" type="Node3D" parent="SourceCamera/Camera3D" index="0" unique_id=1864489592 node_paths=PackedStringArray("player", "viewmodel_root", "camera_node")]
 script = ExtResource("37_cmvf1")
-player = NodePath("..")
-recoil = Vector3(0.8, 0.4, 0)
-snappiness = 2.0
-returnSpeed = 10.0
+player = NodePath("../../..")
+viewmodel_root = NodePath("SourceViewModelRoot3D")
+camera_node = NodePath("..")
+bob_amplitude_y = 0.01
+crouch_offset = Vector3(0, 0.05, 0.1)
 metadata/_custom_type_script = "uid://c1n2k4cmom6rn"
 
-[node name="SourceCamera" parent="CameraShake" unique_id=1969548237 node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
-body = NodePath("../..")
+[node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera/Camera3D/CameraShake" unique_id=2088033593 node_paths=PackedStringArray("inventory")]
+script = ExtResource("18_1yv11")
+authorative_visibility = true
+type = 0
+inventory = NodePath("../../../../SourceInventory")
+placeholder = ExtResource("19_em5yj")
+metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
-[node name="PositionSync" type="Node" parent="CameraShake/SourceCamera" unique_id=537184214 node_paths=PackedStringArray("node")]
+[node name="GDViewModelSway" type="Node" parent="SourceCamera/Camera3D/CameraShake/SourceViewModelRoot3D" unique_id=1162937376]
+script = ExtResource("23_7nlxi")
+metadata/_custom_type_script = "uid://cb4a114wnl7nf"
+
+[node name="PositionSync" type="Node" parent="SourceCamera" unique_id=537184214 node_paths=PackedStringArray("node")]
 script = ExtResource("3_1frjd")
 node = NodePath("..")
 interpolation = true
@@ -365,9 +378,9 @@ allow_serialize = false
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
-[node name="voice" type="AudioStreamPlayer3D" parent="CameraShake/SourceCamera" unique_id=1596485228]
+[node name="voice" type="AudioStreamPlayer3D" parent="SourceCamera" unique_id=1596485228]
 
-[node name="flashlight" type="SpotLight3D" parent="CameraShake/SourceCamera" unique_id=1043984270]
+[node name="flashlight" type="SpotLight3D" parent="SourceCamera" unique_id=1043984270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.229595)
 light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
@@ -375,39 +388,26 @@ spot_range = 7.82003
 spot_angle = 31.8552
 script = ExtResource("14_hs1xq")
 
-[node name="light" type="SpotLight3D" parent="CameraShake/SourceCamera/flashlight" unique_id=1698985627]
+[node name="light" type="SpotLight3D" parent="SourceCamera/flashlight" unique_id=1698985627]
 light_projector = ExtResource("27_50wvo")
 shadow_enabled = true
 
-[node name="interactor" type="RayCast3D" parent="CameraShake/SourceCamera" unique_id=791307133 node_paths=PackedStringArray("root", "exceptions")]
+[node name="interactor" type="RayCast3D" parent="SourceCamera" unique_id=791307133 node_paths=PackedStringArray("root", "exceptions")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0054120123)
 target_position = Vector3(0, 0, -3)
 collision_mask = 11
 collide_with_areas = true
 script = ExtResource("16_26rsp")
-root = NodePath("../../..")
-exceptions = [NodePath("../../../hitbox_body"), NodePath("../../../hitbox_legs"), NodePath("../../../hitbox_head"), NodePath("../../.."), NodePath("../../../AI_Visible")]
+root = NodePath("../..")
+exceptions = [NodePath("../../hitbox_body"), NodePath("../../hitbox_legs"), NodePath("../../hitbox_head"), NodePath("../.."), NodePath("../../AI_Visible")]
 
-[node name="cameras" type="Node3D" parent="CameraShake/SourceCamera" unique_id=1299554578]
+[node name="cameras" type="Node3D" parent="SourceCamera" unique_id=1299554578]
 
-[node name="1" type="Camera3D" parent="CameraShake/SourceCamera/cameras" unique_id=343129356]
+[node name="1" type="Camera3D" parent="SourceCamera/cameras" unique_id=343129356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="2" type="Camera3D" parent="CameraShake/SourceCamera/cameras" unique_id=25119445]
+[node name="2" type="Camera3D" parent="SourceCamera/cameras" unique_id=25119445]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3)
-
-[node name="SourceViewModelRoot3D" type="Node3D" parent="CameraShake/SourceCamera" unique_id=2088033593 node_paths=PackedStringArray("inventory")]
-script = ExtResource("18_1yv11")
-authorative_visibility = true
-type = 0
-inventory = NodePath("../../../SourceInventory")
-placeholder = ExtResource("19_em5yj")
-metadata/_custom_type_script = "uid://bp0rdj4e63cah"
-
-[node name="ViewModelSway" type="Node" parent="CameraShake/SourceCamera/SourceViewModelRoot3D" unique_id=937964717 node_paths=PackedStringArray("viewmodel")]
-script = ExtResource("23_7nlxi")
-viewmodel = NodePath("..")
-metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 
 [node name="hitbox_body" type="Area3D" parent="." unique_id=1358480324 node_paths=PackedStringArray("health") groups=["penetrable"]]
 collision_layer = 2
@@ -447,12 +447,11 @@ metadata/_custom_type_script = "uid://4q60q717rxsh"
 shape = SubResource("CapsuleShape3D_i0lyu")
 debug_color = Color(0.341176, 0.486275, 1, 0)
 
-[node name="SourceCameraSwithcer" type="Node" parent="." unique_id=1268936670 node_paths=PackedStringArray("nodes_to_hide", "base", "cameras")]
+[node name="SourceCameraSwithcer" type="Node" parent="." unique_id=1268936670 node_paths=PackedStringArray("base", "cameras")]
 script = ExtResource("26_y3hgg")
-nodes_to_hide = [NodePath("../CameraShake/SourceCamera/SourceViewModelRoot3D")]
-base = NodePath("../CameraShake/SourceCamera")
-cameras = [NodePath("../CameraShake/SourceCamera/cameras/1"), NodePath("../CameraShake/SourceCamera/cameras/2")]
+base = NodePath("../SourceCamera")
+cameras = [NodePath("../SourceCamera/cameras/1"), NodePath("../SourceCamera/cameras/2")]
 metadata/_custom_type_script = "uid://8ivv40tjuu7w"
 
 [editable path="SourceMovement"]
-[editable path="CameraShake/SourceCamera"]
+[editable path="SourceCamera"]

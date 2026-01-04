@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SD_SettingsAdsSDKYandex" format=3 uid="uid://b0x820f0ywxhg"]
+
+[ext_resource type="Script" uid="uid://cvn7yt3fhlw1h" path="res://addons/simusdev/monetization/settings/sdk/SD_SettingsAdsSDKYandex.gd" id="1_3jvtk"]
+
+[resource]
+script = ExtResource("1_3jvtk")
+_data = Dictionary[String, Variant]({
+"autoselect_language": true
+})

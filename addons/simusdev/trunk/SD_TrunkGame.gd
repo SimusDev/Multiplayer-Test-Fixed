@@ -16,6 +16,9 @@ func get_console() -> SD_TrunkConsole:
 func _ready() -> void:
 	var console: SD_TrunkConsole = SimusDev.console
 	
+	if Engine.is_editor_hint():
+		return
+	
 	var _commands: Array[SD_ConsoleCommand] = [
 		console.create_command("game.pause.priority"),
 		console.create_command("game.change_scene_to_file")

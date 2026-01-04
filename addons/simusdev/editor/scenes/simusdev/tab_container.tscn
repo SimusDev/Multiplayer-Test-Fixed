@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://xv2w2lddf0xn"]
+
+[ext_resource type="Script" uid="uid://dstfnt2e3jv61" path="res://addons/simusdev/editor/scenes/simusdev/tab_container.gd" id="1_hkhwd"]
+
+[node name="TabContainer" type="TabContainer" unique_id=1999479900]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+script = ExtResource("1_hkhwd")

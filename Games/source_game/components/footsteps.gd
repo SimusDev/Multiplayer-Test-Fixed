@@ -37,6 +37,10 @@ func _ready() -> void:
 	if is_instance_valid(player_model):
 		player_model.footstep.connect(_do_footstep)
 	
+	#var terrain:Terrain3D = get_node("Terrain3D") # Ссылка на узел Terrain3D
+	#var control_map_value = terrain.storage.get_control_value(global_transform.origin)
+	#var material_index = int(control_map_value.r * 255.0)
+
 func detect_surface() -> String:
 	var collider = raycast.get_collider()
 	if collider is Node3D:
@@ -51,10 +55,9 @@ func detect_surface() -> String:
 				var result:String = ""
 				for packed_string in splitted:
 					result += packed_string
-				print(result)
 				return result
 		
-	return ""
+	return "grass"
 
 func get_surface_sounds() -> Array[AudioStream]:
 	var surface = detect_surface()
@@ -65,7 +68,6 @@ func get_surface_sounds() -> Array[AudioStream]:
 
 func _do_footstep():
 	var surface:String = detect_surface()
-	print(surface)
 	if is_instance_valid(player):
 		if !get(surface) or !player.is_on_floor() or !player.velocity:
 			return

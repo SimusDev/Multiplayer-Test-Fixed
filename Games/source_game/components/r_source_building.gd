@@ -4,10 +4,13 @@ enum Types {
 	General,
 	Wall,
 	Foundation,
-	Ceiling
+	Ceiling,
+	FactoryGeneral,
+	FactoryConveyor,
 }
 
 @export var type:Types = 0
+
 @export var pick_on_build:bool = true
 @export_group("Mesh")
 @export var mesh:Mesh

@@ -55,70 +55,70 @@ func _on_console_commands_on_executed(command: SD_ConsoleCommand) -> void:
 			SimusDev.console.write_success(result_text)
 			return
 		
-		"midi.dir_midi":
-			if not command.get_arguments().size() == 0:
-				return
-			var files:Array = SD_FileSystem.get_all_files_with_extension_from_directory(
-				midi_base_path,
-				SD_FileExtensions.EC_MIDI
-				)
-			var result_text = ""
-			for file in files:
-				result_text += "%s, " % [file]
-				
-			SimusDev.console.write_success(result_text)
-			return
-
-		"midi.dir_soundfont":
-			if not command.get_arguments().size() == 0:
-				return
-			var files:Array = SD_FileSystem.get_all_files_with_extension_from_directory(
-				sf_base_path,
-				SD_FileExtensions.EC_SOUNDFONT
-				)
-			var result_text = ""
-			for file in files:
-				result_text += "%s, " % [file]
-				
-			SimusDev.console.write_success(result_text)
-			return
-
-		"midi.base_path":
-			if command.get_arguments().size() < 1:
-				SimusDev.console.write_success("=> %s" % [midi_base_path])
-				return
-			set_midi_base_path( command.get_value_as_string() )
-			return
-
-		"midi.sf_base_path":
-			if command.get_arguments().size() < 1:
-				SimusDev.console.write_success("=> %s" % [sf_base_path])
-				return
-			set_sf_base_path( command.get_value_as_string() )
-			return
-
-		"midi.add_track":
-			if command.get_arguments().size() < 2:
-				return
-			var args = command.get_arguments() as Array[String]
-			add_track( args.get(0), args.get(1) )
-			return
-
-		"midi.remove_track":
-			if command.get_arguments().size() < 1:
-				return
-			remove_track( command.get_value_as_int() )
-			SimusDev.console.write_success("midi track removed: %s" % [command.get_value_as_int()])
-			return
-
-		"midi.play_track":
-			if command.get_arguments().size() < 1:
-				return
-			play_track(command.get_value_as_int())
-			return
-
-		"midi.stop_track":
-			if command.get_arguments().size() < 1:
-				return
-			stop_track(command.get_value_as_int())
-			return
+		#"midi.dir_midi":
+			#if not command.get_arguments().size() == 0:
+				#return
+			#var files:Array = SD_FileSystem.get_all_files_with_extension_from_directory(
+				#midi_base_path,
+				#SD_FileExtensions.EC_MIDI
+				#)
+			#var result_text = ""
+			#for file in files:
+				#result_text += "%s, " % [file]
+				#
+			#SimusDev.console.write_success(result_text)
+			#return
+#
+		#"midi.dir_soundfont":
+			#if not command.get_arguments().size() == 0:
+				#return
+			#var files:Array = SD_FileSystem.get_all_files_with_extension_from_directory(
+				#sf_base_path,
+				#SD_FileExtensions.EC_SOUNDFONT
+				#)
+			#var result_text = ""
+			#for file in files:
+				#result_text += "%s, " % [file]
+				#
+			#SimusDev.console.write_success(result_text)
+			#return
+#
+		#"midi.base_path":
+			#if command.get_arguments().size() < 1:
+				#SimusDev.console.write_success("=> %s" % [midi_base_path])
+				#return
+			#set_midi_base_path( command.get_value_as_string() )
+			#return
+#
+		#"midi.sf_base_path":
+			#if command.get_arguments().size() < 1:
+				#SimusDev.console.write_success("=> %s" % [sf_base_path])
+				#return
+			#set_sf_base_path( command.get_value_as_string() )
+			#return
+#
+		#"midi.add_track":
+			#if command.get_arguments().size() < 2:
+				#return
+			#var args = command.get_arguments() as Array[String]
+			#add_track( args.get(0), args.get(1) )
+			#return
+#
+		#"midi.remove_track":
+			#if command.get_arguments().size() < 1:
+				#return
+			#remove_track( command.get_value_as_int() )
+			#SimusDev.console.write_success("midi track removed: %s" % [command.get_value_as_int()])
+			#return
+#
+		#"midi.play_track":
+			#if command.get_arguments().size() < 1:
+				#return
+			#play_track(command.get_value_as_int())
+			#return
+#
+		#"midi.stop_track":
+			#if command.get_arguments().size() < 1:
+				#return
+			#stop_track(command.get_value_as_int())
+			#return

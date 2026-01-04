@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name SD_SettingsAdsSDK
 
@@ -5,24 +6,27 @@ class_name SD_SettingsAdsSDK
 
 static var SAVE_PATH: String = SD_EngineSettings.BASE_PATH.path_join("ads")
 
-func init(sdk: SD_AdsSDK, data: Dictionary[String, Variant] = {}) -> void:
+func init(data: Dictionary[String, Variant] = {}) -> void:
 	_data = data.duplicate()
-	
 	_on_initialized()
 
 func _on_initialized() -> void:
 	pass
 
-static func save_or_load(script: GDScript, sdk: SD_AdsSDK, data: Dictionary[String, Variant] = {}) -> SD_SettingsAdsSDK:
+static func save_or_load(script: GDScript, data: Dictionary[String, Variant] = {}, path: String = "") -> SD_SettingsAdsSDK:
 	SD_FileSystem.make_directory(SAVE_PATH)
-	var filepath: String = SAVE_PATH.path_join(sdk.get_code()) + ".tres"
+	
+	var filepath: String
+	if !path.is_empty():
+		filepath = SAVE_PATH.path_join(path.validate_filename().to_lower()) + ".tres"
+	else:
+		filepath = SAVE_PATH.path_join(script.get_global_name().validate_filename().to_lower()) + ".tres"
 	
 	if SD_FileSystem.is_file_exists(filepath):
 		return load(filepath)
 	
-	
 	var settings: SD_SettingsAdsSDK = script.new() as SD_SettingsAdsSDK
-	settings.init(sdk, data)
+	settings.init(data)
 	ResourceSaver.save(settings, filepath)
 	return settings
 

@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://cm25dti5rwsvh"]
+
+[ext_resource type="Script" uid="uid://bvyo5flt0u0lb" path="res://addons/simusdev/editor/localization_editor/localization_editor.gd" id="1_ix340"]
+[ext_resource type="PackedScene" uid="uid://g8coekmlpea7" path="res://addons/simusdev/editor/localization_editor/editable_key.tscn" id="2_gxdky"]
+[ext_resource type="Script" uid="uid://bt2i2ake5y1k4" path="res://addons/simusdev/editor/localization_editor/section_language_button.gd" id="2_ix340"]
+
+[sub_resource type="GDScript" id="GDScript_plmy5"]
+resource_name = "script"
+script/source = "extends SD_RichTextLabelSimple
+
+@export var _editor:SD_EditorUILocalization
+
+func _ready() -> void:
+	_editor.resource_changed.connect(_update)
+
+func _update() -> void:
+	text = \"[color=green_yellow]%s[/color]\" % _editor.resource.resource_path.get_file()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plmy5"]
+bg_color = Color(0.12941177, 0.12941177, 0.12941177, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvfmh"]
+bg_color = Color(0.06879826, 0.06879829, 0.06879823, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="GDScript" id="GDScript_ix340"]
+resource_name = "script"
+script/source = "@tool 
+extends Button
+
+@export var _editor:SD_EditorUILocalization
+var _file_dialog: FileDialog
+
+func _pressed() -> void:
+	if not _file_dialog:
+		_file_dialog = FileDialog.new()
+		_file_dialog.access = FileDialog.ACCESS_FILESYSTEM
+		_file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+		_file_dialog.add_filter(\"*.res\")
+		_file_dialog.add_filter(\"*.tres\")
+		_file_dialog.file_selected.connect(_on_file_selected)
+		_editor.add_child(_file_dialog)
+	
+	_file_dialog.popup_centered(Vector2i(800, 600))
+
+func _on_file_selected(path: String) -> void:
+	_editor._load_file(path)
+"
+
+[node name="LocalizationEditor" type="Control" unique_id=1069172651]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ix340")
+editable_key = ExtResource("2_gxdky")
+
+[node name="Panel" type="Panel" parent="." unique_id=1667533563]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1009286206 node_paths=PackedStringArray("_editor")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 192.0
+offset_right = 1144.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=green_yellow]FileName[/color]"
+scroll_active = false
+shortcut_keys_enabled = false
+script = SubResource("GDScript_plmy5")
+_editor = NodePath("..")
+metadata/_custom_type_script = "uid://851bhpxqx0n8"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1851725407]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = -8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_plmy5")
+
+[node name="Menu" type="VBoxContainer" parent="ScrollContainer" unique_id=506475655]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionAddLanguage" type="HBoxContainer" parent="ScrollContainer/Menu" unique_id=116508430]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/Menu/SectionAddLanguage" unique_id=927543070]
+layout_mode = 2
+placeholder_text = "[lang]"
+caret_blink = true
+
+[node name="Button" type="Button" parent="ScrollContainer/Menu/SectionAddLanguage" unique_id=301897533]
+layout_mode = 2
+text = "Add "
+
+[node name="SectionAddKey" type="HBoxContainer" parent="ScrollContainer/Menu" unique_id=1003115998]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/Menu/SectionAddKey" unique_id=628863521]
+layout_mode = 2
+placeholder_text = "KEY"
+caret_blink = true
+
+[node name="Button" type="Button" parent="ScrollContainer/Menu/SectionAddKey" unique_id=974250992]
+layout_mode = 2
+text = "Add "
+
+[node name="KeysScroll" type="ScrollContainer" parent="." unique_id=1058568175]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 72.0
+offset_right = -8.0
+offset_bottom = -8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cvfmh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeysScroll" unique_id=2079348168]
+layout_mode = 2
+
+[node name="Key" parent="KeysScroll/VBoxContainer" unique_id=2100941372 instance=ExtResource("2_gxdky")]
+layout_mode = 2
+
+[node name="Key2" parent="KeysScroll/VBoxContainer" unique_id=58942161 instance=ExtResource("2_gxdky")]
+layout_mode = 2
+
+[node name="Key3" parent="KeysScroll/VBoxContainer" unique_id=2092827792 instance=ExtResource("2_gxdky")]
+layout_mode = 2
+
+[node name="BtnLoadFile" type="Button" parent="." unique_id=1513564506 node_paths=PackedStringArray("_editor")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.007
+anchor_right = 0.007
+offset_left = -0.06400013
+offset_right = 175.936
+offset_bottom = 31.0
+text = "Load file"
+script = SubResource("GDScript_ix340")
+_editor = NodePath("..")
+
+[node name="Languages" type="ScrollContainer" parent="." unique_id=1803990478]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 200.0
+offset_top = 32.0
+offset_right = 1144.0
+offset_bottom = 64.0
+vertical_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Languages" unique_id=405004425]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Languages/HBoxContainer" unique_id=498425055]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+script = ExtResource("2_ix340")
+
+[editable path="KeysScroll/VBoxContainer/Key"]

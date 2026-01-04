@@ -16,8 +16,6 @@ const EC_TEXTURE := "texture"
 const EC_RESOURCE := "resource"
 const EC_RESOURCE_PACK := "resource_pack"
 const EC_AUDIO := "audio"
-const EC_MIDI := "mid"
-const EC_SOUNDFONT := "sf2"
 
 const EXTENSIONS_CODES := {
 	EC_CONFIG:
@@ -44,10 +42,7 @@ const EXTENSIONS_CODES := {
 		["zip", "pck"],
 	EC_AUDIO:
 		["ogg", "mp3", "wav"],
-	EC_MIDI:
-		["mid"],
-	EC_SOUNDFONT:
-		["sf2"],
+	
 	
 }
 

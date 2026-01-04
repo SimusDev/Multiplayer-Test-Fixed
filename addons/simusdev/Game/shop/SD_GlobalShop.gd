@@ -4,7 +4,7 @@ class_name SD_GlobalShop
 
 @export var debug: bool = true
 
-@onready var console := SimusDev.console
+@onready var console: SD_TrunkConsole = SimusDev.console
 
 var _fullcode: String
 var _nodes: Array[SD_ShopNode] = []
@@ -104,7 +104,7 @@ func write_data_as_command(key: String, data: Variant, custom_code := "") -> SD_
 	if code_path.is_empty():
 		code_path = get_full_code() + "." + key
 	
-	var cmd := console.create_command(code_path, data)
+	var cmd: SD_ConsoleCommand = console.create_command(code_path, data)
 	cmd.set_value(data)
 	return cmd
 
@@ -113,7 +113,7 @@ func read_data_as_command(key: String, default_value := "", custom_code := "") -
 	if code_path.is_empty():
 		code_path = get_full_code() + "." + key
 	
-	var cmd := console.get_command_by_code(code_path)
+	var cmd: SD_ConsoleCommand = console.get_command_by_code(code_path)
 	return cmd 
 
 func get_data_as_command(key: String, custom_code := "") -> SD_ConsoleCommand:
@@ -127,5 +127,5 @@ func get_or_write_data_as_command(key: String, data: Variant, custom_code := "")
 	if code_path.is_empty():
 		code_path = get_full_code() + "." + key
 	
-	var cmd := console.create_command(code_path, data)
+	var cmd: SD_ConsoleCommand = console.create_command(code_path, data)
 	return cmd

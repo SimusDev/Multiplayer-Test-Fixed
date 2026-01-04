@@ -1,3 +1,5 @@
+@tool
+@static_unload
 extends SD_Object
 class_name SD_Platforms
 

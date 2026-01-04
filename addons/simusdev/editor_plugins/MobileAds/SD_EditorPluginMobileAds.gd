@@ -1,10 +1,10 @@
 @tool
 extends EditorPlugin
 
-var export_plugin : SD_EditorPluginMobileAds
+var export_plugin : SD_EditorExportPluginMobileAds
 
 func _enter_tree():
-	export_plugin = SD_EditorPluginMobileAds.new()
+	export_plugin = SD_EditorExportPluginMobileAds.new()
 	add_export_plugin(export_plugin)
 
 
@@ -13,7 +13,7 @@ func _exit_tree():
 	export_plugin = null
 
 
-class SD_EditorPluginMobileAds extends EditorExportPlugin:
+class SD_EditorExportPluginMobileAds extends EditorExportPlugin:
 	var _plugin_name = "GodotMobileAds"
 	
 	var _bin_name: String = "GodotAndroidYandexAds"

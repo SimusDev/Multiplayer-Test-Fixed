@@ -6,7 +6,7 @@ class_name W_FPController
 
 signal enabled_status_changed(status: bool)
 
-@onready var console := SimusDev.console
+@onready var console = SimusDev.console
 
 func set_enabled_status(status: bool) -> void:
 	enabled = status

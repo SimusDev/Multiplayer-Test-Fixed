@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cwjfa54w1mwo5"]
+
+[ext_resource type="Script" uid="uid://bkb3nl4sbix30" path="res://addons/simusdev/SimusNet/singletons/SimusNetSingleton.gd" id="1_6nds0"]
+[ext_resource type="Script" uid="uid://blgvoebv5j1yx" path="res://addons/simusdev/SimusNet/singletons/SimusNetCache.gd" id="2_qc26q"]
+[ext_resource type="Script" uid="uid://dw6wbflch2xcm" path="res://addons/simusdev/SimusNet/singletons/SimusNetChannels.gd" id="3_e7adu"]
+[ext_resource type="Script" uid="uid://dq0hs106g58xm" path="res://addons/simusdev/SimusNet/singletons/SimusNetConnection.gd" id="4_qc1ra"]
+[ext_resource type="Script" uid="uid://dx1ggnf2fcfjs" path="res://addons/simusdev/SimusNet/events/SimusNetEvents.gd" id="5_3i2gk"]
+[ext_resource type="Script" uid="uid://cf18slr8p28s1" path="res://addons/simusdev/SimusNet/singletons/SimusNetHandShake.gd" id="6_h5gd7"]
+[ext_resource type="Script" uid="uid://22nubuf7jkle" path="res://addons/simusdev/SimusNet/singletons/SimusNetMethods.gd" id="7_iveyx"]
+[ext_resource type="Script" uid="uid://b1d3f8qui38ty" path="res://addons/simusdev/SimusNet/singletons/SimusNetRPC.gd" id="7_jxvxf"]
+[ext_resource type="Script" uid="uid://clove4axd8wav" path="res://addons/simusdev/SimusNet/singletons/SimusNetRPCProccessor.gd" id="8_iveyx"]
+[ext_resource type="Script" uid="uid://b3fahcohgd3he" path="res://addons/simusdev/SimusNet/singletons/SimusNetVisibility.gd" id="10_q4njy"]
+[ext_resource type="Script" uid="uid://bunnx0ci8fr2h" path="res://addons/simusdev/SimusNet/singletons/SimusNetResources.gd" id="11_6mgeb"]
+[ext_resource type="Script" uid="uid://ckxdwc6gvxl6y" path="res://addons/simusdev/SimusNet/singletons/SimusNetRPCGodot.gd" id="12_khclw"]
+
+[node name="SimusNetSingleton" type="Node" unique_id=1723475864 node_paths=PackedStringArray("events", "cache", "channels", "connection", "handshake", "methods", "RPC", "RPCgodot", "visibility", "resources")]
+process_mode = 4
+script = ExtResource("1_6nds0")
+events = NodePath("Events")
+cache = NodePath("Cache")
+channels = NodePath("Channels")
+connection = NodePath("Connection")
+handshake = NodePath("HandShake")
+methods = NodePath("Methods")
+RPC = NodePath("RPC")
+RPCgodot = NodePath("RPCGodot")
+visibility = NodePath("Visibility")
+resources = NodePath("Resources")
+
+[node name="Events" type="Node" parent="." unique_id=2137078033]
+script = ExtResource("5_3i2gk")
+metadata/_custom_type_script = "uid://dx1ggnf2fcfjs"
+
+[node name="Cache" type="Node" parent="." unique_id=1563665394]
+script = ExtResource("2_qc26q")
+metadata/_custom_type_script = "uid://blgvoebv5j1yx"
+
+[node name="Channels" type="Node" parent="." unique_id=337339984]
+script = ExtResource("3_e7adu")
+metadata/_custom_type_script = "uid://dw6wbflch2xcm"
+
+[node name="Connection" type="Node" parent="." unique_id=2119321392]
+script = ExtResource("4_qc1ra")
+metadata/_custom_type_script = "uid://dq0hs106g58xm"
+
+[node name="HandShake" type="Node" parent="." unique_id=809197882]
+script = ExtResource("6_h5gd7")
+metadata/_custom_type_script = "uid://cf18slr8p28s1"
+
+[node name="Methods" type="Node" parent="." unique_id=1732255533]
+script = ExtResource("7_iveyx")
+metadata/_custom_type_script = "uid://22nubuf7jkle"
+
+[node name="RPC" type="Node" parent="." unique_id=1679579853 node_paths=PackedStringArray("_processor")]
+script = ExtResource("7_jxvxf")
+_processor = NodePath("Proccessor")
+metadata/_custom_type_script = "uid://b1d3f8qui38ty"
+
+[node name="Proccessor" type="Node" parent="RPC" unique_id=1435525532]
+script = ExtResource("8_iveyx")
+source = "
+#//////////////////////////////////////////////////////////////////////////////////////////////////
+@rpc(\"any_peer\", \"call_remote\", \"unreliable\", %s)
+func _rpc_0_%s(identity: Variant, method: Variant, args: Variant = null) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+
+@rpc(\"any_peer\", \"call_remote\", \"unreliable_ordered\", %s)
+func _rpc_1_%s(identity: Variant, method: Variant, args: Variant = null) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+
+@rpc(\"any_peer\", \"call_remote\", \"reliable\", %s)
+func _rpc_2_%s(identity: Variant, method: Variant, args: Variant = null) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+
+"
+metadata/_custom_type_script = "uid://clove4axd8wav"
+
+[node name="RPCGodot" type="Node" parent="." unique_id=1039175794]
+script = ExtResource("12_khclw")
+metadata/_custom_type_script = "uid://ckxdwc6gvxl6y"
+
+[node name="Visibility" type="Node" parent="." unique_id=2000887650]
+script = ExtResource("10_q4njy")
+metadata/_custom_type_script = "uid://b3fahcohgd3he"
+
+[node name="Resources" type="Node" parent="." unique_id=1372469252]
+script = ExtResource("11_6mgeb")
+metadata/_custom_type_script = "uid://bunnx0ci8fr2h"

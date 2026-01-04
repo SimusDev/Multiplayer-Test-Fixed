@@ -10,6 +10,9 @@ signal focused_in()
 signal focused_out()
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	var console: SD_TrunkConsole = SimusDev.console
 	var _commands: Array[SD_ConsoleCommand] = [
 		console.create_command("window.mode", ProjectSettings.get_setting("display/window/size/mode")).number_set_min_max_value(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED, DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN),

@@ -1,39 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cea8mnn7xt8va"]
+[gd_scene format=3 uid="uid://cea8mnn7xt8va"]
 
 [ext_resource type="PackedScene" uid="uid://27kpi31p3gfe" path="res://Games/source_game/base_player/base_player.tscn" id="1_b4w1e"]
 [ext_resource type="PackedScene" uid="uid://scuy4tbjdt0e" path="res://Games/source_game/game/players/anime/animated_model.tscn" id="2_1jxyn"]
-[ext_resource type="Script" uid="uid://cydp7kjf4ce6r" path="res://addons/simusdev/network/SD_NetSyncedProperty.gd" id="3_oynvx"]
-[ext_resource type="Script" uid="uid://dii7n6tf0gs6q" path="res://addons/simusdev/network/SD_NetSyncProperties.gd" id="4_mitkl"]
 [ext_resource type="Script" uid="uid://bl7u4n7rmh53s" path="res://Games/source_game/components/emotions/source_emotions.gd" id="5_mitkl"]
 [ext_resource type="Resource" uid="uid://cjle81nnb3h56" path="res://Games/source_game/game/players/anime/emotions/emotions.tres" id="6_o4uiq"]
-
-[sub_resource type="Resource" id="Resource_o4uiq"]
-script = ExtResource("3_oynvx")
-properties = PackedStringArray("rotation", "position")
-interpolation_enabled = true
-node_path = NodePath("..")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_eokyo"]
-script = ExtResource("3_oynvx")
-properties = PackedStringArray("rotation")
-interpolation_enabled = true
-node_path = NodePath("../SourceCamera")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_sqnm3"]
-script = ExtResource("3_oynvx")
-properties = PackedStringArray("velocity")
-node_path = NodePath("..")
-sync = 0
-metadata/_custom_type_script = "uid://cydp7kjf4ce6r"
-
-[sub_resource type="Resource" id="Resource_6p28h"]
-script = ExtResource("4_mitkl")
-_list = Array[ExtResource("3_oynvx")]([SubResource("Resource_o4uiq"), SubResource("Resource_eokyo"), SubResource("Resource_sqnm3")])
-metadata/_custom_type_script = "uid://dii7n6tf0gs6q"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4w1e"]
 size = Vector3(1, 2.21121, 0.578186)
@@ -44,57 +14,55 @@ size = Vector3(0.728516, 0.977058, 0.578186)
 [sub_resource type="BoxShape3D" id="BoxShape3D_an3tc"]
 size = Vector3(0.512634, 0.455857, 0.468338)
 
-[node name="player" instance=ExtResource("1_b4w1e")]
+[node name="player" unique_id=397411262 instance=ExtResource("1_b4w1e")]
 
-[node name="AnimatedModel" parent="." index="0" node_paths=PackedStringArray("_movement", "_camera", "inventory") instance=ExtResource("2_1jxyn")]
+[node name="AnimatedModel" parent="." index="0" unique_id=1231977007 node_paths=PackedStringArray("_movement", "_camera", "inventory") instance=ExtResource("2_1jxyn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 _movement = NodePath("../SourceMovement")
 _camera = NodePath("../SourceCamera")
 inventory = NodePath("../SourceInventory")
 
-[node name="SD_NetSynchronizer" parent="." index="2"]
-_data = SubResource("Resource_6p28h")
-
-[node name="SourceCrouch" parent="." index="11" node_paths=PackedStringArray("collision_normal", "ceiling_detection", "crouch_camera_position")]
+[node name="SourceCrouch" parent="." index="12" unique_id=1101867363 node_paths=PackedStringArray("collision_normal", "ceiling_detection", "crouch_camera_position")]
 collision_normal = NodePath("../AI_Visible/collision_normal")
 ceiling_detection = NodePath("../crouch_ray")
 crouch_camera_position = NodePath("../crouch_pos")
 
-[node name="SourceCamera" parent="." index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
-
-[node name="crouch_ray" type="RayCast3D" parent="." index="13"]
+[node name="crouch_ray" type="RayCast3D" parent="." index="13" unique_id=1832249251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536034, -0.054951)
 target_position = Vector3(0, 1, 0)
 
-[node name="crouch_pos" type="Node3D" parent="." index="14"]
+[node name="crouch_pos" type="Node3D" parent="." index="14" unique_id=750695939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824919, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="15" unique_id=640614919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13615, -0.0360413)
 visible = false
 shape = SubResource("BoxShape3D_b4w1e")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0"]
+[node name="SourceCamera" parent="." index="16" unique_id=1969548237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11982, 0.00510931)
+
+[node name="CameraShake" parent="SourceCamera/Camera3D" index="0" unique_id=1864489592 node_paths=PackedStringArray("camera_node")]
+camera_node = NodePath("../..")
+snappiness = 1.0
+bob_amplitude_x = 0.012
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" parent_id_path=PackedInt32Array(1358480324) index="0" unique_id=2126420387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0263383, 1.3809, -0.0360413)
 shape = SubResource("BoxShape3D_1jxyn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_legs" parent_id_path=PackedInt32Array(247879102) index="0" unique_id=1746522145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219026, 0.513551, -0.0360413)
 shape = SubResource("BoxShape3D_1jxyn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" parent_id_path=PackedInt32Array(1894736178) index="0" unique_id=805882182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248108, 2.06825, -0.0527891)
 shape = SubResource("BoxShape3D_an3tc")
 
-[node name="nickname" parent="." index="19"]
+[node name="nickname" parent="." index="20" unique_id=2050492904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40819, 0)
 
-[node name="AI_Visible" parent="." index="20"]
-collision_layer = 16
-collision_mask = 16
-
-[node name="SourceEmotions" type="Node" parent="." index="21" node_paths=PackedStringArray("root")]
+[node name="SourceEmotions" type="Node" parent="." index="21" unique_id=1932392490 node_paths=PackedStringArray("root")]
 script = ExtResource("5_mitkl")
 root = NodePath("..")
 resource = ExtResource("6_o4uiq")

@@ -6,13 +6,18 @@ var _cmd_localization: SD_ConsoleCommand
 
 func _ready() -> void:
 	var settings: SD_EngineSettings = SimusDev.get_settings()
-	enabled = settings.localization.enabled
+	#settings.set_localization_resources(settings.localization_resources.duplicate())
 	
 	_flags = settings.localization_flags
 	_unique_names = settings.localization_language_unique_name
 	
 	var console: SD_TrunkConsole = SimusDev.console
-	_cmd_localization = console.create_command("localization", "null")
+	
+	var picked_loc: String = OS.get_locale_language()
+	if !get_available_languages().has(picked_loc):
+		picked_loc = "en"
+	
+	_cmd_localization = console.create_command("localization", picked_loc)
 	_cmd_localization.updated.connect(_on_command_updated.bind(_cmd_localization))
 	
 	_on_command_updated(_cmd_localization)

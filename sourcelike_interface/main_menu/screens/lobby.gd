@@ -57,8 +57,6 @@ func _on_server_ready_recieved(ready: bool, map: R_GameMap) -> void:
 		$refresh.stop()
 		R_GameMap.selected = map
 		menu_switcher.switch_by_name("loading")
-		
-		
 
 func _on_refresh_timeout() -> void:
 	if SD_Multiplayer.is_server():

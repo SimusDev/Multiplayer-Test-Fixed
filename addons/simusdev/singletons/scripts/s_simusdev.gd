@@ -1,6 +1,7 @@
+@tool
 extends Node
 
-var VERSION: String = "4.13"
+var VERSION: String = "4.14"
 
 signal on_notification(what: int)
 
@@ -31,6 +32,8 @@ var gamestate := SD_GameState.new()
 var multiplayerAPI: SD_MultiplayerSingleton
 var network: SD_NetworkSingleton
 
+var autoload := SD_TrunkAutoLoad.new()
+
 signal process(delta: float)
 signal physics_process(delta: float)
 
@@ -45,7 +48,6 @@ var _autoload_classes = [
 	SD_Array.new(),
 	SD_Config.new(),
 	SD_ConfigEncrypted.new(),
-	SD_ConsoleCategories.new(),
 	SD_Console.new(),
 	SD_ConsoleMessage.new(),
 	SD_Settings.new(),
@@ -82,6 +84,8 @@ func _ready() -> void:
 	cursor._ready()
 	popups._ready()
 	
+	_settings._ready()
+	
 	gamestate.name = "GameState"
 	add_child(gamestate)
 	
@@ -90,6 +94,7 @@ func _ready() -> void:
 	if !_settings.network:
 		_settings.network = SD_NetworkSettings.new()
 	
+		
 	if _settings.network.enabled:
 		var network_scene: PackedScene = load("res://addons/simusdev/network/singleton/SD_NetworkSingleton.tscn") as PackedScene
 		network = network_scene.instantiate()
@@ -101,7 +106,12 @@ func _ready() -> void:
 				multiplayerAPI.name = "Multiplayer"
 		)
 		add_child(multiplayerAPI)
-		
+	
+	var simusnet_scene: PackedScene = load("res://addons/simusdev/SimusNet/singletons/SimusNetSingleton.tscn")
+	var simusnet: SimusNetSingleton = simusnet_scene.instantiate() as SimusNetSingleton
+	add_child(simusnet)
+
+	autoload._ready()
 
 func _initialize_commands() -> void:
 	console.on_command_executed.connect(_on_command_executed)

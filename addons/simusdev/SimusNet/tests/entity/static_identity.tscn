@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cswwdln4qu676"]
+
+[ext_resource type="Script" uid="uid://dvnos3up6eg03" path="res://addons/simusdev/SimusNet/tests/entity/static_identity.gd" id="1_b52f8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twfma"]
+
+[node name="StaticIdentity" type="StaticBody2D" unique_id=1426933968]
+script = ExtResource("1_b52f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079421803]
+shape = SubResource("RectangleShape2D_twfma")

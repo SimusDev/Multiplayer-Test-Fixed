@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://g8coekmlpea7"]
+
+[ext_resource type="Texture2D" uid="uid://c66x8ddudv66m" path="res://addons/simusdev/Game/icons/ui_icon_settings.png" id="1_a4t81"]
+[ext_resource type="Script" uid="uid://205a271otsor" path="res://addons/simusdev/editor/localization_editor/editable_key.gd" id="1_n0vml"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtpaj"]
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Key" type="HBoxContainer" unique_id=2100941372]
+script = ExtResource("1_n0vml")
+
+[node name="key_name" type="Label" parent="." unique_id=707534120]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rtpaj")
+text = "KEY_NAME"
+
+[node name="btn_edit" type="Button" parent="." unique_id=559405145]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("1_a4t81")
+expand_icon = true
+
+[node name="line_edit" type="LineEdit" parent="." unique_id=384992395]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "value"
+expand_to_text_length = true
+caret_blink = true

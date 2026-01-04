@@ -10,6 +10,7 @@ class_name SD_UICanvasFade
 @export var use_self_modulate: bool = false
 
 @export var cooldown: float = 0.0
+@export var autodetect_cooldown: bool = true
 
 func _ready() -> void:
 	if !target:
@@ -19,6 +20,9 @@ func _ready() -> void:
 	if not target:
 		set_process(false)
 		return
+	
+	if autodetect_cooldown:
+		cooldown = cooldown * target.get_index()
 	
 	if use_self_modulate:
 		target.self_modulate = fade_start

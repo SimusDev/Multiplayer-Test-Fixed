@@ -66,7 +66,7 @@ func fire() -> void:
 		return
 	if not has_ammo():
 		return
-	camera_shake.set_recoil(weapon.recoil)
+	#camera_shake.
 	
 	cooldown_timer.start()
 	event_fire.emit()

@@ -64,16 +64,21 @@ static func find_all(node: Node, component: Script) -> Array[Node]:
 	
 	return result
 
-static func get_base_script(script: Script) -> Script:
-	var result: Script = script
-	if result.get_base_script():
-		return get_base_script(script.get_base_script())
-	return result
+static func get_base_script_from(script: Script) -> Script:
+	if not script:
+		return null
+	return _get_base_script_from(script)
 
-static func get_base_script_from_node(node: Node) -> Script:
+static func _get_base_script_from(script: Script) -> Script:
+	var base: Script = script.get_base_script()
+	if base == null:
+		return script
+	return _get_base_script_from(base)
+
+static func get_base_script_from_node(node: Object) -> Script:
 	if not node.get_script():
 		return null
-	return get_base_script(node.get_script())
+	return get_base_script_from(node.get_script())
 
 static func node_find_above_by_script(from: Node, script: Script) -> Node:
 	if get_base_script_from_node(from) == script:

@@ -68,46 +68,6 @@ func _initialized() -> void:
 	for c_name in channels:
 		register_channel(c_name)
 	
-	singleton.on_peer_disconnected.connect(_on_peer_disconnected)
-	
-	
-
-func _on_peer_disconnected(peer: int) -> void:
-	get_active_peer_and_his_nodes().erase(peer)
-
-func get_active_peer_and_his_nodes() -> Dictionary[int, Array]:
-	if singleton.custom_cache.has("active_peer_and_his_nodes"):
-		return singleton.custom_cache.get("active_peer_and_his_nodes") as Dictionary[int, Array]
-	
-	var dict: Dictionary[int, Array] = {}
-	singleton.custom_cache.set("active_peer_and_his_nodes", dict)
-	return dict
-
-func send_active_node_to_all(node: Object) -> void:
-	_recieve_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
-
-@rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
-func _recieve_node_from_peer(node: Variant) -> void:
-	var sender_id: int = multiplayer.get_remote_sender_id()
-	var object: Object = singleton.cache.deserialize_node_reference(node)
-	if object:
-		var net := SD_NetRegisteredNode.get_or_create(object)
-		net._inactive_for_peers.erase(sender_id)
-		net.activated_for_peer.emit(sender_id)
-
-func delete_active_node_from_all(node: Object) -> void:
-	if is_inside_tree():
-		_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
-
-@rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
-func _delete_node_from_peer(node: Variant) -> void:
-	var sender_id: int = multiplayer.get_remote_sender_id()
-	var object: Object = singleton.cache.deserialize_node_reference(node)
-	if object:
-		var net := SD_NetRegisteredNode.get_or_create(object)
-		if !net._inactive_for_peers.has(sender_id):
-			net._inactive_for_peers.append(sender_id)
-			net.deactivated_for_peer.emit(sender_id)
 
 
 func get_registered_channels() -> PackedStringArray:

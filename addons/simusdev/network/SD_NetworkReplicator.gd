@@ -61,7 +61,7 @@ func set_vars_interpolate_strength(value: float) -> SD_NetworkReplicator:
 		
 	return self
 
-var __transform_sync: SD_NetVariableSynchronizer
+var __transform_sync: SD_NetworkTransform
 
 var _transform_tickrate: float = 32.0 : set = set_transform_tickrate
 func set_transform_tickrate(value: float) -> SD_NetworkReplicator:
@@ -95,14 +95,17 @@ func _initialize(object: Object) -> void:
 	
 	is_initialized = true
 	
-	if "transform" in object:
-		__transform_sync = __add_synchronizer("transform", 
-		["rotation", "scale", "position"], 
-		"position", MultiplayerPeer.TransferMode.TRANSFER_MODE_UNRELIABLE,
-		false,
-		_transform_interpolation,
-		_transform_interpolate_strength,
-		_transform_tickrate)
+	if "transform" in owner:
+		if owner is Node:
+			var network_transform := SD_NetworkTransform.new()
+			__transform_sync = network_transform
+			network_transform.interpolation = _transform_interpolation
+			network_transform.interpolation_strength = _transform_interpolate_strength
+			network_transform.tickrate = _transform_tickrate
+			network_transform.name = "transform"
+			network_transform.set_multiplayer_authority(owner.get_multiplayer_authority(), false)
+			
+			owner.add_child.call_deferred(network_transform)
 	
 	
 	__vars_sync = __add_synchronizer(SD_NetTrunkVariables.CHANNEL, 

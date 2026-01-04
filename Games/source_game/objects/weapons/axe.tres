@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_WeaponObject" load_steps=11 format=3 uid="uid://dbiivpveow0mi"]
+[gd_resource type="Resource" script_class="R_WeaponObject" format=3 uid="uid://dbiivpveow0mi"]
 
 [ext_resource type="Texture2D" uid="uid://c07b2wq1yl1tb" path="res://Games/source_game/items/axe/icon.png" id="1_eknev"]
 [ext_resource type="PackedScene" uid="uid://cmb7vfqcx4kcn" path="res://Games/source_game/items/axe/world.tscn" id="2_eknev"]

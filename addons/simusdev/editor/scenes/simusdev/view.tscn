@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://qyvoef4qc0xg"]
+
+[ext_resource type="Script" uid="uid://dgq7hbnmfpkju" path="res://addons/simusdev/editor/scenes/simusdev/view.gd" id="1_12x62"]
+[ext_resource type="PackedScene" uid="uid://xv2w2lddf0xn" path="res://addons/simusdev/editor/scenes/simusdev/tab_container.tscn" id="2_bpncc"]
+
+[node name="SimusDev" type="Control" unique_id=708546468]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_12x62")
+
+[node name="TabContainer" parent="." unique_id=1999479900 instance=ExtResource("2_bpncc")]
+layout_mode = 1
+current_tab = 0

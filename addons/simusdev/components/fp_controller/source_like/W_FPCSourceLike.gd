@@ -7,7 +7,7 @@ class_name W_FPCSourceLike
 
 signal enabled_status_changed(status: bool)
 
-@onready var console := SimusDev.console
+@onready var console = SimusDev.console
 
 var _disable_priority: int = 0
 

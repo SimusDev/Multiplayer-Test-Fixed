@@ -8,6 +8,8 @@ class_name SD_ShopNodeItem
 
 @export var _status: int = 0
 
+signal status_changed()
+
 func _on_initialized_() -> void:
 	_status = get_or_write_data_as_command("status", _status).get_value_as_int()
 
@@ -19,6 +21,7 @@ func get_status() -> int:
 
 func set_status(value: int) -> void:
 	_status = value
+	status_changed.emit()
 	write_data_as_command("status", value)
 
 func buy_item_for(currency: SD_ShopNodeCurrency) -> bool:
@@ -79,3 +82,4 @@ func _on_command_data_updated(command: SD_ConsoleCommand, key: String) -> void:
 	match key:
 		"status":
 			_status = command.get_value_as_int()
+			status_changed.emit()

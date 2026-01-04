@@ -27,4 +27,16 @@ static func get_random_value_from_array(array: Array, default = null):
 	
 	var picked_index: int = SD_Random.get_rint_range(0, array.size() - 1)
 	return get_value_from_array(array, picked_index, default)
-	
+
+static func shuffle(array: Array) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	array.sort_custom(
+		func(a, b):
+			return rng.randf() < 0.5
+	)
+
+static func shuffle_and_get_copy(array: Array) -> Array:
+	var shuffled: Array = array.duplicate()
+	shuffle(shuffled)
+	return shuffled

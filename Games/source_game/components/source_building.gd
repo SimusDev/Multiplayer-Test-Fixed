@@ -3,6 +3,7 @@ class_name SourceBuilding extends Node3D
 signal destroy
 
 var building_owner:SD_MultiplayerPlayer
+var resource:R_SourceBuilding
 
 @export_group("Visual")
 @export var particle:PackedScene

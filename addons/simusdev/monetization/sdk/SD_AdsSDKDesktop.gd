@@ -3,12 +3,14 @@ class_name SD_AdsSDKDesktop
 
 var _interface: desktop_ads_interface
 
+static func create() -> SD_AdsSDKDesktop:
+	return SD_AdsSDKDesktop.new("desktop")
+
+static func get_instance() -> SD_AdsSDKDesktop:
+	return null
+
 func _settings_init() -> void:
-	_load_settings(
-		{
-			"enabled": true,
-		}
-	)
+	_load_settings({"enabled": true}, "desktop")
 
 func _on_initialized() -> void:
 	var interface_scene: PackedScene = load("res://addons/simusdev/monetization/desktop/desktop_ads_interface.tscn")

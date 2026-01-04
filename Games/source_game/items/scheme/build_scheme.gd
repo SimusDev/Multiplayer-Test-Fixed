@@ -129,6 +129,7 @@ func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEnt
 	
 	var section = SourceLevelSection3D.get_by_name(buildings_section_name)
 	var new_building:SourceBuilding = _building.prefab.instantiate()
+	new_building.resource = _building
 	section.add_child(new_building)
 	
 	if collider:

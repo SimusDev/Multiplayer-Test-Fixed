@@ -26,15 +26,19 @@ signal deactivated_for_peer(peer: int)
 func initialize(object: Object) -> void:
 	object.set_meta("SD_NetRegisteredNode", self)
 	
+	reference = object
+	
 	if allow_inactive:
+		
 		_inactive_for_peers = SD_Network.get_peers().duplicate()
 		_inactive_for_peers.erase(SD_Network.get_unique_id())
+		
 		_inactive_for_peers.erase(SD_Network.SERVER_ID)
+		
 		SD_Network.singleton.on_inactive_object_update_request.connect(_on_inactive_object_update_request)
 		SD_Network.singleton.on_peer_connected.connect(_on_peer_connected)
 		SD_Network.singleton.on_peer_disconnected.connect(_on_peer_disconnected)
 	
-	reference = object
 	
 	if object is Node:
 		last_path = object.get_path()
@@ -42,6 +46,8 @@ func initialize(object: Object) -> void:
 	
 		object.tree_entered.connect(_on_tree_entered)
 		object.tree_exited.connect(_on_tree_exited)
+		
+		
 		return
 	
 	if object is SD_NetworkedResource:
@@ -54,6 +60,8 @@ func initialize(object: Object) -> void:
 			return
 		
 		object.unregistered.connect(_on_net_resource_unregistered)
+	
+	
 
 func _on_peer_disconnected(peer: int) -> void:
 	_inactive_for_peers.erase(peer)
@@ -100,18 +108,20 @@ func _on_tree_entered() -> void:
 	net_id = SD_Network.singleton.cache.get_cached_id_by_path(last_path)
 	
 	if allow_inactive:
-		SD_Network.singleton.callables.send_active_node_to_all(reference)
+		SD_Network.singleton.visibility.send_active_node_to_all(reference)
 
 func _uncache(path: NodePath) -> void:
-	is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
+	#is_cached = SD_Network.singleton.cache.get_cached_nodes_by_path().has(last_path)
 	
-	if !is_cached:
-		await cached
+	#if !is_cached:
+		#await cached
+	
+	if allow_inactive:
+		SD_Network.singleton.visibility.delete_active_node_from_all(reference)
 	
 	SD_Network.singleton.cache.try_uncache_node(path)
 	
-	if allow_inactive:
-		SD_Network.singleton.callables.delete_active_node_from_all(reference)
+
 
 func _on_tree_exited() -> void:
 	_uncache(last_path)

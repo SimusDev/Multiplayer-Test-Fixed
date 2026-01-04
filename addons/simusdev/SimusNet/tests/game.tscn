@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://jofeluedcubq"]
+
+[ext_resource type="Script" uid="uid://lub2rtpdwo1w" path="res://addons/simusdev/SimusNet/tests/game.gd" id="1_ttprg"]
+[ext_resource type="Script" uid="uid://ijrim247vtxp" path="res://addons/simusdev/SimusNet/SimusNetObject.gd" id="2_ke4nh"]
+[ext_resource type="PackedScene" uid="uid://c1mk3av3gs8ao" path="res://addons/simusdev/SimusNet/tests/identity.tscn" id="2_wld4m"]
+
+[sub_resource type="Resource" id="Resource_ke4nh"]
+script = ExtResource("2_ke4nh")
+uuid = &"GlobalObject1"
+metadata/_custom_type_script = "uid://ijrim247vtxp"
+
+[sub_resource type="Resource" id="Resource_32wh5"]
+script = ExtResource("2_ke4nh")
+uuid = &"GlobalObject2"
+metadata/_custom_type_script = "uid://ijrim247vtxp"
+
+[sub_resource type="Resource" id="Resource_g1gru"]
+script = ExtResource("2_ke4nh")
+uuid = &"GlobalObject3"
+metadata/_custom_type_script = "uid://ijrim247vtxp"
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ttprg")
+objects = Array[ExtResource("2_ke4nh")]([SubResource("Resource_ke4nh"), SubResource("Resource_32wh5"), SubResource("Resource_g1gru")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -33.0
+offset_right = 284.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "localhost"
+placeholder_text = "IP"
+
+[node name="host" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -92.0
+offset_right = 284.5
+offset_bottom = -43.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HOST"
+
+[node name="connect" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = 29.0
+offset_right = 284.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONNECT"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Identity" parent="." instance=ExtResource("2_wld4m")]
+
+[connection signal="pressed" from="CanvasLayer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/connect" to="." method="_on_connect_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

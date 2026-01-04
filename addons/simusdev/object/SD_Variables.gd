@@ -1,3 +1,4 @@
+@tool
 @static_unload
 extends SD_Object
 class_name SD_Variables
@@ -22,7 +23,9 @@ static func serialize_unsigned_int(integer: Variant) -> Variant:
 		if integer <= 18_446_744_073_709_554_61:
 			_stream_peer_buffer.put_u64(integer)
 			return _stream_peer_buffer.data_array
-		
+	
+	
+	
 	return integer
 
 static func deserialize_unsigned_int(integer: Variant) -> Variant:
@@ -84,3 +87,19 @@ static func compress(variant: Variant, mode: FileAccess.CompressionMode = FileAc
 
 static func decompress(bytes: PackedByteArray, mode: FileAccess.CompressionMode = FileAccess.CompressionMode.COMPRESSION_DEFLATE) -> Variant:
 	return bytes_to_var(bytes.decompress_dynamic(-1, mode))
+
+static func get_object_meta(object: Object, meta: StringName, default: Variant = null) -> Variant:
+	if object.has_meta(meta):
+		return object.get_meta(meta)
+	return default
+
+static func get_or_add_object_meta(object: Object, meta: StringName, default: Variant = null) -> Variant:
+	if object.has_meta(meta):
+		return object.get_meta(meta)
+	
+	object.set_meta(meta, default)
+	print(object)
+	return default
+
+static func set_object_meta(object: Object, meta: StringName, value: Variant) -> void:
+	object.set_meta(meta, value)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1mk3av3gs8ao"]
+
+[ext_resource type="PackedScene" uid="uid://cswwdln4qu676" path="res://addons/simusdev/SimusNet/tests/entity/static_identity.tscn" id="1_byr7f"]
+
+[node name="Identity" type="Node2D" unique_id=1068470929]
+
+[node name="StaticIdentity" parent="." unique_id=1426933968 instance=ExtResource("1_byr7f")]
+position = Vector2(133, 68)
+
+[node name="StaticIdentity2" parent="." unique_id=1147784702 instance=ExtResource("1_byr7f")]
+position = Vector2(344, 68)
+
+[node name="StaticIdentity3" parent="." unique_id=625846425 instance=ExtResource("1_byr7f")]
+position = Vector2(570, 68)
+
+[node name="StaticIdentity4" parent="." unique_id=438495238 instance=ExtResource("1_byr7f")]
+position = Vector2(745, 68)
+
+[node name="StaticIdentity5" parent="." unique_id=981929326 instance=ExtResource("1_byr7f")]
+position = Vector2(861, 68)
+
+[node name="StaticIdentity6" parent="." unique_id=1089236399 instance=ExtResource("1_byr7f")]
+position = Vector2(958, 68)
+
+[node name="StaticIdentity7" parent="." unique_id=546218801 instance=ExtResource("1_byr7f")]
+position = Vector2(1079, 68)
+
+[node name="StaticIdentity8" parent="." unique_id=836025296 instance=ExtResource("1_byr7f")]
+position = Vector2(1079, 68)

@@ -8,6 +8,7 @@ var _console_node: Node = null
 var _debug_node: Node = null
 
 const SETTINGS_PATH: String = "console.ini"
+const SETTINGS_PATH_EDITOR: String = "console_editor.ini"
 
 var can_open_or_close: bool = true : set = set_can_open_or_close
 
@@ -25,7 +26,11 @@ func set_can_open_or_close(value: bool) -> void:
 func _ready() -> void:
 	_instance = self
 	
-	initialize(SETTINGS_PATH)
+	if Engine.is_editor_hint():
+		initialize(SETTINGS_PATH_EDITOR)
+	else:
+		initialize(SETTINGS_PATH)
+	
 	initialize_engine_settings()
 	
 	gd_print = SimusDev.get_settings().console.gd_print
@@ -37,9 +42,10 @@ func _ready() -> void:
 	
 	_debug_node = _debug_prefab.instantiate()
 	
-	var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
-	canvas.add_child(_console_node)
-	canvas.add_child(_debug_node)
+	if !Engine.is_editor_hint():
+		var canvas: CanvasLayer = SimusDev.canvas.get_layer(0)
+		canvas.add_child(_console_node)
+		canvas.add_child(_debug_node)
 	
 	var exec_commands: Array[SD_ConsoleCommand] = [
 		create_command("cmd.list"),
@@ -47,6 +53,8 @@ func _ready() -> void:
 	
 	for cmd in exec_commands:
 		cmd.executed.connect(_on_cmd_executed.bind(cmd))
+	
+	SD_ConsoleCategories._register_builtin()
 
 func _on_cmd_executed(cmd: SD_ConsoleCommand) -> void:
 	match cmd.get_code():

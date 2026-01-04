@@ -14,6 +14,9 @@ func get_window() -> SD_TrunkWindow:
 func _ready() -> void:
 	_console = SimusDev.console
 	
+	if Engine.is_editor_hint():
+		return
+	
 	for id in AudioServer.bus_count:
 		var audio_bus := SD_AudioBus.new(id)
 		_busses.append(audio_bus)

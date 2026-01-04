@@ -112,18 +112,22 @@ func get_messages_from_buffer() -> Array[SD_ConsoleMessage]:
 
 func write(text, category: int = SD_ConsoleCategories.CATEGORY.DEFAULT) -> SD_ConsoleMessage:
 	var message: SD_ConsoleMessage = SD_ConsoleMessage.new()
+	var color: Color = SD_ConsoleCategories.get_category_color(category)
 	message.message = text
 	message.category = category
-	message.color = SD_ConsoleCategories.get_category_color(category)
+	message.color = color
 	
-	put_message_to_buffer(message)
+	if !Engine.is_editor_hint():
+		put_message_to_buffer(message)
+	
 	on_write.emit(message)
 	update_console()
 	
 	if gd_print:
-		var print_text: String = message.get_as_string()
-		var rich_text: String = SD_ConsoleCategories.RICH_COLOR[category] % print_text
-		print_rich(rich_text)
+		if SD_ConsoleCategories.is_output_enabled_for(category):
+			var print_text: String = message.get_as_string()
+			var rich_text: String = "[color=%s]%s[/color]" % [color.to_html(), print_text]
+			print_rich(rich_text)
 	
 	return message
 

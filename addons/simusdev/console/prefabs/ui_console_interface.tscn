@@ -19,7 +19,7 @@ script = ExtResource("12_7dls8")
 code = "clear"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="ui_console_interface" type="Control" unique_id=1053908959 node_paths=PackedStringArray("_tips", "_drag", "toolbar_container")]
+[node name="ui_console_interface" type="Control" node_paths=PackedStringArray("_tips", "_drag", "toolbar_container")]
 custom_minimum_size = Vector2(768, 512)
 layout_mode = 3
 anchors_preset = 0
@@ -32,24 +32,24 @@ toolbar_container = NodePath("toolbar/VBoxContainer")
 metadata/_edit_vertical_guides_ = [784.0, 0.0]
 metadata/_edit_horizontal_guides_ = [471.0, 512.0]
 
-[node name="SD_UIControlDynamicSettings" type="Node" parent="." unique_id=1278902550 node_paths=PackedStringArray("sources")]
+[node name="SD_UIControlDynamicSettings" type="Node" parent="." node_paths=PackedStringArray("sources")]
 script = ExtResource("2_4hjv0")
 sources = [NodePath("../rect/refrect"), NodePath("../toolbar/refrect")]
 metadata/_custom_type_script = "uid://b63uuflcyfsli"
 
-[node name="SE_UIControlDrag" type="Node" parent="." unique_id=1929290000 node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
+[node name="SE_UIControlDrag" type="Node" parent="." node_paths=PackedStringArray("TARGET_INPUT", "TARGET_DRAG")]
 script = ExtResource("2_b1316")
 TARGET_INPUT = NodePath("..")
 TARGET_DRAG = NodePath("..")
 zoom_enabled = true
 metadata/_custom_type_script = "uid://bxycsjbmhbgx6"
 
-[node name="SD_ConsoleThemes" type="Node" parent="." unique_id=92567420 node_paths=PackedStringArray("apply_nodes")]
+[node name="SD_ConsoleThemes" type="Node" parent="." node_paths=PackedStringArray("apply_nodes")]
 script = ExtResource("4_vievh")
 apply_nodes = [NodePath("..")]
 metadata/_custom_type_script = "uid://cw8eins00okax"
 
-[node name="panel" type="Control" parent="." unique_id=1397337452]
+[node name="panel" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0.802)
 layout_mode = 1
 anchors_preset = 15
@@ -59,10 +59,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" parent="panel" unique_id=1558656426 instance=ExtResource("2_oq7w7")]
+[node name="Panel" parent="panel" instance=ExtResource("2_oq7w7")]
 layout_mode = 1
 
-[node name="rect" type="Control" parent="." unique_id=1681554971]
+[node name="rect" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -72,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="refrect" type="ReferenceRect" parent="rect" unique_id=1060996117]
+[node name="refrect" type="ReferenceRect" parent="rect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,7 +84,7 @@ border_color = Color(0, 0, 0, 1)
 border_width = 4.0
 editor_only = false
 
-[node name="toolbar" type="Control" parent="." unique_id=773689226]
+[node name="toolbar" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.942
 anchor_right = 1.0
@@ -94,7 +94,7 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="toolbar" unique_id=153939682]
+[node name="VBoxContainer" type="VBoxContainer" parent="toolbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,18 +103,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="settings" parent="toolbar/VBoxContainer" unique_id=922244886 instance=ExtResource("5_bjtgq")]
-visible = false
+[node name="settings" parent="toolbar/VBoxContainer" instance=ExtResource("5_bjtgq")]
 layout_mode = 2
 icon = ExtResource("6_n8mr8")
 expand_icon = true
 
-[node name="tools" parent="toolbar/VBoxContainer" unique_id=720511851 instance=ExtResource("5_bjtgq")]
+[node name="tools" parent="toolbar/VBoxContainer" instance=ExtResource("5_bjtgq")]
 layout_mode = 2
 icon = ExtResource("7_yc77v")
 expand_icon = true
 
-[node name="refrect" type="ReferenceRect" parent="toolbar" unique_id=22287407]
+[node name="refrect" type="ReferenceRect" parent="toolbar"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -127,7 +126,7 @@ border_color = Color(0, 0, 0, 1)
 border_width = 4.0
 editor_only = false
 
-[node name="ui_console_output" parent="." unique_id=1147531455 instance=ExtResource("4_xlpwh")]
+[node name="ui_console_output" parent="." instance=ExtResource("4_xlpwh")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.942
@@ -137,7 +136,7 @@ offset_top = 2.0
 offset_right = -1.74396
 offset_bottom = -0.0400085
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=789856299]
+[node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.951
@@ -149,10 +148,10 @@ placeholder_text = "ENTER COMMAND HERE..."
 keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
-deselect_on_focus_loss_enabled = false
 virtual_keyboard_enabled = false
+deselect_on_focus_loss_enabled = false
 
-[node name="ui_console_tips" parent="." unique_id=62692769 instance=ExtResource("10_0c7w3")]
+[node name="ui_console_tips" parent="." instance=ExtResource("10_0c7w3")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -160,7 +159,7 @@ anchor_right = 0.942
 offset_right = 0.255981
 offset_bottom = 194.0
 
-[node name="SD_NodeConsoleCommands" type="Node" parent="." unique_id=265498976]
+[node name="SD_NodeConsoleCommands" type="Node" parent="."]
 script = ExtResource("11_74bac")
 commands = Array[ExtResource("12_7dls8")]([SubResource("Resource_21h2m")])
 metadata/_custom_type_script = "uid://38osx81mny15"

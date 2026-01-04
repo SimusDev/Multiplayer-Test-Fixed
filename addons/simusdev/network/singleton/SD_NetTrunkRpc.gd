@@ -40,7 +40,7 @@ func call_rpc_on(peer: int, callable: Callable, args: Array = []) -> void:
 	
 	var net_node: SD_NetRegisteredNode = SD_Network.register_object(callable.get_object())
 	if net_node._inactive_for_peers.has(peer):
-		debug_print("cant call function on object: %s, %s., object is inactive for peer %s" % [str(callable.get_object()), callable.get_method(), str(peer)], SD_ConsoleCategories.WARNING)
+		debug_print("cant call rpc on object: %s, %s., object is inactive for peer %s" % [str(callable.get_object()), callable.get_method(), str(peer)], SD_ConsoleCategories.WARNING)
 		return
 	
 	multiplayer.rpc(peer, callable.get_object(), callable.get_method(), args)

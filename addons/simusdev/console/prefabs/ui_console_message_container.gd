@@ -6,8 +6,7 @@ extends Control
 @export var _vbox: VBoxContainer
 @export var _scroll: ScrollContainer
 
-
-var _messages := {}
+var _messages: Dictionary[String, Node] = {}
 
 func init_message(message: SD_ConsoleMessage) -> void:
 	var instance: Control = _messages.get(message.get_as_string(), null)
@@ -15,6 +14,7 @@ func init_message(message: SD_ConsoleMessage) -> void:
 		instance.count += 1
 	else:
 		instance = message_prefab.instantiate()
+		instance.message = message
 		_messages[message.get_as_string()] = instance
 		instance.tree_exiting.connect(_on_message_tree_exiting.bind(message.get_as_string()))
 		_vbox.add_child(instance)

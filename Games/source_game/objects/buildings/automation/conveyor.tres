@@ -11,7 +11,9 @@ gradient = SubResource("Gradient_3mggm")
 
 [resource]
 script = ExtResource("1_0sh5e")
+type = 5
 mesh = ExtResource("1_3ruo4")
+mesh_offset = Vector3(0, 0.2, 0)
 icon = SubResource("GradientTexture2D_lwn0s")
 name = "conveyor"
 prefab = ExtResource("1_1ht5u")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://danoxw1eto00t"]
+[gd_scene format=3 uid="uid://danoxw1eto00t"]
 
 [ext_resource type="Script" uid="uid://05gqrla3psra" path="res://Games/source_game/components/source_building.gd" id="1_ekdbf"]
 [ext_resource type="ArrayMesh" uid="uid://cfd4w1yo6hdwm" path="res://Games/source_game/objects/buildings/meshes/conveyor.tres" id="3_cjtww"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bbag3jovgula2" path="res://addons/simusdev/Game/icons/ui_icon_arrow.png" id="6_hph3d"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="7_0p64p"]
 [ext_resource type="AudioStream" uid="uid://b5dv28u5c3jg7" path="res://sounds/hl2/ambience/mechwhine.wav" id="8_a4jyt"]
+[ext_resource type="Script" uid="uid://dks1ecwbmrkaj" path="res://Games/source_game/components/build_snap_point.gd" id="9_a4jyt"]
 [ext_resource type="Script" uid="uid://dcdd6kovrah03" path="res://addons/simusdev/multiplayer/SD_MPAudioStreamPlayer3D.gd" id="9_imo3n"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vagcs"]
@@ -15,22 +16,24 @@ data = PackedVector3Array(0.5, 0.211213, 0.5, 0.5, 0.211213, -0.5, 0.5, -0.25, -
 [sub_resource type="BoxShape3D" id="BoxShape3D_hph3d"]
 size = Vector3(0.921326, 0.50824, 0.995)
 
-[node name="conveyor" type="Node3D" node_paths=PackedStringArray("health")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4jyt"]
+
+[node name="conveyor" type="Node3D" unique_id=1361051849 node_paths=PackedStringArray("health")]
 script = ExtResource("1_ekdbf")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
-[node name="SourceHealth" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SourceHealth" type="Node" parent="." unique_id=738986527 node_paths=PackedStringArray("target")]
 script = ExtResource("3_ekdbf")
 target = NodePath("..")
 health = 300.0
 max_health = 300.0
 metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="model" type="MeshInstance3D" parent="."]
+[node name="model" type="MeshInstance3D" parent="." unique_id=1834648847]
 mesh = ExtResource("3_cjtww")
 
-[node name="dir1" type="Sprite3D" parent="model"]
+[node name="dir1" type="Sprite3D" parent="model" unique_id=624133094]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, 0.28)
 modulate = Color(0.676107, 0.676107, 0.676107, 1)
 pixel_size = 0.005
@@ -38,7 +41,7 @@ shaded = true
 texture_filter = 0
 texture = ExtResource("6_hph3d")
 
-[node name="dir2" type="Sprite3D" parent="model"]
+[node name="dir2" type="Sprite3D" parent="model" unique_id=1554554482]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0.251, -0.22)
 modulate = Color(0.676107, 0.676107, 0.676107, 1)
 pixel_size = 0.005
@@ -46,20 +49,20 @@ shaded = true
 texture_filter = 0
 texture = ExtResource("6_hph3d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=945187478]
 
-[node name="collision" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="collision" type="CollisionShape3D" parent="StaticBody3D" unique_id=1993656928]
 shape = SubResource("ConcavePolygonShape3D_vagcs")
 
-[node name="SourceConveyorBelt" type="Area3D" parent="." node_paths=PackedStringArray("root")]
+[node name="SourceConveyorBelt" type="Area3D" parent="." unique_id=2011689755 node_paths=PackedStringArray("root")]
 script = ExtResource("5_28rhi")
 root = NodePath("..")
 
-[node name="collision" type="CollisionShape3D" parent="SourceConveyorBelt"]
+[node name="collision" type="CollisionShape3D" parent="SourceConveyorBelt" unique_id=1505057173]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -0.0037912, 0.00936098, 0)
 shape = SubResource("BoxShape3D_hph3d")
 
-[node name="SourceHitbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+[node name="SourceHitbox" type="Area3D" parent="." unique_id=6924567 node_paths=PackedStringArray("health")]
 collision_layer = 2
 collision_mask = 2
 monitoring = false
@@ -67,13 +70,32 @@ script = ExtResource("7_0p64p")
 health = NodePath("../SourceHealth")
 metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
 
-[node name="collision" type="CollisionShape3D" parent="SourceHitbox"]
+[node name="collision" type="CollisionShape3D" parent="SourceHitbox" unique_id=360686049]
 shape = SubResource("ConcavePolygonShape3D_vagcs")
 
-[node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="SD_MPAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2031957711]
 stream = ExtResource("8_a4jyt")
 unit_size = 0.1
 max_db = -24.0
 max_distance = 15.0
 script = ExtResource("9_imo3n")
 metadata/_custom_type_script = "uid://dcdd6kovrah03"
+
+[node name="BuildSnapPoint" type="Area3D" parent="." unique_id=858697647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+script = ExtResource("9_a4jyt")
+allowed_types = Array[int]([5])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildSnapPoint" unique_id=180665441]
+shape = SubResource("BoxShape3D_a4jyt")
+
+[node name="BuildSnapPoint2" type="Area3D" parent="." unique_id=1139411435]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1)
+script = ExtResource("9_a4jyt")
+allowed_types = Array[int]([5])
+metadata/_custom_type_script = "uid://dks1ecwbmrkaj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildSnapPoint2" unique_id=1624735550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.371139e-08, 0, 0)
+shape = SubResource("BoxShape3D_a4jyt")

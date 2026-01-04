@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c1c8omakuomj0"]
+
+[ext_resource type="PackedScene" uid="uid://dxm1e33vaki5d" path="res://addons/simusdev/ui/popups/base.tscn" id="1_ye5wq"]
+[ext_resource type="Script" uid="uid://br70tbxv7n8uh" path="res://addons/simusdev/tools/prefabs/output_settings/output_settings.gd" id="2_c6nv4"]
+[ext_resource type="PackedScene" uid="uid://b84xi2l2kgk4n" path="res://addons/simusdev/tools/prefabs/output_settings/category_output.tscn" id="3_jyau8"]
+[ext_resource type="FontFile" uid="uid://dci3prk14bp6" path="res://addons/simusdev/fonts/Monocraft.otf" id="5_pamjf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wce0h"]
+font = ExtResource("5_pamjf")
+font_size = 18
+
+[node name="output_settings" unique_id=1366714175 node_paths=PackedStringArray("_category_container") instance=ExtResource("1_ye5wq")]
+custom_minimum_size = Vector2(0, 256)
+offset_right = 368.0
+offset_bottom = 436.0
+script = ExtResource("2_c6nv4")
+_category_output_scene = ExtResource("3_jyau8")
+_category_container = NodePath("ScrollContainer/VBoxContainer")
+metadata/_edit_vertical_guides_ = [32.0]
+metadata/_edit_horizontal_guides_ = [32.0]
+
+[node name="title" parent="." index="5"]
+text = "OUTPUT"
+label_settings = SubResource("LabelSettings_wce0h")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." index="7" unique_id=1026350873]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.07300001
+anchor_right = 0.94600004
+anchor_bottom = 1.0
+offset_left = 0.17599964
+offset_top = 0.17199707
+offset_right = -0.12802124
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" index="0" unique_id=419015134]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1

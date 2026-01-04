@@ -4,6 +4,15 @@ var color: Color = Color(1, 1, 1, 1)
 var count: int = 1
 var font_size: int = 1
 
+var message: SD_ConsoleMessage
+
+func _ready() -> void:
+	visible = SD_ConsoleCategories.is_output_enabled_for(message.category)
+	SD_ConsoleCategories.on_category_output_status_changed.add_listener(_on_category_output_status_changed)
+
+func _on_category_output_status_changed(id: int, enabled: bool) -> void:
+	if message.category == id:
+		visible = enabled
 
 func _process(delta: float) -> void:
 	if !is_visible_in_tree():

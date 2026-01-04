@@ -1,3 +1,4 @@
+@tool
 extends SD_NodeLocalization
 class_name SD_NodeLocalizationSelect
 

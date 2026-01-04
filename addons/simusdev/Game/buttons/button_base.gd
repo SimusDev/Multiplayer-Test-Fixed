@@ -6,7 +6,7 @@ extends SD_UIButton
 @export_group("Localization")
 @export var localization_enabled: bool = false : set = set_localization_enabled
 @export var localization_key: String = "" : set = set_localization_key
-@export_multiline var localization_placeholder: String = "" : set = set_localization_placeholder
+#@export_multiline var localization_placeholder: String = "" : set = set_localization_placeholder
 
 @export_group("Modulate")
 @export var MODULATE_SPEED: float = 10.0
@@ -32,6 +32,9 @@ func _ready() -> void:
 		
 		
 		mouse_pointed.connect(__on_mouse_pointed)
+	
+	_label.localization_enabled = localization_enabled
+	_label.localization_key = localization_key
 
 func __on_button_pressed() -> void:
 	if audio_streams.is_empty():
@@ -78,7 +81,3 @@ func set_localization_enabled(value: bool) -> void:
 func set_localization_key(value: String) -> void:
 	localization_key = value
 	if _label: _label.localization_key = value
-
-func set_localization_placeholder(value: String) -> void:
-	localization_placeholder = value
-	if _label: _label.localization_placeholder = value

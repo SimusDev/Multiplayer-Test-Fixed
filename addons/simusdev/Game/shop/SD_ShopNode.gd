@@ -11,7 +11,7 @@ var initialize_at_start := true
 @export var unique_data: Dictionary[String, Variant] = {}
 @export var group: String = ""
 
-@onready var console := SimusDev.console
+@onready var console: SD_TrunkConsole = SimusDev.console
 
 var _shop: SD_GlobalShop
 var _fullcode: String

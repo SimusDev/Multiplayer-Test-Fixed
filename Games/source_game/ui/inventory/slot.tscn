@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl4tin75tv8gq"]
+[gd_scene format=3 uid="uid://dl4tin75tv8gq"]
 
 [ext_resource type="Script" uid="uid://chhx3y5tloktk" path="res://Games/source_game/ui/inventory/slot.gd" id="1_xan3g"]
 [ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="2_1obx4"]
@@ -13,9 +13,9 @@ script = ExtResource("3_1ewkx")
 metadata/_custom_type_script = "uid://dv4aas07newsa"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1obx4"]
-bg_color = Color(0.0981428, 0.0961011, 0.0838655, 0.898039)
+bg_color = Color(0.09803922, 0.09803922, 0.08235294, 0.60784316)
 
-[node name="Slot" type="Control"]
+[node name="Slot" type="Control" unique_id=1806881696]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 3
 anchor_right = 0.0546875
@@ -28,7 +28,7 @@ item_binds = Dictionary[String, ExtResource("2_1obx4")]({
 })
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=573629881]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1obx4")
 
-[node name="type_icon" type="TextureRect" parent="Panel"]
+[node name="type_icon" type="TextureRect" parent="Panel" unique_id=140551017]
 self_modulate = Color(1, 1, 1, 0.24313726)
 layout_mode = 1
 anchors_preset = 15
@@ -49,7 +49,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="noise" type="TextureRect" parent="Panel"]
+[node name="noise" type="TextureRect" parent="Panel" unique_id=1517348391]
 self_modulate = Color(1, 1, 1, 0.0627451)
 texture_filter = 1
 layout_mode = 1
@@ -61,7 +61,7 @@ grow_vertical = 2
 texture = ExtResource("4_1ewkx")
 expand_mode = 1
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="icon" type="TextureRect" parent="." unique_id=1478537397]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,20 +73,21 @@ texture = ExtResource("2_8kgjj")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ProgressBar" parent="icon" instance=ExtResource("7_p2iye")]
+[node name="ProgressBar" parent="icon" unique_id=613695178 instance=ExtResource("7_p2iye")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.014285714
-anchor_top = 0.9285714
-anchor_right = 0.98571426
-anchor_bottom = 0.98571426
-offset_right = 0.0
-offset_bottom = 0.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 69.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 metadata/_edit_use_anchors_ = true
 
-[node name="quantity" type="Label" parent="icon"]
+[node name="quantity" type="Label" parent="icon" unique_id=2099886577]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +97,7 @@ grow_vertical = 2
 text = "1"
 horizontal_alignment = 2
 
-[node name="SD_UIDragAndDrop" type="Node2D" parent="." node_paths=PackedStringArray("input_node", "draggable_node", "drop_node", "preview_node")]
+[node name="SD_UIDragAndDrop" type="Node2D" parent="." unique_id=261277028 node_paths=PackedStringArray("input_node", "draggable_node", "drop_node", "preview_node")]
 script = ExtResource("3_7emnb")
 input_node = NodePath("..")
 draggable_node = NodePath("../icon")
@@ -104,8 +105,7 @@ drop_node = NodePath("..")
 preview_node = NodePath("../icon")
 metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
 
-[node name="audio" type="AudioStreamPlayer" parent="."]
-bus = &"interface"
+[node name="audio" type="AudioStreamPlayer" parent="." unique_id=1940367307]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="drag_started" from="SD_UIDragAndDrop" to="." method="_on_sd_ui_drag_and_drop_drag_started"]

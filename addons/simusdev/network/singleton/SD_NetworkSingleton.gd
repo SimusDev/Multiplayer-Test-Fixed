@@ -25,6 +25,7 @@ signal initialized()
 @export var variables: SD_NetTrunkVariables
 @export var rpc: SD_NetTrunkRpc
 @export var net_console: SD_NetTrunkConsole
+@export var visibility: SD_NetTrunkVisibility
 @export var info: Node
 
 var _dedicated_server: bool = false
@@ -169,9 +170,11 @@ func _ready() -> void:
 	_s_network_deserializer._compression = settings.serializer_compression
 	_s_network_deserializer._min_bytes_to_compress = settings.serializer_min_bytes_to_compress
 	
-	api = SceneMultiplayer.new()
-	get_tree().set_multiplayer(api)
-	#multiplayer.allow_object_decoding = true
+	if !get_tree().get_multiplayer() is SceneMultiplayer:
+		get_tree().set_multiplayer(SceneMultiplayer.new())
+	
+	api = get_tree().get_multiplayer()
+	
 	get_tree().multiplayer_poll = not settings.custom_poll
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)

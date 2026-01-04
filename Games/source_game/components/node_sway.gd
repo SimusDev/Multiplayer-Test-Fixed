@@ -1,24 +1,32 @@
 class_name ViewModelSway extends Node
 
-@export var viewmodel:SourceViewModelRoot3D
-@export var sway_multiplier:float = 1.0
-var mouse_input:Vector2 = Vector2.ZERO
 
-func _input(event: InputEvent) -> void:
-	if not (SD_Network.is_authority(self)) and (not viewmodel.authorative_visibility):
-		return
-	
+
+var view_model: Node3D
+var mouse_input:Vector2
+
+func _ready():
+	var auth:bool = SD_Network.is_authority(self)
+	set_process(auth)
+	set_process_input(auth)
+	if auth:
+		view_model = get_parent()
+
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_input = event.relative * 0.0025
+
+func _process(delta):
 	if SimusDev.ui.has_active_interface():
 		return
+	var target_position:Vector3 = Vector3.ZERO
+	target_position.x = -mouse_input.x
+	target_position.y = mouse_input.y
 	
-	if event is InputEventMouseMotion:
-		mouse_input = event.relative * W_FPCSourceLikeCamera.get_local_sensitivity() * 0.1
-
-func viewmodel_sway(delta:float) -> void:
-	mouse_input = lerp(mouse_input, Vector2.ZERO, 10*delta)
-	if viewmodel:
-		viewmodel.rotation.x = lerp(viewmodel.rotation.x, (mouse_input.y * 0.025) * sway_multiplier, 10 * delta)
-		viewmodel.rotation.y = lerp(viewmodel.rotation.y, (mouse_input.x * 0.025)  * sway_multiplier, 10 * delta)
-
-func _process(delta: float) -> void:
-	viewmodel_sway(delta)
+	var target_rotation:Vector3 = Vector3.ZERO
+	target_rotation.x = -mouse_input.y
+	target_rotation.y = -mouse_input.x
+	
+	view_model.position = lerp(view_model.position, target_position, 10 * delta)
+	view_model.rotation = lerp(view_model.rotation, target_rotation * 1.5, 10 * delta)

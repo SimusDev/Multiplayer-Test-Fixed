@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://be7h2lkvpihn3"]
+[gd_scene format=3 uid="uid://be7h2lkvpihn3"]
 
 [ext_resource type="Script" uid="uid://cih3akh6rok3w" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.gd" id="1_spdlb"]
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="2_2v68o"]
 [ext_resource type="Script" uid="uid://bu1m66ordltfp" path="res://addons/simusdev/components/fp_controller/source_like/states/idle.gd" id="3_2v68o"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="4_rtvji"]
 
-[node name="W_FPCSourceLikeMovement" type="Node3D" node_paths=PackedStringArray("state_machine")]
+[node name="W_FPCSourceLikeMovement" type="Node3D" unique_id=240765583 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_spdlb")
 state_machine = NodePath("state_machine")
 ground_accel = 4.2
@@ -13,55 +13,55 @@ ground_decel = 3.0
 ground_friction = 10.0
 air_cap = 0.2
 
-[node name="state_machine" type="Node" parent="."]
+[node name="state_machine" type="Node" parent="." unique_id=1889969942]
 script = ExtResource("2_2v68o")
 metadata/_custom_type_script = "uid://b1q8rkwhld80p"
 
-[node name="ground" type="Node" parent="state_machine"]
+[node name="ground" type="Node" parent="state_machine" unique_id=1126609099]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="air" type="Node" parent="state_machine"]
+[node name="air" type="Node" parent="state_machine" unique_id=1323471565]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="air_crouch" type="Node" parent="state_machine"]
+[node name="air_crouch" type="Node" parent="state_machine" unique_id=1511861991]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="air_crouch_sprint" type="Node" parent="state_machine"]
+[node name="air_crouch_sprint" type="Node" parent="state_machine" unique_id=728647785]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="air_sprint" type="Node" parent="state_machine"]
+[node name="air_sprint" type="Node" parent="state_machine" unique_id=919306352]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="jump" type="Node" parent="state_machine"]
+[node name="jump" type="Node" parent="state_machine" unique_id=1818891803]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="crouched" type="Node" parent="state_machine"]
+[node name="crouched" type="Node" parent="state_machine" unique_id=821518123]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="crouched_walk" type="Node" parent="state_machine"]
+[node name="crouched_walk" type="Node" parent="state_machine" unique_id=1873078212]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="crouched_run" type="Node" parent="state_machine"]
+[node name="crouched_run" type="Node" parent="state_machine" unique_id=880393980]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="walk" type="Node" parent="state_machine"]
+[node name="walk" type="Node" parent="state_machine" unique_id=1311076325]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="run" type="Node" parent="state_machine"]
+[node name="run" type="Node" parent="state_machine" unique_id=1876814257]
 script = ExtResource("3_2v68o")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="sitting" type="Node" parent="state_machine"]
+[node name="sitting" type="Node" parent="state_machine" unique_id=1297055051]
 process_mode = 4
 script = ExtResource("4_rtvji")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceEmotions" load_steps=20 format=3 uid="uid://cjle81nnb3h56"]
+[gd_resource type="Resource" script_class="R_SourceEmotions" format=3 uid="uid://cjle81nnb3h56"]
 
 [ext_resource type="Script" uid="uid://uemp1u74tkca" path="res://Games/source_game/components/emotions/r_emotion.gd" id="1_ue2rk"]
 [ext_resource type="Resource" uid="uid://w33s2d6tj8yk" path="res://Games/source_game/objects/sound/player/anime1.tres" id="2_b7rgq"]

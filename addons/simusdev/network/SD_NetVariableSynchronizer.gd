@@ -10,7 +10,17 @@ class_name SD_NetVariableSynchronizer
 @export var synchronize: Dictionary[StringName, bool] = {
 }
 
-@export var channel: StringName = "vars"
+@export var channel: StringName = "vars" : set = set_channel
+
+func set_channel(new: StringName) -> void:
+	if channel == new:
+		return
+	
+	channel = new
+	
+	if !Engine.is_editor_hint():
+		SD_Network.register_channel(new)
+
 @export var tickrate: float = 0.0
 @export var transfer_mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE
 @export var allow_serialize: bool = true

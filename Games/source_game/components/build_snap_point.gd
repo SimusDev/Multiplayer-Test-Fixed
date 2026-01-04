@@ -9,8 +9,11 @@ var object:SourceBuilding = null : set = set_object
 
 func _ready() -> void:
 	object_change.connect(on_object_change)
+	if not is_instance_valid(point):
+		point = self
 
 func on_object_change() -> void:
+	monitorable = busy
 	if is_instance_valid(object):
 		object.tree_exited.connect(on_object_tree_exited)
 

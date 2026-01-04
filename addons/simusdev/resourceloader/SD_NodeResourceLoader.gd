@@ -13,7 +13,7 @@ var thread: Thread
 signal loading_started()
 signal loading_finished()
 
-var console := SimusDev.console
+var console: SD_TrunkConsole = SimusDev.console
 
 func _ready() -> void:
 	thread = Thread.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://u3r0rjbc5tny"]
+[gd_scene format=3 uid="uid://u3r0rjbc5tny"]
 
 [ext_resource type="Script" uid="uid://bnnxptbaee005" path="res://Games/source_game/game.gd" id="1_lvrp7"]
 [ext_resource type="Script" uid="uid://mhjfnoeev371" path="res://Games/source_game/events/SourceEvents.gd" id="3_8dbco"]
@@ -19,8 +19,7 @@
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="18_wirdf"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="19_dt7qg"]
 [ext_resource type="PackedScene" uid="uid://b2yv5d1ybwgxc" path="res://Games/source_game/components/camera/free_camera.tscn" id="20_ha5cx"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="20_ij05y"]
-[ext_resource type="PackedScene" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
+[ext_resource type="PackedScene" uid="uid://blyyw6brttkfj" path="res://Games/source_game/game/prefabs/death_camera.tscn" id="28_ioj0b"]
 
 [sub_resource type="Resource" id="Resource_dt7qg"]
 resource_name = "sv_cheats"
@@ -67,7 +66,7 @@ script = ExtResource("19_dt7qg")
 code = "player.teleport"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
-[node name="source_game" type="Node" node_paths=PackedStringArray("level_handler", "_spawner")]
+[node name="source_game" type="Node" unique_id=911686090 node_paths=PackedStringArray("level_handler", "_spawner")]
 script = ExtResource("1_lvrp7")
 level_handler = NodePath("SourceLevelHandler")
 welcome_text = "Source game HALOOO !!!! open console with '~' and type 'game.help' to get the guide !!!"
@@ -76,77 +75,75 @@ death_camera = ExtResource("28_ioj0b")
 _singleton_pack = ExtResource("3_tn3t5")
 _spawner = NodePath("SourceNetworkSpawner")
 
-[node name="SourceNetworkSpawner" type="Node" parent="."]
+[node name="SourceNetworkSpawner" type="Node" parent="." unique_id=936936192]
 script = ExtResource("4_gfajl")
-sync_at_start = false
-debug = true
-channel = "spawn"
 
-[node name="MapSpawner" type="Node" parent="." node_paths=PackedStringArray("initial_nodes")]
+[node name="MapSpawner" type="Node" parent="." unique_id=1139233681 node_paths=PackedStringArray("initial_nodes")]
 script = ExtResource("16_h0jfs")
 initial_nodes = [NodePath("../map_holder")]
 debug = true
 channel = "spawn"
 metadata/_custom_type_script = "uid://djvskk2xxjjpo"
 
-[node name="SourcePlayerSpawner" type="Node" parent="."]
+[node name="SourcePlayerSpawner" type="Node" parent="." unique_id=961005758]
 script = ExtResource("6_dvi7y")
 interface = ExtResource("7_lg245")
 metadata/_custom_type_script = "uid://cjh0w1rqjt1q3"
 
-[node name="SourceNetwork" type="Node" parent="."]
+[node name="SourceNetwork" type="Node" parent="." unique_id=373940454]
 script = ExtResource("6_152x2")
 
-[node name="SourceUIHandler" parent="." instance=ExtResource("4_spe63")]
+[node name="SourceUIHandler" parent="." unique_id=1952281203 instance=ExtResource("4_spe63")]
 
-[node name="SourceEvents" type="Node" parent="."]
+[node name="SourceEvents" type="Node" parent="." unique_id=831598498]
 script = ExtResource("3_8dbco")
 metadata/_custom_type_script = "uid://mhjfnoeev371"
 
-[node name="SourceLevelHandler" type="Node" parent="." node_paths=PackedStringArray("game", "root_node")]
+[node name="SourceLevelHandler" type="Node" parent="." unique_id=1430028283 node_paths=PackedStringArray("game", "root_node")]
 script = ExtResource("8_aahtd")
 game = NodePath("..")
 root_node = NodePath("../map_holder")
 levels_folder_path = "res://Games/source_game/level_resources/"
-level_at_start = "openworld"
+level_at_start = "kz"
 
-[node name="C_SourceObjectHandler" type="Node" parent="."]
+[node name="C_SourceObjectHandler" type="Node" parent="." unique_id=101652234]
 script = ExtResource("3_aahtd")
 base_dir = "res://Games/source_game/"
 object_dirs = PackedStringArray("props", "objects", "recipes", "buildings")
 
-[node name="SourceGameScripts" type="Node" parent="."]
+[node name="SourceGameScripts" type="Node" parent="." unique_id=376349446]
 script = ExtResource("13_rwrbd")
 path = "res://Games/source_game/gamescripts"
 metadata/_custom_type_script = "uid://omd1l2jsuw6u"
 
-[node name="SourceCrafting" type="Node" parent="." node_paths=PackedStringArray("object_handler")]
+[node name="SourceCrafting" type="Node" parent="." unique_id=1344023882 node_paths=PackedStringArray("object_handler")]
 script = ExtResource("8_spe63")
 object_handler = NodePath("../C_SourceObjectHandler")
 metadata/_custom_type_script = "uid://brbjcyxkk7elj"
 
-[node name="game_commands" type="Node" parent="."]
+[node name="game_commands" type="Node" parent="." unique_id=1244324368]
 script = ExtResource("18_wirdf")
-commands = Array[ExtResource("19_dt7qg")]([SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx"), SubResource("Resource_rwrbd"), SubResource("Resource_dvgr3")])
+commands = [SubResource("Resource_dt7qg"), SubResource("Resource_ij05y"), SubResource("Resource_8dbco"), SubResource("Resource_tn3t5"), SubResource("Resource_ha5cx"), SubResource("Resource_rwrbd"), SubResource("Resource_dvgr3")]
 metadata/_custom_type_script = "uid://38osx81mny15"
 
-[node name="decals" type="Node3D" parent="."]
+[node name="decals" type="Node3D" parent="." unique_id=373636625]
 
-[node name="spawner" type="Node" parent="decals" node_paths=PackedStringArray("_detect_roots")]
+[node name="spawner" type="Node" parent="decals" unique_id=942392598 node_paths=PackedStringArray("_detect_roots")]
 script = ExtResource("6_s8025")
 _detect_roots = [NodePath("..")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({})
 metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
 
-[node name="backrooms_trigger" type="Node3D" parent="."]
+[node name="backrooms_trigger" type="Node3D" parent="." unique_id=1154150446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 script = ExtResource("10_vakk2")
 room = ExtResource("11_8dbco")
 
-[node name="backrooms" type="Node3D" parent="."]
+[node name="backrooms" type="Node3D" parent="." unique_id=2046043793]
 
-[node name="map_holder" type="Node3D" parent="."]
+[node name="map_holder" type="Node3D" parent="." unique_id=1798807235]
 
-[node name="FreeCamera" parent="." instance=ExtResource("20_ha5cx")]
+[node name="FreeCamera" parent="." unique_id=2059847922 instance=ExtResource("20_ha5cx")]
 
 [connection signal="spawned" from="MapSpawner" to="SourcePlayerSpawner" method="_on_map_spawner_spawned"]
 [connection signal="_free_current_level" from="SourceLevelHandler" to="." method="_on_source_level_handler__free_current_level"]

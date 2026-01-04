@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://de25fv8uudtud"]
+[gd_scene load_steps=15 format=3 uid="uid://de25fv8uudtud"]
 
 [ext_resource type="Script" uid="uid://cltn8bdg6gbe4" path="res://addons/simusdev/network/singleton/SD_NetworkSingleton.gd" id="1_vwplp"]
 [ext_resource type="Script" uid="uid://cu84klb6vy2j1" path="res://addons/simusdev/network/singleton/SD_NetTrunkClient.gd" id="2_i41d2"]
@@ -13,8 +13,9 @@
 [ext_resource type="Script" uid="uid://1utem6n6u6mj" path="res://addons/simusdev/network/singleton/SD_NetTrunkRpc.gd" id="11_vhk8f"]
 [ext_resource type="Script" uid="uid://clg6tk3j1png4" path="res://addons/simusdev/network/singleton/SD_NetTrunkNetworkProcessor.gd" id="12_7qnfw"]
 [ext_resource type="Script" uid="uid://ymqk2gliopv8" path="res://addons/simusdev/network/singleton/SD_NetTrunkConsole.gd" id="13_50bjq"]
+[ext_resource type="Script" uid="uid://b7vnoua2jsgxw" path="res://addons/simusdev/network/singleton/SD_NetTrunkVisibility.gd" id="14_bmy6h"]
 
-[node name="Network" type="Node" unique_id=1590258035 node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "synchronization", "variables", "rpc", "net_console", "info")]
+[node name="Network" type="Node" unique_id=1590258035 node_paths=PackedStringArray("client", "server", "callables", "players", "cache", "synchronization", "variables", "rpc", "net_console", "visibility", "info")]
 script = ExtResource("1_vwplp")
 client = NodePath("Client")
 server = NodePath("Server")
@@ -25,6 +26,7 @@ synchronization = NodePath("Sync")
 variables = NodePath("Vars")
 rpc = NodePath("Rpc")
 net_console = NodePath("Console")
+visibility = NodePath("Visibility")
 info = NodePath("Not Active")
 metadata/_custom_type_script = "uid://cltn8bdg6gbe4"
 
@@ -94,3 +96,7 @@ metadata/_custom_type_script = "uid://clg6tk3j1png4"
 [node name="Console" type="Node" parent="." unique_id=672197438]
 script = ExtResource("13_50bjq")
 metadata/_custom_type_script = "uid://ymqk2gliopv8"
+
+[node name="Visibility" type="Node" parent="." unique_id=1969861444]
+script = ExtResource("14_bmy6h")
+metadata/_custom_type_script = "uid://b7vnoua2jsgxw"

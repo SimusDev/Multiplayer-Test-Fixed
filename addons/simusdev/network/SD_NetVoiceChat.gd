@@ -93,8 +93,8 @@ func _process(delta: float) -> void:
 			max_amp = max(abs(data[i]), max_amp)
 		
 		if max_amp > input_volume_threshold:
-			#_process_audio.rpc(data, sr)
-			SD_Network.call_rpc_except_self(_process_audio, [data, sr])
+			_process_audio.rpc(data, sr)
+			#SD_Network.call_rpc_except_self(_process_audio, [data, sr])
 
 func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Array) -> PackedFloat32Array:
 	var frames : int = recording_data.size()
@@ -107,7 +107,6 @@ func _downsample_half(recording_data: PackedVector2Array, data : PackedFloat32Ar
 		data[i] = (v1 + v2) / 2
 	return data
 
-@rpc("any_peer", "unreliable_ordered", "call_local")
 func _process_audio(audio : PackedFloat32Array, mixrate : float) -> void:
 	if multiplayer.get_unique_id() == multiplayer.get_remote_sender_id():
 		return

@@ -54,12 +54,12 @@ func _process(delta: float) -> void:
 func _settings_init() -> void:
 	pass
 
-func _load_settings(data: Dictionary[String, Variant] = {}) -> SD_SettingsAdsSDK:
-	_settings = SD_SettingsAdsSDK.save_or_load(SD_SettingsAdsSDK, self, data)
+func _load_settings(data: Dictionary[String, Variant] = {}, path: String = "") -> SD_SettingsAdsSDK:
+	_settings = SD_SettingsAdsSDK.save_or_load(SD_SettingsAdsSDK, data, path)
 	return _settings
 
-func _load_settings_custom(script: GDScript, data: Dictionary[String, Variant] = {}) -> SD_SettingsAdsSDK:
-	_settings = SD_SettingsAdsSDK.save_or_load(script, self, data)
+func _load_settings_custom(script: GDScript, data: Dictionary[String, Variant] = {}, path: String = "") -> SD_SettingsAdsSDK:
+	_settings = SD_SettingsAdsSDK.save_or_load(script, data, "")
 	return _settings
 	
 

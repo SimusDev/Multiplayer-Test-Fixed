@@ -1,7 +1,7 @@
 extends Resource
 class_name SD_NetworkSettings
 
-@export var enabled: bool = false
+@export var enabled: bool = true
 var custom_poll: bool = false
 @export var channels: PackedStringArray = []
 @export var root_path: String = "/root/"

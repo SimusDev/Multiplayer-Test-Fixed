@@ -216,11 +216,16 @@ func try_uncache_node(path: NodePath) -> void:
 	if not SD_Network.is_server():
 		return
 	
+	#await get_tree().create_timer(1).timeout
+	
 	var cache_by_path: Dictionary[NodePath, int] = get_cached_nodes_by_path()
 	var cache_by_id: Dictionary[int, NodePath] = get_cached_nodes_by_id()
 	var net_id: int = cache_by_path.get(path, -1)
+	
 	if net_id < 0:
 		return
+	
+	#print(path)
 	
 	#cache_by_id.erase(net_id)
 	#cache_by_path.erase(path)
@@ -260,12 +265,18 @@ func serialize_node_reference(node: Object) -> Variant:
 
 func deserialize_node_reference(data: Variant) -> Object:
 	if data is int:
-		var founded: Object = SD_NetworkedResource.deserialize_reference(data)
+		var founded: Object
+		
+		founded = SD_NetworkedResource.deserialize_reference(data)
 		
 		if founded:
 			return founded
 		
 		founded = get_node_or_null(get_cached_path_by_id(data))
+		if founded:
+			return founded
+		
+		founded = instance_from_id(data)
 		if founded:
 			return founded
 		

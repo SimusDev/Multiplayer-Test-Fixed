@@ -5,12 +5,14 @@ signal updated()
 
 var _data := ConfigFile.new()
 
-var _current_language: String = ""
+var _current_language: String = DEFAULT_LANGUAGE
 
 var enabled: bool = true
 
 var _flags: Dictionary[String, Texture] = {}
 var _unique_names: Dictionary[String, String] = {}
+
+const DEFAULT_LANGUAGE: String = "en"
 
 func update_localization() -> void:
 	updated.emit()

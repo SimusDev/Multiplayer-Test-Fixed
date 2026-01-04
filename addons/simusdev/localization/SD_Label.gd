@@ -27,12 +27,10 @@ class_name SD_Label
 @export_group("Localization")
 @export var localization_enabled: bool = false : set = set_localization_enabled, get = get_localization_enabled
 @export var localization_key: String = "" : set = set_localization_key, get = get_localization_key
-@export_multiline var localization_placeholder: String = "" : set = set_localization_placeholder, get = get_localization_placeholder
+#@export_multiline var localization_placeholder: String = "" : set = set_localization_placeholder, get = get_localization_placeholder
 @export var format: Array[String] = [] : set = set_format
-var _format_parsed: Array[String] = []
 
-#@export_multiline var localization_script_code: String = _LOCALIZATION_UPDATE_SCRIPT_TEMPLATE : set = set_localization_script_code
-#@export var localization_script: GDScript
+var _localizator: SD_NodeLocalizatorProperty
 
 var _last_text: String = ""
 
@@ -196,6 +194,14 @@ func _on_resized() -> void:
 	update_autosize()
 
 func _ready() -> void:
+	_localizator = SD_NodeLocalizatorProperty.new()
+	_localizator.node = self
+	_localizator.property = "text"
+	_localizator.enabled = localization_enabled
+	_localizator.key = localization_key
+	_localizator.format = format
+	add_child(_localizator)
+	
 	_last_text = text
 	update_autosize()
 	
@@ -206,33 +212,22 @@ func _ready() -> void:
 	if custom_settings_enabled:
 		label_settings = label_settings.duplicate()
 	
-	if Engine.is_editor_hint():
-		return
-	
-	get_localization().updated.connect(_on_localization_updated)
-	
-	update_localization()
 
 func _process(delta: float) -> void:
 	_update_text_change()
-
-func _on_localization_updated() -> void:
-	update_localization()
 
 func get_localization() -> SD_TrunkLocalization:
 	return SimusDev.localization as SD_TrunkLocalization
 
 func set_localization_enabled(enabled: bool) -> void:
 	localization_enabled = enabled
-	update_localization()
+	if _localizator:
+		_localizator.enabled = enabled
 
 func set_localization_key(key: String) -> void:
 	localization_key = key
-	update_localization()
-
-func set_localization_placeholder(placeholder: String) -> void:
-	localization_placeholder = placeholder
-	update_localization()
+	if _localizator:
+		_localizator.set_key(key)
 
 func get_localization_key() -> String:
 	return localization_key
@@ -240,50 +235,9 @@ func get_localization_key() -> String:
 func get_localization_enabled() -> bool:
 	return localization_enabled
 
-func get_localization_placeholder() -> String:
-	return localization_placeholder
-
-func update_localization() -> void:
-	if localization_enabled:
-		_parse_format(format)
-		
-		if Engine.is_editor_hint():
-			
-			var editor_text: String = localization_placeholder
-			if editor_text.is_empty():
-				editor_text = localization_key
-			
-			if format.is_empty():
-				text = editor_text
-			else:
-				text = editor_text % format
-			
-			return
-		
-		var text_key: String =  get_localization().get_text_from_key(localization_key)
-		
-		if format.is_empty():
-			text = text_key
-		else:
-			text = text_key % _format_parsed
-		_update_text_change()
-	
-	
-	_on_localization_update()
-	localization_updated.emit()
-
-func _parse_format(from: Array[String]) -> void:
-	_format_parsed.clear()
-	
-	if Engine.is_editor_hint():
-		_format_parsed = from.duplicate()
-	else:
-		for string in from:
-			_format_parsed.append(get_localization().get_text_from_key(string))
-
 func set_format(new_format: Array[String]) -> void:
 	format = new_format
-	update_localization()
+	_localizator.set_format(new_format)
 
 func _on_localization_update() -> void:
 	pass
