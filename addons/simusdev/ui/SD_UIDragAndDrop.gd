@@ -112,7 +112,7 @@ func drag_stop() -> void:
 	drag_stopped.emit()
 
 func drop() -> void:
-	_is_dragging = true
+	#_is_dragging = true
 	
 	drag_stop()
 	if _current_drop_zone:

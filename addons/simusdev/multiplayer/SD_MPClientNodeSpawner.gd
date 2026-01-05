@@ -16,9 +16,9 @@ signal despawn_begin(node: Node, path: String)
 @export var auto_handle_logic: bool = true
 
 @export var APPEND_PROPERTIES_TO_BASE_TYPES : Dictionary[String, PackedStringArray] = {
-	"Node2D" : ["transform"],
-	"Node3D" : ["transform"],
-	"CharacterBody3D": ["transform"],
+	"Node2D" : PackedStringArray(["transform"]),
+	"Node3D" : PackedStringArray(["transform"]),
+	"CharacterBody3D": PackedStringArray(["transform"]),
 }
 
 @export var scripts_to_sync: Array[Script] = []

@@ -1,10 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmepknoq0be13"]
+[gd_scene format=3 uid="uid://dmepknoq0be13"]
 
 [ext_resource type="Script" uid="uid://bigqs2v4dchuh" path="res://Games/source_game/components/wapon_melee.gd" id="1_k756q"]
 [ext_resource type="PackedScene" uid="uid://grx8xcps0x4p" path="res://Games/source_game/game/prefabs/bullethole.tscn" id="2_qn1h8"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="3_4tykw"]
+[ext_resource type="Script" uid="uid://ddorrr4rh5ny8" path="res://Games/source_game/components/animation/weapon_animator.gd" id="3_tior4"]
 [ext_resource type="PackedScene" uid="uid://pu1hx1mgut0f" path="res://Games/source_game/game/3dmodels/crowbar/half-life_2_crowbar.glb" id="4_b6hyk"]
+[ext_resource type="Script" uid="uid://j2pbtfls3jgk" path="res://Games/source_game/components/animation/r_animation_hook.gd" id="4_yo8an"]
 [ext_resource type="PackedScene" uid="uid://bphyt7xv5qoa" path="res://Games/source_game/game/prefabs/arms.tscn" id="5_4tykw"]
+[ext_resource type="Script" uid="uid://bo60r48iiqye6" path="res://Games/source_game/components/animation/r_animation_hook_signal.gd" id="5_aihfm"]
+[ext_resource type="AudioStream" uid="uid://dennpauvioqw5" path="res://sounds/hl1/crowbar/half-life-crowbar-swing.mp3" id="6_aihfm"]
+
+[sub_resource type="Resource" id="Resource_ok6wv"]
+script = ExtResource("5_aihfm")
+name = &"event_pick"
+animations = Array[StringName]([&"pick"])
+
+[sub_resource type="Resource" id="Resource_tt2p5"]
+script = ExtResource("5_aihfm")
+name = &"event_fire"
+animations = Array[StringName]([&"fire"])
+
+[sub_resource type="Resource" id="Resource_pivqy"]
+script = ExtResource("5_aihfm")
+name = &"event_inspect"
+animations = Array[StringName]([&"inspect"])
 
 [sub_resource type="Animation" id="Animation_b6hyk"]
 length = 0.001
@@ -42,7 +60,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.2222738, -0.0437911, -0.39)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -54,12 +72,11 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.18702568, -0.013661399, -0.073345914)]
 }
 
 [sub_resource type="Animation" id="Animation_enwn5"]
 resource_name = "fire"
-length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -67,12 +84,9 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.133333, 1.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"impact"
-}, {
 "args": [],
 "method": &"impact"
 }]
@@ -81,25 +95,68 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("model:position")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.166667, 0.236363, 0.2669, 0.4),
+"times": PackedFloat32Array(0, 0.08104038, 0.16748345, 0.23333333, 0.2647319, 0.43333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.275, 0, -0.29), Vector3(-0.275, 0, -0.29), Vector3(-0.275, 0, -0.29), Vector3(-0.275, 0, -0.25), Vector3(0, 0, 0)]
+"values": [Vector3(0.2222738, -0.0437911, -0.39), Vector3(0.2222738, 0.043353856, -0.3241377), Vector3(0.047945157, -0.12620008, -0.5306621), Vector3(0.047945157, -0.12620008, -0.5306621), Vector3(0.047945157, -0.12620008, -0.5306621), Vector3(0.2222738, -0.0437911, -0.39)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("model:rotation")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
+"times": PackedFloat32Array(0, 0.08104038, 0.16748345, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.18702568, -0.013661399, -0.073345914), Vector3(0.3395146, -0.061734278, -0.3327298), Vector3(-0.42024866, 0.36164588, -0.28610426), Vector3(0.012217305, 0.3228859, -0.19547687), Vector3(0.18702568, -0.013661399, -0.073345914)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_aihfm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_m77la"]
+resource_name = "inspect"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.49633127, 0.93333334, 1.4666667, 1.6449555, 2.2333333, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.387463, 0, -0.20944), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(-0.603884, 0.188496, 0.364774), Vector3(-0.603612, 0.0659298, 0.321332), Vector3(0.387463, 0, 0.148353), Vector3(0, 0, 0)]
+"values": [Vector3(0.2222738, -0.0437911, -0.39), Vector3(0.04938285, 0.107331574, -0.4591546), Vector3(0.04938285, 0.107331574, -0.4591546), Vector3(0.10620572, 0.057663135, -0.43642604), Vector3(0.16507983, 0.08642123, -0.4707259), Vector3(0.16507983, 0.08642123, -0.4707259), Vector3(0.2222738, -0.0437911, -0.39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.49633127, 0.93333334, 1.4666667, 1.6449555, 2.2333333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.18702568, -0.013661399, -0.073345914), Vector3(0.4023117, 0.8554537, -0.39779994), Vector3(0.4023117, 0.8554537, -0.39779994), Vector3(0.32363948, 0.5378519, -0.27923432), Vector3(0.671768, -0.6511763, 0.5267761), Vector3(0.671768, -0.6511763, 0.5267761), Vector3(0.18702568, -0.013661399, -0.073345914)]
 }
 
 [sub_resource type="Animation" id="Animation_4tykw"]
@@ -109,64 +166,66 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("model:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -0.64, 0.16), Vector3(0, -0.21, 0.16), Vector3(0, 0.03, 0), Vector3(0, 0, 0)]
+"values": [Vector3(-0.022672683, -0.36063874, -0.39), Vector3(0.2222738, -0.0437911, -0.39)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("model:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-1.97746, 0, 0), Vector3(-0.424115, 0, 0), Vector3(0.0698132, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(-0.75619954, 0.45507985, 0.4966865), Vector3(0.18702568, -0.013661399, -0.073345914)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tykw"]
 _data = {
 &"RESET": SubResource("Animation_b6hyk"),
 &"fire": SubResource("Animation_enwn5"),
+&"inspect": SubResource("Animation_m77la"),
 &"pick": SubResource("Animation_4tykw")
 }
 
-[node name="crowbar" type="Node3D"]
+[node name="crowbar" type="Node3D" unique_id=96407011]
 script = ExtResource("1_k756q")
 bullethole = ExtResource("2_qn1h8")
 metadata/_custom_type_script = "uid://dj1vged070hd"
 
-[node name="sync" type="Node" parent="."]
-script = ExtResource("3_4tykw")
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
+[node name="SourceWeaponAnimator" type="Node" parent="." unique_id=1066375199 node_paths=PackedStringArray("player")]
+script = ExtResource("3_tior4")
+hooks = Array[ExtResource("4_yo8an")]([SubResource("Resource_ok6wv"), SubResource("Resource_tt2p5"), SubResource("Resource_pivqy")])
+player = NodePath("../animation_player")
+initialized = true
+metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4tykw")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." unique_id=84031094]
+libraries/ = SubResource("AnimationLibrary_4tykw")
 
-[node name="model" parent="." instance=ExtResource("4_b6hyk")]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+[node name="model" parent="." unique_id=463843796 instance=ExtResource("4_b6hyk")]
+transform = Transform3D(0.9974046, 0.07074007, -0.013422746, -0.07200229, 0.9799198, -0.18593726, 2.7939682e-09, 0.18642111, 0.98246974, 0.2222738, -0.0437911, -0.39)
 
 [node name="Sketchfab_model" parent="model" index="0"]
 transform = Transform3D(-0.0245746, 0.0172073, 7.52155e-10, 0, -1.31134e-09, 0.03, 0.0172073, 0.0245746, 1.07419e-09, 0, 0, 0)
 
-[node name="left_hand" type="Marker3D" parent="model"]
+[node name="left_hand" type="Marker3D" parent="model" unique_id=1771748646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255082, -0.787723, 0.547769)
 
-[node name="right_hand" type="Marker3D" parent="model"]
+[node name="right_hand" type="Marker3D" parent="model" unique_id=1648566635]
 transform = Transform3D(-0.999766, -0.00335422, -0.0213611, 0.0192302, 0.313776, -0.949302, 0.0098868, -0.949491, -0.313638, 0.0285779, -0.0318516, 0.0645551)
 
-[node name="arms" parent="." instance=ExtResource("5_4tykw")]
-transform = Transform3D(-0.8969577, 0, -0.44211635, 0, 1, 0, 0.44211635, 0, -0.8969577, 0, 0, 0.11356686)
+[node name="arms" parent="." unique_id=2102439384 instance=ExtResource("5_4tykw")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -0.09699412, 0.024621844)
 
-[node name="Skeleton3D" parent="arms/root" index="0"]
+[node name="Skeleton3D" parent="arms/root" parent_id_path=PackedInt32Array(2102439384, 1236406471) index="0" unique_id=1707103073]
 bones/31/position = Vector3(0.003, 0.064, 0.02)
 bones/31/rotation = Quaternion(0.115, 0.072, -0.065, 0.989)
 bones/32/rotation = Quaternion(0.057, -0.012, -1.111, 0.991)
@@ -178,11 +237,15 @@ bones/44/rotation = Quaternion(0.009, 0.035, -0.98, 0.964)
 bones/45/rotation = Quaternion(0.026, -0.021, -0.81, 0.968)
 bones/48/rotation = Quaternion(-0.388, -0.551, 0.177, 0.682)
 
-[node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1"]
+[node name="left_hand_ik" parent="arms/root/Skeleton3D" index="1" unique_id=426165911]
 target_node = NodePath("../../../../model/left_hand")
 
-[node name="right_hand_ik" parent="arms/root/Skeleton3D" index="2"]
+[node name="right_hand_ik" parent="arms/root/Skeleton3D" index="2" unique_id=1582587799]
 target_node = NodePath("../../../../model/right_hand")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=82458149]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=249952127]
 
 [editable path="model"]
 [editable path="arms"]

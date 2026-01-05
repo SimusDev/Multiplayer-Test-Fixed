@@ -47,6 +47,9 @@ camera_node = NodePath("../..")
 snappiness = 1.0
 bob_amplitude_x = 0.012
 
+[node name="interactor" parent="SourceCamera" index="4" unique_id=791307133]
+target_position = Vector3(0, 0, -5)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" parent_id_path=PackedInt32Array(1358480324) index="0" unique_id=2126420387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0263383, 1.3809, -0.0360413)
 shape = SubResource("BoxShape3D_1jxyn")

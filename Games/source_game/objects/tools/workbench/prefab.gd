@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends SourceBuilding
 
 @export var ui: PackedScene
 

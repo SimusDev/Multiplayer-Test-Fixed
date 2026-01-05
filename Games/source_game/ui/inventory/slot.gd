@@ -113,7 +113,6 @@ func _on_gui_input(event: InputEvent) -> void:
 				show_actions()
 
 func on_inventory_closed(_inv=null) -> void:
-	print("Clised")
 	$SD_UIDragAndDrop.drag_stop()
 
 func _on_sd_ui_drag_and_drop_drag_started() -> void:

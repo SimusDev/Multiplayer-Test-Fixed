@@ -447,8 +447,9 @@ metadata/_custom_type_script = "uid://4q60q717rxsh"
 shape = SubResource("CapsuleShape3D_i0lyu")
 debug_color = Color(0.341176, 0.486275, 1, 0)
 
-[node name="SourceCameraSwithcer" type="Node" parent="." unique_id=1268936670 node_paths=PackedStringArray("base", "cameras")]
+[node name="SourceCameraSwithcer" type="Node" parent="." unique_id=1268936670 node_paths=PackedStringArray("nodes_to_hide", "base", "cameras")]
 script = ExtResource("26_y3hgg")
+nodes_to_hide = [NodePath("../SourceCamera/Camera3D/CameraShake/SourceViewModelRoot3D")]
 base = NodePath("../SourceCamera")
 cameras = [NodePath("../SourceCamera/cameras/1"), NodePath("../SourceCamera/cameras/2")]
 metadata/_custom_type_script = "uid://8ivv40tjuu7w"

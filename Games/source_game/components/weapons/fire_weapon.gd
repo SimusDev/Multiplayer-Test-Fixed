@@ -69,7 +69,6 @@ func fire() -> void:
 	#camera_shake.
 	
 	cooldown_timer.start()
-	event_fire.emit()
 	
 	
 	var pre_event: S_EventGunFirePre = S_EventGunFirePre.get_by_script(S_EventGunFirePre) as S_EventGunFirePre
@@ -84,6 +83,7 @@ func fire() -> void:
 	play_fire_sound()
 	
 	stack.set_durability(stack.get_durability() - 1)
+	event_fire.emit()
 
 func spawn_projectile() -> SourceProjectile:
 	var projectile:Node3D = weapon.projectile.instantiate()

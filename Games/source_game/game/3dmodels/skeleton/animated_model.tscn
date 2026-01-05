@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bpee0363gcskb" path="res://Games/source_game/game/3dmodels/skeleton/skeleton.fbx" id="2_huy8b"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d4jhfqvtnh1a1" path="res://Games/source_game/game/3dmodels/skeleton/blend_tree.tres" id="3_7xhu2"]
 [ext_resource type="AnimationLibrary" uid="uid://b70xthvesq8rn" path="res://Games/source_game/game/3dmodels/skeleton/animation_library.tres" id="3_huy8b"]
+[ext_resource type="Script" uid="uid://bp0rdj4e63cah" path="res://Games/source_game/components/viewmodel/source_viewmodel_root3d.gd" id="5_i6v7q"]
+[ext_resource type="Resource" uid="uid://b6wfetw8s3ti6" path="res://Games/source_game/components/viewmodel/default.tres" id="6_vfkdg"]
 
 [node name="SourceAnimatedModel" type="Node3D" unique_id=1747977976 node_paths=PackedStringArray("root", "model", "tree", "player", "skeleton")]
 script = ExtResource("1_jmnt0")
@@ -25,6 +27,32 @@ metadata/_custom_type_script = "uid://bo8uwskkur08r"
 [node name="model3d" parent="." unique_id=1944621090 instance=ExtResource("2_huy8b")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
+[node name="rig" parent="model3d" index="0" unique_id=800012862]
+transform = Transform3D(0.9978795, -0.06427064, 0.010284051, -0.010548426, -0.0037754695, 0.9999372, -0.06422776, -0.99792534, -0.004445418, -0.018052956, -0.002123506, 0.012751342)
+
+[node name="Skeleton3D" parent="model3d/rig" index="0" unique_id=791490040]
+bones/1/rotation = Quaternion(-0.2523702, -0.0044939807, 0.0012720237, 0.9676195)
+bones/2/rotation = Quaternion(0.07171561, -0.008846738, -5.5848916e-05, 0.9973859)
+bones/3/rotation = Quaternion(0.12707296, -0.001358425, 0.00050175865, 0.9918924)
+bones/4/rotation = Quaternion(-0.14284547, -0.0013530499, 0.0005262234, 0.98974395)
+bones/5/rotation = Quaternion(0.9189379, -0.00022043427, 0.0014349426, 0.39439952)
+bones/7/rotation = Quaternion(-0.5815235, -0.34978396, -0.4551558, 0.57646763)
+bones/8/rotation = Quaternion(-0.2040722, 0.73700255, -0.54265356, 0.34743202)
+bones/9/rotation = Quaternion(0.0883501, -0.05728077, -0.00024481217, 0.9944412)
+bones/10/rotation = Quaternion(0.017768987, -0.0009840734, -0.009087825, 0.9998004)
+bones/12/rotation = Quaternion(-0.62324864, 0.2990069, 0.45946285, 0.55771846)
+bones/13/rotation = Quaternion(-0.32623896, -0.6596125, 0.44031328, 0.5143965)
+bones/14/rotation = Quaternion(0.1293515, 0.057022545, 0.00035853032, 0.9899578)
+bones/15/rotation = Quaternion(0.11912857, -0.10777405, 0.012475847, 0.9869334)
+bones/17/rotation = Quaternion(0.98448354, 0.026141185, -0.072626114, 0.15758917)
+bones/18/rotation = Quaternion(0.17083621, -0.025494307, -0.017058434, 0.98482186)
+bones/19/rotation = Quaternion(-0.60201645, -0.037054896, 0.057847843, 0.795523)
+bones/20/rotation = Quaternion(3.5527137e-15, 0.9726901, -0.23210783, -3.5527137e-15)
+bones/22/rotation = Quaternion(0.98651, -0.0364435, 0.10253992, 0.122292705)
+bones/23/rotation = Quaternion(0.1288527, 0.047338434, 0.020110872, 0.9903291)
+bones/24/rotation = Quaternion(-0.5780968, 0.043361235, -0.06750107, 0.8120145)
+bones/25/rotation = Quaternion(-1.2344658e-07, 0.9707226, -0.24020363, -7.452079e-08)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=61129438]
 root_node = NodePath("../model3d")
 libraries/animated_model = ExtResource("3_huy8b")
@@ -36,3 +64,18 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/crouched_idle/blend_position = Vector2(0, 0)
 parameters/StateMachine/run/blend_position = Vector2(0, 0)
 parameters/StateMachine/walk/blend_position = Vector2(0.004651189, 0.010050297)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="." unique_id=1107905610]
+transform = Transform3D(0.98185915, 0.17337473, -0.07676561, 0.18939273, -0.87741035, 0.44077352, 0.009064012, -0.44731647, -0.8943293, 0.28057894, 0.74089015, -0.01570554)
+bone_name = "hand.R_end"
+bone_idx = 16
+use_external_skeleton = true
+external_skeleton = NodePath("../model3d/rig/Skeleton3D")
+
+[node name="SourceViewModelRoot3D" type="Node3D" parent="BoneAttachment3D" unique_id=1321280215]
+script = ExtResource("5_i6v7q")
+editor = true
+placeholder = ExtResource("6_vfkdg")
+metadata/_custom_type_script = "uid://bp0rdj4e63cah"
+
+[editable path="model3d"]

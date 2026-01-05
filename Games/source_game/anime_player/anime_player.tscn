@@ -29,24 +29,23 @@ height = 2.81533
 
 [node name="anime2" unique_id=593912937 instance=ExtResource("1_pyl8t")]
 
-[node name="HideNodesWhenAuthority" parent="." index="2" unique_id=298092745 node_paths=PackedStringArray("authority_true")]
+[node name="CameraShake#camera_crouch_pos" type="Node3D" parent="." index="1" unique_id=313965854]
+
+[node name="HideNodesWhenAuthority" parent="." index="3" unique_id=298092745 node_paths=PackedStringArray("authority_true")]
 authority_true = [NodePath("../nickname"), null]
 
-[node name="SourceMovement" parent="." index="10" unique_id=865871166]
+[node name="SourceMovement" parent="." index="11" unique_id=865871166]
 _sprint_speed = 5.0
 _crouch_sprint_speed = 2.5
 
-[node name="SourceCrouch" parent="." index="11" unique_id=1101867363 node_paths=PackedStringArray("collision_normal", "collision_crouch", "crouch_camera_position")]
+[node name="SourceCrouch" parent="." index="12" unique_id=1101867363 node_paths=PackedStringArray("collision_normal", "collision_crouch")]
 collision_normal = NodePath("../collision_normal")
 collision_crouch = NodePath("../collision_crouched")
-crouch_camera_position = NodePath("../CameraShake/camera_crouch_pos")
 
-[node name="CameraShake" parent="." index="12" unique_id=1864489592]
+[node name="CameraShake" parent="SourceCamera/Camera3D" index="0" unique_id=1864489592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="camera_crouch_pos" type="Node3D" parent="CameraShake" index="1" unique_id=313965854]
-
-[node name="hitbox_body" parent="." index="13" unique_id=1358480324]
+[node name="hitbox_body" parent="." index="14" unique_id=1358480324]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_body" index="0" unique_id=104191897]
@@ -54,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.717864, 0)
 shape = SubResource("CylinderShape3D_efwcb")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="hitbox_legs" parent="." index="14" unique_id=247879102]
+[node name="hitbox_legs" parent="." index="15" unique_id=247879102]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 damage_multiplier = 0.4
 
@@ -63,16 +62,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226172, 0)
 shape = SubResource("CylinderShape3D_5fc14")
 debug_color = Color(0, 0, 1, 1)
 
-[node name="hitbox_head" parent="." index="15" unique_id=1894736178]
+[node name="hitbox_head" parent="." index="16" unique_id=1894736178]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox_head" index="0" unique_id=29631327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20768, 0)
 shape = SubResource("CylinderShape3D_gwj6c")
 debug_color = Color(0.807843, 0.00392157, 0.988235, 1)
-
-[node name="nickname" parent="." index="16" unique_id=2050492904]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="collision_normal" type="CollisionShape3D" parent="." index="17" unique_id=617999708]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -83,13 +79,74 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50512695, 0)
 shape = SubResource("CapsuleShape3D_efwcb")
 disabled = true
 
-[node name="collision_normal" parent="AI_Visible" parent_id_path=PackedInt32Array(806906378) index="0" unique_id=1386005798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026482, 0, 0)
-shape = SubResource("CapsuleShape3D_5fc14")
+[node name="nickname" parent="." index="19" unique_id=2050492904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="SourceAnimatedModel" parent="." index="20" unique_id=304911168 node_paths=PackedStringArray("target") instance=ExtResource("2_6ues7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 target = NodePath("..")
 
+[node name="Sketchfab_model" parent="SourceAnimatedModel/model3d" parent_id_path=PackedInt32Array(304911168, 559215435) index="0"]
+transform = Transform3D(0.72921664, -0.053256433, 0.6822078, 0.00012327552, -0.9969543, -0.07795925, 0.6842833, 0.05693311, -0.7269909, -0.051868435, -0.060609773, 0.049811162)
+
+[node name="Skeleton3D" parent="SourceAnimatedModel/model3d/Sketchfab_model/root/GLTF_SceneRootNode/Armature_185/GLTF_created_0" index="1"]
+bones/2/rotation = Quaternion(0.08680314, 0.06789202, -0.0139771355, 0.99381113)
+bones/3/rotation = Quaternion(0.13057749, 0.13508268, -0.026553428, 0.98183364)
+bones/4/rotation = Quaternion(0.6978149, 0.43380937, 0.47117758, -0.32071087)
+bones/5/rotation = Quaternion(-0.32143918, -0.1839531, 0.11447915, 0.92180943)
+bones/7/rotation = Quaternion(-0.23022245, -0.012735936, -0.3390083, 0.9120904)
+bones/9/rotation = Quaternion(0.13244984, 0.19244862, -0.11938734, 0.96497005)
+bones/10/rotation = Quaternion(-0.17109096, -0.01828442, 0.29817778, 0.93887365)
+bones/11/rotation = Quaternion(-0.30518103, -0.0022972594, 0.1503492, 0.940348)
+bones/12/rotation = Quaternion(1.7967185e-08, 0.025497288, -2.2700984e-08, 0.99967486)
+bones/13/rotation = Quaternion(-0.16637431, -0.025006521, 0.25704956, 0.9516406)
+bones/14/rotation = Quaternion(-0.2401717, -0.0054052826, 0.1377139, 0.9608972)
+bones/15/rotation = Quaternion(4.466964e-08, 0.046675995, -1.396984e-08, 0.9989101)
+bones/16/rotation = Quaternion(-0.07461941, -0.0075717354, 0.14138475, 0.9871094)
+bones/17/rotation = Quaternion(-0.16641597, 0.0023709734, 0.09268366, 0.9816873)
+bones/18/rotation = Quaternion(-6.1379936e-08, 0.04105758, 1.7229468e-08, 0.9991568)
+bones/19/rotation = Quaternion(-0.07339031, -0.043197095, -0.028639037, 0.9959557)
+bones/20/rotation = Quaternion(-0.11567508, 0.008609186, 0.08449387, 0.9896494)
+bones/21/rotation = Quaternion(-1.4934527e-08, 0.019381301, 6.992195e-08, 0.9998122)
+bones/22/rotation = Quaternion(-0.36096787, -0.07035259, 0.052136365, 0.9284582)
+bones/23/rotation = Quaternion(0.00566708, 0.15965854, -0.0046101077, 0.98714536)
+bones/27/rotation = Quaternion(0.042200994, -0.0027809124, 0.0004929757, 0.99910516)
+bones/28/rotation = Quaternion(-0.026906092, -0.0027628313, 0.000586118, 0.999634)
+bones/50/rotation = Quaternion(-0.039483696, 0.71278757, 0.69983613, 0.024583247)
+bones/53/rotation = Quaternion(0.670432, -0.43925485, -0.5296806, -0.27751496)
+bones/54/rotation = Quaternion(-0.17616692, 0.18385714, -0.30183908, 0.91872466)
+bones/56/rotation = Quaternion(-0.24390942, 0.09306925, 0.2598944, 0.929678)
+bones/58/rotation = Quaternion(-0.13261649, -0.10893044, 0.031793963, 0.9846504)
+bones/59/rotation = Quaternion(-0.13983627, 0.0061636744, -0.19051345, 0.9716545)
+bones/60/rotation = Quaternion(-0.32620776, 0.0036080042, -0.14237703, 0.9345076)
+bones/61/rotation = Quaternion(9.827595e-09, -0.025498101, -6.245682e-08, 0.9996749)
+bones/62/rotation = Quaternion(-0.13529678, 0.014507775, -0.15967186, 0.977747)
+bones/63/rotation = Quaternion(-0.28198004, 0.005501049, -0.15537766, 0.946739)
+bones/64/rotation = Quaternion(2.6475423e-08, -0.04667609, 1.071021e-08, 0.9989101)
+bones/65/rotation = Quaternion(-0.09408697, 0.030554032, -0.0845079, 0.9915002)
+bones/66/rotation = Quaternion(-0.22911452, -0.002701955, -0.13074154, 0.9645755)
+bones/67/rotation = Quaternion(-5.8685497e-08, -0.041057535, -1.7462298e-08, 0.9991568)
+bones/68/rotation = Quaternion(-0.040480126, 0.03704354, -0.034419883, 0.9979)
+bones/69/rotation = Quaternion(-0.11745992, -0.009495331, -0.089033306, 0.9890329)
+bones/70/rotation = Quaternion(2.3033396e-08, -0.019381285, 2.1376763e-08, 0.9998122)
+bones/71/rotation = Quaternion(-0.3079891, 0.07310291, 0.057742782, 0.9468181)
+bones/107/rotation = Quaternion(0.9664987, 0.09118492, -0.088617794, 0.22296359)
+bones/108/rotation = Quaternion(0.32822567, 0.13214797, 0.0150562525, 0.93518883)
+bones/109/rotation = Quaternion(-0.67750716, -0.08115312, 0.093323044, 0.7250441)
+bones/110/rotation = Quaternion(-0.12215102, 0.09228581, 0.023021692, 0.9879436)
+bones/111/rotation = Quaternion(0.9830602, -0.116495356, 0.13611937, 0.038641747)
+bones/112/rotation = Quaternion(0.32209718, 0.06124587, 0.04223495, 0.943779)
+bones/113/rotation = Quaternion(-0.7577427, 0.12758328, -0.15887308, 0.6199257)
+bones/114/rotation = Quaternion(-0.118399195, -0.06253529, 0.0044357814, 0.99098504)
+
+[node name="viewmodel" parent="SourceAnimatedModel" index="3" unique_id=21845995]
+transform = Transform3D(0.620158, -0.3903411, -0.6804693, -0.4259394, -0.89596486, 0.12576991, -0.65877146, 0.2118417, -0.72190285, -0.23956646, 0.75019145, -0.1238055)
+
+[node name="collision_normal" parent="AI_Visible" parent_id_path=PackedInt32Array(806906378) index="0" unique_id=1386005798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026482, 0, 0)
+shape = SubResource("CapsuleShape3D_5fc14")
+
 [editable path="SourceMovement"]
-[editable path="CameraShake/SourceCamera"]
+[editable path="SourceCamera"]
+[editable path="SourceAnimatedModel"]
+[editable path="SourceAnimatedModel/model3d"]

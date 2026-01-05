@@ -16,7 +16,11 @@ enum Types {
 @export var mesh:Mesh
 @export var mesh_offset:Vector3 = Vector3.ZERO
 @export var mesh_rotation:Vector3 = Vector3.ZERO
-@export var mesh_scale:Vector3 = Vector3.ZERO
+@export var mesh_scale:Vector3 = Vector3.ONE
+@export_group("Building")
+@export var building_offset:Vector3 = Vector3.ZERO
+@export var building_rotation:Vector3 = Vector3.ZERO
+@export var building_scale:Vector3 = Vector3.ONE
 
 func _get_section() -> String:
 	return "buildings"

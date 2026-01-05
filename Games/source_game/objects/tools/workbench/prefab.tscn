@@ -1,43 +1,56 @@
-[gd_scene load_steps=9 format=3 uid="uid://b42jlhl4nkgn3"]
+[gd_scene format=3 uid="uid://b42jlhl4nkgn3"]
 
 [ext_resource type="Script" uid="uid://bxgscpy1mwv5o" path="res://Games/source_game/objects/tools/workbench/prefab.gd" id="1_7j5q5"]
-[ext_resource type="Script" uid="uid://d2inw684rgrh8" path="res://Games/source_game/components/source_prop.gd" id="1_hqe5t"]
-[ext_resource type="PackedScene" uid="uid://cm52o7468o6nf" path="res://Games/source_game/ui/workbench/workbench.tscn" id="2_qgym4"]
 [ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="3_lell6"]
-[ext_resource type="Texture2D" uid="uid://bux4083eacafw" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="4_ujf2u"]
+[ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="4_qgym4"]
+[ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="5_hseud"]
+[ext_resource type="PackedScene" uid="uid://g562vdpgb0u1" path="res://Games/source_game/game/3dmodels/workbench/model.glb" id="5_ujf2u"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hseud"]
-albedo_texture = ExtResource("4_ujf2u")
+[sub_resource type="BoxShape3D" id="BoxShape3D_qgym4"]
+size = Vector3(344.8212, 455.65448, 210.94034)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7j5q5"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lell6"]
-
-[node name="workbench" type="RigidBody3D"]
+[node name="workbench" type="Node3D" unique_id=1518792021 node_paths=PackedStringArray("health")]
 script = ExtResource("1_7j5q5")
-ui = ExtResource("2_qgym4")
+health = NodePath("SourceHealth")
+metadata/_custom_type_script = "uid://05gqrla3psra"
 
-[node name="SourceProp" type="Node" parent="." node_paths=PackedStringArray("rigid_body")]
-script = ExtResource("1_hqe5t")
-rigid_body = NodePath("..")
-surface = "concrete"
-metadata/_custom_type_script = "uid://d2inw684rgrh8"
+[node name="SourceHealth" type="Node" parent="." unique_id=1882952781 node_paths=PackedStringArray("target")]
+script = ExtResource("4_qgym4")
+target = NodePath("..")
+health = 250.0
+metadata/_custom_type_script = "uid://cr18fup83we2u"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_hseud")
-mesh = SubResource("BoxMesh_7j5q5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_lell6")
-
-[node name="label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829061, 0)
-billboard = 1
-text = "WORKBENCH"
-
-[node name="SourceInteractable" type="Area3D" parent="."]
+[node name="SourceInteractable" type="Area3D" parent="." unique_id=470847368 node_paths=PackedStringArray("root")]
 collision_layer = 8
 collision_mask = 8
 monitoring = false
 script = ExtResource("3_lell6")
+root = NodePath("..")
 metadata/_custom_type_script = "uid://bkpx7tuo0vlho"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceInteractable" unique_id=1740598945]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, -1.110223e-18, 0, 1.110223e-18, 0.005, 0.009180732, 0.01319854, -0.004647568)
+shape = SubResource("BoxShape3D_qgym4")
+
+[node name="model" parent="." unique_id=728276010 instance=ExtResource("5_ujf2u")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=611677307]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2115547565]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, -1.110223e-18, 0, 1.110223e-18, 0.005, 0.009180732, 0.01319854, -0.004647568)
+shape = SubResource("BoxShape3D_qgym4")
+
+[node name="SourceHitbox" type="Area3D" parent="." unique_id=1108366534 node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("5_hseud")
+health = NodePath("../SourceHealth")
+metadata/_custom_type_script = "uid://dgtbpbcqdusyu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SourceHitbox" unique_id=593832085]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, -1.110223e-18, 0, 1.110223e-18, 0.005, 0.009180732, 0.01319854, -0.004647568)
+shape = SubResource("BoxShape3D_qgym4")
+
+[editable path="model"]

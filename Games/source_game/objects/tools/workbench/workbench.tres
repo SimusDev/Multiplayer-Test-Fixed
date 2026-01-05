@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="R_SourceWorldObject" load_steps=8 format=3 uid="uid://co47nk56equ6l"]
+[gd_resource type="Resource" script_class="R_SourceWorldObject" format=3 uid="uid://co47nk56equ6l"]
 
 [ext_resource type="Script" uid="uid://ljoyr2dp1aew" path="res://Games/source_game/components/inventory/source_item_action.gd" id="1_0iep7"]
 [ext_resource type="Script" uid="uid://csp1614nihjb5" path="res://Games/source_game/components/r_world_object.gd" id="1_2qo6m"]
 [ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="1_fojk8"]
 [ext_resource type="Script" uid="uid://by2u8yhp1402w" path="res://Games/source_game/components/inventory/source_itemstack_settings.gd" id="2_r7ndf"]
+[ext_resource type="Script" uid="uid://dmfqusepbcc80" path="res://Games/source_game/components/viewmodel/r_source_viewmodel.gd" id="5_na83l"]
+[ext_resource type="Script" uid="uid://chuimtehu4j13" path="res://Games/source_game/components/viewmodel/r_source_view3d.gd" id="6_do356"]
+[ext_resource type="PackedScene" uid="uid://bpfldlaxtdh56" path="res://Games/source_game/items/workbench/workbench_viewmodel.tscn" id="6_ts8jk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fojk8"]
 
@@ -15,16 +18,32 @@ noise = SubResource("FastNoiseLite_fojk8")
 [sub_resource type="Resource" id="Resource_na83l"]
 script = ExtResource("2_r7ndf")
 pickable = false
-actions = Array[ExtResource("1_0iep7")]([])
 metadata/_custom_type_script = "uid://by2u8yhp1402w"
+
+[sub_resource type="Resource" id="Resource_ts8jk"]
+script = ExtResource("6_do356")
+prefab = ExtResource("6_ts8jk")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_upxs7"]
+
+[sub_resource type="Resource" id="Resource_5amjh"]
+script = ExtResource("6_do356")
+mesh = SubResource("PlaceholderMesh_upxs7")
+metadata/_custom_type_script = "uid://chuimtehu4j13"
+
+[sub_resource type="Resource" id="Resource_eo7q1"]
+script = ExtResource("5_na83l")
+view = SubResource("Resource_ts8jk")
+world = SubResource("Resource_5amjh")
+metadata/_custom_type_script = "uid://dmfqusepbcc80"
 
 [resource]
 script = ExtResource("1_2qo6m")
-custom_section = ""
-custom_id = ""
 icon = SubResource("NoiseTexture3D_dcr0b")
 name = "workbench"
-description = "MINECRAFT!"
+description = "MINECRAFT! (RUST)"
 prefab = ExtResource("1_fojk8")
+viewmodel = SubResource("Resource_eo7q1")
 itemstack = SubResource("Resource_na83l")
 metadata/_custom_type_script = "uid://csp1614nihjb5"

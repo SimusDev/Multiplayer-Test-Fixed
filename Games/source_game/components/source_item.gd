@@ -79,6 +79,8 @@ func _input(_event: InputEvent) -> void:
 		request_press_alt()
 	elif Input.is_action_just_released("item.alt_use"):
 		request_release_alt()
+	elif Input.is_action_just_released("item.inspect"):
+		event_inspect.emit()
 
 func request_press() -> void:
 	network.call_func(__pressed_net)

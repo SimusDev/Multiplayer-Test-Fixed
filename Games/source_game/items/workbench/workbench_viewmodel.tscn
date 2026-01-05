@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bpfldlaxtdh56"]
+
+[ext_resource type="Script" uid="uid://dj1vged070hd" path="res://Games/source_game/components/source_item.gd" id="1_r4dff"]
+[ext_resource type="Script" uid="uid://cbd6lccran3ls" path="res://Games/source_game/items/scheme/build_scheme.gd" id="2_bt8ng"]
+[ext_resource type="ArrayMesh" uid="uid://2nlk0n7l50vk" path="res://Games/source_game/items/workbench/mesh.tres" id="3_pg0pd"]
+[ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="4_250ct"]
+[ext_resource type="Script" uid="uid://cwcmpqixyglaj" path="res://Games/source_game/components/r_source_building.gd" id="5_iange"]
+
+[sub_resource type="Resource" id="Resource_co2dm"]
+script = ExtResource("5_iange")
+mesh = ExtResource("3_pg0pd")
+mesh_offset = Vector3(0, 1.123, 0)
+mesh_scale = Vector3(0.005, 0.005, 0.005)
+building_offset = Vector3(0, 1.123, 0)
+prefab = ExtResource("4_250ct")
+metadata/_custom_type_script = "uid://cwcmpqixyglaj"
+
+[node name="workbench_viewmodel" type="Node3D" unique_id=1143447013]
+script = ExtResource("1_r4dff")
+metadata/_custom_type_script = "uid://dj1vged070hd"
+
+[node name="BuildScheme" type="Node" parent="." unique_id=61878583 node_paths=PackedStringArray("item")]
+script = ExtResource("2_bt8ng")
+building = SubResource("Resource_co2dm")
+item = NodePath("..")
+metadata/_custom_type_script = "uid://cbd6lccran3ls"

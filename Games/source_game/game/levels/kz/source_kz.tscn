@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://biexdapt3c1te"]
 
 [ext_resource type="PackedScene" uid="uid://wjpo1d0fdtji" path="res://Games/source_game/game/levels/base_level/source_base_level.tscn" id="1_c8ni6"]
-[ext_resource type="PackedScene" uid="uid://b42jlhl4nkgn3" path="res://Games/source_game/objects/tools/workbench/prefab.tscn" id="3_38ipe"]
 [ext_resource type="Material" uid="uid://bhh4gl08xajos" path="res://Games/source_game/materials/wood1.tres" id="4_bge2v"]
 [ext_resource type="Material" uid="uid://e6xxbhiy8jis" path="res://Games/source_game/materials/metal1.tres" id="5_fpuye"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="8_17bi3"]
@@ -45,9 +44,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4222, -0.5, -19.3888)
 
 [node name="tree5" parent="objects" index="4" unique_id=1860728275 instance=ExtResource("17_17bi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2048, -0.5, -22.9961)
-
-[node name="workbench" parent="objects" index="5" unique_id=117405808 instance=ExtResource("3_38ipe")]
-transform = Transform3D(0.7887945, 0, 0.614657, 0, 1, 0, -0.614657, 0, 0.7887945, -15.143978, 1.1323876, -32.95397)
 
 [node name="kz" type="Node3D" parent="." index="5" unique_id=1413795701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5806, 1.79487, -28.3136)

@@ -2,24 +2,32 @@ class_name BuildScheme extends Node
 
 signal building_change
 
+@export var building:R_SourceBuilding : set = set_building
 @export var item:SourceItem
 
-@export var ui_interface_comp:C_UIInterfaceComponent
 @export_group("Materials")
 @export var correct_ghost_material:StandardMaterial3D
 @export var wrong_ghost_material:StandardMaterial3D
 @export_group("Settings")
 @export var ghost_section_name:String = "ghost_buildings"
 @export var buildings_section_name:String = "buildings"
+@export_group("References")
+@export var ui_interface_comp:C_UIInterfaceComponent
 
-
-var building:R_SourceBuilding : set = set_building
 var ghost_building:MeshInstance3D
 
 
 func _ready() -> void:
 	building_change.connect(on_building_change)
 	item.tree_exited.connect(remove_ghost_building)
+	if not correct_ghost_material:
+		correct_ghost_material = load("res://Games/source_game/materials/building_correct.tres")
+	if not wrong_ghost_material:
+		wrong_ghost_material = load("res://Games/source_game/materials/building_wrong.tres")
+	
+	if building:
+		add_ghost_building()
+	
 	SD_Network.register_object(self)
 	SD_Network.register_function(place)
 
@@ -118,7 +126,7 @@ func update_ghost_building() -> void:
 		
 		ghost_building.global_position = collision_point + building.mesh_offset
 		#ghost_building.global_rotation = building.mesh_rotation
-		#ghost_building.scale += building.mesh_scale
+		ghost_building.scale = building.mesh_scale
 
 
 func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEntity) -> void:
@@ -137,10 +145,14 @@ func place(_building:R_SourceBuilding, _transform:Transform3D, _player:SourceEnt
 			collider.set_object(new_building)
 			collider.busy = true
 	
-	new_building.global_transform = _transform
+	new_building.global_position = (ghost_building.global_position - building.mesh_offset) + building.building_offset
+	new_building.global_rotation = (ghost_building.global_rotation - building.mesh_rotation) + building.building_rotation
+	new_building.scale = (ghost_building.scale - building.mesh_scale) + building.building_scale
 
 func open_ui() -> void:
-	ui_interface_comp.open()
+	if ui_interface_comp:
+		ui_interface_comp.open()
 
 func close_ui() -> void:
-	ui_interface_comp.close()
+	if ui_interface_comp:
+		ui_interface_comp.close()
