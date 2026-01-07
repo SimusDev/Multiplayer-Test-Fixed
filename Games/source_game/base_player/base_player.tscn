@@ -338,16 +338,16 @@ camera = NodePath("../SourceCamera")
 movement = NodePath("../SourceMovement")
 
 [node name="SourceCamera" parent="." unique_id=1969548237 node_paths=PackedStringArray("body") instance=ExtResource("13_y5oya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7621036, 0.6474551, 0, -0.6474551, 0.7621036, 0, 0.9, 0)
 body = NodePath("..")
 
-[node name="CameraShake" type="Node3D" parent="SourceCamera/Camera3D" index="0" unique_id=1864489592 node_paths=PackedStringArray("player", "viewmodel_root", "camera_node")]
+[node name="CameraShake" type="Node3D" parent="SourceCamera/Camera3D" index="0" unique_id=1864489592 node_paths=PackedStringArray("player", "viewmodel_root", "camera", "movement")]
 script = ExtResource("37_cmvf1")
 player = NodePath("../../..")
 viewmodel_root = NodePath("SourceViewModelRoot3D")
-camera_node = NodePath("..")
-bob_amplitude_y = 0.01
-crouch_offset = Vector3(0, 0.05, 0.1)
+camera = NodePath("../..")
+movement = NodePath("../../../SourceMovement")
+crouch_offset = Vector3(0.025, 0.025, 0.05)
 metadata/_custom_type_script = "uid://c1n2k4cmom6rn"
 
 [node name="SourceViewModelRoot3D" type="Node3D" parent="SourceCamera/Camera3D/CameraShake" unique_id=2088033593 node_paths=PackedStringArray("inventory")]
@@ -359,6 +359,7 @@ placeholder = ExtResource("19_em5yj")
 metadata/_custom_type_script = "uid://bp0rdj4e63cah"
 
 [node name="GDViewModelSway" type="Node" parent="SourceCamera/Camera3D/CameraShake/SourceViewModelRoot3D" unique_id=1162937376]
+physics_interpolation_mode = 2
 script = ExtResource("23_7nlxi")
 metadata/_custom_type_script = "uid://cb4a114wnl7nf"
 

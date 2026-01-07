@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldMaterial" load_steps=13 format=3 uid="uid://cktucedk407cr"]
+[gd_resource type="Resource" script_class="WorldMaterial" format=3 uid="uid://cktucedk407cr"]
 
 [ext_resource type="Script" uid="uid://bm1xp38mc503u" path="res://Games/source_game/components/world_objects/material.gd" id="1_jblu0"]
 [ext_resource type="Texture2D" uid="uid://f8emg1765ykg" path="res://Games/source_game/textures/world_material/metal_ore.png" id="1_wis2b"]

@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://cmevnham1hog4" path="res://Games/source_game/components/r_player.gd" id="1_ekfyl"]
 [ext_resource type="Resource" uid="uid://c2rdoxu3qti2g" path="res://Games/source_game/objects/sound/death/skeleton_death.tres" id="1_iy760"]
 [ext_resource type="PackedScene" uid="uid://qhs1e0evqd01" path="res://Games/source_game/skeleton_player/skeleton_player.tscn" id="1_qifmy"]
+[ext_resource type="Resource" uid="uid://cnk5x7vfacf7h" path="res://Games/source_game/objects/sound/player/hurt/skeleton_hurt.tres" id="2_ft2uy"]
 
 [resource]
 script = ExtResource("1_ekfyl")
+hurt_sound = ExtResource("2_ft2uy")
 death_sound = ExtResource("1_iy760")
 name = "skeleton"
 description = "kostyashka skelet zobi

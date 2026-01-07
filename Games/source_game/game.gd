@@ -223,7 +223,8 @@ func find_player(nickname:String) -> SD_NetworkPlayer:
 	return picked_player
 
 func find_and_kill_player(nickname:String):
-	var player:Node = find_player(nickname).get_player_node()
+	var player:Node = find_player(nickname)
+	if player: player = player.get_player_node()
 	if is_instance_valid(player):
 		if player is SourcePlayer:
 			player.health.kill()

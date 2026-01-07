@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_SourceAmmoObject" load_steps=6 format=3 uid="uid://lvofy3rii0so"]
+[gd_resource type="Resource" script_class="R_SourceAmmoObject" format=3 uid="uid://lvofy3rii0so"]
 
 [ext_resource type="Script" uid="uid://dnds3ahg2iktc" path="res://Games/source_game/components/weapons/r_ammo.gd" id="1_2gpvd"]
 [ext_resource type="Texture2D" uid="uid://cxubks1abq5y" path="res://Games/source_game/objects/weapons/ammo/pistol.png" id="1_45tmx"]
@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_2gpvd")
+damage = 25.0
 icon = ExtResource("1_45tmx")
 prefab = ExtResource("1_ysl2x")
 drag_start_sound = ExtResource("1_yvy68")

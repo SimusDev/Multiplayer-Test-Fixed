@@ -130,10 +130,12 @@ var _deferred_spawns: Dictionary[Node, Array] = {}
 func spawn(data: Dictionary) -> void:
 	if SD_Network.is_server():
 		return
-	
+	print(name)
 	var node_name: String = data.n
 	var root: Node = get_node(data.p)
 	var deferred_spawn_array: Array = _deferred_spawns.get_or_add(root, [])
+	if not root.is_node_ready():
+		await root.ready
 	
 	if node_name in deferred_spawn_array:
 		return

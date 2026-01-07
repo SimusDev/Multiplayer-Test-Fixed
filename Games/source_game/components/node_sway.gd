@@ -1,7 +1,6 @@
 class_name ViewModelSway extends Node
 
 
-
 var view_model: Node3D
 var mouse_input:Vector2
 
@@ -12,21 +11,23 @@ func _ready():
 	if auth:
 		view_model = get_parent()
 
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative * 0.0025
 
-func _process(delta):
-	if SimusDev.ui.has_active_interface():
+func _process(delta: float) -> void:
+	if not view_model or SimusDev.ui.has_active_interface():
 		return
-	var target_position:Vector3 = Vector3.ZERO
-	target_position.x = -mouse_input.x
-	target_position.y = mouse_input.y
+		
+	var target_pos = Vector3(-mouse_input.x, mouse_input.y, 0)
+	var target_rot = Vector3(-mouse_input.y, -mouse_input.x, 0) * 1.5
 	
-	var target_rotation:Vector3 = Vector3.ZERO
-	target_rotation.x = -mouse_input.y
-	target_rotation.y = -mouse_input.x
+	var weight = 1.0 - exp(-10 * delta)
+	var mouse_decay = 1.0 - exp(-15 * delta)
 	
-	view_model.position = lerp(view_model.position, target_position, 10 * delta)
-	view_model.rotation = lerp(view_model.rotation, target_rotation * 1.5, 10 * delta)
+	view_model.position = view_model.position.lerp(target_pos, weight)
+	
+	view_model.rotation.x = lerp_angle(view_model.rotation.x, target_rot.x, weight)
+	view_model.rotation.y = lerp_angle(view_model.rotation.y, target_rot.y, weight)
+	
+	mouse_input = mouse_input.lerp(Vector2.ZERO, mouse_decay)

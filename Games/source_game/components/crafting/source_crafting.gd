@@ -1,7 +1,7 @@
 extends Node
 class_name SourceCrafting
 
-@export var object_handler: C_SourceObjectHandler
+@export var object_handler: Node
 
 func _ready() -> void:
 	SD_Network.register_object(self)

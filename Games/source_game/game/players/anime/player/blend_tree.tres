@@ -110,6 +110,7 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_s5gsd")
 blend_point_3/pos = Vector2(0, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_76rui")
 blend_point_4/pos = Vector2(0, -1)
+sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ltta"]
 animation = &"library/idle"
@@ -158,13 +159,42 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_x5xlb")
 blend_point_3/pos = Vector2(0, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_k05dd")
 blend_point_4/pos = Vector2(0, -1)
+sync = true
+
+[sub_resource type="Curve" id="Curve_m3u8o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5gsd"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_m3u8o")
 advance_mode = 2
 
+[sub_resource type="Curve" id="Curve_k1wwg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms6jx"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_k1wwg")
 switch_mode = 2
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3u8o"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_k1wwg")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k1wwg"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_k1wwg")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mgbdw"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_k1wwg")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_skuw3"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_k1wwg")
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_76rui"]
 states/End/position = Vector2(837, 100)
@@ -177,13 +207,13 @@ states/jump/node = SubResource("AnimationNodeAnimation_8vbk4")
 states/jump/position = Vector2(425, 211)
 states/movement/node = SubResource("AnimationNodeBlendSpace2D_hr7yh")
 states/movement/position = Vector2(445, 143)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ms6jx")]
-graph_offset = Vector2(70, -31)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_s5gsd"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ms6jx"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_m3u8o"), "idle", "crouch", SubResource("AnimationNodeStateMachineTransition_k1wwg"), "movement", "idle", SubResource("AnimationNodeStateMachineTransition_mgbdw"), "idle", "movement", SubResource("AnimationNodeStateMachineTransition_skuw3")]
+graph_offset = Vector2(-81.7321, -31)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_neb1h"]
 
 [resource]
-graph_offset = Vector2(-213.78575, 126.37092)
+graph_offset = Vector2(-41.120186, -123.7105)
 nodes/output/position = Vector2(844.444, 133.333)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_neb1h")
 nodes/Add2/position = Vector2(533.333, 111.111)

@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://by2u8yhp1402w"
 [sub_resource type="Resource" id="Resource_w82ur"]
 script = ExtResource("10_6h41l")
 prefab = ExtResource("9_3a3gw")
-position = Vector3(0.165, -0.159, -0.443)
+position = Vector3(0.115, -0.109, -0.343)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [sub_resource type="Resource" id="Resource_lgue4"]
@@ -40,6 +40,7 @@ metadata/_custom_type_script = "uid://dmfqusepbcc80"
 [resource]
 script = ExtResource("2_1ip6e")
 max_ammo = 8
+damage_multiplier = 1.05
 ammo = Array[ExtResource("1_11e70")]([ExtResource("2_6n6u1")])
 recoil = Vector3(0.8, 0.4, 0)
 projectile = ExtResource("3_63rnj")

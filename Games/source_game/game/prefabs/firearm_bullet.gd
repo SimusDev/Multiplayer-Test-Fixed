@@ -105,14 +105,12 @@ func _handle_collision(collider:Node3D, hit_position:Vector3) -> void:
 		explosion.set_damage(ammo.explosion_damage)
 		explosion.explode()
 		_destroy_net()
-		print("collider: %s" % [collider])
 		return
 	
 	if collider.is_in_group("penetrable"):
 		current_velocity *= 0.5
 		is_hit = false
 		_destroy_net()
-		print("collider: %s" % [collider])
 
 func _should_destroy_on_collision(collider:Node3D) -> bool:
 	return not (collider.is_in_group("penetrable") and bounces_left > 0)

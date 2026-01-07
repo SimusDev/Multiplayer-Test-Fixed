@@ -84,7 +84,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.133333),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -211,7 +211,7 @@ metadata/_custom_type_script = "uid://ddorrr4rh5ny8"
 libraries/ = SubResource("AnimationLibrary_4tykw")
 
 [node name="model" parent="." unique_id=463843796 instance=ExtResource("4_b6hyk")]
-transform = Transform3D(0.9974046, 0.07074007, -0.013422746, -0.07200229, 0.9799198, -0.18593726, 2.7939682e-09, 0.18642111, 0.98246974, 0.2222738, -0.0437911, -0.39)
+transform = Transform3D(0.9974046, 0.07074007, -0.013422745, -0.07200229, 0.9799198, -0.18593724, 2.7939682e-09, 0.18642111, 0.9824697, 0.2222738, -0.0437911, -0.39)
 
 [node name="Sketchfab_model" parent="model" index="0"]
 transform = Transform3D(-0.0245746, 0.0172073, 7.52155e-10, 0, -1.31134e-09, 0.03, 0.0172073, 0.0245746, 1.07419e-09, 0, 0, 0)
@@ -244,8 +244,6 @@ target_node = NodePath("../../../../model/left_hand")
 target_node = NodePath("../../../../model/right_hand")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=82458149]
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=249952127]
 
 [editable path="model"]
 [editable path="arms"]

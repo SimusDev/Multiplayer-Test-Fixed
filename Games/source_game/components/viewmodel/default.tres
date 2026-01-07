@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://chuimtehu4j13"
 [sub_resource type="Resource" id="Resource_l575o"]
 script = ExtResource("3_7egl4")
 prefab = ExtResource("2_q1a82")
+scale = Vector3(0.3, 0.3, 0.3)
 metadata/_custom_type_script = "uid://chuimtehu4j13"
 
 [resource]
