@@ -47,7 +47,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Multiplayer-Test"
 config/version="dev005b"
 run/main_scene="uid://c31uhxfwryhme"
-config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://cyj56486e1iyo"
 
 [audio]

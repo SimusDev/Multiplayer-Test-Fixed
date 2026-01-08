@@ -11,8 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://crc5q81krdogr" path="res://Games/source_game/ui/character_select/character_select.tscn" id="7_lg245"]
 [ext_resource type="Script" uid="uid://3dgpp5kj8o23" path="res://Games/source_game/components/level_handler.gd" id="8_aahtd"]
 [ext_resource type="Script" uid="uid://brbjcyxkk7elj" path="res://Games/source_game/components/crafting/source_crafting.gd" id="8_spe63"]
-[ext_resource type="Script" uid="uid://c2iyv5mn2tafc" path="res://Games/source_game/components/cs/CsSourceObjectHandler.cs" id="10_dvgr3"]
-[ext_resource type="Resource" uid="uid://c5rxmvlm7k4sw" path="res://Games/source_game/objects/players/anime/object.tres" id="10_i3jxi"]
+[ext_resource type="Script" uid="uid://dhnvcwkrkbnk5" path="res://Games/source_game/components/c_world_object_handler.gd" id="10_dvgr3"]
 [ext_resource type="Script" uid="uid://byedbi2b265n3" path="res://Games/source_game/scripts/backrooms_trigger.gd" id="10_vakk2"]
 [ext_resource type="PackedScene" uid="uid://bwdn8l0oq6tcv" path="res://Games/source_game/game/3dmodels/backrooms/backrooms.tscn" id="11_8dbco"]
 [ext_resource type="Script" uid="uid://omd1l2jsuw6u" path="res://Games/source_game/components/gamescripts/gamescripts.gd" id="13_rwrbd"]
@@ -91,12 +90,10 @@ script = ExtResource("6_152x2")
 script = ExtResource("3_8dbco")
 metadata/_custom_type_script = "uid://mhjfnoeev371"
 
-[node name="CsSourceObjectHandler" type="Node" parent="." unique_id=868223373]
+[node name="C_SourceObjectHandler" type="Node" parent="." unique_id=868223373]
 script = ExtResource("10_dvgr3")
-baseDir = "res://Games/source_game/"
-objectDirs = PackedStringArray("props", "objects", "recipes")
-initResources = Array[Resource]([ExtResource("10_i3jxi")])
-metadata/_custom_type_script = "uid://c2iyv5mn2tafc"
+base_dir = "res://Games/source_game/"
+object_dirs = PackedStringArray("props", "objects", "recipes")
 
 [node name="SourceGameScripts" type="Node" parent="." unique_id=376349446]
 script = ExtResource("13_rwrbd")
@@ -105,7 +102,7 @@ metadata/_custom_type_script = "uid://omd1l2jsuw6u"
 
 [node name="SourceCrafting" type="Node" parent="." unique_id=1344023882 node_paths=PackedStringArray("object_handler")]
 script = ExtResource("8_spe63")
-object_handler = NodePath("../CsSourceObjectHandler")
+object_handler = NodePath("../C_SourceObjectHandler")
 metadata/_custom_type_script = "uid://brbjcyxkk7elj"
 
 [node name="game_commands" type="Node" parent="." unique_id=1244324368]
