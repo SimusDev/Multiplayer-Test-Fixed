@@ -69,6 +69,62 @@ script = ExtResource("10_y1g7y")
 type = "metal"
 metadata/_custom_type_script = "uid://dau2vuhctib65"
 
+[sub_resource type="GDScript" id="GDScript_181f1"]
+resource_name = "network_script"
+script/source = "extends Node
+
+# Веса для двух входных сигналов и смещение (bias)
+var weights = [randf_range(-1, 1), randf_range(-1, 1)]
+var bias = randf_range(-1, 1)
+var learning_rate = 0.1
+
+func _ready():
+	print(\"Начальные веса: \", weights)
+	# Обучаем сеть операции \"ИЛИ\" (если хоть один вход 1, то результат 1)
+	var training_data = [
+		{\"input\": [0, 0], \"target\": 0},
+		{\"input\": [0, 1], \"target\": 1},
+		{\"input\": [1, 0], \"target\": 1},
+		{\"input\": [1, 1], \"target\": 1}
+	]
+	
+	# Цикл обучения (1000 эпох)
+	for epoch in range(1000):
+		for data in training_data:
+			train(data[\"input\"], data[\"target\"])
+			
+	print(\"Обучение завершено!\")
+	test_network()
+
+# Функция активации (Sigmoid)
+func activate(x):
+	return 1.0 / (1.0 + exp(-x))
+
+# Предсказание
+func predict(inputs):
+	var sum = bias
+	for i in range(inputs.size()):
+		sum += inputs[i] * weights[i]
+	return activate(sum)
+
+# Обучение методом обратного распространения (упрощенно для 1 нейрона)
+func train(inputs, target):
+	var guess = predict(inputs)
+	var error = target - guess
+	
+	# Корректировка весов
+	for i in range(weights.size()):
+		weights[i] += error * inputs[i] * learning_rate
+	bias += error * learning_rate
+
+# Проверка результата
+func test_network():
+	print(\"0 OR 0 = \", round(predict([0, 0])))
+	print(\"0 OR 1 = \", round(predict([0, 1])))
+	print(\"1 OR 0 = \", round(predict([1, 0])))
+	print(\"1 OR 1 = \", round(predict([1, 1])))
+"
+
 [node name="kz" unique_id=127974903 instance=ExtResource("1_c8ni6")]
 
 [node name="tree" parent="objects" index="0" unique_id=35811866 instance=ExtResource("17_17bi3")]
@@ -302,3 +358,6 @@ transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-
 texture = ExtResource("11_ae8mq")
 
 [node name="Environment" parent="." index="12" unique_id=1929378285 instance=ExtResource("13_38ipe")]
+
+[node name="Node" type="Node" parent="." index="13" unique_id=1810967225]
+script = SubResource("GDScript_181f1")
