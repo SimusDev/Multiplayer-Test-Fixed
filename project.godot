@@ -52,6 +52,7 @@ config/icon="uid://cyj56486e1iyo"
 
 [audio]
 
+buses/default_bus_layout="uid://dkif0mnl8g155"
 general/default_playback_type.web=0
 driver/enable_input=true
 

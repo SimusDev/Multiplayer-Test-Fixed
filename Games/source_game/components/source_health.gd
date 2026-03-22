@@ -9,8 +9,18 @@ func _ready() -> void:
 func apply_damage(points: float) -> void:
 	super(points)
 	
+	if not target:
+		return
+	
+	if not target.object:
+		return
+	
+	if not target.object.hurt_sound:
+		return
+	
 	if health <= 0:
 		return
+	
 	if target is SourcePlayer:
 		SoundPlayer.play_global_audio_3d(
 			target.global_position,

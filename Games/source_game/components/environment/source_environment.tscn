@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bm7dot7t7u1q4" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/StarField.jpg" id="7_a74je"]
 [ext_resource type="Texture2D" uid="uid://c1vwcdcdvb74a" path="res://addons/sky_3d/assets/thirdparty/textures/milkyway/Milkyway.jpg" id="8_bxcrm"]
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="9_dskhl"]
-[ext_resource type="Script" uid="uid://chpdd24s8aqdt" path="res://addons/sky_3d/src/SkyDome.gd" id="10_18c2x"]
+[ext_resource type="Script" uid="uid://b46vr0tfi3khi" path="res://addons/sky_3d/src/SkyDome.gd" id="10_18c2x"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="11_dn3ud"]
 [ext_resource type="Script" uid="uid://b5dhc3onabatl" path="res://addons/simusdev/network/SD_NetFunctionCaller.gd" id="12_dnjjk"]
 
@@ -49,8 +49,8 @@ shader_parameter/starmap_flip_u = false
 shader_parameter/starmap_flip_v = false
 shader_parameter/starmap_alignment = Vector3(2.68288, -0.25891, 0.40101)
 shader_parameter/star_rotation_offset = 9.38899
-shader_parameter/star_rotation = -10.193717566087205
-shader_parameter/star_tilt = -1.2915436464758039
+shader_parameter/star_rotation = -10.193717566087203
+shader_parameter/star_tilt = -1.291543646475804
 shader_parameter/star_field_color = Color(1, 1, 1, 1)
 shader_parameter/star_field_texture = ExtResource("7_a74je")
 shader_parameter/star_scintillation = 0.75
@@ -105,10 +105,6 @@ ambient_light_sky_contribution = 0.8
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0105
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ao32c"]
@@ -124,11 +120,7 @@ environment = SubResource("Environment_dn3ud")
 camera_attributes = SubResource("CameraAttributesPractical_ao32c")
 script = ExtResource("9_dskhl")
 fog_enabled = false
-editor_time_enabled = false
-current_time = 7.9
 sky_contribution = 0.8
-moon_energy = 0.3
-wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D" unique_id=1606719123]

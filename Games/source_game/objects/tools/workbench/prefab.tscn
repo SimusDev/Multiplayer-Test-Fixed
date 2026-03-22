@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b42jlhl4nkgn3"]
 
 [ext_resource type="Script" uid="uid://bxgscpy1mwv5o" path="res://Games/source_game/objects/tools/workbench/prefab.gd" id="1_7j5q5"]
+[ext_resource type="PackedScene" uid="uid://cm52o7468o6nf" path="res://Games/source_game/ui/workbench/workbench.tscn" id="2_hseud"]
 [ext_resource type="Script" uid="uid://bkpx7tuo0vlho" path="res://Games/source_game/components/source_interactable.gd" id="3_lell6"]
 [ext_resource type="Script" uid="uid://cr18fup83we2u" path="res://Games/source_game/components/source_health.gd" id="4_qgym4"]
 [ext_resource type="Script" uid="uid://dgtbpbcqdusyu" path="res://Games/source_game/components/hitbox.gd" id="5_hseud"]
@@ -11,6 +12,7 @@ size = Vector3(344.8212, 455.65448, 210.94034)
 
 [node name="workbench" type="Node3D" unique_id=1518792021 node_paths=PackedStringArray("health")]
 script = ExtResource("1_7j5q5")
+ui = ExtResource("2_hseud")
 health = NodePath("SourceHealth")
 metadata/_custom_type_script = "uid://05gqrla3psra"
 
